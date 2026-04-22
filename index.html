@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kauê Ruon Cardoso — Processo Nº K.R.001</title>
+  <meta name="description"
+    content="Portfólio de Kauê Ruon Cardoso. Cartorário por contrato. Desenvolvedor por necessidade. Transformei burocracia em código.">
+  <meta name="author" content="Kauê Ruon Cardoso">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="has-noise">
+  <!-- NOISE OVERLAY -->
+  <div class="noise-overlay"></div>
+
+  <!-- GLOBAL 3D BACKGROUND -->
+  <canvas id="heroCanvas" class="global-3d-bg"></canvas>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- LOADING SCREEN                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="loader" class="loader">
+    <div class="loader__content">
+      <p class="loader__title">TRIBUNAL DE INOVAÇÃO DA REPÚBLICA DO CÓDIGO</p>
+      <div class="loader__divider"></div>
+      <p class="loader__case">Processo nº K.R.2001-BLU-001</p>
+      <div class="loader__bars">
+        <div class="loader__bar-row" data-target="74">
+          <div class="loader__bar">
+            <div class="loader__bar-fill" id="bar1"></div>
+          </div>
+          <span class="loader__percent" id="pct1">0%</span>
+          <span class="loader__label">autenticando identidade...</span>
+        </div>
+        <div class="loader__bar-row" data-target="82">
+          <div class="loader__bar">
+            <div class="loader__bar-fill" id="bar2"></div>
+          </div>
+          <span class="loader__percent" id="pct2">0%</span>
+          <span class="loader__label">verificando OBMEP...</span>
+        </div>
+        <div class="loader__bar-row" data-target="100">
+          <div class="loader__bar">
+            <div class="loader__bar-fill" id="bar3"></div>
+          </div>
+          <span class="loader__percent" id="pct3">0%</span>
+          <span class="loader__label">firma reconhecida. acesso liberado.</span>
+        </div>
+      </div>
+      <p class="loader__hint">↓ role para iniciar o processo</p>
+    </div>
+    <div class="loader__curtain loader__curtain--left"></div>
+    <div class="loader__curtain loader__curtain--right"></div>
+  </div>
+
+  <!-- CURSOR TRAIL CANVAS -->
+  <canvas id="cursorTrail" class="cursor-trail"></canvas>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+    <span class="cursor__label" id="cursorLabel"></span>
+  </div>
+
+  <!-- BREACH ALERT BAR -->
+  <div class="breach-alert" id="breachAlert">
+    <span class="breach-alert__text">[SYSTEM BREACH: IDENTITY CONFIRMED]</span>
+  </div>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- NAVBAR                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav__logo">KR</a>
+    <div class="nav__links" id="navLinks">
+      <a href="#hero" class="nav__link" data-section="1">INÍCIO</a>
+      <a href="#sobre" class="nav__link" data-section="2">SOBRE</a>
+      <a href="#experiencia" class="nav__link" data-section="3">EXPERIÊNCIA</a>
+      <a href="#skills" class="nav__link" data-section="4">SKILLS</a>
+      <a href="#evidencias" class="nav__link" data-section="5">EVIDÊNCIAS</a>
+      <a href="#contato" class="nav__link" data-section="6">CONTATO</a>
+    </div>
+    <span class="nav__indicator" id="navIndicator">§ 01 / 07</span>
+    <button class="nav__burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- HERO — QUALIFICAÇÃO DO REQUERENTE            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="hero section" id="hero" data-section="1">
+    <div class="hero__text">
+      <p class="hero__case mono-ghost">PROCESSO Nº K.R.001 · BLU/SC · 2026</p>
+      <h1 class="hero__name" id="heroName">
+        <span class="hero__name-line hero__name--white">KAUÊ</span>
+        <span class="hero__name-line hero__name--gold">RUON</span>
+        <span class="hero__name-line hero__name--outline">CARDOSO</span>
+      </h1>
+      <div class="hero__typewriter" id="heroTypewriter">
+        <span class="hero__tw-text" id="twText">&gt; Cartorário que entende de APIs.</span>
+        <span class="hero__tw-cursor">|</span>
+      </div>
+      <div class="hero__buttons">
+        <a href="#experiencia" class="btn btn--primary magnetic" data-cursor="VER">VER MEU TRABALHO ↓</a>
+        <a href="#" class="btn btn--outline magnetic" data-cursor="BAIXAR">CURRÍCULO.PDF</a>
+      </div>
+      <p class="hero__footnote mono-ghost">Nenhum processo foi arquivado na criação deste site.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SOBRE — Art. I · DO REQUERENTE               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section sobre" id="sobre" data-section="2">
+    <div class="section__line"></div>
+    <div class="sobre__grid">
+      <div class="sobre__text">
+        <span class="section__article">Art. I §1º</span>
+        <h2 class="section__title" data-cipher>DO REQUERENTE</h2>
+        <p class="sobre__paragraph anim-slide">
+          O interesse do réu pela tecnologia vem literalmente do berço. Aos 6 anos de idade, já burlava sistemas
+          arranjando maneiras de rodar jogos pirateados de PS2 usando um computador com esparsos 512MB de RAM e internet
+          discada.
+        </p>
+        <p class="sobre__paragraph anim-slide">
+          O que começou como curiosidade pueril evoluiu para engenharia de hardware e software amadora durante a
+          passagem pela manutenção técnica de dispositivos Apple na "Iphoneria". Posteriormente, a vida cobrou caminhos
+          mais burocráticos, levando-o aos corredores cheios de papel de um Cartório. Embora navegue pelo rígido código
+          jurídico com extrema facilidade, sua tendência inata à tecnologia sempre prevalece.
+        </p>
+        <p class="sobre__paragraph anim-slide">
+          Nunca dependeu de ordens superiores para agir. Movido pelo instinto de otimização frente à ineficiência
+          processual, começou a melhorar e automatizar metodologias inteiras do cartório por conta própria. Para
+          Cardoso, não há problemas que não possam ser solucionados através da tenacidade e do puro poder da lógica
+          sistemática.
+        </p>
+      </div>
+      <div class="sobre__card-wrap">
+        <div class="sobre__card magnetic" data-cursor="INFO" id="fichaCard">
+          <div class="sobre__card-header">■ FICHA TÉCNICA</div>
+          <div class="sobre__card-divider"></div>
+          <div class="sobre__card-row"><span class="sobre__card-label">NOME</span><span>Kauê Ruon Cardoso</span></div>
+          <div class="sobre__card-row"><span class="sobre__card-label">ORIGEM</span><span>Blumenau / SC</span></div>
+          <div class="sobre__card-row"><span class="sobre__card-label">STACK</span><span>JS · Next.js · React</span>
+          </div>
+          <div class="sobre__card-row"><span class="sobre__card-label">DISTINÇÃO</span><span>Bronze OBMEP
+              Nacional</span></div>
+          <div class="sobre__card-row"><span class="sobre__card-label">STATUS</span><span class="status-badge"><span
+                class="status-dot"></span> ATIVO</span></div>
+          <div class="sobre__stamp" id="fichaStamp">AUTENTICADO ✓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- EXPERIÊNCIA — Art. II · DO HISTÓRICO         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section experiencia" id="experiencia" data-section="3">
+    <div class="section__line"></div>
+    <span class="section__article">Art. II</span>
+    <h2 class="section__title">DO HISTÓRICO DE ATUAÇÃO</h2>
+
+    <div class="timeline">
+      <div class="timeline__line" id="timelineLine"></div>
+
+      <!-- CARTÓRIO GAYA -->
+      <div class="timeline__item timeline__item--left anim-slide">
+        <div class="timeline__dot"></div>
+        <div class="timeline__content">
+          <div class="timeline__header">
+            <span class="timeline__year">2023 → ATUAL</span>
+            <span class="timeline__badge timeline__badge--active"><span class="status-dot"></span> EM CURSO</span>
+          </div>
+          <h3 class="timeline__title">Cartorário — Setor de Procurações</h3>
+          <p class="timeline__company">Cartório Gaya · Blumenau/SC</p>
+
+          <div class="timeline__highlight">
+            <div class="timeline__highlight-icon">
+              <!-- Geometric Gear SVG -->
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
+                <path
+                  d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z">
+                </path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="timeline__highlight-title">PROJETO: AUTOMAÇÃO DETRAN-RS</h4>
+              <p>Construí uma integração direta com a API do Detran-RS para gerar procurações de veículos
+                automaticamente. Eliminou erros de digitação. Reduziu o tempo de produção por documento em 60%+.</p>
+              <span class="timeline__stack">Stack: JavaScript · Fetch API · Node</span>
+            </div>
+          </div>
+
+          <ul class="timeline__bullets">
+            <li>Documentos jurídicos complexos: procurações, inventários</li>
+            <li>Digitalização e reestruturação do manual interno</li>
+            <li>Suporte técnico interno: hardware e software</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- IPHONERIA -->
+      <div class="timeline__item timeline__item--right anim-slide">
+        <div class="timeline__dot"></div>
+        <div class="timeline__content">
+          <div class="timeline__header">
+            <span class="timeline__year">Nov 2021 → Mar 2023</span>
+            <span class="timeline__badge">CONCLUÍDO</span>
+          </div>
+          <h3 class="timeline__title">Técnico em Manutenção Apple</h3>
+          <p class="timeline__company">iPhoneria · Blumenau/SC</p>
+          <p class="timeline__note">Fui promovido de Estagiário durante o período.</p>
+          <ul class="timeline__bullets">
+            <li>Diagnóstico e reparo de dispositivos Apple</li>
+            <li>Gestão de estoque e controle de peças</li>
+            <li>Atendimento técnico ao cliente</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SKILLS — Art. III · DAS COMPETÊNCIAS          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section skills" id="skills" data-section="4">
+    <div class="section__line"></div>
+    <span class="section__article">Art. III</span>
+    <h2 class="section__title">DAS COMPETÊNCIAS COMPROVADAS</h2>
+
+    <div class="skills__grid">
+      <div class="skills__technical">
+        <div class="skill-bar anim-slide" data-percent="85">
+          <div class="skill-bar__header">
+            <span class="skill-bar__article">Art. 1º</span>
+            <span class="skill-bar__name">JavaScript</span>
+            <span class="skill-bar__pct">85%</span>
+          </div>
+          <div class="skill-bar__track">
+            <div class="skill-bar__fill"></div>
+          </div>
+        </div>
+        <div class="skill-bar anim-slide" data-percent="78">
+          <div class="skill-bar__header">
+            <span class="skill-bar__article">Art. 2º</span>
+            <span class="skill-bar__name">Next.js / React</span>
+            <span class="skill-bar__pct">78%</span>
+          </div>
+          <div class="skill-bar__track">
+            <div class="skill-bar__fill"></div>
+          </div>
+        </div>
+        <div class="skill-bar anim-slide" data-percent="82">
+          <div class="skill-bar__header">
+            <span class="skill-bar__article">Art. 3º</span>
+            <span class="skill-bar__name">APIs REST</span>
+            <span class="skill-bar__pct">82%</span>
+          </div>
+          <div class="skill-bar__track">
+            <div class="skill-bar__fill"></div>
+          </div>
+        </div>
+        <div class="skill-bar anim-slide" data-percent="80">
+          <div class="skill-bar__header">
+            <span class="skill-bar__article">Art. 4º</span>
+            <span class="skill-bar__name">Automação de Processos</span>
+            <span class="skill-bar__pct">80%</span>
+          </div>
+          <div class="skill-bar__track">
+            <div class="skill-bar__fill"></div>
+          </div>
+        </div>
+        <div class="skill-bar anim-slide" data-percent="75">
+          <div class="skill-bar__header">
+            <span class="skill-bar__article">Art. 5º</span>
+            <span class="skill-bar__name">Hardware / Manutenção</span>
+            <span class="skill-bar__pct">75%</span>
+          </div>
+          <div class="skill-bar__track">
+            <div class="skill-bar__fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills__soft">
+        <h3 class="skills__soft-title">Competências Complementares</h3>
+        <div class="skills__chips">
+          <span class="chip magnetic" data-cursor="✓">Gestão Documental</span>
+          <span class="chip magnetic" data-cursor="✓">Atenção a Detalhes</span>
+          <span class="chip magnetic" data-cursor="✓">Resolução de Problemas</span>
+          <span class="chip magnetic" data-cursor="✓">Aprendizagem Rápida</span>
+          <span class="chip magnetic" data-cursor="✓">Raciocínio Lógico</span>
+          <span class="chip magnetic" data-cursor="✓">Trabalho em Equipe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CONQUISTAS — Art. IV · DAS DISTINÇÕES         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section conquistas" id="conquistas" data-section="4b">
+    <canvas id="medalParticles" class="medal-particles"></canvas>
+    <div class="conquistas__inner">
+      <div class="conquistas__medal" id="medal">
+        <svg viewBox="0 0 120 160" class="medal-svg">
+          <defs>
+            <linearGradient id="bronzeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d4a017" />
+              <stop offset="50%" stop-color="#b8860b" />
+              <stop offset="100%" stop-color="#d4a017" />
+            </linearGradient>
+          </defs>
+          <!-- ribbon -->
+          <path d="M40,0 L50,50 L60,0" fill="#2563eb" opacity="0.8" />
+          <path d="M60,0 L70,50 L80,0" fill="#1d4ed8" opacity="0.8" />
+          <!-- medal circle -->
+          <circle cx="60" cy="90" r="40" fill="url(#bronzeGrad)" stroke="#b8860b" stroke-width="2" />
+          <circle cx="60" cy="90" r="32" fill="none" stroke="#04060d" stroke-width="1" opacity="0.3" />
+          <!-- star -->
+          <polygon points="60,60 65,78 83,78 69,88 74,106 60,96 46,106 51,88 37,78 55,78" fill="#04060d"
+            opacity="0.25" />
+          <text x="60" y="95" text-anchor="middle" font-family="Syne" font-weight="800" font-size="14" fill="#04060d"
+            opacity="0.5">B</text>
+        </svg>
+        <div class="conquistas__shine"></div>
+      </div>
+      <h2 class="conquistas__title anim-slide">18ª OBMEP · BRONZE</h2>
+      <p class="conquistas__subtitle anim-slide">
+        Olimpíada Brasileira de Matemática das Escolas Públicas.<br>
+        Nível Nacional. Entre os melhores do país.
+      </p>
+      <p class="conquistas__personal anim-slide">
+        "Não é só um troféu. É a prova de que resolver problemas complexos é o que faço naturalmente — com papel ou com
+        código."
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FORMAÇÃO — Anexo I                           -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section formacao" id="formacao" data-section="5">
+    <div class="section__line"></div>
+    <span class="section__article">Anexo I</span>
+    <h2 class="section__title">DA FORMAÇÃO E CERTIFICAÇÕES</h2>
+
+    <div class="formacao__grid">
+      <div class="formacao__card anim-slide magnetic" data-cursor="ABRIR" style="--rot: -0.8deg">
+        <div class="formacao__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+            <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
+          </svg>
+        </div>
+        <h3 class="formacao__name">Ensino Médio Completo</h3>
+        <p class="formacao__info">EEB Cel. Pedro Christiano Feddersen</p>
+        <div class="formacao__stamp">CONCLUÍDO</div>
+      </div>
+      <div class="formacao__card anim-slide magnetic" data-cursor="ABRIR" style="--rot: 0.6deg">
+        <div class="formacao__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+        </div>
+        <h3 class="formacao__name">Téc. Gestão Administrativa</h3>
+        <p class="formacao__info">156h · VisualMídia · 2020</p>
+        <div class="formacao__stamp">CONCLUÍDO</div>
+      </div>
+      <div class="formacao__card anim-slide magnetic" data-cursor="ABRIR" style="--rot: -0.4deg">
+        <div class="formacao__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+        </div>
+        <h3 class="formacao__name">Operador de Tecnologia</h3>
+        <p class="formacao__info">92h · VisualMídia · 2017</p>
+        <div class="formacao__stamp">CONCLUÍDO</div>
+      </div>
+      <div class="formacao__card anim-slide magnetic" data-cursor="ABRIR" style="--rot: 1deg">
+        <div class="formacao__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+          </svg>
+        </div>
+        <h3 class="formacao__name">Programador de Games</h3>
+        <p class="formacao__info">40h · VisualMídia · 2017</p>
+        <div class="formacao__stamp">CONCLUÍDO</div>
+      </div>
+      <div class="formacao__card anim-slide magnetic" data-cursor="ABRIR" style="--rot: -0.3deg">
+        <div class="formacao__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+            <line x1="12" y1="22.08" x2="12" y2="12" />
+          </svg>
+        </div>
+        <h3 class="formacao__name">3Ds Max</h3>
+        <p class="formacao__info">32h · VisualMídia · 2018</p>
+        <div class="formacao__stamp">CONCLUÍDO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- EVIDÊNCIAS — Art. III · PROVAS DO SISTEMA     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section evidencias" id="evidencias" data-section="5">
+    <div class="section__line"></div>
+    <span class="section__article">Art. III §1º</span>
+    <h2 class="section__title" data-cipher>EVIDÊNCIAS DO SISTEMA</h2>
+
+    <div class="evidence__grid">
+      <div class="evidence__folder anim-slide magnetic" data-cursor="ABRIR" data-evidence="1">
+        <div class="evidence__seal">CONFIDENCIAL</div>
+        <div class="evidence__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+        </div>
+        <h3 class="evidence__title">Formatador de Veículos</h3>
+        <p class="evidence__desc">Sistema de automação que formata e organiza dados de veículos para documentos oficiais
+          de cartório. Reduz em 70% o tempo de preenchimento manual.</p>
+        <span class="evidence__tag">JavaScript / Automação</span>
+        <div class="evidence__footer"><span class="evidence__action">[ ABRIR DOSSIÊ ]</span></div>
+      </div>
+
+      <div class="evidence__folder anim-slide magnetic" data-cursor="ABRIR" data-evidence="2">
+        <div class="evidence__seal">CONFIDENCIAL</div>
+        <div class="evidence__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            <line x1="3" y1="9" x2="21" y2="9" />
+            <line x1="9" y1="21" x2="9" y2="9" />
+          </svg>
+        </div>
+        <h3 class="evidence__title">DocFácil</h3>
+        <p class="evidence__desc">Plataforma mobile para geração de documentos jurídicos com preenchimento guiado,
+          exportação em PDF/DOCX e fluxo offline completo.</p>
+        <span class="evidence__tag">React Native / Supabase</span>
+        <div class="evidence__footer"><span class="evidence__action">[ ABRIR DOSSIÊ ]</span></div>
+      </div>
+
+      <div class="evidence__folder anim-slide magnetic" data-cursor="ABRIR" data-evidence="3">
+        <div class="evidence__seal">CONFIDENCIAL</div>
+        <div class="evidence__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+        </div>
+        <h3 class="evidence__title">Motor de Templates Universais</h3>
+        <p class="evidence__desc">Engine de templates dinâmicos para documentos legais com Mustache parser, formulários
+          auto-gerados e integração Supabase.</p>
+        <span class="evidence__tag">TypeScript / Mustache / Expo</span>
+        <div class="evidence__footer"><span class="evidence__action">[ ABRIR DOSSIÊ ]</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CONTATO — Petição Final                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section contato" id="contato" data-section="6">
+    <div class="section__line"></div>
+    <span class="section__article">Petição Final</span>
+    <h2 class="section__title" data-cipher>SOLICITAR CONTATO</h2>
+
+    <form class="peticao" id="peticaoForm" onsubmit="return false;">
+      <div class="peticao__field">
+        <label class="peticao__label">REQUERENTE (seu nome)</label>
+        <input type="text" class="peticao__input" placeholder="Nome completo" required>
+      </div>
+      <div class="peticao__field">
+        <label class="peticao__label">OBJETO DO CONTATO (assunto)</label>
+        <input type="text" class="peticao__input" placeholder="Ex: proposta de trabalho" required>
+      </div>
+      <div class="peticao__field">
+        <label class="peticao__label">EXPOSIÇÃO DOS FATOS (mensagem)</label>
+        <textarea class="peticao__textarea" rows="5" placeholder="Descreva sua solicitação..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn--protocolar magnetic" data-cursor="PROTOCOLAR" id="btnProtocolar">
+        <span class="btn__text">PROTOCOLAR SOLICITAÇÃO</span>
+        <span class="btn__sent">✓ PETIÇÃO PROTOCOLADA</span>
+      </button>
+    </form>
+
+    <div class="contato__info">
+      <a href="mailto:kaue.ruon@gmail.com" class="contato__link magnetic" data-cursor="EMAIL">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+        kaue.ruon@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/kaueruon" target="_blank" class="contato__link magnetic" data-cursor="ABRIR">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect x="2" y="9" width="4" height="12" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+        linkedin.com/in/kaueruon
+      </a>
+      <span class="contato__link">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        Blumenau / SC — Disponível remoto
+      </span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOOTER                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <p>© 2026 Kauê Ruon Cardoso · Processo encerrado com êxito · Nenhuma procuração foi necessária para construir este
+      site.</p>
+  </footer>
+
+  <!-- KONAMI MODAL -->
+  <div class="modal" id="konamiModal">
+    <div class="modal__box">
+      <div class="modal__icon">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--stamp)" stroke-width="1">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        </svg>
+      </div>
+      <h3 class="modal__title">ACESSO PRIVILEGIADO CONCEDIDO</h3>
+      <p>Código reconhecido. Firma autenticada.</p>
+      <p>Você claramente tem bom gosto.</p>
+      <p class="mono-ghost">Processo nº SECRET.R.001 desbloqueado.</p>
+      <button class="btn btn--outline modal__close magnetic" data-cursor="FECHAR" id="konamiClose">ARQUIVAR</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/easter-eggs.js"></script>
+  <script src="js/medal-particles.js"></script>
+  <script src="js/cipher-decode.js"></script>
+  <script src="js/breach-protocol.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
