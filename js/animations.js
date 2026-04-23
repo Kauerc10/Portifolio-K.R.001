@@ -33,7 +33,10 @@ const Animations = (() => {
         animateHeroScroll();
         animateHeroParallax();
         animateObmepSynergy();
+        animateObmepTimeline();
         initTilt();
+        animateZeroG();
+        initVelocitySkew();
     }
 
     // ── NAV ──
@@ -248,9 +251,8 @@ const Animations = (() => {
 
     // ── OBMEP SYNERGY — Overclock 3D scene ──
     function animateObmepSynergy() {
-        // Dispara evento para o ThreeScene
         ScrollTrigger.create({
-            trigger: '.conquistas',
+            trigger: '.obmep-vault',
             start: 'top 70%',
             end: 'bottom 30%',
             onEnter: () => window.dispatchEvent(new CustomEvent('obmepSynergy', { detail: true })),
@@ -260,9 +262,48 @@ const Animations = (() => {
         });
     }
 
-    // ── VANILLA TILT — Evidence Folders ──
+    // ── OBMEP GOLDEN TIMELINE (Phase 8) ──
+    function animateObmepTimeline() {
+        const glow = document.querySelector('.obmep-timeline-glow');
+        if (!glow) return;
+
+        gsap.to(glow, {
+            height: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.obmep-vault__grid',
+                start: 'top 50%',
+                end: 'bottom 50%',
+                scrub: 0.5
+            }
+        });
+
+        const cards = document.querySelectorAll('.obmep-card');
+        cards.forEach((card) => {
+            ScrollTrigger.create({
+                trigger: card,
+                start: 'top 50%',
+                end: 'bottom 50%',
+                onEnter: () => card.classList.add('is-active'),
+                onEnterBack: () => card.classList.add('is-active'),
+                onLeave: () => card.classList.remove('is-active'),
+                onLeaveBack: () => card.classList.remove('is-active')
+            });
+
+            // Adicionar intersecção pro Raycasting Magnético no ThreeJS
+            card.addEventListener('mouseenter', () => {
+                const level = card.getAttribute('data-level');
+                window.dispatchEvent(new CustomEvent('obmepHover', { detail: { active: true, level } }));
+            });
+            card.addEventListener('mouseleave', () => {
+                window.dispatchEvent(new CustomEvent('obmepHover', { detail: { active: false } }));
+            });
+        });
+    }
+
+    // ── VANILLA TILT — Folders e OBMEP Cards ──
     function initTilt() {
-        const cards = document.querySelectorAll('.evidence__folder');
+        const cards = document.querySelectorAll('.evidence__folder, .obmep-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
@@ -281,6 +322,54 @@ const Animations = (() => {
             card.addEventListener('mouseleave', () => {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
             });
+        });
+    }
+
+    // ── VELOCITY SKEW — CSS transform na velocidade de scroll ──
+    function initVelocitySkew() {
+        let proxy = { skew: 0 };
+        let skewSetter = gsap.quickSetter(".section", "skewY", "deg");
+        let clamp = gsap.utils.clamp(-3, 3);
+
+        ScrollTrigger.create({
+            onUpdate: (self) => {
+                let skew = clamp(self.getVelocity() / -400);
+                if (Math.abs(skew) > Math.abs(proxy.skew)) {
+                    proxy.skew = skew;
+                    gsap.to(proxy, {
+                        skew: 0,
+                        duration: 0.8,
+                        ease: "power3",
+                        overwrite: true,
+                        onUpdate: () => skewSetter(proxy.skew)
+                    });
+                }
+            }
+        });
+    }
+
+    // ── ZERO-G FLOAT — Flutuação Contínua (Advanced 3D Physics) ──
+    function animateZeroG() {
+        const floaters = document.querySelectorAll('.evidence__folder, .sobre__card, .timeline__content, .formacao__card, .obmep-card');
+
+        floaters.forEach((el, i) => {
+            gsap.set(el, { transformPerspective: 800 });
+
+            let floatAnim = gsap.to(el, {
+                y: () => 6 + Math.random() * 6,
+                x: () => -4 + Math.random() * 8,
+                z: () => -15 + Math.random() * 30,
+                rotation: () => -1 + Math.random() * 2,
+                rotationY: () => -2 + Math.random() * 4,
+                duration: () => 3.5 + Math.random() * 2.5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: i * 0.2
+            });
+
+            el.addEventListener('mouseenter', () => floatAnim.pause());
+            el.addEventListener('mouseleave', () => floatAnim.play());
         });
     }
 
