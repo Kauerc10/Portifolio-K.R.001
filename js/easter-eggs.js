@@ -64,11 +64,20 @@ const EasterEggs = (() => {
     }
 
     /**
-     * Exibe o modal do Konami Code.
-     * O CSS cuida do fade in — aqui só adicionamos a classe.
+     * Exibe o modal do Konami Code com efeitos visuais severos.
+     * Treme a tela e ativa o modal com CRT.
      */
     function showKonamiModal() {
-        document.getElementById('konamiModal').classList.add('active');
+        console.log("%c[KONAMI CODE DETECTADO] Protocolo de Override Ativo.", "color: #ef4444; font-weight: bold; font-size: 14px;");
+
+        // Efeito brutal de tremor na página inteira antes da tela abrir
+        document.body.style.animation = 'glitch-anim 0.2s 3';
+
+        setTimeout(() => {
+            document.body.style.animation = '';
+            const modal = document.getElementById('konamiModal');
+            if (modal) modal.classList.add('active');
+        }, 600);
     }
 
 
@@ -156,29 +165,29 @@ const EasterEggs = (() => {
     // ════════════════════════════════
 
     /**
-     * Printa arte ASCII com meu contato no console do DevTools.
+     * Printa arte ASCII com meu nome no console do DevTools.
      * Quem inspeciona o código vai encontrar isso — é um convite direto.
      */
     function initConsoleArt() {
         const art = `
 %c
-  _  __     _   _ _____
- | |/ /    | | | | ____|
- | ' /     | | | |  _|
- | . \\     | |_| | |___
- |_|\\_\\     \\___/|_____|
+  _  __    _    _   _ _____ 
+ | |/ /   / \\  | | | | ____|
+ | ' /   / _ \\ | | | |  _|  
+ | . \\  / ___ \\| |_| | |___ 
+ |_|\\_\\/_/   \\_\\\\___/|_____|
 
-%cSe você chegou aqui, você é do meu tipo.
+%cSe você chegou aqui, você é da minha tribo.
+Quer trocar ideia sobre código, automação ou direito?
 Fala comigo: kaue.ruon@gmail.com
 
-P.S.: sim, esse site foi feito por alguém
-que também processa procurações. ⚖️
+P.S.: sim, eu processo procurações e construo shaders. ⚖️ 👁️
     `;
 
         console.log(
             art,
-            'color: #2563eb; font-family: monospace; font-size: 14px; font-weight: bold;',
-            'color: #d4a017; font-family: monospace; font-size: 12px;'
+            'color: #d4a017; font-family: monospace; font-size: 14px; font-weight: bold; text-shadow: 0 0 5px rgba(212,160,23,0.5);',
+            'color: #a1a1aa; font-family: monospace; font-size: 13px;'
         );
     }
 

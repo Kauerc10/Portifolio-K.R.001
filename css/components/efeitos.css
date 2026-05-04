@@ -158,22 +158,19 @@
 }
 
 
-/* ════════════════════════════════
-   KONAMI MODAL — Easter Egg
-   ════════════════════════════════ */
-
 /* tente ↑↑↓↓←→←→BA no teclado ;) */
 .modal {
     position: fixed;
     inset: 0;
     z-index: 20000;
-    background: rgba(4, 6, 13, 0.9);
+    background: rgba(4, 6, 13, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s;
+    overflow: hidden;
 }
 
 .modal.active {
@@ -181,15 +178,66 @@
     pointer-events: all;
 }
 
+/* Scanlines retrô sobre a tela inteira quando aberto */
+.modal__crt-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    z-index: 20001;
+    pointer-events: none;
+}
+
+/* Falha no CRT rolando de cima pra baixo */
+.modal__crt-overlay::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 20001;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
+
+.modal__crt-overlay::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    z-index: 20001;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
 .modal__box {
-    background: var(--ink);
-    border: 1px solid var(--stamp);
-    padding: 2.5rem;
-    max-width: 480px;
+    background: #0b1120;
+    border: 2px solid var(--signal);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3), inset 0 0 15px rgba(37, 99, 235, 0.2);
+    padding: 3rem 2.5rem;
+    max-width: 500px;
+    width: 90%;
     text-align: center;
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 1.8;
+    z-index: 20002;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal.active .modal__box {
+    transform: scale(1);
+    animation: crtOn 0.5s ease-out;
 }
 
 .modal__icon {
@@ -197,18 +245,96 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1.5rem;
+    color: var(--signal);
+    filter: drop-shadow(0 0 8px var(--signal));
 }
 
 .modal__title {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.2rem;
-    color: var(--stamp);
+    font-size: 1.6rem;
+    color: var(--signal);
+    text-shadow: 0 0 10px var(--signal);
     margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.modal__desc {
+    color: var(--ghost);
+    margin-bottom: 2rem;
+}
+
+/* Painel de status estatístico falso no konami */
+.konami-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px dashed rgba(37, 99, 235, 0.4);
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.konami-stat {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.konami-stat-label {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.3rem;
+}
+
+.konami-stat-val {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px currentColor;
 }
 
 .modal__close {
-    margin-top: 1.5rem;
+    width: 100%;
+}
+
+@keyframes crtOn {
+    0% {
+        transform: scaleY(0.005) scaleX(0);
+        opacity: 0;
+    }
+
+    20% {
+        transform: scaleY(0.005) scaleX(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scaleY(1) scaleX(1);
+    }
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 0.05;
+    }
+
+    5% {
+        opacity: 0.02;
+    }
+
+    10% {
+        opacity: 0.08;
+    }
+
+    15% {
+        opacity: 0.01;
+    }
+
+    100% {
+        opacity: 0.05;
+    }
 }
 
 
