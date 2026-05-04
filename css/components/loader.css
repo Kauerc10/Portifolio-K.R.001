@@ -1,0 +1,140 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  LOADER — A Tela de Carregamento do Tribunal
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Aquela tela preta que aparece no início com os três
+ *  processos sendo autenticados. Toda a animação dela
+ *  é controlada pelo js/loader.js — aqui é só a estética.
+ *
+ *  Partes:
+ *  - .loader           → container fixo de tela cheia
+ *  - .loader__curtain  → as duas cortinas que abrem no final
+ *  - .loader__bars     → as barras de progresso do proceso
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* Container de tela cheia */
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--void);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Conteúdo central do loader */
+.loader__content {
+    text-align: center;
+    font-family: var(--font-mono);
+    color: var(--ghost);
+    font-size: 0.8rem;
+    z-index: 10;
+    max-width: 520px;
+    padding: 0 1rem;
+}
+
+/* Título tipo "tribunal" */
+.loader__title {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+/* Linha divisória */
+.loader__divider {
+    width: 100%;
+    height: 1px;
+    background: var(--ghost);
+    margin-bottom: 1.5rem;
+    opacity: 0.4;
+}
+
+/* Número do processo em dourado */
+.loader__case {
+    margin-bottom: 2rem;
+    color: var(--stamp);
+}
+
+/* Container das barras de progresso */
+.loader__bars {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+/* Cada linha da barra */
+.loader__bar-row {
+    display: grid;
+    grid-template-columns: 200px 40px 1fr;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* Track da barra de progresso */
+.loader__bar {
+    height: 12px;
+    background: var(--ink);
+    border: 1px solid var(--ghost);
+    overflow: hidden;
+}
+
+/* Preenchimento animado pelo JS */
+.loader__bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--signal);
+    transition: width 0.3s ease;
+}
+
+/* Percentual ao lado da barra */
+.loader__percent {
+    font-size: 0.7rem;
+    text-align: right;
+}
+
+/* Texto descritivo do processo em andamento */
+.loader__label {
+    font-size: 0.65rem;
+    color: var(--ghost);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Dica de rolagem — aparece no fim do carregamento */
+.loader__hint {
+    color: var(--ghost);
+    font-size: 0.7rem;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.loader__hint.visible {
+    opacity: 1;
+}
+
+/* ── Cortinas de Abertura ── */
+/* As duas cortinas que deslizam pra fora revelando o site */
+.loader__curtain {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--void);
+    z-index: 5;
+}
+
+.loader__curtain--left {
+    left: 0;
+}
+
+.loader__curtain--right {
+    right: 0;
+}

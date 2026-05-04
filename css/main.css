@@ -1,0 +1,45 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  MAIN.CSS — Hub Central de Importação CSS
+ *  Processo Nº K.R.001 — Tribunal de Inovação
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Esse é o único arquivo que o index.html precisa chamar.
+ *  Ele importa todos os outros na ordem correta.
+ *
+ *  Ordem importa aqui — as variáveis precisam existir
+ *  antes de qualquer componente tentar usá-las.
+ *
+ *  Para adicionar um novo componente ao projeto:
+ *  1. Crie o arquivo em css/components/meu-componente.css
+ *  2. Adicione o @import aqui embaixo
+ *  3. Pronto — nada mais pra fazer no HTML.
+ * ═══════════════════════════════════════════════════════
+ */
+
+
+/* ── 1. Fundação ── */
+/* Variáveis e reset precisam vir PRIMEIRO, sempre */
+@import './base/variaveis.css';
+@import './base/reset.css';
+
+/* ── 2. Layout Global ── */
+/* Estrutura de grid das seções */
+@import './layout/layout.css';
+
+/* ── 3. Componentes Principais ── */
+/* Em ordem de aparição na página */
+@import './components/loader.css';
+@import './components/cursor.css';
+@import './components/nav.css';
+@import './components/hero.css';
+@import './components/botoes.css';
+
+/* ── 4. Seções do Portfólio ── */
+@import './components/secoes.css';
+@import './components/obmep.css';
+@import './components/efeitos.css';
+
+/* ── 5. Responsividade ── */
+/* Precisa vir por ÚLTIMO pra sobrescrever os componentes */
+@import './layout/responsive.css';

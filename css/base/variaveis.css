@@ -1,0 +1,46 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  VARIÁVEIS GLOBAIS — Design System do Processo K.R.001
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Aqui ficam todas as variáveis CSS do projeto.
+ *  Se precisar mudar uma cor ou fonte, é aqui que muda.
+ *  Nada de ir caçando hex code por 1931 linhas de CSS.
+ *
+ *  Paleta principal:
+ *  - void    → o fundo preto-azulado do universo
+ *  - ink     → azul escuro dos cards
+ *  - signal  → azul elétrico dos links/destaques
+ *  - stamp   → dourado cartorário (cor principale)
+ *  - text    → branco suave pra leitura
+ *  - ghost   → cinza médio pra elementos secundários
+ * ═══════════════════════════════════════════════════════
+ */
+
+:root {
+    /* ── Cores de Fundo ── */
+    --void: #04060d;
+    /* Preto do cosmos — fundo raiz do body */
+    --ink: #0d1424;
+    /* Azul bebê escuro — fundo dos cards */
+
+    /* ── Cores de Destaque ── */
+    --signal: #2563eb;
+    /* Azul elétrico — links, barras de progresso */
+    --stamp: #d4a017;
+    /* Ouro cartorário — a assinatura visual do site */
+
+    /* ── Tipografia ── */
+    --text: #e2e8f0;
+    /* Branco suave — texto principal */
+    --ghost: #334155;
+    /* Cinza escuro — texto secundário e bordas sutis */
+
+    /* ── Fontes ── */
+    --font-display: 'Syne', sans-serif;
+    /* Títulos grandes */
+    --font-body: 'Inter', sans-serif;
+    /* Texto corrido */
+    --font-mono: 'JetBrains Mono', monospace;
+    /* Código, labels, UI */
+}

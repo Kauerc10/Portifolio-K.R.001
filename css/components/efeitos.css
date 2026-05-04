@@ -1,0 +1,317 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  EVIDÊNCIAS + EASTER EGGS + BREACH ALERT
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Componentes de efeitos especiais e interativos:
+ *
+ *  1. Evidence Board  → Os cards de projetos com efeito 3D
+ *  2. Konami Modal    → Easter egg com Konami Code
+ *  3. Glitch Effect   → Animação de glitch nos easter eggs
+ *  4. Breach Alert    → Barra vermelha de alerta de intrusão
+ * ═══════════════════════════════════════════════════════
+ */
+
+
+/* ════════════════════════════════
+   PROJETOS: EVIDENCE BOARD
+   ════════════════════════════════ */
+
+.evidencias {
+    position: relative;
+    z-index: 1;
+}
+
+.evidence__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Card de projeto — glassmorfismo com efeito 3D no hover */
+.evidence__folder {
+    background: rgba(13, 20, 36, 0.85);
+    border: 1px solid rgba(51, 65, 85, 0.25);
+    padding: 2rem 1.5rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    backdrop-filter: blur(8px);
+    transform-style: preserve-3d;
+    /* Habilita o efeito 3D nos filhos */
+}
+
+/* Borda com degradê que aparece no hover */
+.evidence__folder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    background: linear-gradient(135deg,
+            rgba(212, 160, 23, 0.08), transparent 40%,
+            transparent 60%, rgba(37, 99, 235, 0.08)) border-box;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Filhos do card sobem na perspectiva 3D */
+.evidence__folder>* {
+    transform: translateZ(30px);
+    transition: transform 0.3s ease;
+}
+
+.evidence__folder:hover::before {
+    opacity: 1;
+}
+
+.evidence__folder:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212, 160, 23, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 160, 23, 0.04);
+}
+
+/* No hover, os elementos "saem" mais da tela */
+.evidence__folder:hover>* {
+    transform: translateZ(45px);
+}
+
+/* Etiqueta de classificação no canto superior direito */
+.evidence__seal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 60, 60, 0.5);
+    border: 1px solid rgba(255, 60, 60, 0.15);
+    padding: 2px 8px;
+    transform: rotate(3deg);
+}
+
+/* Ícone do card */
+.evidence__icon {
+    width: 36px;
+    height: 36px;
+    color: var(--signal);
+    margin-bottom: 1.2rem;
+    opacity: 0.7;
+}
+
+.evidence__icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Textos do card */
+.evidence__title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+}
+
+.evidence__desc {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--ghost);
+    margin-bottom: 1rem;
+}
+
+.evidence__tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--stamp);
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Rodapé com link — só aparece no hover */
+.evidence__footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(10px) translateZ(45px);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.evidence__folder:hover .evidence__footer {
+    opacity: 1;
+    transform: translateY(0) translateZ(45px);
+}
+
+.evidence__action {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--signal);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+}
+
+
+/* ════════════════════════════════
+   KONAMI MODAL — Easter Egg
+   ════════════════════════════════ */
+
+/* tente ↑↑↓↓←→←→BA no teclado ;) */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    background: rgba(4, 6, 13, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal__box {
+    background: var(--ink);
+    border: 1px solid var(--stamp);
+    padding: 2.5rem;
+    max-width: 480px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+.modal__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--stamp);
+    margin-bottom: 1rem;
+}
+
+.modal__close {
+    margin-top: 1.5rem;
+}
+
+
+/* ════════════════════════════════
+   GLITCH — Efeito de Distorção
+   ════════════════════════════════ */
+
+/* Aplicado pelo JS nos easter eggs de hover em textos especiais */
+.glitch {
+    animation: glitch-anim 0.15s infinite;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip-path: inset(20% 0 30% 0);
+        transform: translateX(-4px);
+    }
+
+    20% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translateX(4px);
+    }
+
+    40% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translateX(-2px);
+    }
+
+    60% {
+        clip-path: inset(40% 0 20% 0);
+        transform: translateX(3px);
+    }
+
+    80% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translateX(-3px);
+    }
+
+    100% {
+        clip-path: inset(5% 0 80% 0);
+        transform: translateX(2px);
+    }
+}
+
+
+/* ════════════════════════════════
+   BREACH ALERT — Barra de Intrusão
+   ════════════════════════════════ */
+
+/* Barra vermelha no topo que aparece em eventos de "breach" */
+.breach-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: rgba(255, 20, 20, 0.08);
+    border-bottom: 1px solid rgba(255, 40, 40, 0.3);
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #ff4444;
+    letter-spacing: 0.15em;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+    backdrop-filter: blur(12px);
+    pointer-events: none;
+}
+
+.breach-alert.active {
+    transform: translateY(0);
+    opacity: 1;
+    animation: breachPulse 2s ease-in-out infinite;
+}
+
+@keyframes breachPulse {
+
+    0%,
+    100% {
+        background: rgba(255, 20, 20, 0.06);
+    }
+
+    50% {
+        background: rgba(255, 20, 20, 0.15);
+    }
+}
+
+/* Links dentro do breach com pulso de cor */
+.breach-glow {
+    text-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+    animation: breachLinkPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes breachLinkPulse {
+
+    0%,
+    100% {
+        color: var(--signal);
+    }
+
+    50% {
+        color: #4a90ff;
+    }
+}
