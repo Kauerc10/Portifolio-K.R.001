@@ -1,0 +1,167 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  RESPONSIVIDADE — Adaptações para Tablet e Mobile
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Breakpoints usados no projeto:
+ *  - 1024px  → Tablet landscape e notebooks pequenos
+ *  - 768px   → Tablet portrait e mobile grande
+ *
+ *  Filosofia: o site foi desenhado desktop-first.
+ *  Aqui simplificamos layout e desligamos features
+ *  pesadas (cursor custom, canvas 3D opacidade) em mobile.
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* ════════════════════════════════
+   TABLET (≤ 1024px)
+   ════════════════════════════════ */
+@media (max-width: 1024px) {
+
+    /* Hero vira coluna única */
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    /* Canvas fica atrás do texto com opacidade reduzida */
+    .hero__canvas-wrap {
+        position: absolute;
+        inset: 0;
+        opacity: 0.3;
+        height: 100%;
+    }
+
+    /* Texto do hero ganha padding pro navbar */
+    .hero__text {
+        padding: 6rem 0 2rem;
+    }
+
+    /* Sobre vira coluna única */
+    .sobre__grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Card de ficha sai do sticky pra ficar no fluxo normal */
+    .sobre__card-wrap {
+        position: relative;
+        top: 0;
+    }
+
+    /* Skills também vira coluna única */
+    .skills__grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Timeline: todos os itens ficam na coluna esquerda */
+    .timeline__item,
+    .timeline__item--right {
+        width: 100%;
+        margin-left: 0;
+        padding-left: 2.5rem;
+        padding-right: 0;
+    }
+
+    /* Linha da timeline vai pro canto esquerdo */
+    .timeline__line {
+        left: 0;
+    }
+
+    /* Dots ficam todos no lado esquerdo */
+    .timeline__item--left .timeline__dot,
+    .timeline__item--right .timeline__dot {
+        left: -6px;
+        right: auto;
+    }
+}
+
+/* ════════════════════════════════
+   MOBILE (≤ 768px)
+   ════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* Cursor padrão volta no mobile — o custom não funciona no touch */
+    body {
+        cursor: auto;
+    }
+
+    /* Esconde o cursor custom e o canvas de rastro */
+    .cursor,
+    .cursor-trail,
+    .cursor__coords {
+        display: none;
+    }
+
+    /* Nav: links viram dropdown do hambúrguer */
+    .nav__links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(4, 6, 13, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1rem;
+        border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+    }
+
+    .nav__links.open {
+        display: flex;
+    }
+
+    .nav__burger {
+        display: flex;
+    }
+
+    /* Indicador de seção some pra ganhar espaço */
+    .nav__indicator {
+        display: none;
+    }
+
+    /* Sections com padding menor */
+    .section {
+        padding: 5rem 1.2rem 3rem;
+    }
+
+    /* Nome do hero menor no mobile */
+    .hero__name-line {
+        font-size: clamp(2.2rem, 14vw, 4.5rem);
+    }
+
+    /* Botões empilham em coluna */
+    .hero__buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        justify-content: center;
+    }
+
+    /* Loader simplificado: grid muda pra duas colunas */
+    .loader__bar-row {
+        grid-template-columns: 1fr 35px;
+    }
+
+    /* Esconde o label descritivo das barras (sem espaço) */
+    .loader__label {
+        display: none;
+    }
+
+    /* Links de contato em coluna */
+    .contato__info {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    /* Cards de formação em coluna única */
+    .formacao__grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Grid de projetos em coluna única */
+    .evidence__grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,50 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  LAYOUT GERAL — Seções, Grid e Estrutura da Página
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Aqui fica a estrutura esqueleto de todas as seções,
+ *  incluindo os títulos e linhas decorativas que aparecem
+ *  no início de cada bloco do portfólio.
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* ── Seção Base (shared por todas as pages) ── */
+.section {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Linha horizontal decorativa no topo de cada seção */
+.section__line {
+    width: 0;
+    /* Começa com 0 — o JS anima ela ao entrar na viewport */
+    height: 1px;
+    background: var(--ghost);
+    margin-bottom: 2rem;
+    opacity: 0.3;
+}
+
+/* Label estilo "Artigo X" no topo das seções */
+.section__article {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--stamp);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Título principal de cada seção */
+.section__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    /* Responsivo automático */
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+}
