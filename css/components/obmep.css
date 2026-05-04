@@ -1,0 +1,339 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  OBMEP — Seção de Medalhas com Timeline Vertical
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Essa é a seção mais elaborada do portfólio — as medalhas
+ *  que conquistei na OBMEP em SVG puro, com animação de anel
+ *  girando, gradiente metálico e efeito de janela macOS.
+ *
+ *  Estrutura dos cards:
+ *  .obmep-card
+ *  ├── .obmep-card__aura    → brilho colorido por nível
+ *  ├── .obmep-node-marker   → ponto na linha da timeline
+ *  └── .obmep-card__content → janela macOS com medalha + info
+ *      ├── ::before          → três botões macOS (●●●)
+ *      ├── ::after           → título "bash - run execution"
+ *      ├── svg.obmep-medal-svg → a medalha em si
+ *      └── .obmep-card__info  → ano, título e descrição
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* ── Container Externo da Seção ── */
+.obmep-vault {
+    background: transparent;
+    padding: 8rem 2rem;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.obmep-vault__container {
+    max-width: 1000px;
+    margin: 4rem auto 0;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── A Linha Vertical da Timeline ── */
+/* Track cinza de fundo */
+.obmep-timeline-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* A linha dourada animada que cresce conforme você rola */
+.obmep-timeline-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, #d4a017, #fde047);
+    box-shadow: 0 0 20px 2px rgba(212, 160, 23, 0.6);
+    transform: translateX(-50%);
+    z-index: 1;
+    height: 0%;
+    /* Animado pelo JS */
+}
+
+/* ── Grid dos Cards ── */
+.obmep-vault__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    position: relative;
+    width: 100%;
+}
+
+/* ── Card Individual ── */
+.obmep-card {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: 8px;
+    isolation: isolate;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Cards ímpares ficam à esquerda */
+.obmep-card:nth-child(odd) {
+    margin-right: auto;
+    margin-left: 0;
+    transform-origin: center right;
+}
+
+/* Cards pares ficam à direita */
+.obmep-card:nth-child(even) {
+    margin-left: auto;
+    margin-right: 0;
+    transform-origin: center left;
+}
+
+/* ── Ponto de Conexão com a Timeline ── */
+.obmep-node-marker {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: var(--bg);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    transition: all 0.4s ease;
+}
+
+.obmep-card:nth-child(odd) .obmep-node-marker {
+    right: -26px;
+}
+
+.obmep-card:nth-child(even) .obmep-node-marker {
+    left: -26px;
+}
+
+/* Ponto dourado quando o card está ativo na viewport */
+.obmep-card.is-active .obmep-node-marker {
+    background: #fde047;
+    border-color: #d4a017;
+    box-shadow: 0 0 15px rgba(212, 160, 23, 0.8), 0 0 30px rgba(212, 160, 23, 0.4);
+}
+
+
+/* ════════════════════════════════
+   CARD CONTENT — Janela macOS
+   ════════════════════════════════ */
+
+/*
+ * O .obmep-card__content usa ::before e ::after pra simular
+ * uma janela de terminal macOS sem precisar de HTML extra.
+ * Isso é tipo o nível máximo de CSS trick útil.
+ */
+.obmep-card__content {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(2, 6, 23, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        inset 0 0 20px rgba(255, 255, 255, 0.02),
+        0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    padding: 3rem 1.5rem 2rem;
+    /* Extra no top pro espaço da barra macOS */
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centraliza a medalha e o texto */
+    text-align: center;
+    gap: 1.25rem;
+    z-index: 2;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Os três pontinhos do macOS (vermelho, amarelo, verde) */
+.obmep-card__content::before {
+    content: '';
+    position: absolute;
+    top: 1.1rem;
+    left: 1.25rem;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #ff5f56;
+    /* Fechar – vermelho */
+    box-shadow: 18px 0 0 #ffbd2e, 36px 0 0 #27c93f;
+    /* Minimizar – amarelo | Maximizar – verde */
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+/* Título de terminal no centro da barra */
+.obmep-card__content::after {
+    content: 'bash — run execution';
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+/* Borda e sombra intensificam no hover */
+.obmep-card:hover .obmep-card__content {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+        inset 0 0 30px rgba(255, 255, 255, 0.05),
+        0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.obmep-card:hover .obmep-card__content::after {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* ════════════════════════════════
+   SVG DA MEDALHA
+   ════════════════════════════════ */
+
+/* Container do SVG — centralizado e com drop-shadow */
+.obmep-medal-svg {
+    width: 140px !important;
+    height: 182px !important;
+    min-height: 182px;
+    flex: 0 0 auto;
+    margin: 0 auto;
+    display: block;
+    overflow: visible;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6));
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.6s ease;
+}
+
+/* Medalha sobe e fica maior no hover do card */
+.obmep-card:hover .obmep-medal-svg {
+    transform: scale(1.12) translateY(-6px);
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.8));
+}
+
+/*
+ * Variáveis de tema por tipo de medalha.
+ * Os SVGs de cada medalha usam cores hardcoded para garantir
+ * renderização independente do CSS, mas essas variáveis ficam
+ * aqui por retrocompatibilidade e futuras expansões.
+ */
+.obmep-medal-svg.medal-prata {
+    --col-main: #cbd5e1;
+    --col-dark: #64748b;
+    --col-ghost: rgba(203, 213, 225, 0.3);
+}
+
+.obmep-medal-svg.medal-bronze {
+    --col-main: #d4a017;
+    --col-dark: #b8871a;
+    --col-ghost: rgba(212, 160, 23, 0.3);
+}
+
+.obmep-medal-svg.medal-honra {
+    --col-main: #10b981;
+    --col-dark: #047857;
+    --col-ghost: rgba(16, 185, 129, 0.3);
+}
+
+
+/* ── Info Textual Abaixo da Medalha ── */
+.obmep-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.obmep-card__year {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ghost);
+    letter-spacing: 2px;
+}
+
+.obmep-card__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+}
+
+.obmep-card__desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+
+/* ════════════════════════════════
+   AURAS KINÉTICAS POR NÍVEL
+   ════════════════════════════════ */
+
+/*
+ * Cada tipo de medalha tem uma aura com gradiente
+ * e brilho de cor diferente que aparece no hover.
+ */
+.obmep-card__aura {
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.obmep-card:hover .obmep-card__aura {
+    opacity: 1;
+}
+
+.obmep-card[data-level="prata"] .obmep-card__aura {
+    background: linear-gradient(135deg, transparent, rgba(148, 163, 184, 0.3), #e2e8f0);
+    box-shadow: 0 0 20px rgba(148, 163, 184, 0.2);
+}
+
+.obmep-card[data-level="bronze"] .obmep-card__aura {
+    background: linear-gradient(135deg, transparent, rgba(212, 160, 23, 0.3), #b8860b);
+    box-shadow: 0 0 20px rgba(212, 160, 23, 0.2);
+}
+
+.obmep-card[data-level="mencao"] .obmep-card__aura {
+    background: linear-gradient(135deg, transparent, rgba(16, 185, 129, 0.2), #059669);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+}
+
+
+/* ── Responsive: mobile ajusta a timeline pro lado esquerdo ── */
+@media (max-width: 768px) {
+
+    .obmep-timeline-track,
+    .obmep-timeline-glow {
+        left: 20px;
+    }
+
+    .obmep-card:nth-child(odd),
+    .obmep-card:nth-child(even) {
+        margin: 0 0 0 50px;
+        max-width: calc(100% - 50px);
+    }
+
+    .obmep-card:nth-child(odd) .obmep-node-marker,
+    .obmep-card:nth-child(even) .obmep-node-marker {
+        left: -36px;
+    }
+}
