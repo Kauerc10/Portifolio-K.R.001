@@ -792,6 +792,36 @@
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
+  <!-- KONAMI MODAL                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="modal" id="konamiModal">
+    <div class="modal__crt-overlay"></div>
+    <div class="modal__box">
+      <div class="modal__icon glitch">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+        </svg>
+      </div>
+      <h2 class="modal__title glitch" data-text="ACESSO ROOT CONCEDIDO">ACESSO ROOT CONCEDIDO</h2>
+      <p class="modal__desc">God Mode Ativado. Você desativou os limitadores de segurança.</p>
+
+      <div class="konami-stats">
+        <div class="konami-stat">
+          <span class="konami-stat-label">STATUS</span>
+          <span class="konami-stat-val" style="color: var(--signal)">OVERRIDE</span>
+        </div>
+        <div class="konami-stat">
+          <span class="konami-stat-label">RESTRICTIONS</span>
+          <span class="konami-stat-val" style="color: #ef4444">BYPASSED</span>
+        </div>
+      </div>
+
+      <button class="btn btn--outline modal__close magnetic" data-cursor="EXIT" id="konamiClose">ENCERRAR
+        CONEXÃO</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
   <!-- FOOTER                                      -->
   <!-- ═══════════════════════════════════════════ -->
   <footer class="footer">
