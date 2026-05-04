@@ -1,0 +1,125 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  HERO — Seção Principal (Tela de Abertura)
+ * ═══════════════════════════════════════════════════════
+ *
+ *  A primeira coisa que o usuário vê depois que o loader
+ *  abre. Nome grande, typewriter, botões e o canvas 3D.
+ *
+ *  O layout é em grid 2 colunas em desktop e empilha
+ *  em coluna única em tablets/mobile.
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* Grid 2 colunas: texto à esquerda, canvas à direita */
+.hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    max-width: 1400px;
+}
+
+/* Coluna do texto com z-index pra ficar acima do canvas */
+.hero__text {
+    z-index: 2;
+    padding: 2rem 0;
+}
+
+/* Caixa de número do processo */
+.hero__case {
+    margin-bottom: 2rem;
+}
+
+/* Wrapper do nome grande */
+.hero__name {
+    margin-bottom: 2rem;
+    user-select: none;
+    /* Nome bonito demais pra copiar facilmente */
+}
+
+/* Cada linha do nome — overflow hidden pra o slide up funcionar */
+.hero__name-line {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 9.5vw, 7.5rem);
+    /* Responsivo suave via clamp */
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Variações de cor do nome */
+.hero__name--white {
+    color: var(--text);
+}
+
+.hero__name--gold {
+    color: var(--stamp);
+}
+
+.hero__name--outline {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--text);
+    /* Texto só com contorno */
+}
+
+/* Texto do typewriter */
+.hero__typewriter {
+    margin-bottom: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ghost);
+    min-height: 1.6em;
+    /* Evita layout shift enquanto digita */
+}
+
+/* Cursor piscante do typewriter */
+.hero__tw-cursor {
+    animation: blink 0.8s infinite;
+    color: var(--signal);
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Linha dos botões CTA */
+.hero__buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Rodapé jurídico sutil */
+.hero__footnote {
+    font-size: 0.65rem;
+}
+
+/* Wrapper do canvas Three.js no lado direito */
+.hero__canvas-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.hero__canvas-wrap canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}

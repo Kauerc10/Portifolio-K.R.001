@@ -1,0 +1,122 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  NAVBAR — Barra de Navegação Superior
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Navbar fixa com glassmorfismo que desce do topo quando
+ *  o usuário começa a scrollar (controlado pelo animations.js).
+ *
+ *  Em mobile, o .nav__burger aparece e as .nav__links
+ *  ficam em dropdown. Veja responsive.css pra detalhe.
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* Container principal — começa fora da tela (translateY(-100%)) */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    background: rgba(4, 6, 13, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+}
+
+/* Classe que o JS adiciona pra mostrar a navbar */
+.nav.visible {
+    transform: translateY(0);
+}
+
+/* Logo KR no canto esquerdo */
+.nav__logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--stamp);
+    cursor: none;
+}
+
+/* Container dos links de navegação */
+.nav__links {
+    display: flex;
+    gap: 2rem;
+}
+
+/* Cada link — com underline animado no hover */
+.nav__link {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--ghost);
+    position: relative;
+    cursor: none;
+    transition: color 0.3s;
+}
+
+/* Underline que cresce da esquerda */
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--signal);
+    transition: width 0.3s ease;
+}
+
+.nav__link:hover,
+.nav__link.active {
+    color: var(--text);
+}
+
+.nav__link:hover::after,
+.nav__link.active::after {
+    width: 100%;
+}
+
+/* Indicador de seção (ex: "§ 01 / 07") */
+.nav__indicator {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ghost);
+}
+
+/* ── Botão Hambúrguer (Mobile) ── */
+.nav__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: none;
+    padding: 4px;
+}
+
+.nav__burger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text);
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Animação do X ao abrir o menu */
+.nav__burger.open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.nav__burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav__burger.open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
