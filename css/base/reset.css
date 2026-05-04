@@ -1,0 +1,124 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  RESET & BASE — Zerando os defaults do navegador
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Todo navegador vem com estilos padrão horríveis.
+ *  Esse arquivo reseta tudo e define a base tipográfica
+ *  e comportamental do projeto do zero.
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* Zera margem, padding e usa border-box em todo lugar */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HTML: Fundo base, cor e fonte padrão do site */
+html {
+    scroll-behavior: auto;
+    /* O Lenis cuida do smooth scroll — não precisa do nativo */
+    background: var(--void);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    /* Suaviza fonte no WebKit */
+    -moz-osx-font-smoothing: grayscale;
+    /* Suaviza fonte no Firefox/macOS */
+    overflow-x: hidden;
+}
+
+/* Body: cursor custom ativo em desktop, sem overflow horizontal */
+body {
+    background: var(--void);
+    overflow-x: hidden;
+    cursor: none;
+    /* O cursor padrão é desativado — veja cursor.css */
+    position: relative;
+}
+
+/* Links sem sublinhado e com cor herdada por padrão */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Remove bullets das listas */
+ul {
+    list-style: none;
+}
+
+/* Buttons com cursor herdado e sem borda/fundo padrão */
+button {
+    cursor: none;
+    /* Cursor custom também nos botões */
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+}
+
+/* Inputs e textareas herdam a fonte do projeto */
+input,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+/* Seleção de texto com as cores do design system */
+::selection {
+    background: var(--signal);
+    color: var(--void);
+}
+
+/* ── Utilitário: texto mono fantasma ── */
+/* Atalho pra qualquer label estilo terminal */
+.mono-ghost {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ghost);
+    letter-spacing: 0.05em;
+}
+
+/* ── Overlay de Ruído Visual ── */
+/* Aquele grain sutil que faz o fundo parecer físico */
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    /* Não bloqueia cliques */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+}
+
+/* ── Canvas WebGL de Fundo Global ── */
+/* O Three.js renderiza nesse elemento fixo que fica atrás de tudo */
+.global-3d-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ── Barra de Progresso de Scroll ── */
+/* A linha azul no topo da página que mostra onde você está */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--signal);
+    z-index: 10001;
+    transition: none;
+    /* Sem transição pra seguir o scroll em tempo real */
+}

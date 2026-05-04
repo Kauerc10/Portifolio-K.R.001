@@ -1,0 +1,91 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  BOTÕES — Sistema de Botões do Projeto
+ * ═══════════════════════════════════════════════════════
+ *
+ *  Tenho três variações de botão no projeto:
+ *  - .btn--primary    → azul sólido pra ação principal
+ *  - .btn--outline    → transparente com borda (secundário)
+ *  - .btn--protocolar → o botão especial do formulário de contato,
+ *                       estilo cartório com borda tracejada dourada
+ * ═══════════════════════════════════════════════════════
+ */
+
+/* Base compartilhada por todos os botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    border: 1px solid transparent;
+    cursor: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Primário: azul sólido ── */
+.btn--primary {
+    background: var(--signal);
+    color: #fff;
+    border-color: var(--signal);
+}
+
+.btn--primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+/* ── Outline: transparente com borda ── */
+.btn--outline {
+    background: transparent;
+    border-color: var(--ghost);
+    color: var(--text);
+}
+
+.btn--outline:hover {
+    background: var(--text);
+    color: var(--void);
+    border-color: var(--text);
+}
+
+/* ── Protocolar: estilo cartório (formulário de contato) ── */
+/* Borda tracejada dourada que vira sólida no hover */
+.btn--protocolar {
+    background: transparent;
+    border: 2px dashed var(--stamp);
+    color: var(--stamp);
+    font-size: 0.85rem;
+    padding: 1rem 2.5rem;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.btn--protocolar:hover {
+    border-style: solid;
+    background: rgba(212, 160, 23, 0.08);
+}
+
+/* Troca o texto quando o formulário é enviado */
+.btn--protocolar .btn__sent {
+    display: none;
+}
+
+.btn--protocolar.sent .btn__text {
+    display: none;
+}
+
+.btn--protocolar.sent .btn__sent {
+    display: inline;
+}
+
+/* Estado pós-envio: borda verde de sucesso */
+.btn--protocolar.sent {
+    border-style: solid;
+    border-color: #22c55e;
+    color: #22c55e;
+    pointer-events: none;
+}
