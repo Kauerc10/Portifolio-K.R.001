@@ -32,9 +32,9 @@ const Animations = (() => {
      * @type {string[]}
      */
     const typewriterPhrases = [
-        '> Cartorário que entende de APIs.',
-        '> Desenvolvedor que entende de documentos.',
-        '> Transformei burocracia em código.',
+        '> Construo software com IA generativa.',
+        '> Cartorário que automatiza burocracia.',
+        '> Conecto LLMs a problemas reais.',
     ];
 
     // Estado interno do typewriter
@@ -50,29 +50,40 @@ const Animations = (() => {
     function init() {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Espera o loader terminar antes de começar qualquer animação
-        document.addEventListener('loaderDone', () => {
+        // Espera o loader terminar antes de começar qualquer animação (event bus em window)
+        window.addEventListener('loaderDone', () => {
             setTimeout(startAnimations, 200);
         });
     }
 
     /**
+     * Respeita a preferência do usuário por movimento reduzido.
+     * Usuários que ativam "reduzir movimento" no SO/navegador recebem
+     * uma versão estática do site — sem flutuação, skew, tilt ou typewriter.
+     */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /**
      * Dispara todas as animações em sequência.
      * Chamada 200ms após o 'loaderDone' pra dar tempo
      * da transição do loader terminar visualmente.
+     *
+     * Em prefers-reduced-motion, omite animações decorativas (zero-G, skew,
+     * tilt, typewriter loop) mantendo apenas as essenciais de navegação.
      */
     function startAnimations() {
         animateNav();
         animateHeroName();
-        startTypewriter();
         animateSectionLines();
         animateSlideElements();
-        animateSkillBars();
         animateTimelineLine();
-        animateHeroScroll();
         animateHeroParallax();
         animateObmepSynergy();
         animateObmepTimeline();
+
+        if (prefersReducedMotion) return; // Pula decorações cinéticas
+
+        startTypewriter();
         initTilt();
         animateZeroG();
         initVelocitySkew();
@@ -81,13 +92,18 @@ const Animations = (() => {
     /**
      * Exibe a navbar e configura o IntersectionObserver pra tracking de seção.
      * A cada seção que entra na viewport (threshold: 30%), atualiza o indicador
-     * "§ 01 / 07" e o link ativo na navbar.
+     * "§ NN / TOTAL" e o link ativo na navbar.
+     *
+     * O total é computado dinamicamente (sections.length), não hardcoded.
      */
     function animateNav() {
         const nav = document.getElementById('nav');
         const indicator = document.getElementById('navIndicator');
         const links = document.querySelectorAll('.nav__link');
-        const sections = document.querySelectorAll('[data-section]');
+        // Só as <section> reais contam pro total — os nav links também têm
+        // data-section mas não devem ser contados (senão total = 16, não 8).
+        const sections = document.querySelectorAll('section[data-section]');
+        const total = sections.length.toString().padStart(2, '0');
 
         nav.classList.add('visible');
 
@@ -95,7 +111,7 @@ const Animations = (() => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const idx = entry.target.getAttribute('data-section');
-                    indicator.textContent = `§ ${idx.toString().padStart(2, '0')} / 07`;
+                    indicator.textContent = `§ ${idx.toString().padStart(2, '0')} / ${total}`;
 
                     links.forEach(l => l.classList.remove('active'));
                     const activeLink = document.querySelector(`.nav__link[data-section="${idx}"]`);
@@ -230,28 +246,6 @@ const Animations = (() => {
     }
 
     /**
-     * Anima as barras de habilidades (.skill-bar) via GSAP.
-     * O valor alvo é lido do atributo `data-percent` de cada barra no HTML.
-     *
-     * @example
-     * <!-- No HTML: -->
-     * <div class="skill-bar" data-percent="85">...</div>
-     */
-    function animateSkillBars() {
-        document.querySelectorAll('.skill-bar').forEach(bar => {
-            const pct = bar.getAttribute('data-percent');
-            const fill = bar.querySelector('.skill-bar__fill');
-
-            gsap.to(fill, {
-                width: pct + '%',
-                duration: 1.2,
-                ease: 'power2.out',
-                scrollTrigger: { trigger: bar, start: 'top 88%', toggleActions: 'play none none none' }
-            });
-        });
-    }
-
-    /**
      * Anima a linha vertical da timeline da experiência.
      * Usa scrub pra sincronizar o crescimento com o scroll —
      * a linha "desenha" conforme o usuário rola a página.
@@ -273,25 +267,6 @@ const Animations = (() => {
                 }
             }
         );
-    }
-
-    /**
-     * Despacha o progresso de scroll do hero pra cena Three.js.
-     * O three-scene.js escuta 'heroScrollProgress' e usa o valor
-     * pra empurrar a câmera pra trás conforme o hero some.
-     */
-    function animateHeroScroll() {
-        ScrollTrigger.create({
-            trigger: '#hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-            onUpdate: (self) => {
-                window.dispatchEvent(new CustomEvent('heroScrollProgress', {
-                    detail: self.progress
-                }));
-            }
-        });
     }
 
     /**
@@ -381,8 +356,17 @@ const Animations = (() => {
      * dentro do card usando o centro como referência (0,0).
      *
      * Funciona em: .evidence__folder e .obmep-card
+     *
+     * Importante: usa GSAP (não CSS cru) para não brigar com animateZeroG,
+     * que aplica transform via GSAP nos mesmos elementos. O overwrite:true
+     * garante que o tilt toma posse do transform durante o hover, e o
+     * mouseleave devolve o controle pro zero-G (que é retomado por seu
+     * próprio listener mouseleave).
      */
     function initTilt() {
+        // Pula tilt em telas de toque — não há hover confiável
+        if (window.matchMedia('(hover: none)').matches) return;
+
         const cards = document.querySelectorAll('.evidence__folder, .obmep-card');
 
         cards.forEach(card => {
@@ -397,12 +381,26 @@ const Animations = (() => {
                 const rotateX = ((y - centerY) / centerY) * -8;
                 const rotateY = ((x - centerX) / centerX) * 8;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                gsap.to(card, {
+                    rotateX,
+                    rotateY,
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: 'power2.out',
+                    overwrite: 'auto',
+                });
             });
 
             // Volta ao normal quando o mouse sai
             card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    scale: 1,
+                    duration: 0.5,
+                    ease: 'power3.out',
+                    overwrite: 'auto',
+                });
             });
         });
     }

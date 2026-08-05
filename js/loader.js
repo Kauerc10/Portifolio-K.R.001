@@ -120,8 +120,8 @@ const Loader = (() => {
       loader.style.transition = 'opacity 0.3s';
       loader.style.opacity = '0';
 
-      // Avisa todos os outros módulos que podem começar
-      document.dispatchEvent(new CustomEvent('loaderDone'));
+      // Avisa todos os outros módulos que podem começar (event bus em window)
+      window.dispatchEvent(new CustomEvent('loaderDone'));
 
       // Remove do DOM depois que o fade termina
       setTimeout(() => { loader.style.display = 'none'; }, 400);
@@ -141,7 +141,7 @@ const Loader = (() => {
     setTimeout(runSequence, 500);
 
     // Libera o scroll quando o loader terminar
-    document.addEventListener('loaderDone', () => {
+    window.addEventListener('loaderDone', () => {
       document.body.style.overflow = '';
     });
   }

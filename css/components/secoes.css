@@ -632,6 +632,87 @@
     letter-spacing: 0.04em;
 }
 
+/* Links de contato no rodapé */
+.footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.footer__link {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--ghost);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.footer__link:hover {
+    color: var(--stamp);
+}
+
+
+/* ════════════════════════════════
+   NOVOS: SKILLS INTRO + FORM FEEDBACK
+   ════════════════════════════════ */
+
+/* Introdução da seção de skills (frase honesta sobre método) */
+.skills__intro {
+    max-width: 600px;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--ghost);
+    margin-bottom: 2.5rem;
+}
+
+/* Honeypot anti-spam — invisível pra humanos, visível pra bots */
+.peticao__honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Feedback de envio do formulário (sucesso/erro) */
+.peticao__feedback {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    margin-top: 1rem;
+    min-height: 1.2em;
+    text-align: center;
+}
+
+.peticao__feedback--success {
+    color: #22c55e;
+}
+
+.peticao__feedback--error {
+    color: #ef4444;
+}
+
+/* Botão de protocolar em estado de envio (spinner visual) */
+.btn--protocolar.sending {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* code inline dentro de descrições de projeto (legibilidade) */
+.evidence__desc code,
+.timeline__highlight p code {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    color: var(--signal);
+    background: rgba(37, 99, 235, 0.08);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+}
+
 /* Footer fica vermelho quando o easter egg de "breach" está ativo */
 .footer.breach-active {
     border-top: 1px solid rgba(255, 40, 40, 0.2);
