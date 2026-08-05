@@ -14,7 +14,6 @@
  * - A cor de tudo muda dinamicamente conforme você rola e interage
  *
  * Sistema de eventos (CustomEvents no window):
- * - 'heroScrollProgress'  → empurra a câmera pra trás
  * - 'breachProtocol'      → tinge a Anomalia de vermelho
  * - 'obmepSynergy'        → tinge de dourado + acelera rotação
  * - 'obmepHover'          → atração magnética dos debris no hover das medalhas
@@ -55,13 +54,28 @@ const HeroScene = (() => {
 
     // ── Estado da Cena ──
     let mouseX = 0, mouseY = 0;       // Posição do mouse normalizada (-1 a 1)
-    let lastScrollY = window.scrollY; // Último Y de scroll pra calcular velocidade
+    let lastScrollY = window.scrollY || window.pageYOffset; // Último Y de scroll pra calcular velocidade
     let scrollVelocity = 0;           // Velocidade de scroll (usada no glitch)
     let canvas;                       // Referência ao canvas DOM
     let scrollPct = 0;                // Progresso de scroll (0 a 1)
     let particlePositionsOriginal = []; // Posições base das estrelas (pra expand)
-    let breachActive = false;         // Se o breach protocol está ativo
     let obmepActive = false;         // Se estamos na seção OBMEP
+
+    // ── Flags de Pause (performance) ──
+    // NOTA: o canvas #heroCanvas é um fundo FIXED global (classe .global-3d-bg),
+    // visível em todas as seções — não limitado ao #hero. Portanto NÃO usamos
+    // IntersectionObserver no #hero (congelaria o fundo visível ao rolar = flicker).
+    // Só pausamos quando a aba inteira some (visibilitychange), resetando o clock
+    // no retorno pra evitar saltos na física acumulada.
+    let tabVisible = true;
+    let lastExpandFactor = -1;        // Último expandFactor aplicado (pra só reescrever posições no scroll)
+
+    // ── Objetos reutilizáveis (evitam GC pressure no hot loop) ──
+    const _mouseWorld = new THREE.Vector3();
+    const _dummy = new THREE.Object3D();
+
+    // ── docHeight em cache (atualizado no resize) ──
+    let cachedDocHeight = 0;
 
     // ── Estado do Hover das Medalhas ──
     // Precisa ser no escopo do módulo pra o loop animate() acessar
@@ -144,6 +158,10 @@ const HeroScene = (() => {
         canvas = document.getElementById('heroCanvas');
         if (!canvas) return;
 
+        // Usuários com prefers-reduced-motion: renderiza UM frame estático
+        // e não inicia o loop de animação (sem rotação, física ou shader animado).
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         clock = new THREE.Clock();
         scene = new THREE.Scene();
 
@@ -178,7 +196,6 @@ const HeroScene = (() => {
         // ── 2. ESTRELAS DE FUNDO — Sistema de Partículas ──
         const particleCount = 350;
         const positions = new Float32Array(particleCount * 3);
-        const sizes = new Float32Array(particleCount);
 
         // Distribui as partículas em esfera ao redor da Anomalia
         for (let i = 0; i < particleCount; i++) {
@@ -189,7 +206,6 @@ const HeroScene = (() => {
             positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
             positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
             positions[i * 3 + 2] = r * Math.cos(phi);
-            sizes[i] = Math.random();
         }
 
         // Salva as posições originais pra o efeito de expansão no scroll
@@ -197,7 +213,6 @@ const HeroScene = (() => {
 
         const particleGeo = new THREE.BufferGeometry();
         particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        particleGeo.setAttribute('aScale', new THREE.BufferAttribute(sizes, 1));
 
         const particleMat = new THREE.PointsMaterial({
             color: 0xffffff,
@@ -255,12 +270,27 @@ const HeroScene = (() => {
 
         // ── Registra todos os event listeners ──
         window.addEventListener('mousemove', onMouseMove, { passive: true });
-        window.addEventListener('resize', onResize);
+        window.addEventListener('resize', debouncedResize);
         window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Pause/resume quando a aba some (economia de bateria/CPU).
+        // No retorno, getElapsedTime() abaixo recalibra o clock automaticamente,
+        // evitando saltos na física (problema que getDelta() teria).
+        document.addEventListener('visibilitychange', () => {
+            tabVisible = document.visibilityState === 'visible';
+        });
+
+        // Cache inicial da altura do documento (recalculada no resize)
+        cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
 
         registerCustomEvents();
 
-        animate(); // Inicia o loop de renderização
+        if (reducedMotion) {
+            // Render estático único — sem loop, sem física, sem shader animado
+            renderer.render(scene, camera);
+        } else {
+            animate(); // Inicia o loop de renderização
+        }
     }
 
     /**
@@ -271,8 +301,7 @@ const HeroScene = (() => {
 
         // Breach Protocol → tinge a Anomalia de vermelho
         window.addEventListener('breachProtocol', (e) => {
-            breachActive = e.detail;
-            if (breachActive) {
+            if (e.detail) {
                 gsap.to(uniforms.uColor.value, { r: 1, g: 0.1, b: 0.1, duration: 0.5 });
             } else {
                 gsap.to(uniforms.uColor.value, { r: 0.145, g: 0.388, b: 0.921, duration: 0.5 });
@@ -280,7 +309,8 @@ const HeroScene = (() => {
         });
 
         // Configuração do spin rápido que acontece na synergy OBMEP
-        let spinConfig = { val: 0, _last: 0 };
+        // Objeto persistente — reutilizado entre spins (overwrite mata a tween anterior)
+        const spinConfig = { val: 0, _last: 0 };
         function updateSpin() {
             wireframe.rotation.y += (spinConfig.val - spinConfig._last);
             wireframe.rotation.x += (spinConfig.val - spinConfig._last) * 0.5;
@@ -322,9 +352,10 @@ const HeroScene = (() => {
                 gsap.to(particles.material.color, { r: 0.83, g: 0.627, b: 0.09, duration: 0.8 });
                 particles.material.size = 0.025; // Estrelas ficam maiores
 
-                // Giro rápido de 360° em 1.5s
-                spinConfig = { val: 0, _last: 0 };
-                gsap.to(spinConfig, { val: Math.PI * 2, duration: 1.5, ease: 'power4.out', onUpdate: updateSpin });
+                // Giro rápido de 360° em 1.5s (overwrite mata qualquer spin anterior)
+                spinConfig.val = 0;
+                spinConfig._last = 0;
+                gsap.to(spinConfig, { val: Math.PI * 2, duration: 1.5, ease: 'power4.out', overwrite: true, onUpdate: updateSpin });
 
             } else {
                 // Volta pro azul
@@ -333,8 +364,9 @@ const HeroScene = (() => {
                 particles.material.size = 0.015;
 
                 // Giro rápido na direção oposta
-                spinConfig = { val: 0, _last: 0 };
-                gsap.to(spinConfig, { val: -Math.PI * 2, duration: 1.5, ease: 'power4.out', onUpdate: updateSpin });
+                spinConfig.val = 0;
+                spinConfig._last = 0;
+                gsap.to(spinConfig, { val: -Math.PI * 2, duration: 1.5, ease: 'power4.out', overwrite: true, onUpdate: updateSpin });
             }
         });
     }
@@ -354,26 +386,36 @@ const HeroScene = (() => {
     }
 
     /**
-     * Recalcula aspect ratio e viewport quando a janela é redimensionada.
+     * Recalcula aspect ratio, viewport e cache de altura quando a janela é redimensionada.
      */
     function onResize() {
         if (!renderer) return;
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+        // Recalcula o cache de altura do documento (usado no onScroll)
+        cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+    }
+
+    /** Wrapper com debounce (150ms) pra não esmagar o resize durante arraste. */
+    let resizeTimer = null;
+    function debouncedResize() {
+        if (resizeTimer) clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(onResize, 150);
     }
 
     /**
      * Calcula o progresso de scroll (0 a 1) e a velocidade instantânea
-     * que alimenta o efeito de glitch no shader.
+     * que alimenta o efeito de glitch no shader. Usa cachedDocHeight pra
+     * evitar reflow síncrono em cada scroll.
      */
     function onScroll() {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        scrollPct = docHeight > 0 ? window.scrollY / docHeight : 0;
+        const y = window.scrollY || window.pageYOffset;
+        scrollPct = cachedDocHeight > 0 ? y / cachedDocHeight : 0;
 
         // Velocidade = diferença do scroll desde o último frame
-        scrollVelocity = Math.abs(window.scrollY - lastScrollY);
-        lastScrollY = window.scrollY;
+        scrollVelocity = Math.abs(y - lastScrollY);
+        lastScrollY = y;
     }
 
     // ════════════════════════════════
@@ -382,6 +424,12 @@ const HeroScene = (() => {
 
     /**
      * Loop de renderização principal (~60fps via requestAnimationFrame).
+     *
+     * Otimizações de performance:
+     * - Pula renderização se a aba está oculta (visibilitychange). No retorno,
+     *   getElapsedTime() recalibra o relógio (sem salto, ao contrário de getDelta).
+     * - Reutiliza _mouseWorld e _dummy (sem alocações no hot loop).
+     * - Só reescreve posições das partículas quando expandFactor muda.
      *
      * Ordem de operações por frame:
      * 1. Atualiza uniforms do shader (tempo + glitch)
@@ -394,12 +442,18 @@ const HeroScene = (() => {
      */
     function animate() {
         requestAnimationFrame(animate);
+
+        // Pause total quando a aba está oculta (economia de CPU/bateria).
+        // O canvas é um fundo FIXED global, então não há gate por seção.
+        if (!tabVisible) return;
+
         const elapsed = clock.getElapsedTime();
 
         // ── Uniforms do Shader ──
         uniforms.uTime.value = elapsed;
 
-        // Glitch diminui por fricção (0.9x por frame) e sobe com velocidade de scroll
+        // Glitch diminui por fricção (0.9x por frame) e sobe com velocidade de scroll.
+        // Decaimento por-frame (aceitável: o efeito é visual, não físico-critico).
         scrollVelocity *= 0.9;
         uniforms.uGlitch.value = Math.min(scrollVelocity * 0.02, 1.0);
 
@@ -427,15 +481,15 @@ const HeroScene = (() => {
         wireframe.scale.setScalar(breathScale);
 
         // ── Física dos Debris ──
-        // Calcula a posição do mouse no espaço 3D (projetado num plano Z)
-        const mouseWorld = new THREE.Vector3(mouseX * 8, -mouseY * 8, camera.position.z - 6);
-        const dummy = new THREE.Object3D();
+        // Reutiliza objetos module-scope (antes era new Vector3/Object3D por frame)
+        _mouseWorld.set(mouseX * 8, -mouseY * 8, camera.position.z - 6);
+        _dummy.rotation.set(0, 0, 0); // reset parcial — posições são sobrescritas
 
         for (let i = 0; i < debrisData.length; i++) {
             let data = debrisData[i];
 
-            const dx = data.x - mouseWorld.x;
-            const dy = data.y - mouseWorld.y;
+            const dx = data.x - _mouseWorld.x;
+            const dy = data.y - _mouseWorld.y;
             let dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < 0.001) dist = 0.001; // Evita divisão por zero (NaN explosion)
 
@@ -472,27 +526,32 @@ const HeroScene = (() => {
             data.z += data.vz;
 
             // Atualiza a instância no InstancedMesh
-            dummy.position.set(data.x, data.y, data.z);
-            dummy.rotation.x += data.rx + data.vx * 2; // Spin afetado pela velocidade
-            dummy.rotation.y += data.ry + data.vy * 2;
-            dummy.updateMatrix();
-            debrisParticles.setMatrixAt(i, dummy.matrix);
+            _dummy.position.set(data.x, data.y, data.z);
+            _dummy.rotation.x += data.rx + data.vx * 2; // Spin afetado pela velocidade
+            _dummy.rotation.y += data.ry + data.vy * 2;
+            _dummy.updateMatrix();
+            debrisParticles.setMatrixAt(i, _dummy.matrix);
         }
         debrisParticles.instanceMatrix.needsUpdate = true;
 
         // ── Estrelas de Fundo ──
-        // Rotacionam lentamente e se expandem conforme o scroll
+        // Rotacionam lentamente e se expandem conforme o scroll.
+        // O loop de expansão só reescreve posições quando o fator muda
+        // (antes reescrevia 350 atributos toda frame mesmo sem scroll).
         particles.rotation.y = elapsed * 0.06;
         particles.rotation.x = elapsed * 0.03;
 
         const expandFactor = 1 + scrollPct * 0.6; // Expand até 60% maior no final
-        const pos = particles.geometry.attributes.position;
-        for (let i = 0; i < pos.count; i++) {
-            pos.setX(i, particlePositionsOriginal[i * 3] * expandFactor);
-            pos.setY(i, particlePositionsOriginal[i * 3 + 1] * expandFactor);
-            pos.setZ(i, particlePositionsOriginal[i * 3 + 2] * expandFactor);
+        if (Math.abs(expandFactor - lastExpandFactor) > 0.001) {
+            const pos = particles.geometry.attributes.position;
+            for (let i = 0; i < pos.count; i++) {
+                pos.setX(i, particlePositionsOriginal[i * 3] * expandFactor);
+                pos.setY(i, particlePositionsOriginal[i * 3 + 1] * expandFactor);
+                pos.setZ(i, particlePositionsOriginal[i * 3 + 2] * expandFactor);
+            }
+            pos.needsUpdate = true;
+            lastExpandFactor = expandFactor;
         }
-        pos.needsUpdate = true;
 
         // ── Modo OBMEP Overdrive ──
         // Quando a seção OBMEP está ativa, tudo fica mais caótico

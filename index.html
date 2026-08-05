@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kauê Ruon Cardoso — Processo Nº K.R.001</title>
+  <title>Kauê Ruon Cardoso — AI Engineer</title>
   <meta name="description"
-    content="Portfólio de Kauê Ruon Cardoso. Cartorário por contrato. Desenvolvedor por necessidade. Transformei burocracia em código.">
+    content="Portfólio de Kauê Ruon Cardoso. Construo software guiando IA generativa — de protótipos com LLM a back-end e front-end. Em transição de carreira, com projetos reais em produção.">
   <meta name="author" content="Kauê Ruon Cardoso">
 
   <!-- Fonts -->
@@ -19,11 +19,11 @@
   <!--
     ┌─────────────────────────────────────────────────────┐
     │  CSS — Importado via hub central (main.css)          │
-    │  O ?v=2.0 quebra o cache — muda o número quando     │
+    │  O ?v=2.2 quebra o cache — muda o número quando     │
     │  precisar forçar atualização nos navegadores.        │
     └─────────────────────────────────────────────────────┘
   -->
-  <link rel="stylesheet" href="css/main.css?v=2.0">
+  <link rel="stylesheet" href="css/main.css?v=2.2">
 </head>
 
 <body class="has-noise">
@@ -38,33 +38,33 @@
   <!-- ═══════════════════════════════════════════ -->
   <div id="loader" class="loader">
     <div class="loader__content">
-      <p class="loader__title">TRIBUNAL DE INOVAÇÃO DA REPÚBLICA DO CÓDIGO</p>
+      <p class="loader__title">KAUÊ RUON CARDOSO</p>
       <div class="loader__divider"></div>
-      <p class="loader__case">Processo nº K.R.2001-BLU-001</p>
+      <p class="loader__case">AI Engineer · Blumenau / SC</p>
       <div class="loader__bars">
         <div class="loader__bar-row" data-target="74">
           <div class="loader__bar">
             <div class="loader__bar-fill" id="bar1"></div>
           </div>
           <span class="loader__percent" id="pct1">0%</span>
-          <span class="loader__label">autenticando identidade...</span>
+          <span class="loader__label">carregando shaders...</span>
         </div>
         <div class="loader__bar-row" data-target="82">
           <div class="loader__bar">
             <div class="loader__bar-fill" id="bar2"></div>
           </div>
           <span class="loader__percent" id="pct2">0%</span>
-          <span class="loader__label">verificando OBMEP...</span>
+          <span class="loader__label">inicializando cena 3D...</span>
         </div>
         <div class="loader__bar-row" data-target="100">
           <div class="loader__bar">
             <div class="loader__bar-fill" id="bar3"></div>
           </div>
           <span class="loader__percent" id="pct3">0%</span>
-          <span class="loader__label">firma reconhecida. acesso liberado.</span>
+          <span class="loader__label">pronto. role pra explorar.</span>
         </div>
       </div>
-      <p class="loader__hint">↓ role para iniciar o processo</p>
+      <p class="loader__hint">↓ role para navegar</p>
     </div>
     <div class="loader__curtain loader__curtain--left"></div>
     <div class="loader__curtain loader__curtain--right"></div>
@@ -80,9 +80,9 @@
     <span class="cursor__label" id="cursorLabel"></span>
   </div>
 
-  <!-- BREACH ALERT BAR -->
+  <!-- ALERT BAR (dispara no scroll pela seção de contato) -->
   <div class="breach-alert" id="breachAlert">
-    <span class="breach-alert__text">[SYSTEM BREACH: IDENTITY CONFIRMED]</span>
+    <span class="breach-alert__text">[ ABERTO A PROPOSTAS — IA / FULL-STACK ]</span>
   </div>
 
   <!-- SCROLL PROGRESS BAR -->
@@ -98,10 +98,12 @@
       <a href="#sobre" class="nav__link" data-section="2">SOBRE</a>
       <a href="#experiencia" class="nav__link" data-section="3">EXPERIÊNCIA</a>
       <a href="#skills" class="nav__link" data-section="4">SKILLS</a>
-      <a href="#evidencias" class="nav__link" data-section="5">EVIDÊNCIAS</a>
-      <a href="#contato" class="nav__link" data-section="6">CONTATO</a>
+      <a href="#conquistas" class="nav__link" data-section="5">CONQUISTAS</a>
+      <a href="#formacao" class="nav__link" data-section="6">FORMAÇÃO</a>
+      <a href="#projetos" class="nav__link" data-section="7">PROJETOS</a>
+      <a href="#contato" class="nav__link" data-section="8">CONTATO</a>
     </div>
-    <span class="nav__indicator" id="navIndicator">§ 01 / 07</span>
+    <span class="nav__indicator" id="navIndicator">§ 01 / 08</span>
     <button class="nav__burger" id="navBurger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -112,19 +114,19 @@
   <!-- ═══════════════════════════════════════════ -->
   <section class="hero section" id="hero" data-section="1">
     <div class="hero__text">
-      <p class="hero__case mono-ghost">PROCESSO Nº K.R.001 · BLU/SC · 2026</p>
+      <p class="hero__case mono-ghost">AI ENGINEER · BLUMENAU / SC · 2026</p>
       <h1 class="hero__name" id="heroName">
         <span class="hero__name-line hero__name--white">KAUÊ</span>
         <span class="hero__name-line hero__name--gold">RUON</span>
         <span class="hero__name-line hero__name--outline">CARDOSO</span>
       </h1>
       <div class="hero__typewriter" id="heroTypewriter">
-        <span class="hero__tw-text" id="twText">&gt; Cartorário que entende de APIs.</span>
+        <span class="hero__tw-text" id="twText">&gt; Construo software com IA generativa.</span>
         <span class="hero__tw-cursor">|</span>
       </div>
       <div class="hero__buttons">
-        <a href="#experiencia" class="btn btn--primary magnetic" data-cursor="VER">VER MEU TRABALHO ↓</a>
-        <a href="#" class="btn btn--outline magnetic" data-cursor="BAIXAR">CURRÍCULO.PDF</a>
+        <a href="#projetos" class="btn btn--primary magnetic" data-cursor="VER">VER PROJETOS ↓</a>
+        <a href="Curriculo 2026.pdf" download class="btn btn--outline magnetic" data-cursor="BAIXAR">CURRÍCULO.PDF</a>
       </div>
       <p class="hero__footnote mono-ghost">Nenhum processo foi arquivado na criação deste site.</p>
     </div>
@@ -140,19 +142,20 @@
         <span class="section__article">Art. I §1º</span>
         <h2 class="section__title" data-cipher>DO REQUERENTE</h2>
         <p class="sobre__paragraph anim-slide">
-          Meu interesse por tecnologia vem desde o berço, e sempre que vejo um problema, não consigo ficar sem achar uma
-          solução. Aos 6 anos, eu já estava pirateando jogos de PS2 usando um computador com esparsos 512MB de RAM e
-          internet discada.
+          Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo
+          ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de
+          cartório — e de volta pra tecnologia.
         </p>
         <p class="sobre__paragraph anim-slide">
-          Depois disso, fui atuar com manutenção técnica mecânica e de sistema de dispositivos Apple na "Iphoneria".
-          Eventualmente, acabei entrando num Cartório. Lá dentro, descobri que me dou muito bem com o mundo jurídico,
-          mas a minha verdadeira tendência sempre me puxa de volta para a tecnologia.
+          Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o
+          mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou
+          automatizar processos, mesmo sem ninguém me pedir.
         </p>
         <p class="sobre__paragraph anim-slide">
-          Sempre tento melhorar ou automatizar processos da empresa, mesmo sem ninguém me ordenar a fazer isso. Acredito
-          fielmente que não há problemas que não possam ser solucionados. Enquanto decifro Códigos Civis de dia,
-          renderizo shaders e construo lógicas WebGL à noite.
+          Construo software guiando <strong>IA generativa</strong> (Claude, GPT) como ferramenta primária — de
+          protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é
+          <strong>decompor o problema, estruturar a instrução e conectar as peças</strong> até o fluxo inteiro funcionar.
+          É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.
         </p>
       </div>
       <div class="sobre__card-wrap">
@@ -161,10 +164,10 @@
           <div class="sobre__card-divider"></div>
           <div class="sobre__card-row"><span class="sobre__card-label">NOME</span><span>Kauê Ruon Cardoso</span></div>
           <div class="sobre__card-row"><span class="sobre__card-label">ORIGEM</span><span>Blumenau / SC</span></div>
-          <div class="sobre__card-row"><span class="sobre__card-label">STACK</span><span>JS · Next.js · React</span>
+          <div class="sobre__card-row"><span class="sobre__card-label">STACK</span><span>TS · React/Next.js · IA</span>
           </div>
-          <div class="sobre__card-row"><span class="sobre__card-label">DISTINÇÃO</span><span>Bronze OBMEP
-              Nacional</span></div>
+          <div class="sobre__card-row"><span class="sobre__card-label">DISTINÇÃO</span><span>Prata OBMEP Regional ·
+              Bronze Nacional</span></div>
           <div class="sobre__card-row"><span class="sobre__card-label">STATUS</span><span class="status-badge"><span
                 class="status-dot"></span> ATIVO</span></div>
           <div class="sobre__stamp" id="fichaStamp">AUTENTICADO ✓</div>
@@ -190,30 +193,32 @@
         <div class="timeline__content">
           <div class="timeline__header">
             <span class="timeline__year">2024 → ATUAL</span>
-            <span class="timeline__badge timeline__badge--active"><span class="status-dot"></span> FREELANCE</span>
+            <span class="timeline__badge timeline__badge--active"><span class="status-dot"></span> EM DESENVOLVIMENTO</span>
           </div>
-          <h3 class="timeline__title">Founder & Tech Lead — DocFácil</h3>
-          <p class="timeline__company">Universal Document Engine</p>
+          <h3 class="timeline__title">Founder & Builder — DocFácil</h3>
+          <p class="timeline__company">K-HUB Soluções · github.com/khub-solucoes/docfacil</p>
 
           <div class="timeline__highlight">
             <div class="timeline__highlight-icon">
-              <!-- Geometric Gear SVG -->
+              <!-- AI/Chip SVG -->
               <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
               </svg>
             </div>
             <div>
-              <h4 class="timeline__highlight-title">ARQUITETURA: GUIDED DOCUMENT FILL</h4>
-              <p>Idealização e construção de uma engine que formata contratos juridicamente robustos, suportando preview
-                imersivo off-line, templates Mustache.js e parse para Word(docx)/PDF limpos em padrão A4 de cartório.
-              </p>
-              <span class="timeline__stack">Stack: Next.js · React Native · Supabase · GSAP</span>
+              <h4 class="timeline__highlight-title">ARQUITETURA DE IA: AI PROVIDER + STREAMING</h4>
+              <p>Plataforma Next.js que gera documentos legais conversando com o usuário. Construí uma camada agnóstica
+                de provedor (<code>AIProvider</code>) com factory por env var, API route server-side
+                (<code>/api/ai/generate</code>) que mantém a chave secreta no servidor, streaming de respostas e
+                tratamento de erro tipado (<code>AIError</code>). Providers reais (OpenAI / Anthropic / Gemini) são
+                pluggáveis sem tocar no resto do app.</p>
+              <span class="timeline__stack">Stack: Next.js 16 · TypeScript · Prisma · IA Generativa</span>
             </div>
           </div>
 
           <ul class="timeline__bullets">
-            <li>Automação de workflows burocráticos completos.</li>
-            <li>Interfaces com foco impecável no usuário (Zero-G UI/Glassmorphism).</li>
+            <li>Interface conversacional (chat guiado) com preview do documento em tempo real.</li>
+            <li>Camada de IA desacoplada — trocar de LLM não exige mudar o front-end.</li>
           </ul>
         </div>
       </div>
@@ -239,10 +244,11 @@
               </svg>
             </div>
             <div>
-              <h4 class="timeline__highlight-title">PROJETO DE INICIATIVA: API DETRAN-RS</h4>
-              <p>Construí do zero uma automação interagindo com Endpoints do Detran-RS voltada pra gerar procurações de
-                veículos automaticamente, eliminando erro humano e esmagando o tempo operacional.</p>
-              <span class="timeline__stack">Stack: Node.js · APIs Rest · Python</span>
+              <h4 class="timeline__highlight-title">PROJETO DE INICIATIVA: ATLAS NOTORIAL</h4>
+              <p>Construí uma automação que consome endpoints do Detran-RS pra gerar procurações de veículos
+                automaticamente, eliminando digitação manual repetitiva. Está em produção no cartório até hoje — uma
+                tarefa que tomava minutos virou poucos cliques.</p>
+              <span class="timeline__stack">Stack: Node.js · APIs REST · Automação</span>
             </div>
           </div>
 
@@ -267,8 +273,8 @@
           <p class="timeline__note">Promoção rápida de estagiário para técnico de diagnóstico.</p>
           <ul class="timeline__bullets">
             <li>Micro-soldadura, diagnóstico térmico e reparo de placas iOS.</li>
-            <li>Gestão inteligente de inventário e supply-chain de peças.</li>
-            <li>Atendimento focado em dissecar problemas complexos em respostas simples ao cliente.</li>
+            <li>Controle de estoque de peças e organização do fluxo de reparos.</li>
+            <li>Atendimento focado em traduzir problemas técnicos em respostas simples ao cliente.</li>
           </ul>
         </div>
       </div>
@@ -283,11 +289,11 @@
           </div>
           <h3 class="timeline__title">A Arte da Gambiarra</h3>
           <p class="timeline__company">Quarto Escuro · Origens/SC</p>
-          <p class="timeline__note">Onde tudo começou antes do stack high-end.</p>
+          <p class="timeline__note">Onde a curiosidade por tecnologia começou.</p>
           <ul class="timeline__bullets">
-            <li>Quebra de limites de hardware (Rodar jogos PS2 em máquinas com 512mb de ram).</li>
-            <li>Primeiro contato prático com root em banda-larga discada.</li>
-            <li>Entendimento raiz de como software injeta e sobrepõe memória num console base.</li>
+            <li>Rodar jogos em máquinas modestas — aprendi a entender limites de hardware.</li>
+            <li>Primeiro contato prático com sistemas e internet banda-larga.</li>
+            <li>A base da minha tendência de nunca aceitar "não dá pra fazer".</li>
           </ul>
         </div>
       </div>
@@ -300,59 +306,36 @@
   <section class="section skills" id="skills" data-section="4">
     <div class="section__line"></div>
     <span class="section__article">Art. III</span>
-    <h2 class="section__title">DAS COMPETÊNCIAS COMPROVADAS</h2>
+    <h2 class="section__title">DAS COMPETÊNCIAS</h2>
+    <p class="skills__intro anim-slide">O que eu realmente uso nos projetos (verificável nos repositórios públicos).
+      Sem porcentagens inventadas — eu construo com IA como ferramenta primária e domino o fluxo de decompor, instruir e
+      conectar.</p>
 
     <div class="skills__grid">
       <div class="skills__technical">
-        <div class="skill-bar anim-slide" data-percent="85">
-          <div class="skill-bar__header">
-            <span class="skill-bar__article">Art. 1º</span>
-            <span class="skill-bar__name">JavaScript</span>
-            <span class="skill-bar__pct">85%</span>
-          </div>
-          <div class="skill-bar__track">
-            <div class="skill-bar__fill"></div>
-          </div>
+        <h3 class="skills__soft-title">IA Generativa</h3>
+        <div class="skills__chips">
+          <span class="chip magnetic" data-cursor="✓">Integração de LLMs</span>
+          <span class="chip magnetic" data-cursor="✓">Arquitetura de Providers</span>
+          <span class="chip magnetic" data-cursor="✓">OpenAI / Anthropic / Gemini</span>
+          <span class="chip magnetic" data-cursor="✓">Streaming de respostas</span>
+          <span class="chip magnetic" data-cursor="✓">Prompt engineering</span>
         </div>
-        <div class="skill-bar anim-slide" data-percent="78">
-          <div class="skill-bar__header">
-            <span class="skill-bar__article">Art. 2º</span>
-            <span class="skill-bar__name">Next.js / React</span>
-            <span class="skill-bar__pct">78%</span>
-          </div>
-          <div class="skill-bar__track">
-            <div class="skill-bar__fill"></div>
-          </div>
+
+        <h3 class="skills__soft-title">Construindo com</h3>
+        <div class="skills__chips">
+          <span class="chip magnetic" data-cursor="✓">JavaScript / TypeScript</span>
+          <span class="chip magnetic" data-cursor="✓">React / Next.js</span>
+          <span class="chip magnetic" data-cursor="✓">Supabase / Prisma</span>
+          <span class="chip magnetic" data-cursor="✓">Node.js</span>
         </div>
-        <div class="skill-bar anim-slide" data-percent="82">
-          <div class="skill-bar__header">
-            <span class="skill-bar__article">Art. 3º</span>
-            <span class="skill-bar__name">APIs REST</span>
-            <span class="skill-bar__pct">82%</span>
-          </div>
-          <div class="skill-bar__track">
-            <div class="skill-bar__fill"></div>
-          </div>
-        </div>
-        <div class="skill-bar anim-slide" data-percent="80">
-          <div class="skill-bar__header">
-            <span class="skill-bar__article">Art. 4º</span>
-            <span class="skill-bar__name">Automação de Processos</span>
-            <span class="skill-bar__pct">80%</span>
-          </div>
-          <div class="skill-bar__track">
-            <div class="skill-bar__fill"></div>
-          </div>
-        </div>
-        <div class="skill-bar anim-slide" data-percent="75">
-          <div class="skill-bar__header">
-            <span class="skill-bar__article">Art. 5º</span>
-            <span class="skill-bar__name">Hardware / Manutenção</span>
-            <span class="skill-bar__pct">75%</span>
-          </div>
-          <div class="skill-bar__track">
-            <div class="skill-bar__fill"></div>
-          </div>
+
+        <h3 class="skills__soft-title">Praticando</h3>
+        <div class="skills__chips">
+          <span class="chip magnetic" data-cursor="✓">APIs REST</span>
+          <span class="chip magnetic" data-cursor="✓">Automação de processos</span>
+          <span class="chip magnetic" data-cursor="✓">Testes unitários</span>
+          <span class="chip magnetic" data-cursor="✓">Git / Deploy (Vercel)</span>
         </div>
       </div>
 
@@ -373,7 +356,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- CONQUISTAS — Art. IV · O B M E P              -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="section obmep-vault" id="conquistas" data-section="4b">
+  <section class="section obmep-vault" id="conquistas" data-section="5">
     <div class="section__article golden-text">Artigo IV</div>
     <h2 class="section__title golden-text">Museu de Conquistas (OBMEP)</h2>
 
@@ -611,7 +594,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- FORMAÇÃO — Anexo I                           -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="section formacao" id="formacao" data-section="5">
+  <section class="section formacao" id="formacao" data-section="6">
     <div class="section__line"></div>
     <span class="section__article">Anexo I</span>
     <h2 class="section__title">DA FORMAÇÃO E CERTIFICAÇÕES</h2>
@@ -679,34 +662,19 @@
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- EVIDÊNCIAS — Art. III · PROVAS DO SISTEMA     -->
+  <!-- PROJETOS — Anexo II                           -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="section evidencias" id="evidencias" data-section="5">
+  <section class="section evidencias" id="projetos" data-section="7">
     <div class="section__line"></div>
-    <span class="section__article">Art. III §1º</span>
-    <h2 class="section__title" data-cipher>EVIDÊNCIAS DO SISTEMA</h2>
+    <span class="section__article">Anexo II</span>
+    <h2 class="section__title" data-cipher>DOS PROJETOS</h2>
 
     <div class="evidence__grid">
-      <div class="evidence__folder anim-slide magnetic" data-cursor="ABRIR" data-evidence="1">
-        <div class="evidence__seal">CONFIDENCIAL</div>
-        <div class="evidence__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-            <line x1="16" y1="13" x2="8" y2="13" />
-            <line x1="16" y1="17" x2="8" y2="17" />
-            <polyline points="10 9 9 9 8 9" />
-          </svg>
-        </div>
-        <h3 class="evidence__title">Formatador de Veículos</h3>
-        <p class="evidence__desc">Sistema de automação que formata e organiza dados de veículos para documentos oficiais
-          de cartório. Reduz em 70% o tempo de preenchimento manual.</p>
-        <span class="evidence__tag">JavaScript / Automação</span>
-        <div class="evidence__footer"><span class="evidence__action">[ ABRIR DOSSIÊ ]</span></div>
-      </div>
 
-      <div class="evidence__folder anim-slide magnetic" data-cursor="ABRIR" data-evidence="2">
-        <div class="evidence__seal">CONFIDENCIAL</div>
+      <!-- DOCFÁCIL — destaque principal (IA) -->
+      <a href="https://docfacil-indol.vercel.app" target="_blank" rel="noopener"
+        class="evidence__folder anim-slide magnetic" data-cursor="ABRIR">
+        <div class="evidence__seal evidence__seal--live">DEMO AO VIVO</div>
         <div class="evidence__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -715,54 +683,112 @@
           </svg>
         </div>
         <h3 class="evidence__title">DocFácil</h3>
-        <p class="evidence__desc">Plataforma mobile para geração de documentos jurídicos com preenchimento guiado,
-          exportação em PDF/DOCX e fluxo offline completo.</p>
-        <span class="evidence__tag">React Native / Supabase</span>
-        <div class="evidence__footer"><span class="evidence__action">[ ABRIR DOSSIÊ ]</span></div>
+        <p class="evidence__desc">Plataforma Next.js que gera documentos legais conversando com o usuário. Camada de IA
+          agnóstica de provedor (<code>AIProvider</code>), API route server-side, streaming e providers OpenAI/Anthropic/Gemini
+          plugáveis.</p>
+        <span class="evidence__tag">Next.js · TypeScript · IA Generativa</span>
+        <div class="evidence__footer"><span class="evidence__action">[ VER DEMO · REPO → ]</span></div>
+      </a>
+
+      <!-- CKF MANUTENÇÃO — produção + testes -->
+      <a href="https://ckf-manutencao-orcamentos.vercel.app" target="_blank" rel="noopener"
+        class="evidence__folder anim-slide magnetic" data-cursor="ABRIR">
+        <div class="evidence__seal evidence__seal--live">EM PRODUÇÃO</div>
+        <div class="evidence__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+        </div>
+        <h3 class="evidence__title">CKF Manutenção — Orçamentos</h3>
+        <p class="evidence__desc">Sistema interno de criação, gestão e exportação de orçamentos (CSV/XLSX) para uma
+          empresa de manutenção mecânica. React + TypeScript + Supabase, com <strong>testes unitários</strong> cobrindo
+          repositório, validações e exports.</p>
+        <span class="evidence__tag">React · TypeScript · Supabase</span>
+        <div class="evidence__footer"><span class="evidence__action">[ VER DEMO · REPO → ]</span></div>
+      </a>
+
+      <!-- ATLAS NOTORIAL — produção interna (privado) -->
+      <div class="evidence__folder anim-slide magnetic" data-cursor="PRODUÇÃO">
+        <div class="evidence__seal evidence__seal--internal">PRODUÇÃO INTERNA</div>
+        <div class="evidence__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+          </svg>
+        </div>
+        <h3 class="evidence__title">Atlas Notarial</h3>
+        <p class="evidence__desc">Automação que consome a API do Detran-RS pra gerar procurações de veículos
+          automaticamente. <strong>Em produção no Cartório Gaya</strong> — uma tarefa manual de minutos virou poucos
+          cliques. Código privado (dados sensíveis).</p>
+        <span class="evidence__tag">Node.js · APIs REST · Automação</span>
+        <div class="evidence__footer"><span class="evidence__action">[ PROJETO PRIVADO ]</span></div>
       </div>
 
-      <div class="evidence__folder anim-slide magnetic" data-cursor="ABRIR" data-evidence="3">
-        <div class="evidence__seal">CONFIDENCIAL</div>
+      <!-- FOLI — lib open source -->
+      <a href="https://github.com/Kauerc10/foli" target="_blank" rel="noopener"
+        class="evidence__folder anim-slide magnetic" data-cursor="ABRIR">
+        <div class="evidence__seal evidence__seal--live">OPEN SOURCE</div>
         <div class="evidence__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <polyline points="16 18 22 12 16 6" />
             <polyline points="8 6 2 12 8 18" />
           </svg>
         </div>
-        <h3 class="evidence__title">Motor de Templates Universais</h3>
-        <p class="evidence__desc">Engine de templates dinâmicos para documentos legais com Mustache parser, formulários
-          auto-gerados e integração Supabase.</p>
-        <span class="evidence__tag">TypeScript / Mustache / Expo</span>
-        <div class="evidence__footer"><span class="evidence__action">[ ABRIR DOSSIÊ ]</span></div>
-      </div>
+        <h3 class="evidence__title">Foli</h3>
+        <p class="evidence__desc">Biblioteca TypeScript para geração de PDF em Node.js e navegador. Fluent Builder API,
+          motor de layout com garantia de zero overflow, primitivas nativas (<code>text</code>, <code>table</code>,
+          <code>grid</code>) e suporte Unicode (pt-BR).</p>
+        <span class="evidence__tag">TypeScript · PDF · Layout Engine</span>
+        <div class="evidence__footer"><span class="evidence__action">[ VER REPO → ]</span></div>
+      </a>
+
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
   <!-- CONTATO — Petição Final                      -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="section contato" id="contato" data-section="6">
+  <section class="section contato" id="contato" data-section="8">
     <div class="section__line"></div>
     <span class="section__article">Petição Final</span>
     <h2 class="section__title" data-cipher>SOLICITAR CONTATO</h2>
 
-    <form class="peticao" id="peticaoForm" onsubmit="return false;">
+    <!--
+      FORM DE CONTATO REAL via Web3Forms.
+      INSTRUÇÃO: pegue seu access key gratuito em https://web3forms.com (entra email, recebe a key)
+      e cole abaixo no lugar de SEU_ACCESS_KEY_AQUI. Sem isso, o form não envia.
+    -->
+    <form class="peticao" id="peticaoForm" action="https://api.web3forms.com/submit" method="POST">
+      <!-- Access key do Web3Forms — substitua pelo seu -->
+      <input type="hidden" name="access_key" value="SEU_ACCESS_KEY_AQUI">
+      <!-- Anti-spam honeypot -->
+      <input type="checkbox" name="botcheck" class="peticao__honeypot" tabindex="-1" autocomplete="off">
+
       <div class="peticao__field">
         <label class="peticao__label">REQUERENTE (seu nome)</label>
-        <input type="text" class="peticao__input" placeholder="Nome completo" required>
+        <input type="text" name="nome" class="peticao__input" placeholder="Nome completo" required>
+      </div>
+      <div class="peticao__field">
+        <label class="peticao__label">E-MAIL DE CONTATO</label>
+        <input type="email" name="email" class="peticao__input" placeholder="seu@email.com" required>
       </div>
       <div class="peticao__field">
         <label class="peticao__label">OBJETO DO CONTATO (assunto)</label>
-        <input type="text" class="peticao__input" placeholder="Ex: proposta de trabalho" required>
+        <input type="text" name="assunto" class="peticao__input" placeholder="Ex: proposta de trabalho" required>
       </div>
       <div class="peticao__field">
         <label class="peticao__label">EXPOSIÇÃO DOS FATOS (mensagem)</label>
-        <textarea class="peticao__textarea" rows="5" placeholder="Descreva sua solicitação..." required></textarea>
+        <textarea name="mensagem" class="peticao__textarea" rows="5" placeholder="Descreva sua solicitação..."
+          required></textarea>
       </div>
       <button type="submit" class="btn btn--protocolar magnetic" data-cursor="PROTOCOLAR" id="btnProtocolar">
         <span class="btn__text">PROTOCOLAR SOLICITAÇÃO</span>
         <span class="btn__sent">✓ PETIÇÃO PROTOCOLADA</span>
       </button>
+      <p class="peticao__feedback" id="peticaoFeedback"></p>
     </form>
 
     <div class="contato__info">
@@ -773,13 +799,22 @@
         </svg>
         kaue.ruon@gmail.com
       </a>
-      <a href="https://linkedin.com/in/kaueruon" target="_blank" class="contato__link magnetic" data-cursor="ABRIR">
+      <a href="https://linkedin.com/in/kaueruon" target="_blank" rel="noopener" class="contato__link magnetic"
+        data-cursor="ABRIR">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
           <rect x="2" y="9" width="4" height="12" />
           <circle cx="4" cy="4" r="2" />
         </svg>
         linkedin.com/in/kaueruon
+      </a>
+      <a href="https://github.com/Kauerc10" target="_blank" rel="noopener" class="contato__link magnetic"
+        data-cursor="ABRIR">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path
+            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+        </svg>
+        github.com/Kauerc10
       </a>
       <span class="contato__link">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -825,23 +860,27 @@
   <!-- FOOTER                                      -->
   <!-- ═══════════════════════════════════════════ -->
   <footer class="footer">
-    <p>© 2026 Kauê Ruon Cardoso · Processo encerrado com êxito · Nenhuma procuração foi necessária para construir este
-      site.</p>
+    <div class="footer__links">
+      <a href="mailto:kaue.ruon@gmail.com" class="footer__link">Email</a>
+      <a href="https://linkedin.com/in/kaueruon" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
+      <a href="https://github.com/Kauerc10" target="_blank" rel="noopener" class="footer__link">GitHub</a>
+    </div>
+    <p>© 2026 Kauê Ruon Cardoso · Construído com IA generativa como ferramenta de engenharia.</p>
   </footer>
 
-  <!-- Scripts com Cache Buster ?v=2.0 -->
+  <!-- Scripts com Cache Buster ?v=2.2 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="js/loader.js?v=2.0"></script>
-  <script src="js/cursor.js?v=2.0"></script>
-  <script src="js/three-scene.js?v=2.0"></script>
-  <script src="js/animations.js?v=2.0"></script>
-  <script src="js/easter-eggs.js?v=2.0"></script>
-  <script src="js/cipher-decode.js?v=2.0"></script>
-  <script src="js/breach-protocol.js?v=2.0"></script>
-  <script src="js/main.js?v=2.0"></script>
+  <script src="js/loader.js?v=2.2"></script>
+  <script src="js/cursor.js?v=2.2"></script>
+  <script src="js/three-scene.js?v=2.2"></script>
+  <script src="js/animations.js?v=2.2"></script>
+  <script src="js/easter-eggs.js?v=2.2"></script>
+  <script src="js/cipher-decode.js?v=2.2"></script>
+  <script src="js/breach-protocol.js?v=2.2"></script>
+  <script src="js/main.js?v=2.2"></script>
 </body>
 
 </html>
