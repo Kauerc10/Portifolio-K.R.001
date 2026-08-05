@@ -123,11 +123,12 @@ const EasterEggs = (() => {
     function triggerNameGlitch(el) {
         nameGlitchActive = true;
 
-        // Salva o conteúdo original pra restaurar depois
+        // Salva o HTML completo (inclui os per-char spans criados por animateHeroName).
+        // Usar textContent no restore destruiria esses spans — innerHTML preserva.
         const lines = el.querySelectorAll('.hero__name-line');
         const originals = Array.from(lines).map(l => ({
             el: l,
-            text: l.textContent,
+            html: l.innerHTML,
             class: l.className,
         }));
 
@@ -146,11 +147,11 @@ const EasterEggs = (() => {
         lines[2].textContent = 'PRA UM CURRÍCULO';
         lines[2].style.color = '#ef4444';
 
-        // Restaura depois de 3 segundos
+        // Restaura depois de 3 segundos (innerHTML repõe os spans de animação)
         setTimeout(() => {
             el.classList.remove('glitch');
             originals.forEach(o => {
-                o.el.textContent = o.text;
+                o.el.innerHTML = o.html;
                 o.el.className = o.class;
                 o.el.style.fontSize = '';
                 o.el.style.color = '';
