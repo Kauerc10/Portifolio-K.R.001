@@ -1,161 +1,132 @@
 <div align="center">
 
-# ⚖️ PROCESSO Nº K.R.2001-BLU-001
-### TRIBUNAL DE INOVAÇÃO DA REPÚBLICA DO CÓDIGO
+# Kauê Ruon Cardoso
+### AI Engineer · Blumenau / SC
 
-*Cartorário por contrato. Desenvolvedor por necessidade.*
-
-<br>
-
-<img src="https://img.shields.io/badge/Status-Protocolado_com_Sucesso-success?style=for-the-badge&color=051b11&labelColor=000000" />
+*Construo software guiando IA generativa — de protótipos com LLM a back-end e front-end.*
 
 <br>
 
-_"A burocracia é apenas um algoritmo mal otimizado."_
+<img src="https://img.shields.io/badge/Foco-AI_Engineer-2563eb?style=for-the-badge&labelColor=04060d" />
+<img src="https://img.shields.io/badge/Disponibilidade-Remoto-22c55e?style=for-the-badge&labelColor=04060d" />
+<img src="https://img.shields.io/badge/Localização-Blumenau_SC-d4a017?style=for-the-badge&labelColor=04060d" />
 
----
+<br>
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-kaueruon-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/kaueruon)
+[![GitHub](https://img.shields.io/badge/GitHub-Kauerc10-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Kauerc10)
+[![Email](https://img.shields.io/badge/Email-kaue.ruon@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:kaue.ruon@gmail.com)
+
 </div>
 
-## 👤 Quem Sou
+---
 
-**Kauê Ruon Cardoso**  
-📍 Blumenau / SC — *Disponível para formato Remoto*
+## Sobre
 
-Sou cartorário no Cartório Gaya desde agosto de 2023. Processo procurações, inventários e documentos jurídicos complexos onde não existe botão "desfazer". Não tenho formação técnica em programação, não fiz faculdade de TI e não segui o caminho tradicional para me tornar desenvolvedor.
+Sou cartorário no [Cartório Gaya](https://www.cartoriogaya.com.br) desde agosto de 2023, em Blumenau/SC. Lido com procurações, inventários e documentos jurídicos — trabalho que exige tolerância zero a erros e me ensinou a enxergar processos onde outros veem apenas tarefas.
 
-O que eu tenho é uma base sólida de raciocínio lógico — forjada por anos de matemática competitiva — e uma incapacidade física de ver um processo manual repetitivo sem querer automatizá-lo. Não programo pelo glamour da área, programo porque odeio trabalho ineficiente.
+Minha relação com tecnologia vem desde cedo, e a verdade é que construo software **guiando IA generativa** (Claude, GPT) como ferramenta primária. Não escrevo código do zero, linha por linha, como um desenvolvedor tradicional. Meu trabalho é **decomor o problema, estruturar a instrução técnica e conectar as peças** até o fluxo inteiro funcionar em produção.
+
+Isso não é uma fraqueza que eu esconda — é exatamente o que quero fazer como AI Engineer: colocar IA generativa pra resolver problemas reais, com mentoria e desafios de produção.
+
+> Base de raciocínio lógico forjada em matemática competitiva (OBMEP/IMPA): Prata Regional e Bronze Nacional, além de duas Menções Honrosas.
 
 ---
 
-## 🧠 Como eu construo coisas
+## Projetos
 
-**Vou ser direto:** eu não escrevo código do zero, linha por linha, como um dev tradicional. Eu uso IA como ferramenta primária de construção — e uso bem. O que separa quem entrega resultado real de quem só copia e cola não é saber a sintaxe de cor, é saber o que pedir, como estruturar o sistema e como conectá-lo.
+### DocFácil — IA generativa aplicada a documentos legais
+**Stack:** `Next.js 16` · `TypeScript` · `Prisma` · `IA Generativa`
 
-Meu fluxo de trabalho é cirúrgico:
-1. **Identificação da Dor:** (ex: geração manual de procurações toma tempo e gera erros).
-2. **Decomposição:** Quebro o fluxo complexo em partes lógicas e isoladas.
-3. **Instrução Técnica:** Comando a IA com extrema precisão sobre cada etapa do problema e modelo os requests.
-4. **Resolução:** Conecto as peças, debito os erros, testo e faço o fluxo inteiro funcionar sistemicamente.
-5. **Produção:** O código sai do terminal, vai ao ar e resolve a demanda de alguém no mundo físico.
+Plataforma que gera documentos legais (contratos, declarações, procurações) através de um chat guiado com o usuário. A peça central é uma **camada de IA agnóstica de provedor**:
 
-Estou em transição de carreira e isso é um fato, não uma fraqueza. Sei traduzir necessidade em arquitetura de dados e colocar a lógica matemática à prova de falhas.
+- Interface `AIProvider` com factory por variável de ambiente — trocar de LLM não exige mudar o front-end
+- API route server-side (`/api/ai/generate`) que mantém a chave de API secreta no servidor
+- Streaming de respostas e tratamento de erro tipado (`AIError`)
+- Providers reais plugáveis: OpenAI, Anthropic, Gemini
 
----
+> 🔗 **Demo:** [docfacil-indol.vercel.app](https://docfacil-indol.vercel.app) · **Repo:** [github.com/khub-solucoes/docfacil](https://github.com/khub-solucoes/docfacil)
 
-## 🏆 A Matemática por trás da Lógica (OBMEP)
+### CKF Manutenção — Sistema de Orçamentos
+**Stack:** `React` · `TypeScript` · `Supabase` · `TailwindCSS`
 
-A lógica não é uma *soft skill* teórica para enfeitar currículos. É a base puramente literal do meu trabalho. Quando eu quebro um problema de sistema para instruir a máquina, estou usando a mesma musculatura intelectual e competitiva que me graduou a nível nacional pelo IMPA.
+Sistema interno em **produção** para uma empresa de manutenção mecânica. Criação, gestão, filtros e exportação de orçamentos (CSV/XLSX). Inclui **testes unitários** cobrindo repositório, validações e exports.
 
-```text
-╭────────────────────────────────────────────────────────────╮
-│ 📊 HISTÓRICO COMPETITIVO — OBMEP (IMPA)                    │
-├────────────────────────────────────────────────────────────┤
-│                                                            │
-│  [2021] 16ª Edição ──> Menção Honrosa Nacional             │
-│                        Assinada por Marcelo Viana          │
-│                                                            │
-│  [2022] 17ª Edição ──> Menção Honrosa Nacional             │
-│                        Assinada por C. Landim & M. Viana   │
-│                                                            │
-│  [2023] 18ª Edição ──> 🥈 MEDALHA DE PRATA REGIONAL        │
-│                        🥉 MEDALHA DE BRONZE NACIONAL       │
-│                                                            │
-│  * 3 anos de evolução nacional no maior instituto de       │
-│    matemática da América Latina (IMPA).                    │
-╰────────────────────────────────────────────────────────────╯
-```
+> 🔗 **Demo:** [ckf-manutencao-orcamentos.vercel.app](https://ckf-manutencao-orcamentos.vercel.app) · **Repo:** [github.com/Kauerc10/ckf-manutencao-orcamentos](https://github.com/Kauerc10/ckf-manutencao-orcamentos)
+
+### Atlas Notarial — Automação de procurações de veículos
+**Stack:** `Node.js` · `APIs REST` · `Automação`
+
+Automação que consome a API do Detran-RS para gerar procurações de veículos automaticamente. **Em produção no Cartório Gaya** — uma tarefa manual que tomava minutos virou poucos cliques. Código privado (dados sensíveis).
+
+### Foli — Biblioteca TypeScript para PDF
+**Stack:** `TypeScript` · `Layout Engine`
+
+Biblioteca open source para geração de PDF em Node.js e navegador, com Fluent Builder API, motor de layout com garantia de zero overflow e suporte Unicode (pt-BR).
+
+> 🔗 **Repo:** [github.com/Kauerc10/foli](https://github.com/Kauerc10/foli)
 
 ---
 
-## 💼 Experiência Real
+## Este portfólio
 
-### 🏛️ Cartório Gaya • *Cartorário, Setor de Procurações*
-*Agosto 2023 – Presente*
+O próprio site deste portfólio é um projeto de engenharia visual. Construído com IA generativa como ferramenta, ele combina:
 
-Gestão de alta demanda documental com tolerância zero para erros processuais. Suporte técnico interno de hardware e software para a serventia.
+- **Three.js** — Cena WebGL com icosaedro wireframe, 350 partículas e 120 fragmentos com física interativa ao mouse
+- **GSAP + ScrollTrigger** — Animações de scroll, parallax e timing
+- **Lenis** — Smooth scroll
+- **Shaders GLSL customizados** — Aberração cromática baseada na velocidade de scroll
+- **Acessibilidade** — `prefers-reduced-motion`, semantic HTML, performance otimizada
 
-> **O que eu construí na prática:**  
-> Acompanhando a perda de tempo colossal na formatação manual de veículos, pensei no fluxo lógico e criei uma integração nativa com a **API do Detran-RS**. Instruí a IA do começo ao fim para puxar os dados, estruturei o back, validei as peças de conexão, testei e botei pra rodar. Conclusão: a ferramenta automatizou totalmente o preenchimento nas peças notariais. Lenta virou instantânea, manual virou automática. Está em uso em produção até ser lida agora.
-> *OBS: Também digitalizei e reescrevi inteiramente o manual de conduta dos funcionários do zero.*
-
-<br>
-
-### 📱 Iphoneria • *Estagiário → Técnico em Manutenção*
-*Novembro 2021 – Março 2023*
-
-Fui promovido em poucos meses. O trabalho exigia a precisão de um microcirurgião: diagnóstico de esquemas elétricos, solda, abertura mecânica e manutenção de alto risco direto na placa de iPhones, iPads e MacBooks, combinados ao atendimento ao cliente de frente de loja.
-
----
-
-## 🔧 O que sei usar (De verdade)
-
-Sem "clouds" repletas de logotipos exóticos. O que funciona no meu CLI e soluciona problemas tangíveis:
-
-```text
-  [▶] JavaScript           Uso, compreendo o fluxo, manipulo o DOM e opero integrações.
-  [▶] React & Next.js      Construtor de soluções escaláveis em que montei aplicações.
-  [▶] IA Engineering       Uso absoluto como LLM framework (Claude, GPT) integrados.
-  [▶] Integrações REST     Consulta profunda, auth, e estruturação de payload em APIs.
-  [▶] Física UI            Three.js & GSAP. Não só coloco na tela, ponho peso nos pixels.
-```
-
----
-
-## 🏗️ Projetos e Ferramentas 
-
-Nem todo projeto bonitinho serve pra algo real. Os meus nascem pautados inteiramente em demanda física.
-
-<details open>
-<summary><b> 1. Formatador de Veículos (Destaque Principal) </b></summary>
-<br>
-  
-> **Status:** Privado (Aguardando release final e polimento)  
-> **Stack:** `TypeScript` • `Next.js` • `Firebase` • `TailwindCSS` • `Framer Motion` • `shadcn/ui`
-> 
-> Construí exclusivamente na base da necessidade. Um hub de automação e produtividade verticalizado para mesas de cartório. Preenchimento assíncrono de peças notariais e tarefas de balcão que trituram horas de digitação redundantes em alguns cliques automáticos. Genérico, sem dados sensíveis atrelados hardcoded (SaaS-friendly), pronto para qualquer serventia que odeia trabalho duplicado.
-
-</details>
-
-<details open>
-<summary><b> 2. O Meu Portfólio — Processo Nº K.R.001 </b></summary>
-<br>
-
-> **Status:** Em construção (Estrutura e Engine Online)  
-> **Stack:** `HTML` • `CSS` • `JavaScript` • `Three.js` • `GSAP` • `Lenis`
-> 
-> Esta mesma aplicação. A ideia foi conceber um portfólio moldado e diagramado fielmente ao layout de um extenso processo jurídico assinado, mas explodido visualmente através de Shaders 3D renderizados na Web, Tesseract Particles interativas e físicas de scroll em eixo contínuo (Zero-G). É a documentação e colisão da minha realidade jurídica com o meu avanço em engenharia visual.
-
-</details>
+> 🔗 **Ao vivo:** [portifolio-k-r-001.vercel.app](https://portifolio-k-r-001.vercel.app)
 
 <details>
-<summary><b> 3. Projetos Menos Robustos e Acervos </b></summary>
-<br>
-  
-> * **[Pausa 24H](https://github.com/Kauerc10/pausa24h):** Landing page de arquitetura clean feita puramente com `HTML` no projeto K-Hub Soluções. (Público)
-> * **[DocFácil](https://github.com/Kauerc10/DocFacil):** Engine documental ágil ainda ganhando fundações para arquitetos jurídicos. (Privado/WIP)
+<summary><b>Easter eggs</b></summary>
+
+Quem explora o site encontra quatro surpresas:
+
+1. **Konami Code** (↑↑↓↓←→←→BA) → Modal de "acesso root"
+2. **5 cliques no nome** → Glitch com erro HTTP 418
+3. **Console do DevTools** → Arte ASCII com contato direto
+4. **3s de hover na ficha técnica** → Carimbo de "AUTENTICADO"
 
 </details>
 
 ---
 
-## 🎓 Formação Acadêmica & Condecorações
+## Experiência
 
-- **Ensino Médio Completo** — EEB Cel. Pedro Christiano Feddersen
-- **Téc. Gestão Administrativa (156h)** — VisualMídia *(2020)*
-- **Operador de Tecnologia (92h)** — VisualMídia *(2017)*
-- **Programador de Games (40h) / 3Ds Max (32h)** — VisualMídia *(2017-2018)*
+| Período | Função | Onde |
+|---|---|---|
+| 2024 → Atual | Founder & Builder — DocFácil | K-HUB Soluções |
+| 2023 → Atual | Cartorário / Depto. de Procurações | Cartório Gaya · Blumenau/SC |
+| Nov 2021 → Mar 2023 | Técnico em Manutenção Apple | iPhoneria · Blumenau/SC |
 
 ---
 
-## 📥 Submissão de Contato
+## Formação
 
-```text
-   ╭──────────────────────────────────────────────╮
-   │   "Processos não param.                      │
-   │    Mas eu construo pontes automatizadas      │
-   │    para que não tenhamos que empurrá-los."   │
-   │                                              │
-   │   [✉] kaue.ruon@gmail.com                    │
-   │   [in] linkedin.com/in/kaueruon              │
-   ╰──────────────────────────────────────────────╯
-```
+- **Ensino Médio Completo** — EEB Cel. Pedro Christiano Feddersen
+- **Téc. Gestão Administrativa** (156h) — VisualMídia · 2020
+- **Operador de Tecnologia** (92h) — VisualMídia · 2017
+- **Programador de Games** (40h) / **3Ds Max** (32h) — VisualMídia · 2017-2018
+
+---
+
+## Stack
+
+**IA Generativa:** Integração de LLMs · Arquitetura de providers (OpenAI/Anthropic/Gemini) · Streaming · Prompt engineering
+
+**Construindo com:** JavaScript/TypeScript · React/Next.js · Supabase/Prisma · Node.js
+
+**Praticando:** APIs REST · Automação de processos · Testes unitários · Git · Deploy (Vercel)
+
+---
+
+<div align="center">
+
+*Construído com IA generativa como ferramenta de engenharia.*
+
+**Contato:** kaue.ruon@gmail.com · [LinkedIn](https://linkedin.com/in/kaueruon) · [GitHub](https://github.com/Kauerc10)
+
+</div>
