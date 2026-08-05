@@ -31,6 +31,19 @@ html {
     -moz-osx-font-smoothing: grayscale;
     /* Suaviza fonte no Firefox/macOS */
     overflow-x: hidden;
+
+    /* Esconde a scrollbar nativa: usamos a barra de progresso custom (.scroll-progress).
+       - scrollbar-width: none → Firefox
+       - ::-webkit-scrollbar → Chrome/Safari/Edge
+       O scroll continua funcionando (wheel, touch, Lenis). */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 /* Body: cursor custom ativo em desktop, sem overflow horizontal */

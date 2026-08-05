@@ -33,6 +33,9 @@ const Cursor = (() => {
     /** @type {number} Posição X atual do ponto (imediata) */
     let dx = 0, dy = 0;
 
+    /** @type {number} Última posição renderizada do wrapper (gate do rastro) */
+    let lastMx = -1, lastMy = -1;
+
     /** @type {boolean} Se é desktop (> 768px) */
     let isDesktop = window.innerWidth > 768;
 
@@ -73,7 +76,6 @@ const Cursor = (() => {
 
         document.addEventListener('mousemove', onMouseMove);
         document.addEventListener('mousedown', onMouseDown);
-        document.addEventListener('mouseup', onMouseUp);
 
         bindMagneticElements(); // Registra hover nos elementos interativos
 
@@ -120,9 +122,6 @@ const Cursor = (() => {
         setTimeout(() => cursor.classList.remove('click'), 400);
     }
 
-    /** Placeholder — mantido pra possível uso futuro */
-    function onMouseUp() { }
-
     /**
      * Loop principal de animação do cursor (roda a ~60fps).
      *
@@ -133,6 +132,12 @@ const Cursor = (() => {
      * O rastro é desenhado no canvas com fade por `life`.
      */
     function tick() {
+        // Pula renderização quando a aba está oculta (economia de bateria/CPU)
+        if (document.visibilityState === 'hidden') {
+            requestAnimationFrame(tick);
+            return;
+        }
+
         // Interpolação suave do anel (lerp 12%)
         cx += (mx - cx) * 0.12;
         cy += (my - cy) * 0.12;
@@ -144,8 +149,10 @@ const Cursor = (() => {
         const dot = cursor.querySelector('.cursor__dot');
         dot.style.transform = `translate(${dx - cx}px, ${dy - cy}px)`;
 
-        // Renderização do rastro no canvas
-        if (trailCtx) {
+        // Renderização do rastro no canvas — só redesenha se há movimento
+        // ou pontos ainda vivos (antes limpava/redesenhava toda frame parada)
+        const hasLiveTrail = trail.length > 0 && trail[trail.length - 1].life > 0;
+        if (trailCtx && (cx !== lastMx || cy !== lastMy || hasLiveTrail)) {
             trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
 
             // Diminui a vida de cada ponto
@@ -170,6 +177,9 @@ const Cursor = (() => {
                 trailCtx.stroke();
             }
         }
+
+        lastMx = cx;
+        lastMy = cy;
 
         requestAnimationFrame(tick);
     }
