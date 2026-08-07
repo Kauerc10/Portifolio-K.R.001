@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#d4a017" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#04060d" />
+    </linearGradient>
+  </defs>
+  <!-- Fundo com cantos suavizados -->
+  <rect width="512" height="512" rx="100" fill="url(#bgGrad)" stroke="#d4a017" stroke-width="8" stroke-opacity="0.4" />
+  <!-- Moldura Cyber Externa -->
+  <path d="M 60 120 L 120 60 L 392 60 L 452 120 L 452 392 L 392 452 L 120 452 L 60 392 Z" fill="none" stroke="url(#goldGrad)" stroke-width="6" stroke-dasharray="16 8" opacity="0.6" />
+  <!-- Monograma KR -->
+  <g fill="none" stroke="url(#goldGrad)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round">
+    <!-- K -->
+    <path d="M 150 140 L 150 372" />
+    <path d="M 270 140 L 150 256 L 270 372" />
+    <!-- R -->
+    <path d="M 290 140 L 290 372" />
+    <path d="M 290 140 L 370 140 C 410 140 410 236 370 236 L 290 236" />
+    <path d="M 350 236 L 410 372" />
+  </g>
+  <!-- Nó brilhante AI -->
+  <circle cx="270" cy="140" r="10" fill="#2563eb" />
+  <circle cx="270" cy="372" r="10" fill="#d4a017" />
+</svg>

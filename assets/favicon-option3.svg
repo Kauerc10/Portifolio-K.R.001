@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="stampGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d4a017" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="90" fill="#04060d" />
+  
+  <!-- Outer Hexagon Badge -->
+  <polygon points="256,40 452,148 452,364 256,472 60,364 60,148" fill="#090d16" stroke="url(#stampGold)" stroke-width="10" stroke-linejoin="round" />
+  
+  <!-- Inner Ring -->
+  <circle cx="256" cy="256" r="150" fill="none" stroke="#2563eb" stroke-width="4" stroke-dasharray="12 6" opacity="0.8" />
+  
+  <!-- Central KR -->
+  <text x="256" y="290" font-family="'Syne', 'Inter', sans-serif" font-weight="900" font-size="140" fill="url(#stampGold)" text-anchor="middle" letter-spacing="-2">KR</text>
+  
+  <!-- Legal Tech Subtext / Dots -->
+  <circle cx="256" cy="125" r="8" fill="#d4a017" />
+  <circle cx="256" cy="387" r="8" fill="#d4a017" />
+</svg>
