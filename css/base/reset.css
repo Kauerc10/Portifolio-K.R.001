@@ -30,28 +30,42 @@ html {
     /* Suaviza fonte no WebKit */
     -moz-osx-font-smoothing: grayscale;
     /* Suaviza fonte no Firefox/macOS */
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 
-    /* Esconde a scrollbar nativa: usamos a barra de progresso custom (.scroll-progress).
-       - scrollbar-width: none → Firefox
-       - ::-webkit-scrollbar → Chrome/Safari/Edge
-       O scroll continua funcionando (wheel, touch, Lenis). */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    /* Esconde a scrollbar nativa totalmente em todos os navegadores:
+       - scrollbar-width: none !important → Firefox
+       - ::-webkit-scrollbar → Chrome/Safari/Edge/Opera */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
 }
 
-html::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    display: none;
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar,
+::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    background: transparent !important;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track,
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+    display: none !important;
+    background: transparent !important;
 }
 
 /* Body: cursor custom ativo em desktop, sem overflow horizontal */
 body {
     background: var(--void);
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
     cursor: none;
-    /* O cursor padrão é desativado — veja cursor.css */
     position: relative;
 }
 
