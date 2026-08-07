@@ -13,7 +13,7 @@
 
 <br>
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-kaueruon-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/kaueruon)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-kauerc-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kauerc/)
 [![GitHub](https://img.shields.io/badge/GitHub-Kauerc10-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Kauerc10)
 [![Email](https://img.shields.io/badge/Email-kaue.ruon@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:kaue.ruon@gmail.com)
 
@@ -127,6 +127,6 @@ Quem explora o site encontra quatro surpresas:
 
 *Construído com IA generativa como ferramenta de engenharia.*
 
-**Contato:** kaue.ruon@gmail.com · [LinkedIn](https://linkedin.com/in/kaueruon) · [GitHub](https://github.com/Kauerc10)
+**Contato:** kaue.ruon@gmail.com · [LinkedIn](https://www.linkedin.com/in/kauerc/) · [GitHub](https://github.com/Kauerc10)
 
 </div>
