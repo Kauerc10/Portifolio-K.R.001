@@ -36,13 +36,26 @@
     transform: translateY(0);
 }
 
-/* Logo KR no canto esquerdo */
+/* Logo KRC no canto esquerdo */
 .nav__logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.4rem;
-    color: var(--stamp);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
     cursor: none;
+}
+
+.nav__logo-img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    background: transparent;
+    mix-blend-mode: lighten;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav__logo:hover .nav__logo-img {
+    transform: scale(1.06);
 }
 
 /* Container dos links de navegação */
