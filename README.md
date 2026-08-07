@@ -98,7 +98,7 @@ Quem explora o site encontra quatro surpresas:
 
 | Período | Função | Onde |
 |---|---|---|
-| 2024 → Atual | Founder & Builder — DocFácil | K-HUB Soluções |
+| Jul 2026 → Atual | Founder & Builder — DocFácil | K-HUB Soluções |
 | 2023 → Atual | Cartorário / Depto. de Procurações | Cartório Gaya · Blumenau/SC |
 | Nov 2021 → Mar 2023 | Técnico em Manutenção Apple | iPhoneria · Blumenau/SC |
 
