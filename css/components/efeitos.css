@@ -175,6 +175,30 @@ a.evidence__folder {
     font-weight: 600;
 }
 
+.evidence__link-btn {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid rgba(212, 160, 23, 0.4);
+    border-radius: 4px;
+    background: rgba(212, 160, 23, 0.08);
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    display: inline-block;
+    margin-right: 0.4rem;
+}
+
+.evidence__link-btn:hover {
+    color: #ffffff;
+    border-color: var(--gold);
+    background: rgba(212, 160, 23, 0.3);
+    box-shadow: 0 0 12px rgba(212, 160, 23, 0.4);
+    transform: translateY(-2px);
+}
+
 
 /* tente ↑↑↓↓←→←→BA no teclado ;) */
 .modal {
