@@ -78,7 +78,8 @@ O próprio site deste portfólio é um projeto de engenharia visual. Construído
 - **Shaders GLSL customizados** — Aberração cromática baseada na velocidade de scroll
 - **Acessibilidade** — `prefers-reduced-motion`, semantic HTML, performance otimizada
 
-> 🔗 **Ao vivo:** [portifolio-k-r-001.vercel.app](https://portifolio-k-r-001.vercel.app)
+> 🔗 **Ao vivo:** [kaueruon.dev](https://kaueruon.dev)
+
 
 <details>
 <summary><b>Easter eggs</b></summary>
