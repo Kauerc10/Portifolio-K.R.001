@@ -22,6 +22,7 @@ const Cursor = (() => {
     // ── Referências do DOM ──
     const cursor = document.getElementById('cursor');
     const label = document.getElementById('cursorLabel');
+    let dot = null;
 
     // ── Estado da posição ──
     /** @type {number} Posição X alvo (mouse real) */
@@ -67,6 +68,8 @@ const Cursor = (() => {
             cursor.style.display = 'none';
             return;
         }
+
+        dot = cursor ? cursor.querySelector('.cursor__dot') : null;
 
         // Inicializa o canvas de rastro
         if (trailCanvas) {
@@ -138,16 +141,16 @@ const Cursor = (() => {
             return;
         }
 
-        // Interpolação suave do anel (lerp 12%)
-        cx += (mx - cx) * 0.12;
-        cy += (my - cy) * 0.12;
-
-        // Move o wrapper do cursor (com lag)
-        cursor.style.transform = `translate(${cx}px, ${cy}px)`;
-
-        // O ponto central compensa o lag do wrapper ficando na posição exata
-        const dot = cursor.querySelector('.cursor__dot');
-        dot.style.transform = `translate(${dx - cx}px, ${dy - cy}px)`;
+        // Interpolação suave do anel (lerp 15%)
+        const dist = Math.abs(mx - cx) + Math.abs(my - cy);
+        if (dist > 0.01) {
+            cx += (mx - cx) * 0.15;
+            cy += (my - cy) * 0.15;
+            cursor.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`;
+            if (dot) {
+                dot.style.transform = `translate3d(${(dx - cx).toFixed(1)}px, ${(dy - cy).toFixed(1)}px, 0)`;
+            }
+        }
 
         // Renderização do rastro no canvas — só redesenha se há movimento
         // ou pontos ainda vivos (antes limpava/redesenhava toda frame parada)
