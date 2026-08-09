@@ -27,7 +27,8 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(51, 65, 85, 0.3);
-    transform: translateY(-100%);
+    transform: translateY(-100%) translateZ(0);
+    will-change: transform;
     transition: transform 0.4s ease;
 }
 

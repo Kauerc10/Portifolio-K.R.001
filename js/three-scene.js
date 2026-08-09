@@ -169,15 +169,20 @@ const HeroScene = (() => {
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
         camera.position.z = 8;
 
-        // ── Renderer WebGL com alpha pra transparência ──
+        // ── Renderer WebGL de alta performance otimizado ──
+        const isMobile = window.innerWidth <= 768;
+        const maxDpr = isMobile ? 1.0 : 1.25; // 1.25x no desktop economiza 60%+ de GPU sem perda visual perceptível
+        const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+
         renderer = new THREE.WebGLRenderer({
             canvas: canvas,
-            alpha: true,          // Fundo transparente (não preto sólido)
-            antialias: true,
-            powerPreference: 'high-performance'
+            alpha: true,
+            antialias: (window.devicePixelRatio || 1) <= 1.25, // MSAA desligado se densidade de pixels for alta
+            powerPreference: 'high-performance',
+            precision: 'mediump'
         });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Max 2x pra performance
+        renderer.setSize(window.innerWidth, window.innerHeight, false);
+        renderer.setPixelRatio(dpr);
 
         // ── 1. THE ANOMALY — Icosaedro Wireframe ──
         const geo = new THREE.IcosahedronGeometry(2.2, 2); // Subdivide 2x pra mais faces
@@ -440,12 +445,21 @@ const HeroScene = (() => {
      * 6. Modo OBMEP Overdrive se ativo
      * 7. Renderiza a cena
      */
-    function animate() {
+    let lastFrameTime = 0;
+    const targetFpsInterval = 1000 / 60; // Limita a no máximo 60 FPS (evita sobrecarga em monitores 120Hz+)
+
+    function animate(timestamp) {
         requestAnimationFrame(animate);
 
         // Pause total quando a aba está oculta (economia de CPU/bateria).
-        // O canvas é um fundo FIXED global, então não há gate por seção.
         if (!tabVisible) return;
+
+        // Limitação de FPS pra economizar GPU em monitores de alta taxa de atualização
+        if (timestamp) {
+            const delta = timestamp - lastFrameTime;
+            if (delta < targetFpsInterval - 1) return;
+            lastFrameTime = timestamp - (delta % targetFpsInterval);
+        }
 
         const elapsed = clock.getElapsedTime();
 

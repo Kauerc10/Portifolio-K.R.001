@@ -29,7 +29,7 @@
     margin-top: 2rem;
 }
 
-/* Card de projeto — glassmorfismo com efeito 3D no hover */
+/* Card de projeto — glassmorfismo com efeito 3D no hover (acelerado por GPU) */
 .evidence__folder {
     background: rgba(13, 20, 36, 0.85);
     border: 1px solid rgba(51, 65, 85, 0.25);
@@ -37,10 +37,12 @@
     position: relative;
     overflow: hidden;
     cursor: none;
-    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, box-shadow 0.4s ease;
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     transform-style: preserve-3d;
-    /* Habilita o efeito 3D nos filhos */
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 /* Borda com degradê que aparece no hover */

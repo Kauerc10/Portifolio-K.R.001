@@ -137,15 +137,16 @@ textarea {
 }
 
 /* ── Barra de Progresso de Scroll ── */
-/* A linha azul no topo da página que mostra onde você está */
+/* A linha azul no topo da página que mostra onde você está (acelerado por GPU) */
 .scroll-progress {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
     height: 2px;
-    width: 0%;
     background: var(--signal);
     z-index: 10001;
-    transition: none;
-    /* Sem transição pra seguir o scroll em tempo real */
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
 }

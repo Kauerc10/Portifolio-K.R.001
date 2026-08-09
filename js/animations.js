@@ -417,25 +417,48 @@ const Animations = (() => {
             '.evidence__folder, .sobre__card, .timeline__content, .formacao__card, .obmep-card'
         );
 
+        // IntersectionObserver para SÓ animar flutuação em cards visíveis na tela (economiza CPU imensa)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const floatAnim = entry.target._floatAnim;
+                if (!floatAnim) return;
+                if (entry.isIntersecting) {
+                    floatAnim.play();
+                } else {
+                    floatAnim.pause();
+                }
+            });
+        }, { threshold: 0.1 });
+
         floaters.forEach((el, i) => {
             gsap.set(el, { transformPerspective: 800 });
 
             const floatAnim = gsap.to(el, {
                 y: () => 6 + Math.random() * 6,   // Deslocamento vertical sutil
-                x: () => -4 + Math.random() * 8,   // Balanceio horizontal suave
-                z: () => -15 + Math.random() * 30, // Profundidade variável
+                x: () => -3 + Math.random() * 6,   // Balanceio horizontal suave
+                z: () => -10 + Math.random() * 20, // Profundidade variável
                 rotation: () => -1 + Math.random() * 2,   // Leve inclinação
-                rotationY: () => -2 + Math.random() * 4,   // Leve perspectiva lateral
+                rotationY: () => -1.5 + Math.random() * 3, // Leve perspectiva lateral
                 duration: () => 3.5 + Math.random() * 2.5,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut',
-                delay: i * 0.2, // Cada elemento começa em um tempo diferente
+                paused: true, // Começa pausado até entrar na tela
+                delay: i * 0.15,
             });
 
-            // Para no hover, retoma no mouseLeave
+            el._floatAnim = floatAnim;
+
+            // Para no hover, retoma no mouseLeave se visível
             el.addEventListener('mouseenter', () => floatAnim.pause());
-            el.addEventListener('mouseleave', () => floatAnim.play());
+            el.addEventListener('mouseleave', () => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    floatAnim.play();
+                }
+            });
+
+            observer.observe(el);
         });
     }
 

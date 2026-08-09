@@ -22,16 +22,29 @@
         gsap.ticker.lagSmoothing(0);
     }
 
-    // ── SCROLL PROGRESS BAR ──
+    // ── SCROLL PROGRESS BAR (otimizado com RAF e GPU scaleX) ──
     function initScrollProgress() {
         const bar = document.getElementById('scrollProgress');
+        if (!bar) return;
+
+        let ticking = false;
+        let cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+        }, { passive: true });
 
         window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            bar.style.width = pct + '%';
-        });
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollTop = window.scrollY || window.pageYOffset;
+                    const pct = cachedDocHeight > 0 ? (scrollTop / cachedDocHeight) : 0;
+                    bar.style.transform = `scaleX(${pct})`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
     }
 
     // ── NAVBAR BURGER ──

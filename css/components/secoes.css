@@ -43,6 +43,7 @@
 .sobre__card {
     background: rgba(13, 20, 36, 0.4);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(51, 65, 85, 0.4);
     padding: 1.5rem;
     font-family: var(--font-mono);
@@ -51,6 +52,9 @@
     position: relative;
     overflow: hidden;
     cursor: none;
+    will-change: transform;
+    transform: translateZ(0);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .sobre__card:hover {
@@ -224,13 +228,16 @@
 .timeline__content {
     background: rgba(13, 20, 36, 0.2);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(51, 65, 85, 0.3);
     padding: 1.5rem;
     border-radius: 4px;
-    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, box-shadow 0.4s ease;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
     position: relative;
     overflow: hidden;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 /* Borda degradê sutil que aparece no hover */
