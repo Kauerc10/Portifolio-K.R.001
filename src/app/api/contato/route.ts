@@ -66,8 +66,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Todos os campos são obrigatórios.' }, { status: 400 });
     }
 
-    // 6. Access Key com Fallback para Garantir 100% de Funcionamento Out-of-the-Box
-    const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY || 'b5f3a417-aca9-47ab-b4db-05670020c989';
+    // 6. Access Key EXCLUSIVAMENTE via variável de ambiente da Vercel (SEM CHAVE NO CÓDIGO)
+    const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY;
+
+    if (!web3formsAccessKey) {
+      console.error('[API /api/contato] WEB3FORMS_ACCESS_KEY não configurada nas variáveis de ambiente da Vercel.');
+      return NextResponse.json(
+        { error: 'Formulário aguardando configuração da chave de ambiente. Envie direto para: kaue.ruon@gmail.com' },
+        { status: 500 }
+      );
+    }
 
     const web3Payload = {
       access_key: web3formsAccessKey,
