@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X, ShieldCheck, Sparkles, CheckCircle2, Copy, FileText, Sparkle } from 'lucide-react';
+import { Bot, Send, X, ShieldCheck, Sparkles, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, Sparkle } from 'lucide-react';
 import { AevoChatMessage } from '@/types/aevo';
 
 export default function AevoWidget() {
@@ -9,7 +9,7 @@ export default function AevoWidget() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [providerUsed, setProviderUsed] = useState<string | null>(null);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<{ icon: React.ReactNode; text: string } | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const [messages, setMessages] = useState<AevoChatMessage[]>([
@@ -21,8 +21,8 @@ export default function AevoWidget() {
     },
   ]);
 
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
+  const showToast = (icon: React.ReactNode, text: string) => {
+    setToastMessage({ icon, text });
     setTimeout(() => setToastMessage(null), 3500);
   };
 
@@ -49,10 +49,10 @@ export default function AevoWidget() {
         }
       } else if (tool.name === 'open_resume') {
         window.open('/curriculo_kaue.pdf', '_blank');
-        showToast('📄 Currículo PDF baixado / aberto com sucesso!');
+        showToast(<FileText className="w-4 h-4 text-[var(--gold)]" />, 'Currículo PDF aberto com sucesso');
       } else if (tool.name === 'copy_contact_email') {
         navigator.clipboard?.writeText('kaue.ruon@gmail.com');
-        showToast('📋 E-mail kaue.ruon@gmail.com copiado para a área de transferência!');
+        showToast(<Copy className="w-4 h-4 text-[var(--gold)]" />, 'E-mail kaue.ruon@gmail.com copiado para a área de transferência');
       } else if (tool.name === 'fill_petition_form') {
         const form = document.getElementById('peticaoForm') as HTMLFormElement;
         if (form) {
@@ -63,20 +63,20 @@ export default function AevoWidget() {
             setTimeout(() => assuntoInput.classList.remove('ring-2', 'ring-[var(--gold)]'), 3000);
           }
         }
-        showToast('📜 Formulário de Petição preenchido automaticamente!');
+        showToast(<FileSignature className="w-4 h-4 text-[var(--gold)]" />, 'Formulário de Petição preenchido automaticamente');
       } else if (tool.name === 'filter_skills') {
         const chips = document.querySelectorAll('.skills .chip');
         chips.forEach(chip => {
           chip.classList.add('ring-1', 'ring-[var(--gold)]');
           setTimeout(() => chip.classList.remove('ring-1', 'ring-[var(--gold)]'), 3000);
         });
-        showToast('💡 Habilidades destacadas!');
+        showToast(<Sparkles className="w-4 h-4 text-[var(--gold)]" />, 'Habilidades destacadas no painel');
       } else if (tool.name === 'trigger_glitch_mode') {
         window.dispatchEvent(new CustomEvent('aevoGlitch'));
-        showToast('⚡ Pulso de Glitch WebGL ativado no background!');
+        showToast(<Zap className="w-4 h-4 text-[var(--gold)]" />, 'Pulso de Glitch WebGL ativado');
       } else if (tool.name === 'trigger_konami_protocol') {
         window.dispatchEvent(new CustomEvent('aevoKonami'));
-        showToast('🔓 Protocolo God Mode ativado!');
+        showToast(<Unlock className="w-4 h-4 text-[var(--gold)]" />, 'Protocolo Root / God Mode ativado');
       }
     }
   };
@@ -144,11 +144,11 @@ export default function AevoWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 font-mono">
-      {/* Toast Notification Notarial */}
+      {/* Toast Notification Notarial com ícones Lucide */}
       {toastMessage && (
-        <div className="fixed top-6 right-6 z-50 px-4 py-3 rounded-xl bg-[#0b1120] text-[var(--gold)] border border-[var(--gold)]/50 shadow-2xl backdrop-blur-xl text-xs font-mono animate-in fade-in slide-in-from-top-3 flex items-center gap-2">
-          <Sparkle className="w-4 h-4 text-[var(--gold)] animate-spin" />
-          <span>{toastMessage}</span>
+        <div className="fixed top-6 right-6 z-50 px-4 py-3 rounded-xl bg-[#0b1120] text-[var(--gold)] border border-[var(--gold)]/50 shadow-2xl backdrop-blur-xl text-xs font-mono animate-in fade-in slide-in-from-top-3 flex items-center gap-2.5">
+          {toastMessage.icon}
+          <span>{toastMessage.text}</span>
         </div>
       )}
 
@@ -232,31 +232,31 @@ export default function AevoWidget() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Prompt Pills rápidos */}
+          {/* Prompt Pills rápidos com Ícones Lucide elegantes */}
           <div className="px-3 py-2 bg-[#0f172a]/60 border-t border-white/10 flex gap-1.5 overflow-x-auto text-[11px]">
             <button
               onClick={() => handleSend('Me fale dos projetos de IA do Kauê')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all"
+              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1.5"
             >
-              🚀 Projetos
+              <FolderGit2 className="w-3.5 h-3.5 text-[var(--gold)]" /> Projetos
             </button>
             <button
               onClick={() => handleSend('Qual a atuação dele no Cartório Gaya?')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all"
+              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1.5"
             >
-              📜 Cartório
+              <Building2 className="w-3.5 h-3.5 text-[var(--gold)]" /> Cartório
             </button>
             <button
               onClick={() => handleSend('Quero o email de contato')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1"
+              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1.5"
             >
-              <Copy className="w-3 h-3" /> E-mail
+              <Mail className="w-3.5 h-3.5 text-[var(--gold)]" /> E-mail
             </button>
             <button
               onClick={() => handleSend('Preencher proposta de contato')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1"
+              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1.5"
             >
-              <FileText className="w-3 h-3" /> Petição
+              <FileSignature className="w-3.5 h-3.5 text-[var(--gold)]" /> Petição
             </button>
           </div>
 
