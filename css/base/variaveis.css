@@ -31,7 +31,7 @@ html[data-theme='light'] {
     --signal: #1d4ed8;
     --stamp: #b48312;
     --text: #0f172a;
-    --ghost: #cbd5e1;
+    --ghost: #475569;
 }
 
 html.light body {
@@ -39,11 +39,41 @@ html.light body {
     color: var(--text);
 }
 
+/* Hero Light Mode Overrides */
+html.light .hero__name--white {
+    color: #0f172a !important;
+}
+
+html.light .hero__name--outline {
+    -webkit-text-stroke: 2px #0f172a !important;
+}
+
+html.light .hero__typewriter,
+html.light .mono-ghost,
+html.light .hero__case,
+html.light .hero__footnote {
+    color: #334155 !important;
+}
+
+html.light .btn--outline {
+    border-color: rgba(15, 23, 42, 0.3) !important;
+    color: #0f172a !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.light .btn--outline:hover {
+    border-color: #b48312 !important;
+    color: #b48312 !important;
+    background: rgba(180, 131, 18, 0.08) !important;
+}
+
+/* Sections Titles & Typography Light Mode */
 html.light .section__title,
 html.light .hero__title,
 html.light .evidence__title,
 html.light .obmep-card__title,
-html.light .timeline__title {
+html.light .timeline__title,
+html.light .formacao__name {
     color: #0f172a !important;
 }
 
@@ -51,39 +81,50 @@ html.light .section__article {
     color: #b48312 !important;
 }
 
-html.light .nav {
-    background: rgba(248, 250, 252, 0.9) !important;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
-}
-
-html.light .nav__link {
-    color: #334155 !important;
-}
-
-html.light .nav__link:hover,
-html.light .nav__link.active {
-    color: #0f172a !important;
-}
-
-html.light .nav__indicator {
-    color: #b48312 !important;
-}
-
 html.light .hero__subtitle,
 html.light .sobre__paragraph,
 html.light .evidence__desc,
 html.light .timeline__company,
-html.light .peticao__label {
+html.light .peticao__label,
+html.light .skills__intro,
+html.light .skill-bar__name,
+html.light .skill-bar__pct,
+html.light .skills__soft-title,
+html.light .timeline__bullets li,
+html.light .formacao__info,
+html.light .contato__link,
+html.light .footer p,
+html.light .footer__link {
     color: #334155 !important;
+}
+
+/* Skills Chips & Cards Light Mode */
+html.light .chip {
+    background: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .chip:hover {
+    background: #1d4ed8 !important;
+    border-color: #1d4ed8 !important;
+    color: #ffffff !important;
 }
 
 html.light .evidence__folder,
 html.light .sobre__card,
 html.light .obmep-card,
-html.light .timeline__content {
+html.light .timeline__content,
+html.light .formacao__card {
     background: #ffffff !important;
     border-color: rgba(15, 23, 42, 0.15) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .obmep-card__desc,
+html.light .obmep-card__year {
+    color: #475569 !important;
 }
 
 html.light .peticao__input,
@@ -110,4 +151,22 @@ html.light .sobre__card-row {
 
 html.light .sobre__card-label {
     color: #64748b !important;
+}
+
+html.light .nav {
+    background: rgba(248, 250, 252, 0.9) !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .nav__link {
+    color: #334155 !important;
+}
+
+html.light .nav__link:hover,
+html.light .nav__link.active {
+    color: #0f172a !important;
+}
+
+html.light .nav__indicator {
+    color: #b48312 !important;
 }
