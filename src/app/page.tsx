@@ -1,51 +1,6 @@
-'use client';
-
-import { useEffect } from 'react';
 import GithubLiveStats from '@/components/widgets/GithubLiveStats';
-import ProjectStatusBadge from '@/components/widgets/ProjectStatusBadge';
 
 export default function Home() {
-  useEffect(() => {
-    // Typewriter effect para o hero
-    const twText = document.getElementById('twText');
-    if (twText) {
-      const phrases = [
-        '> Construo software com IA generativa.',
-        '> IA generativa + tolerância zero a erros.',
-        '> Decompor, instruir e conectar.',
-      ];
-      let phraseIdx = 0;
-      let charIdx = 0;
-      let isDeleting = false;
-
-      const typeLoop = () => {
-        const current = phrases[phraseIdx];
-        if (isDeleting) {
-          twText.textContent = current.substring(0, charIdx - 1);
-          charIdx--;
-        } else {
-          twText.textContent = current.substring(0, charIdx + 1);
-          charIdx++;
-        }
-
-        let speed = isDeleting ? 30 : 60;
-
-        if (!isDeleting && charIdx === current.length) {
-          speed = 2500;
-          isDeleting = true;
-        } else if (isDeleting && charIdx === 0) {
-          isDeleting = false;
-          phraseIdx = (phraseIdx + 1) % phrases.length;
-          speed = 400;
-        }
-
-        setTimeout(typeLoop, speed);
-      };
-
-      setTimeout(typeLoop, 1000);
-    }
-  }, []);
-
   return (
     <>
       {/* ═══════════════════════════════════════════ */}
@@ -195,8 +150,8 @@ export default function Home() {
               <div className="timeline__highlight">
                 <div className="timeline__highlight-icon">
                   <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
-                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
+                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
                   </svg>
                 </div>
                 <div>
@@ -321,14 +276,22 @@ export default function Home() {
                       <stop offset="50%" stopColor="#ffffff" />
                       <stop offset="100%" stopColor="#64748b" />
                     </linearGradient>
+                    <filter id="shadow-prata" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="rgba(0,0,0,0.6)" />
+                    </filter>
                   </defs>
-                  <path d="M34 2 L50 34 L42 34 L28 6 Z" fill="#64748b" />
-                  <path d="M66 2 L72 6 L58 34 L50 34 Z" fill="#cbd5e1" />
-                  <rect x="42" y="2" width="16" height="32" fill="url(#metal-grad-prata)" />
-                  <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" />
+                  <path d="M34 2 L50 34 L42 34 L28 6 Z" fill="#64748b" filter="url(#shadow-prata)" />
+                  <path d="M66 2 L72 6 L58 34 L50 34 Z" fill="#cbd5e1" filter="url(#shadow-prata)" />
+                  <rect x="42" y="2" width="16" height="32" fill="url(#metal-grad-prata)" filter="url(#shadow-prata)" />
+                  <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" filter="url(#shadow-prata)" />
                   <circle cx="50" cy="78" r="40" fill="#0b1120" stroke="url(#metal-grad-prata)" strokeWidth="2" />
+                  <circle cx="50" cy="78" r="32" fill="none" stroke="rgba(203,213,225,0.2)" strokeWidth="0.5" strokeDasharray="2 4" />
+                  <circle cx="50" cy="78" r="36" fill="none" stroke="rgba(203,213,225,0.4)" strokeWidth="1.2" />
+                  <circle cx="50" cy="78" r="38" fill="none" stroke="url(#medal-shine-prata)" strokeWidth="3" strokeLinecap="round" strokeDasharray="20 60 20 180">
+                    <animateTransform attributeName="transform" type="rotate" values="0 50 78;360 50 78" dur="4s" repeatCount="indefinite" />
+                  </circle>
                   <text x="50" y="68" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5" fill="#94a3b8" letterSpacing="3">OBMEP</text>
-                  <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff">18ª</text>
+                  <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.8))">18ª</text>
                   <text x="50" y="99" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5.5" fill="url(#metal-grad-prata)" letterSpacing="2" fontWeight="bold">PRATA</text>
                 </svg>
                 <div className="obmep-card__info">
@@ -346,19 +309,33 @@ export default function Home() {
               <div className="obmep-card__content">
                 <svg className="obmep-medal-svg medal-bronze" viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '140px', height: '182px', overflow: 'visible', flexShrink: 0 }} aria-label="Medalha de Bronze OBMEP" role="img">
                   <defs>
+                    <linearGradient id="medal-shine-bronze" x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#d4a017" stopOpacity="0" />
+                      <stop offset="40%" stopColor="#d4a017" stopOpacity="0.9" />
+                      <stop offset="60%" stopColor="#fff8e1" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#d4a017" stopOpacity="0" />
+                    </linearGradient>
                     <linearGradient id="metal-grad-bronze" x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
                       <stop offset="0%" stopColor="#b8871a" />
                       <stop offset="50%" stopColor="#fcd34d" />
                       <stop offset="100%" stopColor="#92400e" />
                     </linearGradient>
+                    <filter id="shadow-bronze" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="rgba(0,0,0,0.6)" />
+                    </filter>
                   </defs>
-                  <path d="M34 2 L50 34 L42 34 L28 6 Z" fill="#b8871a" />
-                  <path d="M66 2 L72 6 L58 34 L50 34 Z" fill="#d4a017" />
-                  <rect x="42" y="2" width="16" height="32" fill="url(#metal-grad-bronze)" />
-                  <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" />
+                  <path d="M34 2 L50 34 L42 34 L28 6 Z" fill="#b8871a" filter="url(#shadow-bronze)" />
+                  <path d="M66 2 L72 6 L58 34 L50 34 Z" fill="#d4a017" filter="url(#shadow-bronze)" />
+                  <rect x="42" y="2" width="16" height="32" fill="url(#metal-grad-bronze)" filter="url(#shadow-bronze)" />
+                  <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" filter="url(#shadow-bronze)" />
                   <circle cx="50" cy="78" r="40" fill="#0b1120" stroke="url(#metal-grad-bronze)" strokeWidth="2" />
+                  <circle cx="50" cy="78" r="32" fill="none" stroke="rgba(212,160,23,0.2)" strokeWidth="0.5" strokeDasharray="2 4" />
+                  <circle cx="50" cy="78" r="36" fill="none" stroke="rgba(212,160,23,0.4)" strokeWidth="1.2" />
+                  <circle cx="50" cy="78" r="38" fill="none" stroke="url(#medal-shine-bronze)" strokeWidth="3" strokeLinecap="round" strokeDasharray="20 60 20 180">
+                    <animateTransform attributeName="transform" type="rotate" values="0 50 78;360 50 78" dur="4s" repeatCount="indefinite" />
+                  </circle>
                   <text x="50" y="68" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5" fill="#fcd34d" letterSpacing="3">OBMEP</text>
-                  <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff">18ª</text>
+                  <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.8))">18ª</text>
                   <text x="50" y="99" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5.5" fill="url(#metal-grad-bronze)" letterSpacing="2" fontWeight="bold">BRONZE</text>
                 </svg>
                 <div className="obmep-card__info">
@@ -381,11 +358,14 @@ export default function Home() {
                       <stop offset="50%" stopColor="#6ee7b7" />
                       <stop offset="100%" stopColor="#064e3b" />
                     </linearGradient>
+                    <filter id="shadow-honra-1" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="rgba(0,0,0,0.6)" />
+                    </filter>
                   </defs>
-                  <path d="M34 2 L50 34 L42 34 L28 6 Z" fill="#047857" />
-                  <path d="M66 2 L72 6 L58 34 L50 34 Z" fill="#10b981" />
-                  <rect x="42" y="2" width="16" height="32" fill="url(#metal-grad-honra-1)" />
-                  <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" />
+                  <path d="M34 2 L50 34 L42 34 L28 6 Z" fill="#047857" filter="url(#shadow-honra-1)" />
+                  <path d="M66 2 L72 6 L58 34 L50 34 Z" fill="#10b981" filter="url(#shadow-honra-1)" />
+                  <rect x="42" y="2" width="16" height="32" fill="url(#metal-grad-honra-1)" filter="url(#shadow-honra-1)" />
+                  <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" filter="url(#shadow-honra-1)" />
                   <circle cx="50" cy="78" r="40" fill="#0b1120" stroke="url(#metal-grad-honra-1)" strokeWidth="2" />
                   <text x="50" y="68" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5" fill="#6ee7b7" letterSpacing="3">OBMEP</text>
                   <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff">17ª</text>
@@ -411,11 +391,14 @@ export default function Home() {
                       <stop offset="50%" stopColor="#6ee7b7" />
                       <stop offset="100%" stopColor="#064e3b" />
                     </linearGradient>
+                    <filter id="shadow-honra-2" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="rgba(0,0,0,0.6)" />
+                    </filter>
                   </defs>
-                  <path d="M34 2 L50 34 L42 34 L28 6 Z" fill="#047857" />
-                  <path d="M66 2 L72 6 L58 34 L50 34 Z" fill="#10b981" />
-                  <rect x="42" y="2" width="16" height="32" fill="url(#metal-grad-honra-2)" />
-                  <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" />
+                  <path d="M34 2 L50 34 L42 34 L28 6 Z" fill="#047857" filter="url(#shadow-honra-2)" />
+                  <path d="M66 2 L72 6 L58 34 L50 34 Z" fill="#10b981" filter="url(#shadow-honra-2)" />
+                  <rect x="42" y="2" width="16" height="32" fill="url(#metal-grad-honra-2)" filter="url(#shadow-honra-2)" />
+                  <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" filter="url(#shadow-honra-2)" />
                   <circle cx="50" cy="78" r="40" fill="#0b1120" stroke="url(#metal-grad-honra-2)" strokeWidth="2" />
                   <text x="50" y="68" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5" fill="#6ee7b7" letterSpacing="3">OBMEP</text>
                   <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff">16ª</text>
@@ -433,88 +416,149 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════ */}
-      {/* PROJETOS — Art. VI · DAS EVIDÊNCIAS         */}
+      {/* FORMAÇÃO — Anexo I                          */}
+      {/* ═══════════════════════════════════════════ */}
+      <section className="section formacao" id="formacao" data-section="6">
+        <div className="section__line"></div>
+        <span className="section__article">Anexo I</span>
+        <h2 className="section__title">DA FORMAÇÃO E CERTIFICAÇÕES</h2>
+
+        <div className="formacao__grid">
+          <div className="formacao__card anim-slide magnetic" data-cursor="ABRIR">
+            <div className="formacao__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
+              </svg>
+            </div>
+            <h3 className="formacao__name">Ensino Médio Completo</h3>
+            <p className="formacao__info">EEB Cel. Pedro Christiano Feddersen</p>
+            <div className="formacao__stamp">CONCLUÍDO</div>
+          </div>
+          <div className="formacao__card anim-slide magnetic" data-cursor="ABRIR">
+            <div className="formacao__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <h3 className="formacao__name">Téc. Gestão Administrativa</h3>
+            <p className="formacao__info">156h · VisualMídia · 2020</p>
+            <div className="formacao__stamp">CONCLUÍDO</div>
+          </div>
+          <div className="formacao__card anim-slide magnetic" data-cursor="ABRIR">
+            <div className="formacao__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
+            </div>
+            <h3 className="formacao__name">Operador de Tecnologia</h3>
+            <p className="formacao__info">92h · VisualMídia · 2017</p>
+            <div className="formacao__stamp">CONCLUÍDO</div>
+          </div>
+          <div className="formacao__card anim-slide magnetic" data-cursor="ABRIR">
+            <div className="formacao__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+              </svg>
+            </div>
+            <h3 className="formacao__name">Programador de Games</h3>
+            <p className="formacao__info">40h · VisualMídia · 2017</p>
+            <div className="formacao__stamp">CONCLUÍDO</div>
+          </div>
+          <div className="formacao__card anim-slide magnetic" data-cursor="ABRIR">
+            <div className="formacao__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              </svg>
+            </div>
+            <h3 className="formacao__name">3Ds Max</h3>
+            <p className="formacao__info">32h · VisualMídia · 2018</p>
+            <div className="formacao__stamp">CONCLUÍDO</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════ */}
+      {/* PROJETOS — Anexo II                         */}
       {/* ═══════════════════════════════════════════ */}
       <section className="section evidencias" id="projetos" data-section="7">
         <div className="section__line"></div>
-        <span className="section__article">Art. VI</span>
-        <h2 className="section__title">DAS EVIDÊNCIAS (PROJETOS)</h2>
+        <span className="section__article">Anexo II</span>
+        <h2 className="section__title" data-cipher>DOS PROJETOS</h2>
 
         {/* Live GitHub Stats Widget */}
         <div className="my-8">
           <GithubLiveStats />
         </div>
 
-        <div className="evidencias__grid">
-          {/* DocFácil */}
-          <div className="evidence-card magnetic" data-cursor="VER" id="project-docfacil">
+        <div className="evidence__grid">
+          {/* DOCFÁCIL */}
+          <div className="evidence__folder anim-slide magnetic" data-cursor="DOCFÁCIL" id="project-docfacil">
+            <div className="evidence__seal evidence__seal--live">DEMO AO VIVO</div>
             <div className="evidence__icon">
-              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="9" y1="21" x2="9" y2="9" />
+              </svg>
+            </div>
+            <h3 className="evidence__title">DocFácil</h3>
+            <p className="evidence__desc">Plataforma Next.js que gera documentos legais conversando com o usuário. Camada de IA
+              agnóstica de provedor (<code>AIProvider</code>), API route server-side, streaming e providers OpenAI/Anthropic/Gemini plugáveis.</p>
+            <span className="evidence__tag">Next.js · TypeScript · IA Generativa</span>
+            <div className="evidence__footer">
+              <a href="https://docfacil-indol.vercel.app" target="_blank" rel="noopener" className="evidence__link-btn">⚡ DEMO ↗</a>
+              <a href="https://github.com/Kauerc10/docfacil" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ↗</a>
+            </div>
+          </div>
+
+          {/* CKF MANUTENÇÃO */}
+          <div className="evidence__folder anim-slide magnetic" data-cursor="CKF" id="project-ckf">
+            <div className="evidence__seal evidence__seal--live">EM PRODUÇÃO</div>
+            <div className="evidence__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
               </svg>
             </div>
-            <div className="flex items-center justify-between">
-              <h3 className="evidence__title">DocFácil</h3>
-              <ProjectStatusBadge label="Online em Produção" />
-            </div>
-            <p className="evidence__desc">Plataforma que gera documentos legais (contratos, declarações, procurações) através de um chat guiado com o usuário. A peça central é uma camada de IA agnóstica de provedor.</p>
-            <span className="evidence__tag">Next.js 16 · TypeScript · Prisma · IA Generativa</span>
+            <h3 className="evidence__title">CKF Manutenção — Gestão de Orçamentos</h3>
+            <p className="evidence__desc">Sistema interno em produção para empresa de manutenção de máquinas pesadas, com criação, gestão, filtros, exportação de relatórios (CSV/XLSX) e suíte de testes unitários com Vitest.</p>
+            <span className="evidence__tag">React · TypeScript · Supabase · Vitest</span>
             <div className="evidence__footer">
-              <a href="https://docfacil-indol.vercel.app" target="_blank" rel="noopener" className="evidence__link-btn">🚀 DEMO AO VIVO ↗</a>
-              <a href="https://github.com/khub-solucoes/docfacil" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ON GITHUB ↗</a>
+              <a href="https://ckf-manutencao-orcamentos.vercel.app" target="_blank" rel="noopener" className="evidence__link-btn">⚡ DEMO ↗</a>
+              <a href="https://github.com/Kauerc10/ckf-manutencao-orcamentos" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ↗</a>
             </div>
           </div>
 
-          {/* CKF Manutenção */}
-          <div className="evidence-card magnetic" data-cursor="VER" id="project-ckf">
+          {/* ATLAS NOTORIAL */}
+          <div className="evidence__folder anim-slide magnetic" data-cursor="PRIVADO" id="project-atlas">
+            <div className="evidence__seal evidence__seal--internal">🔒 PROJETO PRIVADO</div>
             <div className="evidence__icon">
-              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-              </svg>
-            </div>
-            <div className="flex items-center justify-between">
-              <h3 className="evidence__title">CKF Manutenção</h3>
-              <ProjectStatusBadge label="Produção Interna" />
-            </div>
-            <p className="evidence__desc">Sistema interno em produção para empresa de manutenção mecânica. Criação, gestão, filtros e exportação de orçamentos (CSV/XLSX) com testes unitários.</p>
-            <span className="evidence__tag">React · TypeScript · Supabase · TailwindCSS</span>
-            <div className="evidence__footer">
-              <a href="https://ckf-manutencao-orcamentos.vercel.app" target="_blank" rel="noopener" className="evidence__link-btn">🚀 DEMO AO VIVO ↗</a>
-              <a href="https://github.com/Kauerc10/ckf-manutencao-orcamentos" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ON GITHUB ↗</a>
-            </div>
-          </div>
-
-          {/* Atlas Notarial */}
-          <div className="evidence-card magnetic" data-cursor="VER" id="project-atlas">
-            <div className="evidence__icon">
-              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                 <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
               </svg>
             </div>
-            <div className="flex items-center justify-between">
-              <h3 className="evidence__title">Atlas Notarial</h3>
-              <ProjectStatusBadge status="private" />
-            </div>
-            <p className="evidence__desc">Automação que consome a API do Detran-RS para gerar procurações de veículos automaticamente. Em produção no Cartório Gaya.</p>
-            <span className="evidence__tag">Node.js · APIs REST · Detran-RS</span>
-            <div className="evidence__footer">
-              <span className="evidence__tag" style={{ color: 'var(--gold)' }}>🔒 Código Privado (Cartório Gaya)</span>
-            </div>
+            <h3 className="evidence__title">Atlas Notarial — Automação Notarial</h3>
+            <p className="evidence__desc">Plataforma em produção no Cartório Gaya. Automação via API do Detran-RS que reduziu a emissão de procurações de veículo de 5min para 20s com 100% de precisão.</p>
+            <span className="evidence__tag">Next.js · TypeScript · APIs REST · Vitest</span>
+            <div className="evidence__footer"><span className="evidence__action" style={{ color: '#ef4444' }}>🔒 PROJETO PRIVADO (DADOS NOTARIAIS SENSÍVEIS)</span></div>
           </div>
 
-          {/* Foli */}
-          <div className="evidence-card magnetic" data-cursor="VER" id="project-foli">
+          {/* FOLI */}
+          <div className="evidence__folder anim-slide magnetic" data-cursor="FOLI" id="project-foli">
+            <div className="evidence__seal evidence__seal--live">OPEN SOURCE</div>
             <div className="evidence__icon">
-              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
               </svg>
             </div>
-            <div className="flex items-center justify-between">
-              <h3 className="evidence__title">Foli — PDF Engine TS</h3>
-              <ProjectStatusBadge label="Open Source Package" />
-            </div>
-            <p className="evidence__desc">Biblioteca TypeScript para geração de PDF em Node.js e navegador. Fluent Builder API, motor de layout com garantia de zero overflow e suporte Unicode pt-BR.</p>
+            <h3 className="evidence__title">Foli</h3>
+            <p className="evidence__desc">Biblioteca TypeScript para geração de PDF em Node.js e navegador. Fluent Builder API, motor de layout com garantia de zero overflow, primitivas nativas e suporte Unicode pt-BR.</p>
             <span className="evidence__tag">TypeScript · PDF · Layout Engine</span>
             <div className="evidence__footer">
               <a href="https://github.com/Kauerc10/foli" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ON GITHUB ↗</a>
@@ -553,22 +597,69 @@ export default function Home() {
           </div>
           <button type="submit" className="btn btn--protocolar magnetic" data-cursor="PROTOCOLAR" id="btnProtocolar">
             <span className="btn__text">PROTOCOLAR SOLICITAÇÃO</span>
+            <span className="btn__sent">✓ PETIÇÃO PROTOCOLADA</span>
           </button>
+          <p className="peticao__feedback" id="peticaoFeedback"></p>
         </form>
 
         <div className="contato__info">
           <a href="mailto:kaue.ruon@gmail.com" className="contato__link magnetic" data-cursor="EMAIL">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
             kaue.ruon@gmail.com
           </a>
           <a href="https://www.linkedin.com/in/kauerc/" target="_blank" rel="noopener" className="contato__link magnetic" data-cursor="ABRIR">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
             linkedin.com/in/kauerc
           </a>
           <a href="https://github.com/Kauerc10" target="_blank" rel="noopener" className="contato__link magnetic" data-cursor="ABRIR">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+            </svg>
             github.com/Kauerc10
           </a>
-          <span className="contato__link">Blumenau / SC — Disponível remoto</span>
+          <span className="contato__link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            Blumenau / SC — Disponível remoto
+          </span>
         </div>
       </section>
+
+      {/* KONAMI MODAL */}
+      <div className="modal" id="konamiModal">
+        <div className="modal__crt-overlay"></div>
+        <div className="modal__box">
+          <div className="modal__icon glitch">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
+          </div>
+          <h2 className="modal__title glitch" data-text="ACESSO ROOT CONCEDIDO">ACESSO ROOT CONCEDIDO</h2>
+          <p className="modal__desc">God Mode Ativado. Você desativou os limitadores de segurança.</p>
+
+          <div className="konami-stats">
+            <div className="konami-stat">
+              <span className="konami-stat-label">STATUS</span>
+              <span className="konami-stat-val" style={{ color: 'var(--signal)' }}>OVERRIDE</span>
+            </div>
+            <div className="konami-stat">
+              <span className="konami-stat-label">RESTRICTIONS</span>
+              <span className="konami-stat-val" style={{ color: '#ef4444' }}>BYPASSED</span>
+            </div>
+          </div>
+
+          <button className="btn btn--outline modal__close magnetic" data-cursor="EXIT" id="konamiClose">ENCERRAR CONEXÃO</button>
+        </div>
+      </div>
 
       {/* FOOTER */}
       <footer className="footer">
