@@ -88,9 +88,11 @@
 /* Preenchimento animado pelo JS */
 .loader__bar-fill {
     height: 100%;
-    width: 0%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
     background: var(--signal);
-    transition: width 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Percentual ao lado da barra */
