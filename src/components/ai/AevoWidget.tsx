@@ -143,7 +143,7 @@ export default function AevoWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-mono">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 font-mono">
       {/* Toast Notification Notarial com ícones Lucide */}
       {toastMessage && (
         <div className="fixed top-6 right-6 z-50 px-4 py-3 rounded-xl bg-[#0b1120] text-[var(--gold)] border border-[var(--gold)]/50 shadow-2xl backdrop-blur-xl text-xs font-mono animate-in fade-in slide-in-from-top-3 flex items-center gap-2.5">
@@ -171,7 +171,7 @@ export default function AevoWidget() {
 
       {/* Janela do Terminal Cyberdeck ÆVO */}
       {isOpen && (
-        <div className="w-[360px] sm:w-[420px] h-[550px] rounded-2xl bg-[#0b1120]/95 backdrop-blur-2xl border border-[var(--gold)]/40 shadow-[0_0_35px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
+        <div className="w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100vh-6rem))] max-h-[calc(100vh-2rem)] rounded-2xl bg-[#0b1120]/95 backdrop-blur-2xl border border-[var(--gold)]/40 shadow-[0_0_35px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
           {/* Header Notarial */}
           <div className="px-4 py-3 bg-[#0f172a]/90 border-b border-[var(--gold)]/30 flex items-center justify-between">
             <div className="flex items-center gap-2.5">

@@ -57,10 +57,21 @@ const EasterEggs = (() => {
             }
         });
 
-        // Botão de fechar o modal
-        document.getElementById('konamiClose').addEventListener('click', () => {
-            document.getElementById('konamiModal').classList.remove('active');
+        // Escuta eventos globais disparados pelo Agente ÆVO
+        window.addEventListener('aevoKonami', showKonamiModal);
+        window.addEventListener('aevoGlitch', () => {
+            const nameEl = document.getElementById('heroName');
+            if (nameEl) triggerNameGlitch(nameEl);
         });
+
+        // Botão de fechar o modal
+        const closeBtn = document.getElementById('konamiClose');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                const modal = document.getElementById('konamiModal');
+                if (modal) modal.classList.remove('active');
+            });
+        }
     }
 
     /**

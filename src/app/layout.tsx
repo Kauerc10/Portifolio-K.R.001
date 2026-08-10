@@ -151,6 +151,11 @@ export default function RootLayout({
             <div className="loader__curtain loader__curtain--right" />
           </div>
 
+          {/* BREACH ALERT BAR */}
+          <div id="breachAlert" className="breach-alert">
+            <span className="breach-alert__text">⚠ BREACH PROTOCOL ACTIVATED — ACCESS LOGGED</span>
+          </div>
+
           {/* CURSOR TRAIL CANVAS */}
           <canvas id="cursorTrail" className="cursor-trail" />
 

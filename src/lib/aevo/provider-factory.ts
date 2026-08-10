@@ -97,7 +97,7 @@ Diretrizes de resposta:
     } else if (msg.includes('sobre') || msg.includes('história') || msg.includes('cartorio') || msg.includes('gaya')) {
       tools.push({ name: 'scroll_to_section', args: { sectionId: 'sobre' } });
     } else if (msg.includes('obmep') || msg.includes('matematica') || msg.includes('medalha')) {
-      tools.push({ name: 'scroll_to_section', args: { sectionId: 'obmep' } });
+      tools.push({ name: 'scroll_to_section', args: { sectionId: 'conquistas' } });
     } else if (msg.includes('contato') || msg.includes('email') || msg.includes('falar')) {
       tools.push({ name: 'scroll_to_section', args: { sectionId: 'contato' } });
     } else if (msg.includes('glitch') || msg.includes('efeito') || msg.includes('3d')) {
