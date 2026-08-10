@@ -1,7 +1,29 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Syne, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import AevoWidget from '@/components/ai/AevoWidget';
+
+const syne = Syne({
+  subsets: ['latin'],
+  weight: ['700', '800'],
+  variable: '--font-syne',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-jetbrains',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Kauê Ruon Cardoso — AI Engineer',
@@ -14,6 +36,12 @@ export const metadata: Metadata = {
     shortcut: '/assets/favicon.svg',
     apple: '/assets/apple-touch-icon.png',
   },
+  openGraph: {
+    title: 'Kauê Ruon Cardoso — AI Engineer',
+    description: 'Portfólio de Kauê Ruon Cardoso. Construo software guiando IA generativa.',
+    type: 'website',
+    url: 'https://portifolio-k-r-001.vercel.app',
+  },
 };
 
 export default function RootLayout({
@@ -22,15 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="pt-BR" className={`${syne.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="has-noise">
         {/* NOISE OVERLAY */}
         <div className="noise-overlay" />
@@ -97,7 +117,7 @@ export default function RootLayout({
         {/* AGENTE ÆVO AGENT (Vercel AI SDK + RAG + Tool Use) */}
         <AevoWidget />
 
-        {/* EXTERNAL SCRIPTS INEXPLICABLE FIDELITY */}
+        {/* EXTERNAL SCRIPTS WITH NEXT.JS <Script> BEST PRACTICES */}
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" strategy="beforeInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" strategy="beforeInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" strategy="beforeInteractive" />
