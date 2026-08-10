@@ -202,6 +202,13 @@ export default function HeroCanvas3D() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('aevoGlitch', handleAevoGlitch);
+
+      geometry.dispose();
+      shaderMaterial.dispose();
+      particleGeo.dispose();
+      particleMat.dispose();
+      debrisGeo.dispose();
+      debrisMat.dispose();
       renderer.dispose();
     };
   }, []);
