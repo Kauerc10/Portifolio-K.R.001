@@ -1,0 +1,43 @@
+# Kauê Ruon Cardoso — Software Architect & AI Engineer
+
+> Kauê Ruon Cardoso é Software Architect, AI Engineer e Cartorário radicado em Blumenau/SC, Brasil. Especialista em construir sistemas SaaS modernos combinando Next.js 16, TypeScript, IA Generativa (RAG e Function Calling) e automação de processos de alta precisão.
+
+## Bio & Filosofia de Engenharia
+- **Lema**: "Construo software guiando IA generativa — de protótipos com LLMs a aplicações críticas em produção."
+- **Abordagem**: Em vez de codificar linha por linha manualmente, Kauê decompõe problemas complexos, projeta arquiteturas resilientes, define prompts/instruções técnicas rígidas e guia provedores de IA generativa (OpenAI, Anthropic, Gemini) até a entrega de sistemas completos em produção com tolerância zero a erros.
+- **Background**: Cartorário no Departamento de Procurações e Inventários do Cartório Gaya em Blumenau/SC, ambiente de extrema exigência jurídica que moldou sua mentalidade de precisão.
+
+## Competências Principais
+- **Engenharia de IA**: Generative AI, RAG (Retrieval-Augmented Generation), Function Calling, Prompt Engineering, Provedores Agnósticos (`AIProvider`).
+- **Full-Stack SaaS**: Next.js 16 (App Router), React, TypeScript, Node.js, Prisma ORM, PostgreSQL, Supabase, Tailwind CSS, WebGL/Three.js.
+- **Quality & DevOps**: Vitest Unit Testing, Vercel Deploy, CI/CD, Git Workflows, Arquitetura Clean/Hexagonal.
+- **Raciocínio Lógico**: Premiado na OBMEP (Olimpíada Brasileira de Matemática das Escolas Públicas) com Prata Regional, Bronze Nacional e Menções Honrosas.
+
+## Projetos em Destaque em Produção
+
+### 1. DocFácil — IA Generativa Aplicada a Documentos Legais
+- **Descrição**: Plataforma SaaS que gera documentos jurídicos e cartorários conversando interativamente com o usuário via IA Generativa.
+- **Stack**: Next.js 16, TypeScript, Prisma, Tailwind CSS, OpenAI / Gemini APIs.
+- **Destaque**: Arquitetura agnóstica de provedores (`AIProvider`) com suporte a streaming e tipagem estrita de respostas.
+- **URLs**: [Live Demo](https://docfacil-indol.vercel.app) | [Repositório GitHub](https://github.com/khub-solucoes/docfacil)
+
+### 2. Atlas Notarial — Automação de Procurações
+- **Descrição**: Automação notarial em produção no Cartório Gaya que consome a API do Detran-RS para geração automática de procurações de veículos.
+- **Impacto**: Reduziu o tempo de emissão de procurações de 5 minutos de digitação manual para apenas 20 segundos com 100% de precisão.
+- **Stack**: Node.js, REST APIs, TypeScript, Vitest.
+
+### 3. CKF Manutenção — Gestão de Orçamentos
+- **Descrição**: Sistema corporativo em produção para gestão de orçamentos e manutenção de máquinas pesadas.
+- **Stack**: React, TypeScript, Supabase, Vitest, XLSX Export.
+- **URLs**: [Live Demo](https://ckf-manutencao-orcamentos.vercel.app) | [Repositório GitHub](https://github.com/Kauerc10/ckf-manutencao-orcamentos)
+
+### 4. Foli Lib — Engine de PDF em TypeScript
+- **Descrição**: Engine open-source de layout para geração de PDFs em TypeScript com garantia de zero overflow e suporte Unicode pt-BR.
+- **Stack**: TypeScript, Layout Engine API.
+- **URLs**: [Repositório GitHub](https://github.com/Kauerc10/foli)
+
+## Contatos Oficiais & Links
+- **Website Oficial**: https://kaueruon.dev
+- **Email**: kaue.ruon@gmail.com
+- **GitHub**: https://github.com/Kauerc10
+- **LinkedIn**: https://www.linkedin.com/in/kauerc/

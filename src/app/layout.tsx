@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Syne, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import AevoWidget from '@/components/ai/AevoWidget';
+import JsonLd from '@/components/seo/json-ld';
 
 const syne = Syne({
   subsets: ['latin'],
@@ -26,21 +27,70 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Kauê Ruon Cardoso — AI Engineer',
+  metadataBase: new URL('https://kaueruon.dev'),
+  title: 'Kauê Ruon Cardoso — Software Architect & SaaS Developer',
   description:
-    'Portfólio de Kauê Ruon Cardoso. Construo software guiando IA generativa — de protótipos com LLM a back-end e front-end.',
-  keywords: ['AI Engineer', 'TypeScript', 'Next.js', 'LLM', 'Cartório', 'Blumenau'],
-  authors: [{ name: 'Kauê Ruon Cardoso' }],
+    'Software Architect e AI Engineer em Blumenau/SC. Desenvolvo aplicações SaaS de alta performance com Next.js 16, TypeScript, IA Generativa (RAG) e automação de processos notariais.',
+  keywords: [
+    'Next.js',
+    'TypeScript',
+    'SaaS',
+    'Atlas Notarial',
+    'DocFacil',
+    'Foli Lib',
+    'Software Architect',
+    'Full Stack Developer',
+    'AI Engineer',
+    'Generative AI',
+    'Cartório Gaya',
+    'Blumenau',
+  ],
+  authors: [{ name: 'Kauê Ruon Cardoso', url: 'https://kaueruon.dev' }],
+  creator: 'Kauê Ruon Cardoso',
+  publisher: 'K-HUB Soluções',
+  alternates: {
+    canonical: 'https://kaueruon.dev',
+  },
   icons: {
     icon: '/assets/favicon.ico',
     shortcut: '/assets/favicon.svg',
     apple: '/assets/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'Kauê Ruon Cardoso — AI Engineer',
-    description: 'Portfólio de Kauê Ruon Cardoso. Construo software guiando IA generativa.',
+    title: 'Kauê Ruon Cardoso — Software Architect & SaaS Developer',
+    description:
+      'Software Architect e AI Engineer em Blumenau/SC. Desenvolvo aplicações SaaS com Next.js 16, TypeScript, IA Generativa e automação de processos.',
+    url: 'https://kaueruon.dev',
+    siteName: 'Kauê Ruon Cardoso',
+    locale: 'pt_BR',
     type: 'website',
-    url: 'https://portifolio-k-r-001.vercel.app',
+    images: [
+      {
+        url: 'https://github.com/Kauerc10.png',
+        width: 1200,
+        height: 630,
+        alt: 'Kauê Ruon Cardoso — Software Architect & SaaS Developer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kauê Ruon Cardoso — Software Architect & SaaS Developer',
+    description:
+      'Software Architect e AI Engineer em Blumenau/SC. Desenvolvo aplicações SaaS de alta performance com Next.js 16, TypeScript e IA Generativa.',
+    images: ['https://github.com/Kauerc10.png'],
+    creator: '@kauerc',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -51,7 +101,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${syne.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <link rel="llms" href="/llms.txt" />
+      </head>
       <body className="has-noise">
+        {/* DADOS ESTRUTURADOS JSON-LD PARA SEO E AI READINESS */}
+        <JsonLd />
+
         {/* NOISE OVERLAY */}
         <div className="noise-overlay" />
 
@@ -63,7 +119,7 @@ export default function RootLayout({
           <div className="loader__content">
             <p className="loader__title">KAUÊ RUON CARDOSO</p>
             <div className="loader__divider" />
-            <p className="loader__case">AI Engineer · Blumenau / SC</p>
+            <p className="loader__case">Software Architect · SaaS & IA Generativa</p>
             <div className="loader__bars">
               <div className="loader__bar-row" data-target="74">
                 <div className="loader__bar">
@@ -100,36 +156,29 @@ export default function RootLayout({
         <div className="cursor" id="cursor">
           <div className="cursor__dot" />
           <div className="cursor__ring" />
-          <span className="cursor__label" id="cursorLabel" />
+          <div className="cursor__label" id="cursorLabel" />
         </div>
 
-        {/* ALERT BAR */}
-        <div className="breach-alert" id="breachAlert">
-          <span className="breach-alert__text">[ ABERTO A PROPOSTAS — IA / FULL-STACK ]</span>
-        </div>
+        {/* MAIN CONTENT */}
+        <main>{children}</main>
 
-        {/* SCROLL PROGRESS BAR */}
-        <div className="scroll-progress" id="scrollProgress" />
-
-        {/* MAIN PAGE CONTENT */}
-        {children}
-
-        {/* AGENTE ÆVO AGENT (Vercel AI SDK + RAG + Tool Use) */}
+        {/* WIDGET DO AGENTE ÆVO AI */}
         <AevoWidget />
 
-        {/* EXTERNAL SCRIPTS WITH NEXT.JS <Script> BEST PRACTICES */}
+        {/* ENGINE DE SCRIPTS 3D & GSAP */}
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" strategy="beforeInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" strategy="beforeInteractive" />
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" strategy="beforeInteractive" />
-        <Script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" strategy="beforeInteractive" />
-        <Script src="/js/loader.js?v=3.0" strategy="afterInteractive" />
-        <Script src="/js/cursor.js?v=3.0" strategy="afterInteractive" />
-        <Script src="/js/three-scene.js?v=3.0" strategy="afterInteractive" />
-        <Script src="/js/animations.js?v=3.0" strategy="afterInteractive" />
-        <Script src="/js/easter-eggs.js?v=3.0" strategy="afterInteractive" />
-        <Script src="/js/cipher-decode.js?v=3.0" strategy="afterInteractive" />
-        <Script src="/js/breach-protocol.js?v=3.0" strategy="afterInteractive" />
-        <Script src="/js/main.js?v=3.0" strategy="afterInteractive" />
+        <Script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" strategy="beforeInteractive" />
+
+        <Script src="/js/three-scene.js" strategy="afterInteractive" />
+        <Script src="/js/animations.js" strategy="afterInteractive" />
+        <Script src="/js/loader.js" strategy="afterInteractive" />
+        <Script src="/js/cursor.js" strategy="afterInteractive" />
+        <Script src="/js/cipher-decode.js" strategy="afterInteractive" />
+        <Script src="/js/easter-eggs.js" strategy="afterInteractive" />
+        <Script src="/js/breach-protocol.js" strategy="afterInteractive" />
+        <Script src="/js/main.js" strategy="afterInteractive" />
       </body>
     </html>
   );
