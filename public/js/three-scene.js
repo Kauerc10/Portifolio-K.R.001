@@ -1,9 +1,9 @@
 /**
- * @fileoverview THREE-SCENE — Motor WebGL da Anomalia 3D com Suporte a Tema Claro / Escuro
+ * @fileoverview THREE-SCENE — Motor WebGL da Anomalia 3D (Restaurado com Suporte a Tema Claro/Escuro)
  *
- * Renderiza a "Anomalia" (icosaedro wireframe) e sistema de partículas 3D.
- * Suporta alternância dinâmica de cores entre Dark Mode (estrelas/wireframe azul/branco)
- * e Light Mode (wireframe/partículas pretas/grafite).
+ * Restaura 100% da matemática, física de debris, rotação idle, mouse parallax e zoom da câmera
+ * da versão original, adicionando suporte dinâmico para renderizar partículas e a Anomalia
+ * em tom escuro (0x0f172a / NormalBlending) quando o Tema Claro estiver ativo.
  */
 
 const HeroScene = (() => {
@@ -11,7 +11,6 @@ const HeroScene = (() => {
     // ── Objetos da Cena ──
     let scene, camera, renderer, wireframe, particles, clock;
     let debrisParticles;
-
     let debrisData = [];
 
     // ── Estado da Cena ──
@@ -52,7 +51,6 @@ const HeroScene = (() => {
     uniform float uTime;
     uniform vec3  uColor;
     uniform float uGlitch;
-    uniform float uIsLight;
     varying vec3  vPosition;
     varying vec2  vUv;
 
@@ -63,9 +61,7 @@ const HeroScene = (() => {
       float g = uColor.g;
       float b = uColor.b + cos(vPosition.x * 10.0 - uTime * 2.0) * split;
 
-      float alpha = uIsLight > 0.5 
-        ? 0.45 + sin(uTime * 4.0) * 0.1
-        : 0.15 + sin(uTime * 4.0) * 0.05 + (uGlitch * 0.4);
+      float alpha = 0.18 + sin(uTime * 4.0) * 0.05 + (uGlitch * 0.4);
 
       gl_FragColor = vec4(r, g, b, alpha);
     }
@@ -74,8 +70,7 @@ const HeroScene = (() => {
     const uniforms = {
         uTime: { value: 0 },
         uColor: { value: new THREE.Color(0x2563eb) },
-        uGlitch: { value: 0 },
-        uIsLight: { value: 0 }
+        uGlitch: { value: 0 }
     };
 
     function isLightMode() {
@@ -87,8 +82,6 @@ const HeroScene = (() => {
         const light = isLightMode();
         if (light === lastLightState) return;
         lastLightState = light;
-
-        uniforms.uIsLight.value = light ? 1.0 : 0.0;
 
         if (wireframe && wireframe.material) {
             wireframe.material.uniforms.uColor.value.set(light ? 0x0f172a : 0x2563eb);
@@ -117,14 +110,11 @@ const HeroScene = (() => {
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5;
+        camera.position.z = 8; // Distância original da câmera
 
         clock = new THREE.Clock();
 
-        cachedDocHeight = Math.max(
-            document.body.scrollHeight, document.documentElement.scrollHeight,
-            document.body.offsetHeight, document.documentElement.offsetHeight
-        ) - window.innerHeight;
+        cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
 
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         renderer = new THREE.WebGLRenderer({
@@ -151,7 +141,7 @@ const HeroScene = (() => {
         wireframe = new THREE.Mesh(geo, wireMat);
         scene.add(wireframe);
 
-        // ── 2. ESTRELAS DE FUNDO — Sistema de Partículas ──
+        // ── 2. ESTRELAS DE FUNDO ──
         const particleCount = 350;
         const positions = new Float32Array(particleCount * 3);
 
@@ -172,7 +162,7 @@ const HeroScene = (() => {
 
         const particleMat = new THREE.PointsMaterial({
             color: 0xffffff,
-            size: 0.018,
+            size: 0.015,
             transparent: true,
             opacity: 0.4,
             blending: THREE.AdditiveBlending
@@ -260,14 +250,26 @@ const HeroScene = (() => {
         mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     }
 
-    function onScroll() {
-        const currentScrollY = window.scrollY || window.pageYOffset;
-        scrollVelocity = Math.abs(currentScrollY - lastScrollY);
-        lastScrollY = currentScrollY;
+    function onResize() {
+        if (!camera || !renderer) return;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        cachedDocHeight = document.documentElement.scrollHeight - window.innerHeight;
+    }
 
-        if (cachedDocHeight > 0) {
-            scrollPct = Math.min(Math.max(currentScrollY / cachedDocHeight, 0), 1);
-        }
+    let resizeTimer = null;
+    function debouncedResize() {
+        if (resizeTimer) clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(onResize, 150);
+    }
+
+    function onScroll() {
+        const y = window.scrollY || window.pageYOffset;
+        scrollPct = cachedDocHeight > 0 ? y / cachedDocHeight : 0;
+
+        scrollVelocity = Math.abs(y - lastScrollY);
+        lastScrollY = y;
 
         const obmepEl = document.getElementById('conquistas');
         if (obmepEl) {
@@ -276,44 +278,54 @@ const HeroScene = (() => {
         }
     }
 
-    let resizeTimeout;
-    function debouncedResize() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            if (!camera || !renderer) return;
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight, false);
-            cachedDocHeight = Math.max(
-                document.body.scrollHeight, document.documentElement.scrollHeight,
-                document.body.offsetHeight, document.documentElement.offsetHeight
-            ) - window.innerHeight;
-        }, 150);
-    }
+    let lastFrameTime = 0;
+    const targetFpsInterval = 1000 / 60;
 
-    function animate() {
+    function animate(timestamp) {
         requestAnimationFrame(animate);
 
         if (!tabVisible) return;
 
+        if (timestamp) {
+            const delta = timestamp - lastFrameTime;
+            if (delta < targetFpsInterval - 1) return;
+            lastFrameTime = timestamp - (delta % targetFpsInterval);
+        }
+
         updateThemeColors();
 
-        const delta = clock.getDelta();
         const elapsed = clock.getElapsedTime();
 
         uniforms.uTime.value = elapsed;
 
-        const targetGlitch = Math.min(scrollVelocity * 0.003, 0.8);
-        uniforms.uGlitch.value += (targetGlitch - uniforms.uGlitch.value) * 0.1;
-        scrollVelocity *= 0.95;
+        scrollVelocity *= 0.9;
+        uniforms.uGlitch.value = Math.min(scrollVelocity * 0.02, 1.0);
 
-        wireframe.rotation.x = elapsed * 0.08 + mouseY * 0.3;
-        wireframe.rotation.y = elapsed * 0.12 + mouseX * 0.3;
+        // ── Rotação Idle da Anomalia ──
+        wireframe.rotation.x += 0.0008;
+        wireframe.rotation.y += 0.0012;
 
-        const breath = 1 + Math.sin(elapsed * 1.5) * 0.04;
-        wireframe.scale.setScalar(breath);
+        // ── Mouse Parallax (suave via lerp) ──
+        wireframe.rotation.x += (mouseY * 0.15 - wireframe.rotation.x) * 0.008;
+        wireframe.rotation.y += (mouseX * 0.15 - wireframe.rotation.y) * 0.008;
 
-        _mouseWorld.set(mouseX * 3, mouseY * 3, 0);
+        // ── Câmera empurrada pra longe conforme o scroll (zoom out de 8 até 20) ──
+        const targetZ = 8 + scrollPct * 12;
+        camera.position.z += (targetZ - camera.position.z) * 0.04;
+
+        // Pan da câmera seguindo o mouse
+        camera.position.x += (mouseX * 0.8 - camera.position.x) * 0.05;
+        camera.position.y += (-mouseY * 0.8 - camera.position.y) * 0.05;
+
+        // Rotação extra no scroll
+        wireframe.rotation.y += scrollPct * 0.004;
+
+        // Respiração da escala
+        const breathScale = 1 + Math.sin(elapsed * 0.4) * 0.03;
+        wireframe.scale.setScalar(breathScale);
+
+        // ── Física dos Debris ──
+        _mouseWorld.set(mouseX * 8, -mouseY * 8, camera.position.z - 6);
         _dummy.rotation.set(0, 0, 0);
 
         for (let i = 0; i < debrisData.length; i++) {
@@ -358,6 +370,7 @@ const HeroScene = (() => {
         }
         debrisParticles.instanceMatrix.needsUpdate = true;
 
+        // ── Estrelas de Fundo ──
         particles.rotation.y = elapsed * 0.06;
         particles.rotation.x = elapsed * 0.03;
 
@@ -373,6 +386,7 @@ const HeroScene = (() => {
             lastExpandFactor = expandFactor;
         }
 
+        // ── Modo OBMEP Overdrive ──
         if (obmepActive) {
             wireframe.rotation.x += 0.015;
             wireframe.rotation.y += 0.02;
