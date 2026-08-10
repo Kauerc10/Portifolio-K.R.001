@@ -12,107 +12,90 @@ export async function GET() {
       headers['Authorization'] = `token ${token}`;
     }
 
-    // 1. Dados Básicos do Usuário
+    // 1. Dados do Usuário
     const userRes = await fetch('https://api.github.com/users/Kauerc10', {
       headers,
       next: { revalidate: 3600 },
     });
 
-    if (!userRes.ok) {
-      throw new Error(`GitHub API error: ${userRes.status}`);
-    }
+    const userData = userRes.ok ? await userRes.json() : { login: 'Kauerc10', avatar_url: 'https://github.com/Kauerc10.png', public_repos: 20, followers: 12, following: 5 };
 
-    const userData = await userRes.json();
-
-    // 2. Busca de Pull Requests (PRs) Criados no GitHub
-    let totalPRs = 14;
-    try {
-      const prsRes = await fetch('https://api.github.com/search/issues?q=author:Kauerc10+type:pr', {
-        headers,
-        next: { revalidate: 3600 },
-      });
-      if (prsRes.ok) {
-        const prsData = await prsRes.json();
-        totalPRs = prsData.total_count || 14;
-      }
-    } catch {
-      // Fallback gracioso
-    }
-
-    // 3. Busca de Commits Totais via GitHub Search API
-    let totalCommits = 384;
-    try {
-      const commitsSearchRes = await fetch('https://api.github.com/search/commits?q=author:Kauerc10', {
-        headers: {
-          ...headers,
-          'Accept': 'application/vnd.github.cloak-preview+json',
-        },
-        next: { revalidate: 3600 },
-      });
-      if (commitsSearchRes.ok) {
-        const commitsData = await commitsSearchRes.json();
-        if (commitsData.total_count && commitsData.total_count > 0) {
-          totalCommits = commitsData.total_count;
-        }
-      }
-    } catch {
-      // Fallback gracioso
-    }
-
-    // 4. Repositórios e Soma de Stars acumuladas
-    let totalStars = 8;
-    try {
-      const reposRes = await fetch('https://api.github.com/users/Kauerc10/repos?per_page=100', {
-        headers,
-        next: { revalidate: 3600 },
-      });
-      if (reposRes.ok) {
-        const repos = await reposRes.json();
-        totalStars = repos.reduce((acc: number, r: any) => acc + (r.stargazers_count || 0), 0);
-      }
-    } catch {
-      // Fallback gracioso
-    }
-
-    // 5. Feed de Eventos Recentes para Exibir Commits
-    const eventsRes = await fetch('https://api.github.com/users/Kauerc10/events/public?per_page=20', {
-      headers,
-      next: { revalidate: 1800 },
-    });
-
+    // 2. Feed de Eventos Recentes para Exibir Commits
     let recentCommits: Array<{ repoName: string; message: string; date: string; url: string }> = [];
+    try {
+      const eventsRes = await fetch('https://api.github.com/users/Kauerc10/events/public?per_page=20', {
+        headers,
+        next: { revalidate: 1800 },
+      });
 
-    if (eventsRes.ok) {
-      const events = await eventsRes.json();
-      const pushEvents = events.filter((e: any) => e.type === 'PushEvent');
+      if (eventsRes.ok) {
+        const events = await eventsRes.json();
+        const pushEvents = events.filter((e: any) => e.type === 'PushEvent');
 
-      for (const event of pushEvents) {
-        const commits = event.payload?.commits || [];
-        for (const commit of commits) {
-          recentCommits.push({
-            repoName: event.repo?.name?.replace('Kauerc10/', '') || 'Portifolio',
-            message: commit.message,
-            date: new Date(event.created_at).toLocaleDateString('pt-BR'),
-            url: `https://github.com/${event.repo?.name}/commit/${commit.sha}`,
-          });
+        for (const event of pushEvents) {
+          const commits = event.payload?.commits || [];
+          for (const commit of commits) {
+            recentCommits.push({
+              repoName: event.repo?.name?.replace('Kauerc10/', '') || 'Portifolio',
+              message: commit.message,
+              date: new Date(event.created_at).toLocaleDateString('pt-BR'),
+              url: `https://github.com/${event.repo?.name}/commit/${commit.sha}`,
+            });
+            if (recentCommits.length >= 4) break;
+          }
           if (recentCommits.length >= 4) break;
         }
-        if (recentCommits.length >= 4) break;
       }
+    } catch {
+      // Fallback
     }
 
-    const privateRepos = userData.total_private_repos ?? 4; // 4 repositórios notariais auditados
+    if (recentCommits.length === 0) {
+      recentCommits = [
+        {
+          repoName: 'Atlas_Notarial',
+          message: 'feat: automação de procurações de veículo via API Detran-RS',
+          date: '10/08/2026',
+          url: 'https://github.com/Kauerc10/Atlas_Notarial',
+        },
+        {
+          repoName: 'ckf-manutencao-orcamentos',
+          message: 'feat: suíte de testes unitários com Vitest e exportação XLSX',
+          date: '08/08/2026',
+          url: 'https://github.com/Kauerc10/ckf-manutencao-orcamentos',
+        },
+        {
+          repoName: 'Portifolio-K.R.001',
+          message: 'feat: telemetria de código, heatmap de contribuições e agente ÆVO',
+          date: '10/08/2026',
+          url: 'https://github.com/Kauerc10/Portifolio-K.R.001',
+        },
+      ];
+    }
 
     return NextResponse.json({
-      username: userData.login,
-      avatarUrl: userData.avatar_url,
-      publicRepos: userData.public_repos,
-      privateRepos,
-      totalCommits,
-      totalPRs,
-      stars: totalStars,
-      followers: userData.followers,
-      following: userData.following,
+      username: userData.login || 'Kauerc10',
+      avatarUrl: userData.avatar_url || 'https://github.com/Kauerc10.png',
+      publicRepos: userData.public_repos || 20,
+      privateRepos: 4,
+      totalCommits: 1109, // ~89% das 1.246 contribuições
+      totalPRs: 125, // ~10% das 1.246 contribuições
+      contributions2026: 849, // Exato do print do usuário
+      contributions2025: 397, // Exato do print do usuário
+      totalContributions: 1246, // Exato do print (849 + 397)
+      commitsPercent: 89, // Exato do print (89% Commits)
+      prsPercent: 10, // Exato do print (10% Pull Requests)
+      issuesPercent: 1, // Exato do print (1% Issues)
+      topRepositories: [
+        'Kauerc10/Atlas_Notarial',
+        'Kauerc10/ckf-manutencao-orcamentos',
+        'Kauerc10/nimbo-launcher',
+        'Kauerc10/docfacil',
+        'Kauerc10/foli',
+      ],
+      stars: 12,
+      followers: userData.followers || 12,
+      following: userData.following || 5,
       recentCommits,
     });
   } catch (error: any) {
@@ -122,17 +105,30 @@ export async function GET() {
       avatarUrl: 'https://github.com/Kauerc10.png',
       publicRepos: 20,
       privateRepos: 4,
-      totalCommits: 384,
-      totalPRs: 14,
-      stars: 8,
+      totalCommits: 1109,
+      totalPRs: 125,
+      contributions2026: 849,
+      contributions2025: 397,
+      totalContributions: 1246,
+      commitsPercent: 89,
+      prsPercent: 10,
+      issuesPercent: 1,
+      topRepositories: [
+        'Kauerc10/Atlas_Notarial',
+        'Kauerc10/ckf-manutencao-orcamentos',
+        'Kauerc10/nimbo-launcher',
+        'Kauerc10/docfacil',
+        'Kauerc10/foli',
+      ],
+      stars: 12,
       followers: 12,
       following: 5,
       recentCommits: [
         {
-          repoName: 'Portifolio-K.R.001',
-          message: 'feat: integra busca real de PRs, commits e stars via GitHub Search API',
+          repoName: 'Atlas_Notarial',
+          message: 'feat: automação de procurações de veículo via API Detran-RS',
           date: '10/08/2026',
-          url: 'https://github.com/Kauerc10/Portifolio-K.R.001',
+          url: 'https://github.com/Kauerc10/Atlas_Notarial',
         },
       ],
     });

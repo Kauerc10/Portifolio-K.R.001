@@ -5,6 +5,13 @@ export interface GithubUserStats {
   privateRepos: number;
   totalCommits: number;
   totalPRs: number;
+  contributions2026: number;
+  contributions2025: number;
+  totalContributions: number;
+  commitsPercent: number;
+  prsPercent: number;
+  issuesPercent: number;
+  topRepositories: string[];
   stars: number;
   followers: number;
   following: number;
