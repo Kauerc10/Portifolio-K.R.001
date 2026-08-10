@@ -1,0 +1,22 @@
+name: 💡 Sugerir Nova Funcionalidade ou IA Feature
+description: Proponha uma nova funcionalidade, efeito 3D ou capacidade para o Agente ÆVO.
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Qual funcionalidade você gostaria de sugerir?
+      description: Descreva a ideia com detalhes.
+      placeholder: Adicionar sintetizador Web Audio SFX para o terminal do ÆVO...
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Qual problema essa ideia resolve ou como melhora a experiência?
+      description: Explique o valor dessa melhoria.
+      placeholder: Torna a interação mais imersiva e cyberpunk...
+    validations:
+      required: false
