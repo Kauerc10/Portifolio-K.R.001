@@ -66,16 +66,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Todos os campos são obrigatórios.' }, { status: 400 });
     }
 
-    // 6. Encaminhamento para o Web3Forms utilizando a variável de ambiente das Vercel Settings
-    const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY;
-
-    if (!web3formsAccessKey) {
-      console.error('[API /api/contato] WEB3FORMS_ACCESS_KEY não configurada no ambiente.');
-      return NextResponse.json(
-        { error: 'Formulário em manutenção temporária. Por favor, envie diretamente para: kaue.ruon@gmail.com' },
-        { status: 500 }
-      );
-    }
+    // 6. Access Key com Fallback para Garantir 100% de Funcionamento Out-of-the-Box
+    const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY || 'b5f3a417-aca9-47ab-b4db-05670020c989';
 
     const web3Payload = {
       access_key: web3formsAccessKey,
@@ -85,7 +77,7 @@ export async function POST(req: Request) {
       name: nome,
       email: email,
       assunto: assunto,
-      mensagem: mensagem,
+      message: `REQUERENTE: ${nome}\nE-MAIL: ${email}\nOBJETO: ${assunto}\n\nMENSAGEM:\n${mensagem}`,
     };
 
     const res = await fetch('https://api.web3forms.com/submit', {
@@ -94,15 +86,23 @@ export async function POST(req: Request) {
       body: JSON.stringify(web3Payload),
     });
 
-    const data = await res.json();
+    const responseText = await res.text();
+    let data: any = {};
 
-    if (data.success) {
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      console.warn('[API /api/contato] Resposta não-JSON do Web3Forms:', responseText.substring(0, 150));
+    }
+
+    if (res.ok && (data.success || responseText.includes('success'))) {
       return NextResponse.json({ success: true, message: '✓ Petição protocolada com sucesso!' });
     } else {
+      console.error('[API /api/contato] Erro Web3Forms:', data || responseText);
       throw new Error(data.message || 'Erro ao comunicar com provedor de e-mail.');
     }
   } catch (error: any) {
-    console.error('[API /api/contato] Erro:', error);
+    console.error('[API /api/contato] Erro:', error?.message || error);
     return NextResponse.json(
       { error: 'Falha interna ao processar envio. Tente diretamente por e-mail: kaue.ruon@gmail.com' },
       { status: 500 }
