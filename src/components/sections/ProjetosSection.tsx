@@ -7,11 +7,6 @@ export default function ProjetosSection() {
       <span className="section__article">Anexo II</span>
       <h2 className="section__title" data-cipher>DOS PROJETOS</h2>
 
-      {/* Live GitHub Stats Widget */}
-      <div className="my-8">
-        <GithubLiveStats />
-      </div>
-
       <div className="evidence__grid">
         {/* DOCFÁCIL */}
         <div className="evidence__folder anim-slide magnetic" data-cursor="DOCFÁCIL" id="project-docfacil">
@@ -81,6 +76,11 @@ export default function ProjetosSection() {
             <a href="https://github.com/Kauerc10/foli" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ON GITHUB ↗</a>
           </div>
         </div>
+      </div>
+
+      {/* GitHub Telemetry — discreto, após os cards */}
+      <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        <GithubLiveStats />
       </div>
     </section>
   );
