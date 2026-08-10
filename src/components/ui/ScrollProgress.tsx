@@ -30,7 +30,8 @@ export default function ScrollProgress() {
   return (
     <div
       ref={barRef}
-      className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blue-600 via-cyanNeon to-goldAccent z-50 origin-left transform scale-x-0 transition-transform duration-75"
+      className="scroll-progress"
+      id="scrollProgress"
     />
   );
 }

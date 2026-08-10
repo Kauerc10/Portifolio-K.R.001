@@ -1,15 +1,15 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 export default function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement | null>(null);
-  const ringRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
-    const dot = dotRef.current;
-    const ring = ringRef.current;
-    if (!dot || !ring) return;
+    const cursor = document.getElementById('cursor');
+    const dot = cursor?.querySelector('.cursor__dot') as HTMLElement;
+    const ring = cursor?.querySelector('.cursor__ring') as HTMLElement;
+    const label = document.getElementById('cursorLabel');
+
+    if (!cursor || !dot || !ring) return;
 
     let mouseX = -100;
     let mouseY = -100;
@@ -21,6 +21,21 @@ export default function CustomCursor() {
       mouseX = e.clientX;
       mouseY = e.clientY;
       dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+
+      // Checar se o elemento sob o mouse é magnético
+      const target = e.target as HTMLElement;
+      const magneticEl = target.closest('[data-cursor]') as HTMLElement;
+
+      if (magneticEl) {
+        const text = magneticEl.getAttribute('data-cursor');
+        if (label && text) {
+          label.textContent = text;
+          cursor.classList.add('has-label');
+        }
+      } else {
+        if (label) label.textContent = '';
+        cursor.classList.remove('has-label');
+      }
     };
 
     const render = () => {
@@ -40,15 +55,10 @@ export default function CustomCursor() {
   }, []);
 
   return (
-    <>
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 bg-cyanNeon rounded-full pointer-events-none z-50 transition-opacity duration-300"
-      />
-      <div
-        ref={ringRef}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-cyanNeon/50 pointer-events-none z-50 transition-transform duration-100"
-      />
-    </>
+    <div className="cursor" id="cursor">
+      <div className="cursor__dot" />
+      <div className="cursor__ring" />
+      <span className="cursor__label" id="cursorLabel" />
+    </div>
   );
 }
