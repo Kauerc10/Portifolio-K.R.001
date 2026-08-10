@@ -8,39 +8,85 @@
  *  Nada de ir caçando hex code por 1931 linhas de CSS.
  *
  *  Paleta principal:
- *  - void    → o fundo preto-azulado do universo
- *  - ink     → azul escuro dos cards
+ *  - void    → o fundo do universo (escuro ou claro)
+ *  - ink     → fundo dos cards
  *  - signal  → azul elétrico dos links/destaques
- *  - stamp   → dourado cartorário (cor principale)
- *  - text    → branco suave pra leitura
+ *  - stamp   → dourado cartorário (cor principal)
+ *  - text    → texto principal
  *  - ghost   → cinza médio pra elementos secundários
  * ═══════════════════════════════════════════════════════
  */
 
 :root {
-    /* ── Cores de Fundo ── */
+    /* ── Cores de Fundo (Dark Mode Padrão) ── */
     --void: #04060d;
-    /* Preto do cosmos — fundo raiz do body */
     --ink: #0d1424;
-    /* Azul bebê escuro — fundo dos cards */
 
     /* ── Cores de Destaque ── */
     --signal: #2563eb;
-    /* Azul elétrico — links, barras de progresso */
     --stamp: #d4a017;
-    /* Ouro cartorário — a assinatura visual do site */
 
     /* ── Tipografia ── */
     --text: #e2e8f0;
-    /* Branco suave — texto principal */
     --ghost: #334155;
-    /* Cinza escuro — texto secundário e bordas sutis */
 
     /* ── Fontes ── */
     --font-display: 'Syne', sans-serif;
-    /* Títulos grandes */
     --font-body: 'Inter', sans-serif;
-    /* Texto corrido */
     --font-mono: 'JetBrains Mono', monospace;
-    /* Código, labels, UI */
+}
+
+/* ── Tema Claro (Light Mode) ── */
+html.light,
+html[data-theme='light'] {
+    --void: #f8fafc;
+    --ink: #ffffff;
+    --signal: #1d4ed8;
+    --stamp: #b48312;
+    --text: #0f172a;
+    --ghost: #cbd5e1;
+}
+
+html.light body {
+    background-color: var(--void);
+    color: var(--text);
+}
+
+html.light .section__title {
+    color: #0f172a;
+}
+
+html.light .section__article {
+    color: #b48312;
+}
+
+html.light .nav {
+    background: rgba(248, 250, 252, 0.85);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+html.light .nav__link {
+    color: #334155;
+}
+
+html.light .nav__link:hover {
+    color: #0f172a;
+}
+
+html.light .evidence__folder,
+html.light .sobre__card,
+html.light .obmep-card {
+    background: #ffffff;
+    border-color: rgba(15, 23, 42, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+html.light .evidence__title,
+html.light .obmep-card__title {
+    color: #0f172a;
+}
+
+html.light .evidence__desc,
+html.light .sobre__paragraph {
+    color: #334155;
 }
