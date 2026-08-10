@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>KRC</title>
+  <g fill="#000">
+    <path d="M115 98h72v127l112-127h92L267 235l137 179h-91L218 287l-31 34v93h-72z"/>
+    <circle cx="110" cy="355" r="18"/>
+    <path fill="none" stroke="#000" stroke-width="22" stroke-linecap="round"
+          d="M90 355C172 411 342 404 408 295C461 208 414 124 331 101"/>
+  </g>
+</svg>
