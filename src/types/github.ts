@@ -4,7 +4,8 @@ export interface GithubUserStats {
   publicRepos: number;
   privateRepos: number;
   totalCommits: number;
-  totalPushes: number;
+  totalPRs: number;
+  stars: number;
   followers: number;
   following: number;
   recentCommits: Array<{

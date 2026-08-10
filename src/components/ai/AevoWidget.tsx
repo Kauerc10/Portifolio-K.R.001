@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X, Terminal, Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Bot, Send, X, ShieldCheck, Sparkles, CheckCircle2, Copy, FileText, Sparkle } from 'lucide-react';
 import { AevoChatMessage } from '@/types/aevo';
 
 export default function AevoWidget() {
@@ -9,6 +9,7 @@ export default function AevoWidget() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [providerUsed, setProviderUsed] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const [messages, setMessages] = useState<AevoChatMessage[]>([
@@ -20,6 +21,11 @@ export default function AevoWidget() {
     },
   ]);
 
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3500);
+  };
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -28,7 +34,7 @@ export default function AevoWidget() {
     scrollToBottom();
   }, [messages, loading]);
 
-  // Processador de Tool Calling executado no navegador
+  // Processador de Tool Calling completo (9 Ferramentas Nativas)
   const executeClientTools = (toolCalls: Array<{ name: string; args: any }>) => {
     for (const tool of toolCalls) {
       if (tool.name === 'scroll_to_section' && tool.args?.sectionId) {
@@ -43,10 +49,34 @@ export default function AevoWidget() {
         }
       } else if (tool.name === 'open_resume') {
         window.open('/curriculo_kaue.pdf', '_blank');
+        showToast('📄 Currículo PDF baixado / aberto com sucesso!');
+      } else if (tool.name === 'copy_contact_email') {
+        navigator.clipboard?.writeText('kaue.ruon@gmail.com');
+        showToast('📋 E-mail kaue.ruon@gmail.com copiado para a área de transferência!');
+      } else if (tool.name === 'fill_petition_form') {
+        const form = document.getElementById('peticaoForm') as HTMLFormElement;
+        if (form) {
+          const assuntoInput = form.querySelector('input[name="assunto"]') as HTMLInputElement;
+          if (assuntoInput) {
+            assuntoInput.value = tool.args?.assunto || 'Proposta de Trabalho / Projeto IA';
+            assuntoInput.classList.add('ring-2', 'ring-[var(--gold)]');
+            setTimeout(() => assuntoInput.classList.remove('ring-2', 'ring-[var(--gold)]'), 3000);
+          }
+        }
+        showToast('📜 Formulário de Petição preenchido automaticamente!');
+      } else if (tool.name === 'filter_skills') {
+        const chips = document.querySelectorAll('.skills .chip');
+        chips.forEach(chip => {
+          chip.classList.add('ring-1', 'ring-[var(--gold)]');
+          setTimeout(() => chip.classList.remove('ring-1', 'ring-[var(--gold)]'), 3000);
+        });
+        showToast('💡 Habilidades destacadas!');
       } else if (tool.name === 'trigger_glitch_mode') {
         window.dispatchEvent(new CustomEvent('aevoGlitch'));
+        showToast('⚡ Pulso de Glitch WebGL ativado no background!');
       } else if (tool.name === 'trigger_konami_protocol') {
         window.dispatchEvent(new CustomEvent('aevoKonami'));
+        showToast('🔓 Protocolo God Mode ativado!');
       }
     }
   };
@@ -114,6 +144,14 @@ export default function AevoWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 font-mono">
+      {/* Toast Notification Notarial */}
+      {toastMessage && (
+        <div className="fixed top-6 right-6 z-50 px-4 py-3 rounded-xl bg-[#0b1120] text-[var(--gold)] border border-[var(--gold)]/50 shadow-2xl backdrop-blur-xl text-xs font-mono animate-in fade-in slide-in-from-top-3 flex items-center gap-2">
+          <Sparkle className="w-4 h-4 text-[var(--gold)] animate-spin" />
+          <span>{toastMessage}</span>
+        </div>
+      )}
+
       {/* Botão de Toggle Cyberdeck Notarial */}
       {!isOpen && (
         <button
@@ -133,7 +171,7 @@ export default function AevoWidget() {
 
       {/* Janela do Terminal Cyberdeck ÆVO */}
       {isOpen && (
-        <div className="w-[360px] sm:w-[420px] h-[540px] rounded-2xl bg-[#0b1120]/95 backdrop-blur-2xl border border-[var(--gold)]/40 shadow-[0_0_35px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
+        <div className="w-[360px] sm:w-[420px] h-[550px] rounded-2xl bg-[#0b1120]/95 backdrop-blur-2xl border border-[var(--gold)]/40 shadow-[0_0_35px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
           {/* Header Notarial */}
           <div className="px-4 py-3 bg-[#0f172a]/90 border-b border-[var(--gold)]/30 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -160,7 +198,7 @@ export default function AevoWidget() {
             {messages.map((m) => (
               <div
                 key={m.id}
-                className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}
+                className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'} animate-in fade-in duration-300`}
               >
                 <div
                   className={`max-w-[88%] px-4 py-3 rounded-xl ${
@@ -179,7 +217,7 @@ export default function AevoWidget() {
                 {m.toolCalls && m.toolCalls.length > 0 && (
                   <div className="mt-1 flex items-center gap-1 text-[10px] text-emerald-400 bg-emerald-950/40 px-2.5 py-1 rounded-md border border-emerald-500/30">
                     <CheckCircle2 className="w-3 h-3" />
-                    <span>Ferramenta Executada: {m.toolCalls.map(t => t.name).join(', ')}</span>
+                    <span>Executou: {m.toolCalls.map(t => t.name).join(', ')}</span>
                   </div>
                 )}
               </div>
@@ -200,19 +238,25 @@ export default function AevoWidget() {
               onClick={() => handleSend('Me fale dos projetos de IA do Kauê')}
               className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all"
             >
-              🚀 Projetos IA
+              🚀 Projetos
             </button>
             <button
               onClick={() => handleSend('Qual a atuação dele no Cartório Gaya?')}
               className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all"
             >
-              📜 Cartório Gaya
+              📜 Cartório
             </button>
             <button
-              onClick={() => handleSend('Me fale sobre as medalhas na OBMEP')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all"
+              onClick={() => handleSend('Quero o email de contato')}
+              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1"
             >
-              🏅 OBMEP
+              <Copy className="w-3 h-3" /> E-mail
+            </button>
+            <button
+              onClick={() => handleSend('Preencher proposta de contato')}
+              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1"
+            >
+              <FileText className="w-3 h-3" /> Petição
             </button>
           </div>
 
