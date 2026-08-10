@@ -1,9 +1,8 @@
 /**
- * @fileoverview THREE-SCENE — Motor WebGL da Anomalia 3D (Restaurado com Suporte a Tema Claro/Escuro)
+ * @fileoverview THREE-SCENE — Motor WebGL da Anomalia 3D (Com Colisão 3D do Mouse Rigorosamente Unprojected)
  *
- * Restaura 100% da matemática, física de debris, rotação idle, mouse parallax e zoom da câmera
- * da versão original, adicionando suporte dinâmico para renderizar partículas e a Anomalia
- * em tom escuro (0x0f172a / NormalBlending) quando o Tema Claro estiver ativo.
+ * Corrige com precisão de raycasting/unprojection a posição 3D do cursor do mouse.
+ * Elimina a inversão do eixo Y (onde mover no topo fazia partículas de baixo se moverem).
  */
 
 const HeroScene = (() => {
@@ -110,7 +109,7 @@ const HeroScene = (() => {
 
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 8; // Distância original da câmera
+        camera.position.z = 8;
 
         clock = new THREE.Clock();
 
@@ -246,6 +245,7 @@ const HeroScene = (() => {
     }
 
     function onMouseMove(e) {
+        // Posição normalizada do mouse (-1 a +1)
         mouseX = (e.clientX / window.innerWidth) * 2 - 1;
         mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     }
@@ -324,8 +324,14 @@ const HeroScene = (() => {
         const breathScale = 1 + Math.sin(elapsed * 0.4) * 0.03;
         wireframe.scale.setScalar(breathScale);
 
-        // ── Física dos Debris ──
-        _mouseWorld.set(mouseX * 8, -mouseY * 8, camera.position.z - 6);
+        // ── Cálculo de Raycasting / Unproject Preciso do Cursor do Mouse ──
+        // Unprojeta a posição 2D da tela pra coordenada 3D exata do plano z=0
+        _mouseWorld.set(mouseX, mouseY, 0.5);
+        _mouseWorld.unproject(camera);
+        const dir = _mouseWorld.sub(camera.position).normalize();
+        const distToPlane = -camera.position.z / dir.z;
+        _mouseWorld.copy(camera.position).add(dir.multiplyScalar(distToPlane));
+
         _dummy.rotation.set(0, 0, 0);
 
         for (let i = 0; i < debrisData.length; i++) {
