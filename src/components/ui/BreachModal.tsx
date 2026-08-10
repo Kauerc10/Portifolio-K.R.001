@@ -61,7 +61,7 @@ export default function BreachModal() {
         {/* Header */}
         <div className="px-5 py-3 bg-red-950/40 border-b border-red-500/30 flex items-center justify-between">
           <div className="flex items-center gap-2 text-red-400 text-xs font-bold">
-            <ShieldAlert className="w-4 h-4 animate-bounce" />
+            <ShieldAlert className="w-4 h-4 animate-pulse" />
             <span>[ BREACH PROTOCOL — ROOT ACCESS ]</span>
           </div>
           <button
