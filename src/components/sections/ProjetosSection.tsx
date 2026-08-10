@@ -1,84 +1,230 @@
 import GithubLiveStats from '@/components/widgets/GithubLiveStats';
+import { ExternalLink, GitBranch, Lock, Zap, ShieldCheck, CheckCircle2, FileText, Cpu, ArrowRight } from 'lucide-react';
 
 export default function ProjetosSection() {
   return (
     <section className="section evidencias" id="projetos" data-section="7">
       <div className="section__line"></div>
       <span className="section__article">Anexo II</span>
-      <h2 className="section__title" data-cipher>DOS PROJETOS</h2>
+      <h2 className="section__title" data-cipher>DOS PROJETOS · CASE STUDIES DE ENGENHARIA</h2>
 
-      <div className="evidence__grid">
-        {/* DOCFÁCIL */}
-        <div className="evidence__folder anim-slide magnetic" data-cursor="DOCFÁCIL" id="project-docfacil">
-          <div className="evidence__seal evidence__seal--live">DEMO AO VIVO</div>
-          <div className="evidence__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <line x1="3" y1="9" x2="21" y2="9" />
-              <line x1="9" y1="21" x2="9" y2="9" />
-            </svg>
+      {/* Grid dos Mini Case Studies de Projetos */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+        
+        {/* CASE STUDY 1: DOCFÁCIL */}
+        <div
+          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white/5 border border-white/10 dark:border-white/10 hover:border-[var(--gold)] transition-all duration-300 shadow-xl flex flex-col justify-between"
+          id="project-docfacil"
+        >
+          <div>
+            {/* Header / Seal */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[10px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono flex items-center gap-1.5 font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                DEMO AO VIVO · SAAS IA
+              </span>
+              <Cpu className="w-5 h-5 text-[var(--gold)]" />
+            </div>
+
+            <h3 className="text-xl font-extrabold text-white mb-2 tracking-tight">DocFácil — IA Generativa em Documentos Legais</h3>
+            
+            {/* Mini Case Study Structure */}
+            <div className="space-y-3 text-xs text-gray-300 font-mono my-4 border-y border-white/10 py-4">
+              <div>
+                <strong className="text-[var(--gold)] block text-[11px] uppercase tracking-wider mb-0.5">■ O PROBLEMA:</strong>
+                <p className="text-gray-400 leading-relaxed">Redação manual de documentos jurídicos propensa a inconsistências e burocracia desnecessária.</p>
+              </div>
+
+              <div>
+                <strong className="text-emerald-400 block text-[11px] uppercase tracking-wider mb-0.5">⚡ SOLUÇÃO & ARQUITETURA:</strong>
+                <p className="text-gray-300 leading-relaxed">
+                  Plataforma Next.js 16 com camada de IA agnóstica (<code className="text-emerald-400 font-bold">AIProvider</code>), streaming server-side e suporte plugável a OpenAI, Anthropic e Gemini.
+                </p>
+              </div>
+            </div>
+
+            <span className="inline-block px-3 py-1 rounded-lg bg-white/5 text-[11px] text-gray-300 font-mono border border-white/10 mb-4">
+              Next.js 16 · TypeScript · IA Generativa · RAG
+            </span>
           </div>
-          <h3 className="evidence__title">DocFácil</h3>
-          <p className="evidence__desc">Plataforma Next.js que gera documentos legais conversando com o usuário. Camada de IA
-            agnóstica de provedor (<code>AIProvider</code>), API route server-side, streaming e providers OpenAI/Anthropic/Gemini plugáveis.</p>
-          <span className="evidence__tag">Next.js · TypeScript · IA Generativa</span>
-          <div className="evidence__footer">
-            <a href="https://docfacil-indol.vercel.app" target="_blank" rel="noopener" className="evidence__link-btn">⚡ DEMO ↗</a>
-            <a href="https://github.com/Kauerc10/docfacil" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ↗</a>
+
+          <div className="flex items-center gap-3 pt-3 border-t border-white/5 text-xs font-mono font-bold">
+            <a
+              href="https://docfacil-indol.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-xl bg-[var(--gold)] text-[#0b1120] hover:bg-amber-400 flex items-center gap-1.5 transition-all shadow-md"
+            >
+              <span>DEMO AO VIVO</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://github.com/Kauerc10/docfacil"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-[var(--gold)]/40 flex items-center gap-1.5 transition-all"
+            >
+              <span>REPOSITÓRIO</span>
+              <GitBranch className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
 
-        {/* CKF MANUTENÇÃO */}
-        <div className="evidence__folder anim-slide magnetic" data-cursor="CKF" id="project-ckf">
-          <div className="evidence__seal evidence__seal--live">EM PRODUÇÃO</div>
-          <div className="evidence__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-            </svg>
+        {/* CASE STUDY 2: ATLAS NOTARIAL */}
+        <div
+          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold)] transition-all duration-300 shadow-xl flex flex-col justify-between"
+          id="project-atlas"
+        >
+          <div>
+            {/* Header / Seal */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[10px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 font-mono flex items-center gap-1.5 font-bold">
+                <Lock className="w-3 h-3 text-amber-400" />
+                EM PRODUÇÃO · CARTÓRIO GAYA
+              </span>
+              <ShieldCheck className="w-5 h-5 text-amber-400" />
+            </div>
+
+            <h3 className="text-xl font-extrabold text-white mb-2 tracking-tight">Atlas Notarial — Automação com API Detran-RS</h3>
+
+            {/* Mini Case Study Structure */}
+            <div className="space-y-3 text-xs text-gray-300 font-mono my-4 border-y border-white/10 py-4">
+              <div>
+                <strong className="text-amber-400 block text-[11px] uppercase tracking-wider mb-0.5">■ O PROBLEMA:</strong>
+                <p className="text-gray-400 leading-relaxed">Emissão manual de procurações de veículos levando 5 minutos de digitação por documento.</p>
+              </div>
+
+              <div>
+                <strong className="text-emerald-400 block text-[11px] uppercase tracking-wider mb-0.5">⚡ MÉTRICA DE IMPACTO:</strong>
+                <p className="text-gray-200 leading-relaxed">
+                  Tempo reduzido de <strong className="text-amber-400 font-bold">5 minutos para 20 segundos</strong> por procuração com 100% de precisão jurídica.
+                </p>
+              </div>
+            </div>
+
+            <span className="inline-block px-3 py-1 rounded-lg bg-white/5 text-[11px] text-gray-300 font-mono border border-white/10 mb-4">
+              Node.js · REST APIs · Automação Notarial · Vitest
+            </span>
           </div>
-          <h3 className="evidence__title">CKF Manutenção — Gestão de Orçamentos</h3>
-          <p className="evidence__desc">Sistema interno em produção para empresa de manutenção de máquinas pesadas, com criação, gestão, filtros, exportação de relatórios (CSV/XLSX) e suíte de testes unitários com Vitest.</p>
-          <span className="evidence__tag">React · TypeScript · Supabase · Vitest</span>
-          <div className="evidence__footer">
-            <a href="https://ckf-manutencao-orcamentos.vercel.app" target="_blank" rel="noopener" className="evidence__link-btn">⚡ DEMO ↗</a>
-            <a href="https://github.com/Kauerc10/ckf-manutencao-orcamentos" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ↗</a>
+
+          <div className="flex items-center gap-2 pt-3 border-t border-white/5 text-xs font-mono text-rose-400 font-bold">
+            <Lock className="w-3.5 h-3.5" />
+            <span>PROJETO PRIVADO (SISTEMA INTERNO EM PRODUÇÃO)</span>
           </div>
         </div>
 
-        {/* ATLAS NOTORIAL */}
-        <div className="evidence__folder anim-slide magnetic" data-cursor="PRIVADO" id="project-atlas">
-          <div className="evidence__seal evidence__seal--internal">🔒 PROJETO PRIVADO</div>
-          <div className="evidence__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-            </svg>
+        {/* CASE STUDY 3: CKF MANUTENÇÃO */}
+        <div
+          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold)] transition-all duration-300 shadow-xl flex flex-col justify-between"
+          id="project-ckf"
+        >
+          <div>
+            {/* Header / Seal */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[10px] px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono flex items-center gap-1.5 font-bold">
+                <CheckCircle2 className="w-3 h-3 text-blue-400" />
+                EM PRODUÇÃO · CORPORATIVO
+              </span>
+              <FileText className="w-5 h-5 text-blue-400" />
+            </div>
+
+            <h3 className="text-xl font-extrabold text-white mb-2 tracking-tight">CKF Manutenção — Orçamentos & Maquinário</h3>
+
+            {/* Mini Case Study Structure */}
+            <div className="space-y-3 text-xs text-gray-300 font-mono my-4 border-y border-white/10 py-4">
+              <div>
+                <strong className="text-blue-400 block text-[11px] uppercase tracking-wider mb-0.5">■ O PROBLEMA:</strong>
+                <p className="text-gray-400 leading-relaxed">Falta de controle centralizado para emissão de orçamentos de manutenção em máquinas pesadas.</p>
+              </div>
+
+              <div>
+                <strong className="text-emerald-400 block text-[11px] uppercase tracking-wider mb-0.5">⚡ ARQUITETURA & QUALIDADE:</strong>
+                <p className="text-gray-300 leading-relaxed">
+                  Interface React com Supabase, exportação de relatórios (CSV/XLSX) e suíte de testes unitários automatizada com Vitest.
+                </p>
+              </div>
+            </div>
+
+            <span className="inline-block px-3 py-1 rounded-lg bg-white/5 text-[11px] text-gray-300 font-mono border border-white/10 mb-4">
+              React · TypeScript · Supabase · Vitest · XLSX
+            </span>
           </div>
-          <h3 className="evidence__title">Atlas Notarial — Automação Notarial</h3>
-          <p className="evidence__desc">Plataforma em produção no Cartório Gaya. Automação via API do Detran-RS que reduziu a emissão de procurações de veículo de 5min para 20s com 100% de precisão.</p>
-          <span className="evidence__tag">Next.js · TypeScript · APIs REST · Vitest</span>
-          <div className="evidence__footer"><span className="evidence__action" style={{ color: '#ef4444' }}>🔒 PROJETO PRIVADO (DADOS NOTARIAIS SENSÍVEIS)</span></div>
+
+          <div className="flex items-center gap-3 pt-3 border-t border-white/5 text-xs font-mono font-bold">
+            <a
+              href="https://ckf-manutencao-orcamentos.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-xl bg-[var(--gold)] text-[#0b1120] hover:bg-amber-400 flex items-center gap-1.5 transition-all shadow-md"
+            >
+              <span>DEMO AO VIVO</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="https://github.com/Kauerc10/ckf-manutencao-orcamentos"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-[var(--gold)]/40 flex items-center gap-1.5 transition-all"
+            >
+              <span>REPOSITÓRIO</span>
+              <GitBranch className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
-        {/* FOLI */}
-        <div className="evidence__folder anim-slide magnetic" data-cursor="FOLI" id="project-foli">
-          <div className="evidence__seal evidence__seal--live">OPEN SOURCE</div>
-          <div className="evidence__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
+        {/* CASE STUDY 4: FOLI LIB */}
+        <div
+          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[var(--gold)] transition-all duration-300 shadow-xl flex flex-col justify-between"
+          id="project-foli"
+        >
+          <div>
+            {/* Header / Seal */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[10px] px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/30 font-mono flex items-center gap-1.5 font-bold">
+                <Zap className="w-3 h-3 text-purple-400" />
+                OPEN SOURCE · LIB TYPESCRIPT
+              </span>
+              <GitBranch className="w-5 h-5 text-purple-400" />
+            </div>
+
+            <h3 className="text-xl font-extrabold text-white mb-2 tracking-tight">Foli — PDF Layout Engine em TypeScript</h3>
+
+            {/* Mini Case Study Structure */}
+            <div className="space-y-3 text-xs text-gray-300 font-mono my-4 border-y border-white/10 py-4">
+              <div>
+                <strong className="text-purple-400 block text-[11px] uppercase tracking-wider mb-0.5">■ O PROBLEMA:</strong>
+                <p className="text-gray-400 leading-relaxed">Quebras de layout e overflow inesperado ao gerar PDFs complexos no Node.js e navegador.</p>
+              </div>
+
+              <div>
+                <strong className="text-emerald-400 block text-[11px] uppercase tracking-wider mb-0.5">⚡ ENGENHARIA DA LIB:</strong>
+                <p className="text-gray-300 leading-relaxed">
+                  Fluent Builder API com motor de layout que garante zero overflow, primitivas nativas e suporte Unicode pt-BR.
+                </p>
+              </div>
+            </div>
+
+            <span className="inline-block px-3 py-1 rounded-lg bg-white/5 text-[11px] text-gray-300 font-mono border border-white/10 mb-4">
+              TypeScript · PDF Engine · Open Source · Zero-Overflow
+            </span>
           </div>
-          <h3 className="evidence__title">Foli</h3>
-          <p className="evidence__desc">Biblioteca TypeScript para geração de PDF em Node.js e navegador. Fluent Builder API, motor de layout com garantia de zero overflow, primitivas nativas e suporte Unicode pt-BR.</p>
-          <span className="evidence__tag">TypeScript · PDF · Layout Engine</span>
-          <div className="evidence__footer">
-            <a href="https://github.com/Kauerc10/foli" target="_blank" rel="noopener" className="evidence__link-btn">💻 REPO ON GITHUB ↗</a>
+
+          <div className="flex items-center gap-3 pt-3 border-t border-white/5 text-xs font-mono font-bold">
+            <a
+              href="https://github.com/Kauerc10/foli"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-xl bg-purple-600/90 text-white hover:bg-purple-500 flex items-center gap-1.5 transition-all shadow-md"
+            >
+              <span>VER NO GITHUB</span>
+              <GitBranch className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
+
       </div>
 
-      {/* GitHub Telemetry — discreto, após os cards */}
+      {/* GitHub Telemetry — discreto, como assinatura de código no rodapé da seção */}
       <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         <GithubLiveStats />
       </div>
