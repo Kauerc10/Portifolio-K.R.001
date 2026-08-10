@@ -19,9 +19,8 @@ export default function ContatoSection() {
       <h2 className="section__title" data-cipher>SOLICITAR CONTATO</h2>
 
       {/* Formulário Principal da Petição */}
-      <form className="peticao" id="peticaoForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
-        <input type="checkbox" name="botcheck" className="peticao__honeypot" tabIndex={-1} autoComplete="off" />
+      <form className="peticao" id="peticaoForm" action="/api/contato" method="POST">
+        <input type="text" name="botcheck" className="sr-only hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
         <div className="peticao__field">
           <label className="peticao__label">REQUERENTE (seu nome)</label>

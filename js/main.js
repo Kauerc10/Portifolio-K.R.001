@@ -75,24 +75,16 @@
         const feedback = document.getElementById('peticaoFeedback');
         if (!form || !btn) return;
 
-        const accessKey = form.querySelector('input[name="access_key"]');
-        const isConfigured = accessKey && accessKey.value !== 'SEU_ACCESS_KEY_AQUI';
+        const mountedAt = Date.now();
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Honeypot preenchido = bot, ignora silenciosamente
-            const honeypot = form.querySelector('input[name="botcheck"]');
-            if (honeypot && honeypot.checked) return;
+            const formData = Object.fromEntries(new FormData(form));
+            formData.fillTime = Date.now() - mountedAt;
 
-            // Access key não configurada — feedback honesto (não finge envio)
-            if (!isConfigured) {
-                if (feedback) {
-                    feedback.textContent = '⚠ Formulário em configuração. Use o email direto: kaue.ruon@gmail.com';
-                    feedback.className = 'peticao__feedback peticao__feedback--error';
-                }
-                return;
-            }
+            // Honeypot preenchido = bot, ignora silenciosamente
+            if (formData.botcheck && String(formData.botcheck).trim().length > 0) return;
 
             // Estado de envio
             btn.classList.add('sending');
@@ -100,18 +92,18 @@
             if (feedback) feedback.textContent = '';
 
             try {
-                const res = await fetch(form.action, {
+                const res = await fetch(form.action || '/api/contato', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify(Object.fromEntries(new FormData(form))),
+                    body: JSON.stringify(formData),
                 });
                 const data = await res.json();
 
-                if (data.success) {
+                if (res.ok && data.success) {
                     btn.classList.remove('sending');
                     btn.classList.add('sent');
                     if (feedback) {
-                        feedback.textContent = '✓ Mensagem enviada! Respondo em breve.';
+                        feedback.textContent = '✓ Petição protocolada! Respondo em breve.';
                         feedback.className = 'peticao__feedback peticao__feedback--success';
                     }
                     setTimeout(() => {
@@ -120,13 +112,13 @@
                         btn.disabled = false;
                     }, 2500);
                 } else {
-                    throw new Error(data.message || 'Falha no envio');
+                    throw new Error(data.error || data.message || 'Falha no protocolo');
                 }
             } catch (err) {
                 btn.classList.remove('sending');
                 btn.disabled = false;
                 if (feedback) {
-                    feedback.textContent = '⚠ Não foi possível enviar. Tente pelo email: kaue.ruon@gmail.com';
+                    feedback.textContent = `⚠ ${err.message || 'Não foi possível protocolar. Tente pelo email: kaue.ruon@gmail.com'}`;
                     feedback.className = 'peticao__feedback peticao__feedback--error';
                 }
                 console.error('[form] erro:', err);
