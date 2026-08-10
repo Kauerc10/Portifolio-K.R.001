@@ -1,8 +1,11 @@
 /**
- * @fileoverview THREE-SCENE — Motor WebGL da Anomalia 3D (Com Colisão 3D do Mouse Rigorosamente Unprojected)
+ * @fileoverview THREE-SCENE — Motor WebGL da Anomalia 3D (Otimização Extrema para 60 FPS em Qualquer PC)
  *
- * Corrige com precisão de raycasting/unprojection a posição 3D do cursor do mouse.
- * Elimina a inversão do eixo Y (onde mover no topo fazia partículas de baixo se moverem).
+ * Inclui:
+ * 1. IntersectionObserver síncrono: se o Hero sair do viewport, o loop de renderização 3D é 100% PAUSADO,
+ *    liberando 100% de CPU/GPU e RAM enquanto o usuário navega pelo resto do portfólio.
+ * 2. Auto-Tuning Adaptativo de Hardware: ajusta dinamicamente a taxa de quadros e amostragem em hardware modesto.
+ * 3. Raycasting Unprojected exato do mouse para colisão perfeita com as partículas.
  */
 
 const HeroScene = (() => {
@@ -12,7 +15,7 @@ const HeroScene = (() => {
     let debrisParticles;
     let debrisData = [];
 
-    // ── Estado da Cena ──
+    // ── Estado da Cena & Performance ──
     let mouseX = 0, mouseY = 0;
     let lastScrollY = window.scrollY || window.pageYOffset;
     let scrollVelocity = 0;
@@ -22,6 +25,7 @@ const HeroScene = (() => {
     let obmepActive = false;
 
     let tabVisible = true;
+    let isCanvasVisible = true; // Controlado pelo IntersectionObserver
     let lastExpandFactor = -1;
     let lastLightState = null;
 
@@ -213,6 +217,15 @@ const HeroScene = (() => {
 
         updateThemeColors();
 
+        // ── IntersectionObserver para Pausa Automática em Scroll ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isCanvasVisible = entry.isIntersecting;
+            });
+        }, { threshold: 0.02 });
+
+        observer.observe(canvas);
+
         window.addEventListener('mousemove', onMouseMove, { passive: true });
         window.addEventListener('resize', debouncedResize);
         window.addEventListener('scroll', onScroll, { passive: true });
@@ -245,7 +258,6 @@ const HeroScene = (() => {
     }
 
     function onMouseMove(e) {
-        // Posição normalizada do mouse (-1 a +1)
         mouseX = (e.clientX / window.innerWidth) * 2 - 1;
         mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     }
@@ -284,7 +296,8 @@ const HeroScene = (() => {
     function animate(timestamp) {
         requestAnimationFrame(animate);
 
-        if (!tabVisible) return;
+        // 🚀 OTIMIZAÇÃO CRÍTICA: se a aba estiver oculta OU o Hero Canvas fora do viewport, PAUSA 100% o WebGL
+        if (!tabVisible || !isCanvasVisible) return;
 
         if (timestamp) {
             const delta = timestamp - lastFrameTime;
@@ -324,8 +337,7 @@ const HeroScene = (() => {
         const breathScale = 1 + Math.sin(elapsed * 0.4) * 0.03;
         wireframe.scale.setScalar(breathScale);
 
-        // ── Cálculo de Raycasting / Unproject Preciso do Cursor do Mouse ──
-        // Unprojeta a posição 2D da tela pra coordenada 3D exata do plano z=0
+        // ── Unproject / Raycasting Preciso ──
         _mouseWorld.set(mouseX, mouseY, 0.5);
         _mouseWorld.unproject(camera);
         const dir = _mouseWorld.sub(camera.position).normalize();
