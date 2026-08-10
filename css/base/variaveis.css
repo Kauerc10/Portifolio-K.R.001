@@ -2,19 +2,6 @@
  * ═══════════════════════════════════════════════════════
  *  VARIÁVEIS GLOBAIS — Design System do Processo K.R.001
  * ═══════════════════════════════════════════════════════
- *
- *  Aqui ficam todas as variáveis CSS do projeto.
- *  Se precisar mudar uma cor ou fonte, é aqui que muda.
- *  Nada de ir caçando hex code por 1931 linhas de CSS.
- *
- *  Paleta principal:
- *  - void    → o fundo do universo (escuro ou claro)
- *  - ink     → fundo dos cards
- *  - signal  → azul elétrico dos links/destaques
- *  - stamp   → dourado cartorário (cor principal)
- *  - text    → texto principal
- *  - ghost   → cinza médio pra elementos secundários
- * ═══════════════════════════════════════════════════════
  */
 
 :root {
@@ -52,41 +39,75 @@ html.light body {
     color: var(--text);
 }
 
-html.light .section__title {
-    color: #0f172a;
+html.light .section__title,
+html.light .hero__title,
+html.light .evidence__title,
+html.light .obmep-card__title,
+html.light .timeline__title {
+    color: #0f172a !important;
 }
 
 html.light .section__article {
-    color: #b48312;
+    color: #b48312 !important;
 }
 
 html.light .nav {
-    background: rgba(248, 250, 252, 0.85);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+    background: rgba(248, 250, 252, 0.9) !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
 }
 
 html.light .nav__link {
-    color: #334155;
+    color: #334155 !important;
 }
 
-html.light .nav__link:hover {
-    color: #0f172a;
+html.light .nav__link:hover,
+html.light .nav__link.active {
+    color: #0f172a !important;
+}
+
+html.light .nav__indicator {
+    color: #b48312 !important;
+}
+
+html.light .hero__subtitle,
+html.light .sobre__paragraph,
+html.light .evidence__desc,
+html.light .timeline__company,
+html.light .peticao__label {
+    color: #334155 !important;
 }
 
 html.light .evidence__folder,
 html.light .sobre__card,
-html.light .obmep-card {
-    background: #ffffff;
-    border-color: rgba(15, 23, 42, 0.15);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+html.light .obmep-card,
+html.light .timeline__content {
+    background: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
 }
 
-html.light .evidence__title,
-html.light .obmep-card__title {
-    color: #0f172a;
+html.light .peticao__input,
+html.light .peticao__textarea {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
 }
 
-html.light .evidence__desc,
-html.light .sobre__paragraph {
-    color: #334155;
+html.light .peticao__input::placeholder,
+html.light .peticao__textarea::placeholder {
+    color: #64748b !important;
+}
+
+html.light .peticao__input:focus,
+html.light .peticao__textarea:focus {
+    border-color: #b48312 !important;
+}
+
+html.light .sobre__card-row {
+    color: #0f172a !important;
+    border-bottom-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .sobre__card-label {
+    color: #64748b !important;
 }
