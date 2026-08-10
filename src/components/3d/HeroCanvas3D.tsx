@@ -28,7 +28,7 @@ export default function HeroCanvas3D() {
 
     // ── 1. Icosaedro Wireframe com Shader GLSL ──
     const geometry = new THREE.IcosahedronGeometry(1.8, 2);
-    
+
     const uniforms = {
       uTime: { value: 0 },
       uColor: { value: new THREE.Color(0x2563eb) },
@@ -170,17 +170,14 @@ export default function HeroCanvas3D() {
       const elapsedTime = clock.getElapsedTime();
       uniforms.uTime.value = elapsedTime;
 
-      // Amortecer o glitch de scroll
       scrollVel *= 0.92;
       uniforms.uGlitch.value = Math.max(uniforms.uGlitch.value * 0.95, scrollVel);
 
-      // Rotação suave do Icosaedro e câmera
       icosahedron.rotation.x = elapsedTime * 0.2 + mouseY * 0.3;
       icosahedron.rotation.y = elapsedTime * 0.3 + mouseX * 0.3;
 
       particles.rotation.y = elapsedTime * 0.05;
 
-      // Animação de física suave dos debris
       for (let i = 0; i < debrisCount; i++) {
         const d = debrisData[i];
         d.x += Math.sin(elapsedTime + i) * 0.002;
@@ -212,7 +209,8 @@ export default function HeroCanvas3D() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 w-full h-full opacity-60"
+      id="heroCanvas"
+      className="global-3d-bg"
     />
   );
 }
