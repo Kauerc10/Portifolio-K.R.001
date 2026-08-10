@@ -127,6 +127,54 @@ html.light .obmep-card__year {
     color: #475569 !important;
 }
 
+.golden-text {
+    color: var(--stamp) !important;
+}
+
+html.light .golden-text {
+    color: #b48312 !important;
+}
+
+html.light .obmep-card__content {
+    background: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .obmep-card__content::after {
+    color: #475569 !important;
+}
+
+html.light .obmep-card__title {
+    color: #0f172a !important;
+}
+
+html.light .obmep-timeline-track {
+    background: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .obmep-node-marker {
+    border-color: rgba(15, 23, 42, 0.3) !important;
+    background: #ffffff !important;
+}
+
+html.light .timeline__line {
+    background: rgba(15, 23, 42, 0.15) !important;
+}
+
+html.light .timeline__dot {
+    border: 2px solid #ffffff !important;
+}
+
+html.light .timeline__highlight {
+    background: rgba(212, 160, 23, 0.08) !important;
+    border-color: rgba(212, 160, 23, 0.3) !important;
+}
+
+html.light .timeline__highlight p {
+    color: #334155 !important;
+}
+
 html.light .peticao__input,
 html.light .peticao__textarea {
     background: #ffffff !important;

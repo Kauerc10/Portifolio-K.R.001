@@ -143,7 +143,7 @@ export default function GithubLiveStats() {
             </a>
             <div style={{
               fontFamily: 'var(--font-mono, monospace)', fontSize: '0.6rem',
-              color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em', marginTop: '0.15rem',
+              color: 'var(--ghost, #475569)', letterSpacing: '0.12em', marginTop: '0.15rem',
             }}>
               {animatedRepos} REPOS PÚBLICOS · {animatedFollowers} SEGUIDORES
             </div>
@@ -155,13 +155,13 @@ export default function GithubLiveStats() {
           <div style={{
             fontFamily: 'var(--font-heading, Syne, sans-serif)',
             fontSize: 'clamp(3rem, 8vw, 4.5rem)', fontWeight: 900,
-            color: 'white', lineHeight: 1, letterSpacing: '-0.03em',
+            color: 'var(--text, #0f172a)', lineHeight: 1, letterSpacing: '-0.03em',
           }}>
             {animatedContributions}
           </div>
           <div style={{
             fontFamily: 'var(--font-mono, monospace)', fontSize: '0.65rem',
-            color: 'rgba(255,255,255,0.4)', letterSpacing: '0.15em', marginTop: '0.35rem',
+            color: 'var(--ghost, #475569)', letterSpacing: '0.15em', marginTop: '0.35rem',
           }}>
             CONTRIBUIÇÕES EM {activeYear}
           </div>
@@ -176,10 +176,10 @@ export default function GithubLiveStats() {
               style={{
                 fontFamily: 'var(--font-mono, monospace)', fontSize: '0.65rem',
                 padding: '0.35rem 0.75rem',
-                border: activeYear === yr ? '1px solid var(--gold, #d4a017)' : '1px solid rgba(255,255,255,0.1)',
+                border: activeYear === yr ? '1px solid var(--gold, #d4a017)' : '1px solid var(--ghost, rgba(15,23,42,0.2))',
                 borderRadius: '4px',
                 background: activeYear === yr ? 'rgba(212,160,23,0.08)' : 'transparent',
-                color: activeYear === yr ? 'var(--gold, #d4a017)' : 'rgba(255,255,255,0.3)',
+                color: activeYear === yr ? 'var(--gold, #d4a017)' : 'var(--ghost, #475569)',
                 cursor: 'pointer', letterSpacing: '0.1em',
                 fontWeight: activeYear === yr ? 700 : 400, transition: 'all 0.3s ease',
               }}
@@ -193,7 +193,7 @@ export default function GithubLiveStats() {
         <div style={fadeStyle(0.55)}>
           <div style={{
             height: 3, borderRadius: 2, overflow: 'hidden',
-            backgroundColor: 'rgba(255,255,255,0.06)', marginBottom: '0.5rem',
+            backgroundColor: 'rgba(15,23,42,0.08)', marginBottom: '0.5rem',
           }}>
             <div style={{
               display: 'flex', height: '100%', width: '100%',
@@ -208,7 +208,7 @@ export default function GithubLiveStats() {
           <div style={{
             display: 'flex', gap: '1.25rem',
             fontFamily: 'var(--font-mono, monospace)', fontSize: '0.6rem',
-            color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em',
+            color: 'var(--ghost, #475569)', letterSpacing: '0.08em',
           }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#39d353', display: 'inline-block' }} />
@@ -238,7 +238,7 @@ export default function GithubLiveStats() {
             {/* Background ring */}
             <circle
               cx={ringSize / 2} cy={ringSize / 2} r={radius}
-              fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth={strokeWidth}
+              fill="none" stroke="var(--ghost, rgba(15,23,42,0.1))" strokeWidth={strokeWidth}
             />
             {/* Commits arc (green) */}
             <circle
@@ -274,13 +274,13 @@ export default function GithubLiveStats() {
           }}>
             <div style={{
               fontFamily: 'var(--font-heading, Syne, sans-serif)',
-              fontSize: '1.5rem', fontWeight: 800, color: 'white', lineHeight: 1,
+              fontSize: '1.5rem', fontWeight: 800, color: 'var(--text, #0f172a)', lineHeight: 1,
             }}>
               {animatedTotal}
             </div>
             <div style={{
               fontFamily: 'var(--font-mono, monospace)',
-              fontSize: '0.5rem', color: 'rgba(255,255,255,0.3)',
+              fontSize: '0.5rem', color: 'var(--ghost, #475569)',
               letterSpacing: '0.1em', marginTop: '0.15rem',
             }}>
               TOTAL
