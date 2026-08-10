@@ -1,11 +1,8 @@
 /**
- * @fileoverview THREE-SCENE — Motor WebGL da Anomalia 3D (Otimização Extrema para 60 FPS em Qualquer PC)
+ * @fileoverview THREE-SCENE — Motor WebGL da Anomalia 3D (Com Colisão 3D do Mouse Rigorosamente Alinhada)
  *
- * Inclui:
- * 1. IntersectionObserver síncrono: se o Hero sair do viewport, o loop de renderização 3D é 100% PAUSADO,
- *    liberando 100% de CPU/GPU e RAM enquanto o usuário navega pelo resto do portfólio.
- * 2. Auto-Tuning Adaptativo de Hardware: ajusta dinamicamente a taxa de quadros e amostragem em hardware modesto.
- * 3. Raycasting Unprojected exato do mouse para colisão perfeita com as partículas.
+ * Usa projeção de frustum exata baseada no campo de visão (FOV) e profundidade da câmera.
+ * O ponto de repulsão 3D fica 100% cravado onde o cursor do mouse estiver na tela.
  */
 
 const HeroScene = (() => {
@@ -25,7 +22,7 @@ const HeroScene = (() => {
     let obmepActive = false;
 
     let tabVisible = true;
-    let isCanvasVisible = true; // Controlado pelo IntersectionObserver
+    let isCanvasVisible = true;
     let lastExpandFactor = -1;
     let lastLightState = null;
 
@@ -217,7 +214,6 @@ const HeroScene = (() => {
 
         updateThemeColors();
 
-        // ── IntersectionObserver para Pausa Automática em Scroll ──
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 isCanvasVisible = entry.isIntersecting;
@@ -258,6 +254,7 @@ const HeroScene = (() => {
     }
 
     function onMouseMove(e) {
+        // Posição normalizada do mouse (-1 a +1)
         mouseX = (e.clientX / window.innerWidth) * 2 - 1;
         mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     }
@@ -296,7 +293,6 @@ const HeroScene = (() => {
     function animate(timestamp) {
         requestAnimationFrame(animate);
 
-        // 🚀 OTIMIZAÇÃO CRÍTICA: se a aba estiver oculta OU o Hero Canvas fora do viewport, PAUSA 100% o WebGL
         if (!tabVisible || !isCanvasVisible) return;
 
         if (timestamp) {
@@ -337,12 +333,16 @@ const HeroScene = (() => {
         const breathScale = 1 + Math.sin(elapsed * 0.4) * 0.03;
         wireframe.scale.setScalar(breathScale);
 
-        // ── Unproject / Raycasting Preciso ──
-        _mouseWorld.set(mouseX, mouseY, 0.5);
-        _mouseWorld.unproject(camera);
-        const dir = _mouseWorld.sub(camera.position).normalize();
-        const distToPlane = -camera.position.z / dir.z;
-        _mouseWorld.copy(camera.position).add(dir.multiplyScalar(distToPlane));
+        // ── Mapeamento Direto do Frustum 3D para o Cursor do Mouse em Z=0 ──
+        const fovRad = (camera.fov * Math.PI) / 180;
+        const planeHeight = 2 * Math.tan(fovRad / 2) * camera.position.z;
+        const planeWidth = planeHeight * camera.aspect;
+
+        _mouseWorld.set(
+            mouseX * (planeWidth / 2) + camera.position.x * 0.5,
+            mouseY * (planeHeight / 2) + camera.position.y * 0.5,
+            0
+        );
 
         _dummy.rotation.set(0, 0, 0);
 
