@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true, message: 'Petição recebida com sucesso.' });
     }
 
-    // 3. Tempo Mínimo de Preenchimento (Humano leva pelo menos 3 segundos)
+    // 3. Tempo Mínimo de Preenchimento (Humano leva pelo menos 2.5 segundos)
     if (typeof fillTime === 'number' && fillTime < 2500) {
       console.warn(`[Anti-Bot API] Preenchimento suspeito em ${fillTime}ms pelo IP ${ip}. Descartando.`);
       return NextResponse.json({ success: true, message: 'Petição recebida com sucesso.' });
@@ -66,8 +66,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Todos os campos são obrigatórios.' }, { status: 400 });
     }
 
-    // 6. Encaminhamento para o Web3Forms com Título Notarial Formatado
-    const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY || 'YOUR_WEB3FORMS_KEY';
+    // 6. Encaminhamento para o Web3Forms utilizando a variável de ambiente das Vercel Settings
+    const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY;
+
+    if (!web3formsAccessKey) {
+      console.error('[API /api/contato] WEB3FORMS_ACCESS_KEY não configurada no ambiente.');
+      return NextResponse.json(
+        { error: 'Formulário em manutenção temporária. Por favor, envie diretamente para: kaue.ruon@gmail.com' },
+        { status: 500 }
+      );
+    }
 
     const web3Payload = {
       access_key: web3formsAccessKey,
