@@ -136,9 +136,29 @@ const Loader = (() => {
    * antes de começar a animar.
    */
   function init() {
+    const el = document.getElementById('loader');
+
+    // Se o loader já foi exibido nesta sessão ou se é uma troca de idioma/rota, ocultar em 0ms
+    if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('loader_seen') === 'true') {
+      if (el) {
+        el.style.display = 'none';
+        el.style.opacity = '0';
+        el.style.pointerEvents = 'none';
+      }
+      document.body.style.overflow = '';
+      window.dispatchEvent(new CustomEvent('loaderDone'));
+      return;
+    }
+
+    try {
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem('loader_seen', 'true');
+      }
+    } catch (e) {}
+
     document.body.style.overflow = 'hidden'; // Trava o scroll
 
-    setTimeout(runSequence, 500);
+    setTimeout(runSequence, 300);
 
     // Libera o scroll quando o loader terminar
     window.addEventListener('loaderDone', () => {

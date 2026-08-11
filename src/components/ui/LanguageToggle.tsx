@@ -33,13 +33,24 @@ export default function LanguageToggle() {
     const hashString = typeof window !== 'undefined' ? window.location.hash : '';
     const targetUrl = `${newPath}${searchString}${hashString}`;
 
-    // Atualizar o cookie via JS para sincronização imediata
-    document.cookie = `portfolio_lang=${targetLocale}; path=/; max-age=31536000; SameSite=Lax`;
+    // Atualizar cookie e marcar loader como visto na sessão antes da navegação
+    try {
+      document.cookie = `portfolio_lang=${targetLocale}; path=/; max-age=31536000; SameSite=Lax`;
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem('loader_seen', 'true');
+      }
+    } catch (e) {}
 
-    if (typeof document !== 'undefined' && 'startViewTransition' in document) {
-      (document as any).startViewTransition(() => {
-        router.push(targetUrl);
-      });
+    // Ocultar o elemento loader do DOM se ele existir antes de navegar
+    const loaderEl = document.getElementById('loader');
+    if (loaderEl) {
+      loaderEl.style.display = 'none';
+      loaderEl.style.opacity = '0';
+      loaderEl.style.pointerEvents = 'none';
+    }
+
+    if (typeof window !== 'undefined') {
+      window.location.href = targetUrl;
     } else {
       router.push(targetUrl);
     }
