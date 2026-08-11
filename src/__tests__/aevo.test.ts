@@ -15,6 +15,7 @@ describe('AevoProviderFactory (Agente de IA ÆVO)', () => {
 
   it('deve respeitar a ordem configurável de providers e ignorar valores inválidos', () => {
     expect(AevoProviderFactory.getProviderOrder({
+      NODE_ENV: 'test',
       AEVO_PROVIDER_ORDER: 'groq, openai,invalid,groq,gemini',
     })).toEqual(['groq', 'openai', 'gemini']);
   });
