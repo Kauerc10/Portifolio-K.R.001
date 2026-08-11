@@ -16,92 +16,153 @@
     "ready": "SISTEMA PRONTO. ROLE PARA EXPLORAR."
   },
   "hero": {
-    "greeting": "ENGENHARIA DE SOFTWARE & INTELIGÊNCIA ARTIFICIAL",
+    "greeting": "AI ENGINEER · BLUMENAU / SC · 2026",
     "nameWhite": "KAUÊ",
     "nameGold": "RUON",
     "nameOutline": "CARDOSO",
-    "subtitle": "Desenvolvedor Full Stack & Especialista em Automação RAG com Foco Notarial de Tolerância Zero a Erros.",
+    "subtitle": "Construindo software com IA generativa",
     "roles": [
-      "Desenvolvedor Full Stack",
-      "Engenheiro de IA & Automação RAG",
-      "Arquiteto de Sistemas Notariais",
-      "Medalhista OBMEP de Matemática"
+      "Construindo com IA generativa",
+      "Automatizando processos reais",
+      "Conectando todas as peças"
     ],
-    "ctaProjects": "Ver Projetos",
-    "ctaContact": "Protocolar Contato",
-    "statExperience": "Anos de Prática Técnica",
-    "statCommits": "Commits Auditados no GitHub",
-    "statProjects": "Projetos em Produção"
+    "ctaProjects": "VER PROJETOS",
+    "ctaResume": "CURRÍCULO.PDF",
+    "footnote": "Nenhum processo foi arquivado na criação deste site."
   },
   "sobre": {
     "title": "SOBRE MIM",
-    "subtitle": "ENGENHARIA DE SOFTWARE E PRECISÃO NOTARIAL",
-    "badge": "VISÃO & VALORES",
-    "quote": "“A precisão notarial exige fé pública e rigor absoluto. Trago essa mesma disciplina jurídica para a arquitetura de software: código limpo, auditável e tolerância zero a falhas.”",
-    "bioP1": "Sou Engenheiro de Software Full Stack com sólida atuação em desenvolvimento web moderno (React, Next.js 15, TypeScript, Node.js, Python), automações inteligentes de processos e agentes de Inteligência Artificial Generativa (RAG / Tool Calling).",
-    "bioP2": "Possuo vivência técnica e jurídica em Cartório de Notas e Protesto, o que moldou minha visão em construir sistemas com máxima integridade de dados, alta disponibilidade, segurança cibernética corporativa e conformidade estrita com LGPD.",
-    "card1Title": "Tolerância Zero a Erros",
-    "card1Desc": "Arquitetura planejada para evitar bugs e falhas críticas em ambiente de produção.",
-    "card2Title": "Agentes de IA Generativa",
-    "card2Desc": "Sistemas RAG personalizados, automação de fluxos notariais e atendimento autônomo.",
-    "card3Title": "Performance & 60 FPS",
-    "card3Desc": "Aceleração por GPU, renderização WebGL otimizada e zero jank em qualquer dispositivo."
-  },
-  "experiencia": {
-    "title": "EXPERIÊNCIA PROFISSIONAL",
-    "subtitle": "TRAJETÓRIA TÉCNICA E IMPACTO EM PRODUÇÃO",
-    "roles": [
+    "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório — e de volta pra tecnologia.",
+    "bioP2": "Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou automatizar processos, mesmo sem ninguém me pedir.",
+    "bioP3": "Construo software guiando IA generativa (Claude, GPT) como ferramenta primária — de protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é decompor o problema, estruturar a instrução e conectar as peças até o fluxo inteiro funcionar. É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.",
+    "badge": "FICHA TÉCNICA",
+    "fields": [
       {
-        "period": "JUL 2026 — PRESENTE",
-        "title": "Engenheiro de Software & Inovação Notarial",
-        "company": "Serviços Notariais e Registrais / LegalTech",
-        "location": "Brasil",
-        "description": "Liderança e desenvolvimento de plataformas web modernas e agentes de IA para automação de minuta de escrituras, procurações e triagem de documentos.",
-        "achievements": [
-          "Desenvolvimento de plataformas web integradas com APIs de IA para automação documental.",
-          "Implementação de pipeline RAG com busca semântica para consulta rápida a provimentos e legislação.",
-          "Otimização de rotinas com redução de 70% no tempo de elaboração de minutas complexas."
-        ],
-        "skills": [
-          "Next.js 15",
-          "TypeScript",
-          "Python",
-          "RAG / Gemini API",
-          "Tailwind CSS",
-          "Node.js"
-        ]
+        "label": "NOME",
+        "value": "Kauê Ruon Cardoso"
       },
       {
-        "period": "JAN 2025 — JUN 2026",
-        "title": "Desenvolvedor Full Stack & Automação de Processos",
-        "company": "Cartório de Notas e Protesto / Consultoria Tech",
-        "location": "Santa Catarina, Brasil",
-        "description": "Construção de sistemas internos para gestão de certidões, automação de fluxos operacionais e atendimento digital notarial.",
+        "label": "ORIGEM",
+        "value": "Blumenau / SC"
+      },
+      {
+        "label": "STACK",
+        "value": "TS · React/Next.js · IA"
+      },
+      {
+        "label": "DISTINÇÃO",
+        "value": "Prata OBMEP Regional · Bronze Nacional"
+      },
+      {
+        "label": "STATUS",
+        "value": "ATIVO"
+      }
+    ],
+    "authenticated": "AUTENTICADO ✓"
+  },
+  "experiencia": {
+    "title": "DO HISTÓRICO DE ATUAÇÃO",
+    "roles": [
+      {
+        "period": "Jul 2026 → ATUAL",
+        "status": "EM DESENVOLVIMENTO",
+        "title": "Founder & Builder — DocFácil",
+        "company": "K-HUB Soluções",
+        "location": "github.com/Kauerc10/docfacil ↗",
+        "description": "Plataforma Next.js que gera documentos legais conversando com o usuário. Construí uma camada agnóstica de provedor (`AIProvider`) com factory por env var, API route server-side (`/api/ai/generate`) que mantém a chave secreta no servidor, streaming de respostas e tratamento de erro tipado (`AIError`). Providers reais (OpenAI / Anthropic / Gemini) são pluggáveis sem tocar no resto do app.",
         "achievements": [
-          "Criação de ferramentas web para validação automática de dados de certidões e matrículas.",
-          "Desenvolvimento do agente de IA ÆVO para suporte notarial interativo aos usuários.",
-          "Mitigação de erros de digitação e triagem prévia automatizada de requerimentos."
+          "Interface conversacional (chat guiado) com preview do documento em tempo real.",
+          "Camada de IA desacoplada — trocar de LLM não exige mudar o front-end."
         ],
         "skills": [
-          "React",
-          "JavaScript",
-          "Python",
-          "CSS3 / HTML5",
-          "Web3Forms API",
-          "Git / GitHub"
-        ]
+          "Next.js 16",
+          "TypeScript",
+          "Prisma",
+          "IA Generativa"
+        ],
+        "projectLabel": "ARQUITETURA DE IA: AI PROVIDER + STREAMING"
+      },
+      {
+        "period": "2023 → ATUAL",
+        "status": "EM CURSO",
+        "title": "Cartorário / Depto. de Procurações",
+        "company": "Cartório Gaya",
+        "location": "Blumenau/SC",
+        "description": "Construí uma automação que consome endpoints do Detran-RS pra gerar procurações de veículos automaticamente, eliminando digitação manual repetitiva. Está em produção no cartório até hoje — uma tarefa que tomava minutos virou poucos cliques.",
+        "achievements": [
+          "Redação de procurações, escrituras e inventários.",
+          "Melhoria não supervisionada de metodologias digitais.",
+          "Suporte e diagnóstico geral das redes e hardwares do ambiente."
+        ],
+        "skills": [
+          "Node.js",
+          "APIs REST",
+          "Automação"
+        ],
+        "projectLabel": "PROJETO DE INICIATIVA: ATLAS NOTARIAL"
+      },
+      {
+        "period": "Nov 2021 → Mar 2023",
+        "status": "CONCLUÍDO",
+        "title": "Técnico em Manutenção Apple",
+        "company": "iPhoneria",
+        "location": "Blumenau/SC",
+        "description": "Promoção rápida de estagiário para técnico de diagnóstico.",
+        "achievements": [
+          "Micro-soldadura, diagnóstico térmico e reparo de placas iOS.",
+          "Controle de estoque de peças e organização do fluxo de reparos.",
+          "Atendimento focado em traduzir problemas técnicos em respostas simples ao cliente."
+        ],
+        "skills": [],
+        "projectLabel": "PROGRESSÃO PROFISSIONAL"
       }
     ]
   },
   "skills": {
-    "title": "COMPETÊNCIAS TÉCNICAS",
-    "subtitle": "STACK TECNOLÓGICA E FERRAMENTAS DE ALTA PERFORMANCE",
-    "categories": {
-      "frontend": "Frontend & UI/UX",
-      "backend": "Backend & APIs",
-      "ai": "IA Generativa & Automação",
-      "tools": "DevOps & Ferramentas"
-    }
+    "title": "DAS COMPETÊNCIAS",
+    "subtitle": "O que eu realmente uso nos projetos (verificável nos repositórios públicos). Sem porcentagens inventadas — eu construo com IA como ferramenta primária e domino o fluxo de decompor, instruir e conectar.",
+    "groups": [
+      {
+        "title": "IA Generativa",
+        "items": [
+          "Integração de LLMs",
+          "Arquitetura de Providers",
+          "OpenAI / Anthropic / Gemini",
+          "Streaming de respostas",
+          "Prompt engineering"
+        ]
+      },
+      {
+        "title": "Construindo com",
+        "items": [
+          "JavaScript / TypeScript",
+          "React / Next.js",
+          "Supabase / Prisma",
+          "Node.js"
+        ]
+      },
+      {
+        "title": "Praticando",
+        "items": [
+          "APIs REST",
+          "Automação de processos",
+          "Testes unitários",
+          "Git / Deploy (Vercel)"
+        ]
+      },
+      {
+        "title": "Competências Complementares",
+        "items": [
+          "Gestão Documental",
+          "Atenção a Detalhes",
+          "Resolução de Problemas",
+          "Aprendizagem Rápida",
+          "Raciocínio Lógico",
+          "Trabalho em Equipe",
+          "Inglês (Intermediário)"
+        ]
+      }
+    ]
   },
   "conquistas": {
     "article": "Artigo IV",
@@ -170,44 +231,55 @@
     ]
   },
   "projetos": {
-    "title": "PROJETOS EM DESTAQUE",
-    "subtitle": "CASE STUDIES DE PRODUÇÃO E ENGENHARIA DE SOFTWARE",
-    "btnDemo": "Live Demo",
-    "btnRepo": "Repositório",
-    "privateRepo": "Repositório Privado",
+    "title": "DAS EVIDÊNCIAS DE PROJETO",
+    "btnDemo": "DEMO AO VIVO",
+    "btnRepo": "REPOSITÓRIO",
+    "privateRepo": "PROJETO PRIVADO (SISTEMA INTERNO EM PRODUÇÃO)",
+    "problemLabel": "O PROBLEMA:",
     "items": {
       "docfacil": {
-        "title": "DocFácil — Automação Notarial",
-        "tagline": "Gerador Autônomo de Minutas de Escrituras e Procurações Notariais",
-        "description": "Plataforma web avançada para cartórios que reduz em até 70% o tempo de elaboração de minutas notariais através de algoritmos de preenchimento inteligente e validação rigorosa."
+        "title": "DocFácil — IA Generativa em Documentos Legais",
+        "status": "DEMO AO VIVO · SAAS IA",
+        "problem": "Redação manual de documentos jurídicos propensa a inconsistências e burocracia desnecessária.",
+        "solution": "Plataforma Next.js 16 com camada de IA agnóstica (`AIProvider`), streaming server-side e suporte plugável a OpenAI, Anthropic e Gemini.",
+        "stack": "Next.js 16 · TypeScript · IA Generativa · RAG",
+        "solutionLabel": "SOLUÇÃO & ARQUITETURA:"
       },
       "atlas": {
-        "title": "Atlas Notarial — Gestão Jurisprudencial",
-        "tagline": "Motor de Consulta Semântica RAG para Legislação e Provimentos",
-        "description": "Sistema corporativo de busca semântica em normativas notariais e decisões da Corregedoria, permitindo aos tabeliães e escreventes consultar jurisprudência em milissegundos."
+        "title": "Atlas Notarial — Automação com API Detran-RS",
+        "status": "EM PRODUÇÃO · CARTÓRIO GAYA",
+        "problem": "Emissão manual de procurações de veículos levando 5 minutos de digitação por documento.",
+        "solution": "Tempo reduzido de 5 minutos para 20 segundos por procuração com 100% de precisão jurídica.",
+        "stack": "Node.js · REST APIs · Automação Notarial · Vitest",
+        "solutionLabel": "MÉTRICA DE IMPACTO:"
       },
       "ckf": {
-        "title": "CKF Manutenção — Gestão Industrial",
-        "tagline": "Sistema de Controle Operacional de Chamados e Manutenção",
-        "description": "Aplicação web responsiva para gerenciamento de ordens de serviço, agendamento de rotinas preventivas e controle de estoque de peças industriais."
+        "title": "CKF Manutenção — Orçamentos & Maquinário",
+        "status": "EM PRODUÇÃO · CORPORATIVO",
+        "problem": "Falta de controle centralizado para emissão de orçamentos de manutenção em máquinas pesadas.",
+        "solution": "Interface React com Supabase, exportação de relatórios (CSV/XLSX) e suíte de testes unitários automatizada com Vitest.",
+        "stack": "React · TypeScript · Supabase · Vitest · XLSX",
+        "solutionLabel": "ARQUITETURA & QUALIDADE:"
       },
       "folilib": {
-        "title": "Foli Lib — Biblioteca de Efeitos 3D WebGL",
-        "tagline": "Engine de Shaders GLSL e Partículas de Alta Performance para Web",
-        "description": "Biblioteca open-source de componentes e shaders WebGL acelerados por GPU para proporcionar experiências visuais 3D fluidas a 60 FPS com baixo consumo de memória."
+        "title": "Foli — PDF Layout Engine em TypeScript",
+        "status": "OPEN SOURCE · LIB TYPESCRIPT",
+        "problem": "Quebras de layout e overflow inesperado ao gerar PDFs complexos no Node.js e navegador.",
+        "solution": "Fluent Builder API com motor de layout que garante zero overflow, primitivas nativas e suporte Unicode pt-BR.",
+        "stack": "TypeScript · PDF Engine · Open Source · Zero-Overflow",
+        "solutionLabel": "ENGENHARIA DA LIB:"
       }
     }
   },
   "contato": {
-    "title": "PROTOCOLAR CONTATO",
-    "subtitle": "ABERTO A OPORTUNIDADES E PARCERIAS ESTRATÉGICAS",
-    "nameLabel": "Nome do Requerente",
+    "title": "ENTRE EM CONTATO",
+    "nameLabel": "REQUERENTE (seu nome)",
     "namePlaceholder": "Seu nome completo...",
-    "emailLabel": "E-mail de Resposta",
+    "emailLabel": "E-MAIL DE CONTATO",
     "emailPlaceholder": "seu.email@dominio.com...",
-    "subjectLabel": "Objeto da Petição / Assunto",
+    "subjectLabel": "OBJETO DO CONTATO (assunto)",
     "subjectPlaceholder": "Selecione o assunto...",
-    "messageLabel": "Teor da Mensagem",
+    "messageLabel": "EXPOSIÇÃO DOS FATOS (mensagem)",
     "messagePlaceholder": "Descreva detalhes do projeto ou oportunidade...",
     "btnSubmit": "Protocolar Solicitação",
     "btnSubmitting": "Protocolando...",
@@ -229,11 +301,12 @@
       "VALIDATION_ERROR": "Por favor, preencha todos os campos obrigatórios corretamente.",
       "SERVICE_UNAVAILABLE": "Serviço de e-mail temporariamente indisponível. Envie diretamente para kaue.ruon@gmail.com",
       "INTERNAL_ERROR": "Falha interna ao processar envio. Envie diretamente para kaue.ruon@gmail.com"
-    }
+    },
+    "location": "Blumenau / SC — Disponível para atuação remota e projetos globais",
+    "copied": "Copiado!"
   },
   "footer": {
-    "builtWith": "Construído com Next.js 15, TypeScript & Agente ÆVO AI.",
-    "copyright": "© 2026 Kauê Ruon Cardoso. Todos os direitos reservados. Precisão Notarial & Engenharia de Software."
+    "copyright": "© 2026 Kauê Ruon Cardoso · Construído com IA generativa como ferramenta de engenharia."
   },
   "modals": {
     "breachTitle": "PROTOCOLO DE VIOLAÇÃO ATIVADO",

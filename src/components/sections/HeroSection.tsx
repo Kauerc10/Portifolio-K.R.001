@@ -1,25 +1,7 @@
 import Link from 'next/link';
 import type { Dictionary } from '@/i18n/types';
 
-export default function HeroSection({ dict }: { dict?: Dictionary['hero'] }) {
-  const d = dict || {
-    greeting: 'ENGENHARIA DE SOFTWARE & INTELIGÊNCIA ARTIFICIAL',
-    nameWhite: 'KAUÊ',
-    nameGold: 'RUON',
-    nameOutline: 'CARDOSO',
-    subtitle: 'Desenvolvedor Full Stack & Especialista em Automação RAG com Foco Notarial de Tolerância Zero a Erros.',
-    roles: [
-      'Desenvolvedor Full Stack',
-      'Engenheiro de IA & Automação RAG',
-      'Arquiteto de Sistemas Notariais',
-      'Medalhista OBMEP de Matemática',
-    ],
-    ctaProjects: 'Ver Projetos',
-    ctaContact: 'Protocolar Contato',
-    statExperience: 'Anos de Prática Técnica',
-    statCommits: 'Commits Auditados no GitHub',
-    statProjects: 'Projetos em Produção',
-  };
+export default function HeroSection({ dict: d }: { dict: Dictionary['hero'] }) {
 
   return (
     <section className="hero section" id="hero" data-section="1">
@@ -41,11 +23,11 @@ export default function HeroSection({ dict }: { dict?: Dictionary['hero'] }) {
             {d.ctaProjects} ↓
           </Link>
           <a href="/curriculo_kaue.pdf" download="Kauê Ruon Cardoso - Currículo.pdf" className="btn btn--outline magnetic" data-cursor="BAIXAR">
-            CURRÍCULO.PDF
+            {d.ctaResume}
           </a>
         </div>
         <p className="hero__footnote mono-ghost">
-          {d.statExperience}: 2+ · {d.statCommits}: 850+ · {d.statProjects}: 4+
+          {d.footnote}
         </p>
       </div>
     </section>

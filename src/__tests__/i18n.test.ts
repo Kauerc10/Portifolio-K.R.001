@@ -50,6 +50,17 @@ describe('Suíte de Testes da Arquitetura i18n (Next.js 15 Nativo)', () => {
     expect(enUS.conquistas.medals[0].editionLabel).toBe('18th');
   });
 
+  it('preserva o conteúdo factual do portfólio original nos dois idiomas', () => {
+    expect(ptBR.sobre.bioP1).toContain('manutenção de placas de iPhone');
+    expect(ptBR.experiencia.roles).toHaveLength(3);
+    expect(ptBR.experiencia.roles[0].title).toBe('Founder & Builder — DocFácil');
+    expect(ptBR.experiencia.roles[1].company).toBe('Cartório Gaya');
+    expect(ptBR.skills.groups).toHaveLength(4);
+    expect(ptBR.projetos.items.atlas.solution).toContain('5 minutos para 20 segundos');
+    expect(enUS.experiencia.roles[2].title).toBe('Apple Repair Technician');
+    expect(enUS.projetos.items.folilib.title).toContain('PDF Layout Engine');
+  });
+
   it('deve validar locais suportados com isValidLocale', () => {
     expect(isValidLocale('pt-BR')).toBe(true);
     expect(isValidLocale('en-US')).toBe(true);
