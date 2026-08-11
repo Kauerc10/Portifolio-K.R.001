@@ -14,7 +14,7 @@
     "@ai-sdk/google": "^1.1.9",
     "@ai-sdk/openai": "^1.1.9",
     "@studio-freight/lenis": "^1.0.42",
-    "ai": "^4.1.41",
+    "ai": "^7.0.58",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.7",
     "gsap": "^3.12.7",
