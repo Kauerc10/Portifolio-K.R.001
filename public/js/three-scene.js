@@ -19,19 +19,18 @@ const HeroScene = (() => {
     let canvas;
     let scrollPct = 0;
     let particlePositionsOriginal = [];
-    let obmepActive = false;
 
     let tabVisible = true;
     let isCanvasVisible = true;
     let lastExpandFactor = -1;
     let lastLightState = null;
+    let obmepActive = false;
+    let availabilityActive = false;
 
     const _mouseWorld = new THREE.Vector3();
     const _dummy = new THREE.Object3D();
 
     let cachedDocHeight = 0;
-    let cardHoverActive = false;
-    let cardHoverLevel = 'none';
 
     // ════════════════════════════════
     //  SHADERS GLSL
@@ -233,21 +232,40 @@ const HeroScene = (() => {
             }
         });
 
-        window.addEventListener('breachProtocol', () => {
+        window.addEventListener('availabilityVisual', (event) => {
+            availabilityActive = Boolean(event.detail);
             if (typeof gsap !== 'undefined') {
-                gsap.to(uniforms.uColor.value, { r: 0.9, g: 0.1, b: 0.1, duration: 0.5 });
+                const color = availabilityActive
+                    ? { r: 1, g: 0.06, b: 0.08 }
+                    : obmepActive
+                        ? { r: 0.83, g: 0.63, b: 0.09 }
+                        : { r: 0.145, g: 0.388, b: 0.921 };
+                gsap.to(uniforms.uColor.value, { ...color, duration: 0.55, overwrite: true });
             }
         });
 
-        window.addEventListener('obmepSynergy', () => {
+        window.addEventListener('obmepSynergy', (event) => {
+            obmepActive = Boolean(event.detail);
+            if (availabilityActive) return;
             if (typeof gsap !== 'undefined') {
-                gsap.to(uniforms.uColor.value, { r: 0.83, g: 0.63, b: 0.09, duration: 1 });
+                const color = event.detail
+                    ? { r: 0.83, g: 0.63, b: 0.09 }
+                    : { r: 0.145, g: 0.388, b: 0.921 };
+                gsap.to(uniforms.uColor.value, { ...color, duration: 0.8, overwrite: true });
             }
         });
 
-        window.addEventListener('obmepHover', (e) => {
-            cardHoverActive = !!(e.detail && e.detail.active);
-            cardHoverLevel  = (e.detail && e.detail.level) || 'none';
+        window.addEventListener('obmepHover', (event) => {
+            if (availabilityActive || typeof gsap === 'undefined') return;
+            const { active, level } = event.detail;
+            const color = !active
+                ? { r: 0.83, g: 0.63, b: 0.09 }
+                : level === 'prata'
+                    ? { r: 0.58, g: 0.64, b: 0.72 }
+                    : level === 'bronze'
+                        ? { r: 0.83, g: 0.45, b: 0.12 }
+                        : { r: 0.06, g: 0.72, b: 0.51 };
+            gsap.to(uniforms.uColor.value, { ...color, duration: 0.4, overwrite: true });
         });
 
         animate();
@@ -280,11 +298,6 @@ const HeroScene = (() => {
         scrollVelocity = Math.abs(y - lastScrollY);
         lastScrollY = y;
 
-        const obmepEl = document.getElementById('conquistas');
-        if (obmepEl) {
-            const rect = obmepEl.getBoundingClientRect();
-            obmepActive = (rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.5);
-        }
     }
 
     let lastFrameTime = 0;
@@ -330,7 +343,9 @@ const HeroScene = (() => {
         wireframe.rotation.y += scrollPct * 0.004;
 
         // Respiração da escala
-        const breathScale = 1 + Math.sin(elapsed * 0.4) * 0.03;
+        const breathScale = availabilityActive
+            ? 1 + Math.sin(elapsed * 3.2) * 0.09
+            : 1 + Math.sin(elapsed * 0.4) * 0.03;
         wireframe.scale.setScalar(breathScale);
 
         // ── Mapeamento Direto do Frustum 3D para o Cursor do Mouse em Z=0 ──
@@ -354,12 +369,7 @@ const HeroScene = (() => {
             let dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < 0.001) dist = 0.001;
 
-            if (cardHoverActive && dist < 6.0) {
-                const force = (6.0 - dist) * 0.015;
-                data.vx -= (dx / dist) * force;
-                data.vy -= (dy / dist) * force;
-
-            } else if (!cardHoverActive && dist < 2.5) {
+            if (dist < 2.5) {
                 const force = (2.5 - dist) * 0.05;
                 data.vx += (dx / dist) * force;
                 data.vy += (dy / dist) * force;
@@ -402,16 +412,6 @@ const HeroScene = (() => {
             }
             pos.needsUpdate = true;
             lastExpandFactor = expandFactor;
-        }
-
-        // ── Modo OBMEP Overdrive ──
-        if (obmepActive) {
-            wireframe.rotation.x += 0.015;
-            wireframe.rotation.y += 0.02;
-            particles.rotation.y -= 0.03;
-
-            const wildBreath = 1 + Math.sin(elapsed * 4) * 0.08;
-            wireframe.scale.setScalar(wildBreath);
         }
 
         renderer.render(scene, camera);

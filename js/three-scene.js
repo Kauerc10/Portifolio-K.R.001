@@ -16,7 +16,6 @@
  * Sistema de eventos (CustomEvents no window):
  * - 'breachProtocol'      → tinge a Anomalia de vermelho
  * - 'obmepSynergy'        → tinge de dourado + acelera rotação
- * - 'obmepHover'          → atração magnética dos debris no hover das medalhas
  *
  * @module HeroScene
  * @requires three.js (r128+)
@@ -60,6 +59,7 @@ const HeroScene = (() => {
     let scrollPct = 0;                // Progresso de scroll (0 a 1)
     let particlePositionsOriginal = []; // Posições base das estrelas (pra expand)
     let obmepActive = false;         // Se estamos na seção OBMEP
+    let availabilityActive = false;  // Aviso final: forma vermelha e pulsante
 
     // ── Flags de Pause (performance) ──
     // NOTA: o canvas #heroCanvas é um fundo FIXED global (classe .global-3d-bg),
@@ -76,11 +76,6 @@ const HeroScene = (() => {
 
     // ── docHeight em cache (atualizado no resize) ──
     let cachedDocHeight = 0;
-
-    // ── Estado do Hover das Medalhas ──
-    // Precisa ser no escopo do módulo pra o loop animate() acessar
-    let cardHoverActive = false;     // Se algum card OBMEP está em hover
-    let cardHoverLevel = 'none';   // Qual nível de medalha está em hover
 
     // ════════════════════════════════
     //  SHADERS GLSL
@@ -304,52 +299,34 @@ const HeroScene = (() => {
      */
     function registerCustomEvents() {
 
-        // Breach Protocol → tinge a Anomalia de vermelho
-        window.addEventListener('breachProtocol', (e) => {
-            if (e.detail) {
-                gsap.to(uniforms.uColor.value, { r: 1, g: 0.1, b: 0.1, duration: 0.5 });
-            } else {
-                gsap.to(uniforms.uColor.value, { r: 0.145, g: 0.388, b: 0.921, duration: 0.5 });
-            }
+        window.addEventListener('availabilityVisual', (event) => {
+            availabilityActive = Boolean(event.detail);
+            const color = availabilityActive
+                ? { r: 1, g: 0.06, b: 0.08 }
+                : obmepActive
+                    ? { r: 0.83, g: 0.627, b: 0.09 }
+                    : { r: 0.145, g: 0.388, b: 0.921 };
+            gsap.to(uniforms.uColor.value, { ...color, duration: 0.55, overwrite: true });
         });
 
-        // Configuração do spin rápido que acontece na synergy OBMEP
-        // Objeto persistente — reutilizado entre spins (overwrite mata a tween anterior)
-        const spinConfig = { val: 0, _last: 0 };
-        function updateSpin() {
-            wireframe.rotation.y += (spinConfig.val - spinConfig._last);
-            wireframe.rotation.x += (spinConfig.val - spinConfig._last) * 0.5;
-            spinConfig._last = spinConfig.val;
-        }
-
-        // Hover nos cards OBMEP → muda cor por nível + débris viram magnéticos
-        window.addEventListener('obmepHover', (e) => {
-            cardHoverActive = e.detail.active;
-
-            if (cardHoverActive) {
-                cardHoverLevel = e.detail.level;
-
-                // Cada tipo de medalha tem sua própria cor na cena
-                if (cardHoverLevel === 'prata') {
-                    gsap.to(uniforms.uColor.value, { r: 0.58, g: 0.64, b: 0.72, duration: 0.5 }); // Prata gelado
-                } else if (cardHoverLevel === 'bronze') {
-                    gsap.to(uniforms.uColor.value, { r: 0.83, g: 0.627, b: 0.09, duration: 0.5 }); // Bronze oxidado
-                } else {
-                    gsap.to(uniforms.uColor.value, { r: 0.06, g: 0.72, b: 0.51, duration: 0.5 }); // Verde esmeralda
-                }
-            } else {
-                // Volta pro estado da seção (dourado se obmepActive, azul se não)
-                if (obmepActive) {
-                    gsap.to(uniforms.uColor.value, { r: 0.83, g: 0.627, b: 0.09, duration: 0.5 });
-                } else {
-                    gsap.to(uniforms.uColor.value, { r: 0.145, g: 0.388, b: 0.921, duration: 0.5 });
-                }
-            }
+        window.addEventListener('obmepHover', (event) => {
+            if (availabilityActive) return;
+            const { active, level } = event.detail;
+            const color = !active
+                ? { r: 0.83, g: 0.627, b: 0.09 }
+                : level === 'prata'
+                    ? { r: 0.58, g: 0.64, b: 0.72 }
+                    : level === 'bronze'
+                        ? { r: 0.83, g: 0.45, b: 0.12 }
+                        : { r: 0.06, g: 0.72, b: 0.51 };
+            gsap.to(uniforms.uColor.value, { ...color, duration: 0.4, overwrite: true });
         });
 
-        // Entrando/saindo da seção OBMEP → modo dourado + spin acelerado
+        // Entrando/saindo da seção OBMEP, apenas a paleta muda. Evitamos giro
+        // adicional e física especial, que disputavam a GPU com o scroll.
         window.addEventListener('obmepSynergy', (e) => {
             obmepActive = e.detail;
+            if (availabilityActive) return;
 
             if (obmepActive) {
                 // Tudo vira dourado
@@ -357,21 +334,12 @@ const HeroScene = (() => {
                 gsap.to(particles.material.color, { r: 0.83, g: 0.627, b: 0.09, duration: 0.8 });
                 particles.material.size = 0.025; // Estrelas ficam maiores
 
-                // Giro rápido de 360° em 1.5s (overwrite mata qualquer spin anterior)
-                spinConfig.val = 0;
-                spinConfig._last = 0;
-                gsap.to(spinConfig, { val: Math.PI * 2, duration: 1.5, ease: 'power4.out', overwrite: true, onUpdate: updateSpin });
-
             } else {
                 // Volta pro azul
                 gsap.to(uniforms.uColor.value, { r: 0.145, g: 0.388, b: 0.921, duration: 0.8 });
                 gsap.to(particles.material.color, { r: 1, g: 1, b: 1, duration: 0.8 });
                 particles.material.size = 0.015;
 
-                // Giro rápido na direção oposta
-                spinConfig.val = 0;
-                spinConfig._last = 0;
-                gsap.to(spinConfig, { val: -Math.PI * 2, duration: 1.5, ease: 'power4.out', overwrite: true, onUpdate: updateSpin });
             }
         });
     }
@@ -442,8 +410,7 @@ const HeroScene = (() => {
      * 3. Move a câmera (zoom no scroll + pan no mouse)
      * 4. Calcula física dos 120 debris
      * 5. Atualiza as estrelas de fundo (expansão por scroll)
-     * 6. Modo OBMEP Overdrive se ativo
-     * 7. Renderiza a cena
+     * 6. Renderiza a cena
      */
     let lastFrameTime = 0;
     const targetFpsInterval = 1000 / 60; // Limita a no máximo 60 FPS (evita sobrecarga em monitores 120Hz+)
@@ -492,7 +459,8 @@ const HeroScene = (() => {
 
         // "Respiração" da escala — pulsação suave de ±3%
         const breathScale = 1 + Math.sin(elapsed * 0.4) * 0.03;
-        wireframe.scale.setScalar(breathScale);
+        const availabilityPulse = availabilityActive ? 1 + Math.sin(elapsed * 3.2) * 0.09 : breathScale;
+        wireframe.scale.setScalar(availabilityPulse);
 
         // ── Física dos Debris ──
         // Reutiliza objetos module-scope (antes era new Vector3/Object3D por frame)
@@ -507,13 +475,7 @@ const HeroScene = (() => {
             let dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < 0.001) dist = 0.001; // Evita divisão por zero (NaN explosion)
 
-            if (cardHoverActive && dist < 6.0) {
-                // Hover numa medalha → atração magnética: debris voam em direção ao mouse
-                const force = (6.0 - dist) * 0.015;
-                data.vx -= (dx / dist) * force;
-                data.vy -= (dy / dist) * force;
-
-            } else if (!cardHoverActive && dist < 2.5) {
+            if (dist < 2.5) {
                 // Cursor normal próximo → repulsão: debris fogem do mouse
                 const force = (2.5 - dist) * 0.05;
                 data.vx += (dx / dist) * force;
@@ -565,17 +527,6 @@ const HeroScene = (() => {
             }
             pos.needsUpdate = true;
             lastExpandFactor = expandFactor;
-        }
-
-        // ── Modo OBMEP Overdrive ──
-        // Quando a seção OBMEP está ativa, tudo fica mais caótico
-        if (obmepActive) {
-            wireframe.rotation.x += 0.015; // Rotação 20x mais rápida
-            wireframe.rotation.y += 0.02;
-            particles.rotation.y -= 0.03;  // Estrelas na direção oposta
-
-            const wildBreath = 1 + Math.sin(elapsed * 4) * 0.08; // Pulsação mais intensa
-            wireframe.scale.setScalar(wildBreath);
         }
 
         renderer.render(scene, camera);
