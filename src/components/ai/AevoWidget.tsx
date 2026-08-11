@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Bot, Send, X, ShieldCheck, Sparkles, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, Sparkle } from 'lucide-react';
 import { AevoChatMessage } from '@/types/aevo';
 
-export default function AevoWidget() {
+export default function AevoWidget({ locale }: { locale?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -12,11 +12,15 @@ export default function AevoWidget() {
   const [toastMessage, setToastMessage] = useState<{ icon: React.ReactNode; text: string } | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  const isEnglish = locale === 'en-US';
+
   const [messages, setMessages] = useState<AevoChatMessage[]>([
     {
       id: 'welcome',
       role: 'assistant',
-      content: 'Olá! Sou **ÆVO**, o Agente de IA Oficial de Kauê Ruon Cardoso. Conheço todo o seu histórico notarial no Cartório Gaya, conquistas na OBMEP e arquitetura de projetos em Next.js/IA. Como posso ajudar?',
+      content: isEnglish
+        ? 'Hello! I am **ÆVO**, the official AI Agent for Kauê Ruon Cardoso. I know his complete notary background, math awards (OBMEP), and Next.js/AI project architecture. How can I help you today?'
+        : 'Olá! Sou **ÆVO**, o Agente de IA Oficial de Kauê Ruon Cardoso. Conheço todo o seu histórico notarial no Cartório Gaya, conquistas na OBMEP e arquitetura de projetos em Next.js/IA. Como posso ajudar?',
       timestamp: Date.now(),
     },
   ]);
@@ -106,6 +110,7 @@ export default function AevoWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: payloadMessages,
+          locale: locale || 'pt-BR',
         }),
       });
 

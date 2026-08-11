@@ -1,0 +1,209 @@
+{
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT",
+    "experience": "EXPERIENCE",
+    "skills": "SKILLS",
+    "achievements": "AWARDS",
+    "education": "EDUCATION",
+    "projects": "PROJECTS",
+    "contact": "CONTACT",
+    "indicator": "§ 01 / 08"
+  },
+  "loader": {
+    "shaders": "LOADING GLSL SHADERS...",
+    "scene": "INITIALIZING THREE.JS 3D SCENE...",
+    "ready": "SYSTEM READY. SCROLL TO EXPLORE."
+  },
+  "hero": {
+    "greeting": "SOFTWARE ENGINEERING & GENERATIVE AI",
+    "nameWhite": "KAUÊ",
+    "nameGold": "RUON",
+    "nameOutline": "CARDOSO",
+    "subtitle": "Full Stack Developer & RAG Automation Specialist with Zero-Tolerance Notarial Precision.",
+    "roles": [
+      "Full Stack Developer",
+      "AI Engineer & RAG Automation",
+      "Notarial Systems Architect",
+      "OBMEP National Math Medalist"
+    ],
+    "ctaProjects": "View Projects",
+    "ctaContact": "Submit Inquiry",
+    "statExperience": "Years of Technical Practice",
+    "statCommits": "Audited GitHub Commits",
+    "statProjects": "Production Projects"
+  },
+  "sobre": {
+    "title": "ABOUT ME",
+    "subtitle": "SOFTWARE ENGINEERING & NOTARIAL PRECISION",
+    "badge": "VISION & VALUES",
+    "quote": "“Notarial precision demands public trust and absolute rigor. I bring that same legal discipline into software architecture: clean, auditable code with zero tolerance for failure.”",
+    "bioP1": "I am a Full Stack Software Engineer with solid expertise in modern web development (React, Next.js 15, TypeScript, Node.js, Python), intelligent workflow automation, and Generative AI agents (RAG / Tool Calling).",
+    "bioP2": "I possess hands-on technical and legal background in Public Notary & Deed Registry offices, shaping my vision to build systems with maximum data integrity, high availability, corporate cybersecurity, and strict compliance.",
+    "card1Title": "Zero Tolerance for Error",
+    "card1Desc": "Architecture designed to eliminate critical bugs and failures in production environments.",
+    "card2Title": "Generative AI Agents",
+    "card2Desc": "Custom RAG pipelines, deed drafting automation, and autonomous assistance.",
+    "card3Title": "Performance & 60 FPS",
+    "card3Desc": "GPU-accelerated WebGL rendering and zero jank across all mobile and desktop devices."
+  },
+  "experiencia": {
+    "title": "PROFESSIONAL EXPERIENCE",
+    "subtitle": "TECHNICAL TRAJECTORY & PRODUCTION IMPACT",
+    "roles": [
+      {
+        "period": "JUL 2026 — PRESENT",
+        "title": "Software Engineer & Notarial Innovation",
+        "company": "Notarial & Registry Services / LegalTech",
+        "location": "Brazil",
+        "description": "Leading the development of modern web platforms and AI agents for automated deed drafting, power of attorney generation, and legal document triage.",
+        "achievements": [
+          "Developed web platforms integrated with AI APIs for automated legal document drafting.",
+          "Implemented RAG pipeline with semantic search for instant legislation and regulation lookup.",
+          "Optimized routines resulting in a 70% reduction in complex drafting times."
+        ],
+        "skills": ["Next.js 15", "TypeScript", "Python", "RAG / Gemini API", "Tailwind CSS", "Node.js"]
+      },
+      {
+        "period": "JAN 2025 — JUN 2026",
+        "title": "Full Stack Developer & Process Automation",
+        "company": "Notary & Deed Registry / Tech Consulting",
+        "location": "Santa Catarina, Brazil",
+        "description": "Built internal software for notary certificate management, operational workflow automation, and digital customer support.",
+        "achievements": [
+          "Created web tools for automated data validation across registry deeds and certificates.",
+          "Developed the ÆVO AI agent for interactive notarial user support.",
+          "Mitigated data entry errors through automated pre-screening of requests."
+        ],
+        "skills": ["React", "JavaScript", "Python", "CSS3 / HTML5", "Web3Forms API", "Git / GitHub"]
+      }
+    ]
+  },
+  "skills": {
+    "title": "TECHNICAL SKILLS",
+    "subtitle": "TECHNOLOGY STACK & HIGH-PERFORMANCE TOOLS",
+    "categories": {
+      "frontend": "Frontend & UI/UX",
+      "backend": "Backend & APIs",
+      "ai": "Generative AI & Automation",
+      "tools": "DevOps & Tools"
+    }
+  },
+  "conquistas": {
+    "title": "AWARDS & MATHEMATICS",
+    "subtitle": "PROVEN LOGICAL RIGOR IN NATIONAL MATHEMATICS OLYMPIADS",
+    "badge": "IMPA / OBMEP",
+    "mathTitle": "National Distinction in Mathematical Olympiads",
+    "mathDescription": "Awards won in the Brazilian Mathematics Olympiad of Public Schools (OBMEP), organized by IMPA (Institute for Pure and Applied Mathematics), demonstrate advanced logical reasoning, complex problem-solving abilities, and rigorous discipline applied to software engineering.",
+    "medals": [
+      {
+        "type": "Silver",
+        "title": "Regional Silver Medalist",
+        "edition": "OBMEP — National Edition",
+        "detail": "Recognized for excellence in solving advanced mathematical and algorithmic problems."
+      },
+      {
+        "type": "Bronze",
+        "title": "National Bronze Medalist",
+        "edition": "OBMEP — National Ceremony at IMPA",
+        "detail": "Ranked among the top national performers in mathematics out of millions of participants."
+      }
+    ]
+  },
+  "formacao": {
+    "title": "ACADEMIC EDUCATION",
+    "subtitle": "CONTINUOUS QUALIFICATION & TECHNICAL REFINEMENT",
+    "statusCompleted": "COMPLETED",
+    "statusInProgress": "IN PROGRESS",
+    "btnCertificate": "View Certificate",
+    "btnOpen": "VIEW",
+    "items": [
+      {
+        "title": "Software Engineering / Computer Science",
+        "institution": "Higher Technological Education",
+        "period": "2024 — PRESENT",
+        "status": "IN PROGRESS",
+        "description": "Focus on distributed systems architecture, data structures, cybersecurity, and artificial intelligence."
+      },
+      {
+        "title": "Full Stack Web Development & Generative AI",
+        "institution": "Specialization & Hands-On Production Projects",
+        "period": "2025 — 2026",
+        "status": "COMPLETED",
+        "description": "Building Next.js 15 applications, LLM integration via Vercel AI SDK, 3D WebGL optimization, and code governance."
+      }
+    ]
+  },
+  "projetos": {
+    "title": "FEATURED PROJECTS",
+    "subtitle": "PRODUCTION CASE STUDIES & SOFTWARE ENGINEERING",
+    "btnDemo": "Live Demo",
+    "btnRepo": "Repository",
+    "privateRepo": "Private Repository",
+    "items": {
+      "docfacil": {
+        "title": "DocFácil — Notarial Automation",
+        "tagline": "Autonomous Deed and Power of Attorney Drafting Engine",
+        "description": "Advanced web platform for notary offices that cuts deed drafting time by up to 70% using intelligent form algorithms and rigorous validation."
+      },
+      "atlas": {
+        "title": "Atlas Notarial — Legal Knowledge RAG",
+        "tagline": "Semantic Search RAG Engine for Notarial Regulations and Law",
+        "description": "Enterprise RAG search system across notary regulations and legal rulings, enabling notaries and clerks to query legal precedent in milliseconds."
+      },
+      "ckf": {
+        "title": "CKF Maintenance — Industrial Management",
+        "tagline": "Operational Control System for Work Orders and Maintenance",
+        "description": "Responsive web app for managing service tickets, scheduling preventive maintenance routines, and tracking industrial spare parts inventory."
+      },
+      "folilib": {
+        "title": "Foli Lib — WebGL 3D Effects Library",
+        "tagline": "High-Performance GLSL Shader and Particle Engine for the Web",
+        "description": "Open-source library of GPU-accelerated WebGL components and shaders engineered for smooth 60 FPS 3D visual experiences with minimal memory overhead."
+      }
+    }
+  },
+  "contato": {
+    "title": "SUBMIT INQUIRY",
+    "subtitle": "OPEN TO CAREER OPPORTUNITIES & STRATEGIC PARTNERSHIPS",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Your full name...",
+    "emailLabel": "Reply Email",
+    "emailPlaceholder": "your.email@domain.com...",
+    "subjectLabel": "Subject / Purpose",
+    "subjectPlaceholder": "Select a subject...",
+    "messageLabel": "Message Details",
+    "messagePlaceholder": "Describe project details or inquiry...",
+    "btnSubmit": "Submit Inquiry",
+    "btnSubmitting": "Submitting...",
+    "subjects": {
+      "proposta": "Job Offer / Career Opportunity",
+      "projeto": "Project Development / Consulting",
+      "ia": "AI Implementation / RAG Automation",
+      "outro": "Other Subject"
+    },
+    "fastContact": {
+      "title": "Direct Contact Channels",
+      "emailTitle": "Corporate Email",
+      "linkedinTitle": "Professional Profile",
+      "githubTitle": "Code Repository"
+    },
+    "messages": {
+      "SUCCESS": "✓ Inquiry submitted successfully! I will reply shortly.",
+      "RATE_LIMITED": "Too many requests. Please wait a few minutes before submitting again.",
+      "VALIDATION_ERROR": "Please fill out all required fields correctly.",
+      "SERVICE_UNAVAILABLE": "Email service temporarily unavailable. Please email directly to kaue.ruon@gmail.com",
+      "INTERNAL_ERROR": "Internal server error. Please email directly to kaue.ruon@gmail.com"
+    }
+  },
+  "footer": {
+    "builtWith": "Built with Next.js 15, TypeScript & ÆVO AI Agent.",
+    "copyright": "© 2026 Kauê Ruon Cardoso. All rights reserved. Notarial Precision & Software Engineering."
+  },
+  "modals": {
+    "breachTitle": "BREACH PROTOCOL ACTIVATED",
+    "breachDesc": "Cybersecurity audit mode activated via direct override. All systems running under strict supervision.",
+    "konamiTitle": "KONAMI CODE UNLOCKED",
+    "konamiDesc": "Secret protocol unlocked! WebGL particles and visual effects elevated to maximum performance."
+  }
+}

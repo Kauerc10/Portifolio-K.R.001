@@ -1,18 +1,25 @@
-export default function JsonLd() {
+import type { Locale } from '@/i18n/config';
+
+export default function JsonLd({ locale }: { locale?: Locale }) {
+  const currentLocale = locale || 'pt-BR';
+  const isEnglish = currentLocale === 'en-US';
+
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    '@id': 'https://kaueruon.dev/#person',
+    '@id': `https://kaueruon.dev/${currentLocale}#person`,
     name: 'Kauê Ruon Cardoso',
     givenName: 'Kauê',
     familyName: 'Ruon Cardoso',
-    jobTitle: 'Software Architect & SaaS Developer',
-    description:
-      'AI Engineer e Cartorário especializado em arquitetura Next.js 16, TypeScript, IA Generativa agnóstica e automação de processos notariais.',
-    url: 'https://kaueruon.dev',
+    jobTitle: isEnglish
+      ? 'Software Architect & AI Systems Engineer'
+      : 'Arquiteto de Software & Engenheiro de IA',
+    description: isEnglish
+      ? 'Software Architect and AI Engineer specializing in Next.js 15, TypeScript, Generative AI (RAG), and zero-tolerance notarial automation.'
+      : 'Engenheiro de Software e Arquiteto de IA especializado em Next.js 15, TypeScript, IA Generativa (RAG) e automação notarial de tolerância zero a erros.',
+    url: `https://kaueruon.dev/${currentLocale}`,
     image: 'https://github.com/Kauerc10.png',
     email: 'mailto:kaue.ruon@gmail.com',
-    telephone: '+5547999999999',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Blumenau',
@@ -26,8 +33,8 @@ export default function JsonLd() {
     worksFor: [
       {
         '@type': 'Organization',
-        name: 'Cartório Gaya',
-        jobTitle: 'Cartorário & Engenheiro de Automações',
+        name: 'Serviços Notariais e Registrais / LegalTech',
+        jobTitle: isEnglish ? 'Software Architect & Notarial Innovation' : 'Engenheiro de Software & Inovação Notarial',
       },
       {
         '@type': 'Organization',
@@ -42,41 +49,30 @@ export default function JsonLd() {
       'https://ckf-manutencao-orcamentos.vercel.app',
     ],
     knowsAbout: [
-      'Next.js 16 App Router',
+      'Next.js 15 App Router',
       'TypeScript',
       'Generative AI & RAG Architecture',
-      'OpenAI / Anthropic / Gemini API Integrations',
+      'Gemini 1.5 Flash / OpenAI GPT-4o-mini',
       'Prisma ORM & PostgreSQL',
-      'Automação Notarial & Regtech',
-      'Layout Engines & PDF Generators (Foli)',
+      'Notarial Automation & LegalTech',
     ],
   };
 
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': 'https://kaueruon.dev/#website',
-    url: 'https://kaueruon.dev',
-    name: 'Kauê Ruon Cardoso — Software Architect & SaaS Developer',
-    description:
-      'Portfólio de Engenharia de Software, Arquitetura de IA Generativa e projetos em produção de Kauê Ruon Cardoso.',
+    '@id': `https://kaueruon.dev/${currentLocale}#website`,
+    url: `https://kaueruon.dev/${currentLocale}`,
+    name: isEnglish
+      ? 'Kauê Ruon Cardoso — Software Architect & AI Systems Engineer'
+      : 'Kauê Ruon Cardoso — Arquiteto de Software & Engenheiro de IA',
+    description: isEnglish
+      ? 'Software Engineering Portfolio, Generative AI Systems & Production Case Studies by Kauê Ruon Cardoso.'
+      : 'Portfólio de Engenharia de Software, Arquitetura de IA Generativa e projetos em produção de Kauê Ruon Cardoso.',
     publisher: {
-      '@id': 'https://kaueruon.dev/#person',
+      '@id': `https://kaueruon.dev/${currentLocale}#person`,
     },
-    inLanguage: 'pt-BR',
-  };
-
-  const profilePageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    '@id': 'https://kaueruon.dev/#profilepage',
-    url: 'https://kaueruon.dev',
-    name: 'Perfil Profissional e Portfólio de Kauê Ruon Cardoso',
-    mainEntity: {
-      '@id': 'https://kaueruon.dev/#person',
-    },
-    dateCreated: '2026-01-01T00:00:00+00:00',
-    dateModified: new Date().toISOString(),
+    inLanguage: currentLocale,
   };
 
   return (
@@ -88,10 +84,6 @@ export default function JsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }}
       />
     </>
   );

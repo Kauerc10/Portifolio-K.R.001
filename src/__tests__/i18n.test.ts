@@ -1,0 +1,77 @@
+import { describe, it, expect } from 'vitest';
+import ptBR from '@/i18n/locales/pt-BR.json';
+import enUS from '@/i18n/locales/en-US.json';
+import { isValidLocale, locales } from '@/i18n/config';
+import { AevoProviderFactory } from '@/lib/aevo/provider-factory';
+
+describe('Suíte de Testes da Arquitetura i18n (Next.js 15 Nativo)', () => {
+  it('deve ter correspondência de chaves 1:1 entre pt-BR.json e en-US.json sem omissões', () => {
+    function getKeys(obj: any, prefix = ''): string[] {
+      return Object.keys(obj).reduce((acc: string[], key: string) => {
+        const pre = prefix ? `${prefix}.` : '';
+        if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
+          acc.push(...getKeys(obj[key], pre + key));
+        } else {
+          acc.push(pre + key);
+        }
+        return acc;
+      }, []);
+    }
+
+    const ptKeys = getKeys(ptBR).sort();
+    const enKeys = getKeys(enUS).sort();
+
+    expect(enKeys).toEqual(ptKeys);
+  });
+
+  it('não deve conter valores vazios ou nulos em en-US.json', () => {
+    function checkNonEmpty(obj: any, path = '') {
+      for (const key in obj) {
+        const currentPath = path ? `${path}.${key}` : key;
+        const val = obj[key];
+        if (typeof val === 'string') {
+          expect(val.trim().length, `Chave em en-US.json vazia: ${currentPath}`).toBeGreaterThan(0);
+        } else if (typeof val === 'object' && val !== null) {
+          checkNonEmpty(val, currentPath);
+        }
+      }
+    }
+    checkNonEmpty(enUS);
+  });
+
+  it('deve validar locais suportados com isValidLocale', () => {
+    expect(isValidLocale('pt-BR')).toBe(true);
+    expect(isValidLocale('en-US')).toBe(true);
+    expect(isValidLocale('es-ES')).toBe(false);
+    expect(isValidLocale('invalid')).toBe(false);
+  });
+
+  it('deve gerar respostas do Agente ÆVO no idioma correto (PT e EN)', async () => {
+    const resPt = await AevoProviderFactory.generateResponse({
+      messages: [{ role: 'user', content: 'Olá, quais são os projetos do Kauê?' }],
+      locale: 'pt-BR',
+    });
+    expect(resPt.text).toContain('DocFácil');
+    expect(resPt.text).toContain('projetos');
+
+    const resEn = await AevoProviderFactory.generateResponse({
+      messages: [{ role: 'user', content: 'Hello, what are Kaue projects?' }],
+      locale: 'en-US',
+    });
+    expect(resEn.text).toContain('DocFácil');
+    expect(resEn.text).toContain('scrolled the screen to the projects section');
+  });
+
+  it('deve reconhecer palavras-chave de tool calling tanto em PT quanto em EN', async () => {
+    const resEnTools = await AevoProviderFactory.generateResponse({
+      messages: [{ role: 'user', content: 'Show me projects and resume' }],
+      locale: 'en-US',
+    });
+
+    expect(resEnTools.toolCalls).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ name: 'scroll_to_section', args: { sectionId: 'projetos' } }),
+      ])
+    );
+  });
+});

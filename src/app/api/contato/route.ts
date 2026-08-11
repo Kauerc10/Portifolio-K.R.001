@@ -29,27 +29,24 @@ export async function POST(req: Request) {
     const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '127.0.0.1';
 
     // 1. Rate Limit por IP
-    const { allowed, retryAfter } = checkRateLimit(ip);
+    const { allowed } = checkRateLimit(ip);
     if (!allowed) {
-      return NextResponse.json(
-        { error: `Muitas solicitações enviadas. Aguarde ${retryAfter}s para protocolar novamente.` },
-        { status: 429 }
-      );
+      return NextResponse.json({ error: 'RATE_LIMITED' }, { status: 429 });
     }
 
     const body = await req.json();
     const { nome, email, assunto, mensagem, botcheck, fillTime } = body;
 
-    // 2. Honeypot Anti-Bot (se preenchido, é um robô -> drop silencioso com HTTP 200 ok)
+    // 2. Honeypot Anti-Bot (se preenchido, é um robô -> drop silencioso com HTTP 200 ok enganoso)
     if (botcheck && String(botcheck).trim().length > 0) {
-      console.warn(`[Anti-Bot API] Honeypot ativado pelo IP ${ip}. Descartando silenciosamente.`);
-      return NextResponse.json({ success: true, message: 'Petição recebida com sucesso.' });
+      console.warn(`[Anti-Bot API] HONEYPOT_TRIGGERED pelo IP ${ip}. Descartando silenciosamente.`);
+      return NextResponse.json({ success: true, messageCode: 'SUCCESS' });
     }
 
     // 3. Tempo Mínimo de Preenchimento (Humano leva pelo menos 2.5 segundos)
     if (typeof fillTime === 'number' && fillTime < 2500) {
-      console.warn(`[Anti-Bot API] Preenchimento suspeito em ${fillTime}ms pelo IP ${ip}. Descartando.`);
-      return NextResponse.json({ success: true, message: 'Petição recebida com sucesso.' });
+      console.warn(`[Anti-Bot API] FILL_TIME_SUSPICIOUS (${fillTime}ms) pelo IP ${ip}. Descartando.`);
+      return NextResponse.json({ success: true, messageCode: 'SUCCESS' });
     }
 
     // 4. Validação de Conteúdo & Palavras Chave de Spam
@@ -57,13 +54,13 @@ export async function POST(req: Request) {
     const isSpam = SPAM_KEYWORDS.some((kw) => fullText.includes(kw));
 
     if (isSpam) {
-      console.warn(`[Anti-Bot API] Palavra de spam identificada na mensagem. Descartando silenciosamente.`);
-      return NextResponse.json({ success: true, message: 'Petição recebida com sucesso.' });
+      console.warn(`[Anti-Bot API] SPAM_DETECTED na mensagem pelo IP ${ip}. Descartando silenciosamente.`);
+      return NextResponse.json({ success: true, messageCode: 'SUCCESS' });
     }
 
     // 5. Validação de Campos Obrigatórios
     if (!nome || !email || !assunto || !mensagem) {
-      return NextResponse.json({ error: 'Todos os campos são obrigatórios.' }, { status: 400 });
+      return NextResponse.json({ error: 'VALIDATION_ERROR' }, { status: 400 });
     }
 
     // 6. Access Key EXCLUSIVAMENTE via variável de ambiente da Vercel (SEM CHAVE NO CÓDIGO)
@@ -71,10 +68,7 @@ export async function POST(req: Request) {
 
     if (!web3formsAccessKey) {
       console.error('[API /api/contato] WEB3FORMS_ACCESS_KEY não configurada nas variáveis de ambiente da Vercel.');
-      return NextResponse.json(
-        { error: 'Formulário aguardando configuração da chave de ambiente. Envie direto para: kaue.ruon@gmail.com' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: 'SERVICE_UNAVAILABLE' }, { status: 500 });
     }
 
     const web3Payload = {
@@ -104,16 +98,13 @@ export async function POST(req: Request) {
     }
 
     if (res.ok && (data.success || responseText.includes('success'))) {
-      return NextResponse.json({ success: true, message: '✓ Petição protocolada com sucesso!' });
+      return NextResponse.json({ success: true, messageCode: 'SUCCESS' });
     } else {
       console.error('[API /api/contato] Erro Web3Forms:', data || responseText);
-      throw new Error(data.message || 'Erro ao comunicar com provedor de e-mail.');
+      return NextResponse.json({ error: 'SERVICE_UNAVAILABLE' }, { status: 500 });
     }
   } catch (error: any) {
     console.error('[API /api/contato] Erro:', error?.message || error);
-    return NextResponse.json(
-      { error: 'Falha interna ao processar envio. Tente diretamente por e-mail: kaue.ruon@gmail.com' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'INTERNAL_ERROR' }, { status: 500 });
   }
 }

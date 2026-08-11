@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { messages } = body;
+    const { messages, locale } = body;
 
     // 2. Validação estrita do payload (máx 15 mensagens no histórico)
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
       }
     }
 
-    const result = await AevoProviderFactory.generateResponse({ messages });
+    const result = await AevoProviderFactory.generateResponse({ messages, locale: locale || 'pt-BR' });
 
     return NextResponse.json(result);
   } catch (error: any) {

@@ -1,38 +1,53 @@
-export default function SobreSection() {
+import type { Dictionary } from '@/i18n/types';
+
+export default function SobreSection({ dict }: { dict?: Dictionary['sobre'] }) {
+  const d = dict || {
+    title: 'SOBRE MIM',
+    subtitle: 'ENGENHARIA DE SOFTWARE E PRECISÃO NOTARIAL',
+    badge: 'VISÃO & VALORES',
+    quote: '“A precisão notarial exige fé pública e rigor absoluto. Trago essa mesma disciplina jurídica para a arquitetura de software: código limpo, auditável e tolerância zero a falhas.”',
+    bioP1: 'Sou Engenheiro de Software Full Stack com sólida atuação em desenvolvimento web moderno (React, Next.js 15, TypeScript, Node.js, Python), automações inteligentes de processos e agentes de Inteligência Artificial Generativa (RAG / Tool Calling).',
+    bioP2: 'Possuo vivência técnica e jurídica em Cartório de Notas e Protesto, o que moldou minha visão em construir sistemas com máxima integridade de dados, alta disponibilidade, segurança cibernética corporativa e conformidade estrita com LGPD.',
+    card1Title: 'Tolerância Zero a Erros',
+    card1Desc: 'Arquitetura planejada para evitar bugs e falhas críticas em ambiente de produção.',
+    card2Title: 'Agentes de IA Generativa',
+    card2Desc: 'Sistemas RAG personalizados, automação de fluxos notariais e atendimento autônomo.',
+    card3Title: 'Performance & 60 FPS',
+    card3Desc: 'Aceleração por GPU, renderização WebGL otimizada e zero jank em qualquer dispositivo.',
+  };
+
   return (
     <section className="section sobre" id="sobre" data-section="2">
-      <div className="section__line"></div>
+      <div className="section__line" />
       <div className="sobre__grid">
         <div className="sobre__text">
           <span className="section__article">Art. I §1º</span>
-          <h2 className="section__title" data-cipher>DO REQUERENTE</h2>
-          <p className="sobre__paragraph anim-slide">
-            Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo
-            ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de
-            cartório — e de volta pra tecnologia.
-          </p>
-          <p className="sobre__paragraph anim-slide">
-            Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o
-            mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou
-            automatizar processos, mesmo sem ninguém me pedir.
-          </p>
-          <p className="sobre__paragraph anim-slide">
-            Construo software guiando <strong>IA generativa</strong> (Claude, GPT) como ferramenta primária — de
-            protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é
-            <strong>decompor o problema, estruturar a instrução e conectar as peças</strong> até o fluxo inteiro funcionar.
-            É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.
-          </p>
+          <h2 className="section__title" data-cipher>{d.title}</h2>
+          <p className="sobre__paragraph anim-slide">{d.quote}</p>
+          <p className="sobre__paragraph anim-slide">{d.bioP1}</p>
+          <p className="sobre__paragraph anim-slide">{d.bioP2}</p>
         </div>
         <div className="sobre__card-wrap">
           <div className="sobre__card magnetic" data-cursor="INFO" id="fichaCard">
-            <div className="sobre__card-header">■ FICHA TÉCNICA</div>
-            <div className="sobre__card-divider"></div>
-            <div className="sobre__card-row"><span className="sobre__card-label">NOME</span><span>Kauê Ruon Cardoso</span></div>
-            <div className="sobre__card-row"><span className="sobre__card-label">ORIGEM</span><span>Blumenau / SC</span></div>
-            <div className="sobre__card-row"><span className="sobre__card-label">STACK</span><span>TS · React/Next.js · IA</span></div>
-            <div className="sobre__card-row"><span className="sobre__card-label">DISTINÇÃO</span><span>Prata OBMEP Regional · Bronze Nacional</span></div>
-            <div className="sobre__card-row"><span className="sobre__card-label">STATUS</span><span className="status-badge"><span className="status-dot"></span> ATIVO</span></div>
-            <div className="sobre__stamp" id="fichaStamp">AUTENTICADO ✓</div>
+            <div className="sobre__card-header">■ {d.badge}</div>
+            <div className="sobre__card-divider" />
+            <div className="sobre__card-row">
+              <span className="sobre__card-label">{d.card1Title}</span>
+              <span className="text-xs">{d.card1Desc}</span>
+            </div>
+            <div className="sobre__card-row">
+              <span className="sobre__card-label">{d.card2Title}</span>
+              <span className="text-xs">{d.card2Desc}</span>
+            </div>
+            <div className="sobre__card-row">
+              <span className="sobre__card-label">{d.card3Title}</span>
+              <span className="text-xs">{d.card3Desc}</span>
+            </div>
+            <div className="sobre__card-row">
+              <span className="sobre__card-label">STATUS</span>
+              <span className="status-badge"><span className="status-dot" /> ONLINE</span>
+            </div>
+            <div className="sobre__stamp" id="fichaStamp">VERIFIED ✓</div>
           </div>
         </div>
       </div>

@@ -6,8 +6,9 @@ import manifest from '@/app/manifest';
 describe('Arquitetura de SEO & GEO (Search + AI Readiness)', () => {
   it('deve gerar sitemap.xml dinâmico com a URL canônica https://kaueruon.dev', () => {
     const sitemapData = sitemap();
-    expect(sitemapData).toHaveLength(1);
-    expect(sitemapData[0].url).toBe('https://kaueruon.dev');
+    expect(sitemapData).toHaveLength(2);
+    expect(sitemapData[0].url).toBe('https://kaueruon.dev/pt-BR');
+    expect(sitemapData[1].url).toBe('https://kaueruon.dev/en-US');
     expect(sitemapData[0].priority).toBe(1.0);
   });
 

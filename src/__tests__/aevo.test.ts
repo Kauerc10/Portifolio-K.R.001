@@ -10,7 +10,7 @@ describe('AevoProviderFactory (Agente de IA ÆVO)', () => {
     expect(res.text).toContain('DocFácil');
     expect(res.text).toContain('CKF Manutenção');
     expect(res.text).toContain('Foli');
-    expect(res.providerUsed).toBe('ÆVO RAG Engine (Local Fallback Resiliente)');
+    expect(res.providerUsed).toBe('Engine Local RAG ÆVO');
   });
 
   it('deve detectar tool call scroll_to_section quando usuário pergunta por projetos', async () => {

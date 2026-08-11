@@ -98,12 +98,19 @@
                     body: JSON.stringify(formData),
                 });
                 const data = await res.json();
+                const messagesAttr = form.getAttribute('data-messages');
+                let localizedMessages = {};
+                try { localizedMessages = JSON.parse(messagesAttr || '{}'); } catch (e) {}
+
+                const isEn = document.documentElement.lang === 'en-US';
+                const successMsg = localizedMessages.SUCCESS || (isEn ? '✓ Inquiry submitted! I will reply shortly.' : '✓ Petição protocolada! Respondo em breve.');
+                const defaultErr = localizedMessages.INTERNAL_ERROR || (isEn ? '⚠ Could not submit inquiry. Please email kaue.ruon@gmail.com' : '⚠ Não foi possível protocolar. Tente pelo email kaue.ruon@gmail.com');
 
                 if (res.ok && data.success) {
                     btn.classList.remove('sending');
                     btn.classList.add('sent');
                     if (feedback) {
-                        feedback.textContent = '✓ Petição protocolada! Respondo em breve.';
+                        feedback.textContent = successMsg;
                         feedback.className = 'peticao__feedback peticao__feedback--success';
                     }
                     setTimeout(() => {
@@ -112,13 +119,15 @@
                         btn.disabled = false;
                     }, 2500);
                 } else {
-                    throw new Error(data.error || data.message || 'Falha no protocolo');
+                    const errKey = data.error;
+                    const errorMsg = localizedMessages[errKey] || data.error || defaultErr;
+                    throw new Error(errorMsg);
                 }
             } catch (err) {
                 btn.classList.remove('sending');
                 btn.disabled = false;
                 if (feedback) {
-                    feedback.textContent = `⚠ ${err.message || 'Não foi possível protocolar. Tente pelo email: kaue.ruon@gmail.com'}`;
+                    feedback.textContent = `⚠ ${err.message}`;
                     feedback.className = 'peticao__feedback peticao__feedback--error';
                 }
                 console.error('[form] erro:', err);
