@@ -10,11 +10,15 @@ const AvailabilityBanner = (() => {
         if (!banner || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
         gsap.registerPlugin(ScrollTrigger);
+        const setActive = (active) => {
+            banner.classList.toggle('active', active);
+            window.dispatchEvent(new CustomEvent('availabilityVisual', { detail: active }));
+        };
         ScrollTrigger.create({
             trigger: '#contato',
             start: 'bottom 95%',
-            onEnter: () => banner.classList.add('active'),
-            onLeaveBack: () => banner.classList.remove('active'),
+            onEnter: () => setActive(true),
+            onLeaveBack: () => setActive(false),
         });
     }
 

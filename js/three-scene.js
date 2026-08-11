@@ -59,6 +59,7 @@ const HeroScene = (() => {
     let scrollPct = 0;                // Progresso de scroll (0 a 1)
     let particlePositionsOriginal = []; // Posições base das estrelas (pra expand)
     let obmepActive = false;         // Se estamos na seção OBMEP
+    let availabilityActive = false;  // Aviso final: forma vermelha e pulsante
 
     // ── Flags de Pause (performance) ──
     // NOTA: o canvas #heroCanvas é um fundo FIXED global (classe .global-3d-bg),
@@ -298,19 +299,34 @@ const HeroScene = (() => {
      */
     function registerCustomEvents() {
 
-        // Breach Protocol → tinge a Anomalia de vermelho
-        window.addEventListener('breachProtocol', (e) => {
-            if (e.detail) {
-                gsap.to(uniforms.uColor.value, { r: 1, g: 0.1, b: 0.1, duration: 0.5 });
-            } else {
-                gsap.to(uniforms.uColor.value, { r: 0.145, g: 0.388, b: 0.921, duration: 0.5 });
-            }
+        window.addEventListener('availabilityVisual', (event) => {
+            availabilityActive = Boolean(event.detail);
+            const color = availabilityActive
+                ? { r: 1, g: 0.06, b: 0.08 }
+                : obmepActive
+                    ? { r: 0.83, g: 0.627, b: 0.09 }
+                    : { r: 0.145, g: 0.388, b: 0.921 };
+            gsap.to(uniforms.uColor.value, { ...color, duration: 0.55, overwrite: true });
+        });
+
+        window.addEventListener('obmepHover', (event) => {
+            if (availabilityActive) return;
+            const { active, level } = event.detail;
+            const color = !active
+                ? { r: 0.83, g: 0.627, b: 0.09 }
+                : level === 'prata'
+                    ? { r: 0.58, g: 0.64, b: 0.72 }
+                    : level === 'bronze'
+                        ? { r: 0.83, g: 0.45, b: 0.12 }
+                        : { r: 0.06, g: 0.72, b: 0.51 };
+            gsap.to(uniforms.uColor.value, { ...color, duration: 0.4, overwrite: true });
         });
 
         // Entrando/saindo da seção OBMEP, apenas a paleta muda. Evitamos giro
         // adicional e física especial, que disputavam a GPU com o scroll.
         window.addEventListener('obmepSynergy', (e) => {
             obmepActive = e.detail;
+            if (availabilityActive) return;
 
             if (obmepActive) {
                 // Tudo vira dourado
@@ -443,7 +459,8 @@ const HeroScene = (() => {
 
         // "Respiração" da escala — pulsação suave de ±3%
         const breathScale = 1 + Math.sin(elapsed * 0.4) * 0.03;
-        wireframe.scale.setScalar(breathScale);
+        const availabilityPulse = availabilityActive ? 1 + Math.sin(elapsed * 3.2) * 0.09 : breathScale;
+        wireframe.scale.setScalar(availabilityPulse);
 
         // ── Física dos Debris ──
         // Reutiliza objetos module-scope (antes era new Vector3/Object3D por frame)

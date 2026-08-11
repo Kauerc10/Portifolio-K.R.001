@@ -351,6 +351,15 @@ const Animations = (() => {
                 onLeaveBack: () => card.classList.remove('is-active'),
             });
 
+            card.addEventListener('mouseenter', () => {
+                window.dispatchEvent(new CustomEvent('obmepHover', {
+                    detail: { active: true, level: card.getAttribute('data-level') }
+                }));
+            });
+            card.addEventListener('mouseleave', () => {
+                window.dispatchEvent(new CustomEvent('obmepHover', { detail: { active: false } }));
+            });
+
         });
     }
 
