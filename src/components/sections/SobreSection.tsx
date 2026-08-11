@@ -8,7 +8,7 @@ export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] })
       <div className="sobre__grid">
         <div className="sobre__text">
           <span className="section__article">Art. I §1º</span>
-          <h2 className="section__title" data-cipher>{d.title}</h2>
+          <h2 className="section__title">{d.title}</h2>
                     <p className="sobre__paragraph anim-slide">{d.bioP1}</p>
           <p className="sobre__paragraph anim-slide">{d.bioP2}</p>
           <p className="sobre__paragraph anim-slide">{d.bioP3}</p>

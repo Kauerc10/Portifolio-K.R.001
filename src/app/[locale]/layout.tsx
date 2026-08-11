@@ -193,9 +193,14 @@ export default async function RootLayout({
             <div className="loader__curtain loader__curtain--right" />
           </div>
 
-          {/* BREACH ALERT BAR */}
-          <div id="breachAlert" className="breach-alert">
-            <span className="breach-alert__text">⚠ BREACH PROTOCOL ACTIVATED — ACCESS LOGGED</span>
+          {/* AVAILABILITY BAR */}
+          <div id="availabilityBanner" className="availability-banner" role="status">
+            <span className="availability-banner__dot" aria-hidden="true" />
+            <span className="availability-banner__text">
+              {validLocale === 'en-US'
+                ? 'OPEN TO OPPORTUNITIES · REMOTE AND GLOBAL'
+                : 'ABERTO A OPORTUNIDADES · REMOTO E GLOBAL'}
+            </span>
           </div>
 
           {/* CURSOR TRAIL CANVAS */}
@@ -224,9 +229,8 @@ export default async function RootLayout({
           <Script src="/js/animations.js" strategy="afterInteractive" />
           <Script src="/js/loader.js" strategy="afterInteractive" />
           <Script src="/js/cursor.js" strategy="afterInteractive" />
-          <Script src="/js/cipher-decode.js" strategy="afterInteractive" />
           <Script src="/js/easter-eggs.js" strategy="afterInteractive" />
-          <Script src="/js/breach-protocol.js" strategy="afterInteractive" />
+          <Script src="/js/availability-banner.js" strategy="afterInteractive" />
           <Script src="/js/main.js" strategy="afterInteractive" />
         </ThemeProvider>
       </body>

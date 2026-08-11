@@ -201,6 +201,49 @@ a.evidence__folder {
     transform: translateY(-2px);
 }
 
+/* Ações dos cases compartilham posição, escala e estados; só o acento muda. */
+.case-actions {
+    --case-accent: #d4a017;
+    --case-accent-soft: rgba(212, 160, 23, 0.12);
+    display: flex;
+    min-height: 3.25rem;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+.case-actions--emerald { --case-accent: #10b981; --case-accent-soft: rgba(16, 185, 129, 0.12); }
+.case-actions--amber { --case-accent: #d4a017; --case-accent-soft: rgba(212, 160, 23, 0.12); }
+.case-actions--blue { --case-accent: #3b82f6; --case-accent-soft: rgba(59, 130, 246, 0.12); }
+.case-actions--purple { --case-accent: #9333ea; --case-accent-soft: rgba(147, 51, 234, 0.12); }
+
+.case-action {
+    min-height: 2.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--case-accent);
+    border-radius: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+}
+
+.case-action--primary { color: #fff; background: var(--case-accent); }
+.case-action--secondary,
+.case-action--status { color: var(--case-accent); background: var(--case-accent-soft); }
+.case-action--status { max-width: 100%; text-align: right; }
+.case-action:is(a):hover { filter: brightness(1.12); }
+.case-action:is(a):focus-visible { outline: 2px solid var(--case-accent); outline-offset: 3px; }
+
 
 /* tente ↑↑↓↓←→←→BA no teclado ;) */
 .modal {
@@ -425,24 +468,27 @@ a.evidence__folder {
 
 
 /* ════════════════════════════════
-   BREACH ALERT — Barra de Intrusão
+   AVAILABILITY BANNER
    ════════════════════════════════ */
 
-/* Barra vermelha no topo que aparece em eventos de "breach" */
-.breach-alert {
+.availability-banner {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
-    background: rgba(255, 20, 20, 0.08);
-    border-bottom: 1px solid rgba(255, 40, 40, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: rgba(43, 8, 13, 0.94);
+    border-bottom: 1px solid rgba(248, 68, 76, 0.42);
     padding: 0.5rem 1rem;
     text-align: center;
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    color: #ff4444;
-    letter-spacing: 0.15em;
+    color: #ff6269;
+    letter-spacing: 0.12em;
     transform: translateY(-100%);
     opacity: 0;
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
@@ -450,38 +496,16 @@ a.evidence__folder {
     pointer-events: none;
 }
 
-.breach-alert.active {
+.availability-banner.active {
     transform: translateY(0);
     opacity: 1;
-    animation: breachPulse 2s ease-in-out infinite;
 }
 
-@keyframes breachPulse {
-
-    0%,
-    100% {
-        background: rgba(255, 20, 20, 0.06);
-    }
-
-    50% {
-        background: rgba(255, 20, 20, 0.15);
-    }
-}
-
-/* Links dentro do breach com pulso de cor */
-.breach-glow {
-    text-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
-    animation: breachLinkPulse 1.5s ease-in-out infinite;
-}
-
-@keyframes breachLinkPulse {
-
-    0%,
-    100% {
-        color: var(--signal);
-    }
-
-    50% {
-        color: #4a90ff;
-    }
+.availability-banner__dot {
+    width: 0.42rem;
+    height: 0.42rem;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: #ff3f48;
+    box-shadow: 0 2px 10px rgba(255, 63, 72, 0.42);
 }
