@@ -218,3 +218,10 @@ html.light .nav__link.active {
 html.light .nav__indicator {
     color: #b48312 !important;
 }
+
+/* ── View Transitions API (Onda de Troca de Tema Suave) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
