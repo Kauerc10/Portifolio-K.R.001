@@ -143,7 +143,7 @@ export default function GithubLiveStats() {
             </a>
             <div style={{
               fontFamily: 'var(--font-mono, monospace)', fontSize: '0.6rem',
-              color: 'var(--ghost, #475569)', letterSpacing: '0.12em', marginTop: '0.15rem',
+              color: 'color-mix(in srgb, var(--text) 68%, transparent)', letterSpacing: '0.12em', marginTop: '0.15rem',
             }}>
               {animatedRepos} REPOS PÚBLICOS · {animatedFollowers} SEGUIDORES
             </div>
@@ -161,7 +161,7 @@ export default function GithubLiveStats() {
           </div>
           <div style={{
             fontFamily: 'var(--font-mono, monospace)', fontSize: '0.65rem',
-            color: 'var(--ghost, #475569)', letterSpacing: '0.15em', marginTop: '0.35rem',
+            color: 'color-mix(in srgb, var(--text) 68%, transparent)', letterSpacing: '0.15em', marginTop: '0.35rem',
           }}>
             CONTRIBUIÇÕES EM {activeYear}
           </div>
@@ -179,7 +179,7 @@ export default function GithubLiveStats() {
                 border: activeYear === yr ? '1px solid var(--gold, #d4a017)' : '1px solid var(--ghost, rgba(15,23,42,0.2))',
                 borderRadius: '4px',
                 background: activeYear === yr ? 'rgba(212,160,23,0.08)' : 'transparent',
-                color: activeYear === yr ? 'var(--gold, #d4a017)' : 'var(--ghost, #475569)',
+                color: activeYear === yr ? 'var(--gold, #d4a017)' : 'color-mix(in srgb, var(--text) 68%, transparent)',
                 cursor: 'pointer', letterSpacing: '0.1em',
                 fontWeight: activeYear === yr ? 700 : 400, transition: 'all 0.3s ease',
               }}
@@ -193,7 +193,7 @@ export default function GithubLiveStats() {
         <div style={fadeStyle(0.55)}>
           <div style={{
             height: 3, borderRadius: 2, overflow: 'hidden',
-            backgroundColor: 'rgba(15,23,42,0.08)', marginBottom: '0.5rem',
+            backgroundColor: 'color-mix(in srgb, var(--text) 12%, transparent)', marginBottom: '0.5rem',
           }}>
             <div style={{
               display: 'flex', height: '100%', width: '100%',
@@ -208,7 +208,7 @@ export default function GithubLiveStats() {
           <div style={{
             display: 'flex', gap: '1.25rem',
             fontFamily: 'var(--font-mono, monospace)', fontSize: '0.6rem',
-            color: 'var(--ghost, #475569)', letterSpacing: '0.08em',
+            color: 'color-mix(in srgb, var(--text) 68%, transparent)', letterSpacing: '0.08em',
           }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#39d353', display: 'inline-block' }} />
@@ -238,7 +238,7 @@ export default function GithubLiveStats() {
             {/* Background ring */}
             <circle
               cx={ringSize / 2} cy={ringSize / 2} r={radius}
-              fill="none" stroke="var(--ghost, rgba(15,23,42,0.1))" strokeWidth={strokeWidth}
+              fill="none" stroke="color-mix(in srgb, var(--text) 16%, transparent)" strokeWidth={strokeWidth}
             />
             {/* Commits arc (green) */}
             <circle
@@ -280,7 +280,7 @@ export default function GithubLiveStats() {
             </div>
             <div style={{
               fontFamily: 'var(--font-mono, monospace)',
-              fontSize: '0.5rem', color: 'var(--ghost, #475569)',
+              fontSize: '0.5rem', color: 'color-mix(in srgb, var(--text) 68%, transparent)',
               letterSpacing: '0.1em', marginTop: '0.15rem',
             }}>
               TOTAL

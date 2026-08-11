@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X, ShieldCheck, Sparkles, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, Sparkle } from 'lucide-react';
+import { Send, X, ShieldCheck, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, MessageSquareText, Activity } from 'lucide-react';
 import { AevoChatMessage } from '@/types/aevo';
 
 export default function AevoWidget({ locale }: { locale?: string }) {
@@ -74,7 +74,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
           chip.classList.add('ring-1', 'ring-[var(--gold)]');
           setTimeout(() => chip.classList.remove('ring-1', 'ring-[var(--gold)]'), 3000);
         });
-        showToast(<Sparkles className="w-4 h-4 text-[var(--gold)]" />, 'Habilidades destacadas no painel');
+        showToast(<Activity className="w-4 h-4 text-[var(--gold)]" />, 'Habilidades destacadas no painel');
       } else if (tool.name === 'trigger_glitch_mode') {
         window.dispatchEvent(new CustomEvent('aevoGlitch'));
         showToast(<Zap className="w-4 h-4 text-[var(--gold)]" />, 'Pulso de Glitch WebGL ativado');
@@ -154,7 +154,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 font-mono">
       {/* Toast Notification Notarial com ícones Lucide */}
       {toastMessage && (
-        <div className="fixed top-6 right-6 z-50 px-4 py-3 rounded-xl bg-[#0b1120] text-[var(--gold)] border border-[var(--gold)]/50 shadow-2xl backdrop-blur-xl text-xs font-mono animate-in fade-in slide-in-from-top-3 flex items-center gap-2.5">
+        <div className="fixed top-6 right-6 z-50 px-4 py-3 rounded-lg bg-[#0b1120] text-[var(--gold)] border border-[var(--gold)]/40 shadow-[0_12px_36px_rgba(0,0,0,0.4)] text-xs font-mono animate-in fade-in slide-in-from-top-3 flex items-center gap-2.5">
           {toastMessage.icon}
           <span>{toastMessage.text}</span>
         </div>
@@ -163,39 +163,44 @@ export default function AevoWidget({ locale }: { locale?: string }) {
       {/* Botão de Toggle Cyberdeck Notarial */}
       {!isOpen && (
         <button
+          type="button"
           onClick={() => setIsOpen(true)}
-          className="group flex items-center gap-3 px-5 py-3 rounded-xl bg-[#0b1120]/95 backdrop-blur-xl text-white shadow-2xl hover:scale-105 transition-all duration-300 border border-[var(--gold)]/40 hover:border-[var(--gold)] hover:shadow-[0_0_20px_rgba(212,160,23,0.3)]"
+          aria-label={isEnglish ? 'Open ÆVO AI assistant' : 'Abrir assistente de IA ÆVO'}
+          className="group relative flex min-h-12 items-center gap-3 overflow-hidden rounded-lg border border-white/15 bg-[#0a0f1c]/95 px-4 py-2.5 text-white shadow-[0_14px_40px_rgba(0,0,0,0.38)] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[var(--gold)]/60 hover:shadow-[0_18px_44px_rgba(0,0,0,0.48)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
         >
-          <div className="relative flex items-center justify-center">
-            <Bot className="w-5 h-5 text-[var(--gold)]" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-          </div>
-          <div className="text-left">
-            <span className="font-bold text-xs tracking-wider uppercase text-white block">AGENTE ÆVO</span>
-            <span className="text-[10px] text-[var(--gold)] block">AI ENGINE · RAG + TOOL USE</span>
-          </div>
+          <span className="grid h-8 w-8 place-items-center rounded-md border border-[var(--gold)]/30 bg-[var(--gold)]/10 text-[var(--gold)] transition-colors group-hover:bg-[var(--gold)] group-hover:text-[#090d1a]">
+            <MessageSquareText className="h-4 w-4" />
+          </span>
+          <span className="min-w-0 text-left">
+            <span className="block text-[11px] font-bold tracking-[0.14em] text-white">ÆVO / {isEnglish ? 'ASK' : 'CONSULTAR'}</span>
+            <span className="mt-0.5 flex items-center gap-1.5 text-[9px] tracking-[0.08em] text-slate-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> {isEnglish ? 'AI AGENT ONLINE' : 'AGENTE DE IA ONLINE'}
+            </span>
+          </span>
+          <span className="ml-1 text-slate-500 transition-transform group-hover:translate-x-0.5" aria-hidden="true">↗</span>
         </button>
       )}
 
       {/* Janela do Terminal Cyberdeck ÆVO */}
       {isOpen && (
-        <div className="w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100vh-6rem))] max-h-[calc(100vh-2rem)] rounded-2xl bg-[#0b1120]/95 backdrop-blur-2xl border border-[var(--gold)]/40 shadow-[0_0_35px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
+        <div className="w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100vh-6rem))] max-h-[calc(100vh-2rem)] rounded-xl bg-[#080d18]/98 border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.58)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
           {/* Header Notarial */}
-          <div className="px-4 py-3 bg-[#0f172a]/90 border-b border-[var(--gold)]/30 flex items-center justify-between">
+          <div className="px-4 py-3.5 bg-[#0d1424] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <ShieldCheck className="w-5 h-5 text-[var(--gold)]" />
+              <span className="grid h-8 w-8 place-items-center rounded-md border border-[var(--gold)]/30 bg-[var(--gold)]/10"><ShieldCheck className="w-4 h-4 text-[var(--gold)]" /></span>
               <div>
                 <h3 className="text-xs font-bold text-white tracking-widest flex items-center gap-2">
-                  ÆVO PROTOCOL <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--gold)]/10 text-[var(--gold)] border border-[var(--gold)]/30 font-mono">v2.5 RAG</span>
+                  ÆVO / INTELLIGENCE DESK <span className="text-[9px] text-[var(--gold)] font-mono">RAG·2.5</span>
                 </h3>
                 <p className="text-[10px] text-gray-400">
-                  {providerUsed ? `Engine Active: ${providerUsed}` : 'Agente Agnóstico de IA · Cartório Gaya'}
+                  {providerUsed ? `${isEnglish ? 'Active engine' : 'Engine ativa'}: ${providerUsed}` : (isEnglish ? 'Provider-agnostic AI · Portfolio knowledge' : 'IA agnóstica · Conhecimento do portfólio')}
                 </p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label={isEnglish ? 'Close ÆVO assistant' : 'Fechar assistente ÆVO'}
+              className="grid h-8 w-8 place-items-center rounded-md text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
             >
               <X className="w-5 h-5" />
             </button>
@@ -209,62 +214,62 @@ export default function AevoWidget({ locale }: { locale?: string }) {
                 className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'} animate-in fade-in duration-300`}
               >
                 <div
-                  className={`max-w-[88%] px-4 py-3 rounded-xl ${
+                  className={`max-w-[88%] px-3.5 py-3 rounded-lg ${
                     m.role === 'user'
-                      ? 'bg-blue-600/90 text-white rounded-br-none border border-blue-400/40 shadow-lg'
-                      : 'bg-white/5 text-gray-200 border border-[var(--gold)]/20 rounded-bl-none shadow-md backdrop-blur-md'
+                      ? 'bg-blue-600 text-white border border-blue-400/30 shadow-[0_8px_24px_rgba(37,99,235,0.16)]'
+                      : 'bg-[#0d1424] text-slate-200 border border-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.18)]'
                   }`}
                 >
                   {m.role === 'assistant' && (
-                    <span className="text-[10px] font-bold text-[var(--gold)] block mb-1">■ [ÆVO AGENT]:</span>
+                    <span className="text-[10px] font-bold text-[var(--gold)] block mb-1">ÆVO / RESPONSE</span>
                   )}
                   <p className="whitespace-pre-line text-[11px] font-mono">{m.content}</p>
                 </div>
 
                 {/* Badge de Tool Call se houver */}
                 {m.toolCalls && m.toolCalls.length > 0 && (
-                  <div className="mt-1 flex items-center gap-1 text-[10px] text-emerald-400 bg-emerald-950/40 px-2.5 py-1 rounded-md border border-emerald-500/30">
+                  <div className="mt-1.5 flex items-center gap-1.5 text-[9px] text-emerald-300 px-1 py-1 tracking-wide">
                     <CheckCircle2 className="w-3 h-3" />
-                    <span>Executou: {m.toolCalls.map(t => t.name).join(', ')}</span>
+                    <span>{isEnglish ? 'Action completed' : 'Ação concluída'}: {m.toolCalls.map(t => t.name).join(', ')}</span>
                   </div>
                 )}
               </div>
             ))}
 
             {loading && (
-              <div className="flex items-center gap-2 text-[var(--gold)] text-xs animate-pulse p-2 bg-[var(--gold)]/5 rounded-lg border border-[var(--gold)]/20">
-                <Sparkles className="w-4 h-4 animate-spin text-[var(--gold)]" />
-                <span>ÆVO consultando base RAG e processando...</span>
+              <div className="flex items-center gap-2 text-[var(--gold)] text-xs p-2 text-slate-300 border-t border-white/10">
+                <Activity className="w-4 h-4 text-[var(--gold)]" />
+                <span>{isEnglish ? 'ÆVO is consulting the knowledge base…' : 'ÆVO consultando a base de conhecimento…'}</span>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Prompt Pills rápidos com Ícones Lucide elegantes */}
-          <div className="px-3 py-2 bg-[#0f172a]/60 border-t border-white/10 flex gap-1.5 overflow-x-auto text-[11px]">
+          {/* Atalhos contextuais */}
+          <div className="px-3 py-2.5 bg-[#0b1120] border-t border-white/10 flex gap-1 overflow-x-auto text-[10px]">
             <button
-              onClick={() => handleSend('Me fale dos projetos de IA do Kauê')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1.5"
+              onClick={() => handleSend(isEnglish ? "Tell me about Kauê's AI projects" : 'Me fale dos projetos de IA do Kauê')}
+              className="px-2.5 py-1.5 text-slate-400 hover:text-white border-b border-transparent hover:border-[var(--gold)] whitespace-nowrap transition-colors flex items-center gap-1.5"
             >
-              <FolderGit2 className="w-3.5 h-3.5 text-[var(--gold)]" /> Projetos
+              <FolderGit2 className="w-3.5 h-3.5 text-[var(--gold)]" /> {isEnglish ? 'Projects' : 'Projetos'}
             </button>
             <button
-              onClick={() => handleSend('Qual a atuação dele no Cartório Gaya?')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1.5"
+              onClick={() => handleSend(isEnglish ? 'What did he build at Cartório Gaya?' : 'Qual a atuação dele no Cartório Gaya?')}
+              className="px-2.5 py-1.5 text-slate-400 hover:text-white border-b border-transparent hover:border-[var(--gold)] whitespace-nowrap transition-colors flex items-center gap-1.5"
             >
-              <Building2 className="w-3.5 h-3.5 text-[var(--gold)]" /> Cartório
+              <Building2 className="w-3.5 h-3.5 text-[var(--gold)]" /> {isEnglish ? 'Notary work' : 'Cartório'}
             </button>
             <button
-              onClick={() => handleSend('Quero o email de contato')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1.5"
+              onClick={() => handleSend(isEnglish ? 'I want the contact email' : 'Quero o email de contato')}
+              className="px-2.5 py-1.5 text-slate-400 hover:text-white border-b border-transparent hover:border-[var(--gold)] whitespace-nowrap transition-colors flex items-center gap-1.5"
             >
-              <Mail className="w-3.5 h-3.5 text-[var(--gold)]" /> E-mail
+              <Mail className="w-3.5 h-3.5 text-[var(--gold)]" /> {isEnglish ? 'Contact' : 'E-mail'}
             </button>
             <button
-              onClick={() => handleSend('Preencher proposta de contato')}
-              className="px-3 py-1 rounded-lg bg-white/5 hover:bg-[var(--gold)]/20 text-gray-300 hover:text-[var(--gold)] border border-white/10 hover:border-[var(--gold)]/40 whitespace-nowrap transition-all flex items-center gap-1.5"
+              onClick={() => handleSend(isEnglish ? 'Help me fill out the contact form' : 'Preencher proposta de contato')}
+              className="px-2.5 py-1.5 text-slate-400 hover:text-white border-b border-transparent hover:border-[var(--gold)] whitespace-nowrap transition-colors flex items-center gap-1.5"
             >
-              <FileSignature className="w-3.5 h-3.5 text-[var(--gold)]" /> Petição
+              <FileSignature className="w-3.5 h-3.5 text-[var(--gold)]" /> {isEnglish ? 'Inquiry' : 'Petição'}
             </button>
           </div>
 
@@ -274,19 +279,21 @@ export default function AevoWidget({ locale }: { locale?: string }) {
               e.preventDefault();
               handleSend();
             }}
-            className="p-3 bg-[#0f172a] border-t border-[var(--gold)]/30 flex items-center gap-2"
+            className="p-3 bg-[#0d1424] border-t border-white/10 flex items-center gap-2"
           >
             <input
               type="text"
+              aria-label={isEnglish ? 'Message to ÆVO' : 'Mensagem para o ÆVO'}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Instruir Agente ÆVO..."
-              className="flex-1 bg-[#0b1120] text-white text-xs px-3.5 py-2.5 rounded-lg border border-white/10 focus:outline-none focus:border-[var(--gold)] placeholder:text-gray-500 font-mono"
+              placeholder={isEnglish ? 'Ask about Kauê…' : 'Pergunte sobre Kauê…'}
+              className="flex-1 bg-[#0b1120] text-white text-xs px-3.5 py-2.5 rounded-md border border-white/15 focus:outline-none focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)]/30 placeholder:text-gray-500 font-mono"
             />
             <button
               type="submit"
+              aria-label={isEnglish ? 'Send message' : 'Enviar mensagem'}
               disabled={loading}
-              className="p-2.5 rounded-lg bg-[var(--gold)] text-[#0b1120] hover:bg-amber-400 font-bold transition-all disabled:opacity-50"
+              className="p-2.5 rounded-md bg-[var(--gold)] text-[#0b1120] hover:bg-amber-400 font-bold transition-all disabled:opacity-50"
             >
               <Send className="w-4 h-4" />
             </button>
