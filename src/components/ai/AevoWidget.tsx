@@ -1,8 +1,33 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, X, ShieldCheck, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, MessageSquareText, Activity } from 'lucide-react';
+import { Send, X, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, Activity } from 'lucide-react';
 import { AevoChatMessage } from '@/types/aevo';
+
+function AevoMascot({ className = 'h-8 w-8' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 48 48" fill="none" role="img" aria-label="ÆVO">
+      <path d="M24 4 40 13v18L24 44 8 35V13L24 4Z" fill="#0d1424" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M15 24c0-6.1 3.8-10 9-10s9 3.9 9 10-3.8 10-9 10-9-3.9-9-10Z" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M18.5 23.5 22 20l2 3.5L26 20l3.5 3.5" stroke="#60a5fa" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M19.5 28.5c2.8 1.8 6.2 1.8 9 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <circle cx="24" cy="4" r="2" fill="#60a5fa" />
+      <path d="M6 20H2m44 0h-4M7 34l-3 2m37-2 3 2" stroke="#60a5fa" strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function renderMessage(content: string) {
+  return content.split(/(`[^`]+`|\*\*[^*]+\*\*)/g).filter(Boolean).map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index} className="font-semibold text-white">{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return <code key={index} className="rounded-sm bg-black/30 px-1 py-0.5 text-[10px] text-blue-200">{part.slice(1, -1)}</code>;
+    }
+    return <span key={index}>{part}</span>;
+  });
+}
 
 export default function AevoWidget({ locale }: { locale?: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -166,18 +191,15 @@ export default function AevoWidget({ locale }: { locale?: string }) {
           type="button"
           onClick={() => setIsOpen(true)}
           aria-label={isEnglish ? 'Open ÆVO AI assistant' : 'Abrir assistente de IA ÆVO'}
-          className="group relative flex min-h-12 items-center gap-3 overflow-hidden rounded-lg border border-white/15 bg-[#0a0f1c]/95 px-4 py-2.5 text-white shadow-[0_14px_40px_rgba(0,0,0,0.38)] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[var(--gold)]/60 hover:shadow-[0_18px_44px_rgba(0,0,0,0.48)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
+          className="group relative flex h-11 items-center gap-2.5 overflow-hidden rounded-lg border border-white/15 bg-[#0a0f1c]/95 px-3 py-2 text-white shadow-[0_14px_40px_rgba(0,0,0,0.38)] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[var(--gold)]/60 hover:shadow-[0_18px_44px_rgba(0,0,0,0.48)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
         >
-          <span className="grid h-8 w-8 place-items-center rounded-md border border-[var(--gold)]/30 bg-[var(--gold)]/10 text-[var(--gold)] transition-colors group-hover:bg-[var(--gold)] group-hover:text-[#090d1a]">
-            <MessageSquareText className="h-4 w-4" />
+          <span className="text-[var(--gold)] transition-transform duration-300 group-hover:scale-105">
+            <AevoMascot className="h-7 w-7" />
           </span>
-          <span className="min-w-0 text-left">
-            <span className="block text-[11px] font-bold tracking-[0.14em] text-white">ÆVO / {isEnglish ? 'ASK' : 'CONSULTAR'}</span>
-            <span className="mt-0.5 flex items-center gap-1.5 text-[9px] tracking-[0.08em] text-slate-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> {isEnglish ? 'AI AGENT ONLINE' : 'AGENTE DE IA ONLINE'}
-            </span>
+          <span className="text-left">
+            <span className="block text-[10px] font-bold tracking-[0.16em] text-white">ÆVO</span>
+            <span className="block text-[8px] tracking-[0.12em] text-slate-400">{isEnglish ? 'AGENT' : 'AGENTE'}</span>
           </span>
-          <span className="ml-1 text-slate-500 transition-transform group-hover:translate-x-0.5" aria-hidden="true">↗</span>
         </button>
       )}
 
@@ -187,10 +209,10 @@ export default function AevoWidget({ locale }: { locale?: string }) {
           {/* Header Notarial */}
           <div className="px-4 py-3.5 bg-[#0d1424] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <span className="grid h-8 w-8 place-items-center rounded-md border border-[var(--gold)]/30 bg-[var(--gold)]/10"><ShieldCheck className="w-4 h-4 text-[var(--gold)]" /></span>
+              <span className="text-[var(--gold)]"><AevoMascot className="h-9 w-9" /></span>
               <div>
                 <h3 className="text-xs font-bold text-white tracking-widest flex items-center gap-2">
-                  ÆVO / INTELLIGENCE DESK <span className="text-[9px] text-[var(--gold)] font-mono">RAG·2.5</span>
+                  ÆVO <span className="text-[9px] font-normal text-slate-500">/ {isEnglish ? 'AGENT' : 'AGENTE'}</span>
                 </h3>
                 <p className="text-[10px] text-gray-400">
                   {providerUsed ? `${isEnglish ? 'Active engine' : 'Engine ativa'}: ${providerUsed}` : (isEnglish ? 'Provider-agnostic AI · Portfolio knowledge' : 'IA agnóstica · Conhecimento do portfólio')}
@@ -221,9 +243,9 @@ export default function AevoWidget({ locale }: { locale?: string }) {
                   }`}
                 >
                   {m.role === 'assistant' && (
-                    <span className="text-[10px] font-bold text-[var(--gold)] block mb-1">ÆVO / RESPONSE</span>
+                    <span className="mb-1.5 flex items-center gap-1.5 text-[9px] font-bold tracking-[0.12em] text-[var(--gold)]"><AevoMascot className="h-4 w-4" /> ÆVO</span>
                   )}
-                  <p className="whitespace-pre-line text-[11px] font-mono">{m.content}</p>
+                  <p className="whitespace-pre-line text-[11px] font-mono leading-[1.65]">{renderMessage(m.content)}</p>
                 </div>
 
                 {/* Badge de Tool Call se houver */}
