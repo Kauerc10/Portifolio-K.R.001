@@ -32,9 +32,9 @@
   },
   "sobre": {
     "title": "ABOUT ME",
-    "bioP1": "My interest in technology started early. Whenever I see a manual, repetitive process, I cannot resist trying to automate it. That curiosity took me from iPhone board repair to notary desks — and back to technology.",
+    "bioP1": "My interest in technology started early. Whenever I see a manual, repetitive process, I cannot resist trying to automate it. That curiosity took me from iPhone board repair to notary desks and back to technology.",
     "bioP2": "Today I work as a notary clerk at Cartório Gaya in Blumenau, Brazil. I found that I work well in the legal world, but I am always drawn back to technology: I try to improve or automate processes even when nobody asks.",
-    "bioP3": "I build software using generative AI (Claude, GPT) as my primary tool — from LLM prototypes to back-end and front-end. I do not write every line from scratch; my work is to decompose the problem, structure the instruction, and connect the pieces until the entire flow works. That is exactly the engineering I want to do in production: put AI to work solving real problems.",
+    "bioP3": "I build software using generative AI (Claude, GPT) as my primary tool, from LLM prototypes to back-end and front-end. I do not write every line from scratch; my work is to decompose the problem, structure the instruction, and connect the pieces until the entire flow works. That is exactly the engineering I want to do in production: put AI to work solving real problems.",
     "badge": "TECHNICAL RECORD",
     "fields": [
       {
@@ -72,7 +72,7 @@
         "description": "A Next.js platform that generates legal documents through conversation. I built a provider-agnostic layer (`AIProvider`) with an environment-based factory, a server-side API route (`/api/ai/generate`) that keeps secrets on the server, response streaming, and typed error handling (`AIError`). Real providers (OpenAI / Anthropic / Gemini) are pluggable without changing the rest of the app.",
         "achievements": [
           "Guided chat interface with real-time document preview.",
-          "Decoupled AI layer — changing the LLM requires no front-end changes."
+          "The AI layer is decoupled. Changing the LLM requires no front-end changes."
         ],
         "skills": [
           "Next.js 16",
@@ -88,7 +88,7 @@
         "title": "Notary Clerk / Powers of Attorney Dept.",
         "company": "Cartório Gaya",
         "location": "Blumenau, Brazil",
-        "description": "I built an automation that consumes Detran-RS endpoints to generate vehicle powers of attorney automatically, eliminating repetitive manual entry. It remains in production at the notary office — a task that took minutes now takes only a few clicks.",
+        "description": "I built an automation that consumes Detran-RS endpoints to generate vehicle powers of attorney automatically, eliminating repetitive manual entry. It remains in production at the notary office. A task that took minutes now takes only a few clicks.",
         "achievements": [
           "Drafting powers of attorney, deeds, and estate inventories.",
           "Self-directed improvement of digital workflows.",
@@ -120,7 +120,7 @@
   },
   "skills": {
     "title": "SKILLS",
-    "subtitle": "What I actually use in projects (verifiable in public repositories). No invented percentages — I build with AI as my primary tool and master the workflow of decomposing, instructing, and connecting.",
+    "subtitle": "What I actually use in projects (verifiable in public repositories). No invented percentages. I build with AI as my primary tool and master the workflow of decomposing, instructing, and connecting.",
     "groups": [
       {
         "title": "Generative AI",
@@ -306,6 +306,10 @@
     "copied": "Copied!"
   },
   "footer": {
+    "channelsLabel": "Contact channels",
+    "emailLabel": "Copy email address",
+    "email": "Email",
+    "copied": "Copied",
     "copyright": "© 2026 Kauê Ruon Cardoso · Built with generative AI as an engineering tool."
   },
   "modals": {

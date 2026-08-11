@@ -174,7 +174,7 @@
             safeCall(() => HeroScene.init(), 'HeroScene');
             safeCall(() => EasterEggs.init(), 'EasterEggs');
             if (typeof CipherDecode !== 'undefined') safeCall(() => CipherDecode.init(), 'CipherDecode');
-            if (typeof BreachProtocol !== 'undefined') safeCall(() => BreachProtocol.init(), 'BreachProtocol');
+            if (typeof AvailabilityBanner !== 'undefined') safeCall(() => AvailabilityBanner.init(), 'AvailabilityBanner');
         });
 
         // Animations self-register on loaderDone
