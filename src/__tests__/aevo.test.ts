@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { AevoProviderFactory } from '@/lib/aevo/provider-factory';
 
 describe('AevoProviderFactory (Agente de IA ÆVO)', () => {
-  it('deve retornar resposta resiliente do RAG Engine Local quando chaves de API não estão configuradas', async () => {
+  it('deve retornar resposta resiliente da base local quando chaves de API não estão configuradas', async () => {
     const res = await AevoProviderFactory.generateResponse({
       messages: [{ role: 'user', content: 'Quais os projetos do Kauê?' }],
     });
@@ -10,7 +10,7 @@ describe('AevoProviderFactory (Agente de IA ÆVO)', () => {
     expect(res.text).toContain('DocFácil');
     expect(res.text).toContain('CKF Manutenção');
     expect(res.text).toContain('Foli');
-    expect(res.providerUsed).toBe('Engine Local RAG ÆVO');
+    expect(res.providerUsed).toBe('Base Local ÆVO');
   });
 
   it('deve respeitar a ordem configurável de providers e ignorar valores inválidos', () => {

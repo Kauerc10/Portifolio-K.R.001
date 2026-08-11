@@ -36,9 +36,9 @@ Minha relação com tecnologia vem desde cedo, e a verdade é que construo softw
 
 O portfólio inclui o agente inteligente **ÆVO**, desenvolvido com uma arquitetura agnóstica de LLMs:
 
-- **Camada Agnóstica de Provedores:** Ordem configurável entre Google Gemini, OpenAI, Groq e Engine RAG local bilíngue de fallback.
-- **Base de Conhecimento RAG:** Vetorização e contexto estruturado sobre o perfil técnico e projetos do Kauê.
-- **Tool Use (Function Calling):** O agente interage com o site ao vivo (`scroll_to_section`, `highlight_project`, `open_resume`, `trigger_glitch_mode`, `trigger_konami_protocol`).
+- **Camada Agnóstica de Provedores:** Ordem configurável entre Google Gemini, Groq e OpenAI, seguida por uma base local bilíngue determinística.
+- **Base de Conhecimento Local:** Contexto estruturado sobre o perfil técnico e projetos do Kauê, sem alegar vetorização ou retrieval inexistentes.
+- **Tool Use (Function Calling):** O modelo escolhe ações tipadas, validadas no servidor e executadas no browser, como `scroll_to_section`, `highlight_project` e `open_resume`.
 
 ---
 
@@ -112,20 +112,19 @@ npm run build
 Em **Vercel → Project Settings → Environment Variables**, configure a ordem dos provedores e ao menos uma chave externa. O ÆVO ignora provedores sem chave ou indisponíveis e tenta o próximo automaticamente.
 
 ```env
-AEVO_PROVIDER_ORDER=gemini,openai,groq
-AEVO_TEMPERATURE=0.7
+AEVO_PROVIDER_ORDER=gemini,groq
 
 GEMINI_API_KEY=...
-AEVO_GEMINI_MODEL=gemini-2.5-flash
+AEVO_GEMINI_MODEL=gemini-3.6-flash
 
 OPENAI_API_KEY=...
 AEVO_OPENAI_MODEL=gpt-4.1-mini
 
 GROQ_API_KEY=...
-AEVO_GROQ_MODEL=llama-3.3-70b-versatile
+AEVO_GROQ_MODEL=openai/gpt-oss-120b
 GROQ_BASE_URL=https://api.groq.com/openai/v1
 ```
 
-A ordem é livre, por exemplo `openai,gemini,groq`. Chaves e modelos podem ser configurados separadamente. Se todos os serviços externos estiverem sem chave, fora do ar ou retornarem erro, o **RAG local bilíngue** responde automaticamente sem exigir variável adicional.
+A ordem é livre, por exemplo `gemini,groq,openai`. Chaves e modelos podem ser configurados separadamente. Se todos os serviços externos estiverem sem chave ou indisponíveis, a **base de conhecimento local bilíngue** responde automaticamente sem exigir variável adicional.
 
 Use `.env.example` como referência completa. Nunca prefixe essas chaves com `NEXT_PUBLIC_`, pois elas devem permanecer somente no servidor.
