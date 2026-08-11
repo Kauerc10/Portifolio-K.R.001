@@ -2,45 +2,254 @@
  * ═══════════════════════════════════════════════════════
  *  VARIÁVEIS GLOBAIS — Design System do Processo K.R.001
  * ═══════════════════════════════════════════════════════
- *
- *  Aqui ficam todas as variáveis CSS do projeto.
- *  Se precisar mudar uma cor ou fonte, é aqui que muda.
- *  Nada de ir caçando hex code por 1931 linhas de CSS.
- *
- *  Paleta principal:
- *  - void    → o fundo preto-azulado do universo
- *  - ink     → azul escuro dos cards
- *  - signal  → azul elétrico dos links/destaques
- *  - stamp   → dourado cartorário (cor principale)
- *  - text    → branco suave pra leitura
- *  - ghost   → cinza médio pra elementos secundários
- * ═══════════════════════════════════════════════════════
  */
 
 :root {
-    /* ── Cores de Fundo ── */
+    /* ── Cores de Fundo (Dark Mode Padrão) ── */
     --void: #04060d;
-    /* Preto do cosmos — fundo raiz do body */
     --ink: #0d1424;
-    /* Azul bebê escuro — fundo dos cards */
 
     /* ── Cores de Destaque ── */
     --signal: #2563eb;
-    /* Azul elétrico — links, barras de progresso */
     --stamp: #d4a017;
-    /* Ouro cartorário — a assinatura visual do site */
 
     /* ── Tipografia ── */
     --text: #e2e8f0;
-    /* Branco suave — texto principal */
     --ghost: #334155;
-    /* Cinza escuro — texto secundário e bordas sutis */
 
     /* ── Fontes ── */
     --font-display: 'Syne', sans-serif;
-    /* Títulos grandes */
     --font-body: 'Inter', sans-serif;
-    /* Texto corrido */
     --font-mono: 'JetBrains Mono', monospace;
-    /* Código, labels, UI */
+}
+
+/* ── Tema Claro (Light Mode) ── */
+html.light,
+html[data-theme='light'] {
+    --void: #f8fafc;
+    --ink: #ffffff;
+    --signal: #1d4ed8;
+    --stamp: #b48312;
+    --text: #0f172a;
+    --ghost: #475569;
+}
+
+html.light body {
+    background-color: var(--void);
+    color: var(--text);
+}
+
+/* Hero Light Mode Overrides */
+html.light .hero__name--white {
+    color: #0f172a !important;
+}
+
+html.light .hero__name--outline {
+    -webkit-text-stroke: 2px #0f172a !important;
+}
+
+html.light .hero__typewriter,
+html.light .mono-ghost,
+html.light .hero__case,
+html.light .hero__footnote {
+    color: #334155 !important;
+}
+
+html.light .btn--outline {
+    border-color: rgba(15, 23, 42, 0.3) !important;
+    color: #0f172a !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.light .btn--outline:hover {
+    border-color: #b48312 !important;
+    color: #b48312 !important;
+    background: rgba(180, 131, 18, 0.08) !important;
+}
+
+/* Sections Titles & Typography Light Mode */
+html.light .section__title,
+html.light .hero__title,
+html.light .evidence__title,
+html.light .obmep-card__title,
+html.light .timeline__title,
+html.light .formacao__name {
+    color: #0f172a !important;
+}
+
+html.light .section__article {
+    color: #b48312 !important;
+}
+
+html.light .hero__subtitle,
+html.light .sobre__paragraph,
+html.light .evidence__desc,
+html.light .timeline__company,
+html.light .peticao__label,
+html.light .skills__intro,
+html.light .skill-bar__name,
+html.light .skill-bar__pct,
+html.light .skills__soft-title,
+html.light .timeline__bullets li,
+html.light .formacao__info,
+html.light .contato__link,
+html.light .footer p,
+html.light .footer__link {
+    color: #334155 !important;
+}
+
+
+/* Project cards must follow the selected site theme, not the OS preference. */
+html.light .evidence__folder h3 {
+    color: #0f172a !important;
+}
+
+html.light .evidence__folder p {
+    color: #475569;
+}
+
+html.light .evidence__folder p.text-amber-600 {
+    color: #a16207 !important;
+}
+
+/* Skills Chips & Cards Light Mode */
+html.light .chip {
+    background: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .chip:hover {
+    background: #1d4ed8 !important;
+    border-color: #1d4ed8 !important;
+    color: #ffffff !important;
+}
+
+html.light .evidence__folder,
+html.light .sobre__card,
+html.light .obmep-card,
+html.light .timeline__content,
+html.light .formacao__card {
+    background: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .obmep-card__desc,
+html.light .obmep-card__year {
+    color: #475569 !important;
+}
+
+.golden-text {
+    color: var(--stamp) !important;
+}
+
+html.light .golden-text {
+    color: #b48312 !important;
+}
+
+html.light .obmep-card__content {
+    background: #ffffff !important;
+    border-color: rgba(15, 23, 42, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .obmep-card__content::after {
+    color: #475569 !important;
+}
+
+html.light .obmep-card__title {
+    color: #0f172a !important;
+}
+
+html.light .obmep-timeline-track {
+    background: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .obmep-node-marker {
+    border-color: rgba(15, 23, 42, 0.3) !important;
+    background: #ffffff !important;
+}
+
+html.light .timeline__line {
+    background: rgba(15, 23, 42, 0.15) !important;
+}
+
+html.light .timeline__dot {
+    border: 2px solid #ffffff !important;
+}
+
+html.light .timeline__highlight {
+    background: rgba(212, 160, 23, 0.08) !important;
+    border-color: rgba(212, 160, 23, 0.3) !important;
+}
+
+html.light .timeline__highlight p {
+    color: #334155 !important;
+}
+
+html.light .peticao__input,
+html.light .peticao__textarea {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+html.light .peticao__input::placeholder,
+html.light .peticao__textarea::placeholder {
+    color: #64748b !important;
+}
+
+html.light .peticao__input:focus,
+html.light .peticao__textarea:focus {
+    border-color: #b48312 !important;
+}
+
+html.light .sobre__card-row {
+    color: #0f172a !important;
+    border-bottom-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .sobre__card-label {
+    color: #64748b !important;
+}
+
+html.light .nav {
+    background: rgba(248, 250, 252, 0.9) !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light .nav__link {
+    color: #334155 !important;
+}
+
+html.light .nav__link:hover,
+html.light .nav__link.active {
+    color: #0f172a !important;
+}
+
+html.light .nav__indicator {
+    color: #b48312 !important;
+}
+
+/* ── View Transitions API (Onda de Troca de Tema Suave) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Contrast corrections for the dark theme. */
+html:not(.light) .skills__intro {
+    color: #a8b3c7;
+}
+
+html:not(.light) .skills__soft-title {
+    color: #cbd5e1;
+}
+
+html:not(.light) .chip {
+    color: #b6c2d4;
+    border-color: #475569;
+    background: rgba(13, 20, 36, 0.58);
 }

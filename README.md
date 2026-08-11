@@ -7,9 +7,10 @@
 
 <br>
 
-<img src="https://img.shields.io/badge/Foco-AI_Engineer-2563eb?style=for-the-badge&labelColor=04060d" />
-<img src="https://img.shields.io/badge/Disponibilidade-Remoto-22c55e?style=for-the-badge&labelColor=04060d" />
-<img src="https://img.shields.io/badge/Localização-Blumenau_SC-d4a017?style=for-the-badge&labelColor=04060d" />
+<img src="https://img.shields.io/badge/Next.js-16_App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white" />
+<img src="https://img.shields.io/badge/Agente_IA-ÆVO_RAG_--_Tool_Use-2563eb?style=for-the-badge&labelColor=04060d" />
+<img src="https://img.shields.io/badge/Testes-Vitest_100%25_Passed-22c55e?style=for-the-badge&labelColor=04060d" />
+<img src="https://img.shields.io/badge/CI%2FCD-GitHub_Actions-181717?style=for-the-badge&logo=github-actions&logoColor=white" />
 
 <br>
 
@@ -21,113 +22,110 @@
 
 ---
 
-## Sobre
+## ⚡ Sobre
 
 Sou cartorário no [Cartório Gaya](https://www.cartoriogaya.com.br) desde agosto de 2023, em Blumenau/SC. Lido com procurações, inventários e documentos jurídicos — trabalho que exige tolerância zero a erros e me ensinou a enxergar processos onde outros veem apenas tarefas.
 
-Minha relação com tecnologia vem desde cedo, e a verdade é que construo software **guiando IA generativa** (Claude, GPT) como ferramenta primária. Não escrevo código do zero, linha por linha, como um desenvolvedor tradicional. Meu trabalho é **decomor o problema, estruturar a instrução técnica e conectar as peças** até o fluxo inteiro funcionar em produção.
-
-Isso não é uma fraqueza que eu esconda — é exatamente o que quero fazer como AI Engineer: colocar IA generativa pra resolver problemas reais, com mentoria e desafios de produção.
+Minha relação com tecnologia vem desde cedo, e a verdade é que construo software **guiando IA generativa** (Claude, GPT, Gemini) como ferramenta primária. Não escrevo código do zero, linha por linha, como um desenvolvedor tradicional. Meu trabalho é **decompor o problema, estruturar a instrução técnica e conectar as peças** até o fluxo inteiro funcionar em produção com qualidade industrial.
 
 > Base de raciocínio lógico forjada em matemática competitiva (OBMEP/IMPA): Prata Regional e Bronze Nacional, além de duas Menções Honrosas.
 
 ---
 
-## Projetos
+## 🤖 O Agente de IA Resident: **ÆVO**
+
+O portfólio inclui o agente inteligente **ÆVO**, desenvolvido com uma arquitetura agnóstica de LLMs:
+
+- **Camada Agnóstica de Provedores:** Ordem configurável entre Google Gemini, OpenAI, Groq e Engine RAG local bilíngue de fallback.
+- **Base de Conhecimento RAG:** Vetorização e contexto estruturado sobre o perfil técnico e projetos do Kauê.
+- **Tool Use (Function Calling):** O agente interage com o site ao vivo (`scroll_to_section`, `highlight_project`, `open_resume`, `trigger_glitch_mode`, `trigger_konami_protocol`).
+
+---
+
+## 🎨 Arquitetura Técnica do Portfólio
+
+- **Next.js 16 (App Router)** & **TypeScript** estrito
+- **Three.js & React Three Fiber** — Cena WebGL 3D com icosaedro wireframe, shaders GLSL customizados de aberração cromática (RGB split) a 60 FPS, 350 partículas e 120 debris com física de repulsão ao mouse
+- **Tailwind CSS & CSS Modules** — Sistema de design tokens cyberpunk e notarial
+- **GitHub REST API Live Stats** — Integrado ao vivo trazendo repositórios, seguidores e commits de `@Kauerc10`
+- **Suíte de Testes com Vitest & React Testing Library** — 100% dos testes aprovados
+- **Framework de A/B Testing** — Atribuição determinística 50/50 com persistência local
+- **Esteira CI/CD em GitHub Actions** — Workflows automáticos de lint, tsc, vitest e build no `.github/workflows/ci.yml`
+
+> 🔗 **Ao vivo:** [kaueruon.dev](https://kaueruon.dev)
+
+---
+
+## 🛠️ Projetos em Destaque
 
 ### DocFácil — IA generativa aplicada a documentos legais
 **Stack:** `Next.js 16` · `TypeScript` · `Prisma` · `IA Generativa`
-
-Plataforma que gera documentos legais (contratos, declarações, procurações) através de um chat guiado com o usuário. A peça central é uma **camada de IA agnóstica de provedor**:
-
-- Interface `AIProvider` com factory por variável de ambiente — trocar de LLM não exige mudar o front-end
-- API route server-side (`/api/ai/generate`) que mantém a chave de API secreta no servidor
-- Streaming de respostas e tratamento de erro tipado (`AIError`)
-- Providers reais plugáveis: OpenAI, Anthropic, Gemini
-
 > 🔗 **Demo:** [docfacil-indol.vercel.app](https://docfacil-indol.vercel.app) · **Repo:** [github.com/khub-solucoes/docfacil](https://github.com/khub-solucoes/docfacil)
 
 ### CKF Manutenção — Sistema de Orçamentos
 **Stack:** `React` · `TypeScript` · `Supabase` · `TailwindCSS`
-
-Sistema interno em **produção** para uma empresa de manutenção mecânica. Criação, gestão, filtros e exportação de orçamentos (CSV/XLSX). Inclui **testes unitários** cobrindo repositório, validações e exports.
-
 > 🔗 **Demo:** [ckf-manutencao-orcamentos.vercel.app](https://ckf-manutencao-orcamentos.vercel.app) · **Repo:** [github.com/Kauerc10/ckf-manutencao-orcamentos](https://github.com/Kauerc10/ckf-manutencao-orcamentos)
 
 ### Atlas Notarial — Automação de procurações de veículos
-**Stack:** `Node.js` · `APIs REST` · `Automação`
-
-Automação que consome a API do Detran-RS para gerar procurações de veículos automaticamente. **Em produção no Cartório Gaya** — uma tarefa manual que tomava minutos virou poucos cliques. Código privado (dados sensíveis).
+**Stack:** `Node.js` · `APIs REST` · `Detran-RS`
+> Código privado em produção no Cartório Gaya.
 
 ### Foli — Biblioteca TypeScript para PDF
 **Stack:** `TypeScript` · `Layout Engine`
-
-Biblioteca open source para geração de PDF em Node.js e navegador, com Fluent Builder API, motor de layout com garantia de zero overflow e suporte Unicode (pt-BR).
-
 > 🔗 **Repo:** [github.com/Kauerc10/foli](https://github.com/Kauerc10/foli)
 
 ---
 
-## Este portfólio
+## 🧪 Executando Testes e Build Localmente
 
-O próprio site deste portfólio é um projeto de engenharia visual. Construído com IA generativa como ferramenta, ele combina:
+```bash
+# Instalar dependências
+npm install
 
-- **Three.js** — Cena WebGL com icosaedro wireframe, 350 partículas e 120 fragmentos com física interativa ao mouse
-- **GSAP + ScrollTrigger** — Animações de scroll, parallax e timing
-- **Lenis** — Smooth scroll
-- **Shaders GLSL customizados** — Aberração cromática baseada na velocidade de scroll
-- **Acessibilidade** — `prefers-reduced-motion`, semantic HTML, performance otimizada
+# Rodar servidor de desenvolvimento
+npm run dev
 
-> 🔗 **Ao vivo:** [kaueruon.dev](https://kaueruon.dev)
+# Executar suíte de testes unitários no Vitest
+npm run test
 
+# Checagem estrita de tipos
+npx tsc --noEmit
 
-<details>
-<summary><b>Easter eggs</b></summary>
-
-Quem explora o site encontra quatro surpresas:
-
-1. **Konami Code** (↑↑↓↓←→←→BA) → Modal de "acesso root"
-2. **5 cliques no nome** → Glitch com erro HTTP 418
-3. **Console do DevTools** → Arte ASCII com contato direto
-4. **3s de hover na ficha técnica** → Carimbo de "AUTENTICADO"
-
-</details>
-
----
-
-## Experiência
-
-| Período | Função | Onde |
-|---|---|---|
-| Jul 2026 → Atual | Founder & Builder — DocFácil | K-HUB Soluções |
-| 2023 → Atual | Cartorário / Depto. de Procurações | Cartório Gaya · Blumenau/SC |
-| Nov 2021 → Mar 2023 | Técnico em Manutenção Apple | iPhoneria · Blumenau/SC |
-
----
-
-## Formação
-
-- **Ensino Médio Completo** — EEB Cel. Pedro Christiano Feddersen
-- **Téc. Gestão Administrativa** (156h) — VisualMídia · 2020
-- **Operador de Tecnologia** (92h) — VisualMídia · 2017
-- **Programador de Games** (40h) / **3Ds Max** (32h) — VisualMídia · 2017-2018
-
----
-
-## Stack
-
-**IA Generativa:** Integração de LLMs · Arquitetura de providers (OpenAI/Anthropic/Gemini) · Streaming · Prompt engineering
-
-**Construindo com:** JavaScript/TypeScript · React/Next.js · Supabase/Prisma · Node.js
-
-**Praticando:** APIs REST · Automação de processos · Testes unitários · Git · Deploy (Vercel)
+# Compilar bundle de produção
+npm run build
+```
 
 ---
 
 <div align="center">
 
-*Construído com IA generativa como ferramenta de engenharia.*
+*Construído por Kauê Ruon Cardoso com IA generativa como ferramenta de engenharia.*
 
 **Contato:** kaue.ruon@gmail.com · [LinkedIn](https://www.linkedin.com/in/kauerc/) · [GitHub](https://github.com/Kauerc10)
 
 </div>
+
+---
+
+## Configuração do ÆVO na Vercel
+
+Em **Vercel → Project Settings → Environment Variables**, configure a ordem dos provedores e ao menos uma chave externa. O ÆVO ignora provedores sem chave ou indisponíveis e tenta o próximo automaticamente.
+
+```env
+AEVO_PROVIDER_ORDER=gemini,openai,groq
+AEVO_TEMPERATURE=0.7
+
+GEMINI_API_KEY=...
+AEVO_GEMINI_MODEL=gemini-2.5-flash
+
+OPENAI_API_KEY=...
+AEVO_OPENAI_MODEL=gpt-4.1-mini
+
+GROQ_API_KEY=...
+AEVO_GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_BASE_URL=https://api.groq.com/openai/v1
+```
+
+A ordem é livre, por exemplo `openai,gemini,groq`. Chaves e modelos podem ser configurados separadamente. Se todos os serviços externos estiverem sem chave, fora do ar ou retornarem erro, o **RAG local bilíngue** responde automaticamente sem exigir variável adicional.
+
+Use `.env.example` como referência completa. Nunca prefixe essas chaves com `NEXT_PUBLIC_`, pois elas devem permanecer somente no servidor.

@@ -1,0 +1,317 @@
+{
+  "nav": {
+    "home": "INÍCIO",
+    "about": "SOBRE",
+    "experience": "EXPERIÊNCIA",
+    "skills": "SKILLS",
+    "achievements": "CONQUISTAS",
+    "education": "FORMAÇÃO",
+    "projects": "PROJETOS",
+    "contact": "CONTATO",
+    "indicator": "§ 01 / 08"
+  },
+  "loader": {
+    "shaders": "CARREGANDO SHADERS GLSL...",
+    "scene": "INICIALIZANDO CENA 3D THREE.JS...",
+    "ready": "SISTEMA PRONTO. ROLE PARA EXPLORAR."
+  },
+  "hero": {
+    "greeting": "AI ENGINEER · BLUMENAU / SC · 2026",
+    "nameWhite": "KAUÊ",
+    "nameGold": "RUON",
+    "nameOutline": "CARDOSO",
+    "subtitle": "Construindo software com IA generativa",
+    "roles": [
+      "Construindo com IA generativa",
+      "Automatizando processos reais",
+      "Conectando todas as peças"
+    ],
+    "ctaProjects": "VER PROJETOS",
+    "ctaResume": "CURRÍCULO.PDF",
+    "footnote": "Nenhum processo foi arquivado na criação deste site."
+  },
+  "sobre": {
+    "title": "SOBRE MIM",
+    "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório — e de volta pra tecnologia.",
+    "bioP2": "Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou automatizar processos, mesmo sem ninguém me pedir.",
+    "bioP3": "Construo software guiando IA generativa (Claude, GPT) como ferramenta primária — de protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é decompor o problema, estruturar a instrução e conectar as peças até o fluxo inteiro funcionar. É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.",
+    "badge": "FICHA TÉCNICA",
+    "fields": [
+      {
+        "label": "NOME",
+        "value": "Kauê Ruon Cardoso"
+      },
+      {
+        "label": "ORIGEM",
+        "value": "Blumenau / SC"
+      },
+      {
+        "label": "STACK",
+        "value": "TS · React/Next.js · IA"
+      },
+      {
+        "label": "DISTINÇÃO",
+        "value": "Prata OBMEP Regional · Bronze Nacional"
+      },
+      {
+        "label": "STATUS",
+        "value": "ATIVO"
+      }
+    ],
+    "authenticated": "AUTENTICADO ✓"
+  },
+  "experiencia": {
+    "title": "DO HISTÓRICO DE ATUAÇÃO",
+    "roles": [
+      {
+        "period": "Jul 2026 → ATUAL",
+        "status": "EM DESENVOLVIMENTO",
+        "title": "Founder & Builder — DocFácil",
+        "company": "K-HUB Soluções",
+        "location": "github.com/Kauerc10/docfacil ↗",
+        "description": "Plataforma Next.js que gera documentos legais conversando com o usuário. Construí uma camada agnóstica de provedor (`AIProvider`) com factory por env var, API route server-side (`/api/ai/generate`) que mantém a chave secreta no servidor, streaming de respostas e tratamento de erro tipado (`AIError`). Providers reais (OpenAI / Anthropic / Gemini) são pluggáveis sem tocar no resto do app.",
+        "achievements": [
+          "Interface conversacional (chat guiado) com preview do documento em tempo real.",
+          "Camada de IA desacoplada — trocar de LLM não exige mudar o front-end."
+        ],
+        "skills": [
+          "Next.js 16",
+          "TypeScript",
+          "Prisma",
+          "IA Generativa"
+        ],
+        "projectLabel": "ARQUITETURA DE IA: AI PROVIDER + STREAMING"
+      },
+      {
+        "period": "2023 → ATUAL",
+        "status": "EM CURSO",
+        "title": "Cartorário / Depto. de Procurações",
+        "company": "Cartório Gaya",
+        "location": "Blumenau/SC",
+        "description": "Construí uma automação que consome endpoints do Detran-RS pra gerar procurações de veículos automaticamente, eliminando digitação manual repetitiva. Está em produção no cartório até hoje — uma tarefa que tomava minutos virou poucos cliques.",
+        "achievements": [
+          "Redação de procurações, escrituras e inventários.",
+          "Melhoria não supervisionada de metodologias digitais.",
+          "Suporte e diagnóstico geral das redes e hardwares do ambiente."
+        ],
+        "skills": [
+          "Node.js",
+          "APIs REST",
+          "Automação"
+        ],
+        "projectLabel": "PROJETO DE INICIATIVA: ATLAS NOTARIAL"
+      },
+      {
+        "period": "Nov 2021 → Mar 2023",
+        "status": "CONCLUÍDO",
+        "title": "Técnico em Manutenção Apple",
+        "company": "iPhoneria",
+        "location": "Blumenau/SC",
+        "description": "Promoção rápida de estagiário para técnico de diagnóstico.",
+        "achievements": [
+          "Micro-soldadura, diagnóstico térmico e reparo de placas iOS.",
+          "Controle de estoque de peças e organização do fluxo de reparos.",
+          "Atendimento focado em traduzir problemas técnicos em respostas simples ao cliente."
+        ],
+        "skills": [],
+        "projectLabel": "PROGRESSÃO PROFISSIONAL"
+      }
+    ]
+  },
+  "skills": {
+    "title": "DAS COMPETÊNCIAS",
+    "subtitle": "O que eu realmente uso nos projetos (verificável nos repositórios públicos). Sem porcentagens inventadas — eu construo com IA como ferramenta primária e domino o fluxo de decompor, instruir e conectar.",
+    "groups": [
+      {
+        "title": "IA Generativa",
+        "items": [
+          "Integração de LLMs",
+          "Arquitetura de Providers",
+          "OpenAI / Anthropic / Gemini",
+          "Streaming de respostas",
+          "Prompt engineering"
+        ]
+      },
+      {
+        "title": "Construindo com",
+        "items": [
+          "JavaScript / TypeScript",
+          "React / Next.js",
+          "Supabase / Prisma",
+          "Node.js"
+        ]
+      },
+      {
+        "title": "Praticando",
+        "items": [
+          "APIs REST",
+          "Automação de processos",
+          "Testes unitários",
+          "Git / Deploy (Vercel)"
+        ]
+      },
+      {
+        "title": "Competências Complementares",
+        "items": [
+          "Gestão Documental",
+          "Atenção a Detalhes",
+          "Resolução de Problemas",
+          "Aprendizagem Rápida",
+          "Raciocínio Lógico",
+          "Trabalho em Equipe",
+          "Inglês (Intermediário)"
+        ]
+      }
+    ]
+  },
+  "conquistas": {
+    "article": "Artigo IV",
+    "title": "Museu de Conquistas (OBMEP)",
+    "medals": [
+      {
+        "ariaLabel": "Medalha de Prata OBMEP",
+        "medalLabel": "PRATA",
+        "title": "Prata Regional",
+        "description": "18ª Olimpíada Brasileira de Matemática das Escolas Públicas",
+        "cursorLabel": "PRATA",
+        "editionLabel": "18ª"
+      },
+      {
+        "ariaLabel": "Medalha de Bronze OBMEP",
+        "medalLabel": "BRONZE",
+        "title": "Bronze Nacional",
+        "description": "18ª Olimpíada Brasileira de Matemática das Escolas Públicas",
+        "cursorLabel": "BRONZE",
+        "editionLabel": "18ª"
+      },
+      {
+        "ariaLabel": "Menção Honrosa OBMEP",
+        "medalLabel": "MENÇÃO",
+        "title": "Menção Honrosa",
+        "description": "17ª Olimpíada Brasileira de Matemática das Escolas Públicas",
+        "cursorLabel": "HONRA",
+        "editionLabel": "17ª"
+      },
+      {
+        "ariaLabel": "Menção Honrosa OBMEP",
+        "medalLabel": "MENÇÃO",
+        "title": "Menção Honrosa",
+        "description": "16ª Olimpíada Brasileira de Matemática das Escolas Públicas",
+        "cursorLabel": "HONRA",
+        "editionLabel": "16ª"
+      }
+    ]
+  },
+  "formacao": {
+    "article": "Anexo I",
+    "title": "DA FORMAÇÃO E CERTIFICAÇÕES",
+    "statusCompleted": "CONCLUÍDO",
+    "btnOpen": "ABRIR",
+    "items": [
+      {
+        "title": "Ensino Médio Completo",
+        "info": "EEB Cel. Pedro Christiano Feddersen"
+      },
+      {
+        "title": "Téc. Gestão Administrativa",
+        "info": "156h · VisualMídia · 2020"
+      },
+      {
+        "title": "Operador de Tecnologia",
+        "info": "92h · VisualMídia · 2017"
+      },
+      {
+        "title": "Programador de Games",
+        "info": "40h · VisualMídia · 2017"
+      },
+      {
+        "title": "3Ds Max",
+        "info": "32h · VisualMídia · 2018"
+      }
+    ]
+  },
+  "projetos": {
+    "title": "DAS EVIDÊNCIAS DE PROJETO",
+    "btnDemo": "DEMO AO VIVO",
+    "btnRepo": "REPOSITÓRIO",
+    "privateRepo": "PROJETO PRIVADO (SISTEMA INTERNO EM PRODUÇÃO)",
+    "problemLabel": "O PROBLEMA:",
+    "items": {
+      "docfacil": {
+        "title": "DocFácil — IA Generativa em Documentos Legais",
+        "status": "DEMO AO VIVO · SAAS IA",
+        "problem": "Redação manual de documentos jurídicos propensa a inconsistências e burocracia desnecessária.",
+        "solution": "Plataforma Next.js 16 com camada de IA agnóstica (`AIProvider`), streaming server-side e suporte plugável a OpenAI, Anthropic e Gemini.",
+        "stack": "Next.js 16 · TypeScript · IA Generativa · RAG",
+        "solutionLabel": "SOLUÇÃO & ARQUITETURA:"
+      },
+      "atlas": {
+        "title": "Atlas Notarial — Automação com API Detran-RS",
+        "status": "EM PRODUÇÃO · CARTÓRIO GAYA",
+        "problem": "Emissão manual de procurações de veículos levando 5 minutos de digitação por documento.",
+        "solution": "Tempo reduzido de 5 minutos para 20 segundos por procuração com 100% de precisão jurídica.",
+        "stack": "Node.js · REST APIs · Automação Notarial · Vitest",
+        "solutionLabel": "MÉTRICA DE IMPACTO:"
+      },
+      "ckf": {
+        "title": "CKF Manutenção — Orçamentos & Maquinário",
+        "status": "EM PRODUÇÃO · CORPORATIVO",
+        "problem": "Falta de controle centralizado para emissão de orçamentos de manutenção em máquinas pesadas.",
+        "solution": "Interface React com Supabase, exportação de relatórios (CSV/XLSX) e suíte de testes unitários automatizada com Vitest.",
+        "stack": "React · TypeScript · Supabase · Vitest · XLSX",
+        "solutionLabel": "ARQUITETURA & QUALIDADE:"
+      },
+      "folilib": {
+        "title": "Foli — PDF Layout Engine em TypeScript",
+        "status": "OPEN SOURCE · LIB TYPESCRIPT",
+        "problem": "Quebras de layout e overflow inesperado ao gerar PDFs complexos no Node.js e navegador.",
+        "solution": "Fluent Builder API com motor de layout que garante zero overflow, primitivas nativas e suporte Unicode pt-BR.",
+        "stack": "TypeScript · PDF Engine · Open Source · Zero-Overflow",
+        "solutionLabel": "ENGENHARIA DA LIB:"
+      }
+    }
+  },
+  "contato": {
+    "title": "ENTRE EM CONTATO",
+    "nameLabel": "REQUERENTE (seu nome)",
+    "namePlaceholder": "Seu nome completo...",
+    "emailLabel": "E-MAIL DE CONTATO",
+    "emailPlaceholder": "seu.email@dominio.com...",
+    "subjectLabel": "OBJETO DO CONTATO (assunto)",
+    "subjectPlaceholder": "Selecione o assunto...",
+    "messageLabel": "EXPOSIÇÃO DOS FATOS (mensagem)",
+    "messagePlaceholder": "Descreva detalhes do projeto ou oportunidade...",
+    "btnSubmit": "Protocolar Solicitação",
+    "btnSubmitting": "Protocolando...",
+    "subjects": {
+      "proposta": "Proposta de Trabalho / Contratação",
+      "projeto": "Desenvolvimento de Projeto / Consultoria",
+      "ia": "Implementação de IA / Automação RAG",
+      "outro": "Outro Assunto"
+    },
+    "fastContact": {
+      "title": "Canais Diretos de Acesso",
+      "emailTitle": "E-mail Corporativo",
+      "linkedinTitle": "Perfil Profissional",
+      "githubTitle": "Repositório de Código"
+    },
+    "messages": {
+      "SUCCESS": "✓ Petição protocolada com sucesso! Respondo em breve.",
+      "RATE_LIMITED": "Muitas solicitações enviadas. Aguarde alguns minutos para protocolar novamente.",
+      "VALIDATION_ERROR": "Por favor, preencha todos os campos obrigatórios corretamente.",
+      "SERVICE_UNAVAILABLE": "Serviço de e-mail temporariamente indisponível. Envie diretamente para kaue.ruon@gmail.com",
+      "INTERNAL_ERROR": "Falha interna ao processar envio. Envie diretamente para kaue.ruon@gmail.com"
+    },
+    "location": "Blumenau / SC — Disponível para atuação remota e projetos globais",
+    "copied": "Copiado!"
+  },
+  "footer": {
+    "copyright": "© 2026 Kauê Ruon Cardoso · Construído com IA generativa como ferramenta de engenharia."
+  },
+  "modals": {
+    "breachTitle": "PROTOCOLO DE VIOLAÇÃO ATIVADO",
+    "breachDesc": "Modo de auditoria cibernética ativado via comando direto. Todos os sistemas operando sob supervisão estrita.",
+    "konamiTitle": "CÓDIGO KONAMI DESBLOQUEADO",
+    "konamiDesc": "Você ativou o protocolo secreto! Partículas WebGL e efeitos visuais Notariais elevados ao nível máximo."
+  }
+}

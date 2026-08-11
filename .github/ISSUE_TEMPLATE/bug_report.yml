@@ -1,0 +1,40 @@
+name: 🐛 Reportar um Bug
+description: Crie um relatório padronizado para nos ajudar a identificar e corrigir falhas.
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar a manter o portfólio estável e de alta qualidade! Por favor, preencha os campos abaixo com o máximo de detalhes.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do Problema
+      description: Uma explicação clara e concisa sobre qual é a falha.
+      placeholder: Ao rolar até a seção 3D, o canvas apresenta queda de FPS...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para Reproduzir
+      description: Como podemos reproduzir o erro no site?
+      placeholder: |
+        1. Acesse https://kaueruon.dev
+        2. Clique em 'Falar com ÆVO'
+        3. Envie a mensagem 'X'
+        4. Observe o erro...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Ambiente / Navegador
+      description: Em qual dispositivo ou navegador o erro ocorreu?
+      placeholder: Chrome v128 no Windows 11 / Safari 17 no macOS
+    validations:
+      required: false

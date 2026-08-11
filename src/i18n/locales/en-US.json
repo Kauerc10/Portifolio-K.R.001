@@ -1,0 +1,317 @@
+{
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT",
+    "experience": "EXPERIENCE",
+    "skills": "SKILLS",
+    "achievements": "AWARDS",
+    "education": "EDUCATION",
+    "projects": "PROJECTS",
+    "contact": "CONTACT",
+    "indicator": "§ 01 / 08"
+  },
+  "loader": {
+    "shaders": "LOADING GLSL SHADERS...",
+    "scene": "INITIALIZING THREE.JS 3D SCENE...",
+    "ready": "SYSTEM READY. SCROLL TO EXPLORE."
+  },
+  "hero": {
+    "greeting": "AI ENGINEER · BLUMENAU / SC · 2026",
+    "nameWhite": "KAUÊ",
+    "nameGold": "RUON",
+    "nameOutline": "CARDOSO",
+    "subtitle": "Building software with Generative AI",
+    "roles": [
+      "Building with Generative AI",
+      "Automating real-world processes",
+      "Connecting every piece"
+    ],
+    "ctaProjects": "VIEW PROJECTS",
+    "ctaResume": "RESUME.PDF",
+    "footnote": "No process was archived during the creation of this website."
+  },
+  "sobre": {
+    "title": "ABOUT ME",
+    "bioP1": "My interest in technology started early. Whenever I see a manual, repetitive process, I cannot resist trying to automate it. That curiosity took me from iPhone board repair to notary desks — and back to technology.",
+    "bioP2": "Today I work as a notary clerk at Cartório Gaya in Blumenau, Brazil. I found that I work well in the legal world, but I am always drawn back to technology: I try to improve or automate processes even when nobody asks.",
+    "bioP3": "I build software using generative AI (Claude, GPT) as my primary tool — from LLM prototypes to back-end and front-end. I do not write every line from scratch; my work is to decompose the problem, structure the instruction, and connect the pieces until the entire flow works. That is exactly the engineering I want to do in production: put AI to work solving real problems.",
+    "badge": "TECHNICAL RECORD",
+    "fields": [
+      {
+        "label": "NAME",
+        "value": "Kauê Ruon Cardoso"
+      },
+      {
+        "label": "ORIGIN",
+        "value": "Blumenau / SC"
+      },
+      {
+        "label": "STACK",
+        "value": "TS · React/Next.js · AI"
+      },
+      {
+        "label": "DISTINCTION",
+        "value": "Regional OBMEP Silver · National Bronze"
+      },
+      {
+        "label": "STATUS",
+        "value": "ACTIVE"
+      }
+    ],
+    "authenticated": "AUTHENTICATED ✓"
+  },
+  "experiencia": {
+    "title": "PROFESSIONAL HISTORY",
+    "roles": [
+      {
+        "period": "Jul 2026 → PRESENT",
+        "status": "IN DEVELOPMENT",
+        "title": "Founder & Builder — DocFácil",
+        "company": "K-HUB Soluções",
+        "location": "github.com/Kauerc10/docfacil ↗",
+        "description": "A Next.js platform that generates legal documents through conversation. I built a provider-agnostic layer (`AIProvider`) with an environment-based factory, a server-side API route (`/api/ai/generate`) that keeps secrets on the server, response streaming, and typed error handling (`AIError`). Real providers (OpenAI / Anthropic / Gemini) are pluggable without changing the rest of the app.",
+        "achievements": [
+          "Guided chat interface with real-time document preview.",
+          "Decoupled AI layer — changing the LLM requires no front-end changes."
+        ],
+        "skills": [
+          "Next.js 16",
+          "TypeScript",
+          "Prisma",
+          "Generative AI"
+        ],
+        "projectLabel": "AI ARCHITECTURE: AI PROVIDER + STREAMING"
+      },
+      {
+        "period": "2023 → PRESENT",
+        "status": "ONGOING",
+        "title": "Notary Clerk / Powers of Attorney Dept.",
+        "company": "Cartório Gaya",
+        "location": "Blumenau, Brazil",
+        "description": "I built an automation that consumes Detran-RS endpoints to generate vehicle powers of attorney automatically, eliminating repetitive manual entry. It remains in production at the notary office — a task that took minutes now takes only a few clicks.",
+        "achievements": [
+          "Drafting powers of attorney, deeds, and estate inventories.",
+          "Self-directed improvement of digital workflows.",
+          "General network and hardware support and diagnostics."
+        ],
+        "skills": [
+          "Node.js",
+          "REST APIs",
+          "Automation"
+        ],
+        "projectLabel": "INITIATIVE PROJECT: ATLAS NOTARIAL"
+      },
+      {
+        "period": "Nov 2021 → Mar 2023",
+        "status": "COMPLETED",
+        "title": "Apple Repair Technician",
+        "company": "iPhoneria",
+        "location": "Blumenau, Brazil",
+        "description": "Quickly promoted from intern to diagnostic technician.",
+        "achievements": [
+          "Microsoldering, thermal diagnostics, and iOS board repair.",
+          "Parts inventory control and repair workflow organization.",
+          "Customer support focused on translating technical issues into clear answers."
+        ],
+        "skills": [],
+        "projectLabel": "CAREER PROGRESSION"
+      }
+    ]
+  },
+  "skills": {
+    "title": "SKILLS",
+    "subtitle": "What I actually use in projects (verifiable in public repositories). No invented percentages — I build with AI as my primary tool and master the workflow of decomposing, instructing, and connecting.",
+    "groups": [
+      {
+        "title": "Generative AI",
+        "items": [
+          "LLM Integration",
+          "Provider Architecture",
+          "OpenAI / Anthropic / Gemini",
+          "Response streaming",
+          "Prompt engineering"
+        ]
+      },
+      {
+        "title": "Building with",
+        "items": [
+          "JavaScript / TypeScript",
+          "React / Next.js",
+          "Supabase / Prisma",
+          "Node.js"
+        ]
+      },
+      {
+        "title": "Practicing",
+        "items": [
+          "REST APIs",
+          "Process automation",
+          "Unit testing",
+          "Git / Deploy (Vercel)"
+        ]
+      },
+      {
+        "title": "Complementary Skills",
+        "items": [
+          "Document Management",
+          "Attention to Detail",
+          "Problem Solving",
+          "Fast Learning",
+          "Logical Reasoning",
+          "Teamwork",
+          "English (Intermediate)"
+        ]
+      }
+    ]
+  },
+  "conquistas": {
+    "article": "Article IV",
+    "title": "Achievement Museum (OBMEP)",
+    "medals": [
+      {
+        "ariaLabel": "OBMEP Silver Medal",
+        "medalLabel": "SILVER",
+        "title": "Regional Silver",
+        "description": "18th Brazilian Mathematics Olympiad for Public Schools",
+        "cursorLabel": "SILVER",
+        "editionLabel": "18th"
+      },
+      {
+        "ariaLabel": "OBMEP Bronze Medal",
+        "medalLabel": "BRONZE",
+        "title": "National Bronze",
+        "description": "18th Brazilian Mathematics Olympiad for Public Schools",
+        "cursorLabel": "BRONZE",
+        "editionLabel": "18th"
+      },
+      {
+        "ariaLabel": "OBMEP Honorable Mention",
+        "medalLabel": "HONOR",
+        "title": "Honorable Mention",
+        "description": "17th Brazilian Mathematics Olympiad for Public Schools",
+        "cursorLabel": "HONOR",
+        "editionLabel": "17th"
+      },
+      {
+        "ariaLabel": "OBMEP Honorable Mention",
+        "medalLabel": "HONOR",
+        "title": "Honorable Mention",
+        "description": "16th Brazilian Mathematics Olympiad for Public Schools",
+        "cursorLabel": "HONOR",
+        "editionLabel": "16th"
+      }
+    ]
+  },
+  "formacao": {
+    "article": "Appendix I",
+    "title": "EDUCATION AND CERTIFICATIONS",
+    "statusCompleted": "COMPLETED",
+    "btnOpen": "OPEN",
+    "items": [
+      {
+        "title": "High School Diploma",
+        "info": "EEB Cel. Pedro Christiano Feddersen"
+      },
+      {
+        "title": "Administrative Management Technician",
+        "info": "156h · VisualMídia · 2020"
+      },
+      {
+        "title": "Technology Operator",
+        "info": "92h · VisualMídia · 2017"
+      },
+      {
+        "title": "Game Programmer",
+        "info": "40h · VisualMídia · 2017"
+      },
+      {
+        "title": "3Ds Max",
+        "info": "32h · VisualMídia · 2018"
+      }
+    ]
+  },
+  "projetos": {
+    "title": "PROJECT EVIDENCE",
+    "btnDemo": "LIVE DEMO",
+    "btnRepo": "REPOSITORY",
+    "privateRepo": "PRIVATE PROJECT (INTERNAL SYSTEM IN PRODUCTION)",
+    "problemLabel": "THE PROBLEM:",
+    "items": {
+      "docfacil": {
+        "title": "DocFácil — Generative AI for Legal Documents",
+        "status": "LIVE DEMO · AI SAAS",
+        "problem": "Manual legal-document drafting is prone to inconsistencies and unnecessary bureaucracy.",
+        "solution": "Next.js 16 platform with an AI-provider-agnostic layer (`AIProvider`), server-side streaming, and pluggable OpenAI, Anthropic, and Gemini support.",
+        "stack": "Next.js 16 · TypeScript · Generative AI · RAG",
+        "solutionLabel": "SOLUTION & ARCHITECTURE:"
+      },
+      "atlas": {
+        "title": "Atlas Notarial — Detran-RS API Automation",
+        "status": "IN PRODUCTION · CARTÓRIO GAYA",
+        "problem": "Manual vehicle power-of-attorney issuance required five minutes of data entry per document.",
+        "solution": "Time reduced from 5 minutes to 20 seconds per document with 100% legal accuracy.",
+        "stack": "Node.js · REST APIs · Notarial Automation · Vitest",
+        "solutionLabel": "IMPACT METRIC:"
+      },
+      "ckf": {
+        "title": "CKF Maintenance — Quotes & Machinery",
+        "status": "IN PRODUCTION · ENTERPRISE",
+        "problem": "No centralized control for issuing heavy-machinery maintenance quotes.",
+        "solution": "React interface with Supabase, CSV/XLSX report exports, and an automated Vitest unit-test suite.",
+        "stack": "React · TypeScript · Supabase · Vitest · XLSX",
+        "solutionLabel": "ARCHITECTURE & QUALITY:"
+      },
+      "folilib": {
+        "title": "Foli — PDF Layout Engine in TypeScript",
+        "status": "OPEN SOURCE · TYPESCRIPT LIB",
+        "problem": "Unexpected layout breaks and overflow when generating complex PDFs in Node.js and the browser.",
+        "solution": "Fluent Builder API with a layout engine that guarantees zero overflow, native primitives, and Unicode support.",
+        "stack": "TypeScript · PDF Engine · Open Source · Zero-Overflow",
+        "solutionLabel": "LIBRARY ENGINEERING:"
+      }
+    }
+  },
+  "contato": {
+    "title": "CONTACT",
+    "nameLabel": "REQUESTER (your name)",
+    "namePlaceholder": "Your full name...",
+    "emailLabel": "CONTACT EMAIL",
+    "emailPlaceholder": "your.email@domain.com...",
+    "subjectLabel": "CONTACT PURPOSE (subject)",
+    "subjectPlaceholder": "Select a subject...",
+    "messageLabel": "STATEMENT OF FACTS (message)",
+    "messagePlaceholder": "Describe project details or inquiry...",
+    "btnSubmit": "Submit Inquiry",
+    "btnSubmitting": "Submitting...",
+    "subjects": {
+      "proposta": "Job Offer / Career Opportunity",
+      "projeto": "Project Development / Consulting",
+      "ia": "AI Implementation / RAG Automation",
+      "outro": "Other Subject"
+    },
+    "fastContact": {
+      "title": "Direct Contact Channels",
+      "emailTitle": "Corporate Email",
+      "linkedinTitle": "Professional Profile",
+      "githubTitle": "Code Repository"
+    },
+    "messages": {
+      "SUCCESS": "✓ Inquiry submitted successfully! I will reply shortly.",
+      "RATE_LIMITED": "Too many requests. Please wait a few minutes before submitting again.",
+      "VALIDATION_ERROR": "Please fill out all required fields correctly.",
+      "SERVICE_UNAVAILABLE": "Email service temporarily unavailable. Please email directly to kaue.ruon@gmail.com",
+      "INTERNAL_ERROR": "Internal server error. Please email directly to kaue.ruon@gmail.com"
+    },
+    "location": "Blumenau / SC — Available for remote work and global projects",
+    "copied": "Copied!"
+  },
+  "footer": {
+    "copyright": "© 2026 Kauê Ruon Cardoso · Built with generative AI as an engineering tool."
+  },
+  "modals": {
+    "breachTitle": "BREACH PROTOCOL ACTIVATED",
+    "breachDesc": "Cybersecurity audit mode activated via direct override. All systems running under strict supervision.",
+    "konamiTitle": "KONAMI CODE UNLOCKED",
+    "konamiDesc": "Secret protocol unlocked! WebGL particles and visual effects elevated to maximum performance."
+  }
+}
