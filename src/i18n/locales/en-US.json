@@ -112,28 +112,32 @@
         "medalLabel": "SILVER",
         "title": "Regional Silver",
         "description": "18th Brazilian Mathematics Olympiad for Public Schools",
-        "cursorLabel": "SILVER"
+        "cursorLabel": "SILVER",
+        "editionLabel": "18th"
       },
       {
         "ariaLabel": "OBMEP Bronze Medal",
         "medalLabel": "BRONZE",
         "title": "National Bronze",
         "description": "18th Brazilian Mathematics Olympiad for Public Schools",
-        "cursorLabel": "BRONZE"
+        "cursorLabel": "BRONZE",
+        "editionLabel": "18th"
       },
       {
         "ariaLabel": "OBMEP Honorable Mention",
         "medalLabel": "HONOR",
         "title": "Honorable Mention",
         "description": "17th Brazilian Mathematics Olympiad for Public Schools",
-        "cursorLabel": "HONOR"
+        "cursorLabel": "HONOR",
+        "editionLabel": "17th"
       },
       {
         "ariaLabel": "OBMEP Honorable Mention",
         "medalLabel": "HONOR",
         "title": "Honorable Mention",
         "description": "16th Brazilian Mathematics Olympiad for Public Schools",
-        "cursorLabel": "HONOR"
+        "cursorLabel": "HONOR",
+        "editionLabel": "16th"
       }
     ]
   },

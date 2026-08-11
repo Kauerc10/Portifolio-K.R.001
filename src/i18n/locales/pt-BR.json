@@ -112,28 +112,32 @@
         "medalLabel": "PRATA",
         "title": "Prata Regional",
         "description": "18ª Olimpíada Brasileira de Matemática das Escolas Públicas",
-        "cursorLabel": "PRATA"
+        "cursorLabel": "PRATA",
+        "editionLabel": "18ª"
       },
       {
         "ariaLabel": "Medalha de Bronze OBMEP",
         "medalLabel": "BRONZE",
         "title": "Bronze Nacional",
         "description": "18ª Olimpíada Brasileira de Matemática das Escolas Públicas",
-        "cursorLabel": "BRONZE"
+        "cursorLabel": "BRONZE",
+        "editionLabel": "18ª"
       },
       {
         "ariaLabel": "Menção Honrosa OBMEP",
         "medalLabel": "MENÇÃO",
         "title": "Menção Honrosa",
         "description": "17ª Olimpíada Brasileira de Matemática das Escolas Públicas",
-        "cursorLabel": "HONRA"
+        "cursorLabel": "HONRA",
+        "editionLabel": "17ª"
       },
       {
         "ariaLabel": "Menção Honrosa OBMEP",
         "medalLabel": "MENÇÃO",
         "title": "Menção Honrosa",
         "description": "16ª Olimpíada Brasileira de Matemática das Escolas Públicas",
-        "cursorLabel": "HONRA"
+        "cursorLabel": "HONRA",
+        "editionLabel": "16ª"
       }
     ]
   },

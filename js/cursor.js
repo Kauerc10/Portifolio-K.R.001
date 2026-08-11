@@ -71,6 +71,23 @@ const Cursor = (() => {
 
         dot = cursor ? cursor.querySelector('.cursor__dot') : null;
 
+        // Restaura a posição gravada antes do reload de troca de idioma.
+        try {
+            const storedPosition = sessionStorage.getItem('portfolio_cursor_position');
+            if (storedPosition) {
+                const position = JSON.parse(storedPosition);
+                if (Number.isFinite(position.x) && Number.isFinite(position.y)) {
+                    mx = cx = dx = position.x;
+                    my = cy = dy = position.y;
+                    cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+                    if (dot) dot.style.transform = 'translate3d(0, 0, 0)';
+                }
+                sessionStorage.removeItem('portfolio_cursor_position');
+            }
+        } catch (error) {
+            // O cursor continua funcional quando storage não está disponível.
+        }
+
         // Inicializa o canvas de rastro
         if (trailCanvas) {
             trailCtx = trailCanvas.getContext('2d');

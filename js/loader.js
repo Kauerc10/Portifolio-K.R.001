@@ -146,7 +146,8 @@ const Loader = (() => {
         el.style.pointerEvents = 'none';
       }
       document.body.style.overflow = '';
-      window.dispatchEvent(new CustomEvent('loaderDone'));
+      // Aguarda o boot registrar os listeners antes de liberar os módulos.
+      setTimeout(() => window.dispatchEvent(new CustomEvent('loaderDone')), 0);
       return;
     }
 

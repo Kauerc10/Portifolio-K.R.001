@@ -1,15 +1,13 @@
 'use client';
 
-import { useState, useEffect, useTransition } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { useState, useEffect, type MouseEvent } from 'react';
+import { usePathname } from 'next/navigation';
 import { Globe } from 'lucide-react';
 import type { Locale } from '@/i18n/config';
 
 export default function LanguageToggle() {
   const pathname = usePathname();
-  const router = useRouter();
   const [mounted, setMounted] = useState(false);
-  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     setMounted(true);
@@ -25,7 +23,7 @@ export default function LanguageToggle() {
   const currentLocale: Locale = pathname.startsWith('/en-US') ? 'en-US' : 'pt-BR';
   const isEnglish = currentLocale === 'en-US';
 
-  const handleLanguageSwitch = (targetLocale: Locale) => {
+  const handleLanguageSwitch = (targetLocale: Locale, event: MouseEvent<HTMLButtonElement>) => {
     if (targetLocale === currentLocale) return;
 
     // Substituir a rota mantendo query params e o hash de seção atual
@@ -39,15 +37,18 @@ export default function LanguageToggle() {
       document.cookie = `portfolio_lang=${targetLocale}; path=/; max-age=31536000; SameSite=Lax`;
       if (typeof sessionStorage !== 'undefined') {
         sessionStorage.setItem('loader_seen', 'true');
+        sessionStorage.setItem(
+          'portfolio_cursor_position',
+          JSON.stringify({ x: event.clientX, y: event.clientY })
+        );
       }
     } catch {
       // Cookies/storage may be unavailable in hardened privacy modes.
     }
 
-    // Navegação client-side preserva o estado visual (inclusive a posição do cursor).
-    startTransition(() => {
-      router.push(targetUrl, { scroll: false });
-    });
+    // O layout carrega scripts legados one-shot; um reload garante que eles
+    // capturem os novos nós do loader e do cursor após a troca de locale.
+    window.location.assign(targetUrl);
   };
 
   return (
@@ -55,12 +56,10 @@ export default function LanguageToggle() {
       className="group relative flex items-center justify-between w-16 h-8 p-1 rounded-full bg-slate-200/90 dark:bg-[#0b1120]/90 border border-slate-300 dark:border-[var(--gold)]/40 shadow-inner hover:shadow-[0_0_20px_rgba(37,99,235,0.35)] backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden"
       role="region"
       aria-label={isEnglish ? 'Language selector' : 'Seletor de idioma'}
-      aria-busy={isPending}
     >
       {/* Botão Português */}
       <button
-        onClick={() => handleLanguageSwitch('pt-BR')}
-        disabled={isPending}
+        onClick={(event) => handleLanguageSwitch('pt-BR', event)}
         className={`relative z-10 flex items-center justify-center w-6 h-6 text-[10px] font-bold tracking-tighter transition-colors duration-300 ${
           !isEnglish ? 'text-blue-600 dark:text-[var(--gold)] font-extrabold' : 'text-slate-500 dark:text-slate-400 opacity-60'
         }`}
@@ -72,8 +71,7 @@ export default function LanguageToggle() {
 
       {/* Botão Inglês */}
       <button
-        onClick={() => handleLanguageSwitch('en-US')}
-        disabled={isPending}
+        onClick={(event) => handleLanguageSwitch('en-US', event)}
         className={`relative z-10 flex items-center justify-center w-6 h-6 text-[10px] font-bold tracking-tighter transition-colors duration-300 ${
           isEnglish ? 'text-blue-600 dark:text-[var(--gold)] font-extrabold' : 'text-slate-500 dark:text-slate-400 opacity-60'
         }`}

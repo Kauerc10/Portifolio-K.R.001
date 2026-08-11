@@ -44,7 +44,7 @@ export default function ConquistasSection({ dict }: { dict: Dictionary['conquist
                   <animateTransform attributeName="transform" type="rotate" values="0 50 78;360 50 78" dur="4s" repeatCount="indefinite" />
                 </circle>
                 <text x="50" y="68" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5" fill="#94a3b8" letterSpacing="3">OBMEP</text>
-                <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.8))">18ª</text>
+                <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.8))">{dict.medals[0].editionLabel}</text>
                 <text x="50" y="99" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5.5" fill="url(#metal-grad-prata)" letterSpacing="2" fontWeight="bold">{dict.medals[0].medalLabel}</text>
               </svg>
               <div className="obmep-card__info">
@@ -88,7 +88,7 @@ export default function ConquistasSection({ dict }: { dict: Dictionary['conquist
                   <animateTransform attributeName="transform" type="rotate" values="0 50 78;360 50 78" dur="4s" repeatCount="indefinite" />
                 </circle>
                 <text x="50" y="68" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5" fill="#fcd34d" letterSpacing="3">OBMEP</text>
-                <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.8))">18ª</text>
+                <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.8))">{dict.medals[1].editionLabel}</text>
                 <text x="50" y="99" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5.5" fill="url(#metal-grad-bronze)" letterSpacing="2" fontWeight="bold">{dict.medals[1].medalLabel}</text>
               </svg>
               <div className="obmep-card__info">
@@ -121,7 +121,7 @@ export default function ConquistasSection({ dict }: { dict: Dictionary['conquist
                 <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" filter="url(#shadow-honra-1)" />
                 <circle cx="50" cy="78" r="40" fill="#0b1120" stroke="url(#metal-grad-honra-1)" strokeWidth="2" />
                 <text x="50" y="68" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5" fill="#6ee7b7" letterSpacing="3">OBMEP</text>
-                <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff">17ª</text>
+                <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff">{dict.medals[2].editionLabel}</text>
                 <text x="50" y="99" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5.5" fill="url(#metal-grad-honra-1)" letterSpacing="2" fontWeight="bold">{dict.medals[2].medalLabel}</text>
               </svg>
               <div className="obmep-card__info">
@@ -154,7 +154,7 @@ export default function ConquistasSection({ dict }: { dict: Dictionary['conquist
                 <circle cx="50" cy="80" r="42" fill="rgba(0,0,0,0.5)" filter="url(#shadow-honra-2)" />
                 <circle cx="50" cy="78" r="40" fill="#0b1120" stroke="url(#metal-grad-honra-2)" strokeWidth="2" />
                 <text x="50" y="68" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5" fill="#6ee7b7" letterSpacing="3">OBMEP</text>
-                <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff">16ª</text>
+                <text x="50" y="85" textAnchor="middle" fontFamily="'Syne',sans-serif" fontSize="22" fontWeight="800" fill="#ffffff">{dict.medals[3].editionLabel}</text>
                 <text x="50" y="99" textAnchor="middle" fontFamily="'JetBrains Mono',monospace" fontSize="5.5" fill="url(#metal-grad-honra-2)" letterSpacing="2" fontWeight="bold">{dict.medals[3].medalLabel}</text>
               </svg>
               <div className="obmep-card__info">
