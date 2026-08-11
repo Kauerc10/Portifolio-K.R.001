@@ -84,6 +84,9 @@
     isolation: isolate;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     transform: translateZ(0);
+    content-visibility: auto;
+    contain: layout paint style;
+    contain-intrinsic-size: auto 430px;
 }
 
 /* Cards ímpares ficam à esquerda */
