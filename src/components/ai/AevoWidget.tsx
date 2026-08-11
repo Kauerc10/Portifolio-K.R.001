@@ -193,7 +193,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
 
       {/* Janela do Terminal Cyberdeck ÆVO */}
       {isOpen && (
-        <div className="w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100vh-6rem))] max-h-[calc(100vh-2rem)] rounded-xl bg-[#080d18]/98 border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.58)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
+        <div className="w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100vh-6rem))] max-h-[calc(100vh-2rem)] rounded-xl bg-[#080d18] border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.58)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
           {/* Header Notarial */}
           <div className="px-4 py-3.5 bg-[#0d1424] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -217,7 +217,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
           </div>
 
           {/* Chat Content */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs leading-relaxed">
+          <div className="flex-1 overflow-y-auto bg-[#080d18] p-4 space-y-3.5 text-xs leading-relaxed">
             {messages.map((m) => (
               <div
                 key={m.id}
