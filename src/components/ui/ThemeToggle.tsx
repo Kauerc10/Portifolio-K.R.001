@@ -2,75 +2,42 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Sun, Moon, Sparkles } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [isRotating, setIsRotating] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return (
-      <div className="w-16 h-8 rounded-full bg-slate-200 dark:bg-white/10 opacity-50 animate-pulse" />
-    );
+    return <div className="h-10 w-10 rounded-xl border border-white/10 bg-white/5 animate-pulse" />;
   }
 
-  const isDark = theme === 'dark';
+  const isDark = resolvedTheme === 'dark';
+  const nextTheme = isDark ? 'light' : 'dark';
 
   const handleToggle = () => {
-    setIsRotating(true);
-    setTimeout(() => setIsRotating(false), 700);
-
-    const nextTheme = isDark ? 'light' : 'dark';
-
-    // Suporte nativo à API de View Transitions para efeito de onda circular suave no navegador
-    if (typeof document !== 'undefined' && 'startViewTransition' in document) {
-      (document as any).startViewTransition(() => {
-        setTheme(nextTheme);
-      });
+    const changeTheme = () => setTheme(nextTheme);
+    if ('startViewTransition' in document) {
+      (document as Document & { startViewTransition: (callback: () => void) => void }).startViewTransition(changeTheme);
     } else {
-      setTheme(nextTheme);
+      changeTheme();
     }
   };
 
   return (
     <button
+      type="button"
       onClick={handleToggle}
-      aria-label={isDark ? 'Ativar Modo Claro' : 'Ativar Modo Escuro'}
-      title={isDark ? 'Alternar para Modo Claro' : 'Alternar para Modo Escuro'}
-      className="group relative flex items-center justify-between w-16 h-8 p-1 rounded-full bg-slate-200/90 dark:bg-[#0b1120]/90 border border-slate-300 dark:border-[var(--gold)]/40 shadow-inner hover:shadow-[0_0_20px_rgba(212,160,23,0.35)] backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden"
+      aria-label={isDark ? 'Ativar tema claro' : 'Ativar tema escuro'}
+      aria-pressed={isDark}
+      title={isDark ? 'Tema escuro — mudar para claro' : 'Tema claro — mudar para escuro'}
+      className="group relative grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-xl border border-slate-300/80 bg-white/80 text-slate-700 shadow-[0_6px_20px_rgba(15,23,42,0.12)] transition-[transform,border-color,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-amber-500/70 hover:shadow-[0_10px_26px_rgba(180,131,18,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--void)] active:translate-y-0 dark:border-white/15 dark:bg-[#0d1424]/95 dark:text-amber-300 dark:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
     >
-      {/* Glow de fundo notarial no hover */}
-      <span className="absolute inset-0 bg-gradient-to-r from-amber-400/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
-
-      {/* Ícone fixo da Esquerda: Sol (Modo Claro) */}
-      <div className="relative z-10 flex items-center justify-center w-6 h-6 text-amber-600 dark:text-amber-500/40 transition-colors duration-300">
-        <Sun className={`w-3.5 h-3.5 ${!isDark ? 'scale-110 text-amber-500' : 'scale-90 opacity-60'}`} />
-      </div>
-
-      {/* Ícone fixo da Direita: Lua (Modo Escuro) */}
-      <div className="relative z-10 flex items-center justify-center w-6 h-6 text-slate-400 dark:text-[var(--gold)] transition-colors duration-300">
-        <Moon className={`w-3.5 h-3.5 ${isDark ? 'scale-110 text-[var(--gold)]' : 'scale-90 opacity-60'}`} />
-      </div>
-
-      {/* Thumb Deslizante com Gradiente Notarial e Rotação 3D */}
-      <div
-        className={`absolute top-1 left-1 z-20 flex items-center justify-center w-6 h-6 rounded-full bg-white dark:bg-[#0f172a] border border-amber-400/50 dark:border-[var(--gold)]/60 shadow-md transition-all duration-500 cubic-bezier(0.22, 1, 0.36, 1) ${
-          isDark ? 'translate-x-8 text-[var(--gold)]' : 'translate-x-0 text-amber-500'
-        }`}
-      >
-        <div className={`transition-transform duration-700 ease-out ${isRotating ? 'rotate-[360deg]' : 'rotate-0'}`}>
-          {isDark ? (
-            <Sparkles className="w-3.5 h-3.5 text-[var(--gold)] animate-pulse" />
-          ) : (
-            <Sun className="w-3.5 h-3.5 text-amber-500" />
-          )}
-        </div>
-      </div>
+      <span className="absolute inset-1 rounded-lg bg-amber-400/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <Sun className={`absolute h-[18px] w-[18px] transition-[transform,opacity] duration-500 ${isDark ? '-rotate-90 scale-50 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
+      <Moon className={`absolute h-[17px] w-[17px] transition-[transform,opacity] duration-500 ${isDark ? 'rotate-0 scale-100 opacity-100' : 'rotate-90 scale-50 opacity-0'}`} />
     </button>
   );
 }

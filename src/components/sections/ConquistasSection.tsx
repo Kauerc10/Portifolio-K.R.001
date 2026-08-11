@@ -4,7 +4,7 @@ export default function ConquistasSection({ dict }: { dict: Dictionary['conquist
   return (
     <section className="section obmep-vault" id="conquistas" data-section="5">
       <div className="section__article golden-text">{dict.article}</div>
-      <h2 className="section__title golden-text">{dict.title}</h2>
+      <h2 className="section__title">{dict.title}</h2>
 
       <div className="obmep-vault__container">
         <div className="obmep-timeline-track"></div>
