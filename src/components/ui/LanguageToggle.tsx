@@ -1,13 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
-import { Globe } from 'lucide-react';
+import { useState, useEffect, type MouseEvent } from 'react';
+import { usePathname } from 'next/navigation';
 import type { Locale } from '@/i18n/config';
 
 export default function LanguageToggle() {
   const pathname = usePathname();
-  const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -24,7 +22,7 @@ export default function LanguageToggle() {
   const currentLocale: Locale = pathname.startsWith('/en-US') ? 'en-US' : 'pt-BR';
   const isEnglish = currentLocale === 'en-US';
 
-  const handleLanguageSwitch = (targetLocale: Locale) => {
+  const handleLanguageSwitch = (targetLocale: Locale, event: MouseEvent<HTMLButtonElement>) => {
     if (targetLocale === currentLocale) return;
 
     // Substituir a rota mantendo query params e o hash de seção atual
@@ -33,67 +31,52 @@ export default function LanguageToggle() {
     const hashString = typeof window !== 'undefined' ? window.location.hash : '';
     const targetUrl = `${newPath}${searchString}${hashString}`;
 
-    // Atualizar cookie e marcar loader como visto na sessão antes da navegação
+    // Atualizar o cookie e preservar a posição do cursor antes da navegação
     try {
       document.cookie = `portfolio_lang=${targetLocale}; path=/; max-age=31536000; SameSite=Lax`;
       if (typeof sessionStorage !== 'undefined') {
-        sessionStorage.setItem('loader_seen', 'true');
+        sessionStorage.setItem(
+          'portfolio_cursor_position',
+          JSON.stringify({ x: event.clientX, y: event.clientY })
+        );
       }
-    } catch (e) {}
-
-    // Ocultar o elemento loader do DOM se ele existir antes de navegar
-    const loaderEl = document.getElementById('loader');
-    if (loaderEl) {
-      loaderEl.style.display = 'none';
-      loaderEl.style.opacity = '0';
-      loaderEl.style.pointerEvents = 'none';
+    } catch {
+      // Cookies/storage may be unavailable in hardened privacy modes.
     }
 
-    if (typeof window !== 'undefined') {
-      window.location.href = targetUrl;
-    } else {
-      router.push(targetUrl);
-    }
+    // O layout carrega scripts legados one-shot; um reload garante que eles
+    // capturem os novos nós do loader e do cursor após a troca de locale.
+    window.location.assign(targetUrl);
   };
 
   return (
     <div
-      className="group relative flex items-center justify-between w-16 h-8 p-1 rounded-full bg-slate-200/90 dark:bg-[#0b1120]/90 border border-slate-300 dark:border-[var(--gold)]/40 shadow-inner hover:shadow-[0_0_20px_rgba(37,99,235,0.35)] backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden"
-      role="region"
-      aria-label="Seletor de Idioma / Language Selector"
+      className="relative grid h-10 w-[5.5rem] shrink-0 grid-cols-2 items-center rounded-xl border border-slate-300/80 bg-white/80 p-1 shadow-[0_6px_20px_rgba(15,23,42,0.12)] transition-[border-color,box-shadow] duration-300 hover:border-blue-500/50 hover:shadow-[0_10px_26px_rgba(37,99,235,0.16)] dark:border-white/15 dark:bg-[#0d1424]/95 dark:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+      role="group"
+      aria-label={isEnglish ? 'Language selector' : 'Seletor de idioma'}
     >
-      {/* Botão Português */}
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-lg border border-blue-500/25 bg-blue-600 shadow-[0_4px_14px_rgba(37,99,235,0.3)] transition-transform duration-300 ease-out dark:border-amber-400/30 dark:bg-amber-400 dark:shadow-[0_4px_16px_rgba(212,160,23,0.22)] ${isEnglish ? 'translate-x-full' : 'translate-x-0'}`}
+      />
       <button
-        onClick={() => handleLanguageSwitch('pt-BR')}
-        className={`relative z-10 flex items-center justify-center w-6 h-6 text-[10px] font-bold tracking-tighter transition-colors duration-300 ${
-          !isEnglish ? 'text-blue-600 dark:text-[var(--gold)] font-extrabold' : 'text-slate-500 dark:text-slate-400 opacity-60'
-        }`}
-        aria-label="Mudar para Português"
-        title="Português do Brasil (PT-BR)"
+        type="button"
+        onClick={(event) => handleLanguageSwitch('pt-BR', event)}
+        aria-label="Mudar para português"
+        aria-pressed={!isEnglish}
+        className={`relative z-10 grid h-8 place-items-center rounded-lg font-mono text-[11px] font-bold tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${!isEnglish ? 'text-white dark:text-[#111827]' : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'}`}
       >
         PT
       </button>
-
-      {/* Botão Inglês */}
       <button
-        onClick={() => handleLanguageSwitch('en-US')}
-        className={`relative z-10 flex items-center justify-center w-6 h-6 text-[10px] font-bold tracking-tighter transition-colors duration-300 ${
-          isEnglish ? 'text-blue-600 dark:text-[var(--gold)] font-extrabold' : 'text-slate-500 dark:text-slate-400 opacity-60'
-        }`}
+        type="button"
+        onClick={(event) => handleLanguageSwitch('en-US', event)}
         aria-label="Switch to English"
-        title="English United States (EN-US)"
+        aria-pressed={isEnglish}
+        className={`relative z-10 grid h-8 place-items-center rounded-lg font-mono text-[11px] font-bold tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${isEnglish ? 'text-white dark:text-[#111827]' : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'}`}
       >
         EN
       </button>
-
-      {/* Thumb Deslizante com Globo e Indicador de Idioma */}
-      <div
-        className={`absolute top-1 left-1 z-20 flex items-center justify-center w-6 h-6 rounded-full bg-white dark:bg-[#0f172a] border border-blue-400/50 dark:border-[var(--gold)]/60 shadow-md transition-all duration-500 cubic-bezier(0.22, 1, 0.36, 1) ${
-          isEnglish ? 'translate-x-8 text-[var(--gold)]' : 'translate-x-0 text-blue-600'
-        }`}
-      >
-        <Globe className="w-3.5 h-3.5 text-blue-600 dark:text-[var(--gold)]" />
-      </div>
     </div>
   );
 }

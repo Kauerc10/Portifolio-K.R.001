@@ -2,6 +2,9 @@
 
 import { useEffect } from 'react';
 
+let lastPointerX = -100;
+let lastPointerY = -100;
+
 export default function CustomCursor() {
   useEffect(() => {
     const cursor = document.getElementById('cursor');
@@ -11,15 +14,20 @@ export default function CustomCursor() {
 
     if (!cursor || !dot || !ring) return;
 
-    let mouseX = -100;
-    let mouseY = -100;
-    let ringX = -100;
-    let ringY = -100;
+    let mouseX = lastPointerX;
+    let mouseY = lastPointerY;
+    let ringX = lastPointerX;
+    let ringY = lastPointerY;
+
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+    ring.style.transform = `translate3d(${ringX - 16}px, ${ringY - 16}px, 0)`;
     let animId: number;
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      lastPointerX = mouseX;
+      lastPointerY = mouseY;
       dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
       // Checar se o elemento sob o mouse é magnético

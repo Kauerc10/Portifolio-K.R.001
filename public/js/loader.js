@@ -61,12 +61,12 @@ const Loader = (() => {
       step++;
       const val = Math.min(Math.round((bar.target / steps) * step), bar.target);
 
-      bar.fill.style.width = (val / bar.target * 100) + '%';
+      bar.fill.style.transform = `scaleX(${val / bar.target})`;
       bar.pct.textContent = val + '%';
 
       if (step >= steps) {
         clearInterval(interval);
-        bar.fill.style.width = '100%';
+        bar.fill.style.transform = 'scaleX(1)';
         bar.pct.textContent = bar.target + '%';
         setTimeout(callback, 200); // Pequena pausa entre barras
       }
@@ -136,26 +136,6 @@ const Loader = (() => {
    * antes de começar a animar.
    */
   function init() {
-    const el = document.getElementById('loader');
-
-    // Se o loader já foi exibido nesta sessão ou se é uma troca de idioma/rota, ocultar em 0ms
-    if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('loader_seen') === 'true') {
-      if (el) {
-        el.style.display = 'none';
-        el.style.opacity = '0';
-        el.style.pointerEvents = 'none';
-      }
-      document.body.style.overflow = '';
-      window.dispatchEvent(new CustomEvent('loaderDone'));
-      return;
-    }
-
-    try {
-      if (typeof sessionStorage !== 'undefined') {
-        sessionStorage.setItem('loader_seen', 'true');
-      }
-    } catch (e) {}
-
     document.body.style.overflow = 'hidden'; // Trava o scroll
 
     setTimeout(runSequence, 300);

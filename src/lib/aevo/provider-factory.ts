@@ -8,69 +8,99 @@ export interface AevoGenerateParams {
 export class AevoProviderFactory {
   /**
    * Gera uma resposta agnóstica do Agente ÆVO utilizando a ordem de prioridade dos provedores:
-   * Gemini 1.5 Flash -> OpenAI GPT-4o-mini -> Local Knowledge Fallback Engine Bilingue.
+   * Ordem configurável: Gemini, OpenAI, Groq e, por último, o RAG local bilíngue.
    */
   static async generateResponse(params: AevoGenerateParams) {
     const userMessage = params.messages[params.messages.length - 1]?.content || '';
     const lowerMsg = userMessage.toLowerCase();
     const locale = params.locale || 'pt-BR';
     const isEnglish = locale === 'en-US';
+    const toolCalls = this.detectClientTools(lowerMsg);
+    const temperature = this.getTemperature();
 
-    // Tentar provedores via Vercel AI SDK se chaves de API estiverem presentes
-    const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-    const openaiKey = process.env.OPENAI_API_KEY;
-
-    if (geminiKey) {
+    for (const provider of this.getProviderOrder()) {
       try {
-        const { generateText } = await import('ai');
-        const { createGoogleGenerativeAI } = await import('@ai-sdk/google');
-        const googleProvider = createGoogleGenerativeAI({ apiKey: geminiKey });
+        if (provider === 'gemini') {
+          const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+          if (!apiKey) continue;
 
-        const result = await generateText({
-          model: googleProvider('gemini-1.5-flash'),
-          system: this.buildSystemPrompt(locale),
-          messages: params.messages as any,
-          temperature: 0.7,
-        });
+          const { generateText } = await import('ai');
+          const { createGoogleGenerativeAI } = await import('@ai-sdk/google');
+          const model = process.env.AEVO_GEMINI_MODEL || 'gemini-2.5-flash';
+          const google = createGoogleGenerativeAI({ apiKey });
+          const result = await generateText({
+            model: google(model),
+            system: this.buildSystemPrompt(locale),
+            messages: params.messages as any,
+            temperature,
+          });
 
-        return {
-          text: result.text,
-          providerUsed: 'Gemini 1.5 Flash (Google)',
-          toolCalls: this.detectClientTools(lowerMsg),
-        };
-      } catch (err) {
-        console.warn('[ÆVO Factory] Gemini falhou, tentando fallback...', err);
+          return { text: result.text, providerUsed: `${model} (Google)`, toolCalls };
+        }
+
+        if (provider === 'openai') {
+          const apiKey = process.env.OPENAI_API_KEY;
+          if (!apiKey) continue;
+
+          const { generateText } = await import('ai');
+          const { createOpenAI } = await import('@ai-sdk/openai');
+          const model = process.env.AEVO_OPENAI_MODEL || 'gpt-4.1-mini';
+          const openai = createOpenAI({ apiKey });
+          const result = await generateText({
+            model: openai(model),
+            system: this.buildSystemPrompt(locale),
+            messages: params.messages as any,
+            temperature,
+          });
+
+          return { text: result.text, providerUsed: `${model} (OpenAI)`, toolCalls };
+        }
+
+        if (provider === 'groq') {
+          const apiKey = process.env.GROQ_API_KEY;
+          if (!apiKey) continue;
+
+          const { generateText } = await import('ai');
+          const { createOpenAI } = await import('@ai-sdk/openai');
+          const model = process.env.AEVO_GROQ_MODEL || 'llama-3.3-70b-versatile';
+          const groq = createOpenAI({
+            apiKey,
+            baseURL: process.env.GROQ_BASE_URL || 'https://api.groq.com/openai/v1',
+          });
+          const result = await generateText({
+            model: groq(model),
+            system: this.buildSystemPrompt(locale),
+            messages: params.messages as any,
+            temperature,
+          });
+
+          return { text: result.text, providerUsed: `${model} (Groq)`, toolCalls };
+        }
+      } catch (error) {
+        console.warn(`[ÆVO Factory] ${provider} falhou; tentando o próximo fallback.`, error);
       }
     }
 
-    if (openaiKey) {
-      try {
-        const { generateText } = await import('ai');
-        const { openai } = await import('@ai-sdk/openai');
-
-        const result = await generateText({
-          model: openai('gpt-4o-mini'),
-          system: this.buildSystemPrompt(locale),
-          messages: params.messages as any,
-          temperature: 0.7,
-        });
-
-        return {
-          text: result.text,
-          providerUsed: 'GPT-4o-mini (OpenAI)',
-          toolCalls: this.detectClientTools(lowerMsg),
-        };
-      } catch (err) {
-        console.warn('[ÆVO Factory] OpenAI falhou, tentando fallback...', err);
-      }
-    }
-
-    // Engine de Fallback Local Bilingue Resiliente (Zero dependência de APIs externas)
     return {
       text: this.generateLocalFallback(lowerMsg, locale),
       providerUsed: isEnglish ? 'ÆVO Local RAG Engine (Bilingual)' : 'Engine Local RAG ÆVO',
-      toolCalls: this.detectClientTools(lowerMsg),
+      toolCalls,
     };
+  }
+
+  static getProviderOrder(env: NodeJS.ProcessEnv = process.env): Array<'gemini' | 'openai' | 'groq'> {
+    const allowed = new Set(['gemini', 'openai', 'groq']);
+    const configured = (env.AEVO_PROVIDER_ORDER || 'gemini,openai,groq')
+      .split(',')
+      .map((provider) => provider.trim().toLowerCase())
+      .filter((provider) => allowed.has(provider));
+
+    return [...new Set(configured)] as Array<'gemini' | 'openai' | 'groq'>;
+  }
+
+  private static getTemperature(): number {
+    const configured = Number(process.env.AEVO_TEMPERATURE ?? '0.7');
+    return Number.isFinite(configured) ? Math.min(1, Math.max(0, configured)) : 0.7;
   }
 
   private static buildSystemPrompt(locale: string = 'pt-BR'): string {

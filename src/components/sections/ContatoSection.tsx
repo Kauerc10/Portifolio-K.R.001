@@ -4,42 +4,8 @@ import { useState } from 'react';
 import { Mail, Linkedin, Github, MapPin, Copy, Check } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
 
-export default function ContatoSection({ dict }: { dict?: Dictionary['contato'] }) {
+export default function ContatoSection({ dict: d }: { dict: Dictionary['contato'] }) {
   const [copied, setCopied] = useState(false);
-
-  const d = dict || {
-    title: 'PROTOCOLAR CONTATO',
-    subtitle: 'ABERTO A OPORTUNIDADES E PARCERIAS ESTRATÉGICAS',
-    nameLabel: 'Nome do Requerente',
-    namePlaceholder: 'Seu nome completo...',
-    emailLabel: 'E-mail de Resposta',
-    emailPlaceholder: 'seu.email@dominio.com...',
-    subjectLabel: 'Objeto da Petição / Assunto',
-    subjectPlaceholder: 'Selecione o assunto...',
-    messageLabel: 'Teor da Mensagem',
-    messagePlaceholder: 'Descreva detalhes do projeto ou oportunidade...',
-    btnSubmit: 'Protocolar Solicitação',
-    btnSubmitting: 'Protocolando...',
-    subjects: {
-      proposta: 'Proposta de Trabalho / Contratação',
-      projeto: 'Desenvolvimento de Projeto / Consultoria',
-      ia: 'Implementação de IA / Automação RAG',
-      outro: 'Outro Assunto',
-    },
-    fastContact: {
-      title: 'Canais Diretos de Acesso',
-      emailTitle: 'E-mail Corporativo',
-      linkedinTitle: 'Perfil Profissional',
-      githubTitle: 'Repositório de Código',
-    },
-    messages: {
-      SUCCESS: '✓ Petição protocolada com sucesso! Respondo em breve.',
-      RATE_LIMITED: 'Muitas solicitações enviadas. Aguarde alguns minutos para protocolar novamente.',
-      VALIDATION_ERROR: 'Por favor, preencha todos os campos obrigatórios corretamente.',
-      SERVICE_UNAVAILABLE: 'Serviço de e-mail temporariamente indisponível. Envie diretamente para kaue.ruon@gmail.com',
-      INTERNAL_ERROR: 'Falha interna ao processar envio. Envie diretamente para kaue.ruon@gmail.com',
-    },
-  };
 
   const handleCopyEmail = () => {
     navigator.clipboard?.writeText('kaue.ruon@gmail.com');
@@ -52,7 +18,6 @@ export default function ContatoSection({ dict }: { dict?: Dictionary['contato'] 
       <div className="section__line" />
       <span className="section__article">Petição Final</span>
       <h2 className="section__title" data-cipher>{d.title}</h2>
-      <p className="text-xs text-slate-400 mb-8 font-mono">{d.subtitle}</p>
 
       {/* Formulário Principal da Petição */}
       <form className="peticao" id="peticaoForm" action="/api/contato" method="POST" data-messages={JSON.stringify(d.messages)}>
@@ -85,7 +50,7 @@ export default function ContatoSection({ dict }: { dict?: Dictionary['contato'] 
       <div className="contato__info mt-8 mb-4">
         <span className="contato__link flex items-center justify-center gap-2 text-xs font-mono text-slate-700 dark:text-gray-400 font-medium">
           <MapPin className="w-4 h-4 text-[var(--gold)]" />
-          Blumenau / SC — Remote & Global Work Available
+          {d.location}
         </span>
       </div>
 
@@ -101,7 +66,7 @@ export default function ContatoSection({ dict }: { dict?: Dictionary['contato'] 
           <span className="font-semibold">kaue.ruon@gmail.com</span>
           {copied ? (
             <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
-              <Check className="w-3 h-3" /> Copied!
+              <Check className="w-3 h-3" /> {d.copied}
             </span>
           ) : (
             <Copy className="w-3 h-3 opacity-60 group-hover:opacity-100" />

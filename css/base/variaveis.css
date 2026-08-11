@@ -98,6 +98,20 @@ html.light .footer__link {
     color: #334155 !important;
 }
 
+
+/* Project cards must follow the selected site theme, not the OS preference. */
+html.light .evidence__folder h3 {
+    color: #0f172a !important;
+}
+
+html.light .evidence__folder p {
+    color: #475569;
+}
+
+html.light .evidence__folder p.text-amber-600 {
+    color: #a16207 !important;
+}
+
 /* Skills Chips & Cards Light Mode */
 html.light .chip {
     background: #ffffff !important;
@@ -224,4 +238,18 @@ html.light .nav__indicator {
 ::view-transition-new(root) {
     animation-duration: 0.5s;
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Contrast corrections for the dark theme. */
+html:not(.light) .skills__intro {
+    color: #a8b3c7;
+}
+
+html:not(.light) .skills__soft-title {
+    color: #cbd5e1;
+}
+
+html:not(.light) .chip {
+    color: #b6c2d4;
+    border-color: #475569;
+    background: rgba(13, 20, 36, 0.58);
 }

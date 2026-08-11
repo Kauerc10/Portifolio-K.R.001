@@ -92,6 +92,7 @@
     transform: scaleX(0);
     transform-origin: left;
     background: var(--signal);
+    box-shadow: 0 0 14px rgba(37, 99, 235, 0.42);
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
