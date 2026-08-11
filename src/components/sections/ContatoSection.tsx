@@ -39,8 +39,8 @@ export default function ContatoSection({ dict: d }: { dict: Dictionary['contato'
 
       {/* Localização Notarial */}
       <div className="contato__info mt-8 mb-4">
-        <span className="contato__link flex items-center justify-center gap-2 text-xs font-mono text-slate-700 dark:text-gray-400 font-medium">
-          <MapPin className="w-4 h-4 text-[var(--gold)]" />
+        <span className="contato__link flex items-center justify-center gap-2 text-xs font-mono text-blue-600 dark:text-blue-400 font-medium">
+          <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400" />
           {d.location}
         </span>
       </div>

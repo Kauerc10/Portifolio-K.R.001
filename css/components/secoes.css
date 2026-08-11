@@ -608,8 +608,12 @@
     font-size: 0.8rem;
 }
 
+.contato {
+    padding-bottom: 1.5rem;
+}
+
 .contato__link {
-    color: var(--ghost);
+    color: var(--signal);
     transition: color 0.3s;
     cursor: none;
     display: flex;
@@ -618,7 +622,7 @@
 }
 
 .contato__link:hover {
-    color: var(--text);
+    color: color-mix(in srgb, var(--signal) 78%, var(--text));
 }
 
 
@@ -628,7 +632,7 @@
 
 .footer {
     text-align: center;
-    padding: 2rem 2rem 2.5rem;
+    padding: 1.35rem 2rem 2.5rem;
     border-top: 1px solid rgba(51, 65, 85, 0.2);
 }
 
@@ -643,7 +647,8 @@
 .footer__channels {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    column-gap: 1.35rem;
+    row-gap: 0.65rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
 }
@@ -654,13 +659,13 @@
     align-items: center;
     gap: 0.4rem;
     padding: 0.4rem 0.65rem;
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    border: 1px solid color-mix(in srgb, var(--text) 24%, transparent);
     border-radius: 0.45rem;
-    background: rgba(148, 163, 184, 0.04);
+    background: color-mix(in srgb, var(--text) 8%, transparent);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.04em;
-    color: var(--ghost);
+    color: color-mix(in srgb, var(--text) 72%, transparent);
     text-decoration: none;
     cursor: pointer;
     transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
