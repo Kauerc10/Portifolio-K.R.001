@@ -61,6 +61,12 @@ describe('Suíte de Testes da Arquitetura i18n (Next.js 15 Nativo)', () => {
     expect(enUS.projetos.items.folilib.title).toContain('PDF Layout Engine');
   });
 
+  it('mantém o typewriter e o currículo localizados no hero', () => {
+    expect(enUS.hero.roles.every((role) => !/[áàâãéêíóôõúç]/i.test(role))).toBe(true);
+    expect(enUS.hero.ctaResume).toBe('RESUME.PDF');
+    expect(ptBR.hero.ctaResume).toBe('CURRÍCULO.PDF');
+  });
+
   it('deve validar locais suportados com isValidLocale', () => {
     expect(isValidLocale('pt-BR')).toBe(true);
     expect(isValidLocale('en-US')).toBe(true);

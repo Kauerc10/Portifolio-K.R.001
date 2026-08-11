@@ -31,7 +31,7 @@ const Animations = (() => {
      * São exibidas em loop com digitação e apagamento automáticos.
      * @type {string[]}
      */
-    const typewriterPhrases = [
+    let typewriterPhrases = [
         '> Construo software com IA generativa.',
         '> Cartorário que automatiza burocracia.',
         '> Conecto LLMs a problemas reais.',
@@ -170,6 +170,17 @@ const Animations = (() => {
     function startTypewriter() {
         const el = document.getElementById('twText');
         if (!el) return;
+
+        // O componente injeta as frases já localizadas no atributo data-roles.
+        // O fallback acima só é usado por páginas legadas sem dicionário.
+        try {
+            const localizedRoles = JSON.parse(el.dataset.roles || '[]');
+            if (Array.isArray(localizedRoles) && localizedRoles.length > 0) {
+                typewriterPhrases = localizedRoles.map(role => `> ${String(role)}`);
+            }
+        } catch (error) {
+            console.warn('[Animations] Não foi possível ler as frases localizadas do hero.', error);
+        }
 
         function tick() {
             const phrase = typewriterPhrases[twIndex];
