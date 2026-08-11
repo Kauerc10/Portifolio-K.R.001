@@ -259,7 +259,9 @@ const HeroScene = (() => {
             if (availabilityActive || typeof gsap === 'undefined') return;
             const { active, level } = event.detail;
             const color = !active
-                ? { r: 0.83, g: 0.63, b: 0.09 }
+                ? obmepActive
+                    ? { r: 0.83, g: 0.63, b: 0.09 }
+                    : { r: 0.145, g: 0.388, b: 0.921 }
                 : level === 'prata'
                     ? { r: 0.58, g: 0.64, b: 0.72 }
                     : level === 'bronze'

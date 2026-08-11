@@ -84,9 +84,6 @@
     isolation: isolate;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     transform: translateZ(0);
-    content-visibility: auto;
-    contain: layout paint style;
-    contain-intrinsic-size: auto 430px;
 }
 
 /* Cards ímpares ficam à esquerda */
@@ -143,6 +140,9 @@
  * Isso é tipo o nível máximo de CSS trick útil.
  */
 .obmep-card__content {
+    content-visibility: auto;
+    contain: layout paint style;
+    contain-intrinsic-size: auto 430px;
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(2, 6, 23, 0.6) 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow:
