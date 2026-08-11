@@ -19,7 +19,6 @@ const HeroScene = (() => {
     let canvas;
     let scrollPct = 0;
     let particlePositionsOriginal = [];
-    let obmepActive = false;
 
     let tabVisible = true;
     let isCanvasVisible = true;
@@ -30,8 +29,6 @@ const HeroScene = (() => {
     const _dummy = new THREE.Object3D();
 
     let cachedDocHeight = 0;
-    let cardHoverActive = false;
-    let cardHoverLevel = 'none';
 
     // ════════════════════════════════
     //  SHADERS GLSL
@@ -239,15 +236,13 @@ const HeroScene = (() => {
             }
         });
 
-        window.addEventListener('obmepSynergy', () => {
+        window.addEventListener('obmepSynergy', (event) => {
             if (typeof gsap !== 'undefined') {
-                gsap.to(uniforms.uColor.value, { r: 0.83, g: 0.63, b: 0.09, duration: 1 });
+                const color = event.detail
+                    ? { r: 0.83, g: 0.63, b: 0.09 }
+                    : { r: 0.145, g: 0.388, b: 0.921 };
+                gsap.to(uniforms.uColor.value, { ...color, duration: 0.8, overwrite: true });
             }
-        });
-
-        window.addEventListener('obmepHover', (e) => {
-            cardHoverActive = !!(e.detail && e.detail.active);
-            cardHoverLevel  = (e.detail && e.detail.level) || 'none';
         });
 
         animate();
@@ -280,11 +275,6 @@ const HeroScene = (() => {
         scrollVelocity = Math.abs(y - lastScrollY);
         lastScrollY = y;
 
-        const obmepEl = document.getElementById('conquistas');
-        if (obmepEl) {
-            const rect = obmepEl.getBoundingClientRect();
-            obmepActive = (rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.5);
-        }
     }
 
     let lastFrameTime = 0;
@@ -354,12 +344,7 @@ const HeroScene = (() => {
             let dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < 0.001) dist = 0.001;
 
-            if (cardHoverActive && dist < 6.0) {
-                const force = (6.0 - dist) * 0.015;
-                data.vx -= (dx / dist) * force;
-                data.vy -= (dy / dist) * force;
-
-            } else if (!cardHoverActive && dist < 2.5) {
+            if (dist < 2.5) {
                 const force = (2.5 - dist) * 0.05;
                 data.vx += (dx / dist) * force;
                 data.vy += (dy / dist) * force;
@@ -402,16 +387,6 @@ const HeroScene = (() => {
             }
             pos.needsUpdate = true;
             lastExpandFactor = expandFactor;
-        }
-
-        // ── Modo OBMEP Overdrive ──
-        if (obmepActive) {
-            wireframe.rotation.x += 0.015;
-            wireframe.rotation.y += 0.02;
-            particles.rotation.y -= 0.03;
-
-            const wildBreath = 1 + Math.sin(elapsed * 4) * 0.08;
-            wireframe.scale.setScalar(wildBreath);
         }
 
         renderer.render(scene, camera);
