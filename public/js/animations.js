@@ -303,7 +303,7 @@ const Animations = (() => {
     /**
      * Comunica com a cena Three.js quando o usuário entra/sai da seção OBMEP.
      * Quando está na seção, dispara 'obmepSynergy' com detail: true,
-     * e a cena muda de azul pra dourado e acelera a rotação.
+     * e a cena faz uma transição leve da paleta azul para dourada.
      */
     function animateObmepSynergy() {
         ScrollTrigger.create({
@@ -326,9 +326,10 @@ const Animations = (() => {
         const glow = document.querySelector('.obmep-timeline-glow');
         if (!glow) return;
 
-        // Linha dourada cresce conforme o usuário rola a seção OBMEP
+        // A linha cresce no compositor, sem recalcular layout durante o scroll.
+        gsap.set(glow, { scaleY: 0, transformOrigin: 'top center' });
         gsap.to(glow, {
-            height: '100%',
+            scaleY: 1,
             ease: 'none',
             scrollTrigger: {
                 trigger: '.obmep-vault__grid',
@@ -350,14 +351,15 @@ const Animations = (() => {
                 onLeaveBack: () => card.classList.remove('is-active'),
             });
 
-            // Hover: muda a cor da cena 3D pro tema da medalha específica
             card.addEventListener('mouseenter', () => {
-                const level = card.getAttribute('data-level');
-                window.dispatchEvent(new CustomEvent('obmepHover', { detail: { active: true, level } }));
+                window.dispatchEvent(new CustomEvent('obmepHover', {
+                    detail: { active: true, level: card.getAttribute('data-level') }
+                }));
             });
             card.addEventListener('mouseleave', () => {
                 window.dispatchEvent(new CustomEvent('obmepHover', { detail: { active: false } }));
             });
+
         });
     }
 
@@ -366,7 +368,7 @@ const Animations = (() => {
      * Calcula o ângulo de rotação baseado na posição do cursor
      * dentro do card usando o centro como referência (0,0).
      *
-     * Funciona em: .evidence__folder e .obmep-card
+     * Aplicado somente aos cards de projetos; as medalhas permanecem estáveis.
      *
      * Importante: usa GSAP (não CSS cru) para não brigar com animateZeroG,
      * que aplica transform via GSAP nos mesmos elementos. O overwrite:true
@@ -378,7 +380,7 @@ const Animations = (() => {
         // Pula tilt em telas de toque — não há hover confiável
         if (window.matchMedia('(hover: none)').matches) return;
 
-        const cards = document.querySelectorAll('.evidence__folder, .obmep-card');
+        const cards = document.querySelectorAll('.evidence__folder');
 
         cards.forEach(card => {
             card.addEventListener('mousemove', e => {
@@ -425,7 +427,7 @@ const Animations = (() => {
      */
     function animateZeroG() {
         const floaters = document.querySelectorAll(
-            '.evidence__folder, .sobre__card, .timeline__content, .formacao__card, .obmep-card'
+            '.evidence__folder, .sobre__card, .timeline__content, .formacao__card'
         );
 
         // IntersectionObserver para SÓ animar flutuação em cards visíveis na tela (economiza CPU imensa)

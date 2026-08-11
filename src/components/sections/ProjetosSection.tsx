@@ -8,7 +8,7 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
     <section className="section evidencias" id="projetos" data-section="7">
       <div className="section__line" />
       <span className="section__article font-mono font-bold">Anexo II</span>
-      <h2 className="section__title" data-cipher>{d.title}</h2>
+      <h2 className="section__title">{d.title}</h2>
 
       {/* Grid dos Mini Case Studies de Projetos */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">

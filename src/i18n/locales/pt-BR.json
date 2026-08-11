@@ -32,9 +32,9 @@
   },
   "sobre": {
     "title": "SOBRE MIM",
-    "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório — e de volta pra tecnologia.",
+    "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",
     "bioP2": "Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou automatizar processos, mesmo sem ninguém me pedir.",
-    "bioP3": "Construo software guiando IA generativa (Claude, GPT) como ferramenta primária — de protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é decompor o problema, estruturar a instrução e conectar as peças até o fluxo inteiro funcionar. É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.",
+    "bioP3": "Construo software guiando IA generativa (Claude, GPT) como ferramenta primária, de protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é decompor o problema, estruturar a instrução e conectar as peças até o fluxo inteiro funcionar. É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.",
     "badge": "FICHA TÉCNICA",
     "fields": [
       {
@@ -72,7 +72,7 @@
         "description": "Plataforma Next.js que gera documentos legais conversando com o usuário. Construí uma camada agnóstica de provedor (`AIProvider`) com factory por env var, API route server-side (`/api/ai/generate`) que mantém a chave secreta no servidor, streaming de respostas e tratamento de erro tipado (`AIError`). Providers reais (OpenAI / Anthropic / Gemini) são pluggáveis sem tocar no resto do app.",
         "achievements": [
           "Interface conversacional (chat guiado) com preview do documento em tempo real.",
-          "Camada de IA desacoplada — trocar de LLM não exige mudar o front-end."
+          "A camada de IA é desacoplada. Trocar de LLM não exige mudar o front-end."
         ],
         "skills": [
           "Next.js 16",
@@ -88,7 +88,7 @@
         "title": "Cartorário / Depto. de Procurações",
         "company": "Cartório Gaya",
         "location": "Blumenau/SC",
-        "description": "Construí uma automação que consome endpoints do Detran-RS pra gerar procurações de veículos automaticamente, eliminando digitação manual repetitiva. Está em produção no cartório até hoje — uma tarefa que tomava minutos virou poucos cliques.",
+        "description": "Construí uma automação que consome endpoints do Detran-RS pra gerar procurações de veículos automaticamente, eliminando digitação manual repetitiva. Está em produção no cartório até hoje. Uma tarefa que tomava minutos virou poucos cliques.",
         "achievements": [
           "Redação de procurações, escrituras e inventários.",
           "Melhoria não supervisionada de metodologias digitais.",
@@ -120,7 +120,7 @@
   },
   "skills": {
     "title": "DAS COMPETÊNCIAS",
-    "subtitle": "O que eu realmente uso nos projetos (verificável nos repositórios públicos). Sem porcentagens inventadas — eu construo com IA como ferramenta primária e domino o fluxo de decompor, instruir e conectar.",
+    "subtitle": "O que eu realmente uso nos projetos (verificável nos repositórios públicos). Sem porcentagens inventadas. Eu construo com IA como ferramenta primária e domino o fluxo de decompor, instruir e conectar.",
     "groups": [
       {
         "title": "IA Generativa",
@@ -306,6 +306,10 @@
     "copied": "Copiado!"
   },
   "footer": {
+    "channelsLabel": "Canais de contato",
+    "emailLabel": "Copiar endereço de e-mail",
+    "email": "E-mail",
+    "copied": "Copiado",
     "copyright": "© 2026 Kauê Ruon Cardoso · Construído com IA generativa como ferramenta de engenharia."
   },
   "modals": {
