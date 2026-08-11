@@ -201,6 +201,50 @@ a.evidence__folder {
     transform: translateY(-2px);
 }
 
+/* Ações dos cases compartilham posição, escala e estados; só o acento muda. */
+.case-actions {
+    --case-accent: #d4a017;
+    --case-accent-soft: rgba(212, 160, 23, 0.12);
+    --case-primary-bg: #92400e;
+    display: flex;
+    min-height: 3.25rem;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+.case-actions--emerald { --case-accent: #10b981; --case-accent-soft: rgba(16, 185, 129, 0.12); --case-primary-bg: #047857; }
+.case-actions--amber { --case-accent: #d4a017; --case-accent-soft: rgba(212, 160, 23, 0.12); --case-primary-bg: #92400e; }
+.case-actions--blue { --case-accent: #3b82f6; --case-accent-soft: rgba(59, 130, 246, 0.12); --case-primary-bg: #1d4ed8; }
+.case-actions--purple { --case-accent: #9333ea; --case-accent-soft: rgba(147, 51, 234, 0.12); --case-primary-bg: #7e22ce; }
+
+.case-action {
+    min-height: 2.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--case-accent);
+    border-radius: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+}
+
+.case-action--primary { color: #fff; background: var(--case-primary-bg); border-color: var(--case-primary-bg); }
+.case-action--secondary,
+.case-action--status { color: var(--case-accent); background: var(--case-accent-soft); }
+.case-action--status { max-width: 100%; text-align: right; }
+.case-action:is(a):hover { filter: brightness(1.12); }
+.case-action:is(a):focus-visible { outline: 2px solid var(--case-accent); outline-offset: 3px; }
+
 
 /* tente ↑↑↓↓←→←→BA no teclado ;) */
 .modal {

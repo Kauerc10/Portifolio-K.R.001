@@ -34,12 +34,12 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
             <p className="text-[10px] font-mono text-slate-500 dark:text-slate-400">{d.items.docfacil.stack}</p>
           </div>
 
-          <div className="flex items-center gap-3 pt-3 border-t border-slate-200 dark:border-white/5 text-xs font-mono font-bold">
+          <div className="case-actions case-actions--emerald">
             <a
               href="https://docfacil-indol.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md bg-[var(--gold)] text-[#0b1120] hover:bg-amber-400 flex items-center gap-1.5 transition-all shadow-md"
+              className="case-action case-action--primary"
             >
               <span>{d.btnDemo}</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -48,7 +48,7 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
               href="https://github.com/Kauerc10/docfacil"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-900 dark:text-white border border-slate-300 dark:border-white/10 hover:border-[var(--gold)]/40 flex items-center gap-1.5 transition-all"
+              className="case-action case-action--secondary"
             >
               <span>{d.btnRepo}</span>
               <GitBranch className="w-3.5 h-3.5" />
@@ -77,9 +77,11 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
             <p className="text-[10px] font-mono text-slate-500 dark:text-slate-400">{d.items.atlas.stack}</p>
           </div>
 
-          <div className="flex items-center gap-2 pt-3 border-t border-slate-200 dark:border-white/5 text-xs font-mono text-rose-700 dark:text-rose-400 font-bold">
-            <Lock className="w-3.5 h-3.5" />
-            <span>{d.privateRepo}</span>
+          <div className="case-actions case-actions--amber">
+            <span className="case-action case-action--status">
+              <Lock className="w-3.5 h-3.5" />
+              <span>{d.privateRepo}</span>
+            </span>
           </div>
         </div>
 
@@ -104,12 +106,12 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
             <p className="text-[10px] font-mono text-slate-500 dark:text-slate-400">{d.items.ckf.stack}</p>
           </div>
 
-          <div className="flex items-center gap-3 pt-3 border-t border-slate-200 dark:border-white/5 text-xs font-mono font-bold">
+          <div className="case-actions case-actions--blue">
             <a
               href="https://ckf-manutencao-orcamentos.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md bg-[var(--gold)] text-[#0b1120] hover:bg-amber-400 flex items-center gap-1.5 transition-all shadow-md"
+              className="case-action case-action--primary"
             >
               <span>{d.btnDemo}</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -118,7 +120,7 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
               href="https://github.com/Kauerc10/ckf-manutencao-orcamentos"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-900 dark:text-white border border-slate-300 dark:border-white/10 hover:border-[var(--gold)]/40 flex items-center gap-1.5 transition-all"
+              className="case-action case-action--secondary"
             >
               <span>{d.btnRepo}</span>
               <GitBranch className="w-3.5 h-3.5" />
@@ -147,12 +149,12 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
             <p className="text-[10px] font-mono text-slate-500 dark:text-slate-400">{d.items.folilib.stack}</p>
           </div>
 
-          <div className="flex items-center gap-3 pt-3 border-t border-slate-200 dark:border-white/5 text-xs font-mono font-bold">
+          <div className="case-actions case-actions--purple">
             <a
               href="https://github.com/Kauerc10/foli"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md bg-purple-700 dark:bg-purple-600/90 text-white hover:bg-purple-600 flex items-center gap-1.5 transition-all shadow-md"
+              className="case-action case-action--primary"
             >
               <span>{d.btnRepo}</span>
               <GitBranch className="w-3.5 h-3.5" />
