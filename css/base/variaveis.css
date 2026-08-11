@@ -98,6 +98,20 @@ html.light .footer__link {
     color: #334155 !important;
 }
 
+
+/* Project cards must follow the selected site theme, not the OS preference. */
+html.light .evidence__folder h3 {
+    color: #0f172a !important;
+}
+
+html.light .evidence__folder p {
+    color: #475569;
+}
+
+html.light .evidence__folder p.text-amber-600 {
+    color: #a16207 !important;
+}
+
 /* Skills Chips & Cards Light Mode */
 html.light .chip {
     background: #ffffff !important;
