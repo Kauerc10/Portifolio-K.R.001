@@ -88,7 +88,9 @@ export class AevoProviderFactory {
     };
   }
 
-  static getProviderOrder(env: NodeJS.ProcessEnv = process.env): Array<'gemini' | 'openai' | 'groq'> {
+  static getProviderOrder(
+    env: { AEVO_PROVIDER_ORDER?: string } = process.env
+  ): Array<'gemini' | 'openai' | 'groq'> {
     const allowed = new Set(['gemini', 'openai', 'groq']);
     const configured = (env.AEVO_PROVIDER_ORDER || 'gemini,openai,groq')
       .split(',')
