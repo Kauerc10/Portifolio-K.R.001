@@ -77,7 +77,6 @@ const Animations = (() => {
         animateSectionLines();
         animateSlideElements();
         animateTimelineLine();
-        animateHeroParallax();
         animateObmepSynergy();
         animateObmepTimeline();
 
@@ -281,24 +280,13 @@ const Animations = (() => {
     }
 
     /**
-     * Efeito parallax no texto do hero e na ficha técnica do Sobre.
-     * Os elementos se movem em velocidades diferentes do scroll (deslocamento Y).
+     * O hero e a ficha técnica permanecem no fluxo normal do documento.
+     *
+     * Evitamos parallax via transform nesses blocos porque transforms não reservam
+     * espaço no layout: ao rolar, o conteúdo do hero podia invadir a seção Sobre
+     * e a ficha podia avançar sobre a seção seguinte. O sticky da ficha já oferece
+     * continuidade espacial sem retirar nenhum elemento de sua área de colisão.
      */
-    function animateHeroParallax() {
-        // Hero text desce 40% mais devagar que o scroll
-        gsap.to('.hero__text', {
-            yPercent: 40,
-            ease: 'none',
-            scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
-        });
-
-        // Ficha técnica tem parallax mais suave
-        gsap.to('.sobre__card-wrap', {
-            yPercent: 30,
-            ease: 'none',
-            scrollTrigger: { trigger: '#sobre', start: 'top bottom', end: 'bottom top', scrub: true }
-        });
-    }
 
     /**
      * Comunica com a cena Three.js quando o usuário entra/sai da seção OBMEP.
