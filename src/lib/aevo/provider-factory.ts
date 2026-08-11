@@ -1,4 +1,6 @@
 import { KAUE_PROFILE_KNOWLEDGE } from './rag-knowledge';
+import { AEVO_TOOLS } from './tools-definitions';
+import type { CoreMessage } from 'ai';
 
 export interface AevoGenerateParams {
   messages: Array<{ role: string; content: string }>;
@@ -8,15 +10,13 @@ export interface AevoGenerateParams {
 export class AevoProviderFactory {
   /**
    * Gera uma resposta agnóstica do Agente ÆVO utilizando a ordem de prioridade dos provedores:
-   * Ordem configurável: Gemini, OpenAI, Groq e, por último, o RAG local bilíngue.
+   * Ordem configurável: Gemini, Groq, OpenAI e, por último, a base local determinística.
    */
   static async generateResponse(params: AevoGenerateParams) {
     const userMessage = params.messages[params.messages.length - 1]?.content || '';
     const lowerMsg = userMessage.toLowerCase();
     const locale = params.locale || 'pt-BR';
     const isEnglish = locale === 'en-US';
-    const toolCalls = this.detectClientTools(lowerMsg);
-    const temperature = this.getTemperature();
 
     for (const provider of this.getProviderOrder()) {
       try {
@@ -26,16 +26,17 @@ export class AevoProviderFactory {
 
           const { generateText } = await import('ai');
           const { createGoogleGenerativeAI } = await import('@ai-sdk/google');
-          const model = process.env.AEVO_GEMINI_MODEL || 'gemini-2.5-flash';
+          const model = process.env.AEVO_GEMINI_MODEL || 'gemini-3.6-flash';
           const google = createGoogleGenerativeAI({ apiKey });
           const result = await generateText({
             model: google(model),
             system: this.buildSystemPrompt(locale),
-            messages: params.messages as any,
-            temperature,
+            messages: params.messages as CoreMessage[],
+            tools: AEVO_TOOLS,
+            toolChoice: 'auto',
           });
 
-          return { text: result.text, providerUsed: `${model} (Google)`, toolCalls };
+          return { text: result.text, providerUsed: `${model} (Google)`, toolCalls: this.toClientToolCalls(result.toolCalls) };
         }
 
         if (provider === 'openai') {
@@ -49,11 +50,12 @@ export class AevoProviderFactory {
           const result = await generateText({
             model: openai(model),
             system: this.buildSystemPrompt(locale),
-            messages: params.messages as any,
-            temperature,
+            messages: params.messages as CoreMessage[],
+            tools: AEVO_TOOLS,
+            toolChoice: 'auto',
           });
 
-          return { text: result.text, providerUsed: `${model} (OpenAI)`, toolCalls };
+          return { text: result.text, providerUsed: `${model} (OpenAI)`, toolCalls: this.toClientToolCalls(result.toolCalls) };
         }
 
         if (provider === 'groq') {
@@ -62,7 +64,7 @@ export class AevoProviderFactory {
 
           const { generateText } = await import('ai');
           const { createOpenAI } = await import('@ai-sdk/openai');
-          const model = process.env.AEVO_GROQ_MODEL || 'llama-3.3-70b-versatile';
+          const model = process.env.AEVO_GROQ_MODEL || 'openai/gpt-oss-120b';
           const groq = createOpenAI({
             apiKey,
             baseURL: process.env.GROQ_BASE_URL || 'https://api.groq.com/openai/v1',
@@ -70,11 +72,12 @@ export class AevoProviderFactory {
           const result = await generateText({
             model: groq(model),
             system: this.buildSystemPrompt(locale),
-            messages: params.messages as any,
-            temperature,
+            messages: params.messages as CoreMessage[],
+            tools: AEVO_TOOLS,
+            toolChoice: 'auto',
           });
 
-          return { text: result.text, providerUsed: `${model} (Groq)`, toolCalls };
+          return { text: result.text, providerUsed: `${model} (Groq)`, toolCalls: this.toClientToolCalls(result.toolCalls) };
         }
       } catch (error) {
         console.warn(`[ÆVO Factory] ${provider} falhou; tentando o próximo fallback.`, error);
@@ -83,14 +86,14 @@ export class AevoProviderFactory {
 
     return {
       text: this.generateLocalFallback(lowerMsg, locale),
-      providerUsed: isEnglish ? 'ÆVO Local RAG Engine (Bilingual)' : 'Engine Local RAG ÆVO',
-      toolCalls,
+      providerUsed: isEnglish ? 'ÆVO Local Knowledge Fallback' : 'Base Local ÆVO',
+      toolCalls: this.detectLocalClientActions(lowerMsg),
     };
   }
 
   static getProviderOrder(env: NodeJS.ProcessEnv = process.env): Array<'gemini' | 'openai' | 'groq'> {
     const allowed = new Set(['gemini', 'openai', 'groq']);
-    const configured = (env.AEVO_PROVIDER_ORDER || 'gemini,openai,groq')
+    const configured = (env.AEVO_PROVIDER_ORDER || 'gemini,groq')
       .split(',')
       .map((provider) => provider.trim().toLowerCase())
       .filter((provider) => allowed.has(provider));
@@ -98,9 +101,8 @@ export class AevoProviderFactory {
     return [...new Set(configured)] as Array<'gemini' | 'openai' | 'groq'>;
   }
 
-  private static getTemperature(): number {
-    const configured = Number(process.env.AEVO_TEMPERATURE ?? '0.7');
-    return Number.isFinite(configured) ? Math.min(1, Math.max(0, configured)) : 0.7;
+  private static toClientToolCalls(toolCalls: Array<{ toolName: string; args: unknown }>) {
+    return toolCalls.map(({ toolName, args }) => ({ name: toolName, args }));
   }
 
   private static buildSystemPrompt(locale: string = 'pt-BR'): string {
@@ -122,7 +124,7 @@ Response Guidelines:
     return `Você é o ÆVO, o Assistente de IA Notarial oficial do portfólio de Kauê Ruon Cardoso (Engenheiro de Software & Arquiteto de IA em Blumenau/SC).
 Você responde em nome do portfólio do Kauê.
 
-Base de Conhecimento RAG:
+Base de Conhecimento Local:
 ${KAUE_PROFILE_KNOWLEDGE}
 
 Diretrizes de resposta:
@@ -131,7 +133,7 @@ Diretrizes de resposta:
 - Se perguntado sobre ferramentas, projetos ou contato, ofereça informações claras.`;
   }
 
-  private static detectClientTools(msg: string) {
+  private static detectLocalClientActions(msg: string) {
     const tools = [];
 
     if (

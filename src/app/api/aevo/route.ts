@@ -1,5 +1,14 @@
 import { NextResponse } from 'next/server';
 import { AevoProviderFactory } from '@/lib/aevo/provider-factory';
+import { z } from 'zod';
+
+const aevoRequestSchema = z.object({
+  messages: z.array(z.object({
+    role: z.enum(['user', 'assistant']),
+    content: z.string().min(1).max(1500),
+  })).min(1).max(15),
+  locale: z.enum(['pt-BR', 'en-US']).optional().default('pt-BR'),
+}).strict();
 
 // Rate limiter em memória por IP (Sliding Window de 60s, máx 10 req/minuto)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -36,35 +45,17 @@ export async function POST(req: Request) {
       );
     }
 
-    const body = await req.json();
-    const { messages, locale } = body;
-
-    // 2. Validação estrita do payload (máx 15 mensagens no histórico)
-    if (!messages || !Array.isArray(messages) || messages.length === 0) {
-      return NextResponse.json({ error: 'Formato de mensagens inválido.' }, { status: 400 });
+    const parsedBody = aevoRequestSchema.safeParse(await req.json());
+    if (!parsedBody.success) {
+      return NextResponse.json({ error: 'Payload de mensagens inválido.' }, { status: 400 });
     }
 
-    if (messages.length > 15) {
-      return NextResponse.json(
-        { error: 'Histórico excedeu o limite máximo de 15 mensagens.' },
-        { status: 400 }
-      );
-    }
+    const { messages, locale } = parsedBody.data;
 
-    // 3. Validação de tamanho individual de cada mensagem (máx 1500 caracteres)
-    for (const msg of messages) {
-      if (!msg.content || typeof msg.content !== 'string' || msg.content.length > 1500) {
-        return NextResponse.json(
-          { error: 'Mensagem excede o limite máximo de 1.500 caracteres.' },
-          { status: 400 }
-        );
-      }
-    }
-
-    const result = await AevoProviderFactory.generateResponse({ messages, locale: locale || 'pt-BR' });
+    const result = await AevoProviderFactory.generateResponse({ messages, locale });
 
     return NextResponse.json(result);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('[API /api/aevo] Erro:', error);
     return NextResponse.json(
       { error: 'Erro interno ao processar requisição no agente ÆVO.' },

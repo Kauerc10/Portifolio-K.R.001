@@ -1,58 +1,45 @@
-import { AevoToolDefinition } from '@/types/aevo';
+import { tool } from 'ai';
+import { z } from 'zod';
 
-export const AEVO_TOOLS: AevoToolDefinition[] = [
-  {
-    name: 'scroll_to_section',
-    description: 'Navega e rola a página suavemente até uma seção específica do portfólio.',
-    parameters: {
-      type: 'object',
-      properties: {
-        sectionId: {
-          type: 'string',
-          description: 'Identificador da seção para rolar.',
-          enum: ['hero', 'sobre', 'projetos', 'experiencia', 'obmep', 'contato'],
-        },
-      },
-      required: ['sectionId'],
-    },
-  },
-  {
-    name: 'highlight_project',
-    description: 'Aplica um destaque visual animado no card do projeto solicitado.',
-    parameters: {
-      type: 'object',
-      properties: {
-        projectSlug: {
-          type: 'string',
-          description: 'Nome simplificado do projeto.',
-          enum: ['docfacil', 'ckf', 'foli', 'atlas'],
-        },
-      },
-      required: ['projectSlug'],
-    },
-  },
-  {
-    name: 'open_resume',
-    description: 'Abre ou dispara o download do currículo oficial em PDF do Kauê.',
-    parameters: {
-      type: 'object',
-      properties: {},
-    },
-  },
-  {
-    name: 'trigger_glitch_mode',
-    description: 'Aciona um pulso de aberração cromática intensa na cena 3D WebGL.',
-    parameters: {
-      type: 'object',
-      properties: {},
-    },
-  },
-  {
-    name: 'trigger_konami_protocol',
-    description: 'Abre o modal interativo Cyberdeck Breach Protocol (Konami Mode).',
-    parameters: {
-      type: 'object',
-      properties: {},
-    },
-  },
-];
+/**
+ * Fonte única de verdade das ações de UI que o modelo pode solicitar.
+ * Elas não possuem `execute`: o servidor valida e encaminha as chamadas ao browser.
+ */
+export const AEVO_TOOLS = {
+  scroll_to_section: tool({
+    description: 'Navega até uma seção específica do portfólio.',
+    parameters: z.object({
+      sectionId: z.enum(['hero', 'sobre', 'projetos', 'experiencia', 'conquistas', 'contato']),
+    }),
+  }),
+  highlight_project: tool({
+    description: 'Destaca visualmente o card de um projeto e o apresenta ao visitante.',
+    parameters: z.object({ projectSlug: z.enum(['docfacil', 'ckf', 'foli', 'atlas']) }),
+  }),
+  open_resume: tool({
+    description: 'Abre o currículo oficial em PDF em uma nova aba.',
+    parameters: z.object({}),
+  }),
+  copy_contact_email: tool({
+    description: 'Copia o endereço de e-mail profissional para a área de transferência.',
+    parameters: z.object({}),
+  }),
+  fill_petition_form: tool({
+    description: 'Preenche o assunto do formulário de contato para iniciar uma proposta.',
+    parameters: z.object({ assunto: z.string().max(120).optional() }),
+  }),
+  filter_skills: tool({
+    description: 'Destaca as habilidades técnicas no painel do portfólio.',
+    parameters: z.object({}),
+  }),
+  trigger_glitch_mode: tool({
+    description: 'Aciona um pulso visual de glitch na cena 3D.',
+    parameters: z.object({}),
+  }),
+  trigger_konami_protocol: tool({
+    description: 'Abre a experiência interativa Cyberdeck Breach Protocol.',
+    parameters: z.object({}),
+  }),
+} as const;
+
+export type AevoToolName = keyof typeof AEVO_TOOLS;

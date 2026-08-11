@@ -51,7 +51,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
     scrollToBottom();
   }, [messages, loading]);
 
-  // Processador de Tool Calling completo (9 Ferramentas Nativas)
+  // Executa no browser as oito ações de UI escolhidas pelo modelo (ou pelo fallback local).
   const executeClientTools = (toolCalls: Array<{ name: string; args: any }>) => {
     for (const tool of toolCalls) {
       if (tool.name === 'scroll_to_section' && tool.args?.sectionId) {
