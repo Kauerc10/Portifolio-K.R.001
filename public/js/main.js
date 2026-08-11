@@ -148,25 +148,24 @@
         // Fire loader first
         Loader.init();
 
+        const safeCall = (fn, name) => {
+            try { fn(); } catch (err) { console.warn(`[boot] Erro isolado ao inicializar ${name}:`, err); }
+        };
+
         // Init all modules after loader signals done (event bus padronizado em window)
         window.addEventListener('loaderDone', () => {
-            try {
-                initLenis();
-                initScrollProgress();
-                initNavBurger();
-                initSmoothLinks();
-                initForm();
+            safeCall(initLenis, 'Lenis');
+            safeCall(initScrollProgress, 'ScrollProgress');
+            safeCall(initNavBurger, 'NavBurger');
+            safeCall(initSmoothLinks, 'SmoothLinks');
+            safeCall(initForm, 'Form');
 
-                // Init interactive modules
-                Cursor.init();
-                HeroScene.init();
-                EasterEggs.init();
-                if (typeof CipherDecode !== 'undefined') CipherDecode.init();
-                if (typeof BreachProtocol !== 'undefined') BreachProtocol.init();
-            } catch (err) {
-                // Um erro num módulo não deve matar o boot dos demais
-                console.error('[boot] falha na inicialização pós-loader:', err);
-            }
+            // Init interactive modules
+            safeCall(() => Cursor.init(), 'Cursor');
+            safeCall(() => HeroScene.init(), 'HeroScene');
+            safeCall(() => EasterEggs.init(), 'EasterEggs');
+            if (typeof CipherDecode !== 'undefined') safeCall(() => CipherDecode.init(), 'CipherDecode');
+            if (typeof BreachProtocol !== 'undefined') safeCall(() => BreachProtocol.init(), 'BreachProtocol');
         });
 
         // Animations self-register on loaderDone

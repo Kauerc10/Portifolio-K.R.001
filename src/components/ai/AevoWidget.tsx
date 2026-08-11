@@ -98,11 +98,14 @@ export default function AevoWidget() {
     setLoading(true);
 
     try {
+      // Limitar o histórico enviado na requisição aos últimos 10 itens para nunca exceder o limite de 15 mensagens do servidor
+      const payloadMessages = newHistory.slice(-10).map(m => ({ role: m.role, content: m.content }));
+
       const res = await fetch('/api/aevo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: newHistory.map(m => ({ role: m.role, content: m.content })),
+          messages: payloadMessages,
         }),
       });
 

@@ -21,10 +21,11 @@ export class AevoProviderFactory {
     if (geminiKey) {
       try {
         const { generateText } = await import('ai');
-        const { google } = await import('@ai-sdk/google');
+        const { createGoogleGenerativeAI } = await import('@ai-sdk/google');
+        const googleProvider = createGoogleGenerativeAI({ apiKey: geminiKey });
         
         const result = await generateText({
-          model: google('gemini-1.5-flash'),
+          model: googleProvider('gemini-1.5-flash'),
           system: this.buildSystemPrompt(),
           messages: params.messages as any,
           temperature: 0.7,
