@@ -1,55 +1,68 @@
 import type { Dictionary } from '@/i18n/types';
 
-export default function FormacaoSection({ dict }: { dict?: Dictionary['formacao'] }) {
-  const d = dict || {
-    title: 'FORMAÇÃO ACADÊMICA',
-    subtitle: 'QUALIFICAÇÃO CONTINUADA E APERFEIÇOAMENTO TÉCNICO',
-    statusCompleted: 'CONCLUÍDO',
-    statusInProgress: 'EM ANDAMENTO',
-    btnCertificate: 'Ver Certificado',
-    btnOpen: 'ABRIR',
-    items: [
-      {
-        title: 'Engenharia de Software / Ciência da Computação',
-        institution: 'Ensino Superior Tecnológico',
-        period: '2024 — PRESENTE',
-        status: 'EM ANDAMENTO',
-        description: 'Foco em arquitetura de sistemas distribuídos, estrutura de dados, segurança cibernética e inteligência artificial.',
-      },
-      {
-        title: 'Desenvolvimento Web Full Stack & IA Generativa',
-        institution: 'Especialização e Projetos Práticos Próprios',
-        period: '2025 — 2026',
-        status: 'CONCLUÍDO',
-        description: 'Construção de aplicações Next.js 15, integração de LLMs via Vercel AI SDK, otimização 3D WebGL e governança de código.',
-      },
-    ],
-  };
-
+export default function FormacaoSection({ dict }: { dict: Dictionary['formacao'] }) {
   return (
     <section className="section formacao" id="formacao" data-section="6">
-      <div className="section__line" />
-      <span className="section__article">Anexo I</span>
-      <h2 className="section__title">{d.title}</h2>
-      <p className="text-xs text-slate-400 mb-8 font-mono">{d.subtitle}</p>
+      <div className="section__line"></div>
+      <span className="section__article">{dict.article}</span>
+      <h2 className="section__title">{dict.title}</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {d.items.map((item, idx) => (
-          <div
-            key={idx}
-            className="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-950/60 border border-slate-800 dark:border-white/10 hover:border-[var(--gold)]/50 transition-all duration-300 backdrop-blur-xl"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-mono text-amber-400">{item.period}</span>
-              <span className={`px-2 py-0.5 text-[10px] font-mono rounded ${item.status === 'CONCLUÍDO' || item.status === 'COMPLETED' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'}`}>
-                {item.status === 'CONCLUÍDO' || item.status === 'COMPLETED' ? d.statusCompleted : d.statusInProgress}
-              </span>
-            </div>
-            <h3 className="text-lg font-bold text-slate-100 mb-1">{item.title}</h3>
-            <p className="text-xs text-slate-400 mb-3">{item.institution}</p>
-            <p className="text-xs text-slate-300 dark:text-slate-400 leading-relaxed">{item.description}</p>
+      <div className="formacao__grid">
+        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
+          <div className="formacao__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+              <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
+            </svg>
           </div>
-        ))}
+          <h3 className="formacao__name">{dict.items[0].title}</h3>
+          <p className="formacao__info">{dict.items[0].info}</p>
+          <div className="formacao__stamp">{dict.statusCompleted}</div>
+        </div>
+        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
+          <div className="formacao__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </div>
+          <h3 className="formacao__name">{dict.items[1].title}</h3>
+          <p className="formacao__info">{dict.items[1].info}</p>
+          <div className="formacao__stamp">{dict.statusCompleted}</div>
+        </div>
+        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
+          <div className="formacao__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          </div>
+          <h3 className="formacao__name">{dict.items[2].title}</h3>
+          <p className="formacao__info">{dict.items[2].info}</p>
+          <div className="formacao__stamp">{dict.statusCompleted}</div>
+        </div>
+        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
+          <div className="formacao__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+            </svg>
+          </div>
+          <h3 className="formacao__name">{dict.items[3].title}</h3>
+          <p className="formacao__info">{dict.items[3].info}</p>
+          <div className="formacao__stamp">{dict.statusCompleted}</div>
+        </div>
+        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
+          <div className="formacao__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            </svg>
+          </div>
+          <h3 className="formacao__name">{dict.items[4].title}</h3>
+          <p className="formacao__info">{dict.items[4].info}</p>
+          <div className="formacao__stamp">{dict.statusCompleted}</div>
+        </div>
       </div>
     </section>
   );

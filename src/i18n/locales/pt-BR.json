@@ -62,7 +62,14 @@
           "Implementação de pipeline RAG com busca semântica para consulta rápida a provimentos e legislação.",
           "Otimização de rotinas com redução de 70% no tempo de elaboração de minutas complexas."
         ],
-        "skills": ["Next.js 15", "TypeScript", "Python", "RAG / Gemini API", "Tailwind CSS", "Node.js"]
+        "skills": [
+          "Next.js 15",
+          "TypeScript",
+          "Python",
+          "RAG / Gemini API",
+          "Tailwind CSS",
+          "Node.js"
+        ]
       },
       {
         "period": "JAN 2025 — JUN 2026",
@@ -75,7 +82,14 @@
           "Desenvolvimento do agente de IA ÆVO para suporte notarial interativo aos usuários.",
           "Mitigação de erros de digitação e triagem prévia automatizada de requerimentos."
         ],
-        "skills": ["React", "JavaScript", "Python", "CSS3 / HTML5", "Web3Forms API", "Git / GitHub"]
+        "skills": [
+          "React",
+          "JavaScript",
+          "Python",
+          "CSS3 / HTML5",
+          "Web3Forms API",
+          "Git / GitHub"
+        ]
       }
     ]
   },
@@ -90,47 +104,64 @@
     }
   },
   "conquistas": {
-    "title": "CONQUISTAS & MATEMÁTICA",
-    "subtitle": "RIGOR LÓGICO COMPROVADO EM OLIMPÍADAS NACIONAIS",
-    "badge": "IMPA / OBMEP",
-    "mathTitle": "Destaque Nacional em Matemática Olímpica",
-    "mathDescription": "A premiação na Olimpíada Brasileira de Matemática das Escolas Públicas (OBMEP), organizada pelo IMPA (Instituto de Matemática Pura e Aplicada), reflete capacidade de raciocínio lógico avançado, solução de problemas complexos e disciplina rigorosa aplicada à engenharia de software.",
+    "article": "Artigo IV",
+    "title": "Museu de Conquistas (OBMEP)",
     "medals": [
       {
-        "type": "Prata",
-        "title": "Medalhista de Prata Regional",
-        "edition": "OBMEP — Edição Nacional",
-        "detail": "Reconhecimento pelo desempenho de excelência na resolução de problemas matemáticos avançados."
+        "ariaLabel": "Medalha de Prata OBMEP",
+        "medalLabel": "PRATA",
+        "title": "Prata Regional",
+        "description": "18ª Olimpíada Brasileira de Matemática das Escolas Públicas",
+        "cursorLabel": "PRATA"
       },
       {
-        "type": "Bronz",
-        "title": "Medalhista de Bronze Nacional",
-        "edition": "OBMEP — Cerimônia Nacional no IMPA",
-        "detail": "Classificação no topo do ranking nacional de matemática entre milhões de participantes."
+        "ariaLabel": "Medalha de Bronze OBMEP",
+        "medalLabel": "BRONZE",
+        "title": "Bronze Nacional",
+        "description": "18ª Olimpíada Brasileira de Matemática das Escolas Públicas",
+        "cursorLabel": "BRONZE"
+      },
+      {
+        "ariaLabel": "Menção Honrosa OBMEP",
+        "medalLabel": "MENÇÃO",
+        "title": "Menção Honrosa",
+        "description": "17ª Olimpíada Brasileira de Matemática das Escolas Públicas",
+        "cursorLabel": "HONRA"
+      },
+      {
+        "ariaLabel": "Menção Honrosa OBMEP",
+        "medalLabel": "MENÇÃO",
+        "title": "Menção Honrosa",
+        "description": "16ª Olimpíada Brasileira de Matemática das Escolas Públicas",
+        "cursorLabel": "HONRA"
       }
     ]
   },
   "formacao": {
-    "title": "FORMAÇÃO ACADÊMICA",
-    "subtitle": "QUALIFICAÇÃO CONTINUADA E APERFEIÇOAMENTO TÉCNICO",
+    "article": "Anexo I",
+    "title": "DA FORMAÇÃO E CERTIFICAÇÕES",
     "statusCompleted": "CONCLUÍDO",
-    "statusInProgress": "EM ANDAMENTO",
-    "btnCertificate": "Ver Certificado",
     "btnOpen": "ABRIR",
     "items": [
       {
-        "title": "Engenharia de Software / Ciência da Computação",
-        "institution": "Ensino Superior Tecnológico",
-        "period": "2024 — PRESENTE",
-        "status": "EM ANDAMENTO",
-        "description": "Foco em arquitetura de sistemas distribuídos, estrutura de dados, segurança cibernética e inteligência artificial."
+        "title": "Ensino Médio Completo",
+        "info": "EEB Cel. Pedro Christiano Feddersen"
       },
       {
-        "title": "Desenvolvimento Web Full Stack & IA Generativa",
-        "institution": "Especialização e Projetos Práticos Próprios",
-        "period": "2025 — 2026",
-        "status": "CONCLUÍDO",
-        "description": "Construção de aplicações Next.js 15, integração de LLMs via Vercel AI SDK, otimização 3D WebGL e governança de código."
+        "title": "Téc. Gestão Administrativa",
+        "info": "156h · VisualMídia · 2020"
+      },
+      {
+        "title": "Operador de Tecnologia",
+        "info": "92h · VisualMídia · 2017"
+      },
+      {
+        "title": "Programador de Games",
+        "info": "40h · VisualMídia · 2017"
+      },
+      {
+        "title": "3Ds Max",
+        "info": "32h · VisualMídia · 2018"
       }
     ]
   },

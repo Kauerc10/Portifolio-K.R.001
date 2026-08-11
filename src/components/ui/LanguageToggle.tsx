@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Globe } from 'lucide-react';
 import type { Locale } from '@/i18n/config';
@@ -9,6 +9,7 @@ export default function LanguageToggle() {
   const pathname = usePathname();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     setMounted(true);
@@ -39,32 +40,27 @@ export default function LanguageToggle() {
       if (typeof sessionStorage !== 'undefined') {
         sessionStorage.setItem('loader_seen', 'true');
       }
-    } catch (e) {}
-
-    // Ocultar o elemento loader do DOM se ele existir antes de navegar
-    const loaderEl = document.getElementById('loader');
-    if (loaderEl) {
-      loaderEl.style.display = 'none';
-      loaderEl.style.opacity = '0';
-      loaderEl.style.pointerEvents = 'none';
+    } catch {
+      // Cookies/storage may be unavailable in hardened privacy modes.
     }
 
-    if (typeof window !== 'undefined') {
-      window.location.href = targetUrl;
-    } else {
-      router.push(targetUrl);
-    }
+    // Navegação client-side preserva o estado visual (inclusive a posição do cursor).
+    startTransition(() => {
+      router.push(targetUrl, { scroll: false });
+    });
   };
 
   return (
     <div
       className="group relative flex items-center justify-between w-16 h-8 p-1 rounded-full bg-slate-200/90 dark:bg-[#0b1120]/90 border border-slate-300 dark:border-[var(--gold)]/40 shadow-inner hover:shadow-[0_0_20px_rgba(37,99,235,0.35)] backdrop-blur-xl transition-all duration-300 cursor-pointer overflow-hidden"
       role="region"
-      aria-label="Seletor de Idioma / Language Selector"
+      aria-label={isEnglish ? 'Language selector' : 'Seletor de idioma'}
+      aria-busy={isPending}
     >
       {/* Botão Português */}
       <button
         onClick={() => handleLanguageSwitch('pt-BR')}
+        disabled={isPending}
         className={`relative z-10 flex items-center justify-center w-6 h-6 text-[10px] font-bold tracking-tighter transition-colors duration-300 ${
           !isEnglish ? 'text-blue-600 dark:text-[var(--gold)] font-extrabold' : 'text-slate-500 dark:text-slate-400 opacity-60'
         }`}
@@ -77,6 +73,7 @@ export default function LanguageToggle() {
       {/* Botão Inglês */}
       <button
         onClick={() => handleLanguageSwitch('en-US')}
+        disabled={isPending}
         className={`relative z-10 flex items-center justify-center w-6 h-6 text-[10px] font-bold tracking-tighter transition-colors duration-300 ${
           isEnglish ? 'text-blue-600 dark:text-[var(--gold)] font-extrabold' : 'text-slate-500 dark:text-slate-400 opacity-60'
         }`}

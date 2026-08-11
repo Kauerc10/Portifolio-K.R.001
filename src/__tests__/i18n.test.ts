@@ -39,6 +39,14 @@ describe('Suíte de Testes da Arquitetura i18n (Next.js 15 Nativo)', () => {
     checkNonEmpty(enUS);
   });
 
+  it('preserva todas as medalhas e formações do design original nos dois idiomas', () => {
+    for (const dictionary of [ptBR, enUS]) {
+      expect(dictionary.conquistas.medals).toHaveLength(4);
+      expect(dictionary.formacao.items).toHaveLength(5);
+      expect(dictionary.conquistas.medals.every((medal) => medal.cursorLabel.length > 0)).toBe(true);
+    }
+  });
+
   it('deve validar locais suportados com isValidLocale', () => {
     expect(isValidLocale('pt-BR')).toBe(true);
     expect(isValidLocale('en-US')).toBe(true);
