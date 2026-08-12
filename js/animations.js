@@ -215,43 +215,68 @@ const Animations = (() => {
     }
 
     /**
-     * Anima as linhas horizontais decorativas das seções.
-     * Cada linha começa com width:0% e cresce pra 100% quando entra na viewport.
+     * Desenha as linhas no compositor. scaleX evita recalcular o layout durante
+     * a animação, ao contrário da antiga transição de width.
      */
     function animateSectionLines() {
         document.querySelectorAll('.section__line').forEach(line => {
             gsap.fromTo(line,
-                { width: '0%' },
+                { scaleX: 0, transformOrigin: 'left center' },
                 {
-                    width: '100%',
-                    duration: 1.2,
-                    ease: 'power2.out',
+                    scaleX: 1,
+                    duration: 0.7,
+                    ease: 'expo.out',
                     scrollTrigger: {
                         trigger: line,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    }
+                        start: 'top 88%',
+                        once: true,
+                    },
+                    onComplete: () => gsap.set(line, { clearProps: 'transform,transformOrigin' }),
                 }
             );
         });
     }
 
     /**
-     * Anima elementos com a classe `.anim-slide` de baixo pra cima.
-     * Qualquer elemento no HTML com essa classe ganha a animação automaticamente.
+     * Revela os elementos em lotes para reduzir o número de callbacks disparados
+     * durante o scroll. O deslocamento curto, a camada temporária do compositor e
+     * a limpeza das propriedades ao terminar deixam o fade contínuo sem manter
+     * dezenas de camadas na GPU.
      */
     function animateSlideElements() {
-        document.querySelectorAll('.anim-slide').forEach(el => {
-            gsap.fromTo(el,
-                { opacity: 0, y: 60 },
-                {
+        const elements = gsap.utils.toArray('.anim-slide');
+        if (!elements.length) return;
+
+        if (prefersReducedMotion) {
+            gsap.set(elements, { opacity: 1, clearProps: 'transform,willChange' });
+            return;
+        }
+
+        gsap.set(elements, {
+            opacity: 0,
+            y: 24,
+            force3D: true,
+        });
+
+        ScrollTrigger.batch(elements, {
+            start: 'top 92%',
+            once: true,
+            interval: 0.08,
+            batchMax: 4,
+            onEnter: batch => {
+                gsap.set(batch, { willChange: 'transform,opacity' });
+                gsap.to(batch, {
                     opacity: 1,
                     y: 0,
-                    duration: 0.8,
-                    ease: 'power2.out',
-                    scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-                }
-            );
+                    duration: 0.55,
+                    stagger: 0.07,
+                    ease: 'expo.out',
+                    overwrite: 'auto',
+                    onComplete: () => gsap.set(batch, {
+                        clearProps: 'transform,opacity,willChange',
+                    }),
+                });
+            },
         });
     }
 
@@ -409,15 +434,14 @@ const Animations = (() => {
     }
 
     /**
-     * Efeito de "gravidade zero" — todos os cards flutuam levemente.
+     * Efeito de "gravidade zero" apenas em superfícies que não usam reveal.
      *
-     * Cada elemento tem valores aleatórios de translação e rotação
-     * que fazem yoyo infinito, criando um efeito orgânico diferente pra cada um.
-     * A flutuação pausa quando o mouse entra no elemento (via hover).
+     * Cards com `.anim-slide` ficam de fora para duas timelines GSAP não
+     * disputarem a mesma propriedade transform durante o fade de entrada.
      */
     function animateZeroG() {
         const floaters = document.querySelectorAll(
-            '.evidence__folder, .sobre__card, .timeline__content, .formacao__card'
+            '.sobre__card, .timeline__content'
         );
 
         // IntersectionObserver para SÓ animar flutuação em cards visíveis na tela (economiza CPU imensa)
