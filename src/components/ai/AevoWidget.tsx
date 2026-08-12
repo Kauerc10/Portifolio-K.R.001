@@ -237,6 +237,10 @@ export default function AevoWidget({ locale }: { locale?: string }) {
           <div className="relative flex-1 min-h-0 overflow-hidden bg-[#080d18]">
             <div
               ref={chatScrollRef}
+              data-lenis-prevent
+              data-lenis-prevent-wheel
+              data-lenis-prevent-touch
+              onWheel={(event) => event.stopPropagation()}
               onScroll={(event) => {
                 const element = event.currentTarget;
                 const isNearBottom = element.scrollHeight - element.scrollTop - element.clientHeight < 56;
