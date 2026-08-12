@@ -77,7 +77,6 @@ const Animations = (() => {
         animateSectionLines();
         animateSlideElements();
         animateTimelineLine();
-        animateHeroParallax();
         animateObmepSynergy();
         animateObmepTimeline();
 
@@ -216,43 +215,89 @@ const Animations = (() => {
     }
 
     /**
-     * Anima as linhas horizontais decorativas das seções.
-     * Cada linha começa com width:0% e cresce pra 100% quando entra na viewport.
+     * Desenha as linhas no compositor. scaleX evita recalcular o layout durante
+     * a animação, ao contrário da antiga transição de width.
      */
     function animateSectionLines() {
         document.querySelectorAll('.section__line').forEach(line => {
             gsap.fromTo(line,
-                { width: '0%' },
+                { scaleX: 0, transformOrigin: 'left center' },
                 {
-                    width: '100%',
-                    duration: 1.2,
-                    ease: 'power2.out',
+                    scaleX: 1,
+                    duration: 0.7,
+                    ease: 'expo.out',
                     scrollTrigger: {
                         trigger: line,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    }
+                        start: 'top 88%',
+                        once: true,
+                    },
+                    onComplete: () => gsap.set(line, { clearProps: 'transform,transformOrigin' }),
                 }
             );
         });
     }
 
     /**
-     * Anima elementos com a classe `.anim-slide` de baixo pra cima.
-     * Qualquer elemento no HTML com essa classe ganha a animação automaticamente.
+     * Revela os elementos em lotes para reduzir o número de callbacks disparados
+     * durante o scroll. O deslocamento curto, a camada temporária do compositor e
+     * a limpeza das propriedades ao terminar deixam o fade contínuo sem manter
+     * dezenas de camadas na GPU.
      */
     function animateSlideElements() {
-        document.querySelectorAll('.anim-slide').forEach(el => {
-            gsap.fromTo(el,
-                { opacity: 0, y: 60 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power2.out',
-                    scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-                }
-            );
+        const allElements = gsap.utils.toArray('.anim-slide');
+        if (!allElements.length) return;
+
+        if (prefersReducedMotion) {
+            gsap.set(allElements, { opacity: 1, clearProps: 'transform,willChange' });
+            return;
+        }
+
+        // Estes cards já possuem transforms e transitions próprios no CSS.
+        // Animar o mesmo transform no reveal fazia o navegador interpolar entre
+        // GSAP, hover e o estado CSS, produzindo os saltos vistos nessas seções.
+        const surfaceElements = gsap.utils.toArray(
+            '.evidence__folder.anim-slide, .formacao__card.anim-slide'
+        );
+        const surfaceSet = new Set(surfaceElements);
+        const movingElements = allElements.filter(el => !surfaceSet.has(el));
+
+        const revealBatch = (elements, vars) => {
+            if (!elements.length) return;
+
+            gsap.set(elements, vars.from);
+            ScrollTrigger.batch(elements, {
+                start: 'top 94%',
+                once: true,
+                interval: 0.06,
+                batchMax: 5,
+                onEnter: batch => {
+                    gsap.set(batch, { willChange: vars.willChange });
+                    gsap.to(batch, {
+                        ...vars.to,
+                        stagger: 0.045,
+                        overwrite: 'auto',
+                        onComplete: () => gsap.set(batch, {
+                            clearProps: vars.clearProps,
+                        }),
+                    });
+                },
+            });
+        };
+
+        // Projetos e formação usam somente opacidade: nenhum transform compete
+        // com o tilt/hover desses cards e a composição fica mais barata.
+        revealBatch(surfaceElements, {
+            from: { opacity: 0 },
+            to: { opacity: 1, duration: 0.38, ease: 'power1.out' },
+            willChange: 'opacity',
+            clearProps: 'opacity,willChange',
+        });
+
+        revealBatch(movingElements, {
+            from: { opacity: 0, y: 20, force3D: true },
+            to: { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' },
+            willChange: 'transform,opacity',
+            clearProps: 'transform,opacity,willChange',
         });
     }
 
@@ -281,24 +326,13 @@ const Animations = (() => {
     }
 
     /**
-     * Efeito parallax no texto do hero e na ficha técnica do Sobre.
-     * Os elementos se movem em velocidades diferentes do scroll (deslocamento Y).
+     * O hero e a ficha técnica permanecem no fluxo normal do documento.
+     *
+     * Evitamos parallax via transform nesses blocos porque transforms não reservam
+     * espaço no layout: ao rolar, o conteúdo do hero podia invadir a seção Sobre
+     * e a ficha podia avançar sobre a seção seguinte. O sticky da ficha já oferece
+     * continuidade espacial sem retirar nenhum elemento de sua área de colisão.
      */
-    function animateHeroParallax() {
-        // Hero text desce 40% mais devagar que o scroll
-        gsap.to('.hero__text', {
-            yPercent: 40,
-            ease: 'none',
-            scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
-        });
-
-        // Ficha técnica tem parallax mais suave
-        gsap.to('.sobre__card-wrap', {
-            yPercent: 30,
-            ease: 'none',
-            scrollTrigger: { trigger: '#sobre', start: 'top bottom', end: 'bottom top', scrub: true }
-        });
-    }
 
     /**
      * Comunica com a cena Three.js quando o usuário entra/sai da seção OBMEP.
@@ -421,15 +455,14 @@ const Animations = (() => {
     }
 
     /**
-     * Efeito de "gravidade zero" — todos os cards flutuam levemente.
+     * Efeito de "gravidade zero" apenas em superfícies que não usam reveal.
      *
-     * Cada elemento tem valores aleatórios de translação e rotação
-     * que fazem yoyo infinito, criando um efeito orgânico diferente pra cada um.
-     * A flutuação pausa quando o mouse entra no elemento (via hover).
+     * Cards com `.anim-slide` ficam de fora para duas timelines GSAP não
+     * disputarem a mesma propriedade transform durante o fade de entrada.
      */
     function animateZeroG() {
         const floaters = document.querySelectorAll(
-            '.evidence__folder, .sobre__card, .timeline__content, .formacao__card'
+            '.sobre__card, .timeline__content'
         );
 
         // IntersectionObserver para SÓ animar flutuação em cards visíveis na tela (economiza CPU imensa)
