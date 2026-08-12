@@ -9,7 +9,7 @@ export const AEVO_TOOLS = {
   scroll_to_section: tool({
     description: 'Navega até uma seção específica do portfólio.',
     parameters: z.object({
-      sectionId: z.enum(['hero', 'sobre', 'projetos', 'experiencia', 'conquistas', 'contato']),
+      sectionId: z.enum(['hero', 'sobre', 'projetos', 'experiencia', 'skills', 'conquistas', 'formacao', 'contato']),
     }),
   }),
   highlight_project: tool({

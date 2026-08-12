@@ -1,4 +1,4 @@
-import { KAUE_PROFILE_KNOWLEDGE } from './rag-knowledge';
+import { retrieveRelevantKnowledge } from './rag-knowledge';
 import { AEVO_TOOLS } from './tools-definitions';
 import type { CoreMessage } from 'ai';
 
@@ -17,6 +17,7 @@ export class AevoProviderFactory {
     const lowerMsg = userMessage.toLowerCase();
     const locale = params.locale || 'pt-BR';
     const isEnglish = locale === 'en-US';
+    const retrievedKnowledge = retrieveRelevantKnowledge(userMessage);
 
     for (const provider of this.getProviderOrder()) {
       try {
@@ -30,13 +31,14 @@ export class AevoProviderFactory {
           const google = createGoogleGenerativeAI({ apiKey });
           const result = await generateText({
             model: google(model),
-            system: this.buildSystemPrompt(locale),
+            system: this.buildSystemPrompt(locale, retrievedKnowledge),
             messages: params.messages as CoreMessage[],
             tools: AEVO_TOOLS,
             toolChoice: 'auto',
           });
 
-          return { text: result.text, providerUsed: `${model} (Google)`, toolCalls: this.toClientToolCalls(result.toolCalls) };
+          const toolCalls = this.collectToolCalls(result);
+          return { text: result.text || this.toolConfirmation(toolCalls, locale), providerUsed: `${model} (Google)`, toolCalls };
         }
 
         if (provider === 'openai') {
@@ -49,13 +51,14 @@ export class AevoProviderFactory {
           const openai = createOpenAI({ apiKey });
           const result = await generateText({
             model: openai(model),
-            system: this.buildSystemPrompt(locale),
+            system: this.buildSystemPrompt(locale, retrievedKnowledge),
             messages: params.messages as CoreMessage[],
             tools: AEVO_TOOLS,
             toolChoice: 'auto',
           });
 
-          return { text: result.text, providerUsed: `${model} (OpenAI)`, toolCalls: this.toClientToolCalls(result.toolCalls) };
+          const toolCalls = this.collectToolCalls(result);
+          return { text: result.text || this.toolConfirmation(toolCalls, locale), providerUsed: `${model} (OpenAI)`, toolCalls };
         }
 
         if (provider === 'groq') {
@@ -71,13 +74,14 @@ export class AevoProviderFactory {
           });
           const result = await generateText({
             model: groq(model),
-            system: this.buildSystemPrompt(locale),
+            system: this.buildSystemPrompt(locale, retrievedKnowledge),
             messages: params.messages as CoreMessage[],
             tools: AEVO_TOOLS,
             toolChoice: 'auto',
           });
 
-          return { text: result.text, providerUsed: `${model} (Groq)`, toolCalls: this.toClientToolCalls(result.toolCalls) };
+          const toolCalls = this.collectToolCalls(result);
+          return { text: result.text || this.toolConfirmation(toolCalls, locale), providerUsed: `${model} (Groq)`, toolCalls };
         }
       } catch (error) {
         console.warn(`[ÆVO Factory] ${provider} falhou; tentando o próximo fallback.`, error);
@@ -105,32 +109,49 @@ export class AevoProviderFactory {
     return toolCalls.map(({ toolName, args }) => ({ name: toolName, args }));
   }
 
-  private static buildSystemPrompt(locale: string = 'pt-BR'): string {
+  private static collectToolCalls(result: { toolCalls: Array<{ toolName: string; args: unknown }>; steps?: Array<{ toolCalls: Array<{ toolName: string; args: unknown }> }> }) {
+    const calls = result.steps?.flatMap(step => step.toolCalls) ?? result.toolCalls;
+    const unique = calls.filter((call, index) => calls.findIndex(candidate => candidate.toolName === call.toolName && JSON.stringify(candidate.args) === JSON.stringify(call.args)) === index);
+    return this.toClientToolCalls(unique);
+  }
+
+  private static toolConfirmation(toolCalls: Array<{ name: string }>, locale: string) {
+    if (toolCalls.length === 0) return locale === 'en-US' ? 'I could not complete that answer. Please try rephrasing your question.' : 'Não consegui concluir essa resposta. Tente reformular a pergunta.';
+    return locale === 'en-US' ? 'Done — I completed the requested action on the portfolio.' : 'Pronto — concluí a ação solicitada no portfólio.';
+  }
+
+  private static buildSystemPrompt(locale: string, knowledge: string): string {
     const isEnglish = locale === 'en-US';
 
     if (isEnglish) {
       return `You are ÆVO, the official Notarial AI Assistant for Kauê Ruon Cardoso (Software Architect & AI Engineer based in Blumenau/SC, Brazil).
 You speak on behalf of Kauê's portfolio.
 
-Background Knowledge:
-${KAUE_PROFILE_KNOWLEDGE}
+Retrieved portfolio context (the only factual source for this answer):
+${knowledge}
 
 Response Guidelines:
 - Respond natively in English with professional, concise, and high-craft legal-tech tone.
 - Emphasize that Kauê builds software by guiding generative AI with zero-tolerance notarial rigor.
-- If asked about projects, experience, education, math awards (OBMEP), or contact details, provide clear answers.`;
+- Never invent facts. If the retrieved context does not answer the question, say so.
+- Use native tools only when an interface action directly helps the request. Do not call a tool merely because its subject is mentioned.
+- When the visitor explicitly asks to show, open, copy, fill, highlight, navigate or activate something, call the matching tool.
+- After choosing a tool, also give a brief natural-language confirmation. Do not expose tool names or implementation details.`;
     }
 
     return `Você é o ÆVO, o Assistente de IA Notarial oficial do portfólio de Kauê Ruon Cardoso (Engenheiro de Software & Arquiteto de IA em Blumenau/SC).
 Você responde em nome do portfólio do Kauê.
 
-Base de Conhecimento Local:
-${KAUE_PROFILE_KNOWLEDGE}
+Contexto recuperado do portfólio (única fonte factual desta resposta):
+${knowledge}
 
 Diretrizes de resposta:
 - Responda sempre em Português do Brasil com linguagem profissional e concisa.
 - Destaque que Kauê constrói software guiando IA generativa com rigor e tolerância zero a erros (visão notarial).
-- Se perguntado sobre ferramentas, projetos ou contato, ofereça informações claras.`;
+- Nunca invente fatos. Se o contexto recuperado não responder à pergunta, informe isso.
+- Use as ferramentas nativas somente quando uma ação de interface ajudar diretamente o pedido. Não chame ferramenta apenas porque o assunto foi citado.
+- Quando o visitante pedir explicitamente para mostrar, abrir, copiar, preencher, destacar, navegar ou ativar algo, chame a ferramenta correspondente.
+- Ao escolher uma ferramenta, também dê uma confirmação breve em linguagem natural. Não exponha nomes de ferramentas nem detalhes de implementação.`;
   }
 
   private static detectLocalClientActions(msg: string) {
@@ -164,8 +185,18 @@ Diretrizes de resposta:
       msg.includes('medalha')
     ) {
       tools.push({ name: 'scroll_to_section', args: { sectionId: 'conquistas' } });
-    } else if (msg.includes('contato') || msg.includes('contact') || msg.includes('email')) {
+    } else if (msg.includes('preench') || msg.includes('fill') || msg.includes('petição') || msg.includes('petition')) {
+      tools.push({ name: 'fill_petition_form', args: {} });
       tools.push({ name: 'scroll_to_section', args: { sectionId: 'contato' } });
+    } else if (msg.includes('contato') || msg.includes('contact') || msg.includes('email')) {
+      if (msg.includes('cop') || msg.includes('copy')) {
+        tools.push({ name: 'copy_contact_email', args: {} });
+      } else {
+        tools.push({ name: 'scroll_to_section', args: { sectionId: 'contato' } });
+      }
+    } else if (msg.includes('habilidade') || msg.includes('skill') || msg.includes('stack')) {
+      tools.push({ name: 'filter_skills', args: {} });
+      tools.push({ name: 'scroll_to_section', args: { sectionId: 'skills' } });
     } else if (msg.includes('glitch') || msg.includes('efeito') || msg.includes('3d')) {
       tools.push({ name: 'trigger_glitch_mode', args: {} });
     } else if (msg.includes('konami') || msg.includes('cyberdeck') || msg.includes('breach')) {

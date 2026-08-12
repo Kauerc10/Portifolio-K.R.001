@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, X, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, Activity } from 'lucide-react';
+import { Send, X, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, Activity, ArrowDown } from 'lucide-react';
 import { AevoChatMessage } from '@/types/aevo';
 import AevoMascot from './AevoMascot';
 
@@ -23,7 +23,10 @@ export default function AevoWidget({ locale }: { locale?: string }) {
   const [loading, setLoading] = useState(false);
   const [providerUsed, setProviderUsed] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<{ icon: React.ReactNode; text: string } | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const [showScrollControl, setShowScrollControl] = useState(false);
+  const chatScrollRef = useRef<HTMLDivElement | null>(null);
+  const shouldStickToBottomRef = useRef(true);
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isEnglish = locale === 'en-US';
 
@@ -40,24 +43,33 @@ export default function AevoWidget({ locale }: { locale?: string }) {
 
   const showToast = (icon: React.ReactNode, text: string) => {
     setToastMessage({ icon, text });
-    setTimeout(() => setToastMessage(null), 3500);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToastMessage(null), 3500);
   };
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToBottom = (behavior: ScrollBehavior = 'smooth') => {
+    const container = chatScrollRef.current;
+    if (!container) return;
+    container.scrollTo({ top: container.scrollHeight, behavior });
+    shouldStickToBottomRef.current = true;
+    setShowScrollControl(false);
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (shouldStickToBottomRef.current) scrollToBottom(loading ? 'smooth' : 'auto');
   }, [messages, loading]);
 
+  useEffect(() => () => {
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+  }, []);
+
   // Executa no browser as oito ações de UI escolhidas pelo modelo (ou pelo fallback local).
-  const executeClientTools = (toolCalls: Array<{ name: string; args: any }>) => {
+  const executeClientTools = (toolCalls: Array<{ name: string; args?: Record<string, unknown> }>) => {
     for (const tool of toolCalls) {
-      if (tool.name === 'scroll_to_section' && tool.args?.sectionId) {
+      if (tool.name === 'scroll_to_section' && typeof tool.args?.sectionId === 'string') {
         const el = document.getElementById(tool.args.sectionId);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
-      } else if (tool.name === 'highlight_project' && tool.args?.projectSlug) {
+      } else if (tool.name === 'highlight_project' && typeof tool.args?.projectSlug === 'string') {
         const el = document.getElementById(`project-${tool.args.projectSlug}`);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth' });
@@ -75,7 +87,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
         if (form) {
           const assuntoInput = form.querySelector('input[name="assunto"]') as HTMLInputElement;
           if (assuntoInput) {
-            assuntoInput.value = tool.args?.assunto || 'Proposta de Trabalho / Projeto IA';
+            assuntoInput.value = typeof tool.args?.assunto === 'string' ? tool.args.assunto : 'Proposta de Trabalho / Projeto IA';
             assuntoInput.classList.add('ring-2', 'ring-[var(--gold)]');
             setTimeout(() => assuntoInput.classList.remove('ring-2', 'ring-[var(--gold)]'), 3000);
           }
@@ -111,6 +123,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
 
     const newHistory = [...messages, userMsg];
     setMessages(newHistory);
+    shouldStickToBottomRef.current = true;
     if (!userText) setInput('');
     setLoading(true);
 
@@ -121,22 +134,23 @@ export default function AevoWidget({ locale }: { locale?: string }) {
       const res = await fetch('/api/aevo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: AbortSignal.timeout(30000),
         body: JSON.stringify({
           messages: payloadMessages,
           locale: locale || 'pt-BR',
         }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
-      if (data.error) throw new Error(data.error);
+      if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`);
 
       setProviderUsed(data.providerUsed || 'ÆVO Engine');
 
       const botMsg: AevoChatMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data.text,
+        content: typeof data.text === 'string' && data.text.trim() ? data.text : (isEnglish ? 'Action completed.' : 'Ação concluída.'),
         toolCalls: data.toolCalls,
         timestamp: Date.now(),
       };
@@ -149,12 +163,15 @@ export default function AevoWidget({ locale }: { locale?: string }) {
       }
     } catch (err) {
       console.error('[AevoWidget] Erro:', err);
+      const timedOut = err instanceof DOMException && err.name === 'AbortError';
       setMessages(prev => [
         ...prev,
         {
           id: (Date.now() + 1).toString(),
           role: 'assistant',
-          content: 'Desculpe, ocorreu uma oscilação na conexão com a camada de IA. Posso tentar novamente!',
+          content: timedOut
+            ? (isEnglish ? 'The request took too long. Please try again — your conversation is still here.' : 'A resposta demorou além do esperado. Tente novamente — sua conversa continua aqui.')
+            : (isEnglish ? 'I could not reach the AI service. Check your connection and try again.' : 'Não consegui acessar o serviço de IA. Verifique a conexão e tente novamente.'),
           timestamp: Date.now(),
         },
       ]);
@@ -193,7 +210,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
 
       {/* Janela do Terminal Cyberdeck ÆVO */}
       {isOpen && (
-        <div className="w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100vh-6rem))] max-h-[calc(100vh-2rem)] rounded-xl bg-[#080d18] border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.58)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
+        <div className="w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100dvh-6rem))] max-h-[calc(100dvh-2rem)] min-h-0 rounded-xl bg-[#080d18] border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.58)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
           {/* Header Notarial */}
           <div className="px-4 py-3.5 bg-[#0d1424] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -217,7 +234,18 @@ export default function AevoWidget({ locale }: { locale?: string }) {
           </div>
 
           {/* Chat Content */}
-          <div className="flex-1 overflow-y-auto bg-[#080d18] p-4 space-y-3.5 text-xs leading-relaxed">
+          <div className="relative flex-1 min-h-0 overflow-hidden bg-[#080d18]">
+            <div
+              ref={chatScrollRef}
+              onScroll={(event) => {
+                const element = event.currentTarget;
+                const isNearBottom = element.scrollHeight - element.scrollTop - element.clientHeight < 56;
+                shouldStickToBottomRef.current = isNearBottom;
+                setShowScrollControl(!isNearBottom);
+              }}
+              className="aevo-chat-scroll h-full min-h-0 overflow-y-auto overscroll-contain touch-pan-y p-4 space-y-3.5 text-xs leading-relaxed [scrollbar-color:rgba(212,160,23,0.55)_rgba(255,255,255,0.04)] [scrollbar-width:thin]"
+              aria-label={isEnglish ? 'Conversation history' : 'Histórico da conversa'}
+            >
             {messages.map((m) => (
               <div
                 key={m.id}
@@ -252,7 +280,17 @@ export default function AevoWidget({ locale }: { locale?: string }) {
                 <span>{isEnglish ? 'ÆVO is consulting the knowledge base…' : 'ÆVO consultando a base de conhecimento…'}</span>
               </div>
             )}
-            <div ref={messagesEndRef} />
+            </div>
+            {showScrollControl && (
+              <button
+                type="button"
+                onClick={() => scrollToBottom()}
+                aria-label={isEnglish ? 'Go to latest message' : 'Ir para a mensagem mais recente'}
+                className="absolute bottom-3 right-3 grid h-8 w-8 place-items-center rounded-full border border-[var(--gold)]/40 bg-[#0d1424] text-[var(--gold)] shadow-[0_8px_24px_rgba(0,0,0,0.45)] transition-colors hover:bg-[#162039] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
+              >
+                <ArrowDown className="h-4 w-4" />
+              </button>
+            )}
           </div>
 
           {/* Atalhos contextuais */}
@@ -297,12 +335,14 @@ export default function AevoWidget({ locale }: { locale?: string }) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={isEnglish ? 'Ask about Kauê…' : 'Pergunte sobre Kauê…'}
-              className="flex-1 bg-[#0b1120] text-white text-xs px-3.5 py-2.5 rounded-md border border-white/15 focus:outline-none focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)]/30 placeholder:text-gray-500 font-mono"
+              maxLength={1500}
+              autoComplete="off"
+              className="min-w-0 flex-1 bg-[#0b1120] text-white text-base sm:text-xs px-3.5 py-2.5 rounded-md border border-white/15 focus:outline-none focus:border-[var(--gold)] focus:ring-1 focus:ring-[var(--gold)]/30 placeholder:text-gray-500 font-mono"
             />
             <button
               type="submit"
               aria-label={isEnglish ? 'Send message' : 'Enviar mensagem'}
-              disabled={loading}
+              disabled={loading || !input.trim()}
               className="p-2.5 rounded-md bg-[var(--gold)] text-[#0b1120] hover:bg-amber-400 font-bold transition-all disabled:opacity-50"
             >
               <Send className="w-4 h-4" />

@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { AevoProviderFactory } from '@/lib/aevo/provider-factory';
+import { retrieveRelevantKnowledge } from '@/lib/aevo/rag-knowledge';
 
 describe('AevoProviderFactory (Agente de IA ÆVO)', () => {
   it('deve retornar resposta resiliente da base local quando chaves de API não estão configuradas', async () => {
@@ -39,5 +40,26 @@ describe('AevoProviderFactory (Agente de IA ÆVO)', () => {
 
     expect(res.text).toContain('OBMEP');
     expect(res.text).toContain('Bronze Nacional');
+  });
+
+  it('deve recuperar somente os trechos relevantes da base para reduzir ruído no prompt', () => {
+    const context = retrieveRelevantKnowledge('Como o Atlas automatiza o Detran?');
+
+    expect(context).toContain('[fonte:atlas]');
+    expect(context).toContain('vinte segundos');
+    expect(context).not.toContain('[fonte:obmep]');
+  });
+
+  it('deve usar ações locais específicas para habilidades, formulário e cópia do e-mail', async () => {
+    const skills = await AevoProviderFactory.generateResponse({ messages: [{ role: 'user', content: 'Mostre as habilidades' }] });
+    const petition = await AevoProviderFactory.generateResponse({ messages: [{ role: 'user', content: 'Preencha a petição' }] });
+    const email = await AevoProviderFactory.generateResponse({ messages: [{ role: 'user', content: 'Copie o email' }] });
+
+    expect(skills.toolCalls).toEqual(expect.arrayContaining([
+      expect.objectContaining({ name: 'filter_skills' }),
+      expect.objectContaining({ name: 'scroll_to_section', args: { sectionId: 'skills' } }),
+    ]));
+    expect(petition.toolCalls).toEqual(expect.arrayContaining([expect.objectContaining({ name: 'fill_petition_form' })]));
+    expect(email.toolCalls).toEqual([expect.objectContaining({ name: 'copy_contact_email' })]);
   });
 });
