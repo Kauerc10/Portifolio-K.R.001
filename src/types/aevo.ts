@@ -9,9 +9,9 @@ export interface AevoToolDefinition {
 }
 
 export interface AevoToolCall {
-  id: string;
+  id?: string;
   name: string;
-  args: Record<string, any>;
+  args: Record<string, unknown>;
 }
 
 export interface AevoChatMessage {
