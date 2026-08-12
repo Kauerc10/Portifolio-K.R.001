@@ -244,39 +244,60 @@ const Animations = (() => {
      * dezenas de camadas na GPU.
      */
     function animateSlideElements() {
-        const elements = gsap.utils.toArray('.anim-slide');
-        if (!elements.length) return;
+        const allElements = gsap.utils.toArray('.anim-slide');
+        if (!allElements.length) return;
 
         if (prefersReducedMotion) {
-            gsap.set(elements, { opacity: 1, clearProps: 'transform,willChange' });
+            gsap.set(allElements, { opacity: 1, clearProps: 'transform,willChange' });
             return;
         }
 
-        gsap.set(elements, {
-            opacity: 0,
-            y: 24,
-            force3D: true,
+        // Estes cards já possuem transforms e transitions próprios no CSS.
+        // Animar o mesmo transform no reveal fazia o navegador interpolar entre
+        // GSAP, hover e o estado CSS, produzindo os saltos vistos nessas seções.
+        const surfaceElements = gsap.utils.toArray(
+            '.evidence__folder.anim-slide, .formacao__card.anim-slide'
+        );
+        const surfaceSet = new Set(surfaceElements);
+        const movingElements = allElements.filter(el => !surfaceSet.has(el));
+
+        const revealBatch = (elements, vars) => {
+            if (!elements.length) return;
+
+            gsap.set(elements, vars.from);
+            ScrollTrigger.batch(elements, {
+                start: 'top 94%',
+                once: true,
+                interval: 0.06,
+                batchMax: 5,
+                onEnter: batch => {
+                    gsap.set(batch, { willChange: vars.willChange });
+                    gsap.to(batch, {
+                        ...vars.to,
+                        stagger: 0.045,
+                        overwrite: 'auto',
+                        onComplete: () => gsap.set(batch, {
+                            clearProps: vars.clearProps,
+                        }),
+                    });
+                },
+            });
+        };
+
+        // Projetos e formação usam somente opacidade: nenhum transform compete
+        // com o tilt/hover desses cards e a composição fica mais barata.
+        revealBatch(surfaceElements, {
+            from: { opacity: 0 },
+            to: { opacity: 1, duration: 0.38, ease: 'power1.out' },
+            willChange: 'opacity',
+            clearProps: 'opacity,willChange',
         });
 
-        ScrollTrigger.batch(elements, {
-            start: 'top 92%',
-            once: true,
-            interval: 0.08,
-            batchMax: 4,
-            onEnter: batch => {
-                gsap.set(batch, { willChange: 'transform,opacity' });
-                gsap.to(batch, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.55,
-                    stagger: 0.07,
-                    ease: 'expo.out',
-                    overwrite: 'auto',
-                    onComplete: () => gsap.set(batch, {
-                        clearProps: 'transform,opacity,willChange',
-                    }),
-                });
-            },
+        revealBatch(movingElements, {
+            from: { opacity: 0, y: 20, force3D: true },
+            to: { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' },
+            willChange: 'transform,opacity',
+            clearProps: 'transform,opacity,willChange',
         });
     }
 

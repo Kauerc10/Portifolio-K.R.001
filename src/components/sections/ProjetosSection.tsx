@@ -15,7 +15,7 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
         
         {/* CASE STUDY 1: DOCFÁCIL */}
         <div
-          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[var(--gold)] transition-all duration-300 shadow-lg dark:shadow-xl flex flex-col justify-between"
+          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[var(--gold)] transition-[transform,border-color,box-shadow] duration-300 shadow-lg dark:shadow-xl flex flex-col justify-between"
           id="project-docfacil"
         >
           <div>
@@ -58,7 +58,7 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
 
         {/* CASE STUDY 2: ATLAS NOTARIAL */}
         <div
-          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[var(--gold)] transition-all duration-300 shadow-lg dark:shadow-xl flex flex-col justify-between"
+          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[var(--gold)] transition-[transform,border-color,box-shadow] duration-300 shadow-lg dark:shadow-xl flex flex-col justify-between"
           id="project-atlas"
         >
           <div>
@@ -87,7 +87,7 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
 
         {/* CASE STUDY 3: CKF MANUTENÇÃO */}
         <div
-          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[var(--gold)] transition-all duration-300 shadow-lg dark:shadow-xl flex flex-col justify-between"
+          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[var(--gold)] transition-[transform,border-color,box-shadow] duration-300 shadow-lg dark:shadow-xl flex flex-col justify-between"
           id="project-ckf"
         >
           <div>
@@ -130,7 +130,7 @@ export default function ProjetosSection({ dict: d }: { dict: Dictionary['projeto
 
         {/* CASE STUDY 4: FOLI LIB */}
         <div
-          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[var(--gold)] transition-all duration-300 shadow-lg dark:shadow-xl flex flex-col justify-between"
+          className="evidence__folder anim-slide magnetic p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[var(--gold)] transition-[transform,border-color,box-shadow] duration-300 shadow-lg dark:shadow-xl flex flex-col justify-between"
           id="project-foli"
         >
           <div>
