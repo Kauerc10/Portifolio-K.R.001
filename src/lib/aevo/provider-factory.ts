@@ -136,7 +136,10 @@ Response Guidelines:
 - Never invent facts. If the retrieved context does not answer the question, say so.
 - Use native tools only when an interface action directly helps the request. Do not call a tool merely because its subject is mentioned.
 - When the visitor explicitly asks to show, open, copy, fill, highlight, navigate or activate something, call the matching tool.
-- After choosing a tool, also give a brief natural-language confirmation. Do not expose tool names or implementation details.`;
+- After choosing a tool, also give a brief natural-language confirmation. Do not expose tool names or implementation details.
+- ÆVO itself is a working RAG and native tool-use demonstration. When asked to demonstrate RAG, briefly explain that you retrieved relevant portfolio context and use the matching visual demonstration.
+- Functional tools may be used when directly helpful. Cinematic tools may only be used when the visitor explicitly requests an effect, demonstration, surprise, mode, or visual protocol.
+- Brief dry humor is welcome during visual effects. Every cinematic experience is temporary and restores the interface.`;
     }
 
     return `Você é o ÆVO, o Assistente de IA Notarial oficial do portfólio de Kauê Ruon Cardoso (Engenheiro de Software & Arquiteto de IA em Blumenau/SC).
@@ -151,13 +154,32 @@ Diretrizes de resposta:
 - Nunca invente fatos. Se o contexto recuperado não responder à pergunta, informe isso.
 - Use as ferramentas nativas somente quando uma ação de interface ajudar diretamente o pedido. Não chame ferramenta apenas porque o assunto foi citado.
 - Quando o visitante pedir explicitamente para mostrar, abrir, copiar, preencher, destacar, navegar ou ativar algo, chame a ferramenta correspondente.
-- Ao escolher uma ferramenta, também dê uma confirmação breve em linguagem natural. Não exponha nomes de ferramentas nem detalhes de implementação.`;
+- Ao escolher uma ferramenta, também dê uma confirmação breve em linguagem natural. Não exponha nomes de ferramentas nem detalhes de implementação.
+- O próprio ÆVO é uma demonstração funcional de RAG e tool use. Quando pedirem para demonstrar RAG, explique brevemente que você recuperou contexto relevante do portfólio para responder e use a demonstração visual correspondente.
+- Ferramentas funcionais podem ser usadas quando ajudam diretamente. Ferramentas cinematográficas só podem ser usadas quando o visitante pedir um efeito, demonstração, surpresa, modo ou protocolo visual.
+- Você pode ter humor seco e breve durante efeitos visuais, sem perder o tom profissional. Todas as experiências cinematográficas são temporárias e restauram a interface.`;
   }
 
   private static detectLocalClientActions(msg: string) {
     const tools = [];
 
-    if (
+    if ((msg.includes('demonst') || msg.includes('show')) && msg.includes('rag')) {
+      tools.push({ name: 'demonstrate_rag', args: {} });
+    } else if (msg.includes('gravidade zero') || msg.includes('zero gravity') || msg.includes('sem gravidade')) {
+      tools.push({ name: 'activate_zero_gravity', args: {} });
+    } else if (msg.includes('campo gravit') || msg.includes('gravity well')) {
+      tools.push({ name: 'activate_gravity_well', args: {} });
+    } else if (msg.includes('explod') || msg.includes('explode')) {
+      tools.push({ name: 'explode_visual_core', args: { intensity: 'controlled' } });
+    } else if (msg.includes('diagnostic')) {
+      tools.push({ name: 'run_system_diagnostics', args: {} });
+    } else if (msg.includes('auditoria visual') || msg.includes('visual audit')) {
+      tools.push({ name: 'run_visual_audit', args: {} });
+    } else if (msg.includes('linkedin')) {
+      tools.push({ name: 'open_social_profile', args: { platform: 'linkedin' } });
+    } else if (msg.includes('github') && !msg.includes('projeto') && !msg.includes('project')) {
+      tools.push({ name: 'open_social_profile', args: { platform: 'github' } });
+    } else if (
       msg.includes('projeto') ||
       msg.includes('project') ||
       msg.includes('docfacil') ||

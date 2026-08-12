@@ -14,7 +14,7 @@ export default function SkillsSection({ dict: d }: { dict: Dictionary['skills'] 
             <h3 className="skills__soft-title">{group.title}</h3>
             <div className="skills__chips">
               {group.items.map((item) => (
-                <span className="chip magnetic" data-cursor="✓" key={item}>{item}</span>
+                <span className="chip magnetic" data-skill={item} data-cursor="✓" key={item}>{item}</span>
               ))}
             </div>
           </div>

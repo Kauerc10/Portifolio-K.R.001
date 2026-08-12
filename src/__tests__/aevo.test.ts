@@ -62,4 +62,14 @@ describe('AevoProviderFactory (Agente de IA ÆVO)', () => {
     expect(petition.toolCalls).toEqual(expect.arrayContaining([expect.objectContaining({ name: 'fill_petition_form' })]));
     expect(email.toolCalls).toEqual([expect.objectContaining({ name: 'copy_contact_email' })]);
   });
+
+  it('deve demonstrar RAG e efeitos cinematográficos apenas quando solicitados', async () => {
+    const rag = await AevoProviderFactory.generateResponse({ messages: [{ role: 'user', content: 'Demonstre seu RAG' }] });
+    const gravity = await AevoProviderFactory.generateResponse({ messages: [{ role: 'user', content: 'Ative gravidade zero' }] });
+    const explosion = await AevoProviderFactory.generateResponse({ messages: [{ role: 'user', content: 'Faça o núcleo explodir' }] });
+
+    expect(rag.toolCalls).toEqual([expect.objectContaining({ name: 'demonstrate_rag' })]);
+    expect(gravity.toolCalls).toEqual([expect.objectContaining({ name: 'activate_zero_gravity' })]);
+    expect(explosion.toolCalls).toEqual([expect.objectContaining({ name: 'explode_visual_core' })]);
+  });
 });

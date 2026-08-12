@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, X, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, Activity, ArrowDown } from 'lucide-react';
+import { Send, X, CheckCircle2, Copy, FileText, FolderGit2, Building2, Mail, FileSignature, Zap, Unlock, Activity, ArrowDown, ExternalLink, Sparkles } from 'lucide-react';
 import { AevoChatMessage } from '@/types/aevo';
 import AevoMascot from './AevoMascot';
 
@@ -19,6 +19,7 @@ function renderMessage(content: string) {
 
 export default function AevoWidget({ locale }: { locale?: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [providerUsed, setProviderUsed] = useState<string | null>(null);
@@ -29,6 +30,11 @@ export default function AevoWidget({ locale }: { locale?: string }) {
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isEnglish = locale === 'en-US';
+  const dispatchEffect = (type: string, detail: Record<string, unknown> = {}) => window.dispatchEvent(new CustomEvent('aevoEffect', { detail: { type, ...detail } }));
+  const closeChat = () => {
+    setIsClosing(true);
+    setTimeout(() => { setIsOpen(false); setIsClosing(false); }, 240);
+  };
 
   const [messages, setMessages] = useState<AevoChatMessage[]>([
     {
@@ -106,6 +112,40 @@ export default function AevoWidget({ locale }: { locale?: string }) {
       } else if (tool.name === 'trigger_konami_protocol') {
         window.dispatchEvent(new CustomEvent('aevoKonami'));
         showToast(<Unlock className="w-4 h-4 text-[var(--gold)]" />, 'Protocolo Root / God Mode ativado');
+      } else if (tool.name === 'spotlight_skill' && typeof tool.args?.skill === 'string') {
+        dispatchEffect('spotlight-skill', { target: tool.args.skill });
+      } else if (tool.name === 'open_social_profile' && (tool.args?.platform === 'linkedin' || tool.args?.platform === 'github')) {
+        const urls = { linkedin: 'https://www.linkedin.com/in/kauerc/', github: 'https://github.com/Kauerc10' };
+        window.open(urls[tool.args.platform], '_blank', 'noopener,noreferrer');
+        showToast(<ExternalLink className="w-4 h-4 text-[var(--gold)]" />, `${tool.args.platform === 'linkedin' ? 'LinkedIn' : 'GitHub'} oficial aberto`);
+      } else if (tool.name === 'open_project_destination' && typeof tool.args?.project === 'string' && typeof tool.args?.destination === 'string') {
+        const destinations: Record<string, Partial<Record<string, string>>> = {
+          docfacil: { demo: 'https://docfacil-indol.vercel.app', repository: 'https://github.com/Kauerc10/docfacil' },
+          ckf: { demo: 'https://ckf-manutencao-orcamentos.vercel.app', repository: 'https://github.com/Kauerc10/ckf-manutencao-orcamentos' },
+          foli: { repository: 'https://github.com/Kauerc10/foli' },
+        };
+        const url = destinations[tool.args.project]?.[tool.args.destination];
+        if (url) window.open(url, '_blank', 'noopener,noreferrer');
+      } else if (tool.name === 'explode_visual_core') {
+        dispatchEffect('explode', { intensity: tool.args?.intensity });
+      } else if (tool.name === 'activate_gravity_well') {
+        dispatchEffect('gravity');
+      } else if (tool.name === 'activate_zero_gravity') {
+        dispatchEffect('zero-gravity');
+      } else if (tool.name === 'trigger_screen_breach') {
+        dispatchEffect('breach');
+      } else if (tool.name === 'authenticate_evidence' && typeof tool.args?.target === 'string') {
+        dispatchEffect('seal', { target: tool.args.target });
+      } else if (tool.name === 'run_visual_audit') {
+        dispatchEffect('energy');
+      } else if (tool.name === 'run_system_diagnostics') {
+        dispatchEffect('diagnostics');
+      } else if (tool.name === 'demonstrate_rag') {
+        dispatchEffect('rag-demo');
+      } else if (tool.name === 'trace_skill_evidence' && typeof tool.args?.skill === 'string' && Array.isArray(tool.args?.projects)) {
+        dispatchEffect('trace-evidence', { target: tool.args.skill, projects: tool.args.projects });
+      } else if (tool.name === 'activate_medal_resonance') {
+        dispatchEffect('medals');
       }
     }
   };
@@ -210,7 +250,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
 
       {/* Janela do Terminal Cyberdeck ÆVO */}
       {isOpen && (
-        <div className="w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100dvh-6rem))] max-h-[calc(100dvh-2rem)] min-h-0 rounded-xl bg-[#080d18] border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.58)] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5">
+        <div className={`aevo-chat-panel ${isClosing ? 'aevo-chat-panel--closing' : ''} w-[calc(100vw-2rem)] sm:w-[420px] max-w-[420px] h-[min(550px,calc(100dvh-6rem))] max-h-[calc(100dvh-2rem)] min-h-0 rounded-xl bg-[#080d18] border border-white/15 shadow-[0_24px_70px_rgba(0,0,0,0.58)] flex flex-col overflow-hidden`}>
           {/* Header Notarial */}
           <div className="px-4 py-3.5 bg-[#0d1424] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -225,7 +265,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
               </div>
             </div>
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={closeChat}
               aria-label={isEnglish ? 'Close ÆVO assistant' : 'Fechar assistente ÆVO'}
               className="grid h-8 w-8 place-items-center rounded-md text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
             >
@@ -265,7 +305,7 @@ export default function AevoWidget({ locale }: { locale?: string }) {
                   {m.role === 'assistant' && (
                     <span className="mb-1.5 flex items-center gap-1.5 text-[9px] font-bold tracking-[0.12em] text-[var(--gold)]"><AevoMascot className="h-4 w-4" decorative /> ÆVO</span>
                   )}
-                  <p className="whitespace-pre-line text-[11px] font-mono leading-[1.65]">{renderMessage(m.content)}</p>
+                  <p className="aevo-message-reveal whitespace-pre-line text-[11px] font-mono leading-[1.65]">{renderMessage(m.content)}</p>
                 </div>
 
                 {/* Badge de Tool Call se houver */}
@@ -279,9 +319,10 @@ export default function AevoWidget({ locale }: { locale?: string }) {
             ))}
 
             {loading && (
-              <div className="flex items-center gap-2 text-[var(--gold)] text-xs p-2 text-slate-300 border-t border-white/10">
-                <Activity className="w-4 h-4 text-[var(--gold)]" />
-                <span>{isEnglish ? 'ÆVO is consulting the knowledge base…' : 'ÆVO consultando a base de conhecimento…'}</span>
+              <div className="aevo-thinking flex items-center gap-2 text-[var(--gold)] text-xs p-2 text-slate-300 border-t border-white/10" role="status">
+                <Sparkles className="aevo-thinking__icon w-4 h-4 text-[var(--gold)]" />
+                <span>{isEnglish ? 'ÆVO is retrieving evidence' : 'ÆVO recuperando evidências'}</span>
+                <span className="aevo-thinking__dots" aria-hidden="true"><i /><i /><i /></span>
               </div>
             )}
             </div>
