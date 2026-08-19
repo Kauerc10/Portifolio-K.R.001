@@ -16,7 +16,7 @@ Não escreve código do zero linha por linha como um desenvolvedor tradicional; 
 
 ## Projetos em Destaque
 1. **DocFácil — IA Generativa Aplicada a Documentos Legais:**
-   - Stack: Next.js 16, TypeScript, Prisma, IA Generativa.
+   - Stack: Next.js 15, TypeScript, Prisma, IA Generativa.
    - Destaque: Camada de IA agnóstica com interface AIProvider, streaming e tratamento tipado de erros.
    - Live Demo: https://docfacil-indol.vercel.app | Repo: https://github.com/khub-solucoes/docfacil
 
@@ -35,7 +35,7 @@ Não escreve código do zero linha por linha como um desenvolvedor tradicional; 
 
 ## Competências Técnicas
 - **IA Generativa:** Integração de LLMs, arquitetura de providers agnósticos (OpenAI/Anthropic/Gemini/Groq), RAG, Prompt Engineering, Function Calling / Tool Use.
-- **Desenvolvimento:** TypeScript, JavaScript, React, Next.js 16, Node.js, Supabase, Prisma, REST APIs, Tailwind CSS.
+- **Desenvolvimento:** TypeScript, JavaScript, React, Next.js 15, Node.js, Supabase, Prisma, REST APIs, Tailwind CSS.
 - **Outros:** Git, Vercel Deploy, Testes Unitários, Inglês Intermediário.
 
 ## Contato Direto
@@ -90,12 +90,22 @@ const KNOWLEDGE_CHUNKS: KnowledgeChunk[] = [
   {
     id: 'skills',
     keywords: ['habilidade', 'habilidades', 'skill', 'skills', 'stack', 'tecnologia', 'tool', 'ferramenta', 'rag'],
-    content: 'Competências: integração de LLMs, providers agnósticos, RAG, prompt engineering, function calling/tool use, TypeScript, JavaScript, React, Next.js, Node.js, Supabase, Prisma, APIs REST, Tailwind CSS, Git, Vercel e testes unitários.',
+    content: 'Competências: integração de LLMs, providers agnósticos, RAG, prompt engineering, function calling/tool use, TypeScript, JavaScript, React, Next.js 15, Node.js, Supabase, Prisma, APIs REST, Tailwind CSS, Git, Vercel e testes unitários (TDD).',
+  },
+  {
+    id: 'servicos',
+    keywords: ['serviço', 'serviços', 'services', 'soluções', 'solucoes', 'orçamento', 'orcamento', 'empresa', 'cliente', 'preço', 'whatsapp'],
+    content: 'Serviços: Desenvolvimento de sites institucionais de alta velocidade, sistemas web sob medida (painéis de gestão/orçamentos) e automações de processos com IA. Página dedicada em /servicos com contato direto via WhatsApp (5547991370418) ou formulário.',
+  },
+  {
+    id: 'carreira',
+    keywords: ['carreira', 'career', 'recrutador', 'tech lead', 'vaga', 'contratação', 'contratacao', 'currículo', 'curriculo', 'resume', 'cv'],
+    content: 'Carreira: Perfil técnico completo em /carreira com histórico de projetos em produção, arquitetura de software, medalhas da OBMEP/IMPA, GitHub live stats e download do currículo oficial em PDF (/curriculo_kaue.pdf).',
   },
   {
     id: 'contato',
     keywords: ['contato', 'contact', 'email', 'e-mail', 'linkedin', 'github', 'currículo', 'curriculo', 'resume', 'cv'],
-    content: 'Contato: kaue.ruon@gmail.com; LinkedIn: https://www.linkedin.com/in/kauerc/; GitHub: https://github.com/Kauerc10; site: https://kaueruon.dev. O currículo oficial está disponível em /curriculo_kaue.pdf.',
+    content: 'Contato: kaue.ruon@gmail.com; WhatsApp: (47) 99137-0418; LinkedIn: https://www.linkedin.com/in/kauerc/; GitHub: https://github.com/Kauerc10; site: https://kaueruon.dev. O currículo oficial está disponível em /curriculo_kaue.pdf.',
   },
 ];
 

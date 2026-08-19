@@ -72,4 +72,12 @@ describe('AevoProviderFactory (Agente de IA ÆVO)', () => {
     expect(gravity.toolCalls).toEqual([expect.objectContaining({ name: 'activate_zero_gravity' })]);
     expect(explosion.toolCalls).toEqual([expect.objectContaining({ name: 'explode_visual_core' })]);
   });
+
+  it('deve recuperar conhecimento sobre servicos e carreira para orientar visitantes', () => {
+    const servicosContext = retrieveRelevantKnowledge('Quais serviços para empresas você oferece?');
+    const carreiraContext = retrieveRelevantKnowledge('Estou avaliando o currículo e stack para uma vaga');
+
+    expect(servicosContext).toContain('[fonte:servicos]');
+    expect(carreiraContext).toContain('[fonte:carreira]');
+  });
 });

@@ -72,7 +72,20 @@ export default function AevoWidget({ locale }: { locale?: string }) {
   // Executa no browser as oito ações de UI escolhidas pelo modelo (ou pelo fallback local).
   const executeClientTools = (toolCalls: Array<{ name: string; args?: Record<string, unknown> }>) => {
     for (const tool of toolCalls) {
-      if (tool.name === 'scroll_to_section' && typeof tool.args?.sectionId === 'string') {
+      if (tool.name === 'navigate_to_route' && typeof tool.args?.route === 'string') {
+        const routeMap: Record<string, string> = {
+          home: `/${locale}`,
+          services: `/${locale}/servicos`,
+          career: `/${locale}/carreira`,
+          projects: `/${locale}/projetos`,
+          docfacil: `/${locale}/projetos/docfacil`,
+          ckf: `/${locale}/projetos/ckf-manutencao`,
+          atlas: `/${locale}/projetos/atlas-notarial`,
+          foli: `/${locale}/projetos/foli`,
+        };
+        const target = routeMap[tool.args.route] || `/${locale}`;
+        window.location.href = target;
+      } else if (tool.name === 'scroll_to_section' && typeof tool.args?.sectionId === 'string') {
         const el = document.getElementById(tool.args.sectionId);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       } else if (tool.name === 'highlight_project' && typeof tool.args?.projectSlug === 'string') {

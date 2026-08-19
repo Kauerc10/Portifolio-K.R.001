@@ -6,6 +6,12 @@ import { z } from 'zod';
  * Elas não possuem `execute`: o servidor valida e encaminha as chamadas ao browser.
  */
 export const AEVO_TOOLS = {
+  navigate_to_route: tool({
+    description: 'Navega para uma rota ou página principal do portfólio (/servicos, /carreira, /projetos ou case específico).',
+    parameters: z.object({
+      route: z.enum(['home', 'services', 'career', 'projects', 'docfacil', 'ckf', 'atlas', 'foli']),
+    }),
+  }),
   scroll_to_section: tool({
     description: 'Navega até uma seção específica do portfólio.',
     parameters: z.object({
