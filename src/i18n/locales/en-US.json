@@ -65,6 +65,76 @@
       "cta": "View engineering profile"
     }
   },
+  "services": {
+    "hero": {
+      "tag": "CUSTOM SOFTWARE DEVELOPMENT",
+      "h1": "Digital solutions for businesses that demand real results.",
+      "supporting": "I engineer high-conversion websites, tailored operational systems, and workflow automations that eliminate hours of repetitive manual work.",
+      "ctaWhatsApp": "Chat on WhatsApp",
+      "ctaForm": "Fill out project form",
+      "whatsappMessage": "Hello, Kauê! I saw your digital services and would like to discuss a project for my business."
+    },
+    "pillarsTitle": "HOW I HELP YOUR BUSINESS",
+    "pillarsSubtitle": "THREE CORE PILLARS OF EXPERTISE",
+    "pillars": [
+      {
+        "id": "sites",
+        "title": "Websites & Digital Presence",
+        "tagline": "Corporate Sites, High-Speed Landing Pages & Portfolios",
+        "description": "Engineered for direct WhatsApp conversion, technical SEO, lightning-fast load times, and flawless mobile UX across all devices.",
+        "deliverables": ["High-conversion landing pages", "Modern corporate portals", "Local SEO & Google Search indexing", "Direct WhatsApp and form integrations"]
+      },
+      {
+        "id": "sistemas",
+        "title": "Tailored Web Systems",
+        "tagline": "Admin Panels, Operations Management & Quoting",
+        "description": "Secure, scalable applications replacing manual spreadsheets to streamline operations, quotes, service tickets, and team reports.",
+        "deliverables": ["Internal management dashboards", "Quotation & client workflow systems", "Automated PDF technical reporting", "Secure authentication & role-based access"]
+      },
+      {
+        "id": "automacoes",
+        "title": "Automation & Applied AI",
+        "tagline": "Repetitive Task Elimination & Multi-API Integrations",
+        "description": "System integrations and AI workflows for document generation, data sanitization, and genuine operational speed with zero tolerance for errors.",
+        "deliverables": ["Automated document drafting & legal deeds", "API integrations & database pipelines", "AI triaging & smart assistants", "Backoffice manual routine automation"]
+      }
+    ],
+    "processTitle": "WORK PROCESS",
+    "processSubtitle": "FROM ROOT UNDERSTANDING TO PRODUCTION DEPLOYMENT",
+    "processLead": "Before discussing tech stacks or code, I take time to understand your real business bottlenecks, operational flows, and core goals.",
+    "processSteps": [
+      { "step": "01", "title": "Understand", "description": "Mapping the core challenge, business metrics, and essential requirements." },
+      { "step": "02", "title": "Plan", "description": "Defining a clear scope, architecture, realistic deadlines, and concrete deliverables." },
+      { "step": "03", "title": "Build", "description": "Agile engineering with clean, secure code and transparent milestone communication." },
+      { "step": "04", "title": "Validate", "description": "Rigorous usability testing, mobile speed audits, and end-to-end workflow verification." },
+      { "step": "05", "title": "Deliver", "description": "Production launch with custom domain, SSL certification, and initial onboarding." },
+      { "step": "06", "title": "Evolve", "description": "Post-launch monitoring, warranty support, and continuous feature expansion." }
+    ],
+    "faqTitle": "FREQUENTLY ASKED QUESTIONS",
+    "faqSubtitle": "CLARITY ON TIMELINES, ENGAGEMENT FORMATS & SUPPORT",
+    "faq": [
+      {
+        "q": "How does a new project kick off?",
+        "a": "We start with a conversation to understand your goals. If there is a strong mutual fit, I provide a detailed proposal covering phases, deadlines, and deliverables before any financial commitment."
+      },
+      {
+        "q": "What is the typical project timeline?",
+        "a": "Landing pages and corporate websites typically take 1 to 3 weeks. Custom web systems and automation engines depend on integration complexity, always governed by an agreed schedule."
+      },
+      {
+        "q": "Do you work with international and remote clients?",
+        "a": "Yes. I operate fully remotely for clients across Brazil and worldwide, with async updates and concise check-in meetings."
+      },
+      {
+        "q": "How does post-delivery support work?",
+        "a": "Every delivered project includes warranty coverage for initial adjustments, plus options for ongoing maintenance and support."
+      }
+    ],
+    "ctaFinalTitle": "Ready to turn your business requirement into live software?",
+    "ctaFinalText": "Reach out on WhatsApp or fill out the form below to discuss your project.",
+    "ctaWhatsAppFinal": "Start WhatsApp conversation",
+    "ctaFormFinal": "Send website message"
+  },
   "sobre": {
     "title": "ABOUT ME",
     "bioP1": "My interest in technology started early. Whenever I see a manual, repetitive process, I cannot resist trying to automate it. That curiosity took me from iPhone board repair to notary desks and back to technology.",

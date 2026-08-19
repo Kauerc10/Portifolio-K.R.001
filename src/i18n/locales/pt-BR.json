@@ -65,6 +65,76 @@
       "cta": "Ver perfil profissional"
     }
   },
+  "services": {
+    "hero": {
+      "tag": "DESENVOLVIMENTO SOB MEDIDA",
+      "h1": "Soluções digitais para empresas que precisam de resultado.",
+      "supporting": "Desenvolvo sites de alta conversão, sistemas operacionais sob medida e automações de processos que economizam horas de trabalho manual.",
+      "ctaWhatsApp": "Conversar no WhatsApp",
+      "ctaForm": "Preencher formulário",
+      "whatsappMessage": "Olá, Kauê! Vi seus serviços e gostaria de explicar uma necessidade da minha empresa."
+    },
+    "pillarsTitle": "COMO POSSO AJUDAR SEU NEGÓCIO",
+    "pillarsSubtitle": "TRÊS FRENTES PRINCIPAIS DE ATUAÇÃO",
+    "pillars": [
+      {
+        "id": "sites",
+        "title": "Sites & Presença Digital",
+        "tagline": "Institucionais, Landing Pages e Portfólios de Alta Velocidade",
+        "description": "Desenvolvimento com foco em conversão direta para WhatsApp, SEO técnico, carregamento ultrarrápido e experiência impecável em qualquer smartphone.",
+        "deliverables": ["Landing pages de alta conversão", "Sites institucionais modernos", "SEO local e indexação no Google", "Integração direta com WhatsApp e formulários"]
+      },
+      {
+        "id": "sistemas",
+        "title": "Sistemas Web Sob Medida",
+        "tagline": "Painéis Administrativos, Gestão Operacional e Orçamentos",
+        "description": "Aplicações seguras e escaláveis para substituir planilhas manuais, controlar fluxos operacionais, orçamentos, ordens de serviço e relatórios.",
+        "deliverables": ["Painéis de gestão interna e dashboards", "Controle de orçamentos e clientes", "Exportação automática de relatórios em PDF", "Autenticação segura e permissões de acesso"]
+      },
+      {
+        "id": "automacoes",
+        "title": "Automações & IA Aplicada",
+        "tagline": "Eliminação de Tarefas Repetitivas e Integrações de APIs",
+        "description": "Conexão de sistemas e automações com IA para geração de documentos, triagem de dados e ganho de produtividade real com tolerância zero a erros.",
+        "deliverables": ["Geração e preenchimento de documentos", "Integrações entre APIs e bancos de dados", "Assistentes inteligentes e triagem com IA", "Automação de rotinas manuais de backoffice"]
+      }
+    ],
+    "processTitle": "PROCESSO DE TRABALHO",
+    "processSubtitle": "DO ENTENDIMENTO À ENTREGA EM PRODUÇÃO",
+    "processLead": "Antes de falar em tecnologia ou código, eu prefiro entender o problema, os gargalos e o fluxo operacional do seu negócio.",
+    "processSteps": [
+      { "step": "01", "title": "Entender", "description": "Mapeamento do problema real, objetivos de negócio e requisitos essenciais." },
+      { "step": "02", "title": "Planejar", "description": "Definição de escopo claro, arquitetura, prazos e entregáveis objetivos." },
+      { "step": "03", "title": "Construir", "description": "Desenvolvimento ágil com código limpo, seguro e comunicação transparente." },
+      { "step": "04", "title": "Validar", "description": "Testes rigorosos de usabilidade, velocidade em mobile e funcionamento dos fluxos." },
+      { "step": "05", "title": "Entregar", "description": "Implantação em produção com domínio, certificado SSL e treinamento inicial." },
+      { "step": "06", "title": "Evoluir", "description": "Acompanhamento pós-entrega e suporte para melhorias contínuas." }
+    ],
+    "faqTitle": "PERGUNTAS FREQUENTES",
+    "faqSubtitle": "CLAREZA SOBRE PRAZOS, FORMATOS E ATENDIMENTO",
+    "faq": [
+      {
+        "q": "Como funciona o início de um projeto?",
+        "a": "Primeiro conversamos para entender a sua necessidade. Se houver alinhamento técnico e de escopo, apresento uma proposta detalhada com etapas, prazos e entregáveis antes de qualquer cobrança."
+      },
+      {
+        "q": "Qual é o prazo médio de entrega?",
+        "a": "Landing pages e sites institucionais costumam levar de 1 a 3 semanas. Sistemas sob medida e automações variam conforme a complexidade e integrações necessárias, sempre com cronograma acordado."
+      },
+      {
+        "q": "Você atende empresas de qualquer lugar?",
+        "a": "Sim. Atuo remotamente para clientes de todo o Brasil e exterior, com reuniões virtuais ágeis e acompanhamento constante do progresso."
+      },
+      {
+        "q": "Como é feito o suporte após a entrega?",
+        "a": "Todo projeto entregue inclui garantia de funcionamento e suporte para ajustes iniciais, além da possibilidade de manutenção contínua."
+      }
+    ],
+    "ctaFinalTitle": "Vamos transformar sua necessidade em software funcionando?",
+    "ctaFinalText": "Me chame no WhatsApp ou preencha o formulário abaixo para conversarmos sem compromisso.",
+    "ctaWhatsAppFinal": "Iniciar conversa no WhatsApp",
+    "ctaFormFinal": "Enviar mensagem pelo site"
+  },
   "sobre": {
     "title": "SOBRE MIM",
     "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",
