@@ -198,7 +198,7 @@
     "title": "SOBRE MIM",
     "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",
     "bioP2": "Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou automatizar processos, mesmo sem ninguém me pedir.",
-    "bioP3": "Construo software guiando IA generativa (Claude, GPT) como ferramenta primária, de protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é decompor o problema, estruturar a instrução e conectar as peças até o fluxo inteiro funcionar. É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.",
+    "bioP3": "Construo software combinando raciocínio analítico rigoroso e IA generativa (Claude, GPT, Gemini) como multiplicador primário de produtividade técnica. Minha atuação como arquiteto e engenheiro foca em decompor problemas complexos, estruturar arquiteturas modulares, aplicar TDD e conectar sistemas em produção com tolerância zero a falhas.",
     "badge": "FICHA TÉCNICA",
     "fields": [
       {
@@ -239,7 +239,7 @@
           "A camada de IA é desacoplada. Trocar de LLM não exige mudar o front-end."
         ],
         "skills": [
-          "Next.js 16",
+          "Next.js 15",
           "TypeScript",
           "Prisma",
           "IA Generativa"
