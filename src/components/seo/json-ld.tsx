@@ -1,6 +1,17 @@
+import React from 'react';
 import type { Locale } from '@/i18n/config';
 
-export default function JsonLd({ locale }: { locale?: Locale }) {
+interface JsonLdProps {
+  locale?: Locale;
+  pageType?: 'home' | 'services' | 'career' | 'project';
+  projectData?: {
+    name: string;
+    description: string;
+    url: string;
+  };
+}
+
+export default function JsonLd({ locale, pageType = 'home', projectData }: JsonLdProps) {
   const currentLocale = locale || 'pt-BR';
   const isEnglish = currentLocale === 'en-US';
 
@@ -12,8 +23,8 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
     givenName: 'Kauê',
     familyName: 'Ruon Cardoso',
     jobTitle: isEnglish
-      ? 'Software Architect & AI Systems Engineer'
-      : 'Arquiteto de Software & Engenheiro de IA',
+      ? 'Software Architect & Full-Stack Engineer'
+      : 'Arquiteto de Software & Engenheiro Full-Stack',
     description: isEnglish
       ? 'Software Architect and AI Engineer specializing in Next.js 15, TypeScript, Generative AI (RAG), and zero-tolerance notarial automation.'
       : 'Engenheiro de Software e Arquiteto de IA especializado em Next.js 15, TypeScript, IA Generativa (RAG) e automação notarial de tolerância zero a erros.',
@@ -33,8 +44,8 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
     worksFor: [
       {
         '@type': 'Organization',
-        name: 'Serviços Notariais e Registrais / LegalTech',
-        jobTitle: isEnglish ? 'Software Architect & Notarial Innovation' : 'Engenheiro de Software & Inovação Notarial',
+        name: 'Cartório Gaya',
+        jobTitle: isEnglish ? 'Notary Officer & Automation Engineer' : 'Cartorário & Engenharia de Automações',
       },
       {
         '@type': 'Organization',
@@ -52,9 +63,9 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
       'Next.js 15 App Router',
       'TypeScript',
       'Generative AI & RAG Architecture',
-      'Gemini 1.5 Flash / OpenAI GPT-4o-mini',
       'Prisma ORM & PostgreSQL',
       'Notarial Automation & LegalTech',
+      'Competitive Mathematics (OBMEP)',
     ],
   };
 
@@ -75,6 +86,22 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
     inLanguage: currentLocale,
   };
 
+  const serviceSchema = pageType === 'services' ? {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: isEnglish ? 'Custom Software Development & Automation' : 'Desenvolvimento de Software Sob Medida e Automação',
+    provider: {
+      '@id': `https://kaueruon.dev/${currentLocale}#person`,
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Brazil',
+    },
+    description: isEnglish
+      ? 'Custom websites, web systems, and AI automation workflows for companies.'
+      : 'Sites sob medida, sistemas web e automações de processos com IA para empresas.',
+  } : null;
+
   return (
     <>
       <script
@@ -85,6 +112,12 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
+      {serviceSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        />
+      )}
     </>
   );
 }
