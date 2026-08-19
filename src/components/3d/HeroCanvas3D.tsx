@@ -73,8 +73,9 @@ export default function HeroCanvas3D() {
     const icosahedron = new THREE.Mesh(geometry, shaderMaterial);
     scene.add(icosahedron);
 
-    // ── 2. Partículas em Espiral (350) ──
-    const particleCount = 350;
+    // ── 2. Partículas em Espiral (Responsivas para performance em mobile) ──
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 120 : 350;
     const particleGeo = new THREE.BufferGeometry();
     const particlePos = new Float32Array(particleCount * 3);
 
@@ -91,15 +92,15 @@ export default function HeroCanvas3D() {
     particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
     const particleMat = new THREE.PointsMaterial({
       color: 0x00f0ff,
-      size: 0.03,
+      size: isMobile ? 0.04 : 0.03,
       transparent: true,
       opacity: 0.6,
     });
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    // ── 3. Debris Fragmentos (120) com InstancedMesh ──
-    const debrisCount = 120;
+    // ── 3. Debris Fragmentos (Responsivos para performance) ──
+    const debrisCount = isMobile ? 40 : 120;
     const debrisGeo = new THREE.ConeGeometry(0.08, 0.2, 3);
     const debrisMat = new THREE.MeshBasicMaterial({
       color: 0xd4a017,
