@@ -7,7 +7,7 @@
 
 <br>
 
-<img src="https://img.shields.io/badge/Next.js-16_App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white" />
+<img src="https://img.shields.io/badge/Next.js-15_App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white" />
 <img src="https://img.shields.io/badge/Agente_IA-ÆVO_RAG_--_Tool_Use-2563eb?style=for-the-badge&labelColor=04060d" />
 <img src="https://img.shields.io/badge/Testes-Vitest_100%25_Passed-22c55e?style=for-the-badge&labelColor=04060d" />
 <img src="https://img.shields.io/badge/CI%2FCD-GitHub_Actions-181717?style=for-the-badge&logo=github-actions&logoColor=white" />
@@ -44,7 +44,7 @@ O portfólio inclui o agente inteligente **ÆVO**, desenvolvido com uma arquitet
 
 ## 🎨 Arquitetura Técnica do Portfólio
 
-- **Next.js 16 (App Router)** & **TypeScript** estrito
+- **Next.js 15 (App Router)** & **TypeScript** estrito
 - **Three.js & React Three Fiber** — Cena WebGL 3D com icosaedro wireframe, shaders GLSL customizados de aberração cromática (RGB split) a 60 FPS, 350 partículas e 120 debris com física de repulsão ao mouse
 - **Tailwind CSS & CSS Modules** — Sistema de design tokens cyberpunk e notarial
 - **GitHub REST API Live Stats** — Integrado ao vivo trazendo repositórios, seguidores e commits de `@Kauerc10`
@@ -59,7 +59,7 @@ O portfólio inclui o agente inteligente **ÆVO**, desenvolvido com uma arquitet
 ## 🛠️ Projetos em Destaque
 
 ### DocFácil — IA generativa aplicada a documentos legais
-**Stack:** `Next.js 16` · `TypeScript` · `Prisma` · `IA Generativa`
+**Stack:** `Next.js 15` · `TypeScript` · `Prisma` · `IA Generativa`
 > 🔗 **Demo:** [docfacil-indol.vercel.app](https://docfacil-indol.vercel.app) · **Repo:** [github.com/khub-solucoes/docfacil](https://github.com/khub-solucoes/docfacil)
 
 ### CKF Manutenção — Sistema de Orçamentos
