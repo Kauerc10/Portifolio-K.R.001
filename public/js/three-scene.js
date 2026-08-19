@@ -126,7 +126,7 @@ const HeroScene = (() => {
         renderer.setSize(window.innerWidth, window.innerHeight, false);
         renderer.setPixelRatio(dpr);
 
-        // ── 1. THE ANOMALY — Icosaedro Wireframe ──
+        // ── 1. THE ANOMALY — Icosaedro Wireframe (Oculto para fundo sutil e comercial) ──
         const geo = new THREE.IcosahedronGeometry(2.2, 2);
         const wireMat = new THREE.ShaderMaterial({
             vertexShader: baseVertexShader,
@@ -138,6 +138,7 @@ const HeroScene = (() => {
             blending: THREE.AdditiveBlending
         });
         wireframe = new THREE.Mesh(geo, wireMat);
+        wireframe.visible = false; // Desativado para manter o fundo limpo e profissional
         scene.add(wireframe);
 
         // ── 2. ESTRELAS DE FUNDO ──

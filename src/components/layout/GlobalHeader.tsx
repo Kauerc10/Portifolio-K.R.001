@@ -52,14 +52,18 @@ export default function GlobalHeader({ locale, dict }: GlobalHeaderProps) {
           {/* Logo / Nome do Portfólio */}
           <Link
             href={prefix}
-            className="group flex items-center gap-2 font-mono text-sm font-extrabold tracking-tight text-slate-900 dark:text-white"
+            className="group flex items-center gap-3 font-mono text-sm font-extrabold tracking-tight text-slate-900 dark:text-white"
             aria-label="KRC Home"
           >
-            <span className="grid place-items-center w-7 h-7 rounded-lg bg-blue-600 dark:bg-amber-400 text-white dark:text-[#070b14] text-xs font-black shadow-md">
-              K
-            </span>
-            <span className="transition-colors group-hover:text-blue-600 dark:group-hover:text-amber-400">
-              KAUÊ RUON
+            <img
+              src="/assets/krc-logo-512.webp"
+              alt="KRC Logo"
+              width={34}
+              height={34}
+              className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-lg transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="font-mono text-xs sm:text-sm font-bold tracking-wider transition-colors group-hover:text-blue-600 dark:group-hover:text-amber-400">
+              KAUÊ RUON CARDOSO
             </span>
           </Link>
 

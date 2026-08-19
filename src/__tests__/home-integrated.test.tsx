@@ -28,7 +28,8 @@ describe('Integração da Home Híbrida Dual-Audience (Task 12)', () => {
     );
 
     // Hero com H1
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(ptBR.dualHero.h1);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/KAUÊ/i);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/CARDOSO/i);
 
     // Audience Router
     expect(screen.getByRole('link', { name: /Conhecer soluções/i })).toHaveAttribute('href', '/pt-BR/servicos');

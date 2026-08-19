@@ -18,7 +18,7 @@ describe('Home Dual-Audience & Intent Router (Task 4)', () => {
   it('deve renderizar o DualAudienceHero com H1, contexto e CTAs em pt-BR', () => {
     render(<DualAudienceHero locale="pt-BR" dict={ptBR.dualHero} />);
 
-    expect(screen.getByRole('heading', { level: 1, name: /Do problema ao software em produção/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /KAUÊ RUON CARDOSO/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Conversar sobre um projeto/i })).toHaveAttribute('href', '/pt-BR/servicos#contato');
     expect(screen.getByRole('link', { name: /Ver trabalhos/i })).toHaveAttribute('href', '/pt-BR/projetos');
   });
@@ -26,7 +26,7 @@ describe('Home Dual-Audience & Intent Router (Task 4)', () => {
   it('deve renderizar o DualAudienceHero com H1 e CTAs em en-US', () => {
     render(<DualAudienceHero locale="en-US" dict={enUS.dualHero} />);
 
-    expect(screen.getByRole('heading', { level: 1, name: /From problem to production software/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /KAUÊ RUON CARDOSO/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Talk about a project/i })).toHaveAttribute('href', '/en-US/servicos#contato');
     expect(screen.getByRole('link', { name: /Explore work/i })).toHaveAttribute('href', '/en-US/projetos');
   });
