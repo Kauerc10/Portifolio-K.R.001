@@ -35,7 +35,35 @@
     ],
     "ctaProjects": "VIEW PROJECTS",
     "ctaResume": "RESUME.PDF",
-    "footnote": "No process was archived during the creation of this website."
+    "footnote": "No legal proceedings were filed in the creation of this site."
+  },
+  "dualHero": {
+    "h1": "From problem to production software.",
+    "supporting": "Websites, systems, and automation for business. Full-stack products, integrations, and AI to solve real operational workflows.",
+    "ctaTalk": "Talk about a project",
+    "ctaWork": "Explore work",
+    "contextLine": "Full-Stack Developer · Blumenau/SC, Brazil · Projects & professional opportunities",
+    "proofHighlights": [
+      { "label": "Production Systems", "detail": "Cartório Gaya & CKF" },
+      { "label": "Full-Stack Architecture", "detail": "Next.js & TypeScript" },
+      { "label": "AI Engineering", "detail": "RAG & Automation" }
+    ]
+  },
+  "audienceRouter": {
+    "title": "HOW CAN I HELP YOU?",
+    "subtitle": "CHOOSE THE BEST PATH FOR YOUR CURRENT NEED",
+    "business": {
+      "tag": "CLIENTS & BUSINESSES",
+      "title": "I have a project or business",
+      "text": "Websites, systems, automation, and digital solutions designed directly from your operational challenges.",
+      "cta": "Explore solutions"
+    },
+    "career": {
+      "tag": "RECRUITERS & TECH LEADS",
+      "title": "I am evaluating your engineering profile",
+      "text": "Production projects, software architecture, professional experience, GitHub, tech stack, and resume.",
+      "cta": "View engineering profile"
+    }
   },
   "sobre": {
     "title": "ABOUT ME",

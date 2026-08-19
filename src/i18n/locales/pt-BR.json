@@ -37,6 +37,34 @@
     "ctaResume": "CURRÍCULO.PDF",
     "footnote": "Nenhum processo foi arquivado na criação deste site."
   },
+  "dualHero": {
+    "h1": "Do problema ao software em produção.",
+    "supporting": "Sites, sistemas e automações para empresas. Produtos full-stack, integrações e IA para resolver processos reais.",
+    "ctaTalk": "Conversar sobre um projeto",
+    "ctaWork": "Ver trabalhos",
+    "contextLine": "Desenvolvedor Full-Stack · Blumenau/SC · Projetos e oportunidades profissionais",
+    "proofHighlights": [
+      { "label": "Sistemas em Produção", "detail": "Cartório Gaya & CKF" },
+      { "label": "Arquitetura Full-Stack", "detail": "Next.js & TypeScript" },
+      { "label": "Engenharia de IA", "detail": "RAG & Automações" }
+    ]
+  },
+  "audienceRouter": {
+    "title": "COMO POSSO TE AJUDAR?",
+    "subtitle": "ESCOLHA O CAMINHO IDEAL PARA A SUA NECESSIDADE",
+    "business": {
+      "tag": "CLIENTES & EMPRESAS",
+      "title": "Tenho um projeto ou negócio",
+      "text": "Sites, sistemas, automações e soluções digitais pensadas a partir do problema e do fluxo operacional.",
+      "cta": "Conhecer soluções"
+    },
+    "career": {
+      "tag": "RECRUTADORES & TECH LEADS",
+      "title": "Estou avaliando seu perfil técnico",
+      "text": "Projetos em produção, arquitetura, experiência profissional, GitHub, stack técnica e currículo.",
+      "cta": "Ver perfil profissional"
+    }
+  },
   "sobre": {
     "title": "SOBRE MIM",
     "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",
