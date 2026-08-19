@@ -135,6 +135,65 @@
     "ctaWhatsAppFinal": "Iniciar conversa no WhatsApp",
     "ctaFormFinal": "Enviar mensagem pelo site"
   },
+  "careerPage": {
+    "hero": {
+      "tag": "ENGENHARIA DE SOFTWARE & AUTOMAÇÃO",
+      "h1": "Kauê Ruon Cardoso",
+      "subtitle": "Desenvolvedor Full-Stack · Engenharia com IA Generativa · Blumenau/SC",
+      "lead": "Raciocínio lógico lapidado em olimpíadas de matemática (OBMEP/IMPA), rigor operacional notarial e capacidade comprovada de guiar IA generativa para construir software pronto para produção.",
+      "ctaResume": "Baixar Currículo PDF",
+      "ctaLinkedIn": "LinkedIn",
+      "ctaGitHub": "GitHub",
+      "ctaTalk": "Falar sobre oportunidade"
+    },
+    "positioningTitle": "POSICIONAMENTO DE ENGENHARIA",
+    "positioningSubtitle": "COMO CONSTRUO SOFTWARE COM VELOCIDADE E PRECISÃO",
+    "positioningP1": "Minha abordagem de engenharia combina raciocínio analítico estrito com ferramentas modernas de IA generativa (Claude, GPT, Gemini) como multiplicador primário de produtividade.",
+    "positioningP2": "Não escrevo código como um digitador; atuo como arquiteto e engenheiro: decomponho o problema, estruturo a arquitetura, defino testes automatizados (TDD), integro APIs e garanto tolerância zero a falhas em produção.",
+    "obmepBadge": "MEDALHISTA NACIONAL OBMEP / IMPA",
+    "obmepDetail": "Prata Regional e Bronze Nacional na Olimpíada Brasileira de Matemática das Escolas Públicas, além de 2 Menções Honrosas.",
+    "stackTitle": "MATRIZ DE COMPETÊNCIAS TÉCNICAS",
+    "stackSubtitle": "TECNOLOGIAS E FERRAMENTAS UTILIZADAS EM PRODUÇÃO",
+    "stackGroups": [
+      {
+        "category": "Front-End & UI/UX",
+        "items": ["Next.js 15 (App Router)", "React 19", "TypeScript", "Tailwind CSS", "Three.js / WebGL", "Acessibilidade (WCAG)"]
+      },
+      {
+        "category": "Back-End, APIs & Dados",
+        "items": ["Node.js & Express", "PostgreSQL", "Supabase", "Prisma ORM", "APIs RESTful", "Autenticação & Segurança"]
+      },
+      {
+        "category": "Engenharia de IA & Qualidade",
+        "items": ["Orquestração de LLMs", "Function Calling (Tools)", "RAG & Context Engineering", "Vitest / TDD", "CI/CD (GitHub Actions)", "Git / Worktrees"]
+      }
+    ],
+    "timelineTitle": "TRAJETÓRIA PROFISSIONAL",
+    "timelineSubtitle": "EXPERIÊNCIA PRÁTICA E RESULTADOS",
+    "timeline": [
+      {
+        "period": "2023 — Presente",
+        "role": "Cartorário & Automação de Processos",
+        "company": "Cartório Gaya (Blumenau/SC)",
+        "description": "Elaboração de atos notariais de alta responsabilidade e desenvolvimento do Atlas Notarial, motor interno para automação de minutas de procurações veiculares integrado ao DETRAN."
+      },
+      {
+        "period": "2024 — Presente",
+        "role": "Engenheiro Full-Stack & Arquiteto",
+        "company": "Projetos Independentes & Clientes",
+        "description": "Criação do DocFácil (SaaS notarial com IA) e desenvolvimento do sistema operacional de orçamentos e relatórios da CKF Manutenção."
+      },
+      {
+        "period": "Base Acadêmica",
+        "role": "Matemática Competitiva",
+        "company": "OBMEP / IMPA",
+        "description": "Prata Regional, Bronze Nacional e 2 Menções Honrosas. Fundação de lógica, abstração matemática e solução de problemas complexos."
+      }
+    ],
+    "resumeTitle": "Currículo Completo",
+    "resumeDescription": "Documento em PDF atualizado com histórico completo de formação, stacks, projetos e contatos.",
+    "resumeButton": "Download do Currículo (.PDF)"
+  },
   "sobre": {
     "title": "SOBRE MIM",
     "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",

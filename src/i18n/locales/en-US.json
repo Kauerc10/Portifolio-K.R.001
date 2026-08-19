@@ -135,6 +135,65 @@
     "ctaWhatsAppFinal": "Start WhatsApp conversation",
     "ctaFormFinal": "Send website message"
   },
+  "careerPage": {
+    "hero": {
+      "tag": "SOFTWARE ENGINEERING & AUTOMATION",
+      "h1": "Kauê Ruon Cardoso",
+      "subtitle": "Full-Stack Developer · Generative AI Engineering · Blumenau/SC, Brazil",
+      "lead": "Logical reasoning sharpened in national math olympiads (OBMEP/IMPA), notarial operational rigor, and proven ability to guide generative AI to ship production-ready software.",
+      "ctaResume": "Download Resume PDF",
+      "ctaLinkedIn": "LinkedIn",
+      "ctaGitHub": "GitHub",
+      "ctaTalk": "Discuss opportunities"
+    },
+    "positioningTitle": "ENGINEERING POSITIONING",
+    "positioningSubtitle": "HOW I BUILD SOFTWARE WITH SPEED AND ZERO-DEFECT RIGOR",
+    "positioningP1": "My engineering approach pairs strict analytical reasoning with state-of-the-art generative AI tooling (Claude, GPT, Gemini) as a primary multiplier of engineering velocity.",
+    "positioningP2": "I do not write code like a line-by-line typist; I operate as a software architect and engineer: decomposing complex domains, structuring system architecture, implementing automated tests (TDD), integrating APIs, and ensuring zero tolerance for bugs in production.",
+    "obmepBadge": "OBMEP / IMPA NATIONAL MEDALIST",
+    "obmepDetail": "Regional Silver and National Bronze medalist in the Brazilian Mathematical Olympiad of Public Schools, plus two National Honorable Mentions.",
+    "stackTitle": "TECHNICAL COMPETENCY MATRIX",
+    "stackSubtitle": "TECHNOLOGIES & TOOLS LEVERAGED IN PRODUCTION",
+    "stackGroups": [
+      {
+        "category": "Front-End & UI/UX",
+        "items": ["Next.js 15 (App Router)", "React 19", "TypeScript", "Tailwind CSS", "Three.js / WebGL", "Accessibility (WCAG)"]
+      },
+      {
+        "category": "Back-End, APIs & Data",
+        "items": ["Node.js & Express", "PostgreSQL", "Supabase", "Prisma ORM", "RESTful APIs", "Authentication & Security"]
+      },
+      {
+        "category": "AI Engineering & Quality",
+        "items": ["LLM Orchestration", "Function Calling (Tools)", "RAG & Context Engineering", "Vitest / TDD", "CI/CD (GitHub Actions)", "Git / Worktrees"]
+      }
+    ],
+    "timelineTitle": "PROFESSIONAL TRAJECTORY",
+    "timelineSubtitle": "HANDS-ON EXPERIENCE AND PROVABLE IMPACT",
+    "timeline": [
+      {
+        "period": "2023 — Present",
+        "role": "Notary Officer & Process Automation",
+        "company": "Cartório Gaya (Blumenau/SC)",
+        "description": "Drafting high-liability legal deeds and architecting Atlas Notarial, an internal automation engine for vehicle powers of attorney integrated with DMV databases."
+      },
+      {
+        "period": "2024 — Present",
+        "role": "Full-Stack Engineer & Architect",
+        "company": "Independent Projects & Clients",
+        "description": "Architected DocFácil (AI legal SaaS) and built the operational quoting and technical reporting web platform for CKF Manutenção."
+      },
+      {
+        "period": "Academic Foundation",
+        "role": "Competitive Mathematics",
+        "company": "OBMEP / IMPA",
+        "description": "Regional Silver, National Bronze, and 2 Honorable Mentions. Solid foundation in logic, formal proofs, and complex problem decomposition."
+      }
+    ],
+    "resumeTitle": "Complete Resume",
+    "resumeDescription": "Updated PDF document detailing educational background, technical stacks, projects, and contact info.",
+    "resumeButton": "Download Resume (.PDF)"
+  },
   "sobre": {
     "title": "ABOUT ME",
     "bioP1": "My interest in technology started early. Whenever I see a manual, repetitive process, I cannot resist trying to automate it. That curiosity took me from iPhone board repair to notary desks and back to technology.",
