@@ -8,6 +8,13 @@
     "education": "EDUCATION",
     "projects": "PROJECTS",
     "contact": "CONTACT",
+    "work": "WORK",
+    "solutions": "SOLUTIONS",
+    "career": "CAREER",
+    "letsTalk": "LET'S TALK",
+    "skipToContent": "Skip to main content",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
     "indicator": "§ 01 / 08"
   },
   "loader": {
