@@ -47,7 +47,7 @@ export async function generateMetadata({
   }
 
   const isEnglish = locale === 'en-US';
-  const baseUrl = 'https://kaueruon.dev';
+  const baseUrl = 'https://www.kaueruon.dev';
 
   const title = isEnglish
     ? 'Kauê Ruon Cardoso — Software Architect & AI Systems Engineer'
@@ -86,8 +86,18 @@ export async function generateMetadata({
       },
     },
     icons: {
-      icon: '/assets/favicon.ico',
-      shortcut: '/assets/favicon.svg',
+      icon: [
+        {
+          url: '/assets/favicon-96x96.png',
+          type: 'image/png',
+          sizes: '96x96',
+        },
+        {
+          url: '/assets/favicon.svg',
+          type: 'image/svg+xml',
+        },
+      ],
+      shortcut: '/assets/favicon.ico',
       apple: '/assets/apple-touch-icon.png',
     },
     openGraph: {
