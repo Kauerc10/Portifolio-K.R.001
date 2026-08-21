@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { locales } from '@/i18n/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://kaueruon.dev';
+  const baseUrl = 'https://www.kaueruon.dev';
   const now = new Date();
 
   const languageAlternates = {
