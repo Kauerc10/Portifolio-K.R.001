@@ -3,7 +3,7 @@ import { locales } from '@/i18n/config';
 import { getProjects } from '@/content/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://kaueruon.dev';
+  const baseUrl = 'https://www.kaueruon.dev';
   const now = new Date();
   const projects = getProjects('pt-BR');
 
