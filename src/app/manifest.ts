@@ -12,14 +12,20 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#d4a017',
     icons: [
       {
-        src: 'https://github.com/Kauerc10.png',
+        src: '/assets/android-chrome-192x192.png',
         sizes: '192x192',
         type: 'image/png',
       },
       {
-        src: 'https://github.com/Kauerc10.png',
+        src: '/assets/android-chrome-512x512.png',
         sizes: '512x512',
         type: 'image/png',
+      },
+      {
+        src: '/assets/android-chrome-maskable-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ],
   };
