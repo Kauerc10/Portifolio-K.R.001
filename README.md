@@ -52,7 +52,7 @@ O portfólio inclui o agente inteligente **ÆVO**, desenvolvido com uma arquitet
 - **Framework de A/B Testing** — Atribuição determinística 50/50 com persistência local
 - **Esteira CI/CD em GitHub Actions** — Workflows automáticos de lint, tsc, vitest e build no `.github/workflows/ci.yml`
 
-> 🔗 **Ao vivo:** [kaueruon.dev](https://kaueruon.dev)
+> 🔗 **Ao vivo:** [www.kaueruon.dev](https://www.kaueruon.dev)
 
 ---
 
