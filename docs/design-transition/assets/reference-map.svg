@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1433" height="1388" viewBox="0 0 1433 1388" role="img" aria-labelledby="title desc">
+<title id="title">Mapa espacial da referência aprovada</title>
+<desc id="desc">Referência esmaecida com sobreposição. Azul = HTML (U). Roxo = cena 3D (W). Laranja tracejado = rota dos caminhos. Consulte reference-map.md e JSON.</desc>
+<rect width="1433" height="1388" fill="#fff"/>
+<image href="approved-desktop.png" width="1433" height="1098" opacity="0.5"/>
+<rect x="74" y="25" width="150" height="42" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="905" y="28" width="274" height="34" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="1207" y="22" width="155" height="50" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="73" y="135" width="684" height="82" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="72" y="224" width="585" height="80" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="75" y="328" width="610" height="38" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="931" y="150" width="388" height="83" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="934" y="257" width="252" height="50" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="1210" y="267" width="92" height="31" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="188" y="440" width="188" height="29" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="724" y="314" width="160" height="29" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="1245" y="414" width="118" height="29" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="600" y="899" width="252" height="29" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="74" y="1015" width="247" height="29" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="840" y="1002" width="244" height="52" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="1135" y="1002" width="240" height="52" fill="#245783" fill-opacity="0.12" stroke="#245783" stroke-width="2"/>
+<rect x="73" y="507" width="240" height="148" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<rect x="649" y="384" width="209" height="139" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<rect x="1145" y="465" width="237" height="174" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<rect x="0" y="602" width="533" height="345" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<rect x="369" y="485" width="617" height="206" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<rect x="1180" y="585" width="253" height="151" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<rect x="110" y="604" width="105" height="64" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<rect x="547" y="498" width="162" height="87" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<rect x="1094" y="611" width="174" height="151" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
+<polyline points="0,880 200,830 420,760 500,690 470,640 330,620 210,615" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
+<polyline points="490,660 700,600 900,590 1030,570 960,500 850,470" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
+<polyline points="1075,570 1190,680 1300,715 1433,730" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
+<circle cx="190" cy="504" r="7" fill="#E8590C" stroke="#fff" stroke-width="2"/>
+<circle cx="724" cy="384" r="7" fill="#E8590C" stroke="#fff" stroke-width="2"/>
+<circle cx="1248" cy="476" r="7" fill="#E8590C" stroke="#fff" stroke-width="2"/>
+<rect x="74" y="3" width="37" height="20" fill="#245783"/><text x="79" y="19" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U01</text>
+<rect x="905" y="6" width="37" height="20" fill="#245783"/><text x="910" y="22" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U02</text>
+<rect x="1207" y="0" width="37" height="20" fill="#245783"/><text x="1212" y="16" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U03</text>
+<rect x="763" y="135" width="37" height="20" fill="#245783"/><text x="768" y="151" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U04</text>
+<rect x="632" y="224" width="37" height="20" fill="#245783"/><text x="637" y="240" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U05</text>
+<rect x="75" y="306" width="37" height="20" fill="#245783"/><text x="80" y="322" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U06</text>
+<rect x="931" y="128" width="37" height="20" fill="#245783"/><text x="936" y="144" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U07</text>
+<rect x="934" y="235" width="37" height="20" fill="#245783"/><text x="939" y="251" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U08</text>
+<rect x="1210" y="245" width="37" height="20" fill="#245783"/><text x="1215" y="261" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U09</text>
+<rect x="188" y="418" width="37" height="20" fill="#245783"/><text x="193" y="434" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U10</text>
+<rect x="724" y="292" width="37" height="20" fill="#245783"/><text x="729" y="308" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U11</text>
+<rect x="1245" y="392" width="37" height="20" fill="#245783"/><text x="1250" y="408" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U12</text>
+<rect x="600" y="877" width="37" height="20" fill="#245783"/><text x="605" y="893" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U13</text>
+<rect x="74" y="993" width="37" height="20" fill="#245783"/><text x="79" y="1009" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U14</text>
+<rect x="840" y="980" width="37" height="20" fill="#245783"/><text x="845" y="996" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U15</text>
+<rect x="1135" y="980" width="37" height="20" fill="#245783"/><text x="1140" y="996" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">U16</text>
+<rect x="73" y="507" width="40" height="20" fill="#6534D8"/><text x="78" y="523" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W01</text>
+<rect x="649" y="384" width="40" height="20" fill="#6534D8"/><text x="654" y="400" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W02</text>
+<rect x="1145" y="465" width="40" height="20" fill="#6534D8"/><text x="1150" y="481" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W03</text>
+<rect x="10" y="902" width="40" height="20" fill="#6534D8"/><text x="15" y="918" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W04</text>
+<rect x="749" y="635" width="40" height="20" fill="#6534D8"/><text x="754" y="651" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W05</text>
+<rect x="1240" y="685" width="40" height="20" fill="#6534D8"/><text x="1245" y="701" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W06</text>
+<rect x="110" y="648" width="40" height="20" fill="#6534D8"/><text x="115" y="664" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W07</text>
+<rect x="547" y="498" width="40" height="20" fill="#6534D8"/><text x="552" y="514" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W08</text>
+<rect x="1094" y="611" width="40" height="20" fill="#6534D8"/><text x="1099" y="627" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff">W09</text>
+<rect x="0" y="1098" width="1433" height="290" fill="#F7F7FA"/>
+<text x="24" y="1129" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#14131C">LEGENDA  ·  imagem original esmaecida; posições aproximadas, não é um design novo</text>
+<text x="24" y="1157" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#245783">AZUL  U = HTML real, acessível (texto, links, foco)</text>
+<text x="24" y="1179" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#6534D8">ROXO  W = cena / arte 3D, sem UI embutida</text>
+<text x="24" y="1201" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#E8590C">LARANJA tracejado = rota inferida dos caminhos (W04 → W01 · W04 → W05 → W02 · W05 → W06 → W03); ponto = âncora do rótulo</text>
+<text x="24" y="1230" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U01 marca · #hero</text>
+<text x="24" y="1250" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U02 navegação (Projetos, Trajetória, Contato)</text>
+<text x="24" y="1270" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U03 Currículo (cabeçalho) · PDF</text>
+<text x="24" y="1290" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U04 + U05 título em duas linhas</text>
+<text x="24" y="1310" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U06 três áreas de atuação</text>
+<text x="24" y="1330" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U07 apresentação curta</text>
+<text x="24" y="1350" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U08 CTA Explorar meu trabalho · #projetos</text>
+<text x="500" y="1230" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U09 Currículo secundário · PDF</text>
+<text x="500" y="1250" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U10 Desenvolvimento → W01 · #projetos</text>
+<text x="500" y="1270" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U11 Automação → W02 · #project-atlas</text>
+<text x="500" y="1290" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U12 Suporte → W03 · #experiencia</text>
+<text x="500" y="1310" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U13 indicação de rolagem</text>
+<text x="500" y="1330" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U14 Blumenau · ADS em formação</text>
+<text x="500" y="1350" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U15 Atlas · U16 CKF (atalhos)</text>
+<text x="960" y="1230" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">W01 pavilhão Desenvolvimento</text>
+<text x="960" y="1250" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">W02 pavilhão Automação (elevado)</text>
+<text x="960" y="1270" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">W03 pavilhão Suporte</text>
+<text x="960" y="1290" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">W04 caminho frente · W05 ponte central</text>
+<text x="960" y="1310" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">W06 caminho direito</text>
+<text x="960" y="1330" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">W07/W08/W09 escadarias</text>
+<text x="960" y="1350" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">W10 terreno · W11 fundo e vazios (sem caixa)</text>
+</svg>

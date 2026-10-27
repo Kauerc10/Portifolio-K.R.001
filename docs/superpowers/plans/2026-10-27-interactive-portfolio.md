@@ -42,7 +42,7 @@
 | P6 — Compatibilidade e retirada do legado | P3, P4, P5 | Tema, idioma, ÆVO e SEO coerentes; motor antigo retirado |
 | P7 — Verificação e entrega | P6 | Prévia completa, matriz de dispositivos e relatório de limites |
 
-P4/P5 não dependem do acabamento da cena, mas integrar sobre a mesma estrutura e tokens. Não é necessário criar tarefas no GitHub para executar esta sequência. Fazer commits por entrega coerente durante a execução; nesta etapa nenhum commit/push foi solicitado.
+P4/P5 não dependem do acabamento da cena, mas integrar sobre a mesma estrutura e tokens. A pedido posterior do usuário, esta sequência foi refinada em uma [proposta de 11 tickets](../../design-transition/ticket-breakdown.md), com dependências explícitas, aguardando revisão da divisão antes de publicar no GitHub. Fazer commits por entrega coerente durante a execução.
 
 ## Mapa de arquivos e responsabilidades
 

@@ -1,0 +1,703 @@
+{
+  "schema": "portfolio-reference-map/v1",
+  "source": "approved-desktop.png",
+  "source_sha256": "a010410ff773e00a9be7f40a3ad79de58f75b311a877728aa7f2c07bc892f0ee",
+  "canvas": {
+    "width": 1433,
+    "height": 1098,
+    "units": "source-image-pixels",
+    "origin": "top-left"
+  },
+  "coordinate_status": "Approximate semantic bounds manually interpreted from the approved image; not CSS measurements, 3D coordinates or pixel-exact segmentation.",
+  "layers": {
+    "html": "Real text, links, focus, labels and controls",
+    "world": "Illustration or 3D only; no baked UI"
+  },
+  "nodes": [
+    {
+      "id": "U01",
+      "name": "Marca pessoal",
+      "bbox_px": [
+        74,
+        25,
+        150,
+        42
+      ],
+      "bbox_normalized": [
+        0.05164,
+        0.02277,
+        0.10468,
+        0.03825
+      ],
+      "layer": "html",
+      "role": "link",
+      "href": "#hero"
+    },
+    {
+      "id": "U02",
+      "name": "Navegação principal",
+      "bbox_px": [
+        905,
+        28,
+        274,
+        34
+      ],
+      "bbox_normalized": [
+        0.63154,
+        0.0255,
+        0.19121,
+        0.03097
+      ],
+      "layer": "html",
+      "role": "navigation"
+    },
+    {
+      "id": "U03",
+      "name": "Currículo no cabeçalho",
+      "bbox_px": [
+        1207,
+        22,
+        155,
+        50
+      ],
+      "bbox_normalized": [
+        0.84229,
+        0.02004,
+        0.10816,
+        0.04554
+      ],
+      "layer": "html",
+      "role": "link",
+      "href": "/curriculo_kaue.pdf"
+    },
+    {
+      "id": "U04",
+      "name": "Cumprimento: linha grafite",
+      "bbox_px": [
+        73,
+        135,
+        684,
+        82
+      ],
+      "bbox_normalized": [
+        0.05094,
+        0.12295,
+        0.47732,
+        0.07468
+      ],
+      "layer": "html",
+      "role": "heading",
+      "text": "Olá, que bom ter"
+    },
+    {
+      "id": "U05",
+      "name": "Cumprimento: linha violeta",
+      "bbox_px": [
+        72,
+        224,
+        585,
+        80
+      ],
+      "bbox_normalized": [
+        0.05024,
+        0.20401,
+        0.40823,
+        0.07286
+      ],
+      "layer": "html",
+      "role": "heading-part",
+      "text": "você por aqui."
+    },
+    {
+      "id": "U06",
+      "name": "Três áreas de atuação",
+      "bbox_px": [
+        75,
+        328,
+        610,
+        38
+      ],
+      "bbox_normalized": [
+        0.05234,
+        0.29872,
+        0.42568,
+        0.03461
+      ],
+      "layer": "html",
+      "role": "text",
+      "text": "Desenvolvimento, automações e suporte."
+    },
+    {
+      "id": "U07",
+      "name": "Apresentação curta",
+      "bbox_px": [
+        931,
+        150,
+        388,
+        83
+      ],
+      "bbox_normalized": [
+        0.64969,
+        0.13661,
+        0.27076,
+        0.07559
+      ],
+      "layer": "html",
+      "role": "text",
+      "text": "Sou Kauê Ruon Cardoso. Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia."
+    },
+    {
+      "id": "U08",
+      "name": "Explorar meu trabalho",
+      "bbox_px": [
+        934,
+        257,
+        252,
+        50
+      ],
+      "bbox_normalized": [
+        0.65178,
+        0.23406,
+        0.17585,
+        0.04554
+      ],
+      "layer": "html",
+      "role": "link",
+      "href": "#projetos"
+    },
+    {
+      "id": "U09",
+      "name": "Currículo secundário",
+      "bbox_px": [
+        1210,
+        267,
+        92,
+        31
+      ],
+      "bbox_normalized": [
+        0.84438,
+        0.24317,
+        0.0642,
+        0.02823
+      ],
+      "layer": "html",
+      "role": "link",
+      "href": "/curriculo_kaue.pdf"
+    },
+    {
+      "id": "U10",
+      "name": "Rótulo Desenvolvimento",
+      "bbox_px": [
+        188,
+        440,
+        188,
+        29
+      ],
+      "bbox_normalized": [
+        0.13119,
+        0.40073,
+        0.13119,
+        0.02641
+      ],
+      "layer": "html",
+      "role": "link",
+      "destination": "development",
+      "href": "#projetos",
+      "anchor_px": [
+        190,
+        504
+      ]
+    },
+    {
+      "id": "U11",
+      "name": "Rótulo Automação",
+      "bbox_px": [
+        724,
+        314,
+        160,
+        29
+      ],
+      "bbox_normalized": [
+        0.50523,
+        0.28597,
+        0.11165,
+        0.02641
+      ],
+      "layer": "html",
+      "role": "link",
+      "destination": "automation",
+      "href": "#project-atlas",
+      "anchor_px": [
+        724,
+        384
+      ]
+    },
+    {
+      "id": "U12",
+      "name": "Rótulo Suporte",
+      "bbox_px": [
+        1245,
+        414,
+        118,
+        29
+      ],
+      "bbox_normalized": [
+        0.86881,
+        0.37705,
+        0.08234,
+        0.02641
+      ],
+      "layer": "html",
+      "role": "link",
+      "destination": "support",
+      "href": "#experiencia",
+      "anchor_px": [
+        1248,
+        476
+      ]
+    },
+    {
+      "id": "U13",
+      "name": "Indicação de rolagem",
+      "bbox_px": [
+        600,
+        899,
+        252,
+        29
+      ],
+      "bbox_normalized": [
+        0.4187,
+        0.81876,
+        0.17585,
+        0.02641
+      ],
+      "layer": "html",
+      "role": "hint",
+      "observed_text": "Role para conectar os caminhos",
+      "proposed_text": "Explore os caminhos ou role para ver os projetos"
+    },
+    {
+      "id": "U14",
+      "name": "Localização e formação",
+      "bbox_px": [
+        74,
+        1015,
+        247,
+        29
+      ],
+      "bbox_normalized": [
+        0.05164,
+        0.92441,
+        0.17237,
+        0.02641
+      ],
+      "layer": "html",
+      "role": "text",
+      "text": "Blumenau, SC · ADS em formação"
+    },
+    {
+      "id": "U15",
+      "name": "Atalho Atlas Notarial",
+      "bbox_px": [
+        840,
+        1002,
+        244,
+        52
+      ],
+      "bbox_normalized": [
+        0.58618,
+        0.91257,
+        0.17027,
+        0.04736
+      ],
+      "layer": "html",
+      "role": "link",
+      "href": "#project-atlas"
+    },
+    {
+      "id": "U16",
+      "name": "Atalho CKF Manutenção",
+      "bbox_px": [
+        1135,
+        1002,
+        240,
+        52
+      ],
+      "bbox_normalized": [
+        0.79204,
+        0.91257,
+        0.16748,
+        0.04736
+      ],
+      "layer": "html",
+      "role": "link",
+      "href": "#project-ckf"
+    },
+    {
+      "id": "W01",
+      "name": "Pavilhão esquerdo",
+      "bbox_px": [
+        73,
+        507,
+        240,
+        148
+      ],
+      "bbox_normalized": [
+        0.05094,
+        0.46175,
+        0.16748,
+        0.13479
+      ],
+      "layer": "world",
+      "destination": "development",
+      "anchor_px": [
+        190,
+        504
+      ],
+      "shape": "block-with-arch"
+    },
+    {
+      "id": "W02",
+      "name": "Pavilhão central elevado",
+      "bbox_px": [
+        649,
+        384,
+        209,
+        139
+      ],
+      "bbox_normalized": [
+        0.4529,
+        0.34973,
+        0.14585,
+        0.12659
+      ],
+      "layer": "world",
+      "destination": "automation",
+      "anchor_px": [
+        724,
+        384
+      ],
+      "shape": "open-cylinder"
+    },
+    {
+      "id": "W03",
+      "name": "Pavilhão direito",
+      "bbox_px": [
+        1145,
+        465,
+        237,
+        174
+      ],
+      "bbox_normalized": [
+        0.79902,
+        0.4235,
+        0.16539,
+        0.15847
+      ],
+      "layer": "world",
+      "destination": "support",
+      "anchor_px": [
+        1248,
+        476
+      ],
+      "shape": "vault-with-workspace"
+    },
+    {
+      "id": "W04",
+      "name": "Caminho de primeiro plano",
+      "bbox_px": [
+        0,
+        602,
+        533,
+        345
+      ],
+      "bbox_normalized": [
+        0.0,
+        0.54827,
+        0.37195,
+        0.31421
+      ],
+      "layer": "world",
+      "shape": "curved-path",
+      "visual_only": true
+    },
+    {
+      "id": "W05",
+      "name": "Ponte / caminho central",
+      "bbox_px": [
+        369,
+        485,
+        617,
+        206
+      ],
+      "bbox_normalized": [
+        0.2575,
+        0.44171,
+        0.43057,
+        0.18761
+      ],
+      "layer": "world",
+      "shape": "curved-bridge",
+      "visual_only": true
+    },
+    {
+      "id": "W06",
+      "name": "Caminho direito",
+      "bbox_px": [
+        1180,
+        585,
+        253,
+        151
+      ],
+      "bbox_normalized": [
+        0.82345,
+        0.53279,
+        0.17655,
+        0.13752
+      ],
+      "layer": "world",
+      "shape": "curved-path",
+      "visual_only": true
+    },
+    {
+      "id": "W07",
+      "name": "Escadaria esquerda",
+      "bbox_px": [
+        110,
+        604,
+        105,
+        64
+      ],
+      "bbox_normalized": [
+        0.07676,
+        0.55009,
+        0.07327,
+        0.05829
+      ],
+      "layer": "world",
+      "shape": "stairs",
+      "visual_only": true
+    },
+    {
+      "id": "W08",
+      "name": "Escadaria central",
+      "bbox_px": [
+        547,
+        498,
+        162,
+        87
+      ],
+      "bbox_normalized": [
+        0.38172,
+        0.45355,
+        0.11305,
+        0.07923
+      ],
+      "layer": "world",
+      "shape": "stairs",
+      "visual_only": true
+    },
+    {
+      "id": "W09",
+      "name": "Escadaria direita",
+      "bbox_px": [
+        1094,
+        611,
+        174,
+        151
+      ],
+      "bbox_normalized": [
+        0.76343,
+        0.55647,
+        0.12142,
+        0.13752
+      ],
+      "layer": "world",
+      "shape": "stairs",
+      "visual_only": true
+    },
+    {
+      "id": "W10",
+      "name": "Terreno / plataformas",
+      "bbox_px": [
+        0,
+        386,
+        1433,
+        581
+      ],
+      "bbox_normalized": [
+        0.0,
+        0.35155,
+        1.0,
+        0.52914
+      ],
+      "layer": "world",
+      "shape": "terrain",
+      "visual_only": true
+    },
+    {
+      "id": "W11",
+      "name": "Fundo distante / vazios",
+      "bbox_px": [
+        0,
+        377,
+        1134,
+        230
+      ],
+      "bbox_normalized": [
+        0.0,
+        0.34335,
+        0.79135,
+        0.20947
+      ],
+      "layer": "world",
+      "shape": "background",
+      "visual_only": true
+    }
+  ],
+  "destination_links": [
+    {
+      "id": "development",
+      "label": "Desenvolvimento",
+      "label_node": "U10",
+      "world_node": "W01",
+      "href": "#projetos"
+    },
+    {
+      "id": "automation",
+      "label": "Automação",
+      "label_node": "U11",
+      "world_node": "W02",
+      "href": "#project-atlas"
+    },
+    {
+      "id": "support",
+      "label": "Suporte",
+      "label_node": "U12",
+      "world_node": "W03",
+      "href": "#experiencia"
+    }
+  ],
+  "route_polylines_px": {
+    "front": [
+      [
+        0,
+        880
+      ],
+      [
+        200,
+        830
+      ],
+      [
+        420,
+        760
+      ],
+      [
+        500,
+        690
+      ],
+      [
+        470,
+        640
+      ],
+      [
+        330,
+        620
+      ],
+      [
+        210,
+        615
+      ]
+    ],
+    "bridge": [
+      [
+        490,
+        660
+      ],
+      [
+        700,
+        600
+      ],
+      [
+        900,
+        590
+      ],
+      [
+        1030,
+        570
+      ],
+      [
+        960,
+        500
+      ],
+      [
+        850,
+        470
+      ]
+    ],
+    "right": [
+      [
+        1075,
+        570
+      ],
+      [
+        1190,
+        680
+      ],
+      [
+        1300,
+        715
+      ],
+      [
+        1433,
+        730
+      ]
+    ]
+  },
+  "inferred_path_relationships": [
+    [
+      "W04",
+      "W01"
+    ],
+    [
+      "W04",
+      "W05"
+    ],
+    [
+      "W05",
+      "W02"
+    ],
+    [
+      "W05",
+      "W06"
+    ],
+    [
+      "W06",
+      "W03"
+    ]
+  ],
+  "path_relationship_status": "Proposed coherent reconstruction. Generated source does not prove hidden topology or physical continuity.",
+  "mobile": {
+    "status": "proposed-not-approved-render",
+    "width_range": [
+      320,
+      767
+    ],
+    "order": [
+      "U01/U03/menu",
+      "U04/U05",
+      "U06",
+      "U07",
+      "U08/U09",
+      "world-camera-mobile",
+      "U10/U11/U12-in-document-if-needed",
+      "U15/U16",
+      "remaining-content"
+    ],
+    "minimum_target_css_px": 44,
+    "scene_height_css_px": [
+      260,
+      360
+    ]
+  }
+}

@@ -19,3 +19,5 @@ Single-context: vocabulário em `GLOSSARY.md` na raiz e decisões em `docs/adr/`
 A referência visual aprovada e a especificação atual estão em `docs/design-transition/README.md` e `docs/design-transition/specification.md`. O plano de implementação está em `docs/superpowers/plans/2026-10-27-interactive-portfolio.md`.
 
 Consulte esses documentos antes de alterar a interface. A proposta preliminar em `docs/superpowers/specs/2026-10-27-portfolio-design.md` foi superada. Aprovação de design ou planejamento não autoriza publicação.
+
+Para localizar os elementos da imagem, leia `docs/design-transition/reference-map.md` junto com a referência original. O diagrama usa IDs U01–U16 para HTML e W01–W11 para cena/arte; `reference-map.json` contém coordenadas 2D aproximadas, não medidas CSS ou geometria 3D. A divisão proposta de trabalho está em `docs/design-transition/ticket-breakdown.md`; os rascunhos não são issues publicadas.

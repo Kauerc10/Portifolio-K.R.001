@@ -6,6 +6,8 @@
 
 Referência canônica: `assets/approved-desktop.png`, fornecida e aprovada pelo usuário. SHA-256: `A010410FF773E00A9BE7F40A3AD79DE58F75B311A877728AA7F2C07BC892F0EE`.
 
+Dimensões verificadas do arquivo: **1433 × 1098 px**. Consulte o [mapa espacial](reference-map.md) junto com a imagem: 27 IDs identificam interface, pavilhões, pontes, escadas e terreno, com posições 2D aproximadas e destinos definidos.
+
 Preservar os três pavilhões, as pontes curvas conectadas, a profundidade da paisagem, o branco mineral, a iluminação suave e o espaço limpo para os textos. Não substituir por esferas, um portal isolado, partículas ou construções genéricas. A cena é ilustração conceitual, não evidência de um projeto construído ou de um cliente.
 
 | Elemento | Decisão |
