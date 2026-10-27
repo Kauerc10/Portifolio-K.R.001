@@ -50,9 +50,11 @@ nodes = [
  node('W11','Fundo distante / vazios',(0,377,1134,230),'world', shape='background', visual_only=True),
 ]
 
-ROUTES = dict(front=[[0,880],[200,830],[420,760],[500,690],[470,640],[330,620],[210,615]],
-              bridge=[[490,660],[700,600],[900,590],[1030,570],[960,500],[850,470]],
-              right=[[1075,570],[1190,680],[1300,715],[1433,730]])
+ROUTES = dict(
+    front=[[5,894],[120,853],[230,817],[330,775],[410,731],[470,695],[495,675],[480,650],[430,632],[350,622],[270,622]],
+    bridge=[[495,665],[560,638],[650,619],[750,608],[850,603],[950,600],[1020,592],[1060,568],[1040,540],[990,520],[930,508],[860,502],[800,498]],
+    upper=[[850,468],[900,472],[950,482],[920,495],[870,500]],
+    right=[[1275,640],[1235,652],[1200,672],[1195,688],[1230,700],[1300,714],[1370,723],[1428,729]])
 
 data = dict(schema='portfolio-reference-map/v1', source='approved-desktop.png',
             source_sha256=hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
@@ -61,7 +63,7 @@ data = dict(schema='portfolio-reference-map/v1', source='approved-desktop.png',
             layers=dict(html='Real text, links, focus, labels and controls',world='Illustration or 3D only; no baked UI'),
             nodes=nodes,
             destination_links=[dict(id='development',label='Desenvolvimento',label_node='U10',world_node='W01',href='#projetos'),dict(id='automation',label='Automação',label_node='U11',world_node='W02',href='#project-atlas'),dict(id='support',label='Suporte',label_node='U12',world_node='W03',href='#experiencia')],
-            route_polylines_px=ROUTES,inferred_path_relationships=[['W04','W01'],['W04','W05'],['W05','W02'],['W05','W06'],['W06','W03']],
+            route_polylines_px=ROUTES,route_status='Traced over the visible purple ribbon (color segmentation + manual waypoints), +-10px. Gap between bridge end and right path is hidden in the image and intentionally not drawn.',inferred_path_relationships=[['W04','W01'],['W04','W05'],['W05','W02'],['W05','W06'],['W06','W03']],
             path_relationship_status='Proposed coherent reconstruction. Generated source does not prove hidden topology or physical continuity.',
             mobile=dict(status='proposed-not-approved-render',width_range=[320,767],order=['U01/U03/menu','U04/U05','U06','U07','U08/U09','world-camera-mobile','U10/U11/U12-in-document-if-needed','U15/U16','remaining-content'],minimum_target_css_px=44,scene_height_css_px=[260,360]))
 (ROOT/'reference-map.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
@@ -122,7 +124,7 @@ def txt(x,y,t,color,size=15,bold=False):
 txt(24,ly,'LEGENDA  ·  imagem original esmaecida; posições aproximadas, não é um design novo',INK,17,True)
 txt(24,ly+30,'AZUL  U = HTML real, acessível (texto, links, foco)',BLUE,15,True)
 txt(24,ly+52,'ROXO  W = cena / arte 3D, sem UI embutida',PURPLE,15,True)
-txt(24,ly+74,'LARANJA tracejado = rota inferida dos caminhos (W04 → W01 · W04 → W05 → W02 · W05 → W06 → W03); ponto = âncora do rótulo',ORANGE,15,True)
+txt(24,ly+74,'LARANJA tracejado = faixa roxa visível na imagem (W04→W01, W04→W05→W02, W06). Trecho entre W05 e W06 oculto na imagem, não traçado; ponto = âncora',ORANGE,15,True)
 cols=[(24,['U01 marca · #hero','U02 navegação (Projetos, Trajetória, Contato)','U03 Currículo (cabeçalho) · PDF','U04 + U05 título em duas linhas','U06 três áreas de atuação','U07 apresentação curta','U08 CTA Explorar meu trabalho · #projetos']),
  (500,['U09 Currículo secundário · PDF','U10 Desenvolvimento → W01 · #projetos','U11 Automação → W02 · #project-atlas','U12 Suporte → W03 · #experiencia','U13 indicação de rolagem','U14 Blumenau · ADS em formação','U15 Atlas · U16 CKF (atalhos)']),
  (960,['W01 pavilhão Desenvolvimento','W02 pavilhão Automação (elevado)','W03 pavilhão Suporte','W04 caminho frente · W05 ponte central','W06 caminho direito','W07/W08/W09 escadarias','W10 terreno · W11 fundo e vazios (sem caixa)'])]
@@ -132,4 +134,6 @@ svg.append('</svg>')
 (ASSETS/'reference-map.svg').write_text('\n'.join(svg)+'\n',encoding='utf-8')
 im.save(ASSETS/'reference-map.png',optimize=True)
 print(f'Reference {W} x {H}; {len(nodes)} elements. SVG, PNG and JSON written.')
+
+
 

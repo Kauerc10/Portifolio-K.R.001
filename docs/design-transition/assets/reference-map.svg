@@ -28,9 +28,10 @@
 <rect x="110" y="604" width="105" height="64" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
 <rect x="547" y="498" width="162" height="87" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
 <rect x="1094" y="611" width="174" height="151" fill="#6534D8" fill-opacity="0.09" stroke="#6534D8" stroke-width="2"/>
-<polyline points="0,880 200,830 420,760 500,690 470,640 330,620 210,615" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
-<polyline points="490,660 700,600 900,590 1030,570 960,500 850,470" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
-<polyline points="1075,570 1190,680 1300,715 1433,730" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
+<polyline points="5,894 120,853 230,817 330,775 410,731 470,695 495,675 480,650 430,632 350,622 270,622" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
+<polyline points="495,665 560,638 650,619 750,608 850,603 950,600 1020,592 1060,568 1040,540 990,520 930,508 860,502 800,498" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
+<polyline points="850,468 900,472 950,482 920,495 870,500" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
+<polyline points="1275,640 1235,652 1200,672 1195,688 1230,700 1300,714 1370,723 1428,729" fill="none" stroke="#E8590C" stroke-width="4" stroke-dasharray="12 8"/>
 <circle cx="190" cy="504" r="7" fill="#E8590C" stroke="#fff" stroke-width="2"/>
 <circle cx="724" cy="384" r="7" fill="#E8590C" stroke="#fff" stroke-width="2"/>
 <circle cx="1248" cy="476" r="7" fill="#E8590C" stroke="#fff" stroke-width="2"/>
@@ -63,7 +64,7 @@
 <text x="24" y="1129" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#14131C">LEGENDA  ·  imagem original esmaecida; posições aproximadas, não é um design novo</text>
 <text x="24" y="1157" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#245783">AZUL  U = HTML real, acessível (texto, links, foco)</text>
 <text x="24" y="1179" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#6534D8">ROXO  W = cena / arte 3D, sem UI embutida</text>
-<text x="24" y="1201" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#E8590C">LARANJA tracejado = rota inferida dos caminhos (W04 → W01 · W04 → W05 → W02 · W05 → W06 → W03); ponto = âncora do rótulo</text>
+<text x="24" y="1201" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#E8590C">LARANJA tracejado = faixa roxa visível na imagem (W04→W01, W04→W05→W02, W06). Trecho entre W05 e W06 oculto na imagem, não traçado; ponto = âncora</text>
 <text x="24" y="1230" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U01 marca · #hero</text>
 <text x="24" y="1250" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U02 navegação (Projetos, Trajetória, Contato)</text>
 <text x="24" y="1270" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#33334A">U03 Currículo (cabeçalho) · PDF</text>
