@@ -5,34 +5,34 @@
     "height": 1098,
     "dpr": 1.5,
     "mobile": false,
-    "triangles": 72548,
-    "calls": 67,
-    "geometries": 34,
-    "textures": 4,
+    "triangles": 59686,
+    "calls": 23,
+    "geometries": 23,
+    "textures": 2,
     "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
     "three": "185",
     "anchors": {
       "development": {
-        "x": 229.99999999999997,
-        "y": 516.8612080483475
+        "x": 209.5000179211299,
+        "y": 504.688384110353
       },
       "automation": {
-        "x": 756,
-        "y": 396.3172981113041
+        "x": 694.0000030696392,
+        "y": 398.95751577172325
       },
       "support": {
-        "x": 1247,
-        "y": 508.66857760765197
+        "x": 1219.0000026226044,
+        "y": 464.0243752198936
       }
     },
-    "durationMs": 10017.4,
-    "samples": 320,
-    "steadyTriangles": 47274,
-    "steadyCalls": 34,
-    "frameMedianMs": 33.29999999999927,
-    "frameP95Ms": 50,
-    "cpuSubmitMedianMs": 2.6000000005587935,
-    "cpuSubmitP95Ms": 5.800000000745058,
+    "durationMs": 10000.2,
+    "samples": 386,
+    "steadyTriangles": 59686,
+    "steadyCalls": 23,
+    "frameMedianMs": 33.100000000000364,
+    "frameP95Ms": 33.69999999999982,
+    "cpuSubmitMedianMs": 2.399999998509884,
+    "cpuSubmitP95Ms": 3.900000002235174,
     "errors": [],
     "browser": "156.0.8078.48"
   },
@@ -42,34 +42,34 @@
     "height": 340,
     "dpr": 1,
     "mobile": true,
-    "triangles": 72548,
-    "calls": 67,
-    "geometries": 34,
-    "textures": 4,
+    "triangles": 59686,
+    "calls": 23,
+    "geometries": 23,
+    "textures": 2,
     "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
     "three": "185",
     "anchors": {
       "development": {
-        "x": 75.60633675245352,
-        "y": 159.9847136039939
+        "x": 69.66503615133885,
+        "y": 156.24302140824676
       },
       "automation": {
-        "x": 203.88255479697855,
-        "y": 118.93971866778884
+        "x": 185.8883642797187,
+        "y": 116.52585662549589
       },
       "support": {
-        "x": 330.89201577626005,
-        "y": 143.30607062283042
+        "x": 323.2211281045488,
+        "y": 132.5599856956219
       }
     },
-    "durationMs": 10000,
-    "samples": 588,
-    "steadyTriangles": 47274,
-    "steadyCalls": 34,
-    "frameMedianMs": 16.69999999999891,
-    "frameP95Ms": 16.800000000000182,
-    "cpuSubmitMedianMs": 0.6999999992549419,
-    "cpuSubmitP95Ms": 1.599999999627471,
+    "durationMs": 10000.1,
+    "samples": 601,
+    "steadyTriangles": 59686,
+    "steadyCalls": 23,
+    "frameMedianMs": 16.699999999999818,
+    "frameP95Ms": 16.80000000000109,
+    "cpuSubmitMedianMs": 0.19999999925494194,
+    "cpuSubmitP95Ms": 0.5,
     "errors": [],
     "browser": "156.0.8078.48"
   }

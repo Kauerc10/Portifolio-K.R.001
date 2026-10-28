@@ -1,0 +1,34 @@
+{
+  "triangles": 59686,
+  "objects": [
+    "mountains",
+    "path-development",
+    "path-bridge",
+    "path-upper",
+    "path-support",
+    "viaduct-arches",
+    "dest-development",
+    "dest-automation",
+    "dest-support",
+    "terraces-left",
+    "mass-right",
+    "stairs-w01-entry",
+    "stairs-dev",
+    "stairs-front",
+    "stairs-left",
+    "stairs-centre-right",
+    "stairs-support",
+    "stairs-tunnel",
+    "fins-w02",
+    "fins-right",
+    "props",
+    "foliage",
+    "terrain"
+  ],
+  "gain": 1.05,
+  "atlas": {
+    "structures": 2048,
+    "terrain": 2048
+  },
+  "samples": 48
+}

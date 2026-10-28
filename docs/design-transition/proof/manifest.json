@@ -1,7 +1,7 @@
 {
-  "status": "experimental-not-production",
-  "source": "design/scene-proof/world.ts",
-  "license": "original procedural geometry and generated mineral texture",
+  "status": "authored-gltf-baked",
+  "source": "design/scene-proof/blender/build_scene.py",
+  "license": "original authored Blender 4.5 geometry and baked lightmap atlases",
   "cameras": {
     "desktop": {
       "viewport": [
@@ -39,12 +39,12 @@
   "assets": [
     {
       "file": "poster-desktop.webp",
-      "bytes": 29556,
+      "bytes": 44278,
       "containsUI": false
     },
     {
       "file": "poster-mobile.webp",
-      "bytes": 6986,
+      "bytes": 10040,
       "containsUI": false
     }
   ]

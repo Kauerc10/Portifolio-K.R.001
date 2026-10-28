@@ -1,23 +1,29 @@
 import * as THREE from 'three';
 import { buildProofWorld, proofCamera } from './world';
+import { loadAuthoredWorld } from './authored';
 
 const canvas = document.querySelector('canvas')!;
-const mobile = new URLSearchParams(location.search).get('camera') === 'mobile';
+const params = new URLSearchParams(location.search);
+const mobile = params.get('camera') === 'mobile';
+// ?scene=blockout shows the earlier procedural experiment for comparison; default is the authored GLB.
+const blockout = params.get('scene') === 'blockout';
 const width = innerWidth, height = innerHeight;
 const percentile = (values: number[], fraction: number) => [...values].sort((a, b) => a - b)[Math.floor((values.length - 1) * fraction)];
 
-try {
+async function start() {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
   renderer.setPixelRatio(mobile ? 1 : 1.5);
   renderer.setSize(width, height, false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.1;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.shadowMap.autoUpdate = false;
-  renderer.shadowMap.needsUpdate = true;
-  const world = buildProofWorld();
+  if (blockout) {
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.autoUpdate = false;
+    renderer.shadowMap.needsUpdate = true;
+  }
+  const world = blockout ? buildProofWorld() : await loadAuthoredWorld();
   const camera = proofCamera(width, height, mobile);
   renderer.render(world.scene, camera);
   const base = camera.position.clone();
@@ -65,8 +71,10 @@ try {
   };
   Object.assign(window, { sceneProof: proof });
   addEventListener('pagehide', () => { world.dispose(); renderer.dispose(); }, { once: true });
-} catch (error) {
+}
+
+start().catch(error => {
   canvas.hidden = true;
   document.querySelector<HTMLElement>('#failure')!.hidden = false;
   Object.assign(window, { sceneProof: { ready: false, error: String(error) } });
-}
+});
