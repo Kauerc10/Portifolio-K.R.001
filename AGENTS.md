@@ -20,4 +20,6 @@ A referência visual aprovada e a especificação atual estão em `docs/design-t
 
 Consulte esses documentos antes de alterar a interface. A proposta preliminar em `docs/superpowers/specs/2026-10-27-portfolio-design.md` foi superada. Aprovação de design ou planejamento não autoriza publicação.
 
-Para localizar os elementos da imagem, leia `docs/design-transition/reference-map.md` junto com a referência original. O diagrama usa IDs U01–U16 para HTML e W01–W11 para cena/arte; `reference-map.json` contém coordenadas 2D aproximadas, não medidas CSS ou geometria 3D. A divisão proposta de trabalho está em `docs/design-transition/ticket-breakdown.md`; os rascunhos não são issues publicadas.
+Para localizar os elementos da imagem, leia `docs/design-transition/reference-map.md` junto com a referência original. O diagrama usa IDs U01–U16 para HTML e W01–W11 para cena/arte; `reference-map.json` contém coordenadas 2D aproximadas, não medidas CSS ou geometria 3D. O traçado laranja acompanha apenas as faixas roxas visíveis; o trecho oculto não está desenhado e não deve ser tratado como geometria comprovada.
+
+Os tickets T01–T11 foram aprovados e publicados como issues #36–#46. Consulte `docs/design-transition/ticket-breakdown.md`, `ticket-proposal.json` e `ticket-numbers.json` para os vínculos. Os arquivos em `ticket-drafts/` são cópias locais de consulta, não autorização para recriar issues. Antes de iniciar, conferir estado, responsáveis e bloqueios nativos no GitHub; `ready-for-agent` não significa ausência de bloqueios.

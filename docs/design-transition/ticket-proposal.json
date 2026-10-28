@@ -1,9 +1,9 @@
 {
   "schema": "portfolio-transition-ticket-proposal/v1",
-  "status": "awaiting-breakdown-approval",
+  "status": "published",
   "repository": "Kauerc10/Portifolio-K.R.001",
   "source": "approved design transition plan",
-  "published": false,
+  "published": true,
   "tickets": [
     {
       "id": "T01",
@@ -13,7 +13,7 @@
       "regions": "W01–W11",
       "draft_file": "t01-scene-proof.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 36,
       "what_to_build": "Demonstrar um trecho da paisagem branca e violeta que preserve a composição aprovada e permita decidir entre geometria procedural e asset autorado antes de expandir a reformulação.",
       "acceptance_criteria": [
         "Registrar baseline funcional e técnico, distinguindo falhas existentes das novas.",
@@ -23,7 +23,11 @@
         "Decidir procedural versus glTF com evidência; produzir posters desktop/mobile sem textos e UI, ou registrar explicitamente o bloqueio para concluir visualmente a próxima entrega.",
         "Apresentar a prova na primeira revisão guiada; não substituir exploração 3D por uma imagem com tilt sem decisão do usuário."
       ],
-      "body": "## What to build\n\nDemonstrar um trecho da paisagem branca e violeta que preserve a composição aprovada e permita decidir entre geometria procedural e asset autorado antes de expandir a reformulação.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Registrar baseline funcional e técnico, distinguindo falhas existentes das novas.\n- [ ] Exibir terreno, uma ponte curva com espessura e um pavilhão com abertura, em câmera desktop e mobile.\n- [ ] Comparar o trecho com a referência, preservando silhueta, vazios, material branco e cor-base #6534D8.\n- [ ] Medir bytes, triângulos, chamadas de renderização e tempo de frame em configuração registrada; não apresentar metas como resultados.\n- [ ] Decidir procedural versus glTF com evidência; produzir posters desktop/mobile sem textos e UI, ou registrar explicitamente o bloqueio para concluir visualmente a próxima entrega.\n- [ ] Apresentar a prova na primeira revisão guiada; não substituir exploração 3D por uma imagem com tilt sem decisão do usuário.\n\n## Blocked by\n\nNone (can start immediately)\n\n## Regiões de referência\n\nW01–W11; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nDemonstrar um trecho da paisagem branca e violeta que preserve a composição aprovada e permita decidir entre geometria procedural e asset autorado antes de expandir a reformulação.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Registrar baseline funcional e técnico, distinguindo falhas existentes das novas.\n- [ ] Exibir terreno, uma ponte curva com espessura e um pavilhão com abertura, em câmera desktop e mobile.\n- [ ] Comparar o trecho com a referência, preservando silhueta, vazios, material branco e cor-base #6534D8.\n- [ ] Medir bytes, triângulos, chamadas de renderização e tempo de frame em configuração registrada; não apresentar metas como resultados.\n- [ ] Decidir procedural versus glTF com evidência; produzir posters desktop/mobile sem textos e UI, ou registrar explicitamente o bloqueio para concluir visualmente a próxima entrega.\n- [ ] Apresentar a prova na primeira revisão guiada; não substituir exploração 3D por uma imagem com tilt sem decisão do usuário.\n\n## Blocked by\n\nNone (can start immediately)\n\n## Regiões de referência\n\nW01–W11; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/36",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T02",
@@ -35,7 +39,7 @@
       "regions": "U01–U16",
       "draft_file": "t02-usable-shell.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 37,
       "what_to_build": "Permitir que o visitante leia a apresentação, navegue pelo portfólio e abra o currículo imediatamente, com a composição aprovada sobre um poster e sem esperar animações.",
       "acceptance_criteria": [
         "Usar o cumprimento, texto curto, três áreas e violeta aprovados; manter todo texto e controle em HTML acessível.",
@@ -45,7 +49,13 @@
         "Menu móvel abre/fecha, informa seu estado e restaura foco; contatos ainda não migrados oferecem e-mail direto.",
         "Ser utilizável a 320 px, com teclado, zoom e ausência de JS/renderer; alvos planejados de pelo menos 44 CSS px e nenhuma rolagem horizontal."
       ],
-      "body": "## What to build\n\nPermitir que o visitante leia a apresentação, navegue pelo portfólio e abra o currículo imediatamente, com a composição aprovada sobre um poster e sem esperar animações.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Usar o cumprimento, texto curto, três áreas e violeta aprovados; manter todo texto e controle em HTML acessível.\n- [ ] Navegar por Projetos, Trajetória, Contato e currículo usando links reais, preservando hashes existentes.\n- [ ] Usar shells novo e legado mutuamente exclusivos: o novo não monta loader, cursor, canvas ou motor global antigo.\n- [ ] Exibir poster próprio sem UI duplicada; caso ainda temporário, não declarar conclusão visual e registrar o bloqueio.\n- [ ] Menu móvel abre/fecha, informa seu estado e restaura foco; contatos ainda não migrados oferecem e-mail direto.\n- [ ] Ser utilizável a 320 px, com teclado, zoom e ausência de JS/renderer; alvos planejados de pelo menos 44 CSS px e nenhuma rolagem horizontal.\n\n## Blocked by\n\nT01\n\n## Regiões de referência\n\nU01–U16; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nPermitir que o visitante leia a apresentação, navegue pelo portfólio e abra o currículo imediatamente, com a composição aprovada sobre um poster e sem esperar animações.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Usar o cumprimento, texto curto, três áreas e violeta aprovados; manter todo texto e controle em HTML acessível.\n- [ ] Navegar por Projetos, Trajetória, Contato e currículo usando links reais, preservando hashes existentes.\n- [ ] Usar shells novo e legado mutuamente exclusivos: o novo não monta loader, cursor, canvas ou motor global antigo.\n- [ ] Exibir poster próprio sem UI duplicada; caso ainda temporário, não declarar conclusão visual e registrar o bloqueio.\n- [ ] Menu móvel abre/fecha, informa seu estado e restaura foco; contatos ainda não migrados oferecem e-mail direto.\n- [ ] Ser utilizável a 320 px, com teclado, zoom e ausência de JS/renderer; alvos planejados de pelo menos 44 CSS px e nenhuma rolagem horizontal.\n\n## Blocked by\n\n- #36\n\n## Regiões de referência\n\nU01–U16; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/37",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        36
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T03",
@@ -57,7 +67,7 @@
       "regions": "W01–W11; base de U10–U12",
       "draft_file": "t03-resilient-world.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 38,
       "what_to_build": "Carregar a paisagem no hero sem bloquear conteúdo e preservar a navegação quando GPU, rede ou carregamento falharem.",
       "acceptance_criteria": [
         "Manter o poster até o primeiro frame correto; usar um único runtime Three e um único loop local.",
@@ -68,7 +78,13 @@
         "Aplicar qualidade/DPR e degradação única da especificação; registrar medições e fallback sem esconder links.",
         "Documentar contratos de âncoras, picking e ativação antes de integrar os caminhos."
       ],
-      "body": "## What to build\n\nCarregar a paisagem no hero sem bloquear conteúdo e preservar a navegação quando GPU, rede ou carregamento falharem.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Manter o poster até o primeiro frame correto; usar um único runtime Three e um único loop local.\n- [ ] Cobrir poster, loading, ready, paused e fallback sem spinner ou reinício infinito.\n- [ ] Suspender fora da viewport/aba oculta; descartar recursos, callbacks e listeners ao desmontar, inclusive no Strict Mode.\n- [ ] Preferência reduzida e Save-Data oferecem modo estático; mudança de preferência durante loading invalida resultados antigos.\n- [ ] Sair do hero durante loading não inicia GPU/RAF fora de vista; reativação permitida espera visibilidade.\n- [ ] Aplicar qualidade/DPR e degradação única da especificação; registrar medições e fallback sem esconder links.\n- [ ] Documentar contratos de âncoras, picking e ativação antes de integrar os caminhos.\n\n## Blocked by\n\nT02\n\n## Regiões de referência\n\nW01–W11; base de U10–U12; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nCarregar a paisagem no hero sem bloquear conteúdo e preservar a navegação quando GPU, rede ou carregamento falharem.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Manter o poster até o primeiro frame correto; usar um único runtime Three e um único loop local.\n- [ ] Cobrir poster, loading, ready, paused e fallback sem spinner ou reinício infinito.\n- [ ] Suspender fora da viewport/aba oculta; descartar recursos, callbacks e listeners ao desmontar, inclusive no Strict Mode.\n- [ ] Preferência reduzida e Save-Data oferecem modo estático; mudança de preferência durante loading invalida resultados antigos.\n- [ ] Sair do hero durante loading não inicia GPU/RAF fora de vista; reativação permitida espera visibilidade.\n- [ ] Aplicar qualidade/DPR e degradação única da especificação; registrar medições e fallback sem esconder links.\n- [ ] Documentar contratos de âncoras, picking e ativação antes de integrar os caminhos.\n\n## Blocked by\n\n- #37\n\n## Regiões de referência\n\nW01–W11; base de U10–U12; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/38",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        37
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T04",
@@ -80,7 +96,7 @@
       "regions": "U10–U13; W01–W06",
       "draft_file": "t04-interactive-paths.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 39,
       "what_to_build": "Fazer cada pavilhão conduzir ao conteúdo profissional correto, com respostas visuais contidas que preservam leitura, foco e rolagem.",
       "acceptance_criteria": [
         "Desenvolvimento leva a Projetos, Automação ao Atlas e Suporte à Experiência; links e raycast compartilham um cadastro.",
@@ -90,7 +106,13 @@
         "Toque direto funciona e swipe vertical na cena rola o documento; não exigir hover ou arraste.",
         "URL com hash, Voltar/Avançar e foco após ativação explícita mantêm comportamento útil; capturar prova de movimento além de screenshots."
       ],
-      "body": "## What to build\n\nFazer cada pavilhão conduzir ao conteúdo profissional correto, com respostas visuais contidas que preservam leitura, foco e rolagem.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Desenvolvimento leva a Projetos, Automação ao Atlas e Suporte à Experiência; links e raycast compartilham um cadastro.\n- [ ] Rótulos são HTML com foco e alvo tocável; projeção acompanha câmera e oferece alternativa no fluxo se houver colisão.\n- [ ] Mouse, hover/foco e avanço curto por scroll seguem limites da especificação sem atrasar o link nem capturar a rolagem.\n- [ ] Interromper ou trocar destino cancela intenção anterior; ativar redução de movimento cancela deslocamentos.\n- [ ] Toque direto funciona e swipe vertical na cena rola o documento; não exigir hover ou arraste.\n- [ ] URL com hash, Voltar/Avançar e foco após ativação explícita mantêm comportamento útil; capturar prova de movimento além de screenshots.\n\n## Blocked by\n\nT03\n\n## Regiões de referência\n\nU10–U13; W01–W06; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nFazer cada pavilhão conduzir ao conteúdo profissional correto, com respostas visuais contidas que preservam leitura, foco e rolagem.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Desenvolvimento leva a Projetos, Automação ao Atlas e Suporte à Experiência; links e raycast compartilham um cadastro.\n- [ ] Rótulos são HTML com foco e alvo tocável; projeção acompanha câmera e oferece alternativa no fluxo se houver colisão.\n- [ ] Mouse, hover/foco e avanço curto por scroll seguem limites da especificação sem atrasar o link nem capturar a rolagem.\n- [ ] Interromper ou trocar destino cancela intenção anterior; ativar redução de movimento cancela deslocamentos.\n- [ ] Toque direto funciona e swipe vertical na cena rola o documento; não exigir hover ou arraste.\n- [ ] URL com hash, Voltar/Avançar e foco após ativação explícita mantêm comportamento útil; capturar prova de movimento além de screenshots.\n\n## Blocked by\n\n- #38\n\n## Regiões de referência\n\nU10–U13; W01–W06; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/39",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        38
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T05",
@@ -102,7 +124,7 @@
       "regions": "U15–U16; seção Projetos",
       "draft_file": "t05-projects.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 40,
       "what_to_build": "Permitir avaliar os projetos pelo problema, contribuição, solução, tecnologias e evidências reais, em português e inglês.",
       "acceptance_criteria": [
         "Atlas e CKF aparecem em produção; DocFácil e VECOM em desenvolvimento; Foli permanece complementar.",
@@ -112,7 +134,13 @@
         "Preservar IDs de projetos já usados por links/assistente e adicionar o destino do VECOM.",
         "Conteúdo longo nos dois idiomas não quebra mobile nem navegação por teclado."
       ],
-      "body": "## What to build\n\nPermitir avaliar os projetos pelo problema, contribuição, solução, tecnologias e evidências reais, em português e inglês.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Atlas e CKF aparecem em produção; DocFácil e VECOM em desenvolvimento; Foli permanece complementar.\n- [ ] Cada projeto mostra contexto e contribuição verificáveis; o Atlas descreve a redução de uma etapa de aproximadamente cinco minutos para vinte segundos.\n- [ ] Links existentes continuam úteis e URLs ausentes omitem ações; não inventar demo pública para projeto privado.\n- [ ] Screenshots reais são usados apenas no projeto correspondente, sem apresentar arte conceitual como prova.\n- [ ] Preservar IDs de projetos já usados por links/assistente e adicionar o destino do VECOM.\n- [ ] Conteúdo longo nos dois idiomas não quebra mobile nem navegação por teclado.\n\n## Blocked by\n\nT02\n\n## Regiões de referência\n\nU15–U16; seção Projetos; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nPermitir avaliar os projetos pelo problema, contribuição, solução, tecnologias e evidências reais, em português e inglês.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Atlas e CKF aparecem em produção; DocFácil e VECOM em desenvolvimento; Foli permanece complementar.\n- [ ] Cada projeto mostra contexto e contribuição verificáveis; o Atlas descreve a redução de uma etapa de aproximadamente cinco minutos para vinte segundos.\n- [ ] Links existentes continuam úteis e URLs ausentes omitem ações; não inventar demo pública para projeto privado.\n- [ ] Screenshots reais são usados apenas no projeto correspondente, sem apresentar arte conceitual como prova.\n- [ ] Preservar IDs de projetos já usados por links/assistente e adicionar o destino do VECOM.\n- [ ] Conteúdo longo nos dois idiomas não quebra mobile nem navegação por teclado.\n\n## Blocked by\n\n- #37\n\n## Regiões de referência\n\nU15–U16; seção Projetos; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/40",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        37
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T06",
@@ -124,7 +152,7 @@
       "regions": "U14; seções Sobre, Experiência, Skills, Formação e Conquistas",
       "draft_file": "t06-trajectory.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 41,
       "what_to_build": "Mostrar como desenvolvimento, automação e suporte se conectam à experiência de Kauê, com formação e reconhecimentos sustentados pelos currículos.",
       "acceptance_criteria": [
         "Usar o nome formal do tabelionato, datas profissionais e ADS na Cruzeiro do Sul desde agosto de 2026 conforme currículos.",
@@ -134,7 +162,13 @@
         "Preservar hashes antigos e evidenciar atendimento/diagnóstico no destino Suporte.",
         "Português e inglês mantêm paridade factual e funcionam em mobile e com teclado."
       ],
-      "body": "## What to build\n\nMostrar como desenvolvimento, automação e suporte se conectam à experiência de Kauê, com formação e reconhecimentos sustentados pelos currículos.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Usar o nome formal do tabelionato, datas profissionais e ADS na Cruzeiro do Sul desde agosto de 2026 conforme currículos.\n- [ ] Não transformar projetos em empregos nem atribuir senioridade, fluência ou disponibilidade não confirmadas.\n- [ ] Apresentar as três frentes com exemplos de aplicação e sem porcentagens de domínio.\n- [ ] Manter OBMEP, cursos e acesso aos anexos/certificados existentes com hierarquia legível.\n- [ ] Preservar hashes antigos e evidenciar atendimento/diagnóstico no destino Suporte.\n- [ ] Português e inglês mantêm paridade factual e funcionam em mobile e com teclado.\n\n## Blocked by\n\nT02\n\n## Regiões de referência\n\nU14; seções Sobre, Experiência, Skills, Formação e Conquistas; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nMostrar como desenvolvimento, automação e suporte se conectam à experiência de Kauê, com formação e reconhecimentos sustentados pelos currículos.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Usar o nome formal do tabelionato, datas profissionais e ADS na Cruzeiro do Sul desde agosto de 2026 conforme currículos.\n- [ ] Não transformar projetos em empregos nem atribuir senioridade, fluência ou disponibilidade não confirmadas.\n- [ ] Apresentar as três frentes com exemplos de aplicação e sem porcentagens de domínio.\n- [ ] Manter OBMEP, cursos e acesso aos anexos/certificados existentes com hierarquia legível.\n- [ ] Preservar hashes antigos e evidenciar atendimento/diagnóstico no destino Suporte.\n- [ ] Português e inglês mantêm paridade factual e funcionam em mobile e com teclado.\n\n## Blocked by\n\n- #37\n\n## Regiões de referência\n\nU14; seções Sobre, Experiência, Skills, Formação e Conquistas; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/41",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        37
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T07",
@@ -146,7 +180,7 @@
       "regions": "U03/U09; seção Contato e Footer",
       "draft_file": "t07-contact-resumes.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 42,
       "what_to_build": "Permitir abrir os currículos atualizados, copiar ou usar o e-mail e enviar uma mensagem com confirmação real, preservando o texto em caso de falha.",
       "acceptance_criteria": [
         "PDF geral é o padrão e mantém a URL histórica; versões Desenvolvimento/Automação e Suporte são identificadas por foco.",
@@ -156,7 +190,13 @@
         "Clipboard informa sucesso apenas após concluir a cópia; em recusa oferece e-mail visível/selecionável e mailto.",
         "Preenchimento por assistente tem integração controlada, sem desalinhar estado React; formulário funciona sem loaderDone e e-mail funciona sem JS."
       ],
-      "body": "## What to build\n\nPermitir abrir os currículos atualizados, copiar ou usar o e-mail e enviar uma mensagem com confirmação real, preservando o texto em caso de falha.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] PDF geral é o padrão e mantém a URL histórica; versões Desenvolvimento/Automação e Suporte são identificadas por foco.\n- [ ] Formulário tem labels associados, estados idle/submitting/success/error e prevenção de envio duplicado.\n- [ ] Erros de rede, resposta inválida, serviço indisponível e 429 preservam os campos e mostram recuperação/e-mail.\n- [ ] Manter payload, proteção antispam e chave no servidor; testes mockam o transporte e não enviam mensagem real.\n- [ ] Clipboard informa sucesso apenas após concluir a cópia; em recusa oferece e-mail visível/selecionável e mailto.\n- [ ] Preenchimento por assistente tem integração controlada, sem desalinhar estado React; formulário funciona sem loaderDone e e-mail funciona sem JS.\n\n## Blocked by\n\nT02\n\n## Regiões de referência\n\nU03/U09; seção Contato e Footer; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nPermitir abrir os currículos atualizados, copiar ou usar o e-mail e enviar uma mensagem com confirmação real, preservando o texto em caso de falha.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] PDF geral é o padrão e mantém a URL histórica; versões Desenvolvimento/Automação e Suporte são identificadas por foco.\n- [ ] Formulário tem labels associados, estados idle/submitting/success/error e prevenção de envio duplicado.\n- [ ] Erros de rede, resposta inválida, serviço indisponível e 429 preservam os campos e mostram recuperação/e-mail.\n- [ ] Manter payload, proteção antispam e chave no servidor; testes mockam o transporte e não enviam mensagem real.\n- [ ] Clipboard informa sucesso apenas após concluir a cópia; em recusa oferece e-mail visível/selecionável e mailto.\n- [ ] Preenchimento por assistente tem integração controlada, sem desalinhar estado React; formulário funciona sem loaderDone e e-mail funciona sem JS.\n\n## Blocked by\n\n- #37\n\n## Regiões de referência\n\nU03/U09; seção Contato e Footer; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/42",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        37
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T08",
@@ -168,7 +208,7 @@
       "regions": "U01–U16; materiais W01–W11",
       "draft_file": "t08-locale-theme.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 43,
       "what_to_build": "Permitir alternar idioma e tema sem perder contexto de navegação, duplicar recursos ou comprometer a identidade visual da paisagem.",
       "acceptance_criteria": [
         "Claro usa #6534D8; escuro tem tratamento coerente com a paleta da especificação, sem simplesmente inverter a imagem.",
@@ -178,7 +218,13 @@
         "Movimento reduzido e modo estático permanecem coerentes durante troca de tema/idioma.",
         "Validar contraste sobre o fundo real e registrar comparação desktop/mobile."
       ],
-      "body": "## What to build\n\nPermitir alternar idioma e tema sem perder contexto de navegação, duplicar recursos ou comprometer a identidade visual da paisagem.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Claro usa #6534D8; escuro tem tratamento coerente com a paleta da especificação, sem simplesmente inverter a imagem.\n- [ ] Dois idiomas preservam hash e query e não acumulam listeners/renderers em mudanças e remontagens.\n- [ ] Texto inglês, zoom e orientação não sobrepõem rótulos ou CTAs.\n- [ ] Materiais e poster do tema alternativo são verificados; ausência de variante não pode ser declarada como tema completo.\n- [ ] Movimento reduzido e modo estático permanecem coerentes durante troca de tema/idioma.\n- [ ] Validar contraste sobre o fundo real e registrar comparação desktop/mobile.\n\n## Blocked by\n\nT03\n\n## Regiões de referência\n\nU01–U16; materiais W01–W11; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nPermitir alternar idioma e tema sem perder contexto de navegação, duplicar recursos ou comprometer a identidade visual da paisagem.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Claro usa #6534D8; escuro tem tratamento coerente com a paleta da especificação, sem simplesmente inverter a imagem.\n- [ ] Dois idiomas preservam hash e query e não acumulam listeners/renderers em mudanças e remontagens.\n- [ ] Texto inglês, zoom e orientação não sobrepõem rótulos ou CTAs.\n- [ ] Materiais e poster do tema alternativo são verificados; ausência de variante não pode ser declarada como tema completo.\n- [ ] Movimento reduzido e modo estático permanecem coerentes durante troca de tema/idioma.\n- [ ] Validar contraste sobre o fundo real e registrar comparação desktop/mobile.\n\n## Blocked by\n\n- #38\n\n## Regiões de referência\n\nU01–U16; materiais W01–W11; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/43",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        38
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T09",
@@ -193,7 +239,7 @@
       "regions": "destinos de U08/U10–U12/U15/U16; contato",
       "draft_file": "t09-aevo.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 44,
       "what_to_build": "Manter o assistente útil para encontrar projetos, experiência e currículo e preparar contato, com respostas alinhadas ao perfil atual e sem efeitos que deformem a página.",
       "acceptance_criteria": [
         "Atualizar conhecimento, chunks, prompts e respostas determinísticas para os fatos dos currículos e projetos.",
@@ -203,7 +249,16 @@
         "Assistente fica fechado por padrão, não compete com a abertura e mantém fallback local sem API key.",
         "Testes exercitam ações visíveis e base local sem chamar provedores externos."
       ],
-      "body": "## What to build\n\nManter o assistente útil para encontrar projetos, experiência e currículo e preparar contato, com respostas alinhadas ao perfil atual e sem efeitos que deformem a página.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Atualizar conhecimento, chunks, prompts e respostas determinísticas para os fatos dos currículos e projetos.\n- [ ] Ações de seção, projeto, currículo e preenchimento continuam funcionando nos destinos novos e antigos preservados.\n- [ ] Respeitar movimento reduzido também em scroll/highlight do widget.\n- [ ] Pedidos de efeitos antigos recebem resposta útil sem explosões, gravidade, transformações globais ou selos sobre o novo layout.\n- [ ] Assistente fica fechado por padrão, não compete com a abertura e mantém fallback local sem API key.\n- [ ] Testes exercitam ações visíveis e base local sem chamar provedores externos.\n\n## Blocked by\n\nT04, T05, T06, T07\n\n## Regiões de referência\n\ndestinos de U08/U10–U12/U15/U16; contato; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nManter o assistente útil para encontrar projetos, experiência e currículo e preparar contato, com respostas alinhadas ao perfil atual e sem efeitos que deformem a página.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Atualizar conhecimento, chunks, prompts e respostas determinísticas para os fatos dos currículos e projetos.\n- [ ] Ações de seção, projeto, currículo e preenchimento continuam funcionando nos destinos novos e antigos preservados.\n- [ ] Respeitar movimento reduzido também em scroll/highlight do widget.\n- [ ] Pedidos de efeitos antigos recebem resposta útil sem explosões, gravidade, transformações globais ou selos sobre o novo layout.\n- [ ] Assistente fica fechado por padrão, não compete com a abertura e mantém fallback local sem API key.\n- [ ] Testes exercitam ações visíveis e base local sem chamar provedores externos.\n\n## Blocked by\n\n- #39\n- #40\n- #41\n- #42\n\n## Regiões de referência\n\ndestinos de U08/U10–U12/U15/U16; contato; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/44",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T10",
@@ -216,7 +271,7 @@
       "regions": "todas as camadas; nenhuma nova composição",
       "draft_file": "t10-consolidation.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 45,
       "what_to_build": "Integrar a experiência completa com um único sistema visual e motor, mantendo rotas e contratos e tornando metadados e documentação coerentes com o perfil.",
       "acceptance_criteria": [
         "Remover seleção temporária de shells, consumidores do loader/cursor/canvas globais e scripts órfãos confirmados; não apagar diretórios em massa.",
@@ -226,7 +281,14 @@
         "CI executa comandos reais; tipos, testes e build passam ou falhas preexistentes ficam explicitamente identificadas.",
         "Preparar corte/reversão a partir de commit-base sem descartar trabalho local e sem publicar automaticamente."
       ],
-      "body": "## What to build\n\nIntegrar a experiência completa com um único sistema visual e motor, mantendo rotas e contratos e tornando metadados e documentação coerentes com o perfil.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Remover seleção temporária de shells, consumidores do loader/cursor/canvas globais e scripts órfãos confirmados; não apagar diretórios em massa.\n- [ ] Nenhum serviço útil depende de loaderDone; existe um único main e uma única cena ativa.\n- [ ] SEO, dados estruturados, manifest, texto para crawlers e documentação não repetem senioridade/stack antiga indevida.\n- [ ] APIs, URLs, downloads e hashes preservados continuam acessíveis; não trocar backend ou domínio.\n- [ ] CI executa comandos reais; tipos, testes e build passam ou falhas preexistentes ficam explicitamente identificadas.\n- [ ] Preparar corte/reversão a partir de commit-base sem descartar trabalho local e sem publicar automaticamente.\n\n## Blocked by\n\nT08, T09\n\n## Regiões de referência\n\ntodas as camadas; nenhuma nova composição; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nIntegrar a experiência completa com um único sistema visual e motor, mantendo rotas e contratos e tornando metadados e documentação coerentes com o perfil.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Remover seleção temporária de shells, consumidores do loader/cursor/canvas globais e scripts órfãos confirmados; não apagar diretórios em massa.\n- [ ] Nenhum serviço útil depende de loaderDone; existe um único main e uma única cena ativa.\n- [ ] SEO, dados estruturados, manifest, texto para crawlers e documentação não repetem senioridade/stack antiga indevida.\n- [ ] APIs, URLs, downloads e hashes preservados continuam acessíveis; não trocar backend ou domínio.\n- [ ] CI executa comandos reais; tipos, testes e build passam ou falhas preexistentes ficam explicitamente identificadas.\n- [ ] Preparar corte/reversão a partir de commit-base sem descartar trabalho local e sem publicar automaticamente.\n\n## Blocked by\n\n- #43\n- #44\n\n## Regiões de referência\n\ntodas as camadas; nenhuma nova composição; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/45",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        43,
+        44
+      ],
+      "last_verified_on": "2026-10-28"
     },
     {
       "id": "T11",
@@ -238,7 +300,7 @@
       "regions": "U01–U16; W01–W11; documento completo",
       "draft_file": "t11-verification.md",
       "proposed_label": "ready-for-agent",
-      "issue_number": null,
+      "issue_number": 46,
       "what_to_build": "Entregar uma prévia comparável ao alvo, com demonstração dos fluxos, medições de desempenho e limitações explícitas, pronta para a revisão guiada antes de publicação separada.",
       "acceptance_criteria": [
         "Exercitar projetos, PDFs, menu, contato mockado, assistente, hashes e histórico nos dois idiomas e temas.",
@@ -249,7 +311,15 @@
         "Conferir os orçamentos iniciais: poster até 250 KB desktop/150 KB mobile, cena externa até 2 MB standard/1 MB economy e runtime 3D adiado até 220 KB gzip; justificar divergências antes de aceitar.",
         "Registrar veredito e pendências em revisão independente; preview revisável e reversão documentados. Publicação depende de autorização própria."
       ],
-      "body": "## What to build\n\nEntregar uma prévia comparável ao alvo, com demonstração dos fluxos, medições de desempenho e limitações explícitas, pronta para a revisão guiada antes de publicação separada.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Exercitar projetos, PDFs, menu, contato mockado, assistente, hashes e histórico nos dois idiomas e temas.\n- [ ] Verificar desktop/mobile, 320 px, landscape, zoom, teclado e toque; identificar emulação e testes físicos corretamente.\n- [ ] Cobrir WebGL ausente/contexto perdido, rede lenta, falha de poster/runtime, movimento reduzido e retorno da viewport.\n- [ ] Comparar crops legíveis com a referência; realizar inspeção em lote, correções materiais e confirmação sem loop aberto de polimento.\n- [ ] Registrar contraste, alvos, bytes, frame time e métricas laboratoriais com configuração, sem anunciar prova de p75 em campo.\n- [ ] Conferir os orçamentos iniciais: poster até 250 KB desktop/150 KB mobile, cena externa até 2 MB standard/1 MB economy e runtime 3D adiado até 220 KB gzip; justificar divergências antes de aceitar.\n- [ ] Registrar veredito e pendências em revisão independente; preview revisável e reversão documentados. Publicação depende de autorização própria.\n\n## Blocked by\n\nT10\n\n## Regiões de referência\n\nU01–U16; W01–W11; documento completo; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n"
+      "body": "## What to build\n\nEntregar uma prévia comparável ao alvo, com demonstração dos fluxos, medições de desempenho e limitações explícitas, pronta para a revisão guiada antes de publicação separada.\n\nContexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência aprovada, navegação HTML e os contratos públicos. Esta tarefa não autoriza publicação.\n\n## Acceptance criteria\n\n- [ ] Exercitar projetos, PDFs, menu, contato mockado, assistente, hashes e histórico nos dois idiomas e temas.\n- [ ] Verificar desktop/mobile, 320 px, landscape, zoom, teclado e toque; identificar emulação e testes físicos corretamente.\n- [ ] Cobrir WebGL ausente/contexto perdido, rede lenta, falha de poster/runtime, movimento reduzido e retorno da viewport.\n- [ ] Comparar crops legíveis com a referência; realizar inspeção em lote, correções materiais e confirmação sem loop aberto de polimento.\n- [ ] Registrar contraste, alvos, bytes, frame time e métricas laboratoriais com configuração, sem anunciar prova de p75 em campo.\n- [ ] Conferir os orçamentos iniciais: poster até 250 KB desktop/150 KB mobile, cena externa até 2 MB standard/1 MB economy e runtime 3D adiado até 220 KB gzip; justificar divergências antes de aceitar.\n- [ ] Registrar veredito e pendências em revisão independente; preview revisável e reversão documentados. Publicação depende de autorização própria.\n\n## Blocked by\n\n- #45\n\n## Regiões de referência\n\nU01–U16; W01–W11; documento completo; ver o mapa e a imagem juntos.\n\n## Referências de execução\n\n- [Especificação canônica](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/specification.md)\n- [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)\n- [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)\n- [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)\n",
+      "issue_url": "https://github.com/Kauerc10/Portifolio-K.R.001/issues/46",
+      "issue_state": "OPEN",
+      "blocked_by_issue_numbers": [
+        45
+      ],
+      "last_verified_on": "2026-10-28"
     }
-  ]
+  ],
+  "last_verified_on": "2026-10-28",
+  "dependency_representation": "github-native-issue-dependencies"
 }

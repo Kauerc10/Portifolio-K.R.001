@@ -6,7 +6,7 @@
 - [Plano de implementação e dependências](../superpowers/plans/2026-10-27-interactive-portfolio.md)
 - [Referência aprovada](assets/approved-desktop.png)
 - [Diagrama espacial e instruções por elemento](reference-map.md) — imagem original + 27 IDs, posições, camadas e destinos
-- [Proposta de tickets e dependências](ticket-breakdown.md) — aguardando aprovação da divisão antes de publicar
+- [Tickets publicados e dependências](ticket-breakdown.md) — T01–T11 / issues #36–#46; verificados em 28/10/2026
 
 A especificação substitui a direção editorial preliminar de `docs/superpowers/specs/2026-10-27-portfolio-design.md`. A referência anterior não deve conduzir a implementação. O repositório-alvo continua sendo este portfólio; RUON é uma referência de marca, não o produto a modificar.
 
@@ -20,7 +20,7 @@ Executar P0: obter a linha de base e construir uma prova visual e técnica da ce
 
 ## Como os métodos foram usados
 
-- Ask Matt: roteamento entre descoberta, decisão que exige protótipo e execução em fatias verificáveis. O setup posterior configurou GitHub Issues, labels padrão e instruções em AGENTS. A divisão em tickets está proposta para revisão; ainda não foi publicada no tracker.
+- Ask Matt: roteamento entre descoberta, decisão que exige protótipo e execução em fatias verificáveis. O setup configurou GitHub Issues, labels padrão e instruções em AGENTS. A divisão aprovada foi publicada nas issues #36–#46, com bloqueios nativos. Os registros locais foram reconciliados em 28/10/2026; consultar o GitHub para estado atual.
 - Impeccable: continuidade com a referência aprovada, hierarquia, responsividade e revisão limitada por rodadas. Sem reabrir a direção visual por sorteio.
 - Designly: preservação de composição, materiais, tipografia, paleta e identidade durante a tradução da imagem para 3D.
 - Design Arc: documentação oficial + referência aprovada; revisão guiada, ambas escolhas confirmadas pelo usuário nesta conversa. Preferências permanentes não foram gravadas. O objetivo e a aparência da abertura já estão confirmados; mobile, estados e movimento são contratos propostos, ainda sem render ou medição. Não houve auditoria com Mobbin, Stitch nem certificação formal de uma jornada completa.

@@ -74,7 +74,17 @@ flowchart LR
   W03 --> D3[Experiência]
 ```
 
-## Caminhos e topologia: o que é inferência
+## Traçado visível e topologia inferida
+
+O diagrama atual sobrepõe caixas e traçado à própria referência esmaecida. A legenda ocupa uma faixa adicional abaixo dos 1433 × 1098 px da referência: as coordenadas do JSON continuam relativas somente à imagem original, não à altura total do diagrama exportado.
+
+O campo `route_polylines_px` contém trechos separados que acompanham a faixa roxa visível, obtidos por segmentação de cor e pontos ajustados manualmente. `route_status` registra aproximação de cerca de ±10 px, não uma medição exata do eixo do caminho. Linhas laranja não representam rotas novas, velocidade de animação, conectividade 3D comprovada ou área clicável.
+
+- **Frente:** segue a faixa desde o canto inferior esquerdo, faz a curva de retorno perto de X≈500 e volta até W01.
+- **Ponte central:** acompanha a faixa longa e sua curva em S até W02.
+- **Faixa superior de W02:** preserva o pequeno desvio visível separado.
+- **Direita:** acompanha o trecho visível desde a base de W03 até a borda direita.
+- **Oclusão:** a ligação entre o trecho central e o direito não é visível atrás de W03. Ela não está desenhada na sobreposição; não completar esse vazio como se tivesse sido observado.
 
 O PNG gerado não comprova continuidade física escondida, largura real, espessura nem encaixes de cada ponte. A reconstrução deve tornar esse sistema coerente, preservando o que é visível:
 
@@ -87,7 +97,7 @@ flowchart LR
   W06 --- W03[W03 Suporte]
 ```
 
-Esse grafo é uma **proposta de reconstrução**, não uma descoberta de geometria original. Não é necessário permitir caminhar livremente: o movimento limitado de câmera e os destinos clicáveis entregam a interação prevista sem expor superfícies ocultas ainda não modeladas.
+Esse grafo e `inferred_path_relationships` são uma **proposta de reconstrução**, não o traçado laranja nem uma descoberta de geometria original. Particularmente, a relação W05–W06 é conceitual: a imagem não comprova o encaixe oculto. Não é necessário permitir caminhar livremente: o movimento limitado de câmera e os destinos clicáveis entregam a interação prevista sem expor superfícies ocultas ainda não modeladas.
 
 ## Ordem de camadas e zonas protegidas
 

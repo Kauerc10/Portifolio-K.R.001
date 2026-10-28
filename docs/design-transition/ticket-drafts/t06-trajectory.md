@@ -1,6 +1,6 @@
-# RASCUNHO T06 — Conectar trajetória, competências e formação ao perfil atual
+# T06 — Conectar trajetória, competências e formação ao perfil atual
 
-**Estado: proposto, ainda não publicado.** Os IDs Txx não são números de issue.
+**Estado: publicado.** [Issue #41](https://github.com/Kauerc10/Portifolio-K.R.001/issues/41). Cópia local de consulta; o GitHub é a fonte de estado e bloqueios. Conferido em 28/10/2026.
 
 ## What to build
 
@@ -19,7 +19,7 @@ Contexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência ap
 
 ## Blocked by
 
-T02
+- #37
 
 ## Regiões de referência
 
@@ -31,4 +31,3 @@ U14; seções Sobre, Experiência, Skills, Formação e Conquistas; ver o mapa e
 - [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)
 - [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)
 - [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)
-

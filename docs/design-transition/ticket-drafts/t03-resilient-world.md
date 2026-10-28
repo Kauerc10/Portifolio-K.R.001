@@ -1,6 +1,6 @@
-# RASCUNHO T03 — Carregar a paisagem interativa com pausa e recuperação
+# T03 — Carregar a paisagem interativa com pausa e recuperação
 
-**Estado: proposto, ainda não publicado.** Os IDs Txx não são números de issue.
+**Estado: publicado.** [Issue #38](https://github.com/Kauerc10/Portifolio-K.R.001/issues/38). Cópia local de consulta; o GitHub é a fonte de estado e bloqueios. Conferido em 28/10/2026.
 
 ## What to build
 
@@ -20,7 +20,7 @@ Contexto: portfólio existente de Kauê Ruon Cardoso; preservar a referência ap
 
 ## Blocked by
 
-T02
+- #37
 
 ## Regiões de referência
 
@@ -32,4 +32,3 @@ W01–W11; base de U10–U12; ver o mapa e a imagem juntos.
 - [Plano técnico](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/superpowers/plans/2026-10-27-interactive-portfolio.md)
 - [Referência visual aprovada](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/assets/approved-desktop.png)
 - [Diagrama e instruções por elemento](https://github.com/Kauerc10/Portifolio-K.R.001/blob/docs/portfolio-design-transition/docs/design-transition/reference-map.md)
-
