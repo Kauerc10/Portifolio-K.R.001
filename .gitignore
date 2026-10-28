@@ -12,6 +12,7 @@
 
 # production
 /build
+/.scene-proof-dist/
 
 # debug
 npm-debug.log*

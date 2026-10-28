@@ -1,0 +1,51 @@
+{
+  "status": "experimental-not-production",
+  "source": "design/scene-proof/world.ts",
+  "license": "original procedural geometry and generated mineral texture",
+  "cameras": {
+    "desktop": {
+      "viewport": [
+        1433,
+        1098
+      ],
+      "position": [
+        0,
+        16,
+        28
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ]
+    },
+    "mobile": {
+      "viewport": [
+        390,
+        340
+      ],
+      "position": [
+        -3,
+        24,
+        34
+      ],
+      "target": [
+        0,
+        1.5,
+        5.8
+      ]
+    }
+  },
+  "assets": [
+    {
+      "file": "poster-desktop.webp",
+      "bytes": 29556,
+      "containsUI": false
+    },
+    {
+      "file": "poster-mobile.webp",
+      "bytes": 6986,
+      "containsUI": false
+    }
+  ]
+}

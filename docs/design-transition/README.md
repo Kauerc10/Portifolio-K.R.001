@@ -16,7 +16,11 @@ Uma paisagem interativa própria, branca e mineral, com caminhos no violeta da R
 
 ## Próxima etapa recomendada
 
-Executar P0: obter a linha de base e construir uma prova visual e técnica da cena. Comparar o mesmo enquadramento em desktop e celular antes de expandir a reformulação para todas as seções. A execução será uma etapa separada deste planejamento.
+P0 iniciado em 28/10/2026: [prova da cena, medições e limites](scene-proof.md).
+Baseline passou e há experimento WebGL isolado com capturas desktop/mobile.
+A fidelidade ainda não satisfaz a referência; #36 permanece aberta para a
+primeira revisão guiada e decisão de autoria. Nenhuma seção da aplicação foi
+substituída. Não usar os posters experimentais como assets finais de T02.
 
 ## Como os métodos foram usados
 
