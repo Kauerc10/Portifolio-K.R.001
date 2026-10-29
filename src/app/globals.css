@@ -81,3 +81,21 @@
   .aevo-chat-panel, .aevo-chat-panel--closing { animation-duration:.01ms; }
   .aevo-thinking__icon, .aevo-thinking__dots i, .aevo-message-reveal { animation:none; }
 }
+.hero-landscape canvas { touch-action: pan-y; }
+.hero-destinations { position:absolute; inset:0; pointer-events:none; z-index:10; }
+.hero-destination { position:absolute; left:var(--anchor-x); top:calc(var(--anchor-y) - 24px); transform:translate(-50%,-100%); pointer-events:auto; display:flex; align-items:flex-start; padding:4px; min-height:44px; min-width:44px; color:#1E1B4B; border-radius:4px; }
+.hero-destination:focus-visible { outline:2px solid #6534D8; outline-offset:4px; }
+.hero-destination:hover,.hero-destination:focus-visible { color:#6534D8; }
+.hero-destination-stem { display:flex; flex-direction:column; align-items:center; }
+.hero-destination-stem::before { content:''; width:1.5px; height:56px; background:#6534D8; }
+.hero-destination-stem::after { content:''; width:10px; height:10px; border-radius:50%; background:#6534D8; }
+.hero-destination-label { padding-left:8px; margin-top:-4px; white-space:nowrap; font-size:16px; font-weight:500; }
+@media(max-width:1023px) {
+ .hero-composition { aspect-ratio:auto; min-height:850px; }
+ .hero-destinations { position:relative; inset:auto; display:flex; justify-content:center; flex-wrap:wrap; gap:4px 16px; margin-top:24px; }
+ .hero-destination { position:relative; left:auto; top:auto; transform:none; align-items:center; }
+ .hero-destination-stem::before { display:none; }
+ .hero-destination-stem::after { width:6px; height:6px; }
+ .hero-destination-label { font-size:14px; margin:0; }
+ .hero-composition > :last-child { margin-top:auto; }
+}
