@@ -1,0 +1,76 @@
+[
+  {
+    "variant": "desktop",
+    "width": 1433,
+    "height": 1098,
+    "dpr": 1.5,
+    "mobile": false,
+    "triangles": 2,
+    "calls": 1,
+    "geometries": 1,
+    "textures": 3,
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "three": "185",
+    "anchors": {
+      "development": {
+        "x": 205.40706668374315,
+        "y": 497.47406250000006
+      },
+      "automation": {
+        "x": 736.8275598478058,
+        "y": 391.39125
+      },
+      "support": {
+        "x": 1253.7283674062928,
+        "y": 473.2265625
+      }
+    },
+    "durationMs": 10000,
+    "samples": 600,
+    "steadyTriangles": 2,
+    "steadyCalls": 1,
+    "frameMedianMs": 16.699999999999818,
+    "frameP95Ms": 16.900000000001455,
+    "cpuSubmitMedianMs": 0.19999999925494194,
+    "cpuSubmitP95Ms": 0.599999999627471,
+    "errors": [],
+    "browser": "156.0.8078.48"
+  },
+  {
+    "variant": "mobile",
+    "width": 390,
+    "height": 340,
+    "dpr": 1,
+    "mobile": true,
+    "triangles": 2,
+    "calls": 1,
+    "geometries": 1,
+    "textures": 3,
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "three": "185",
+    "anchors": {
+      "development": {
+        "x": 72.74682904411765,
+        "y": 154.0447916666667
+      },
+      "automation": {
+        "x": 199.8623420266544,
+        "y": 121.19583333333333
+      },
+      "support": {
+        "x": 323.50475356158086,
+        "y": 146.53645833333331
+      }
+    },
+    "durationMs": 10000.3,
+    "samples": 600,
+    "steadyTriangles": 2,
+    "steadyCalls": 1,
+    "frameMedianMs": 16.699999999999818,
+    "frameP95Ms": 16.899999999999636,
+    "cpuSubmitMedianMs": 0.2999999988824129,
+    "cpuSubmitP95Ms": 0.5,
+    "errors": [],
+    "browser": "156.0.8078.48"
+  }
+]
