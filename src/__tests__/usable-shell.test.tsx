@@ -15,9 +15,8 @@ describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
       expect(heading).toHaveTextContent(/você por aqui/i);
 
       // Apresentação pessoal
-      expect(
-        screen.getByText(/Sou Kauê Ruon Cardoso\. Crio aplicações/i)
-      ).toBeInTheDocument();
+      expect(screen.getByText(/Sou Kauê Ruon Cardoso/i)).toBeInTheDocument();
+      expect(screen.getByText(/Crio aplicações, automatizo rotinas/i)).toBeInTheDocument();
 
       // CTA principal -> #projetos
       const ctaExplore = screen.getByRole('link', { name: /Explorar meu trabalho/i });
@@ -56,9 +55,9 @@ describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
       render(<Navbar dict={ptBR.nav} />);
 
       // Links do cabeçalho
-      expect(screen.getByRole('link', { name: /PROJETOS/i })).toHaveAttribute('href', '#projetos');
+      expect(screen.getByRole('link', { name: /Projetos/i })).toHaveAttribute('href', '#projetos');
       expect(screen.getByRole('link', { name: /Trajetória/i })).toHaveAttribute('href', '#experiencia');
-      expect(screen.getByRole('link', { name: /CONTATO/i })).toHaveAttribute('href', '#contato');
+      expect(screen.getByRole('link', { name: /Contato/i })).toHaveAttribute('href', '#contato');
       expect(screen.getByRole('link', { name: /Currículo/i })).toHaveAttribute('href', '/curriculo_kaue.pdf');
     });
 
@@ -87,7 +86,7 @@ describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
       expect(burger).toHaveAttribute('aria-expanded', 'true');
 
       // Clica em um link dentro do menu móvel
-      const navLinks = screen.getAllByRole('link', { name: /PROJETOS/i });
+      const navLinks = screen.getAllByRole('link', { name: /Projetos/i });
       fireEvent.click(navLinks[navLinks.length - 1]);
       expect(burger).toHaveAttribute('aria-expanded', 'false');
     });

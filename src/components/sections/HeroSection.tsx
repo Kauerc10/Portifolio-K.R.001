@@ -15,9 +15,10 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
   const presentation =
     d.presentation ||
     'Sou Kauê Ruon Cardoso. Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia.';
+  const presentationBody = presentation.replace(/^Sou Kauê Ruon Cardoso\.\s*/i, '');
   const ctaExplore = d.ctaExplore || 'Explorar meu trabalho';
   const ctaResume = d.ctaResumeShort || 'Currículo';
-  const scrollHint = d.scrollHint || 'Explore os caminhos ou role para ver os projetos ↓';
+  const scrollHint = d.scrollHint || 'Role para conectar os caminhos ↓';
   const destDevelopment = d.destDevelopment || 'Desenvolvimento';
   const destAutomation = d.destAutomation || 'Automação';
   const destSupport = d.destSupport || 'Suporte';
@@ -27,153 +28,180 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
     <section
       id="hero"
       aria-label="Apresentação e Paisagem Interativa"
-      className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 sm:pt-12 sm:pb-24 overflow-hidden"
+      className="relative w-full max-w-[1433px] mx-auto overflow-hidden bg-[#F7F7FA] dark:bg-[#111015] transition-colors"
     >
-      {/* ── Topo: Abertura e Apresentação (U04–U09) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-10 sm:mb-14">
-        {/* Lado Esquerdo: Cumprimento e Atuação (U04–U06) */}
-        <div className="lg:col-span-7 space-y-4">
-          <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.1] text-[#14131C] dark:text-[#F3F2F5]">
-            <span className="block">{greetingLine1}</span>
-            <span className="block text-[#6534D8] dark:text-[#A17AFF]">
-              {greetingLine2}
-            </span>
-          </h1>
-
-          <p className="text-base sm:text-xl font-medium text-[#565565] dark:text-[#A09FA8] pt-1">
-            {areas}
-          </p>
-        </div>
-
-        {/* Lado Direito: Apresentação e CTAs (U07–U09) */}
-        <div className="lg:col-span-5 space-y-6 lg:pt-2">
-          <p className="text-sm sm:text-base leading-relaxed text-[#565565] dark:text-[#C5C4D0]">
-            {presentation}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4 pt-1">
-            {/* U08: CTA Principal */}
-            <Link
-              href="#projetos"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#6534D8] hover:bg-[#5225b8] text-white text-sm sm:text-base font-semibold transition-all shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#6534D8] min-h-[44px] min-w-[44px]"
-            >
-              {ctaExplore}
-            </Link>
-
-            {/* U09: Currículo Secundário */}
-            <a
-              href="/curriculo_kaue.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-3 rounded-full text-sm sm:text-base font-medium text-[#14131C] dark:text-[#F3F2F5] hover:text-[#6534D8] dark:hover:text-[#A17AFF] border border-[#D9D9E3] dark:border-[#333240] hover:border-[#6534D8]/40 dark:hover:border-[#A17AFF]/40 bg-white/60 dark:bg-black/20 backdrop-blur-sm transition-all min-h-[44px] min-w-[44px]"
-            >
-              <span>{ctaResume}</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Paisagem Conceitual Mineral com Poster e Rótulos Ancorados (W01–W11, U10–U12) ── */}
-      <div className="relative w-full rounded-2xl overflow-hidden border border-[#EBEBF0] dark:border-[#22212C] bg-[#F7F7FA] dark:bg-[#111015] shadow-sm">
-        {/* Container que preserva proporção 1433 x 1098 para Zero CLS */}
-        <div className="relative w-full aspect-[1433/1098]">
+      {/* ── Composição Unificada Desktop (1433 × 1018 Aspect Ratio) ── */}
+      <div className="relative w-full aspect-[1433/1018] min-h-[680px] flex flex-col justify-between select-none">
+        {/* Imagem Canônica de Fundo (Preenche todo o canvas: céu branco no topo, paisagem no meio/base) */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none">
           <Image
             src="/images/hero-clean.webp"
             alt="Paisagem conceitual mineral com caminhos violeta interligando os pavilhões de Desenvolvimento, Automação e Suporte"
-            width={1433}
-            height={1098}
+            fill
             priority
             fetchPriority="high"
-            className="w-full h-full object-cover select-none"
+            className="object-cover object-center"
           />
+        </div>
 
-          {/* Rótulos dos Pavilhões Ancorados sobre a Imagem (Desktop e Tablet) */}
+        {/* ── Topo: Tipografia Canônica Integrada Sobre o Céu da Paisagem (U04–U09) ── */}
+        <div className="relative z-10 px-6 sm:px-12 lg:px-16 pt-4 sm:pt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+            {/* Lado Esquerdo: Cumprimento e Atuação (U04–U06) */}
+            <div className="lg:col-span-7 space-y-3">
+              <h1 className="text-4xl sm:text-6xl lg:text-[4.2rem] font-bold tracking-tight leading-[1.08] text-[#14131C] dark:text-[#F3F2F5]">
+                <span className="block">{greetingLine1}</span>
+                <span className="block text-[#6534D8] dark:text-[#A17AFF]">
+                  {greetingLine2}
+                </span>
+              </h1>
+
+              <p className="text-lg sm:text-2xl font-normal text-[#2E1E6B] dark:text-[#C5C4D0] pt-1">
+                {areas}
+              </p>
+            </div>
+
+            {/* Lado Direito: Apresentação com Borda Violeta e CTAs (U07–U09) */}
+            <div className="lg:col-span-5 lg:pt-3">
+              <div className="border-l-2 border-[#8B5CF6]/40 pl-5 space-y-5">
+                <div>
+                  <strong className="block text-base sm:text-lg font-semibold text-[#14131C] dark:text-[#F3F2F5]">
+                    Sou Kauê Ruon Cardoso.
+                  </strong>
+                  <p className="text-sm sm:text-base font-normal text-[#565565] dark:text-[#A09FA8] leading-relaxed pt-1">
+                    {presentationBody}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-6 pt-1">
+                  {/* U08: CTA Principal (Pill Escuro com Seta ↗) */}
+                  <Link
+                    href="#projetos"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0C0A1D] hover:bg-[#1E1B4B] dark:bg-[#F3F2F5] dark:hover:bg-white text-white dark:text-[#0C0A1D] text-sm font-semibold transition-all shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-h-[44px]"
+                  >
+                    <span>{ctaExplore}</span>
+                    <span aria-hidden="true" className="text-xs font-bold">↗</span>
+                  </Link>
+
+                  {/* U09: Currículo Secundário (Texto com Linha Violeta) */}
+                  <a
+                    href="/curriculo_kaue.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-sm font-semibold text-[#14131C] dark:text-[#F3F2F5] hover:text-[#6534D8] dark:hover:text-[#A17AFF] border-b-2 border-[#6534D8] pb-0.5 transition-colors min-h-[44px]"
+                  >
+                    {ctaResume}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Pins Arquitetônicos Reais da Referência Ancorados nos Pavilhões (U10, U11, U12) ── */}
+        <div className="absolute inset-0 pointer-events-none z-10">
           {/* U10: Desenvolvimento (W01) */}
           <Link
             href="#projetos"
-            style={{ left: '14.3%', top: '45.3%' }}
-            className="absolute -translate-x-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/85 dark:bg-[#14131C]/85 border border-black/10 dark:border-white/15 text-xs sm:text-sm font-medium text-[#14131C] dark:text-[#F3F2F5] shadow-md hover:scale-105 hover:border-[#6534D8] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-h-[44px]"
+            style={{ left: '13.3%', top: '45.9%' }}
+            className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
+            aria-label={destDevelopment}
           >
-            <span className="w-2 h-2 rounded-full bg-[#6534D8] animate-pulse" aria-hidden="true" />
-            <span>{destDevelopment}</span>
+            <div className="flex flex-col items-center">
+              <span className="w-[1.5px] h-10 sm:h-14 bg-[#6534D8] group-hover:bg-[#5225b8] transition-colors" />
+              <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#6534D8] shadow-sm -mt-0.5" />
+            </div>
+            <span className="text-sm sm:text-base font-medium text-[#1E1B4B] dark:text-[#F3F2F5] group-hover:text-[#6534D8] dark:group-hover:text-[#A17AFF] transition-colors tracking-tight pl-2 -translate-y-1">
+              {destDevelopment}
+            </span>
           </Link>
 
           {/* U11: Automação (W02) */}
           <Link
             href="#project-atlas"
-            style={{ left: '51.4%', top: '35.6%' }}
-            className="absolute -translate-x-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/85 dark:bg-[#14131C]/85 border border-black/10 dark:border-white/15 text-xs sm:text-sm font-medium text-[#14131C] dark:text-[#F3F2F5] shadow-md hover:scale-105 hover:border-[#6534D8] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-h-[44px]"
+            style={{ left: '50.5%', top: '35.0%' }}
+            className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
+            aria-label={destAutomation}
           >
-            <span className="w-2 h-2 rounded-full bg-[#6534D8] animate-pulse" aria-hidden="true" />
-            <span>{destAutomation}</span>
+            <div className="flex flex-col items-center">
+              <span className="w-[1.5px] h-10 sm:h-14 bg-[#6534D8] group-hover:bg-[#5225b8] transition-colors" />
+              <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#6534D8] shadow-sm -mt-0.5" />
+            </div>
+            <span className="text-sm sm:text-base font-medium text-[#1E1B4B] dark:text-[#F3F2F5] group-hover:text-[#6534D8] dark:group-hover:text-[#A17AFF] transition-colors tracking-tight pl-2 -translate-y-1">
+              {destAutomation}
+            </span>
           </Link>
 
           {/* U12: Suporte (W03) */}
           <Link
             href="#experiencia"
-            style={{ left: '87.5%', top: '43.1%' }}
-            className="absolute -translate-x-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/85 dark:bg-[#14131C]/85 border border-black/10 dark:border-white/15 text-xs sm:text-sm font-medium text-[#14131C] dark:text-[#F3F2F5] shadow-md hover:scale-105 hover:border-[#6534D8] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-h-[44px]"
+            style={{ left: '87.1%', top: '43.4%' }}
+            className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
+            aria-label={destSupport}
           >
-            <span className="w-2 h-2 rounded-full bg-[#6534D8] animate-pulse" aria-hidden="true" />
-            <span>{destSupport}</span>
+            <div className="flex flex-col items-center">
+              <span className="w-[1.5px] h-10 sm:h-14 bg-[#6534D8] group-hover:bg-[#5225b8] transition-colors" />
+              <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#6534D8] shadow-sm -mt-0.5" />
+            </div>
+            <span className="text-sm sm:text-base font-medium text-[#1E1B4B] dark:text-[#F3F2F5] group-hover:text-[#6534D8] dark:group-hover:text-[#A17AFF] transition-colors tracking-tight pl-2 -translate-y-1">
+              {destSupport}
+            </span>
           </Link>
         </div>
 
-        {/* Barra de Destinos Touch-Friendly para Mobile (< 640px) */}
-        <div className="sm:hidden grid grid-cols-3 divide-x divide-[#EBEBF0] dark:divide-[#22212C] border-t border-[#EBEBF0] dark:border-[#22212C] bg-white dark:bg-[#14131C]">
-          <Link
-            href="#projetos"
-            className="flex flex-col items-center justify-center p-3 text-xs font-semibold text-[#14131C] dark:text-[#F3F2F5] hover:bg-[#F7F7FA] dark:hover:bg-[#1c1b26] transition-colors min-h-[44px]"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#6534D8] mb-1" />
-            <span>{destDevelopment}</span>
-          </Link>
-          <Link
-            href="#project-atlas"
-            className="flex flex-col items-center justify-center p-3 text-xs font-semibold text-[#14131C] dark:text-[#F3F2F5] hover:bg-[#F7F7FA] dark:hover:bg-[#1c1b26] transition-colors min-h-[44px]"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#6534D8] mb-1" />
-            <span>{destAutomation}</span>
-          </Link>
-          <Link
-            href="#experiencia"
-            className="flex flex-col items-center justify-center p-3 text-xs font-semibold text-[#14131C] dark:text-[#F3F2F5] hover:bg-[#F7F7FA] dark:hover:bg-[#1c1b26] transition-colors min-h-[44px]"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#6534D8] mb-1" />
-            <span>{destSupport}</span>
-          </Link>
-        </div>
-      </div>
+        {/* ── Base Integrada Sobre as Dunas da Paisagem (U13–U16) ── */}
+        <div className="relative z-10 px-6 sm:px-12 lg:px-16 pb-4 sm:pb-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* U14: Localização e Formação */}
+          <div className="flex items-center gap-4 text-xs sm:text-sm font-medium text-[#2E1E6B] dark:text-[#C5C4D0]">
+            <span>{locationEdu}</span>
+            <span className="hidden md:inline-block w-24 lg:w-48 h-[1px] bg-[#8B5CF6]/30" aria-hidden="true" />
+          </div>
 
-      {/* ── Base do Hero: Indicação de Rolagem, Formação e Atalhos Rápidos (U13–U16) ── */}
-      <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#565565] dark:text-[#A09FA8]">
-        {/* U14: Localização e Formação */}
-        <div className="flex items-center gap-2 text-center md:text-left">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" aria-hidden="true" />
-          <span>{locationEdu}</span>
-        </div>
+          {/* U13: Indicação Discreta de Rolagem */}
+          <div className="flex flex-col items-center text-xs sm:text-sm font-medium text-[#2E1E6B] dark:text-[#A17AFF]">
+            <span>{scrollHint}</span>
+            <span className="w-[1.5px] h-5 bg-[#6534D8] mt-1" aria-hidden="true" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#6534D8]" aria-hidden="true" />
+          </div>
 
-        {/* U13: Indicação Discreta de Rolagem */}
-        <p className="text-center font-medium text-[#6534D8] dark:text-[#A17AFF]">
-          {scrollHint}
-        </p>
+          {/* U15 + U16: Atalhos Rápidos com Divisória Violeta */}
+          <div className="flex items-center gap-6 text-xs sm:text-sm mr-24 sm:mr-28">
+            {/* U15: Atlas Notarial */}
+            <Link
+              href="#project-atlas"
+              className="border-l border-[#8B5CF6]/40 pl-3.5 group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded py-1 min-h-[44px]"
+            >
+              <div>
+                <span className="block font-semibold text-[#14131C] dark:text-[#F3F2F5] group-hover:text-[#6534D8] transition-colors">
+                  Atlas Notarial
+                </span>
+                <span className="block text-[11px] text-[#6534D8] dark:text-[#A17AFF]">
+                  Automação em produção
+                </span>
+              </div>
+              <span className="text-[#14131C] dark:text-[#F3F2F5] group-hover:translate-x-0.5 transition-transform font-bold">
+                →
+              </span>
+            </Link>
 
-        {/* U15 + U16: Atalhos Rápidos */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="#project-atlas"
-            className="hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors underline-offset-4 hover:underline py-1 px-1 min-h-[44px] flex items-center"
-          >
-            Atlas Notarial
-          </Link>
-          <span aria-hidden="true">·</span>
-          <Link
-            href="#project-ckf"
-            className="hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors underline-offset-4 hover:underline py-1 px-1 min-h-[44px] flex items-center"
-          >
-            CKF
-          </Link>
+            {/* U16: CKF Manutenção */}
+            <Link
+              href="#project-ckf"
+              className="border-l border-[#8B5CF6]/40 pl-3.5 group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded py-1 min-h-[44px]"
+            >
+              <div>
+                <span className="block font-semibold text-[#14131C] dark:text-[#F3F2F5] group-hover:text-[#6534D8] transition-colors">
+                  CKF Manutenção
+                </span>
+                <span className="block text-[11px] text-[#6534D8] dark:text-[#A17AFF]">
+                  Clientes e orçamentos
+                </span>
+              </div>
+              <span className="text-[#14131C] dark:text-[#F3F2F5] group-hover:translate-x-0.5 transition-transform font-bold">
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

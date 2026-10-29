@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, type KeyboardEvent } from 'react';
-import Image from 'next/image';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import LanguageToggle from '@/components/ui/LanguageToggle';
@@ -13,15 +12,15 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
   const mobileNavRef = useRef<HTMLDivElement>(null);
 
   const d = dict || {
-    home: 'INÍCIO',
-    about: 'SOBRE',
-    experience: 'EXPERIÊNCIA',
+    home: 'Início',
+    about: 'Sobre',
+    experience: 'Experiência',
     trajectory: 'Trajetória',
-    skills: 'SKILLS',
-    achievements: 'CONQUISTAS',
-    education: 'FORMAÇÃO',
-    projects: 'PROJETOS',
-    contact: 'CONTATO',
+    skills: 'Skills',
+    achievements: 'Conquistas',
+    education: 'Formação',
+    projects: 'Projetos',
+    contact: 'Contato',
     resume: 'Currículo',
     menu: 'Menu',
     closeMenu: 'Fechar menu',
@@ -29,7 +28,6 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
     indicator: '§ 01 / 08',
   };
 
-  // Trava/Restaura o foco e fecha com a tecla Escape
   useEffect(() => {
     if (!isOpen) return;
 
@@ -55,71 +53,60 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#F7F7FA]/80 dark:bg-[#111015]/80 border-b border-[#EBEBF0] dark:border-[#22212C] transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-        {/* U01: Marca Pessoal */}
+    <header className="relative w-full z-40 bg-[#F7F7FA] dark:bg-[#111015] transition-colors duration-200">
+      <div className="max-w-[1433px] mx-auto px-6 sm:px-12 lg:px-16 h-20 sm:h-24 flex items-center justify-between">
+        {/* U01: Marca Pessoal Typographic "kauêruon" (Idêntico à referência aprovada) */}
         <Link
           href="#hero"
-          className="flex items-center gap-2.5 text-[#14131C] dark:text-[#F3F2F5] hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded-md py-1 px-1.5 min-h-[44px] min-w-[44px]"
+          className="group inline-flex items-center text-2xl font-bold tracking-tight text-[#14131C] dark:text-[#F3F2F5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded-md py-1"
           aria-label={d.brandAria || 'Kauê Ruon Cardoso - Início'}
           onClick={closeMenu}
         >
-          <Image
-            src="/assets/krc-logo-512.webp"
-            alt="KRC"
-            width={32}
-            height={32}
-            priority
-            className="w-8 h-8 rounded-full border border-[#EBEBF0] dark:border-[#333240]"
-          />
-          <span className="font-semibold text-base sm:text-lg tracking-tight">
-            kauê ruon
-          </span>
+          <span>kauê</span>
+          <span className="text-[#6534D8] dark:text-[#A17AFF] transition-colors">ruon</span>
         </Link>
 
-        {/* U02 + U03: Navegação Desktop */}
-        <nav className="hidden md:flex items-center gap-6" aria-label="Navegação principal">
+        {/* U02 + U03: Navegação Desktop Minimalista */}
+        <nav className="hidden md:flex items-center gap-8 lg:gap-10" aria-label="Navegação principal">
           <Link
             href="#projetos"
-            className="text-sm font-medium text-[#565565] dark:text-[#A09FA8] hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors py-2 px-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-h-[44px] flex items-center"
+            className="text-[15px] font-medium text-[#2E1E6B] dark:text-[#C5C4D0] hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] py-2"
           >
-            {d.projects}
+            {d.projects || 'Projetos'}
           </Link>
           <Link
             href="#experiencia"
-            className="text-sm font-medium text-[#565565] dark:text-[#A09FA8] hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors py-2 px-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-h-[44px] flex items-center"
+            className="text-[15px] font-medium text-[#2E1E6B] dark:text-[#C5C4D0] hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] py-2"
           >
-            {d.trajectory || d.experience}
+            {d.trajectory || 'Trajetória'}
           </Link>
           <Link
             href="#contato"
-            className="text-sm font-medium text-[#565565] dark:text-[#A09FA8] hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors py-2 px-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-h-[44px] flex items-center"
+            className="text-[15px] font-medium text-[#2E1E6B] dark:text-[#C5C4D0] hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] py-2"
           >
-            {d.contact}
+            {d.contact || 'Contato'}
           </Link>
 
-          {/* U03: Currículo do cabeçalho */}
+          {/* U03: Currículo no Cabeçalho (Pill Escuro com Seta ↗) */}
           <a
             href="/curriculo_kaue.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#6534D8] dark:text-[#A17AFF] bg-[#6534D8]/10 dark:bg-[#6534D8]/20 hover:bg-[#6534D8]/20 dark:hover:bg-[#6534D8]/30 px-3 py-1.5 rounded-full transition-colors border border-[#6534D8]/20 min-h-[44px] items-center"
+            className="inline-flex items-center gap-2 bg-[#0C0A1D] hover:bg-[#1E1B4B] dark:bg-[#F3F2F5] dark:hover:bg-white text-white dark:text-[#0C0A1D] text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8]"
           >
             <span>{d.resume || 'Currículo'}</span>
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true" className="text-xs font-bold">↗</span>
           </a>
 
-          <div className="h-5 w-px bg-[#EBEBF0] dark:bg-[#22212C]" aria-hidden="true" />
-
-          {/* Controles de Idioma e Tema */}
-          <div className="flex items-center gap-2">
+          {/* Controles Secundários Discretos */}
+          <div className="flex items-center gap-1.5 pl-2 border-l border-[#D9D9E3] dark:border-[#2E2D3B]">
             <LanguageToggle />
             <ThemeToggle />
           </div>
         </nav>
 
-        {/* Botão Burger para Telas Menores */}
-        <div className="flex md:hidden items-center gap-2">
+        {/* Menu Mobile Burger */}
+        <div className="flex md:hidden items-center gap-3">
           <ThemeToggle />
           <button
             ref={burgerRef}
@@ -128,20 +115,20 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
             aria-expanded={isOpen}
             aria-controls="mobile-nav"
             aria-label={isOpen ? (d.closeMenu || 'Fechar menu') : (d.menu || 'Menu')}
-            className="p-2.5 rounded-lg border border-[#EBEBF0] dark:border-[#333240] text-[#14131C] dark:text-[#F3F2F5] hover:bg-[#EBEBF0]/50 dark:hover:bg-[#22212C]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-w-[44px] min-h-[44px] flex flex-col justify-center items-center gap-1.5"
+            className="p-2.5 rounded-lg text-[#14131C] dark:text-[#F3F2F5] hover:bg-black/5 dark:hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] min-w-[44px] min-h-[44px] flex flex-col justify-center items-center gap-1.5"
           >
             <span
-              className={`w-5 h-0.5 bg-current transition-transform duration-200 ${
+              className={`w-6 h-0.5 bg-current transition-transform duration-200 ${
                 isOpen ? 'rotate-45 translate-y-2' : ''
               }`}
             />
             <span
-              className={`w-5 h-0.5 bg-current transition-opacity duration-200 ${
+              className={`w-6 h-0.5 bg-current transition-opacity duration-200 ${
                 isOpen ? 'opacity-0' : ''
               }`}
             />
             <span
-              className={`w-5 h-0.5 bg-current transition-transform duration-200 ${
+              className={`w-6 h-0.5 bg-current transition-transform duration-200 ${
                 isOpen ? '-rotate-45 -translate-y-2' : ''
               }`}
             />
@@ -149,7 +136,7 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
         </div>
       </div>
 
-      {/* Menu Móvel com Drawer Acessível */}
+      {/* Drawer Mobile */}
       {isOpen && (
         <div
           id="mobile-nav"
@@ -157,36 +144,36 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
           role="dialog"
           aria-modal="true"
           aria-label={d.menu || 'Menu de navegação'}
-          className="md:hidden border-t border-[#EBEBF0] dark:border-[#22212C] bg-[#F7F7FA] dark:bg-[#111015] px-4 pt-4 pb-6 space-y-4 shadow-lg animate-in slide-in-from-top duration-200"
+          className="md:hidden border-t border-[#EBEBF0] dark:border-[#22212C] bg-[#F7F7FA] dark:bg-[#111015] px-6 pt-4 pb-6 space-y-4 shadow-xl"
         >
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-3">
             <Link
               href="#projetos"
               onClick={closeMenu}
-              className="text-base font-medium text-[#14131C] dark:text-[#F3F2F5] hover:text-[#6534D8] dark:hover:text-[#A17AFF] py-3 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 min-h-[44px] flex items-center"
+              className="text-base font-semibold text-[#14131C] dark:text-[#F3F2F5] hover:text-[#6534D8] py-2"
             >
-              {d.projects}
+              {d.projects || 'Projetos'}
             </Link>
             <Link
               href="#experiencia"
               onClick={closeMenu}
-              className="text-base font-medium text-[#14131C] dark:text-[#F3F2F5] hover:text-[#6534D8] dark:hover:text-[#A17AFF] py-3 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 min-h-[44px] flex items-center"
+              className="text-base font-semibold text-[#14131C] dark:text-[#F3F2F5] hover:text-[#6534D8] py-2"
             >
-              {d.trajectory || d.experience}
+              {d.trajectory || 'Trajetória'}
             </Link>
             <Link
               href="#contato"
               onClick={closeMenu}
-              className="text-base font-medium text-[#14131C] dark:text-[#F3F2F5] hover:text-[#6534D8] dark:hover:text-[#A17AFF] py-3 px-3 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 min-h-[44px] flex items-center"
+              className="text-base font-semibold text-[#14131C] dark:text-[#F3F2F5] hover:text-[#6534D8] py-2"
             >
-              {d.contact}
+              {d.contact || 'Contato'}
             </Link>
             <a
               href="/curriculo_kaue.pdf"
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}
-              className="inline-flex items-center justify-between text-base font-medium text-[#6534D8] dark:text-[#A17AFF] bg-[#6534D8]/10 dark:bg-[#6534D8]/20 py-3 px-3 rounded-lg min-h-[44px]"
+              className="inline-flex items-center justify-between text-base font-semibold text-white bg-[#0C0A1D] dark:bg-[#F3F2F5] dark:text-[#0C0A1D] px-4 py-3 rounded-xl"
             >
               <span>{d.resume || 'Currículo'}</span>
               <span aria-hidden="true">↗</span>

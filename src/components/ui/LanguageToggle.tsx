@@ -44,36 +44,42 @@ export default function LanguageToggle() {
       // Cookies/storage may be unavailable in hardened privacy modes.
     }
 
-    // O layout carrega scripts legados one-shot; um reload garante que eles
-    // capturem os novos nós do loader e do cursor após a troca de locale.
     window.location.assign(targetUrl);
   };
 
   return (
     <div
-      className="relative grid h-10 w-[5.5rem] shrink-0 grid-cols-2 items-center rounded-xl border border-slate-300/80 bg-white/80 p-1 shadow-[0_6px_20px_rgba(15,23,42,0.12)] transition-[border-color,box-shadow] duration-300 hover:border-blue-500/50 hover:shadow-[0_10px_26px_rgba(37,99,235,0.16)] dark:border-white/15 dark:bg-[#0d1424]/95 dark:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+      className="relative grid h-8 w-20 shrink-0 grid-cols-2 items-center rounded-full border border-[#D9D9E3] dark:border-[#2E2D3B] bg-white/70 dark:bg-black/40 p-0.5 text-xs font-semibold transition-all"
       role="group"
       aria-label={isEnglish ? 'Language selector' : 'Seletor de idioma'}
     >
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-lg border border-blue-500/25 bg-blue-600 shadow-[0_4px_14px_rgba(37,99,235,0.3)] transition-transform duration-300 ease-out dark:border-amber-400/30 dark:bg-amber-400 dark:shadow-[0_4px_16px_rgba(212,160,23,0.22)] ${isEnglish ? 'translate-x-full' : 'translate-x-0'}`}
+        className={`pointer-events-none absolute inset-y-0.5 left-0.5 w-[calc(50%-0.125rem)] rounded-full bg-[#14131C] dark:bg-[#F3F2F5] shadow-xs transition-transform duration-200 ease-out ${
+          isEnglish ? 'translate-x-full' : 'translate-x-0'
+        }`}
       />
       <button
         type="button"
-        onClick={(event) => handleLanguageSwitch('pt-BR', event)}
-        aria-label="Mudar para português"
+        onClick={(e) => handleLanguageSwitch('pt-BR', e)}
         aria-pressed={!isEnglish}
-        className={`relative z-10 grid h-8 place-items-center rounded-lg font-mono text-[11px] font-bold tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${!isEnglish ? 'text-white dark:text-[#111827]' : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'}`}
+        className={`relative z-10 flex h-full items-center justify-center rounded-full text-xs font-semibold transition-colors ${
+          !isEnglish
+            ? 'text-white dark:text-[#14131C]'
+            : 'text-[#565565] dark:text-[#A09FA8] hover:text-[#14131C]'
+        }`}
       >
         PT
       </button>
       <button
         type="button"
-        onClick={(event) => handleLanguageSwitch('en-US', event)}
-        aria-label="Switch to English"
+        onClick={(e) => handleLanguageSwitch('en-US', e)}
         aria-pressed={isEnglish}
-        className={`relative z-10 grid h-8 place-items-center rounded-lg font-mono text-[11px] font-bold tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${isEnglish ? 'text-white dark:text-[#111827]' : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'}`}
+        className={`relative z-10 flex h-full items-center justify-center rounded-full text-xs font-semibold transition-colors ${
+          isEnglish
+            ? 'text-white dark:text-[#14131C]'
+            : 'text-[#565565] dark:text-[#A09FA8] hover:text-[#14131C]'
+        }`}
       >
         EN
       </button>
