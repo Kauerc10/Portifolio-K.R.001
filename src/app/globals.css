@@ -83,7 +83,7 @@
 }
 .hero-landscape canvas { touch-action: pan-y; }
 .hero-destinations { position:absolute; inset:0; pointer-events:none; z-index:10; }
-.hero-destination { position:absolute; left:var(--anchor-x); top:calc(var(--anchor-y) - 24px); transform:translate(-50%,-100%); pointer-events:auto; display:flex; align-items:flex-start; padding:4px; min-height:44px; min-width:44px; color:#1E1B4B; border-radius:4px; }
+.hero-destination { position:absolute; left:var(--anchor-x); top:calc(var(--anchor-y) - 24px); transform:translate(-9px,-100%); pointer-events:auto; display:flex; align-items:flex-start; padding:4px; min-height:44px; min-width:44px; color:#1E1B4B; border-radius:4px; }
 .hero-destination:focus-visible { outline:2px solid #6534D8; outline-offset:4px; }
 .hero-destination:hover,.hero-destination:focus-visible { color:#6534D8; }
 .hero-destination-stem { display:flex; flex-direction:column; align-items:center; }
@@ -99,3 +99,4 @@
  .hero-destination-label { font-size:14px; margin:0; }
  .hero-composition > :last-child { margin-top:auto; }
 }
+

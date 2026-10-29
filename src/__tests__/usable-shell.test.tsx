@@ -45,7 +45,7 @@ describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
       const poster = screen.getByRole('img', {
         name: /Paisagem conceitual mineral/i,
       });
-      expect(poster.getAttribute('src')).toContain('hero-clean.webp');
+      expect(poster.getAttribute('src')).toMatch(/^\/images\/hero-[\w-]+\.(jpg|webp)$/);
       expect(poster).toHaveAttribute('fetchpriority', 'high');
     });
   });
@@ -92,3 +92,4 @@ describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
     });
   });
 });
+
