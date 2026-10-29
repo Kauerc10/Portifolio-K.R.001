@@ -37,3 +37,6 @@ substituída. Não usar os posters experimentais como assets finais de T02.
 3. **Pronto para publicar:** validação técnica, factual e visual; publicação exige autorização própria.
 
 Não repetir a aprovação do cumprimento, da paleta ou da direção já aceita. Pedir uma nova decisão apenas se a solução exigir alterar substancialmente a referência ou reduzir a interatividade prometida.
+
+## Atualização — hero 2.5D (#48)
+A decisão atual do usuário é integrar a arte com profundidade2.5D ao hero; ela substitui a exigência anterior de reconstrução3D completa para esta paisagem. Consulte a [especificação atual](hero-2d5-specification.md) e o [plano de integração](hero-2d5-integration-plan.md). A arte detalhada foi selecionada pelo usuário; [procedência e limites](assets/hero-quality/README.md). A implementação é validada na página real, não apenas na prova isolada. As seções abaixo serão tratadas depois.
