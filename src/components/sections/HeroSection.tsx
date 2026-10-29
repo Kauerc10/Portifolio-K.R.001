@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, type CSSProperties } from 'react';
 import HeroLandscape from '../hero/HeroLandscape';
-import { cover, destinations } from '../hero/landscape';
+import { cover, destinations, landscapeAssets } from '../hero/landscape';
 import Link from 'next/link';
 import type { Dictionary } from '@/i18n/types';
 
@@ -16,7 +16,7 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
   const [bounds, setBounds] = useState({ width: 1433, height: 1018 });
   const [imageSize, setImageSize] = useState({width: 1024, height: 768});
   useEffect(() => {
-    const image = new window.Image(); image.src = '/images/hero-clean.jpg';
+    const image = new window.Image(); image.src = landscapeAssets.color;
     let alive = true;
     image.onload = () => { if (alive) setImageSize({width:image.naturalWidth,height:image.naturalHeight}); };
     if (typeof ResizeObserver === 'undefined') return;
@@ -177,3 +177,4 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
     </section>
   );
 }
+
