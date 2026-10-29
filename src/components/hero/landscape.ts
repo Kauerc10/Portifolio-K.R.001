@@ -1,4 +1,4 @@
-export const landscapeAssets = { color: '/images/hero-clean.jpg', depth: '/images/hero-depth.webp', paths: '/images/hero-paths-id.webp' };
+export const landscapeAssets = { color: '/images/hero-detailed.webp', depth: '/images/hero-detailed-depth.webp', paths: '/images/hero-detailed-paths.webp' };
 export const destinations = [
   { key: 'development', href: '#projetos', x: .133, y: .4616, path: 1 },
   { key: 'automation', href: '#project-atlas', x: .505, y: .358, path: 2 },
@@ -20,3 +20,4 @@ export interface LandscapeRenderer {
   dispose(): void;
 }
 export type RendererLoader = () => Promise<{ createLandscape: (host: HTMLElement, assets: typeof landscapeAssets, signal: AbortSignal, failed: () => void) => Promise<LandscapeRenderer> }>;
+

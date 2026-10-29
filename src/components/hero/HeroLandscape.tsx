@@ -11,13 +11,14 @@ export default function HeroLandscape({ loadRenderer = defaultLoader, activePath
     if (!window.matchMedia) return;
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const connection = (navigator as Navigator & { connection?: EventTarget & { saveData?: boolean } }).connection;
-    let visible = true, disposed = false, failed = false;
+    let visible = typeof IntersectionObserver === 'undefined', disposed = false, failed = false;
     let pending: AbortController | null = null;
     const stop = () => { pending?.abort(); pending = null; renderer.current?.dispose(); renderer.current = null; };
     const reconcile = () => {
       if (disposed) return;
       if (media.matches || connection?.saveData) { stop(); setState('poster'); return; }
       const paused = !visible || document.hidden;
+      if (paused && pending) { pending.abort(); pending = null; setState('paused'); }
       if (renderer.current) { renderer.current.pause(paused); setState(paused ? 'paused' : 'ready'); return; }
       if (paused || pending || failed) return;
       const controller = new AbortController(); pending = controller; setState('loading');
@@ -53,3 +54,5 @@ export default function HeroLandscape({ loadRenderer = defaultLoader, activePath
     <img src={landscapeAssets.color} alt="Paisagem conceitual mineral com caminhos violeta interligando os pavilhões de Desenvolvimento, Automação e Suporte" fetchPriority="high" className="absolute inset-0 w-full h-full object-cover object-center" />
   </div>;
 }
+
+

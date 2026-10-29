@@ -6,9 +6,9 @@ uniform sampler2D imageMap, depthMap, pathMap;
 uniform vec2 crop, movement;
 uniform float zoom;
 uniform vec3 highlight;
-varying vec2 uv;
+varying vec2 vUv;
 void main() {
- vec2 base = (uv-.5)*crop/zoom+.5;
+ vec2 base = (vUv-.5)*crop/zoom+.5;
  float depth = texture2D(depthMap,base).r;
  // Edge taper preserves the exact poster framing without inventing unseen areas.
  vec2 edge = smoothstep(vec2(0.),vec2(.06),base)*smoothstep(vec2(0.),vec2(.06),1.-base);
@@ -45,7 +45,7 @@ export async function createLandscape(host: HTMLElement, assets: typeof landscap
   }
   const scene = new THREE.Scene(), camera = new THREE.Camera();
   const uniforms = { imageMap:{value:color},depthMap:{value:depth},pathMap:{value:paths},crop:{value:new THREE.Vector2(1,1)},movement:{value:new THREE.Vector2()},zoom:{value:1},highlight:{value:new THREE.Vector3()} };
-  material = new THREE.ShaderMaterial({uniforms,vertexShader:'varying vec2 uv; void main(){uv=position.xy*.5+.5;gl_Position=vec4(position.xy,0.,1.);}',fragmentShader,depthTest:false,depthWrite:false});
+  material = new THREE.ShaderMaterial({uniforms,vertexShader:'varying vec2 vUv; void main(){vUv=position.xy*.5+.5;gl_Position=vec4(position.xy,0.,1.);}',fragmentShader,depthTest:false,depthWrite:false});
   geometry = new THREE.PlaneGeometry(2,2); scene.add(new THREE.Mesh(geometry,material));
   const target=[0,0,1,0,0,0], current=[0,0,1,0,0,0];
   let width=1,height=1;
@@ -65,3 +65,4 @@ export async function createLandscape(host: HTMLElement, assets: typeof landscap
   return {canvas:renderer.domElement,resize,pointer(x,y){target[0]=x;target[1]=y;invalidate();},scroll(progress){target[2]=1+progress*.015;invalidate();},highlight(path){target[3]=path===1?1:0;target[4]=path===2?1:0;target[5]=path===3?1:0;invalidate();},pause(value){paused=value;cancelAnimationFrame(frame);frame=0;previous=0;if(!paused)invalidate();},dispose(){signal.removeEventListener('abort',dispose);dispose();}};
  } catch(error) {dispose(); throw error;}
 }
+
