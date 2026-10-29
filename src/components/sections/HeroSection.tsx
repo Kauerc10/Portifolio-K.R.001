@@ -1,6 +1,8 @@
 'use client';
 
-import Image from 'next/image';
+import { useState, useEffect, useRef, type CSSProperties } from 'react';
+import HeroLandscape from '../hero/HeroLandscape';
+import { cover, destinations } from '../hero/landscape';
 import Link from 'next/link';
 import type { Dictionary } from '@/i18n/types';
 
@@ -9,6 +11,19 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ dict: d }: HeroSectionProps) {
+  const [activePath, setActivePath] = useState(0);
+  const composition = useRef<HTMLDivElement>(null);
+  const [bounds, setBounds] = useState({ width: 1433, height: 1018 });
+  const [imageSize, setImageSize] = useState({width: 1024, height: 768});
+  useEffect(() => {
+    const image = new window.Image(); image.src = '/images/hero-clean.jpg';
+    let alive = true;
+    image.onload = () => { if (alive) setImageSize({width:image.naturalWidth,height:image.naturalHeight}); };
+    if (typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(entries => { const {width,height} = entries[0].contentRect; setBounds({width,height}); });
+    observer.observe(composition.current!);
+    return () => { alive=false; image.onload=null; observer.disconnect(); };
+  }, []);
   const greetingLine1 = d.greetingH1Line1 || 'Olá, que bom ter';
   const greetingLine2 = d.greetingH1Line2 || 'você por aqui.';
   const areas = d.areasSubtitle || 'Desenvolvimento, automações e suporte.';
@@ -31,21 +46,9 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
       className="relative w-full max-w-[1433px] mx-auto overflow-hidden bg-[#F7F7FA] dark:bg-[#111015] transition-colors"
     >
       {/* ── Composição Unificada Desktop (1433 × 1018 Aspect Ratio) ── */}
-      <div className="relative w-full aspect-[1433/1018] min-h-[680px] flex flex-col justify-between select-none">
+      <div ref={composition} className="hero-composition relative w-full aspect-[1433/1018] min-h-[680px] flex flex-col justify-between select-none">
         {/* Imagem Canônica de Fundo (Preenche todo o canvas: céu branco no topo, paisagem no meio/base) */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none">
-          <Image
-            src="/images/hero-clean.jpg"
-            alt="Paisagem conceitual mineral com caminhos violeta interligando os pavilhões de Desenvolvimento, Automação e Suporte"
-            // Keep the original artwork bytes: avoid a second lossy optimization pass.
-            unoptimized
-            sizes="(max-width: 1433px) 100vw, 1433px"
-            fill
-            priority
-            fetchPriority="high"
-            className="object-cover object-center"
-          />
-        </div>
+        <HeroLandscape activePath={activePath} />
 
         {/* ── Topo: Tipografia Canônica Integrada Sobre o Céu da Paisagem (U04–U09) ── */}
         <div className="relative z-10 px-6 sm:px-12 lg:px-16 pt-4 sm:pt-6">
@@ -102,55 +105,19 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
         </div>
 
         {/* ── Pins Arquitetônicos Reais da Referência Ancorados nos Pavilhões (U10, U11, U12) ── */}
-        <div className="absolute inset-0 pointer-events-none z-10">
-          {/* U10: Desenvolvimento (W01) */}
-          <Link
-            href="#projetos"
-            style={{ left: '13.3%', top: 'calc(45.9% - 24px)' }}
-            className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
-            aria-label={destDevelopment}
-          >
-            <div className="flex flex-col items-center">
-              <span className="w-[1.5px] h-10 sm:h-14 bg-[#6534D8] group-hover:bg-[#5225b8] transition-colors" />
-              <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#6534D8] shadow-sm -mt-0.5" />
-            </div>
-            <span className="text-sm sm:text-base font-medium text-[#1E1B4B] dark:text-[#F3F2F5] group-hover:text-[#6534D8] dark:group-hover:text-[#A17AFF] transition-colors tracking-tight pl-2 -translate-y-1">
-              {destDevelopment}
-            </span>
-          </Link>
-
-          {/* U11: Automação (W02) */}
-          <Link
-            href="#project-atlas"
-            style={{ left: '50.5%', top: 'calc(35.0% - 24px)' }}
-            className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
-            aria-label={destAutomation}
-          >
-            <div className="flex flex-col items-center">
-              <span className="w-[1.5px] h-10 sm:h-14 bg-[#6534D8] group-hover:bg-[#5225b8] transition-colors" />
-              <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#6534D8] shadow-sm -mt-0.5" />
-            </div>
-            <span className="text-sm sm:text-base font-medium text-[#1E1B4B] dark:text-[#F3F2F5] group-hover:text-[#6534D8] dark:group-hover:text-[#A17AFF] transition-colors tracking-tight pl-2 -translate-y-1">
-              {destAutomation}
-            </span>
-          </Link>
-
-          {/* U12: Suporte (W03) */}
-          <Link
-            href="#experiencia"
-            style={{ left: '87.1%', top: 'calc(43.4% - 24px)' }}
-            className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
-            aria-label={destSupport}
-          >
-            <div className="flex flex-col items-center">
-              <span className="w-[1.5px] h-10 sm:h-14 bg-[#6534D8] group-hover:bg-[#5225b8] transition-colors" />
-              <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#6534D8] shadow-sm -mt-0.5" />
-            </div>
-            <span className="text-sm sm:text-base font-medium text-[#1E1B4B] dark:text-[#F3F2F5] group-hover:text-[#6534D8] dark:group-hover:text-[#A17AFF] transition-colors tracking-tight pl-2 -translate-y-1">
-              {destSupport}
-            </span>
-          </Link>
-        </div>
+        <nav className="hero-destinations" aria-label="Destinos da paisagem">
+          {destinations.map(destination => {
+            const point = cover(bounds.width, bounds.height, imageSize.width, imageSize.height).project(destination.x, destination.y);
+            const label = {development:destDevelopment, automation:destAutomation, support:destSupport}[destination.key];
+            return <Link key={destination.key} href={destination.href} aria-label={label}
+              className="hero-destination" style={{'--anchor-x':`${point.x}px`, '--anchor-y':`${point.y}px`} as CSSProperties}
+              onPointerEnter={() => setActivePath(destination.path)} onPointerLeave={() => setActivePath(0)}
+              onFocus={() => setActivePath(destination.path)} onBlur={() => setActivePath(0)}>
+              <span className="hero-destination-stem" aria-hidden="true" />
+              <span className="hero-destination-label">{label}</span>
+            </Link>;
+          })}
+        </nav>
 
         {/* ── Base Integrada Sobre as Dunas da Paisagem (U13–U16) ── */}
         <div className="relative z-10 px-6 sm:px-12 lg:px-16 pb-4 sm:pb-6 flex flex-col sm:flex-row items-center justify-between gap-6">
