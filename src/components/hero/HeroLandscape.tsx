@@ -53,4 +53,3 @@ export default function HeroLandscape({ loadRenderer = defaultLoader, activePath
     <img src={landscapeAssets.color} alt="Paisagem conceitual mineral com caminhos violeta interligando os pavilhões de Desenvolvimento, Automação e Suporte" fetchPriority="high" className="absolute inset-0 w-full h-full object-cover object-center" />
   </div>;
 }
-
