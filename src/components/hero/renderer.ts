@@ -65,4 +65,3 @@ export async function createLandscape(host: HTMLElement, assets: typeof landscap
   return {canvas:renderer.domElement,resize,pointer(x,y){target[0]=x;target[1]=y;invalidate();},scroll(progress){target[2]=1+progress*.015;invalidate();},highlight(path){target[3]=path===1?1:0;target[4]=path===2?1:0;target[5]=path===3?1:0;invalidate();},pause(value){paused=value;cancelAnimationFrame(frame);frame=0;previous=0;if(!paused)invalidate();},dispose(){signal.removeEventListener('abort',dispose);dispose();}};
  } catch(error) {dispose(); throw error;}
 }
-

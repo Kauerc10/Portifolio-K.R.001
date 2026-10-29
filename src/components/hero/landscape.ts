@@ -20,4 +20,3 @@ export interface LandscapeRenderer {
   dispose(): void;
 }
 export type RendererLoader = () => Promise<{ createLandscape: (host: HTMLElement, assets: typeof landscapeAssets, signal: AbortSignal, failed: () => void) => Promise<LandscapeRenderer> }>;
-

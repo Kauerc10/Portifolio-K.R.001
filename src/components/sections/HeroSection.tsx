@@ -177,4 +177,3 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
     </section>
   );
 }
-
