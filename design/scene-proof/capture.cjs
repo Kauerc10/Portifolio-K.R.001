@@ -5,7 +5,8 @@ const path = require('node:path');
 
 (async () => {
   const root = path.resolve(__dirname, '../..');
-  const output = path.join(root, 'docs/design-transition/proof');
+  const outputArg = process.argv.indexOf('--output');
+  const output = outputArg < 0 ? path.join(root, 'docs/design-transition/proof') : path.resolve(process.argv[outputArg + 1]);
   await fs.mkdir(output, { recursive: true });
   const browser = await chromium.launch({ channel: 'chrome', headless: true });
   const metrics = [];

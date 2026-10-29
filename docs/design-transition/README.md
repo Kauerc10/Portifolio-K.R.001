@@ -4,6 +4,7 @@
 
 - [Especificação visual, de interação e de conteúdo](specification.md)
 - [Plano de implementação e dependências](../superpowers/plans/2026-10-27-interactive-portfolio.md)
+- [Checkpoint de refinamento Blender/navegador — #47](refinement-proof.md) — primeira fatia para revisão, ainda não aprovada
 - [Referência aprovada](assets/approved-desktop.png)
 - [Diagrama espacial e instruções por elemento](reference-map.md) — imagem original + 27 IDs, posições, camadas e destinos
 - [Tickets publicados e dependências](ticket-breakdown.md) — T01–T11 / issues #36–#46; verificados em 28/10/2026

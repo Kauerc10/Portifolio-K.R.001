@@ -1,0 +1,26 @@
+{
+  "status": "focus checkpoint; not production approved",
+  "modelBytes": 1743832,
+  "embeddedTextures": [
+    {
+      "mimeType": "image/webp",
+      "bytes": 67282
+    },
+    {
+      "mimeType": "image/webp",
+      "bytes": 445568
+    }
+  ],
+  "runtimeBytes": 652212,
+  "runtimeGzipBytes": 168238,
+  "posterBytes": {
+    "desktop": 54640,
+    "mobile": 10606
+  },
+  "destinations": {
+    "development": "#projetos",
+    "automation": "#project-atlas",
+    "support": "#experiencia"
+  },
+  "destinationValidation": "three named meshes loaded and projected; application HTML behavior belongs to T02/T03"
+}

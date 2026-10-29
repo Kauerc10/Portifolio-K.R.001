@@ -13,6 +13,8 @@
 # production
 /build
 /.scene-proof-dist/
+/design/scene-proof/blender/__pycache__/
+/design/scene-proof/blender/out/*.blend1
 
 # debug
 npm-debug.log*

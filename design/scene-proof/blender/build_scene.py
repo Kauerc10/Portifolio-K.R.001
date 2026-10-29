@@ -7,8 +7,8 @@ Usage (from the repository root):
 Camera-ray-locked reconstruction from the approved desktop reference (1433x1098).
 Every horizontal contour at elevation `h` is placed via `atpx(px, py, h)` and every
 vertical drop of `dy_px` screen pixels uses `KY = (VIEW_H / REF_H) / cos(EL)`, so
-3D volumes are manifold and their orthographic projection aligns pixel-for-pixel
-with `docs/design-transition/assets/approved-desktop.png`.
+screen guides inform the orthographic projection. They do not prove hidden
+geometry or exact fidelity to `docs/design-transition/assets/approved-desktop.png`.
 """
 import bpy, bmesh, math, os, sys, json, time
 import numpy as np
@@ -244,7 +244,7 @@ def smooth_2d_rail(xy, passes=8):
     return arr
 
 
-def sweep_ribbon_px(name, ctrl, wall_px=11.0, wall_h_px=8.5, per_seg=18, taper_start=0, taper_end=0):
+def sweep_ribbon_px(name, ctrl, wall_px=11.0, wall_h_px=8.5, per_seg=18, taper_start=0, taper_end=0, open_start=0):
     """Sweep a violet road + left/right white parapets + vertical retaining wall in screen-consistent space."""
     samples = catmull_rom(ctrl, per_seg=per_seg)
     n = len(samples)
@@ -311,12 +311,16 @@ def sweep_ribbon_px(name, ctrl, wall_px=11.0, wall_h_px=8.5, per_seg=18, taper_s
     floor_faces = []
     for i in range(n - 1):
         for j in range(m):
+            # The bridge joins the foreground deck here. Its guard rail must
+            # begin after the junction rather than cutting across the violet lane.
+            if i < open_start and j != floor_idx:
+                continue
             k = (j + 1) % m
             f = bm.faces.new([rings[i][j], rings[i][k], rings[i + 1][k], rings[i + 1][j]])
             f.material_index = 2 if j == floor_idx else 0
             if j == floor_idx:
                 floor_faces.append(f)
-    for ring in (rings[0], list(reversed(rings[-1]))):
+    for ring in ([rings[0]] if not open_start else []) + [list(reversed(rings[-1]))]:
         bm.faces.new(ring)
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
     if floor_faces:
@@ -738,16 +742,16 @@ def build():
         (165, 820, 1.80, 36, 28, 95),
         (280, 778, 1.98, 32, 28, 95),
         (385, 734, 2.12, 32, 32, 98),
-        (454, 692, 2.22, 32, 42, 102),
-        (470, 662, 2.28, 28, 48, 102),
-        (438, 638, 2.30, 20, 48, 38),
-        (375, 622, 2.30, 15, 44, 22),
-        (295, 614, 2.30, 12, 20, 16),
+        (466, 706, 2.22, 29, 42, 102),
+        (493, 675, 2.28, 25, 48, 102),
+        (468, 650, 2.30, 21, 48, 38),
+        (411, 633, 2.30, 16, 44, 22),
+        (334, 625, 2.30, 12, 20, 16),
         (225, 608, 2.30, 11, 14, 14),
     ], wall_px=11.0, wall_h_px=8.0, per_seg=18, taper_end=6)
 
     bridge = sweep_ribbon_px('path-bridge', [
-        (470, 656, 2.27, 13, 12, 14),
+        (493, 665, 2.28, 13, 12, 14),
         (555, 630, 2.42, 10, 12, 14),
         (665, 610, 2.55, 7, 10, 12),
         (780, 600, 2.68, 6, 10, 12),
@@ -759,7 +763,7 @@ def build():
         (928, 512, 3.19, 10, 12, 14),
         (835, 502, 3.23, 8, 10, 12),
         (752, 500, 3.25, 8, 10, 10),
-    ], wall_px=9.0, wall_h_px=7.5, per_seg=16, taper_start=10, taper_end=8)
+    ], wall_px=9.0, wall_h_px=7.5, per_seg=16, taper_start=10, taper_end=8, open_start=14)
 
     upper = sweep_ribbon_px('path-upper', [
         (832, 463, 2.98, 6, 10, 12),
@@ -1005,9 +1009,36 @@ def make_uvs(terrain, structs):
     bpy.context.view_layer.objects.active = structs[0]
     bpy.ops.object.mode_set(mode='EDIT')
     bpy.ops.mesh.select_all(action='SELECT')
-    bpy.ops.uv.smart_project(angle_limit=math.radians(66), island_margin=0.004, scale_to_bounds=False)
-    bpy.ops.uv.pack_islands(margin=0.004, rotate=True)
+    bpy.ops.uv.smart_project(angle_limit=math.radians(10), island_margin=0.002, scale_to_bounds=False)
+    bpy.ops.uv.pack_islands(margin=0.002, rotate=True)
+    # Curved/concave authored strips can fold inside a projected UV chart even
+    # though separate charts do not overlap. Detach only those UV triangles,
+    # then repack; geometry and the camera silhouette stay unchanged.
+    bpy.ops.uv.select_all(action='DESELECT')
+    bpy.ops.uv.select_overlap(extend=False)
+    detached = 0
+    for obj in structs:
+        bm = bmesh.from_edit_mesh(obj.data)
+        layer = bm.loops.layers.uv.active
+        folded = [f for f in bm.faces if any(loop[layer].select for loop in f.loops)]
+        detached += len(folded)
+        for index, face in enumerate(folded):
+            for loop in face.loops:
+                loop[layer].uv.x += 10 + index * 3
+        bmesh.update_edit_mesh(obj.data)
+    bpy.ops.uv.select_all(action='SELECT')
+    bpy.ops.uv.pack_islands(margin=0.002, rotate=True)
+    bpy.ops.uv.select_all(action='DESELECT')
+    bpy.ops.uv.select_overlap(extend=False)
+    remaining = 0
+    for obj in structs:
+        bm = bmesh.from_edit_mesh(obj.data)
+        layer = bm.loops.layers.uv.active
+        remaining += sum(any(loop[layer].select for loop in f.loops) for f in bm.faces)
     bpy.ops.object.mode_set(mode='OBJECT')
+    print('UV charts: detached', detached, 'folded triangles; remaining overlaps', remaining)
+    if remaining:
+        raise RuntimeError(f'Atlas has {remaining} overlapping UV faces; refusing to bake')
 
 
 def bake_target(mats, name, size):
@@ -1027,7 +1058,7 @@ def bake(objs, label):
     bpy.context.view_layer.objects.active = objs[0]
     t0 = time.time()
     bpy.ops.object.bake(type='COMBINED', pass_filter={'DIRECT', 'INDIRECT', 'COLOR', 'DIFFUSE', 'EMIT'},
-                        margin=3, margin_type='EXTEND', use_clear=True)
+                        margin=8, margin_type='EXTEND', use_clear=True)
     print(f'baked {label} in {time.time() - t0:.0f}s')
 
 
@@ -1052,6 +1083,16 @@ def write_png(arr_linear, name, path):
 
 def bake_and_export(objs, terrain):
     structs = [o for o in objs]
+    # Freeze concave/beveled faces before both UV projection and glTF export.
+    # Otherwise Blender's bake and glTF may triangulate the same ngon differently.
+    for obj in structs:
+        bm = bmesh.new()
+        bm.from_mesh(obj.data)
+        bmesh.ops.split_edges(bm, edges=[edge for edge in bm.edges if len(edge.link_faces) == 2
+                              and edge.link_faces[0].material_index != edge.link_faces[1].material_index])
+        bmesh.ops.triangulate(bm, faces=list(bm.faces))
+        bm.to_mesh(obj.data)
+        bm.free()
     make_uvs(terrain, structs)
     scene.render.engine = 'CYCLES'
     scene.cycles.device = 'CPU'
@@ -1063,7 +1104,7 @@ def bake_and_export(objs, terrain):
     img_t = bake_target([TERRAIN], 'bake_terrain', ATLAS_TERRAIN)
     bake([terrain], 'terrain')
     s, t = pixels(img_s), pixels(img_t)
-    gain = 1.05
+    gain = float(arg('--bake-gain', '1.05'))
     print('gain', gain)
     s[..., :3] *= gain
     t[..., :3] *= gain
@@ -1074,10 +1115,11 @@ def bake_and_export(objs, terrain):
     haze_front = smoothstep(8.5, 16.0, z) * 0.85
     haze = np.clip(haze_back + haze_front, 0.0, 0.95)[:, None, None]
     bg = np.array(srgb_to_lin(BG))[None, None, :]
-    t[..., :3] = t[..., :3] * (1 - haze) + bg * haze
-    for a in (s, t):
-        lum = a[..., :3].mean(axis=2, keepdims=True)
-        a[..., :3] += (1 - np.clip(lum, 0, 1)) * np.array([0.004, 0.003, 0.016])[None, None, :]
+    if '--no-atlas-grade' not in ARGS:
+        t[..., :3] = t[..., :3] * (1 - haze) + bg * haze
+        for a in (s, t):
+            lum = a[..., :3].mean(axis=2, keepdims=True)
+            a[..., :3] += (1 - np.clip(lum, 0, 1)) * np.array([0.004, 0.003, 0.016])[None, None, :]
     os.makedirs(WEB_DIR, exist_ok=True)
     write_png(s, 'struct', os.path.join(OUT_DIR, 'atlas-structures.png'))
     write_png(t, 'terrain', os.path.join(OUT_DIR, 'atlas-terrain.png'))
@@ -1118,7 +1160,8 @@ def bake_and_export(objs, terrain):
     bpy.ops.export_scene.gltf(**kw)
     print('exported', kw['filepath'], os.path.getsize(kw['filepath']))
     json.dump({'triangles': tris, 'objects': [o.name for o in structs] + ['terrain'], 'gain': gain,
-               'atlas': {'structures': ATLAS_STRUCT, 'terrain': ATLAS_TERRAIN}, 'samples': BAKE_SAMPLES},
+               'atlas': {'structures': ATLAS_STRUCT, 'terrain': ATLAS_TERRAIN}, 'samples': BAKE_SAMPLES,
+               'post_grade': '--no-atlas-grade' not in ARGS},
               open(os.path.join(OUT_DIR, 'bake-report.json'), 'w'), indent=2)
 
 

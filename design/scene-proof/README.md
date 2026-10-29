@@ -14,3 +14,9 @@ aquecimento; não confundir com tempo GPU nem desempenho de aparelho físico.
 Prova visual deliberadamente sem testes de coordenadas artísticas, conforme P0.
 Contratos funcionais do renderer/React pertencem às próximas fatias aprovadas.
 Ver decisões e resultados em `docs/design-transition/scene-proof.md`.
+
+O acabamento localizado de #47 usa `blender/refine_scene.py`; instruções,
+comparações Blender/navegador e limites estão em
+`docs/design-transition/refinement-proof.md`. O arquivo GLB padrão contém esse
+checkpoint. `capture.cjs --output docs/design-transition/proof/refinement-47`
+preserva as capturas anteriores em vez de sobrescrevê-las.
