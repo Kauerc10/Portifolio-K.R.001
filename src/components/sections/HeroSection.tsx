@@ -35,8 +35,11 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
         {/* Imagem Canônica de Fundo (Preenche todo o canvas: céu branco no topo, paisagem no meio/base) */}
         <div className="absolute inset-0 w-full h-full pointer-events-none">
           <Image
-            src="/images/hero-clean.webp"
+            src="/images/hero-clean.jpg"
             alt="Paisagem conceitual mineral com caminhos violeta interligando os pavilhões de Desenvolvimento, Automação e Suporte"
+            // Keep the original artwork bytes: avoid a second lossy optimization pass.
+            unoptimized
+            sizes="(max-width: 1433px) 100vw, 1433px"
             fill
             priority
             fetchPriority="high"
