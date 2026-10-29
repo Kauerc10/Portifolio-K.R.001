@@ -1,0 +1,15 @@
+# Integrated hero runtime verification — #48
+
+2026-10-29. Production Next build, Chrome headless, Windows / Intel UHD Graphics 630 via ANGLE, DPR 1. Mobile sizes are browser emulation, not a physical phone. No deployment performed.
+
+- `npx vitest run --maxWorkers=1`: 7 files, 34 tests passed, including six public hero-wrapper behaviors (fallback, late completion, reduced motion at boot/runtime, visibility gating, pause/resume/cleanup).
+- `npx tsc --noEmit`: passed. `npm run build`: passed; locale page first-load JS 117 kB. Build and development server must run sequentially because both write `.next`.
+- Actual production canvas mounted at 1440 and 390 px. Additional Chrome viewport checks at 320/1920 px found no horizontal overflow or page errors; 320 px destination links wrap into two rows, each target at least 44 px high. Portuguese and English were exercised.
+- Ten seconds of pointer interaction after warmup: 603 draws desktop / 601 mobile; median frame interval 16.7 ms both; p95 19.4 / 19.0 ms. One second at rest: zero scene draws. See [raw results](hero-runtime-metrics.json). Long tasks include page boot and are recorded without attribution; these measurements do not certify field percentiles.
+- Keyboard focus + Enter navigated to `#projetos` in both viewport sizes. CDP touch swipe on the English mobile hero scrolled the document 531 px. Direct `#experiencia` retained the hash and paused the offscreen hero. Runtime reduced motion removed the canvas; boot with reduced motion retained all three links and loaded no canvas.
+- Forced `WEBGL_lose_context` returned to fallback with three destination links preserved. Reduced-motion changes then returned to poster. Texture loading failure and stale callbacks are covered at the public wrapper boundary.
+- Poster/canvas comparison at neutral position: screenshot mean absolute RGB-channel difference 0.5168 on the 0–255 scale; maximum 149 around isolated resampling edges. This comparison uses browser screenshots because a non-preserved WebGL drawing buffer cannot be read after presentation. The shared centered-cover calculation and the same color URL preserve framing; no global color/crop jump was observed.
+- Asset payloads: color 108492 B; depth 24420 B; path IDs 2282 B; total 135194 B. Chrome recorded the color once with body plus one 300 B revalidation response for the texture request; no second color body. Decoded RGBA texture estimate: approximately 12 MiB total without mipmaps, plus canvas buffers and browser overhead. Depth remains an approximate authored map, not reconstructed geometry.
+- Deferred production chunks containing the renderer/Three runtime: 83614 + 50719 = 134333 B gzip measured locally; below the proposed 220 kB incremental budget. These are gzip estimates rather than server Brotli transfer measurements.
+
+The source remains a 1448×1086 generated restoration approved by the user, not a recovered 2880 px original. Canvas sizing respects the actual displayed area, a 3-million-pixel cap, desktop DPR 1.5/mobile DPR 1, and GPU maximum texture dimensions. The pavilions remain one decorative plane, with HTML owning destinations and focus.
