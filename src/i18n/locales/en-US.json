@@ -8,7 +8,12 @@
     "education": "EDUCATION",
     "projects": "PROJECTS",
     "contact": "CONTACT",
-    "indicator": "§ 01 / 08"
+    "indicator": "§ 01 / 08",
+    "trajectory": "Trajectory",
+    "resume": "Resume",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "brandAria": "Kauê Ruon Cardoso - Home"
   },
   "loader": {
     "shaders": "LOADING GLSL SHADERS...",
@@ -28,7 +33,19 @@
     ],
     "ctaProjects": "VIEW PROJECTS",
     "ctaResume": "RESUME.PDF",
-    "footnote": "No process was archived during the creation of this website."
+    "footnote": "No process was archived during the creation of this website.",
+    "greetingH1": "Hello, great to have you here.",
+    "areasSubtitle": "Development, automations and support.",
+    "presentation": "I am Kauê Ruon Cardoso. I build applications, automate workflows, and help people use technology.",
+    "ctaExplore": "Explore my work",
+    "scrollHint": "Explore the paths or scroll to view projects",
+    "destDevelopment": "Development",
+    "destAutomation": "Automation",
+    "destSupport": "Support",
+    "greetingH1Line1": "Hello, great to have",
+    "greetingH1Line2": "you here.",
+    "locationEdu": "Blumenau, SC · Software Analysis & Dev",
+    "ctaResumeShort": "Resume"
   },
   "sobre": {
     "title": "ABOUT ME",

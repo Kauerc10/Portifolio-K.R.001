@@ -19,14 +19,14 @@ export default function LanguageToggle() {
   }
 
   // Extrair o locale atual da URL (/pt-BR/... ou /en-US/...)
-  const currentLocale: Locale = pathname.startsWith('/en-US') ? 'en-US' : 'pt-BR';
+  const currentLocale: Locale = (pathname || '').startsWith('/en-US') ? 'en-US' : 'pt-BR';
   const isEnglish = currentLocale === 'en-US';
 
   const handleLanguageSwitch = (targetLocale: Locale, event: MouseEvent<HTMLButtonElement>) => {
     if (targetLocale === currentLocale) return;
 
     // Substituir a rota mantendo query params e o hash de seção atual
-    const newPath = pathname.replace(`/${currentLocale}`, `/${targetLocale}`);
+    const newPath = (pathname || '').replace(`/${currentLocale}`, `/${targetLocale}`);
     const searchString = typeof window !== 'undefined' ? window.location.search : '';
     const hashString = typeof window !== 'undefined' ? window.location.hash : '';
     const targetUrl = `${newPath}${searchString}${hashString}`;

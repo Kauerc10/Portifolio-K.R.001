@@ -152,98 +152,125 @@ export default async function RootLayout({
 
   const validLocale = locale as Locale;
   const dict = await getDictionary(validLocale);
+  const useLegacyShell = process.env.NEXT_PUBLIC_SHELL === 'legacy';
 
   return (
-    <html lang={validLocale} className={`${syne.variable} ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html
+      lang={validLocale}
+      className={`${syne.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <link rel="llms" href="/llms.txt" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+        />
       </head>
-      <body className="has-noise transition-colors duration-300">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+      <body className="transition-colors duration-300 font-sans bg-[#F7F7FA] text-[#14131C] dark:bg-[#111015] dark:text-[#F3F2F5] min-h-screen">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           {/* DADOS ESTRUTURADOS JSON-LD PARA SEO E AI READINESS LOCALIZADOS */}
           <JsonLd locale={validLocale} />
 
-          {/* NOISE OVERLAY */}
-          <div className="noise-overlay" />
+          {/* SHELL LEGADO: Ativado apenas se explicitamente configurado via NEXT_PUBLIC_SHELL=legacy */}
+          {useLegacyShell && (
+            <>
+              <div className="noise-overlay" />
+              <canvas id="heroCanvas" className="global-3d-bg" />
 
-          {/* GLOBAL 3D BACKGROUND CANVAS */}
-          <canvas id="heroCanvas" className="global-3d-bg" />
-
-          {/* LOADING SCREEN */}
-          <div id="loader" className="loader">
-            <div className="loader__content">
-              <p className="loader__title">KAUÊ RUON CARDOSO</p>
-              <div className="loader__divider" />
-              <p className="loader__case">Software Architect · SaaS & IA Generativa</p>
-              <div className="loader__bars">
-                <div className="loader__bar-row" data-target="74">
-                  <div className="loader__bar">
-                    <div className="loader__bar-fill" id="bar1" />
+              <div id="loader" className="loader">
+                <div className="loader__content">
+                  <p className="loader__title">KAUÊ RUON CARDOSO</p>
+                  <div className="loader__divider" />
+                  <p className="loader__case">Software Architect · SaaS & IA Generativa</p>
+                  <div className="loader__bars">
+                    <div className="loader__bar-row" data-target="74">
+                      <div className="loader__bar">
+                        <div className="loader__bar-fill" id="bar1" />
+                      </div>
+                      <span className="loader__percent" id="pct1">0%</span>
+                      <span className="loader__label">{dict.loader.shaders}</span>
+                    </div>
+                    <div className="loader__bar-row" data-target="82">
+                      <div className="loader__bar">
+                        <div className="loader__bar-fill" id="bar2" />
+                      </div>
+                      <span className="loader__percent" id="pct2">0%</span>
+                      <span className="loader__label">{dict.loader.scene}</span>
+                    </div>
+                    <div className="loader__bar-row" data-target="100">
+                      <div className="loader__bar">
+                        <div className="loader__bar-fill" id="bar3" />
+                      </div>
+                      <span className="loader__percent" id="pct3">0%</span>
+                      <span className="loader__label">{dict.loader.ready}</span>
+                    </div>
                   </div>
-                  <span className="loader__percent" id="pct1">0%</span>
-                  <span className="loader__label">{dict.loader.shaders}</span>
+                  <p className="loader__hint">
+                    ↓ {validLocale === 'en-US' ? 'scroll to navigate' : 'role para navegar'}
+                  </p>
                 </div>
-                <div className="loader__bar-row" data-target="82">
-                  <div className="loader__bar">
-                    <div className="loader__bar-fill" id="bar2" />
-                  </div>
-                  <span className="loader__percent" id="pct2">0%</span>
-                  <span className="loader__label">{dict.loader.scene}</span>
-                </div>
-                <div className="loader__bar-row" data-target="100">
-                  <div className="loader__bar">
-                    <div className="loader__bar-fill" id="bar3" />
-                  </div>
-                  <span className="loader__percent" id="pct3">0%</span>
-                  <span className="loader__label">{dict.loader.ready}</span>
-                </div>
+                <div className="loader__curtain loader__curtain--left" />
+                <div className="loader__curtain loader__curtain--right" />
               </div>
-              <p className="loader__hint">↓ {validLocale === 'en-US' ? 'scroll to navigate' : 'role para navegar'}</p>
-            </div>
-            <div className="loader__curtain loader__curtain--left" />
-            <div className="loader__curtain loader__curtain--right" />
-          </div>
 
-          {/* AVAILABILITY BAR */}
-          <div id="availabilityBanner" className="availability-banner" role="status">
-            <span className="availability-banner__dot" aria-hidden="true" />
-            <span className="availability-banner__text">
-              {validLocale === 'en-US'
-                ? 'OPEN TO OPPORTUNITIES · REMOTE AND GLOBAL'
-                : 'ABERTO A OPORTUNIDADES · REMOTO E GLOBAL'}
-            </span>
-          </div>
+              <div id="availabilityBanner" className="availability-banner" role="status">
+                <span className="availability-banner__dot" aria-hidden="true" />
+                <span className="availability-banner__text">
+                  {validLocale === 'en-US'
+                    ? 'OPEN TO OPPORTUNITIES · REMOTE AND GLOBAL'
+                    : 'ABERTO A OPORTUNIDADES · REMOTO E GLOBAL'}
+                </span>
+              </div>
 
-          {/* CURSOR TRAIL CANVAS */}
-          <canvas id="cursorTrail" className="cursor-trail" />
+              <canvas id="cursorTrail" className="cursor-trail" />
 
-          {/* CUSTOM CURSOR */}
-          <div className="cursor" id="cursor">
-            <div className="cursor__dot" />
-            <div className="cursor__ring" />
-            <div className="cursor__label" id="cursorLabel" />
-          </div>
+              <div className="cursor" id="cursor">
+                <div className="cursor__dot" />
+                <div className="cursor__ring" />
+                <div className="cursor__label" id="cursorLabel" />
+              </div>
+            </>
+          )}
 
-          {/* MAIN CONTENT */}
-          <main>{children}</main>
+          {/* CONTEÚDO PRINCIPAL (Sem aninhamento de <main>) */}
+          {children}
 
           {/* WIDGET DO AGENTE ÆVO AI BILINGUE */}
           <AevoEffects />
           <AevoWidget locale={validLocale} />
 
-          {/* ENGINE DE SCRIPTS 3D & GSAP */}
-          <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" strategy="beforeInteractive" />
-          <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" strategy="beforeInteractive" />
-          <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" strategy="beforeInteractive" />
-          <Script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js" strategy="beforeInteractive" />
+          {/* ENGINE DE SCRIPTS 3D & GSAP (Montado APENAS no shell legado para garantir exclusividade mútua) */}
+          {useLegacyShell && (
+            <>
+              <Script
+                src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+                strategy="beforeInteractive"
+              />
+              <Script
+                src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+                strategy="beforeInteractive"
+              />
+              <Script
+                src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+                strategy="beforeInteractive"
+              />
+              <Script
+                src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"
+                strategy="beforeInteractive"
+              />
 
-          <Script src="/js/three-scene.js" strategy="afterInteractive" />
-          <Script src="/js/animations.js" strategy="afterInteractive" />
-          <Script src="/js/loader.js" strategy="afterInteractive" />
-          <Script src="/js/cursor.js" strategy="afterInteractive" />
-          <Script src="/js/easter-eggs.js" strategy="afterInteractive" />
-          <Script src="/js/availability-banner.js" strategy="afterInteractive" />
-          <Script src="/js/main.js" strategy="afterInteractive" />
+              <Script src="/js/three-scene.js" strategy="afterInteractive" />
+              <Script src="/js/animations.js" strategy="afterInteractive" />
+              <Script src="/js/loader.js" strategy="afterInteractive" />
+              <Script src="/js/cursor.js" strategy="afterInteractive" />
+              <Script src="/js/easter-eggs.js" strategy="afterInteractive" />
+              <Script src="/js/availability-banner.js" strategy="afterInteractive" />
+              <Script src="/js/main.js" strategy="afterInteractive" />
+            </>
+          )}
         </ThemeProvider>
       </body>
     </html>

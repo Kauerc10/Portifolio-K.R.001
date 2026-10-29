@@ -8,7 +8,12 @@
     "education": "FORMAÇÃO",
     "projects": "PROJETOS",
     "contact": "CONTATO",
-    "indicator": "§ 01 / 08"
+    "indicator": "§ 01 / 08",
+    "trajectory": "Trajetória",
+    "resume": "Currículo",
+    "menu": "Menu",
+    "closeMenu": "Fechar menu",
+    "brandAria": "Kauê Ruon Cardoso - Início"
   },
   "loader": {
     "shaders": "CARREGANDO SHADERS GLSL...",
@@ -28,7 +33,19 @@
     ],
     "ctaProjects": "VER PROJETOS",
     "ctaResume": "CURRÍCULO.PDF",
-    "footnote": "Nenhum processo foi arquivado na criação deste site."
+    "footnote": "Nenhum processo foi arquivado na criação deste site.",
+    "greetingH1": "Olá, que bom ter você por aqui.",
+    "areasSubtitle": "Desenvolvimento, automações e suporte.",
+    "presentation": "Sou Kauê Ruon Cardoso. Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia.",
+    "ctaExplore": "Explorar meu trabalho",
+    "scrollHint": "Explore os caminhos ou role para ver os projetos",
+    "destDevelopment": "Desenvolvimento",
+    "destAutomation": "Automação",
+    "destSupport": "Suporte",
+    "greetingH1Line1": "Olá, que bom ter",
+    "greetingH1Line2": "você por aqui.",
+    "locationEdu": "Blumenau, SC · ADS em formação",
+    "ctaResumeShort": "Currículo"
   },
   "sobre": {
     "title": "SOBRE MIM",
