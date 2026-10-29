@@ -98,9 +98,9 @@ void main() {
   }
 
   if (activeMask > 0.05) {
-    float wave = 0.85 + 0.15 * sin(u_time * 3.8);
-    vec3 glowColor = vec3(0.58, 0.35, 0.96);
-    color.rgb = mix(color.rgb, glowColor * 1.35, activeMask * u_hover_intensity * wave);
+    float wave = 0.88 + 0.12 * sin(u_time * 3.2);
+    vec3 glowColor = vec3(0.55, 0.35, 0.92);
+    color.rgb = mix(color.rgb, color.rgb * 1.12 + glowColor * 0.22, activeMask * u_hover_intensity * wave);
   }
 
   gl_FragColor = color;
@@ -116,13 +116,15 @@ export async function createLandscape2D5(width: number, height: number): Promise
     loader.loadAsync(pathsImgUrl),
   ]);
 
-  imageTex.colorSpace = THREE.SRGBColorSpace;
+  imageTex.colorSpace = THREE.NoColorSpace;
   imageTex.minFilter = THREE.LinearFilter;
   imageTex.magFilter = THREE.LinearFilter;
 
+  depthTex.colorSpace = THREE.NoColorSpace;
   depthTex.minFilter = THREE.LinearFilter;
   depthTex.magFilter = THREE.LinearFilter;
 
+  pathsTex.colorSpace = THREE.NoColorSpace;
   pathsTex.minFilter = THREE.NearestFilter;
   pathsTex.magFilter = THREE.NearestFilter;
 
