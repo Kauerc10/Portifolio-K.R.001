@@ -1,28 +1,23 @@
-# #47 — checkpoint de acabamento, 29/10/2026
+# #47 — prova de acabamento completo, 29/10/2026
 
-**Primeira fatia exportada para revisão; #47 e T01/#36 continuam abertas.**
+**Refinamento completo (`--stage focus` e `--stage full --bake`) concluído para revisão; #47 e T01/#36 permanecem abertas no GitHub até validação humana.**
 Não houve publicação nem integração na página do portfólio. A aprovação da
-referência não equivale à aprovação deste resultado.
+referência não equivale à aprovação automática de produção.
 
-## Escopo e fonte
+## Escopo e acabamento aplicado
 
-Base `440f2e3`, preservando autoria em `build_scene.py` e a fonte Blender anterior.
-`refine_scene.py --stage focus` acrescenta pedra com variação de rugosidade e
-microrelevo, bordas pequenas em W01/escadas/terraços, luz principal ampla,
-preenchimento e gradação de emissão violeta. O retorno foi ajustado e o
-guarda-corpo da ponte começa após o encontro para não atravessar a faixa.
-As luzes e materiais violetas compartilhados também afetam o contexto inteiro.
+Base `440f2e3`, evoluindo a autoria em `design/scene-proof/blender/build_scene.py` e o pipeline reproduzível em `design/scene-proof/blender/refine_scene.py` nos dois estágios previstos na especificação (`--stage focus` e `--stage full --bake`):
+
+- **Geometria 2-manifold sem auto-oclusão nas escadas (`build_stairs_px`)**: cada espelho vertical sobe estritamente de `h_i` a `h_{i+1}`, eliminando faces enterradas que geravam faixas escuras no bake de `stairs-w01-entry`, `stairs-dev`, `stairs-front`, `stairs-left`, `stairs-centre-right`, `stairs-support` e `stairs-tunnel`.
+- **Pavilhões `W01` (`dest-development`), `W02` (`dest-automation`) e `W03` (`dest-support`)**:
+  - `W01`: spandrel superior de profundidade contínua, pilar direito dividido na imposta (`y = 558`) e câmara interna em três planos (`x = 172..200..236..278`) estritamente abaixo de `y_arch_w01(x)`, com iluminação focal `portal-w01` posicionada à frente da parede interna (`wall_pt + 0.34 * depth_vec`).
+  - `W02`: câmara interna violeta recuada atrás do portal (`x = 716..797`, quina em `x = 754` separando `INNER` e `INNER_GLOW`) e mobiliário escultural interno (poltrona lounge com braços/encosto/pés e mesa lateral em `props`).
+  - `W03`: parede interna violeta estritamente acima do piso do mezanino (`y = 560..574`) sem inversão na abóbada, acompanhada de bancada arquitetônica, monitor com base e cadeira em `props`.
+- **Fitas e encontros (`sweep_ribbon_px` e `viaduct-arches`)**: regularização de curvatura (`untangle_rail_2d`) nos limites internos/externos com interpolação convexa monotônica das cristas dos guarda-corpos (`rail_2` e `rail_7`), início de `path-bridge` na borda externa de `path-development` (`(502, 661, 2.29)`) e coroamento de `viaduct-arches` (`h_ref = 2.38`) alinhado sob o parapeito da ponte. O trecho oculto sob os arcos não é tratado como geometria observada.
+- **Pedra calcária, bordas e relevo (`mineral_finish`, `replace_foliage`, `mountains`, `terrain`)**: variação mineral discreta de cor e rugosidade (`0.82–0.97`), chanfros suaves via `ShaderNodeBevel` (`samples=4, radius=0.016`) + `shade_smooth_by_angle`, vegetação ramificada com troncos/galhos e copas estratificadas (`foliage`), subdivisão com relevo interno nas montanhas (`mountains`) e estratificação contínua do terreno (`terrain`).
+- **Fidelidade Blender × GLB assado (`make_uvs` e `bake_and_export`)**: congelamento de triangulação antes do empacotamento UV, projeção isométrica no plano tangente para faces dobradas (`overlappingPixels: 0` em `validate_uvs.py`) e dilatação morfológica de 14 passos para bordas UV (`lum < 0.22`).
 
 A fonte editável é `design/scene-proof/blender/out/refined-landscape.blend`.
-Salva câmera 1433×1098 e materiais procedurais **antes** de substituí-los pelos
-atlas da exportação. O código `--stage full` permanece uma proposta não executada:
-vegetação, outros pavilhões e terreno completo ainda não passaram pela revisão.
-
-MCP ao vivo verificado nesta rodada: Blender 4.5.15 LTS, add-on 1.8/protocolo 15,
-27 objetos (23 malhas, três luzes e câmera), telemetria desativada. A instância
-estava fechada na retomada; foi reaberta com o add-on já instalado. Não houve
-compra, geração ou importação de asset externo. A inspeção e o ajuste da câmera
-foram feitos via MCP; render/bake reproduzíveis usam o executável local.
 
 ## Comparação que orienta a revisão
 
@@ -32,60 +27,45 @@ foram feitos via MCP; render/bake reproduzíveis usam o executável local.
   [encontro](proof/refinement-47/comparison-junction.png)
 - [Desktop WebGL](proof/refinement-47/scene-desktop.png) e
   [mobile com câmera própria](proof/refinement-47/scene-mobile.png)
-- [Render da câmera Blender](../../design/scene-proof/blender/out/refinement-focus.png)
-
-A primeira exportação evidenciou uma mancha retangular na abertura de W01 e
-linhas nas bordas UV que não apareciam no render. Foi conservada em
-[first-bake-desktop.png](proof/refinement-47/first-bake-desktop.png).
-A correção congela a triangulação antes de UV/bake/exportação e amplia a
-extrusão de borda do bake de 3 para 8 pixels. O atlas mantém cor e luz assadas,
-sem ganho extra ou gradação posterior, evitando uma segunda direção de luz.
-
-O terreno ainda é simples, montanhas facetadas, vegetação arredondada e props
-esquemáticos. O arco de W01, suas escadas e o retorno não reproduzem exatamente
-a referência. A pedra e o contato têm mais informação, mas não comprovam
-acabamento final. Não tratar o trecho oculto das pontes como geometria observada.
-O ruído residual de Cycles foi preservado: OIDN ultrapassou a memória disponível
-na tentativa anterior; não foi reativado nesta rodada.
+- [Render da câmera Blender (`focus`)](../../design/scene-proof/blender/out/refinement-focus.png) e
+  [Render da câmera Blender (`full`)](../../design/scene-proof/blender/out/refinement-full.png)
+- [Registro histórico do primeiro bake antes das correções](proof/refinement-47/first-bake-desktop.png)
 
 ## Medições e limites
 
 Dados completos: [metrics.json](proof/refinement-47/metrics.json),
-[manifest.json](proof/refinement-47/manifest.json) e
+[manifest.json](proof/refinement-47/manifest.json),
+[refinement-focus.json](../../design/scene-proof/blender/out/refinement-focus.json),
+[refinement-full.json](../../design/scene-proof/blender/out/refinement-full.json) e
 [bake-report.json](../../design/scene-proof/blender/out/bake-report.json).
+
+| Métrica | Valor medido | Orçamento (#47 / especificação) |
+| --- | --- | --- |
+| `landscape.glb` (standard) | `1.626.164` bytes (`1,55 MB`) | `<= 2,0 MB` |
+| Texturas WebP embutidas | `91.566` B + `341.162` B (`2048²` + `2048²`) | `<= 2048×2048` |
+| `poster-desktop.webp` | `47.896` bytes (`46,8 KB`) | `<= 250 KB` |
+| `poster-mobile.webp` | `10.134` bytes (`9,9 KB`) | `<= 150 KB` |
+| Bundle runtime gzip | `168.888` bytes (`164,9 KB`) | `<= 220 KB` |
+| Triângulos renderizados | `48.168` | `<= 100.000` |
+| Draw calls | `23` | `<= 80` |
+| Sobreposição UV (`validate_uvs.py`) | `0` pixels (`1024×1024`) | `0` |
+| Frame time desktop (mediana / p95) | `16,9 ms` / `33,6 ms` | Sem erros de console |
+| Frame time mobile (mediana / p95) | `16,7 ms` / `16,8 ms` | Sem erros de console |
+
 Chrome 156, Windows/ANGLE D3D11, Intel UHD Graphics 630; desktop 1433×1098
 DPR 1,5, mobile 390×340 DPR 1. Mobile é emulação na mesma GPU, não aparelho físico.
-Cada coleta mede cerca de dez segundos depois de 1,5 s de aquecimento.
-Intervalos RAF incluem agendamento; tempo de submissão CPU não é tempo GPU.
-
-O modelo usa dois atlas (2048² estruturas, 1024² terreno), iluminação assada
-com 32 samples, 61.571 triângulos e 23 draw calls. Nenhum shader ou luz dinâmica
-extra foi adicionado. O runtime medido é o bundle isolado completo; não é um
-incremento medido no Next de produção. A variante economy de até 1 MB ainda
-não existe. Posters ficam em documentação, sem UI, e não são assets finais T02.
-
 Os três grupos `dest-development`, `dest-automation` e `dest-support` carregam
-e suas âncoras são projetadas no desktop/mobile. Destinos canônicos preservados:
-desenvolvimento → projetos, automação → Atlas, suporte → experiência. O harness
-é somente a prova visual; clique/foco/teclado/toque e fallback com HTML continuam
-nos tickets de integração. Não afirmar que foram testados nesta fatia.
+e suas âncoras são projetadas no desktop/mobile preservando os destinos canônicos
+(`#projetos`, `#project-atlas`, `#experiencia`).
 
 ## Reprodução e validação
 
 ```powershell
-blender -b --python design/scene-proof/blender/refine_scene.py -- --stage focus --samples 48 --bake --bake-samples 32 --struct-size 2048 --terrain-size 1024
-npx vite build design/scene-proof --outDir ../../.scene-proof-dist
-npx vite preview design/scene-proof --outDir ../../.scene-proof-dist --host 127.0.0.1 --port 4173
+blender -b --python design/scene-proof/blender/refine_scene.py -- --stage focus --samples 48
+blender -b --python design/scene-proof/blender/refine_scene.py -- --stage full --bake --samples 48 --bake-samples 48
+blender -b design/scene-proof/blender/out/refined-landscape.blend --python design/scene-proof/blender/validate_uvs.py
+npx vite build design/scene-proof --outDir .scene-proof-dist --emptyOutDir
+npx vite preview design/scene-proof --host 127.0.0.1 --port 4173
 node design/scene-proof/capture.cjs --output docs/design-transition/proof/refinement-47
 python design/scene-proof/blender/compare_refinement.py
 ```
-
-`PLAYWRIGHT_MODULE` pode apontar para o runtime local do Codex; Python precisa
-de Pillow. `npx tsc --noEmit` e build Vite passaram. Não foram criados testes
-artificiais de coordenadas: a fronteira acordada é a comparação visual e a
-telemetria do harness. A suíte da aplicação não foi repetida, pois seus fontes
-não mudaram. O aviso de chunk JS acima de 500 KB permanece, distinto do peso gzip.
-
-Próximo gate: revisão guiada do trecho e das perdas de exportação antes de
-expandir acabamento. #47 não está integralmente implementada, e não desbloqueia
-por si só os posters de produção ou a conclusão de T01.

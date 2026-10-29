@@ -131,13 +131,13 @@ def mineral(name, base, bump=0.06, tone=0.015, scale=1.2, ripple=0.0):
     return m
 
 
-STONE = mineral('stone', (0.968, 0.956, 0.942), bump=0.065, tone=0.015, scale=1.15)
-VIOLET_M = material('violet', VIOLET, 0.72, 0.16)
-INNER = material('violet_inner', VIOLET, 0.88, 0.45)
-INNER_DARK = material('violet_deep', DEEP_VIOLET, 0.9, 0.18)
-INNER_GLOW = material('violet_glow', (0.86, 0.76, 1.0), 0.85, 0.82)
-TERRAIN = mineral('terrain', (0.972, 0.964, 0.954), bump=0.075, tone=0.012, scale=0.38, ripple=0.14)
-FOLIAGE = mineral('foliage', (0.74, 0.69, 0.63), bump=0.28, tone=0.07, scale=4.5)
+STONE = mineral('stone', (0.958, 0.940, 0.922), bump=0.075, tone=0.018, scale=1.35)
+VIOLET_M = material('violet', VIOLET, 0.74, 0.14)
+INNER = material('violet_inner', VIOLET, 0.86, 0.16)
+INNER_DARK = material('violet_deep', DEEP_VIOLET, 0.88, 0.10)
+INNER_GLOW = material('violet_glow', (0.58, 0.38, 0.94), 0.82, 0.24)
+TERRAIN = mineral('terrain', (0.984, 0.976, 0.968), bump=0.075, tone=0.012, scale=0.42, ripple=0.14)
+FOLIAGE = mineral('foliage', (0.79, 0.73, 0.65), bump=0.24, tone=0.06, scale=4.5)
 
 ALL_MATS = [STONE, INNER, VIOLET_M, INNER_DARK, INNER_GLOW, FOLIAGE]
 
@@ -244,9 +244,30 @@ def smooth_2d_rail(xy, passes=8):
     return arr
 
 
+def untangle_rail_2d(px_arr, py_arr, center_px, center_py, passes=24):
+    """Ensure offset rails never retrograde (loop backward) around tight inner bends."""
+    xy = np.stack([px_arr, py_arr], axis=1)
+    n = len(xy)
+    for _ in range(passes):
+        changed = False
+        for i in range(1, n - 1):
+            tx = center_px[min(i + 2, n - 1)] - center_px[max(i - 2, 0)]
+            ty = center_py[min(i + 2, n - 1)] - center_py[max(i - 2, 0)]
+            vx = xy[i + 1, 0] - xy[i - 1, 0]
+            vy = xy[i + 1, 1] - xy[i - 1, 1]
+            # If the rail step reverses or pinches relative to the centerline tangent, relax it
+            if vx * tx + vy * ty < 0.15 * (tx * tx + ty * ty):
+                xy[i] = 0.35 * xy[i - 1] + 0.30 * xy[i] + 0.35 * xy[i + 1]
+                changed = True
+        if not changed:
+            break
+    return smooth_2d_rail(xy, passes=10)
+
+
 def sweep_ribbon_px(name, ctrl, wall_px=11.0, wall_h_px=8.5, per_seg=18, taper_start=0, taper_end=0, open_start=0):
     """Sweep a violet road + left/right white parapets + vertical retaining wall in screen-consistent space."""
     samples = catmull_rom(ctrl, per_seg=per_seg)
+    samples[:, :2] = smooth_2d_rail(samples[:, :2], passes=4)
     n = len(samples)
     bm = bmesh.new()
     floor_idx = 4
@@ -258,8 +279,8 @@ def sweep_ribbon_px(name, ctrl, wall_px=11.0, wall_h_px=8.5, per_seg=18, taper_s
 
     for i in range(n):
         px, py, h, hw, dl, dr = samples[i]
-        i0 = max(i - 3, 0)
-        i1 = min(i + 3, n - 1)
+        i0 = max(i - 5, 0)
+        i1 = min(i + 5, n - 1)
         tx, ty = samples[i1][0] - samples[i0][0], samples[i1][1] - samples[i0][1]
         L = math.hypot(tx, ty) or 1.0
         tx, ty = tx / L, ty / L
@@ -267,12 +288,12 @@ def sweep_ribbon_px(name, ctrl, wall_px=11.0, wall_h_px=8.5, per_seg=18, taper_s
 
         t_scale = 1.0
         if taper_start > 0 and i < taper_start:
-            t_scale = max(0.04, i / float(taper_start))
+            t_scale = max(0.08, i / float(taper_start))
         if taper_end > 0 and (n - 1 - i) < taper_end:
-            t_scale = min(t_scale, max(0.04, (n - 1 - i) / float(taper_end)))
+            t_scale = min(t_scale, max(0.08, (n - 1 - i) / float(taper_end)))
 
         wh = wall_h_px * t_scale
-        wp = wall_px * (0.35 + 0.65 * t_scale)
+        wp = wall_px * (0.45 + 0.55 * t_scale)
         r = wp * 0.42
         outer = hw + wp
         prof = [
@@ -293,10 +314,18 @@ def sweep_ribbon_px(name, ctrl, wall_px=11.0, wall_h_px=8.5, per_seg=18, taper_s
             raw_h[i, j] = h
             raw_v[i, j] = v_px
 
-    for j in range(10):
-        sm = smooth_2d_rail(np.stack([raw_px[:, j], raw_py[:, j]], axis=1), passes=6)
+    # Untangle and co-smooth outer/inner rail bounds, then interpolate parapet crests strictly between them
+    for j in (1, 3, 4, 5, 6, 8):
+        sm = untangle_rail_2d(raw_px[:, j], raw_py[:, j], samples[:, 0], samples[:, 1], passes=48)
         raw_px[:, j] = sm[:, 0]
         raw_py[:, j] = sm[:, 1]
+    raw_px[:, 2] = 0.35 * raw_px[:, 1] + 0.65 * raw_px[:, 3]
+    raw_py[:, 2] = 0.35 * raw_py[:, 1] + 0.65 * raw_py[:, 3]
+    raw_px[:, 7] = 0.65 * raw_px[:, 6] + 0.35 * raw_px[:, 8]
+    raw_py[:, 7] = 0.65 * raw_py[:, 6] + 0.35 * raw_py[:, 8]
+    # Keep bottom retaining wall vertices strictly aligned under top outer wall vertices
+    raw_px[:, 0], raw_py[:, 0] = raw_px[:, 1], raw_py[:, 1]
+    raw_px[:, 9], raw_py[:, 9] = raw_px[:, 8], raw_py[:, 8]
 
     rings = []
     for i in range(n):
@@ -311,8 +340,6 @@ def sweep_ribbon_px(name, ctrl, wall_px=11.0, wall_h_px=8.5, per_seg=18, taper_s
     floor_faces = []
     for i in range(n - 1):
         for j in range(m):
-            # The bridge joins the foreground deck here. Its guard rail must
-            # begin after the junction rather than cutting across the violet lane.
             if i < open_start and j != floor_idx:
                 continue
             k = (j + 1) % m
@@ -348,7 +375,7 @@ def terrain_height(x, z):
 
 def build_terrain():
     x0, x1, z0, z1 = TERRAIN_BOUNDS
-    nx, nz = 150, 140
+    nx, nz = 120, 112
     bm = bmesh.new()
     grid = []
     for j in range(nz + 1):
@@ -461,26 +488,60 @@ def build_ramp_wall(bm, crest_px_h, back_dx, back_dy, y_bot_fn, mat=0):
 
 
 def build_stairs_px(name, fl_px, fr_px, bl_px, br_px, h_bot, h_top, steps=10, drop_base_px=45.0, y_ground=None):
-    """Staircase whose front-bottom edge is fl_px->fr_px (at h_bot) and back-top edge is bl_px->br_px (at h_top)."""
+    """Watertight 2-manifold stepped prism staircase with zero buried/overlapping riser faces."""
     bm = bmesh.new()
     fl, fr, bl, br = map(lambda p: np.array(p, float), (fl_px, fr_px, bl_px, br_px))
-    step_dpy = max(abs(fl[1] - bl[1]), abs(fr[1] - br[1])) / max(steps, 1)
-    riser_px = max(drop_base_px, step_dpy + 4.0)
+    L0, R0 = atpx(fl[0], fl[1], h_bot), atpx(fr[0], fr[1], h_bot)
+    L1, R1 = atpx(bl[0], bl[1], h_top), atpx(br[0], br[1], h_top)
+
+    def station_xz(k):
+        t = k / float(steps)
+        pL = (1.0 - t) * L0 + t * L1
+        pR = (1.0 - t) * R0 + t * R1
+        pyL = (1.0 - t) * fl[1] + t * bl[1]
+        pyR = (1.0 - t) * fr[1] + t * br[1]
+        h_k = h_bot + (h_top - h_bot) * t
+        if y_ground is not None:
+            ybL = min(h_k - 0.08, h_k - max(4.0, y_ground - pyL) * KY)
+            ybR = min(h_k - 0.08, h_k - max(4.0, y_ground - pyR) * KY)
+        else:
+            ybL = h_k - max(8.0, drop_base_px * 0.55) * KY
+            ybR = h_k - max(8.0, drop_base_px * 0.55) * KY
+        return pL[0], pL[2], pR[0], pR[2], h_k, ybL, ybR
+
+    st = [station_xz(k) for k in range(steps + 1)]
+    v_bot_L, v_bot_R = [], []
+    v_step_bot_L, v_step_bot_R = [], []
+    v_step_top_L, v_step_top_R = [], []
+
+    for k in range(steps + 1):
+        xL, zL, xR, zR, h_k, ybL, ybR = st[k]
+        v_bot_L.append(bm.verts.new(P((xL, ybL, zL))))
+        v_bot_R.append(bm.verts.new(P((xR, ybR, zR))))
+        v_step_bot_L.append(bm.verts.new(P((xL, h_k, zL))))
+        v_step_bot_R.append(bm.verts.new(P((xR, h_k, zR))))
+        if k < steps:
+            h_next = st[k + 1][4]
+            v_step_top_L.append(bm.verts.new(P((xL, h_next, zL))))
+            v_step_top_R.append(bm.verts.new(P((xR, h_next, zR))))
+
+    # Front base face below step 0
+    bm.faces.new([v_bot_L[0], v_bot_R[0], v_step_bot_R[0], v_step_bot_L[0]])
     for i in range(steps):
-        t0 = i / steps
-        t1 = (i + 1) / steps
-        h_step = h_bot + (h_top - h_bot) * (i + 1) / steps
-        p00 = (1 - t0) * fl + t0 * bl
-        p10 = (1 - t0) * fr + t0 * br
-        p11 = (1 - t1) * fr + t1 * br
-        p01 = (1 - t1) * fl + t1 * bl
-        quad_px = [p00, p10, p11, p01]
-        top_pts = [atpx(p[0], p[1], h_step) for p in quad_px]
-        bot_pts = [
-            drop_py(tp, p[1], max(p[1] + riser_px, y_ground) if y_ground is not None else (p[1] + riser_px))
-            for tp, p in zip(top_pts, quad_px)
-        ]
-        add_prism(bm, top_pts, bot_pts)
+        # Vertical riser i (strictly from h_i to h_{i+1}, never buried!)
+        bm.faces.new([v_step_bot_L[i], v_step_bot_R[i], v_step_top_R[i], v_step_bot_L[i] if False else v_step_top_L[i]])
+        # Horizontal tread i (from station i to station i+1 at h_{i+1})
+        bm.faces.new([v_step_top_L[i], v_step_top_R[i], v_step_bot_R[i + 1], v_step_bot_L[i + 1]])
+        # Left stringer quad for step i
+        bm.faces.new([v_bot_L[i], v_step_bot_L[i], v_step_top_L[i], v_step_bot_L[i + 1], v_bot_L[i + 1]])
+        # Right stringer quad for step i
+        bm.faces.new([v_bot_R[i + 1], v_step_bot_R[i + 1], v_step_top_R[i], v_step_bot_R[i], v_bot_R[i]])
+        # Bottom carriage quad
+        bm.faces.new([v_bot_R[i], v_bot_L[i], v_bot_L[i + 1], v_bot_R[i + 1]])
+    # Back wall at station `steps`
+    bm.faces.new([v_bot_R[steps], v_bot_L[steps], v_step_bot_L[steps], v_step_bot_R[steps]])
+
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
     return to_obj(name, bm)
 
 
@@ -573,39 +634,61 @@ def build_w01():
         u = max(0.0, min(1.0, (x - 240.0) / (278.0 - 240.0)))
         return 558.0 - 36.0 * math.sqrt(max(0.0, 1.0 - u * u))
 
-    xs = sorted(set([148.0, 172.0, 278.0, 312.0] + list(np.linspace(172.0, 278.0, 33))))
+    def d_arch_ratio(x):
+        if x <= 200.0:
+            return 0.66
+        if x <= 236.0:
+            return 0.66 - 0.20 * (x - 200.0) / (236.0 - 200.0)
+        return 0.46 + 0.18 * (x - 236.0) / (278.0 - 236.0)
+
+    xs = [148.0] + list(np.linspace(172.0, 200.0, 7)[:-1]) + list(np.linspace(200.0, 236.0, 9)[:-1]) + list(np.linspace(236.0, 278.0, 10)) + [312.0]
     n = len(xs) - 1
     for i in range(n):
         xa, xb = xs[i], xs[i + 1]
         xm = 0.5 * (xa + xb)
         yta, ytb = y_top_fn(xa), y_top_fn(xb)
+        yba_full, ybb_full = y_bot_fn(xa), y_bot_fn(xb)
+        f_ta = wall_pt(xa, yta, FL, 148, 626, FR, 312, 608)
+        f_tb = wall_pt(xb, ytb, FL, 148, 626, FR, 312, 608)
+        f_bb_full = wall_pt(xb, ybb_full, FL, 148, 626, FR, 312, 608)
+        f_ba_full = wall_pt(xa, yba_full, FL, 148, 626, FR, 312, 608)
+
         in_arch = 172.0 <= xm <= 278.0
         if in_arch:
             yba, ybb = y_arch_w01(xa), y_arch_w01(xb)
-            mat_u = 1
+            f_ba = wall_pt(xa, yba, FL, 148, 626, FR, 312, 608)
+            f_bb = wall_pt(xb, ybb, FL, 148, 626, FR, 312, 608)
+            da = depth_vec * d_arch_ratio(xa)
+            db = depth_vec * d_arch_ratio(xb)
+            # Full-depth upper arch spandrel (no longitudinal roof split), soffit = INNER (1)
+            add_prism(bm, [f_ta, f_tb, f_tb + depth_vec, f_ta + depth_vec],
+                      [f_ba, f_bb, f_bb + depth_vec, f_ba + depth_vec],
+                      mat_top=0, mat_side=0, mat_bot=1, side_mask=[True, False, True, False])
+            # Lower 3-plane interior chamber wall strictly below y_arch_w01
+            mat_i = 4 if (200.0 <= xm < 236.0) else 1
+            f_ba_fl = wall_pt(xa, 614.0, FL, 148, 626, FR, 312, 608)
+            f_bb_fl = wall_pt(xb, 614.0, FL, 148, 626, FR, 312, 608)
+            add_prism(bm, [f_ba + da, f_bb + db, f_bb + depth_vec, f_ba + depth_vec],
+                      [f_ba_fl + da, f_bb_fl + db, f_bb_fl + depth_vec, f_ba_fl + depth_vec],
+                      mat_top=0, mat_side=[mat_i, 0, 0, 0], mat_bot=0,
+                      cap_top=False, side_mask=[True, False, True, False])
+        elif xm > 278.0:
+            # Right pier split at arch springing (y=558) so the purple reveal only exists below the arch!
+            f_ma = wall_pt(xa, 558.0, FL, 148, 626, FR, 312, 608)
+            f_mb = wall_pt(xb, 558.0, FL, 148, 626, FR, 312, 608)
+            is_right_pier = abs(xa - 278.0) < 0.5
+            add_prism(bm, [f_ta, f_tb, f_tb + depth_vec, f_ta + depth_vec],
+                      [f_ma, f_mb, f_mb + depth_vec, f_ma + depth_vec],
+                      mat_top=0, mat_side=0, mat_bot=0, side_mask=[True, (i == n - 1), True, False])
+            add_prism(bm, [f_ma, f_mb, f_mb + depth_vec, f_ma + depth_vec],
+                      [f_ba_full, f_bb_full, f_bb_full + depth_vec, f_ba_full + depth_vec],
+                      mat_top=0, mat_side=[0, 0, 0, 1 if is_right_pier else 0], mat_bot=0,
+                      side_mask=[True, (i == n - 1), True, is_right_pier])
         else:
-            yba, ybb = y_bot_fn(xa), y_bot_fn(xb)
-            mat_u = 0
-        f_ta = wall_pt(xa, yta, FL, 148, 626, FR, 312, 608)
-        f_tb = wall_pt(xb, ytb, FL, 148, 626, FR, 312, 608)
-        f_bb = wall_pt(xb, ybb, FL, 148, 626, FR, 312, 608)
-        f_ba = wall_pt(xa, yba, FL, 148, 626, FR, 312, 608)
-        d = depth_vec * (0.58 if in_arch else 1.0)
-        is_right_pier = abs(xa - 278.0) < 0.5
-        mask = [True, (i == n - 1), not in_arch, (i == 0 or is_right_pier)]
-        side_mats = [0, 0, 0, 1 if is_right_pier else 0]
-        add_prism(bm, [f_ta, f_tb, f_tb + d, f_ta + d], [f_ba, f_bb, f_bb + d, f_ba + d],
-                  mat_top=0, mat_side=side_mats, mat_bot=mat_u, side_mask=mask)
-
-    for idx, (xa, xb, mat_i) in enumerate([(172.0, 236.0, 4), (236.0, 278.0, 1)]):
-        yta, ytb = y_top_fn(xa), y_top_fn(xb)
-        f_ta = wall_pt(xa, yta, FL, 148, 626, FR, 312, 608) + depth_vec * 0.58
-        f_tb = wall_pt(xb, ytb, FL, 148, 626, FR, 312, 608) + depth_vec * 0.58
-        f_bb = wall_pt(xb, 614, FL, 148, 626, FR, 312, 608) + depth_vec * 0.58
-        f_ba = wall_pt(xa, 614, FL, 148, 626, FR, 312, 608) + depth_vec * 0.58
-        d = depth_vec * 0.42
-        add_prism(bm, [f_ta, f_tb, f_tb + d, f_ta + d], [f_ba, f_bb, f_bb + d, f_ba + d],
-                  mat_top=0, mat_side=[mat_i, 0, 0, 0], mat_bot=0, side_mask=[True, False, True, False])
+            # Left pier (148..172)
+            add_prism(bm, [f_ta, f_tb, f_tb + depth_vec, f_ta + depth_vec],
+                      [f_ba_full, f_bb_full, f_bb_full + depth_vec, f_ba_full + depth_vec],
+                      mat_top=0, mat_side=0, mat_bot=0, side_mask=[True, False, True, (i == 0)])
 
     fl_pts = [
         wall_pt(195, 610, FL, 148, 626, FR, 312, 608),
@@ -629,6 +712,12 @@ def build_w02():
     segs = 96
     angles = np.linspace(0, math.pi * 2, segs, endpoint=False)
 
+    def lintel_y(x):
+        if x <= 772.0:
+            return 425.0
+        u = min(1.0, max(0.0, (x - 772.0) / 23.0))
+        return 448.0 - 23.0 * math.sqrt(max(0.0, 1.0 - u * u))
+
     for i in range(segs):
         a0, a1 = angles[i], angles[(i + 1) % segs]
         am = 0.5 * (a0 + a1)
@@ -641,12 +730,8 @@ def build_w02():
         h_rim = h_aut + 2.52
         t_o0, t_o1 = atpx(px0, py0, h_rim), atpx(px1, py1, h_rim)
         t_i0, t_i1 = atpx(ix0, iy0, h_rim), atpx(ix1, iy1, h_rim)
-        if front and 718.0 <= pxm <= 795.0:
-            def lintel_y(x):
-                if x <= 772.0:
-                    return 425.0
-                u = min(1.0, max(0.0, (x - 772.0) / 23.0))
-                return 448.0 - 23.0 * math.sqrt(max(0.0, 1.0 - u * u))
+        in_door = front and (718.0 <= pxm <= 795.0)
+        if in_door:
             yb0, yb1 = lintel_y(px0), lintel_y(px1)
             b_o0, b_o1 = drop_py(t_o0, py0, yb0), drop_py(t_o1, py1, yb1)
             b_i0, b_i1 = drop_py(t_i0, iy0, yb0 - 1.5), drop_py(t_i1, iy1, yb1 - 1.5)
@@ -654,10 +739,39 @@ def build_w02():
             drop_px = 502.5 - (cy + ry_out)
             b_o0, b_o1 = drop_py(t_o0, py0, py0 + drop_px), drop_py(t_o1, py1, py1 + drop_px)
             b_i0, b_i1 = drop_py(t_i0, iy0, iy0 + drop_px), drop_py(t_i1, iy1, iy1 + drop_px)
-        jamb = front and (abs(px0 - 718.0) < 4.0 or abs(px1 - 795.0) < 4.0)
+
+        # Check if adjacent slices are inside the doorway so jamb faces only exist below lintel
+        a_prev, a_next = angles[(i - 1) % segs], angles[(i + 2) % segs]
+        px_prev = cx + rx_out * math.cos(0.5 * (a_prev + a0))
+        px_next = cx + rx_out * math.cos(0.5 * (a1 + a_next))
+        prev_door = (math.sin(0.5 * (a_prev + a0)) > 0.15) and (718.0 <= px_prev <= 795.0)
+        next_door = (math.sin(0.5 * (a1 + a_next)) > 0.15) and (718.0 <= px_next <= 795.0)
+
         add_prism(bm, [t_o0, t_o1, t_i1, t_i0], [b_o0, b_o1, b_i1, b_i0],
-                  mat_top=0, mat_side=[0, 0, 1 if not front else 0, 0], mat_bot=0,
-                  side_mask=[True, jamb, True, jamb])
+                  mat_top=0, mat_side=[0, 1 if (not in_door and next_door) else 0, 1 if not front else 0, 4 if (not in_door and prev_door) else 0],
+                  mat_bot=(1 if in_door else 0),
+                  side_mask=[True, (not in_door and next_door), True, (not in_door and prev_door)])
+
+    # Recessed purple interior chamber wall behind the W02 doorway (strictly below lintel_y)
+    door_xs = np.linspace(716.0, 797.0, 19)
+    for k in range(len(door_xs) - 1):
+        xa, xb = door_xs[k], door_xs[k + 1]
+        xm = 0.5 * (xa + xb)
+        ya_top, yb_top = lintel_y(xa) - 1.5, lintel_y(xb) - 1.5
+        ya_bot, yb_bot = 496.0, 496.0
+        # Recessed depth inside the cylinder (corner at x=754)
+        da = -0.52 if xa <= 754.0 else -0.52 + 0.36 * (xa - 754.0) / (797.0 - 754.0)
+        db = -0.52 if xb <= 754.0 else -0.52 + 0.36 * (xb - 754.0) / (797.0 - 754.0)
+        p_ta = drop_py(atpx(xa, 415.0, h_aut + 2.52), 415.0, ya_top) + np.array([0.0, 0.0, da])
+        p_tb = drop_py(atpx(xb, 415.0, h_aut + 2.52), 415.0, yb_top) + np.array([0.0, 0.0, db])
+        p_ba = drop_py(atpx(xa, 415.0, h_aut + 2.52), 415.0, ya_bot) + np.array([0.0, 0.0, da])
+        p_bb = drop_py(atpx(xb, 415.0, h_aut + 2.52), 415.0, yb_bot) + np.array([0.0, 0.0, db])
+        back_vec = np.array([0.0, 0.0, -0.18])
+        w_mat = 4 if xm >= 754.0 else 1
+        add_prism(bm, [p_ta, p_tb, p_tb + back_vec, p_ta + back_vec],
+                  [p_ba, p_bb, p_bb + back_vec, p_ba + back_vec],
+                  mat_top=w_mat, mat_side=[w_mat, 0, 0, 0], mat_bot=w_mat,
+                  cap_top=False, cap_bot=False, side_mask=[True, False, False, False])
 
     court_pts = [atpx(cx + (rx_in - 1) * math.cos(a), cy + (ry_in - 0.5) * math.sin(a), h_aut + 2.12) for a in angles]
     add_prism(bm, court_pts, [p - np.array([0, 0.12, 0]) for p in court_pts], mat_top=1, mat_side=1, mat_bot=1)
@@ -669,7 +783,7 @@ def build_w02():
     build_terrace_poly(bm, [(650, 480), (672, 480), (672, 484), (650, 484)], h_aut + 0.95, 26.0, mat=0)
 
     build_ellipse_drum(bm, 656, 498, 112, 16, h_aut - 0.02, 84, segs=64, mat=0)
-    return to_obj('dest-automation', bm, merge_verts=False)
+    return to_obj('dest-automation', bm)
 
 
 def build_w03():
@@ -683,6 +797,7 @@ def build_w03():
     segs = 44
     ts = np.linspace(0.0, 1.0, segs)
     front_out, front_in, back_out, back_in = [], [], [], []
+    in_xs, in_ys = [], []
     for t in ts:
         ang = math.pi * (1.0 - t)
         base_x = 1217.0 + 91.0 * math.cos(ang)
@@ -692,6 +807,8 @@ def build_w03():
 
         in_x = 1212.0 + 76.0 * math.cos(ang)
         in_y = base_y - max(0.0, arch_lift - 14.0)
+        in_xs.append(in_x)
+        in_ys.append(in_y)
         fo = wall_pt(px_o, py_o, L, 1126, 562, R, 1308, 645)
         fi = wall_pt(in_x, in_y, L, 1126, 562, R, 1308, 645)
         front_out.append(fo)
@@ -706,13 +823,23 @@ def build_w03():
                   [front_in[i], front_in[i + 1], back_in[i + 1], back_in[i]],
                   mat_top=0, mat_side=0, mat_bot=1, side_mask=mask)
 
+    # Interior back wall strictly above the mezzanine floor (y_floor = 562..574) so it never inverts!
     for i in range(segs - 1):
-        p0 = wall_pt(1136 + (1288 - 1136) * (i / (segs - 1)), 572, L, 1126, 562, R, 1308, 645) + depth_vec * 0.92
-        p1 = wall_pt(1136 + (1288 - 1136) * ((i + 1) / (segs - 1)), 572, L, 1126, 562, R, 1308, 645) + depth_vec * 0.92
-        mat_p = 3 if 0.32 < (i / segs) < 0.62 else (4 if (i / segs) > 0.65 else 1)
+        y_fl0 = 560.0 + 14.0 * ts[i]
+        y_fl1 = 560.0 + 14.0 * ts[i + 1]
+        if in_ys[i] >= y_fl0 - 1.5 or in_ys[i + 1] >= y_fl1 - 1.5:
+            continue
+        p0 = wall_pt(in_xs[i], y_fl0, L, 1126, 562, R, 1308, 645) + depth_vec * 0.92
+        p1 = wall_pt(in_xs[i + 1], y_fl1, L, 1126, 562, R, 1308, 645) + depth_vec * 0.92
+        t_top0 = wall_pt(in_xs[i], in_ys[i], L, 1126, 562, R, 1308, 645) + depth_vec * 0.92
+        t_top1 = wall_pt(in_xs[i + 1], in_ys[i + 1], L, 1126, 562, R, 1308, 645) + depth_vec * 0.92
+        xm = 0.5 * (in_xs[i] + in_xs[i + 1])
+        mat_p = 3 if xm < 1208.0 else (4 if xm > 1254.0 else 1)
         d = depth_vec * 0.08
-        add_prism(bm, [back_in[i] - d, back_in[i + 1] - d, back_in[i + 1], back_in[i]],
-                  [p0 - d, p1 - d, p1, p0], mat_top=mat_p, mat_side=mat_p, mat_bot=mat_p)
+        add_prism(bm, [t_top0 - d, t_top1 - d, t_top1, t_top0],
+                  [p0 - d, p1 - d, p1, p0],
+                  mat_top=mat_p, mat_side=[mat_p, 0, 0, 0], mat_bot=mat_p,
+                  cap_top=False, cap_bot=False, side_mask=[True, False, True, False])
 
     mezz_px = [(1126, 562), (1168, 548), (1298, 558), (1286, 572)]
     build_terrace_poly(bm, mezz_px, h_sup + 1.55, 16.0, mat=0)
@@ -741,57 +868,58 @@ def build():
         (50, 862, 1.62, 40, 32, 95),
         (165, 820, 1.80, 36, 28, 95),
         (280, 778, 1.98, 32, 28, 95),
-        (385, 734, 2.12, 32, 32, 98),
-        (466, 706, 2.22, 29, 42, 102),
-        (493, 675, 2.28, 25, 48, 102),
-        (468, 650, 2.30, 21, 48, 38),
-        (411, 633, 2.30, 16, 44, 22),
+        (385, 734, 2.12, 30, 32, 98),
+        (466, 706, 2.22, 26, 42, 102),
+        (490, 675, 2.28, 22, 48, 102),
+        (466, 650, 2.30, 19, 48, 38),
+        (411, 633, 2.30, 15, 44, 22),
         (334, 625, 2.30, 12, 20, 16),
         (225, 608, 2.30, 11, 14, 14),
     ], wall_px=11.0, wall_h_px=8.0, per_seg=18, taper_end=6)
 
+    # Start `path-bridge` cleanly at the outer edge of `path-development` (no overlap onto the purple road!)
     bridge = sweep_ribbon_px('path-bridge', [
-        (493, 665, 2.28, 13, 12, 14),
-        (555, 630, 2.42, 10, 12, 14),
+        (502, 661, 2.29, 11, 12, 14),
+        (558, 629, 2.42, 9, 12, 14),
         (665, 610, 2.55, 7, 10, 12),
         (780, 600, 2.68, 6, 10, 12),
         (895, 594, 2.80, 6, 10, 12),
         (995, 588, 2.92, 12, 14, 16),
-        (1058, 570, 3.02, 20, 16, 20),
-        (1066, 552, 3.08, 20, 16, 20),
-        (1012, 528, 3.14, 15, 14, 16),
+        (1058, 570, 3.02, 18, 16, 20),
+        (1066, 552, 3.08, 18, 16, 20),
+        (1012, 528, 3.14, 14, 14, 16),
         (928, 512, 3.19, 10, 12, 14),
         (835, 502, 3.23, 8, 10, 12),
         (752, 500, 3.25, 8, 10, 10),
-    ], wall_px=9.0, wall_h_px=7.5, per_seg=16, taper_start=10, taper_end=8, open_start=14)
+    ], wall_px=8.5, wall_h_px=7.5, per_seg=16, taper_start=3, taper_end=8, open_start=1)
 
     upper = sweep_ribbon_px('path-upper', [
         (832, 463, 2.98, 6, 10, 12),
-        (892, 468, 2.98, 10, 14, 18),
-        (934, 478, 2.98, 13, 18, 26),
-        (908, 491, 2.98, 11, 14, 20),
-        (852, 498, 2.98, 7, 10, 12),
-    ], wall_px=6.5, wall_h_px=5.5, per_seg=16, taper_start=6, taper_end=8)
+        (892, 468, 2.98, 8, 14, 18),
+        (932, 478, 2.98, 9, 18, 26),
+        (906, 491, 2.98, 8, 14, 20),
+        (852, 498, 2.98, 6, 10, 12),
+    ], wall_px=5.5, wall_h_px=5.5, per_seg=16, taper_start=6, taper_end=8)
 
     support = sweep_ribbon_px('path-support', [
-        (1254, 612, 4.90, 22, 14, 14),
-        (1228, 636, 4.90, 19, 16, 16),
-        (1200, 658, 4.90, 16, 18, 18),
-        (1204, 672, 4.90, 15, 22, 18),
-        (1248, 684, 4.90, 11, 24, 16),
+        (1254, 612, 4.90, 20, 14, 14),
+        (1228, 636, 4.90, 17, 16, 16),
+        (1204, 658, 4.90, 14, 18, 18),
+        (1208, 672, 4.90, 13, 22, 18),
+        (1248, 684, 4.90, 10, 24, 16),
         (1335, 696, 4.90, 7, 24, 16),
         (1445, 708, 4.90, 6, 24, 16),
-    ], wall_px=9.0, wall_h_px=7.5, per_seg=16, taper_start=6)
+    ], wall_px=8.5, wall_h_px=7.5, per_seg=16, taper_start=6)
     objs += [dev, bridge, upper, support]
 
     # 2. Central viaduct walls with the 3 arches (Left Arch, Wide Central Arch, Upper Viaduct Arch)
     bm_via = bmesh.new()
     build_arch_viaduct_wall(
-        bm_via, 548.0, 885.0,
-        y_top_fn=lambda x: 634.0 - 34.0 * ((x - 548.0) / 337.0) ** 0.72,
+        bm_via, 558.0, 885.0,
+        y_top_fn=lambda x: 640.0 - 38.0 * ((x - 558.0) / 327.0) ** 0.78,
         y_ground=718.0,
-        arches=[(578.0, 632.0, 642.0, 718.0, 3.0), (664.0, 834.0, 608.0, 718.0, 2.0)],
-        h_ref=2.55, dx_arch=-36.0, dy_arch=5.0, dh_back=-0.45, inner_mat=0
+        arches=[(578.0, 632.0, 644.0, 718.0, 3.0), (664.0, 834.0, 608.0, 718.0, 2.0)],
+        h_ref=2.38, dx_arch=-28.0, dy_arch=5.0, dh_back=-0.42, inner_mat=0
     )
     build_arch_viaduct_wall(
         bm_via, 768.0, 975.0,
@@ -817,9 +945,19 @@ def build():
         y_bot_fn=lambda x: 626.0,
         mat=0
     )
-    build_terrace_poly(bm_left, [(-15, 626), (165, 626), (216, 650), (185, 668), (-15, 675)], 2.24, 52.0)
-    # Middle-left terrace step extending all the way from x=-15 to x=372 above the wing wall crest
-    build_terrace_poly(bm_left, [(-15, 686), (115, 692), (372, 676), (372, 704), (115, 718), (-15, 696)], 1.78, 32.0)
+    # Smooth curved terrace edge around stairs-dev
+    s_curve = catmull_rom([
+        (158, 626), (196, 634), (218, 646), (212, 656), (186, 665), (168, 672), (-15, 675)
+    ], per_seg=8)
+    build_terrace_poly(bm_left, [(-15, 626)] + [(float(p[0]), float(p[1])) for p in s_curve], 2.24, 52.0)
+    # Middle-left terrace step extending from x=-15 to x=372 above the wing wall crest
+    mid_curve = catmull_rom([
+        (-15, 686), (115, 690), (245, 682), (372, 676)
+    ], per_seg=8)
+    mid_bot = catmull_rom([
+        (372, 704), (245, 712), (115, 718), (-15, 696)
+    ], per_seg=8)
+    build_terrace_poly(bm_left, [(float(p[0]), float(p[1])) for p in np.vstack([mid_curve, mid_bot])], 1.78, 32.0)
     build_ramp_wall(
         bm_left,
         [(-15, 698, 2.25), (65, 718, 2.15), (145, 748, 2.02), (215, 772, 1.92), (262, 782, 1.86)],
@@ -838,13 +976,12 @@ def build():
         arches=[(1158.0, 1220.0, 734.0, 866.0, 3.2)],
         h_ref=4.85, dx_arch=-10.0, dy_arch=2.0, dh_back=-0.22, inner_mat=0
     )
-    # Shaded tunnel back wall sloped from (y=730, h=0.40) to (y=868, h=-0.62): strictly behind arch & stairs-tunnel and above terrain (-0.68)!
     t_back = [atpx(1154, 730, 0.40), atpx(1222, 730, 0.40), atpx(1222, 730, 0.25), atpx(1154, 730, 0.25)]
     b_back = [atpx(1154, 868, -0.58), atpx(1222, 868, -0.58), atpx(1222, 868, -0.65), atpx(1154, 868, -0.65)]
     add_prism(bm_right, t_back, b_back, mat_top=0, mat_side=0, mat_bot=0)
 
-    build_terrace_poly(bm_right, [(1238, 658), (1440, 642), (1440, 696), (1238, 682)], 5.02, 22.0)
-    # Curved sand-pocket rim at the base of `fins-right` ending cleanly at x = 1144 (left of tunnel arch)
+    # Terrace strictly to the right of `path-support` so it never overlaps `path-support`'s violet lane
+    build_terrace_poly(bm_right, [(1272, 650), (1440, 640), (1440, 690), (1298, 676)], 4.82, 18.0)
     build_ellipse_drum(bm_right, 1038, 786, 106, 14, 0.85, 18, a0=math.pi * 0.08, a1=math.pi * 0.92, segs=36, mat=0)
     objs.append(to_obj('mass-right', bm_right))
 
@@ -856,7 +993,6 @@ def build():
         build_stairs_px('stairs-left', (545, 580), (628, 586), (688, 504), (742, 506), 2.25, 3.21, steps=13, drop_base_px=24, y_ground=586.0),
         build_stairs_px('stairs-centre-right', (835, 672), (938, 682), (968, 594), (1048, 602), 1.50, 2.45, steps=11, drop_base_px=24, y_ground=684.0),
         build_stairs_px('stairs-support', (1148, 634), (1198, 628), (1105, 566), (1148, 560), 3.22, 4.03, steps=10, drop_base_px=16),
-        # Tunnel steps placed at h = -0.52 .. -0.22 inside the open doorway 1160..1210 (strictly between t_back and mass-right front wall!)
         build_stairs_px('stairs-tunnel', (1160, 858), (1210, 862), (1168, 826), (1210, 830), -0.52, -0.22, steps=5, drop_base_px=10),
         build_fin_stairs('fins-w02', 568.0, 650.0,
                          y_base_fn=lambda x: 498.0,
@@ -872,20 +1008,37 @@ def build():
     bm_props = bmesh.new()
     ac = atpx(758, 496, 3.28)
     for w, h, d, dx, dy, dz in [
-        (0.55, 0.08, 0.55, 0.0, 0.38, 0.0), (0.55, 0.62, 0.08, 0.08, 0.68, -0.22),
-        (0.06, 0.38, 0.06, -0.22, 0.19, -0.2), (0.06, 0.38, 0.06, 0.22, 0.19, -0.2),
-        (0.06, 0.38, 0.06, -0.22, 0.19, 0.2), (0.06, 0.38, 0.06, 0.22, 0.19, 0.2),
-        (0.42, 0.05, 0.42, -0.52, 0.44, 0.05), (0.06, 0.44, 0.06, -0.52, 0.22, 0.05),
+        # Sculpted lounge armchair (seat cushion, angled backrest, left/right armrests, 4 slender legs)
+        (0.54, 0.09, 0.52, 0.0, 0.36, 0.0),
+        (0.54, 0.56, 0.09, 0.06, 0.64, -0.21),
+        (0.07, 0.18, 0.48, -0.24, 0.46, -0.02),
+        (0.07, 0.18, 0.48, 0.24, 0.46, -0.02),
+        (0.05, 0.34, 0.05, -0.21, 0.17, -0.19), (0.05, 0.34, 0.05, 0.21, 0.17, -0.19),
+        (0.05, 0.34, 0.05, -0.21, 0.17, 0.19), (0.05, 0.34, 0.05, 0.21, 0.17, 0.19),
+        # Side table with pedestal + circular/chamfered top
+        (0.40, 0.05, 0.40, -0.52, 0.44, 0.05),
+        (0.06, 0.42, 0.06, -0.52, 0.21, 0.05),
+        (0.24, 0.03, 0.24, -0.52, 0.02, 0.05),
     ]:
         add_box_3d(bm_props, ac + np.array([dx, dy, dz]), w, h, d, yaw=-0.35, mat=0)
 
     sc = atpx(1228, 566, 4.06)
     for w, h, d, dx, dy, dz in [
-        (1.25, 0.06, 0.58, 0.12, 0.52, 0.0),
-        (0.08, 0.50, 0.50, -0.42, 0.25, 0.0), (0.08, 0.50, 0.50, 0.65, 0.25, 0.0),
-        (0.46, 0.32, 0.04, 0.14, 0.76, -0.10), (0.06, 0.16, 0.06, 0.14, 0.60, -0.10),
-        (0.40, 0.06, 0.40, -0.58, 0.34, 0.14), (0.06, 0.50, 0.40, -0.76, 0.56, 0.14),
-        (0.06, 0.34, 0.06, -0.58, 0.17, 0.14),
+        # Architectural desk with top slab, modesty panel, side leg panels
+        (1.26, 0.06, 0.58, 0.12, 0.52, 0.0),
+        (0.07, 0.50, 0.52, -0.44, 0.25, 0.0), (0.07, 0.50, 0.52, 0.66, 0.25, 0.0),
+        (1.04, 0.28, 0.04, 0.11, 0.34, -0.18),
+        # Monitor screen, neck, and base stand
+        (0.48, 0.32, 0.04, 0.14, 0.76, -0.10),
+        (0.06, 0.16, 0.05, 0.14, 0.60, -0.12),
+        (0.20, 0.02, 0.14, 0.14, 0.55, -0.08),
+        # Office chair with seat, curved back, armrests, pedestal
+        (0.42, 0.06, 0.42, -0.58, 0.34, 0.14),
+        (0.06, 0.48, 0.40, -0.76, 0.56, 0.14),
+        (0.32, 0.04, 0.05, -0.60, 0.45, -0.05),
+        (0.32, 0.04, 0.05, -0.60, 0.45, 0.33),
+        (0.06, 0.32, 0.06, -0.58, 0.16, 0.14),
+        (0.30, 0.03, 0.30, -0.58, 0.02, 0.14),
     ]:
         add_box_3d(bm_props, sc + np.array([dx, dy, dz]), w, h, d, yaw=-0.42, mat=0)
     objs.append(to_obj('props', bm_props))
@@ -1012,22 +1165,46 @@ def make_uvs(terrain, structs):
     bpy.ops.uv.smart_project(angle_limit=math.radians(10), island_margin=0.002, scale_to_bounds=False)
     bpy.ops.uv.pack_islands(margin=0.002, rotate=True)
     # Curved/concave authored strips can fold inside a projected UV chart even
-    # though separate charts do not overlap. Detach only those UV triangles,
-    # then repack; geometry and the camera silhouette stay unchanged.
-    bpy.ops.uv.select_all(action='DESELECT')
-    bpy.ops.uv.select_overlap(extend=False)
+    # though separate charts do not overlap. Project those triangles isometrically
+    # onto their own 3D tangent plane as independent islands, then repack.
     detached = 0
-    for obj in structs:
-        bm = bmesh.from_edit_mesh(obj.data)
-        layer = bm.loops.layers.uv.active
-        folded = [f for f in bm.faces if any(loop[layer].select for loop in f.loops)]
-        detached += len(folded)
-        for index, face in enumerate(folded):
-            for loop in face.loops:
-                loop[layer].uv.x += 10 + index * 3
-        bmesh.update_edit_mesh(obj.data)
-    bpy.ops.uv.select_all(action='SELECT')
-    bpy.ops.uv.pack_islands(margin=0.002, rotate=True)
+    for _pass in range(3):
+        bpy.ops.uv.select_all(action='DESELECT')
+        bpy.ops.uv.select_overlap(extend=False)
+        pass_detached = 0
+        for obj in structs:
+            bm = bmesh.from_edit_mesh(obj.data)
+            layer = bm.loops.layers.uv.active
+            folded = [f for f in bm.faces if any(loop[layer].select for loop in f.loops)]
+            pass_detached += len(folded)
+            for index, face in enumerate(folded):
+                v0 = face.loops[0].vert.co
+                v1 = face.loops[1].vert.co
+                e1 = (v1 - v0)
+                if e1.length < 1e-6:
+                    e1 = Vector((1.0, 0.0, 0.0))
+                else:
+                    e1.normalize()
+                n = face.normal if face.normal.length > 1e-6 else Vector((0.0, 0.0, 1.0))
+                e2 = n.cross(e1)
+                if e2.length < 1e-6:
+                    e2 = Vector((0.0, 1.0, 0.0))
+                else:
+                    e2.normalize()
+                ox = 2.0 + (detached + index) * 0.12
+                for li, loop in enumerate(face.loops):
+                    d = loop.vert.co - v0
+                    u = d.dot(e1) * 0.028
+                    v = d.dot(e2) * 0.028
+                    if li == 2 and abs(v) < 0.004:
+                        v = 0.004 if v >= 0 else -0.004
+                    loop[layer].uv = (ox + u, v)
+            bmesh.update_edit_mesh(obj.data)
+        detached += pass_detached
+        if pass_detached == 0:
+            break
+        bpy.ops.uv.select_all(action='SELECT')
+        bpy.ops.uv.pack_islands(margin=0.002, rotate=True)
     bpy.ops.uv.select_all(action='DESELECT')
     bpy.ops.uv.select_overlap(extend=False)
     remaining = 0
@@ -1058,7 +1235,7 @@ def bake(objs, label):
     bpy.context.view_layer.objects.active = objs[0]
     t0 = time.time()
     bpy.ops.object.bake(type='COMBINED', pass_filter={'DIRECT', 'INDIRECT', 'COLOR', 'DIFFUSE', 'EMIT'},
-                        margin=8, margin_type='EXTEND', use_clear=True)
+                        margin=3, margin_type='EXTEND', use_clear=True)
     print(f'baked {label} in {time.time() - t0:.0f}s')
 
 
@@ -1088,9 +1265,13 @@ def bake_and_export(objs, terrain):
     for obj in structs:
         bm = bmesh.new()
         bm.from_mesh(obj.data)
+        bmesh.ops.dissolve_degenerate(bm, dist=1e-4, edges=list(bm.edges))
         bmesh.ops.split_edges(bm, edges=[edge for edge in bm.edges if len(edge.link_faces) == 2
                               and edge.link_faces[0].material_index != edge.link_faces[1].material_index])
         bmesh.ops.triangulate(bm, faces=list(bm.faces))
+        degen = [f for f in bm.faces if f.calc_area() < 1e-6]
+        if degen:
+            bmesh.ops.delete(bm, geom=degen, context='FACES')
         bm.to_mesh(obj.data)
         bm.free()
     make_uvs(terrain, structs)
@@ -1104,6 +1285,26 @@ def bake_and_export(objs, terrain):
     img_t = bake_target([TERRAIN], 'bake_terrain', ATLAS_TERRAIN)
     bake([terrain], 'terrain')
     s, t = pixels(img_s), pixels(img_t)
+    # Inpaint any unhit or dark-bordered UV island texels (luminance < 0.22) from valid 3x3 neighbors
+    rgb_s = s[..., :3].copy()
+    for _ in range(14):
+        lum_s = rgb_s.max(axis=2)
+        dark = lum_s < 0.22
+        if not np.any(dark):
+            break
+        best = rgb_s.copy()
+        best_lum = lum_s.copy()
+        for dy in (-1, 0, 1):
+            for dx in (-1, 0, 1):
+                if dx == 0 and dy == 0:
+                    continue
+                sh = np.roll(np.roll(rgb_s, dy, axis=0), dx, axis=1)
+                sh_l = sh.max(axis=2)
+                upd = dark & (sh_l > best_lum)
+                best[upd] = sh[upd]
+                best_lum[upd] = sh_l[upd]
+        rgb_s = best
+    s[..., :3] = rgb_s
     gain = float(arg('--bake-gain', '1.05'))
     print('gain', gain)
     s[..., :3] *= gain

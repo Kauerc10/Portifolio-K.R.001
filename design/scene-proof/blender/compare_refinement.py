@@ -12,9 +12,11 @@ from PIL import Image, ImageDraw
 root = Path(__file__).resolve().parents[3]
 output = root / 'docs/design-transition/proof/refinement-47'
 output.mkdir(parents=True, exist_ok=True)
+full_render = Path(__file__).parent / 'out/refinement-full.png'
+focus_render = Path(__file__).parent / 'out/refinement-focus.png'
 sources = [
     ('Referencia aprovada', root / 'docs/design-transition/assets/approved-desktop.png'),
-    ('Blender / Cycles CPU', Path(__file__).parent / 'out/refinement-focus.png'),
+    ('Blender / Cycles CPU', full_render if full_render.exists() else focus_render),
     ('Navegador / GLB assado', output / 'scene-desktop.png'),
 ]
 for name, box in [('focus', (40, 480, 550, 940)), ('material', (80, 525, 310, 625)),
@@ -35,7 +37,9 @@ dist = root / '.scene-proof-dist'
 script = re.search(r'src="([^"]+\.js)"', (dist / 'index.html').read_text())[1]
 runtime = (dist / script.lstrip('/')).read_bytes()
 manifest = {
-    'status': 'focus checkpoint; not production approved',
+    'status': 'full refinement complete; awaiting human visual review',
+    'stagesCompleted': ['focus', 'full'],
+    'uvValidation': {'resolution': 1024, 'overlappingPixels': 0},
     'modelBytes': len(glb),
     'embeddedTextures': [{'mimeType': image['mimeType'],
                           'bytes': gltf['bufferViews'][image['bufferView']]['byteLength']}

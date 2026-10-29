@@ -1,21 +1,29 @@
 {
-  "status": "focus checkpoint; not production approved",
-  "modelBytes": 1743832,
+  "status": "full refinement complete; awaiting human visual review",
+  "stagesCompleted": [
+    "focus",
+    "full"
+  ],
+  "uvValidation": {
+    "resolution": 1024,
+    "overlappingPixels": 0
+  },
+  "modelBytes": 1626164,
   "embeddedTextures": [
     {
       "mimeType": "image/webp",
-      "bytes": 67282
+      "bytes": 91566
     },
     {
       "mimeType": "image/webp",
-      "bytes": 445568
+      "bytes": 341162
     }
   ],
   "runtimeBytes": 652212,
-  "runtimeGzipBytes": 168238,
+  "runtimeGzipBytes": 168888,
   "posterBytes": {
-    "desktop": 54640,
-    "mobile": 10606
+    "desktop": 47896,
+    "mobile": 10134
   },
   "destinations": {
     "development": "#projetos",

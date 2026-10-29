@@ -1,5 +1,5 @@
 {
-  "triangles": 59686,
+  "triangles": 48168,
   "objects": [
     "mountains",
     "path-development",
@@ -25,10 +25,11 @@
     "foliage",
     "terrain"
   ],
-  "gain": 1.05,
+  "gain": 1.02,
   "atlas": {
     "structures": 2048,
     "terrain": 2048
   },
-  "samples": 48
+  "samples": 48,
+  "post_grade": true
 }
