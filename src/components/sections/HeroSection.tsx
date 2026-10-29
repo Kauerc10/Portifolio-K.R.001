@@ -106,7 +106,7 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
           {/* U10: Desenvolvimento (W01) */}
           <Link
             href="#projetos"
-            style={{ left: '13.3%', top: '45.9%' }}
+            style={{ left: '13.3%', top: 'calc(45.9% - 24px)' }}
             className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
             aria-label={destDevelopment}
           >
@@ -122,7 +122,7 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
           {/* U11: Automação (W02) */}
           <Link
             href="#project-atlas"
-            style={{ left: '50.5%', top: '35.0%' }}
+            style={{ left: '50.5%', top: 'calc(35.0% - 24px)' }}
             className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
             aria-label={destAutomation}
           >
@@ -138,7 +138,7 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
           {/* U12: Suporte (W03) */}
           <Link
             href="#experiencia"
-            style={{ left: '87.1%', top: '43.4%' }}
+            style={{ left: '87.1%', top: 'calc(43.4% - 24px)' }}
             className="group absolute pointer-events-auto -translate-x-1/2 -translate-y-full flex items-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] rounded p-1 min-w-[44px] min-h-[44px]"
             aria-label={destSupport}
           >
