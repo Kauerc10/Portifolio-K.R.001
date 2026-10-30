@@ -1,0 +1,17 @@
+{
+  "nor_gl": {
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_boulder_dry/rock_boulder_dry_nor_gl_2k.jpg",
+    "md5": "513ef3fdaadd106c38a9c40919918cc0",
+    "matches_upstream": true
+  },
+  "Rough": {
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_boulder_dry/rock_boulder_dry_rough_2k.jpg",
+    "md5": "f69a2caafb58d427cb17cab31c202e0e",
+    "matches_upstream": true
+  },
+  "Diffuse": {
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_boulder_dry/rock_boulder_dry_diff_2k.jpg",
+    "md5": "fbc9cf377db427f54381f463c0639e1f",
+    "matches_upstream": true
+  }
+}

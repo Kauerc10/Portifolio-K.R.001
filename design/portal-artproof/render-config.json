@@ -1,0 +1,15 @@
+{
+  "blender": "4.5.15 LTS",
+  "engine": "CYCLES",
+  "device": "CPU",
+  "threads": 8,
+  "samples": 96,
+  "denoising": false,
+  "resolution": [1200, 900],
+  "view_transform": "Standard",
+  "exposure": -0.25,
+  "camera": {"type": "PERSP", "lens_mm": 49, "position": [-7.4,-13.8,5.15], "target": [0,-1.4,1.25]},
+  "scope": "Single portal, short ribbon, physical shared ground; no runtime integration",
+  "material_fidelity": "Poly Haven mineral surrogate recolored to ivory; not identical reference limestone"
+}
+
