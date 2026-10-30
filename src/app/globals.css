@@ -90,12 +90,26 @@
 .hero-destination-stem::before { content:''; width:1.5px; height:56px; background:#6534D8; }
 .hero-destination-stem::after { content:''; width:10px; height:10px; border-radius:50%; background:#6534D8; }
 .hero-destination-label { padding-left:8px; margin-top:-4px; white-space:nowrap; font-size:16px; font-weight:500; }
-@media(max-width:1023px) {
- .hero-composition { aspect-ratio:auto; min-height:850px; }
+@media(max-width:1279px) {
+ .hero-composition { aspect-ratio:auto; min-height:0; justify-content:flex-start; }
+ .hero-intro { order:0; padding-bottom:16px; }
+ .hero-landscape { position:relative; inset:auto; order:1; flex:none; width:100%; height:clamp(240px,75vw,440px); }
+ .hero-destinations { order:2; padding:0 24px; }
+ .hero-footer { order:3; padding-top:28px; padding-bottom:96px; }
+ .hero-footer > :first-child, .hero-footer > :nth-child(2) { max-width:100%; text-align:center; }
+ .hero-footer > :last-child { flex-wrap:wrap; justify-content:center; margin-right:0; }
+
  .hero-destinations { position:relative; inset:auto; display:flex; justify-content:center; flex-wrap:wrap; gap:4px 16px; margin-top:24px; }
  .hero-destination { position:relative; left:auto; top:auto; transform:none; align-items:center; }
  .hero-destination-stem::before { display:none; }
  .hero-destination-stem::after { width:6px; height:6px; }
  .hero-destination-label { font-size:14px; margin:0; }
- .hero-composition > :last-child { margin-top:auto; }
+
 }
+
+@media(min-width:640px) and (max-width:1279px) { .hero-footer { flex-wrap:wrap; justify-content:center; } }
+/* Native cursors remain visible without the retired custom cursor. */
+a[href], button, [role="button"], summary { cursor:pointer; }
+input, textarea, [contenteditable="true"] { cursor:text; }
+
+@media(min-width:1024px) and (max-width:1279px) { .hero-intro h1 { font-size:clamp(2.8rem,4.8vw,3.7rem); } }

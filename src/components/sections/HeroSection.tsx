@@ -52,7 +52,7 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
         <HeroLandscape activePath={activePath} />
 
         {/* ── Topo: Tipografia Canônica Integrada Sobre o Céu da Paisagem (U04–U09) ── */}
-        <div className="relative z-10 px-6 sm:px-12 lg:px-16 pt-4 sm:pt-6">
+        <div className="hero-intro relative z-10 px-6 sm:px-12 lg:px-16 pt-4 sm:pt-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             {/* Lado Esquerdo: Cumprimento e Atuação (U04–U06) */}
             <div className="lg:col-span-7 space-y-3">
@@ -80,7 +80,7 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-6 pt-1">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-6 pt-1">
                   {/* U08: CTA Principal (Pill Escuro com Seta ↗) */}
                   <Link
                     href="#projetos"
@@ -121,7 +121,7 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
         </nav>
 
         {/* ── Base Integrada Sobre as Dunas da Paisagem (U13–U16) ── */}
-        <div className="relative z-10 px-6 sm:px-12 lg:px-16 pb-4 sm:pb-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="hero-footer relative z-10 px-6 sm:px-12 lg:px-16 pb-4 sm:pb-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* U14: Localização e Formação */}
           <div className="flex items-center gap-4 text-xs sm:text-sm font-medium text-[#2E1E6B] dark:text-[#C5C4D0]">
             <span>{locationEdu}</span>
@@ -136,7 +136,7 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
           </div>
 
           {/* U15 + U16: Atalhos Rápidos com Divisória Violeta */}
-          <div className="flex items-center gap-6 text-xs sm:text-sm mr-24 sm:mr-28">
+          <div className="flex items-center gap-6 text-xs sm:text-sm lg:mr-28">
             {/* U15: Atlas Notarial */}
             <Link
               href="#project-atlas"

@@ -94,3 +94,19 @@ it('ignores an old renderer failure after preferences replace its completed gene
   expect(handles[1].dispose).not.toHaveBeenCalled();
   expect(handles[1].canvas).toBeInTheDocument();
 });
+
+
+it('keeps the scene stable on pointer and scroll while preserving path highlight', async () => {
+  const handle = {canvas:document.createElement('canvas'),dispose:vi.fn(),pause:vi.fn(),resize:vi.fn(),pointer:vi.fn(),scroll:vi.fn(),highlight:vi.fn()};
+  const loader = async () => ({createLandscape:async () => handle});
+  const {rerender} = render(<section><HeroLandscape loadRenderer={loader} /></section>);
+  await waitFor(() => expect(screen.getByRole('img').parentElement).toHaveAttribute('data-landscape-state','ready'));
+  act(() => {
+    screen.getByRole('img').closest('section')!.dispatchEvent(new MouseEvent('pointermove',{bubbles:true,clientX:200,clientY:100}));
+    window.dispatchEvent(new Event('scroll'));
+  });
+  expect(handle.pointer).not.toHaveBeenCalled();
+  expect(handle.scroll).not.toHaveBeenCalled();
+  rerender(<section><HeroLandscape loadRenderer={loader} activePath={2} /></section>);
+  expect(handle.highlight).toHaveBeenLastCalledWith(2);
+});

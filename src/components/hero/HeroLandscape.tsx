@@ -39,14 +39,9 @@ export default function HeroLandscape({ loadRenderer = defaultLoader, activePath
     document.addEventListener('visibilitychange', reconcile);
     const resize = () => renderer.current?.resize();
     const sizes = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(resize) : null; sizes?.observe(element);
-    const pointer = (event: PointerEvent) => { if (event.pointerType === 'touch') return; const rect = element.getBoundingClientRect(); renderer.current?.pointer((event.clientX - rect.left) / rect.width * 2 - 1, (event.clientY - rect.top) / rect.height * 2 - 1); };
-    const leave = () => renderer.current?.pointer(0, 0);
-    const scroll = () => { const rect = element.getBoundingClientRect(); renderer.current?.scroll(Math.max(0, Math.min(1, -rect.top / rect.height))); };
-    const section = element.closest('section') ?? element;
-    section.addEventListener('pointermove', pointer); section.addEventListener('pointerleave', leave);
-    window.addEventListener('scroll', scroll, { passive: true }); window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize);
     reconcile();
-    return () => { disposed = true; stop(); observer?.disconnect(); sizes?.disconnect(); media.removeEventListener('change', reconcile); connection?.removeEventListener('change', reconcile); document.removeEventListener('visibilitychange', reconcile); section.removeEventListener('pointermove', pointer); section.removeEventListener('pointerleave', leave); window.removeEventListener('scroll', scroll); window.removeEventListener('resize', resize); };
+    return () => { disposed = true; stop(); observer?.disconnect(); sizes?.disconnect(); media.removeEventListener('change', reconcile); connection?.removeEventListener('change', reconcile); document.removeEventListener('visibilitychange', reconcile); window.removeEventListener('resize', resize); };
   }, [loadRenderer]);
   useEffect(() => { renderer.current?.highlight(activePath); }, [activePath, state]);
   return <div ref={host} className="hero-landscape absolute inset-0 pointer-events-none" data-landscape-state={state}>

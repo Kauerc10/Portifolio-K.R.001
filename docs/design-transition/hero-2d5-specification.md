@@ -1,3 +1,5 @@
+> Atualização de 30/10/2026: a decisão posterior do usuário remove paralaxe de ponteiro e zoom de rolagem. A arte permanece estável, com realce dos caminhos por hover/foco. Cursor nativo visível. Abaixo de 1280px, apresentação, paisagem com altura própria e destinos HTML seguem o fluxo, sem sobreposição. Esta decisão substitui os requisitos de movimento abaixo; publicação permanece fora do escopo.
+
 ## Problem Statement
 O hero atual mostra uma imagem estática de resolução limitada. A prova 2.5D com profundidade existe separadamente, mas ainda não entrega animação e realce dos caminhos no portfólio. A ampliação do fundo reduz a nitidez e uma integração incorreta pode desalinhá-lo dos indicadores, alterar suas cores ou prejudicar desempenho e navegação.
 

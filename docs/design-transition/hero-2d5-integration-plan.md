@@ -1,3 +1,5 @@
+> Atualização de 30/10/2026: a decisão posterior do usuário remove paralaxe de ponteiro e zoom de rolagem. A arte permanece estável, com realce dos caminhos por hover/foco. Cursor nativo visível. Abaixo de 1280px, apresentação, paisagem com altura própria e destinos HTML seguem o fluxo, sem sobreposição. Esta decisão substitui os requisitos de movimento abaixo; publicação permanece fora do escopo.
+
 # Plano — hero 2.5D integrado e imagem de alta qualidade
 
 Data: 29/10/2026. Escopo solicitado: planejar integração da profundidade, animação e interação no hero e melhorar sua imagem. As seções abaixo ficam para outra etapa. A escolha2.5D aprovada substitui a exigência anterior de geometria3D para esta paisagem. Preservar composição atual e indicadores24px mais altos.
