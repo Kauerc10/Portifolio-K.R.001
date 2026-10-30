@@ -43,9 +43,9 @@ describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
 
       // Poster com fetchpriority="high" e asset limpo
       const poster = screen.getByRole('img', {
-        name: /Paisagem conceitual mineral/i,
+        name: /Paisagem mineral/i,
       });
-      expect(poster.getAttribute('src')).toMatch(/^\/images\/hero-[\w-]+\.(jpg|webp)$/);
+      expect(poster).toHaveAttribute('src', '/models/ribbon-portals/poster.webp');
       expect(poster).toHaveAttribute('fetchpriority', 'high');
     });
   });

@@ -150,3 +150,5 @@ input, textarea, [contenteditable="true"] { cursor:text; }
  .hero-destinations[data-anchored=false] .hero-destination { position:relative; left:auto; top:auto; transform:none; }
  .hero-destinations[data-anchored=false] .hero-destination-stem::before { display:none; }
 }
+@media(min-width:1280px) { .hero-explorer { min-height:160px; } }
+@media(min-width:1280px) { .hero-landscape { top:280px; } }
