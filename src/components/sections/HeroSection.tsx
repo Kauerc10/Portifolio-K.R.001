@@ -30,8 +30,11 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
       const back=normalize(subtract(contract.cameraPosition,contract.cameraTarget)),right=normalize(cross([0,1,0],back)),up=cross(back,right);
       const width=landscape.clientWidth,height=landscape.clientHeight,vertical=Math.max(contract.minOrthoHeight,contract.orthoWidth/(width/height));
       if(!width||!height)return;
+      const posterWidth=height*landscapeAssets.posterWorldWidth/vertical;
+      landscape.style.setProperty('--poster-width',`${posterWidth}px`);
+      landscape.style.setProperty('--poster-height',`${posterWidth/landscapeAssets.posterAspect}px`);
       setAnchors(destinations.map(destination=>{
-        const position=[...contract!.portals[destination.key]];position[1]+=3.8;
+        const position=[...contract!.portals[destination.key]];position[1]+=destination.key === 'automation' ? 3.1 : 3.5;
         const delta=subtract(position,contract!.cameraTarget);
         return {x:width/2+dot(delta,right)*height/vertical,y:landscape.offsetTop+height/2-dot(delta,up)*height/vertical};
       }));
@@ -129,8 +132,8 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
             const label = {development:destDevelopment, automation:destAutomation, support:destSupport}[destination.key];
             return <Link key={destination.key} href={destination.href} aria-label={label}
               className="hero-destination" style={{'--anchor-x':`${point.x}px`, '--anchor-y':`${point.y}px`, visibility:anchors.length?'visible':undefined} as CSSProperties}
-              onPointerEnter={() => setHoveredPath(destination.path)} onPointerLeave={() => setHoveredPath(0)}
-              onFocus={() => setFocusedPath(destination.path)} onBlur={() => setFocusedPath(0)}>
+              onPointerEnter={() => {setHoveredPath(destination.path);setSelectedPath(destination.path);}} onPointerLeave={() => setHoveredPath(0)}
+              onFocus={() => {setFocusedPath(destination.path);setSelectedPath(destination.path);}} onBlur={() => setFocusedPath(0)}>
               <span className="hero-destination-stem" aria-hidden="true" />
               <span className="hero-destination-label">{label}</span>
             </Link>;
@@ -141,9 +144,9 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
           <div className="hero-area-controls" role="group" aria-label="Explorar áreas">
             {destinations.map(destination => {
               const label = {development:destDevelopment, automation:destAutomation, support:destSupport}[destination.key];
-              return <button key={destination.key} type="button" aria-label={`Explorar ${label}`} aria-pressed={selectedPath === destination.path}
-                onClick={() => setSelectedPath(destination.path)} onFocus={() => setFocusedPath(destination.path)} onBlur={() => setFocusedPath(0)}
-                onPointerEnter={() => setHoveredPath(destination.path)} onPointerLeave={() => setHoveredPath(0)}>{label}<span aria-hidden="true"> ↗</span></button>;
+              return <button key={destination.key} type="button" aria-label={`Explorar ${label}`} aria-pressed={activePath === destination.path}
+                onClick={() => setSelectedPath(destination.path)} onFocus={() => {setFocusedPath(destination.path);setSelectedPath(destination.path);}} onBlur={() => setFocusedPath(0)}
+                onPointerEnter={() => {setHoveredPath(destination.path);setSelectedPath(destination.path);}} onPointerLeave={() => setHoveredPath(0)}>{label}<span aria-hidden="true"> ↗</span></button>;
             })}
           </div>
           {activePath > 0 && <div className="hero-area-preview" role="region" aria-label="Prévia da área" aria-live="polite">
@@ -211,3 +214,4 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
     </section>
   );
 }
+

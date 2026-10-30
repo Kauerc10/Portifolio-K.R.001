@@ -21,6 +21,7 @@ export async function createLandscape(host: HTMLElement, assets: typeof landscap
     if (disposed) return; disposed = true; cancelAnimationFrame(frame);
     signal.removeEventListener('abort', dispose);
     renderer?.domElement.removeEventListener('webglcontextlost', contextLost);
+    scene.traverse(object=>{if(object instanceof THREE.DirectionalLight)object.shadow.dispose();});
     collect(scene); geometries.forEach(value => value.dispose()); materials.forEach(value => value.dispose()); textures.forEach(value => value.dispose());
     renderer?.domElement.remove(); renderer?.dispose();
   };
@@ -39,20 +40,34 @@ export async function createLandscape(host: HTMLElement, assets: typeof landscap
         object.material=Array.isArray(object.material)?object.material.map(material=>material.clone()):object.material.clone();
       }
     });
+    model.scene.traverse(object=>{
+      if(!(object instanceof THREE.Mesh))return;
+      for(const material of Array.isArray(object.material)?object.material:[object.material]) {
+        if(material instanceof THREE.MeshStandardMaterial && /violet/i.test(material.name)) {
+          material.color.set('#6534D8'); material.roughness=.58; material.metalness=.08;
+        }
+      }
+    });
     collect(model.scene);
     if (disposed || signal.aborted) { geometries.forEach(value=>value.dispose()); materials.forEach(value=>value.dispose()); textures.forEach(value=>value.dispose()); throw new DOMException('Aborted','AbortError'); }
     renderer = new THREE.WebGLRenderer({alpha:true, antialias:true, powerPreference:'low-power'});
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
+    renderer.toneMappingExposure = 1.05;
     renderer.setClearColor(0xf7f7fa, 0);
+    renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
     renderer.domElement.className = 'absolute inset-0 w-full h-full';
     renderer.domElement.setAttribute('aria-hidden','true');
     renderer.domElement.dataset.heroGeometry = 'ribbon-portals';
     renderer.domElement.addEventListener('webglcontextlost',contextLost);
-    scene.add(new THREE.HemisphereLight(0xfffaf2,0xc5b9d6,2.5));
-    const key = new THREE.DirectionalLight(0xfff8ee,3.5); key.position.set(-6,12,10); scene.add(key);
-    const fill = new THREE.DirectionalLight(0xdbd5ff,1); fill.position.set(6,6,-4); scene.add(fill);
+    scene.add(new THREE.HemisphereLight(0xfffaf2,0xc5b9d6,1.0));
+    const key = new THREE.DirectionalLight(0xfff8ee,3.0); key.position.set(-5,12,7); key.castShadow=true;
+    key.shadow.mapSize.set(1024,1024); key.shadow.camera.left=-18; key.shadow.camera.right=18; key.shadow.camera.top=18; key.shadow.camera.bottom=-18; key.shadow.camera.far=60; key.shadow.normalBias=.035; key.shadow.bias=-.0002;
+    scene.add(key);
+    model.scene.traverse(object=>{if(object instanceof THREE.Mesh){object.castShadow=true;object.receiveShadow=true;}});
+    const ground=new THREE.Mesh(new THREE.PlaneGeometry(60,60),new THREE.ShadowMaterial({opacity:.13}));
+    ground.rotation.x=-Math.PI/2;ground.position.y=-.03;ground.receiveShadow=true;scene.add(ground);
+    const fill = new THREE.DirectionalLight(0xdbd5ff,.45); fill.position.set(6,6,-4); scene.add(fill);
     const camera = new THREE.OrthographicCamera(-9.75,9.75,5,-5,.1,100);
     camera.position.fromArray(contract.cameraPosition); camera.lookAt(new THREE.Vector3(...contract.cameraTarget));
     const bead = new THREE.Mesh(new THREE.SphereGeometry(.12,16,12),new THREE.MeshBasicMaterial({color:0xd2b9ff}));
@@ -92,6 +107,7 @@ export async function createLandscape(host: HTMLElement, assets: typeof landscap
         const selected=object.name.includes(['','development','automation','support'][active] || '__none');
         for(const material of Array.isArray(object.material)?object.material:[object.material]) if(material instanceof THREE.MeshStandardMaterial){material.emissive.set(selected?0x6534d8:0x000000);material.emissiveIntensity=selected?.35:0;}
       }); invalidate();
-    },pause(value){paused=value;cancelAnimationFrame(frame);frame=0;start=0;active=0;bead.visible=false;if(!paused)invalidate();},dispose};
+    },pause(value){if(paused===value)return;paused=value;cancelAnimationFrame(frame);frame=0;start=0;if(paused){active=0;bead.visible=false;}else invalidate();},dispose};
   } catch(error) {dispose();throw error;}
 }
+

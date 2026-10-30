@@ -1,4 +1,4 @@
-export const landscapeAssets = { color: '/models/ribbon-portals/poster.webp', model: '/models/ribbon-portals/hero.glb', scene: '/models/ribbon-portals/scene.json' };
+export const landscapeAssets = { color: '/models/ribbon-portals/poster.webp', model: '/models/ribbon-portals/hero.glb', scene: '/models/ribbon-portals/scene.json', posterAspect: 16 / 9, posterWorldWidth: 39 };
 export const destinations = [
   { key: 'development', href: '#projetos', x: .133, y: .4616, path: 1 },
   { key: 'automation', href: '#project-atlas', x: .505, y: .358, path: 2 },

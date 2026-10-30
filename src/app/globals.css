@@ -117,7 +117,7 @@ input, textarea, [contenteditable="true"] { cursor:text; }
 /* The continuous ribbon occupies the full viewport; content keeps a readable measure. */
 .hero-composition { min-height:880px; }
 .hero-landscape { top:190px; bottom:110px; }
-.hero-landscape img { object-fit:contain; }
+.hero-landscape img { object-fit:cover; }
 .hero-landscape:has(canvas) > img { visibility:hidden; }
 .hero-explorer { position:relative; z-index:11; width:min(620px,calc(100% - 48px)); margin:420px auto 32px; }
 .hero-area-controls { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
@@ -152,3 +152,18 @@ input, textarea, [contenteditable="true"] { cursor:text; }
 }
 @media(min-width:1280px) { .hero-explorer { min-height:160px; } }
 @media(min-width:1280px) { .hero-landscape { top:280px; } }
+
+.hero-landscape { background-position:center bottom; }
+@media(min-width:1280px) {
+ .hero-composition { min-height:0; justify-content:flex-start; }
+ .hero-intro { order:0; }
+ .hero-landscape { position:relative; inset:auto; order:1; flex:none; margin-top:64px; height:clamp(400px,35vw,640px); }
+ .hero-explorer { order:2; margin:16px auto 24px; }
+ .hero-footer { order:3; }
+ .hero-destination { top:var(--anchor-y); }
+}
+
+.hero-landscape { background-image:linear-gradient(#f7f7fa 0%,transparent 15%,transparent 85%,#f7f7fa 100%),linear-gradient(#f7f7fa33,#f7f7fa66),url('/images/ribbon-mountains.webp'); }
+
+.hero-landscape { overflow:hidden; }
+.hero-landscape > img { width:var(--poster-width,100%); height:var(--poster-height,100%); max-width:none; left:50%; top:50%; transform:translate(-50%,-50%); }

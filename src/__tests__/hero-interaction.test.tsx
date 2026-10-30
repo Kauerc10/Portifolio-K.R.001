@@ -16,7 +16,7 @@ it('keeps keyboard highlight through pointer leave and restores hover after blur
   fireEvent.blur(development);
   expect(screen.getByLabelText('Highlighted path')).toHaveTextContent('3');
   fireEvent.pointerLeave(support);
-  expect(screen.getByLabelText('Highlighted path')).toHaveTextContent('0');
+  expect(screen.getByLabelText('Highlighted path')).toHaveTextContent('3');
 });
 
 it('lets touch visitors select evidence before following a direct destination link', () => {
@@ -38,4 +38,16 @@ it('aborts the scene anchor request on unmount while links remain available', ()
     const signal=fetcher.mock.calls[0][1].signal as AbortSignal;
     expect(signal.aborted).toBe(false);unmount();expect(signal.aborted).toBe(true);
   } finally {vi.unstubAllGlobals();}
+});
+
+
+it('retains the last preview while moving from the origin control to its CTA', () => {
+  render(<HeroSection dict={ptBR.hero} />);
+  const support=screen.getByRole('link',{name:'Suporte',exact:true});
+  fireEvent.pointerEnter(support);fireEvent.pointerLeave(support);
+  const cta=screen.getByRole('link',{name:'Ver Suporte'});
+  expect(cta).toHaveAttribute('href','#experiencia');
+  fireEvent.focus(support);fireEvent.blur(support);fireEvent.focus(cta);
+  expect(screen.getByRole('region',{name:/via da/})).toBeVisible();
+  expect(screen.getByLabelText('Highlighted path')).toHaveTextContent('3');
 });

@@ -47,6 +47,6 @@ export default function HeroLandscape({ loadRenderer = defaultLoader, activePath
   return <div ref={host} className="hero-landscape absolute inset-0 pointer-events-none" data-landscape-state={state}>
     {/* Poster and HTML remain available independently of the optional model. */}
     {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src={landscapeAssets.color} alt="Paisagem mineral: fita violeta conectando portais de Desenvolvimento, Automacao e Suporte" fetchPriority="high" className="absolute inset-0 w-full h-full object-contain object-center" />
+    <img src={landscapeAssets.color} alt="Paisagem mineral: fita violeta conectando portais de Desenvolvimento, Automacao e Suporte" fetchPriority="high" className="absolute inset-0 w-full h-full object-cover object-center" />
   </div>;
 }
