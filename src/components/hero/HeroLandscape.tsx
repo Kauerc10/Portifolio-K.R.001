@@ -13,7 +13,8 @@ export default function HeroLandscape({ loadRenderer = defaultLoader, activePath
     const connection = (navigator as Navigator & { connection?: EventTarget & { saveData?: boolean } }).connection;
     let visible = typeof IntersectionObserver === 'undefined', disposed = false, failed = false;
     let pending: AbortController | null = null;
-    const stop = () => { pending?.abort(); pending = null; renderer.current?.dispose(); renderer.current = null; };
+    let generation: AbortController | null = null;
+    const stop = () => { generation?.abort(); generation = null; pending = null; renderer.current?.dispose(); renderer.current = null; };
     const reconcile = () => {
       if (disposed) return;
       if (media.matches || connection?.saveData) { stop(); setState('poster'); return; }
@@ -21,7 +22,7 @@ export default function HeroLandscape({ loadRenderer = defaultLoader, activePath
       if (paused && pending) { pending.abort(); pending = null; setState('paused'); }
       if (renderer.current) { renderer.current.pause(paused); setState(paused ? 'paused' : 'ready'); return; }
       if (paused || pending || failed) return;
-      const controller = new AbortController(); pending = controller; setState('loading');
+      const controller = new AbortController(); generation = controller; pending = controller; setState('loading');
       const fallback = () => { if (controller.signal.aborted || disposed) return; failed = true; stop(); setState('fallback'); };
       loadRenderer().then(module => {
         if (controller.signal.aborted) return null;

@@ -73,3 +73,24 @@ it('pauses the enhancement while the document is hidden and restores it on retur
   expect(screen.getByRole('img').parentElement).toHaveAttribute('data-landscape-state','ready');
   unmount(); expect(dispose).toHaveBeenCalledOnce();
 });
+
+it('ignores an old renderer failure after preferences replace its completed generation', async () => {
+  const changes=new EventTarget();
+  const media={matches:false,addEventListener:changes.addEventListener.bind(changes),removeEventListener:changes.removeEventListener.bind(changes)};
+  vi.mocked(window.matchMedia).mockReturnValueOnce(media as unknown as MediaQueryList);
+  const failures: (()=>void)[]=[];
+  const handles: {canvas:HTMLCanvasElement;dispose:ReturnType<typeof vi.fn>;pause:ReturnType<typeof vi.fn>;highlight:ReturnType<typeof vi.fn>;resize:ReturnType<typeof vi.fn>;pointer:ReturnType<typeof vi.fn>;scroll:ReturnType<typeof vi.fn>}[]=[];
+  const createLandscape=vi.fn(async (_host:unknown,_assets:unknown,_signal:unknown,onFailure:()=>void)=>{
+    failures.push(onFailure);
+    const handle={canvas:document.createElement('canvas'),dispose:vi.fn(),pause:vi.fn(),highlight:vi.fn(),resize:vi.fn(),pointer:vi.fn(),scroll:vi.fn()};handles.push(handle);return handle;
+  });
+  render(<HeroLandscape loadRenderer={async()=>({createLandscape})} />);
+  await waitFor(()=>expect(handles[0]?.pause).toHaveBeenCalled());
+  media.matches=true;act(()=>changes.dispatchEvent(new Event('change')));
+  media.matches=false;act(()=>changes.dispatchEvent(new Event('change')));
+  await waitFor(()=>expect(handles[1]?.pause).toHaveBeenCalled());
+  act(()=>failures[0]());
+  expect(screen.getByRole('img').parentElement).toHaveAttribute('data-landscape-state','ready');
+  expect(handles[1].dispose).not.toHaveBeenCalled();
+  expect(handles[1].canvas).toBeInTheDocument();
+});

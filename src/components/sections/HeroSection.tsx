@@ -11,7 +11,9 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ dict: d }: HeroSectionProps) {
-  const [activePath, setActivePath] = useState(0);
+  const [hoveredPath, setHoveredPath] = useState(0);
+  const [focusedPath, setFocusedPath] = useState(0);
+  const activePath = focusedPath || hoveredPath;
   const composition = useRef<HTMLDivElement>(null);
   const [bounds, setBounds] = useState({ width: 1433, height: 1018 });
   const [imageSize, setImageSize] = useState({width: 1024, height: 768});
@@ -19,10 +21,9 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
     const image = new window.Image(); image.src = landscapeAssets.color;
     let alive = true;
     image.onload = () => { if (alive) setImageSize({width:image.naturalWidth,height:image.naturalHeight}); };
-    if (typeof ResizeObserver === 'undefined') return;
-    const observer = new ResizeObserver(entries => { const {width,height} = entries[0].contentRect; setBounds({width,height}); });
-    observer.observe(composition.current!);
-    return () => { alive=false; image.onload=null; observer.disconnect(); };
+    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(entries => { const {width,height} = entries[0].contentRect; setBounds({width,height}); }) : null;
+    observer?.observe(composition.current!);
+    return () => { alive=false; image.onload=null; observer?.disconnect(); };
   }, []);
   const greetingLine1 = d.greetingH1Line1 || 'Olá, que bom ter';
   const greetingLine2 = d.greetingH1Line2 || 'você por aqui.';
@@ -111,8 +112,8 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
             const label = {development:destDevelopment, automation:destAutomation, support:destSupport}[destination.key];
             return <Link key={destination.key} href={destination.href} aria-label={label}
               className="hero-destination" style={{'--anchor-x':`${point.x}px`, '--anchor-y':`${point.y}px`} as CSSProperties}
-              onPointerEnter={() => setActivePath(destination.path)} onPointerLeave={() => setActivePath(0)}
-              onFocus={() => setActivePath(destination.path)} onBlur={() => setActivePath(0)}>
+              onPointerEnter={() => setHoveredPath(destination.path)} onPointerLeave={() => setHoveredPath(0)}
+              onFocus={() => setFocusedPath(destination.path)} onBlur={() => setFocusedPath(0)}>
               <span className="hero-destination-stem" aria-hidden="true" />
               <span className="hero-destination-label">{label}</span>
             </Link>;

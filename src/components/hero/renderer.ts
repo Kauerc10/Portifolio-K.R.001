@@ -24,7 +24,8 @@ export async function createLandscape(host: HTMLElement, assets: typeof landscap
  let geometry: THREE.PlaneGeometry | undefined;
  let material: THREE.ShaderMaterial | undefined;
  let disposed = false, frame = 0, paused = false, previous = 0;
- const dispose = () => { if (disposed) return; disposed=true; cancelAnimationFrame(frame); textures.forEach(t=>t.dispose()); geometry?.dispose(); material?.dispose(); renderer?.domElement.remove(); renderer?.dispose(); };
+ const contextLost = (event: Event) => { if (disposed) return; event.preventDefault(); failed(); };
+ const dispose = () => { if (disposed) return; disposed=true; signal.removeEventListener('abort',dispose); renderer?.domElement.removeEventListener('webglcontextlost',contextLost); cancelAnimationFrame(frame); textures.forEach(t=>t.dispose()); geometry?.dispose(); material?.dispose(); renderer?.domElement.remove(); renderer?.dispose(); };
  signal.addEventListener('abort', dispose, { once:true });
  try {
   const loader = new THREE.TextureLoader();
@@ -38,7 +39,7 @@ export async function createLandscape(host: HTMLElement, assets: typeof landscap
   renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
   renderer.toneMapping = THREE.NoToneMapping;
   renderer.domElement.setAttribute('aria-hidden','true'); renderer.domElement.className='absolute inset-0 w-full h-full';
-  renderer.domElement.addEventListener('webglcontextlost', event=>{ event.preventDefault(); failed(); });
+  renderer.domElement.addEventListener('webglcontextlost', contextLost);
   for (const texture of [color,depth,paths]) {
    texture.colorSpace=THREE.NoColorSpace; texture.minFilter=THREE.LinearFilter; texture.magFilter=THREE.LinearFilter; texture.generateMipmaps=false;
    if (texture.image.width > renderer.capabilities.maxTextureSize || texture.image.height > renderer.capabilities.maxTextureSize) throw new Error('Texture exceeds GPU capacity');
