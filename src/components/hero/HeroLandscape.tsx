@@ -47,6 +47,6 @@ export default function HeroLandscape({ loadRenderer = defaultLoader, activePath
   return <div ref={host} className="hero-landscape absolute inset-0 pointer-events-none" data-landscape-state={state}>
     {/* A calibrated original is served directly; renderer uses this same URL. */}
     {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src={landscapeAssets.color} alt="Paisagem conceitual mineral com caminhos violeta interligando os pavilhões de Desenvolvimento, Automação e Suporte" fetchPriority="high" className="absolute inset-0 w-full h-full object-cover object-center" />
+    <img src={landscapeAssets.color} alt="Paisagem conceitual mineral com caminhos violeta interligando os pavilhões de Desenvolvimento, Automação e Suporte" fetchPriority="high" className="absolute inset-0 w-full h-full object-contain object-center" />
   </div>;
 }

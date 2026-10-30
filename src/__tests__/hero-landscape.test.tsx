@@ -4,7 +4,7 @@ import HeroLandscape from '@/components/hero/HeroLandscape';
 
 it('keeps the poster available when enhancement fails', async () => {
   render(<HeroLandscape loadRenderer={() => Promise.reject(new Error('WebGL unavailable'))} />);
-  expect(screen.getByRole('img')).toHaveAttribute('src', '/images/hero-detailed.webp');
+  expect(screen.getByRole('img')).toHaveAttribute('src', '/models/ribbon-portals/poster.webp');
   await waitFor(() => expect(screen.getByRole('img').parentElement).toHaveAttribute('data-landscape-state', 'fallback'));
 });
 

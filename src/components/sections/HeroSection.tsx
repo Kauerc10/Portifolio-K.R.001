@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, type CSSProperties } from 'react';
 import HeroLandscape from '../hero/HeroLandscape';
-import { cover, destinations, landscapeAssets } from '../hero/landscape';
+import { destinations, landscapeAssets } from '../hero/landscape';
 import Link from 'next/link';
 import type { Dictionary } from '@/i18n/types';
 
@@ -13,17 +13,34 @@ interface HeroSectionProps {
 export default function HeroSection({ dict: d }: HeroSectionProps) {
   const [hoveredPath, setHoveredPath] = useState(0);
   const [focusedPath, setFocusedPath] = useState(0);
-  const activePath = focusedPath || hoveredPath;
+  const [selectedPath, setSelectedPath] = useState(0);
+  const activePath = focusedPath || hoveredPath || selectedPath;
   const composition = useRef<HTMLDivElement>(null);
-  const [bounds, setBounds] = useState({ width: 1433, height: 1018 });
-  const [imageSize, setImageSize] = useState({width: 1024, height: 768});
+  const [anchors, setAnchors] = useState<{x:number;y:number}[]>([]);
   useEffect(() => {
-    const image = new window.Image(); image.src = landscapeAssets.color;
-    let alive = true;
-    image.onload = () => { if (alive) setImageSize({width:image.naturalWidth,height:image.naturalHeight}); };
-    const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(entries => { const {width,height} = entries[0].contentRect; setBounds({width,height}); }) : null;
+    const controller=new AbortController();
+    let contract: {cameraPosition:number[];cameraTarget:number[];orthoWidth:number;minOrthoHeight:number;portals:Record<string,number[]>} | null=null;
+    const update=()=>{
+      const element=composition.current, landscape=element?.querySelector<HTMLElement>('.hero-landscape');
+      if(!element||!landscape||!contract)return;
+      const subtract=(a:number[],b:number[])=>a.map((value,i)=>value-b[i]);
+      const normalize=(a:number[])=>{const length=Math.hypot(...a);return a.map(value=>value/length);};
+      const cross=(a:number[],b:number[])=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+      const dot=(a:number[],b:number[])=>a.reduce((sum,value,i)=>sum+value*b[i],0);
+      const back=normalize(subtract(contract.cameraPosition,contract.cameraTarget)),right=normalize(cross([0,1,0],back)),up=cross(back,right);
+      const width=landscape.clientWidth,height=landscape.clientHeight,vertical=Math.max(contract.minOrthoHeight,contract.orthoWidth/(width/height));
+      if(!width||!height)return;
+      setAnchors(destinations.map(destination=>{
+        const position=[...contract!.portals[destination.key]];position[1]+=3.8;
+        const delta=subtract(position,contract!.cameraTarget);
+        return {x:width/2+dot(delta,right)*height/vertical,y:landscape.offsetTop+height/2-dot(delta,up)*height/vertical};
+      }));
+    };
+    fetch(landscapeAssets.scene,{signal:controller.signal}).then(response=>{if(!response.ok)throw new Error('No scene');return response.json();}).then(value=>{contract=value;update();}).catch(()=>{});
+    const observer=typeof ResizeObserver!=='undefined'?new ResizeObserver(update):null;
     observer?.observe(composition.current!);
-    return () => { alive=false; image.onload=null; observer?.disconnect(); };
+    window.addEventListener('resize',update);
+    return()=>{controller.abort();observer?.disconnect();window.removeEventListener('resize',update);};
   }, []);
   const greetingLine1 = d.greetingH1Line1 || 'Olá, que bom ter';
   const greetingLine2 = d.greetingH1Line2 || 'você por aqui.';
@@ -44,15 +61,15 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
     <section
       id="hero"
       aria-label="Apresentação e Paisagem Interativa"
-      className="relative w-full max-w-[1433px] mx-auto overflow-hidden bg-[#F7F7FA] dark:bg-[#111015] transition-colors"
+      className="relative w-full overflow-hidden bg-[#F7F7FA] dark:bg-[#111015] transition-colors"
     >
       {/* ── Composição Unificada Desktop (1433 × 1018 Aspect Ratio) ── */}
-      <div ref={composition} className="hero-composition relative w-full aspect-[1433/1018] min-h-[680px] flex flex-col justify-between select-none">
+      <div ref={composition} className="hero-composition relative w-full min-h-[880px] flex flex-col justify-between select-none">
         {/* Imagem Canônica de Fundo (Preenche todo o canvas: céu branco no topo, paisagem no meio/base) */}
         <HeroLandscape activePath={activePath} />
 
         {/* ── Topo: Tipografia Canônica Integrada Sobre o Céu da Paisagem (U04–U09) ── */}
-        <div className="hero-intro relative z-10 px-6 sm:px-12 lg:px-16 pt-4 sm:pt-6">
+        <div className="hero-intro max-w-[1433px] w-full mx-auto relative z-10 px-6 sm:px-12 lg:px-16 pt-4 sm:pt-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             {/* Lado Esquerdo: Cumprimento e Atuação (U04–U06) */}
             <div className="lg:col-span-7 space-y-3">
@@ -106,12 +123,12 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
         </div>
 
         {/* ── Pins Arquitetônicos Reais da Referência Ancorados nos Pavilhões (U10, U11, U12) ── */}
-        <nav className="hero-destinations" aria-label="Destinos da paisagem">
-          {destinations.map(destination => {
-            const point = cover(bounds.width, bounds.height, imageSize.width, imageSize.height).project(destination.x, destination.y);
+        <nav data-anchored={anchors.length > 0} className="hero-destinations" aria-label="Destinos da paisagem">
+          {destinations.map((destination,index) => {
+            const point = anchors[index] || {x:0,y:0};
             const label = {development:destDevelopment, automation:destAutomation, support:destSupport}[destination.key];
             return <Link key={destination.key} href={destination.href} aria-label={label}
-              className="hero-destination" style={{'--anchor-x':`${point.x}px`, '--anchor-y':`${point.y}px`} as CSSProperties}
+              className="hero-destination" style={{'--anchor-x':`${point.x}px`, '--anchor-y':`${point.y}px`, visibility:anchors.length?'visible':undefined} as CSSProperties}
               onPointerEnter={() => setHoveredPath(destination.path)} onPointerLeave={() => setHoveredPath(0)}
               onFocus={() => setFocusedPath(destination.path)} onBlur={() => setFocusedPath(0)}>
               <span className="hero-destination-stem" aria-hidden="true" />
@@ -119,6 +136,22 @@ export default function HeroSection({ dict: d }: HeroSectionProps) {
             </Link>;
           })}
         </nav>
+
+        <div className="hero-explorer">
+          <div className="hero-area-controls" role="group" aria-label="Explorar áreas">
+            {destinations.map(destination => {
+              const label = {development:destDevelopment, automation:destAutomation, support:destSupport}[destination.key];
+              return <button key={destination.key} type="button" aria-label={`Explorar ${label}`} aria-pressed={selectedPath === destination.path}
+                onClick={() => setSelectedPath(destination.path)} onFocus={() => setFocusedPath(destination.path)} onBlur={() => setFocusedPath(0)}
+                onPointerEnter={() => setHoveredPath(destination.path)} onPointerLeave={() => setHoveredPath(0)}>{label}<span aria-hidden="true"> ↗</span></button>;
+            })}
+          </div>
+          {activePath > 0 && <div className="hero-area-preview" role="region" aria-label="Prévia da área" aria-live="polite">
+            <div><strong>{activePath === 1 ? 'CKF Manutenção' : activePath === 2 ? 'Atlas Notarial' : destSupport}</strong>
+              <p>{activePath === 1 ? 'React · TypeScript · Supabase · Vitest' : activePath === 2 ? 'Node.js · REST APIs · Automação Notarial · Vitest' : presentationBody}</p></div>
+            <Link href={destinations[activePath - 1].href}>Ver {{development:destDevelopment, automation:destAutomation, support:destSupport}[destinations[activePath - 1].key]} <span aria-hidden="true">→</span></Link>
+          </div>}
+        </div>
 
         {/* ── Base Integrada Sobre as Dunas da Paisagem (U13–U16) ── */}
         <div className="hero-footer relative z-10 px-6 sm:px-12 lg:px-16 pb-4 sm:pb-6 flex flex-col sm:flex-row items-center justify-between gap-6">

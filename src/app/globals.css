@@ -113,3 +113,40 @@ a[href], button, [role="button"], summary { cursor:pointer; }
 input, textarea, [contenteditable="true"] { cursor:text; }
 
 @media(min-width:1024px) and (max-width:1279px) { .hero-intro h1 { font-size:clamp(2.8rem,4.8vw,3.7rem); } }
+
+/* The continuous ribbon occupies the full viewport; content keeps a readable measure. */
+.hero-composition { min-height:880px; }
+.hero-landscape { top:190px; bottom:110px; }
+.hero-landscape img { object-fit:contain; }
+.hero-landscape:has(canvas) > img { visibility:hidden; }
+.hero-explorer { position:relative; z-index:11; width:min(620px,calc(100% - 48px)); margin:420px auto 32px; }
+.hero-area-controls { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+.hero-area-controls button { min-height:44px; border:1px solid #d9d4e5; padding:9px 18px; border-radius:999px; color:#38275a; background:#f7f7faed; font-size:13px; }
+.hero-area-controls button[aria-pressed=true],.hero-area-controls button:hover { border-color:#6534d8; background:#eee7fc; }
+.hero-area-controls button:focus-visible,.hero-area-preview a:focus-visible { outline:2px solid #6534d8; outline-offset:4px; }
+.hero-area-preview { margin-top:12px; padding:16px 20px; background:#f7f7faf2; border:1px solid #ded9e8; border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:16px; color:#241b37; }
+.hero-area-preview strong { font-size:15px; }
+.hero-area-preview p { font-size:12px; margin-top:4px; color:#62596f; }
+.hero-area-preview a { flex-shrink:0; font-size:13px; color:#6534d8; padding:8px 0; min-height:44px; display:flex; align-items:center; }
+.dark .hero-area-controls button,.dark .hero-area-preview { background:#201a2bed; color:#f3f2f5; border-color:#514263; }
+.dark .hero-area-preview p { color:#c5bcd0; }
+.dark .hero-area-preview a { color:#ba99ff; }
+@media(max-width:1279px) {
+ .hero-composition { min-height:0; }
+ .hero-landscape { top:auto; bottom:auto; height:clamp(210px,45vw,420px); }
+ .hero-explorer { order:2; margin:12px auto 0; }
+ .hero-destinations { order:3; margin-top:8px; }
+ .hero-footer { order:4; }
+}
+@media(max-width:479px) {
+ .hero-area-controls { gap:6px; }
+ .hero-area-controls button { padding:8px 12px; font-size:12px; }
+ .hero-area-preview { align-items:flex-start; flex-direction:column; gap:4px; padding:14px 16px; }
+}
+
+.hero-landscape { background:linear-gradient(#f7f7fa33,#f7f7fa66),url('/images/ribbon-mountains.webp') center / cover no-repeat; }
+@media(min-width:1280px) {
+ .hero-destinations[data-anchored=false] { inset:auto 0 190px; display:flex; justify-content:center; gap:30px; }
+ .hero-destinations[data-anchored=false] .hero-destination { position:relative; left:auto; top:auto; transform:none; }
+ .hero-destinations[data-anchored=false] .hero-destination-stem::before { display:none; }
+}

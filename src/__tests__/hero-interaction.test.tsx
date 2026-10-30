@@ -19,14 +19,23 @@ it('keeps keyboard highlight through pointer leave and restores hover after blur
   expect(screen.getByLabelText('Highlighted path')).toHaveTextContent('0');
 });
 
-it('cleans up the image load callback even without ResizeObserver', () => {
-  const image={src:'',onload:null as null|(()=>void)};
-  vi.stubGlobal('Image',class {constructor(){return image;}});
-  vi.stubGlobal('ResizeObserver',undefined);
+it('lets touch visitors select evidence before following a direct destination link', () => {
+  render(<HeroSection dict={ptBR.hero} />);
+  fireEvent.click(screen.getByRole('button',{name:'Explorar Automação'}));
+  expect(screen.getByRole('button',{name:'Explorar Automação'})).toHaveAttribute('aria-pressed','true');
+  expect(screen.getByRole('region',{name:'Prévia da área'})).toHaveTextContent('Atlas Notarial');
+  expect(screen.getByRole('link',{name:'Ver Automação'})).toHaveAttribute('href','#project-atlas');
+  expect(screen.getByRole('link',{name:'Automação'})).toHaveAttribute('href','#project-atlas');
+  expect(screen.getByLabelText('Highlighted path')).toHaveTextContent('2');
+});
+
+
+it('aborts the scene anchor request on unmount while links remain available', () => {
+  const fetcher=vi.fn((_url:string,_options:{signal:AbortSignal})=>new Promise(()=>{}));vi.stubGlobal('fetch',fetcher);
   try {
     const {unmount}=render(<HeroSection dict={ptBR.hero} />);
-    expect(image.onload).toBeTypeOf('function');
-    unmount();
-    expect(image.onload).toBeNull();
+    expect(screen.getByRole('link',{name:'Desenvolvimento'})).toHaveAttribute('href','#projetos');
+    const signal=fetcher.mock.calls[0][1].signal as AbortSignal;
+    expect(signal.aborted).toBe(false);unmount();expect(signal.aborted).toBe(true);
   } finally {vi.unstubAllGlobals();}
 });
