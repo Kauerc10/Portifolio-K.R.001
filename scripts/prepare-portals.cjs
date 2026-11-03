@@ -1,0 +1,2 @@
+const sharp=require('sharp');const fs=require('fs');
+(async()=>{for(const width of [640,1024,1672])for(const format of ['avif','webp']){const out=`public/images/portals/portals-${width}.${format}`;await sharp('docs/design-transition/assets/ribbon-portals/model-reference.png').resize({width}).toFormat(format,{quality:format==='avif'?67:88,effort:6}).toFile(out);console.log(out,fs.statSync(out).size);}})();

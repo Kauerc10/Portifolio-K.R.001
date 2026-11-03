@@ -81,89 +81,59 @@
   .aevo-chat-panel, .aevo-chat-panel--closing { animation-duration:.01ms; }
   .aevo-thinking__icon, .aevo-thinking__dots i, .aevo-message-reveal { animation:none; }
 }
-.hero-landscape canvas { touch-action: pan-y; }
-.hero-destinations { position:absolute; inset:0; pointer-events:none; z-index:10; }
-.hero-destination { position:absolute; left:var(--anchor-x); top:calc(var(--anchor-y) - 24px); transform:translate(-9px,-100%); pointer-events:auto; display:flex; align-items:flex-start; padding:4px; min-height:44px; min-width:44px; color:#1E1B4B; border-radius:4px; }
-.hero-destination:focus-visible { outline:2px solid #6534D8; outline-offset:4px; }
-.hero-destination:hover,.hero-destination:focus-visible { color:#6534D8; }
-.hero-destination-stem { display:flex; flex-direction:column; align-items:center; }
-.hero-destination-stem::before { content:''; width:1.5px; height:56px; background:#6534D8; }
-.hero-destination-stem::after { content:''; width:10px; height:10px; border-radius:50%; background:#6534D8; }
-.hero-destination-label { padding-left:8px; margin-top:-4px; white-space:nowrap; font-size:16px; font-weight:500; }
-@media(max-width:1279px) {
- .hero-composition { aspect-ratio:auto; min-height:0; justify-content:flex-start; }
- .hero-intro { order:0; padding-bottom:16px; }
- .hero-landscape { position:relative; inset:auto; order:1; flex:none; width:100%; height:clamp(240px,75vw,440px); }
- .hero-destinations { order:2; padding:0 24px; }
- .hero-footer { order:3; padding-top:28px; padding-bottom:96px; }
- .hero-footer > :first-child, .hero-footer > :nth-child(2) { max-width:100%; text-align:center; }
- .hero-footer > :last-child { flex-wrap:wrap; justify-content:center; margin-right:0; }
 
- .hero-destinations { position:relative; inset:auto; display:flex; justify-content:center; flex-wrap:wrap; gap:4px 16px; margin-top:24px; }
- .hero-destination { position:relative; left:auto; top:auto; transform:none; align-items:center; }
- .hero-destination-stem::before { display:none; }
- .hero-destination-stem::after { width:6px; height:6px; }
- .hero-destination-label { font-size:14px; margin:0; }
-
-}
-
-@media(min-width:640px) and (max-width:1279px) { .hero-footer { flex-wrap:wrap; justify-content:center; } }
-/* Native cursors remain visible without the retired custom cursor. */
+/* Native input and document scrolling; the hero has no camera or render loop. */
 a[href], button, [role="button"], summary { cursor:pointer; }
 input, textarea, [contenteditable="true"] { cursor:text; }
-
-@media(min-width:1024px) and (max-width:1279px) { .hero-intro h1 { font-size:clamp(2.8rem,4.8vw,3.7rem); } }
-
-/* The continuous ribbon occupies the full viewport; content keeps a readable measure. */
-.hero-composition { min-height:880px; }
-.hero-landscape { top:190px; bottom:110px; }
-.hero-landscape img { object-fit:cover; }
-.hero-landscape:has(canvas) > img { visibility:hidden; }
-.hero-explorer { position:relative; z-index:11; width:min(620px,calc(100% - 48px)); margin:420px auto 32px; }
-.hero-area-controls { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
-.hero-area-controls button { min-height:44px; border:1px solid #d9d4e5; padding:9px 18px; border-radius:999px; color:#38275a; background:#f7f7faed; font-size:13px; }
-.hero-area-controls button[aria-pressed=true],.hero-area-controls button:hover { border-color:#6534d8; background:#eee7fc; }
-.hero-area-controls button:focus-visible,.hero-area-preview a:focus-visible { outline:2px solid #6534d8; outline-offset:4px; }
-.hero-area-preview { margin-top:12px; padding:16px 20px; background:#f7f7faf2; border:1px solid #ded9e8; border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:16px; color:#241b37; }
-.hero-area-preview strong { font-size:15px; }
-.hero-area-preview p { font-size:12px; margin-top:4px; color:#62596f; }
-.hero-area-preview a { flex-shrink:0; font-size:13px; color:#6534d8; padding:8px 0; min-height:44px; display:flex; align-items:center; }
-.dark .hero-area-controls button,.dark .hero-area-preview { background:#201a2bed; color:#f3f2f5; border-color:#514263; }
-.dark .hero-area-preview p { color:#c5bcd0; }
-.dark .hero-area-preview a { color:#ba99ff; }
+.portal-hero { --portal-bg:#f7f7fa; --portal-ink:#14131c; --portal-muted:#565565; --portal-accent:#6534d8; background:var(--portal-bg); color:var(--portal-ink); overflow:hidden; }
+.dark .portal-hero { --portal-bg:#111015; --portal-ink:#f3f2f5; --portal-muted:#c5c4d0; --portal-accent:#b493ff; }
+.portal-composition { display:grid; }
+.portal-intro { width:min(1433px,100%); margin:auto; padding:24px clamp(24px,4.5vw,72px); display:grid; gap:28px; position:relative; z-index:2; }
+.portal-intro h1 { font-size:clamp(2.15rem,4.7vw,4.5rem); font-weight:700; letter-spacing:-.045em; line-height:1.08; }
+.portal-intro h1 span { display:block; color:var(--portal-accent); }
+.portal-areas { margin-top:16px; font-size:clamp(1rem,1.65vw,1.5rem); color:var(--portal-muted); }
+.portal-presentation { border-left:2px solid #8b5cf666; padding-left:20px; align-self:start; font-size:1rem; line-height:1.7; max-width:420px; }
+.portal-presentation p { color:var(--portal-muted); }
+.portal-primary-links { display:flex; flex-wrap:wrap; align-items:center; gap:20px; margin-top:20px; font-size:.875rem; font-weight:600; }
+.portal-primary { display:inline-flex; align-items:center; gap:10px; min-height:44px; padding:12px 22px; border-radius:999px; background:var(--portal-ink); color:var(--portal-bg); }
+.portal-resume { display:inline-flex; align-items:center; min-height:44px; text-decoration:underline; text-decoration-color:var(--portal-accent); text-underline-offset:6px; }
+.portal-artwork { position:relative; width:100%; aspect-ratio:1672 / 701; overflow:hidden; }
+.portal-artwork-plane { position:absolute; width:100%; aspect-ratio:1672 / 941; top:calc(-240 / 1672 * 100vw); }
+.portal-artwork img { width:100%; height:auto; display:block; }
+.portal-artwork::after { content:''; pointer-events:none; position:absolute; inset:0; background:linear-gradient(to bottom,var(--portal-bg),transparent 12%,transparent 85%,var(--portal-bg)); }
+.portal-indicators { position:absolute; inset:0; z-index:1; }
+.portal-indicator { position:absolute; left:var(--portal-x); top:var(--portal-y); transform:translate(-50%,calc(-100% - 24px)); font-size:.875rem; font-weight:600; min-height:44px; display:flex; align-items:center; padding:8px 14px; border-radius:999px; background:#f7f7faf5; color:#2e1e6b; white-space:nowrap; }
+.portal-indicator span { position:absolute; width:1px; height:20px; background:#6534d8; top:100%; left:50%; }
+.portal-indicator span::after { content:''; position:absolute; bottom:0; left:-3px; width:7px; height:7px; border-radius:50%; background:#6534d8; }
+.portal-explorer { width:min(800px,calc(100% - 48px)); margin:0 auto; position:relative; z-index:2; }
+.portal-controls { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+.portal-controls button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:44px; padding:10px 18px; border-radius:999px; border:1px solid #a19ba9; font-size:.875rem; color:var(--portal-ink); background:var(--portal-bg); }
+.portal-controls button[aria-pressed=true] { border-color:var(--portal-accent); box-shadow:inset 0 0 0 1px var(--portal-accent); }
+.portal-hero a:focus-visible,.portal-hero button:focus-visible { outline:3px solid var(--portal-accent); outline-offset:4px; }
+.portal-preview { min-height:140px; padding:24px 0; display:flex; align-items:center; justify-content:center; color:var(--portal-muted); }
+.portal-footer { max-width:1433px; margin:0 auto; padding:0 clamp(24px,4.5vw,72px) 40px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:center; justify-content:center; font-size:.8rem; color:var(--portal-muted); }
+.portal-footer a { display:inline-flex; min-height:44px; align-items:center; gap:12px; }
+@media(min-width:768px) { .portal-intro { grid-template-columns:1.3fr 1fr; gap:48px; } }
+@media(min-width:1280px) {
+ .portal-intro,.portal-scene { grid-area:1/1; }
+ .portal-intro { align-self:start; margin:0 auto; }
+ .portal-artwork { aspect-ratio:1672 / 941; }
+ .portal-artwork-plane { top:0; }
+ .portal-artwork::after { background:linear-gradient(to bottom,var(--portal-bg),transparent 25%,transparent 87%,var(--portal-bg)); }
+ .portal-footer { justify-content:flex-end; } .portal-footer > span { margin-right:auto; }
+}
 @media(max-width:1279px) {
- .hero-composition { min-height:0; }
- .hero-landscape { top:auto; bottom:auto; height:clamp(210px,45vw,420px); }
- .hero-explorer { order:2; margin:12px auto 0; }
- .hero-destinations { order:3; margin-top:8px; }
- .hero-footer { order:4; }
+ .portal-indicators { display:flex; position:relative; flex-wrap:wrap; justify-content:center; gap:8px; padding:12px 24px; }
+ .portal-indicator { position:static; transform:none; white-space:normal; font-size:.8rem; }
+ .portal-indicator span { display:none; }
+
 }
 @media(max-width:479px) {
- .hero-area-controls { gap:6px; }
- .hero-area-controls button { padding:8px 12px; font-size:12px; }
- .hero-area-preview { align-items:flex-start; flex-direction:column; gap:4px; padding:14px 16px; }
+ .portal-intro { padding-top:16px; }
+ .portal-controls { display:grid; grid-template-columns:1fr; }
+ .portal-controls button { justify-content:space-between; }
+ .portal-preview { min-height:164px; }
+
 }
 
-.hero-landscape { background:linear-gradient(#f7f7fa33,#f7f7fa66),url('/images/ribbon-mountains.webp') center / cover no-repeat; }
-@media(min-width:1280px) {
- .hero-destinations[data-anchored=false] { inset:auto 0 190px; display:flex; justify-content:center; gap:30px; }
- .hero-destinations[data-anchored=false] .hero-destination { position:relative; left:auto; top:auto; transform:none; }
- .hero-destinations[data-anchored=false] .hero-destination-stem::before { display:none; }
-}
-@media(min-width:1280px) { .hero-explorer { min-height:160px; } }
-@media(min-width:1280px) { .hero-landscape { top:280px; } }
-
-.hero-landscape { background-position:center bottom; }
-@media(min-width:1280px) {
- .hero-composition { min-height:0; justify-content:flex-start; }
- .hero-intro { order:0; }
- .hero-landscape { position:relative; inset:auto; order:1; flex:none; margin-top:64px; height:clamp(400px,35vw,640px); }
- .hero-explorer { order:2; margin:16px auto 24px; }
- .hero-footer { order:3; }
- .hero-destination { top:var(--anchor-y); }
-}
-
-.hero-landscape { background-image:linear-gradient(#f7f7fa 0%,transparent 15%,transparent 85%,#f7f7fa 100%),linear-gradient(#f7f7fa33,#f7f7fa66),url('/images/ribbon-mountains.webp'); }
-
-.hero-landscape { overflow:hidden; }
-.hero-landscape > img { width:var(--poster-width,100%); height:var(--poster-height,100%); max-width:none; left:50%; top:50%; transform:translate(-50%,-50%); }
+.portal-scene { position:relative; min-width:0; }
