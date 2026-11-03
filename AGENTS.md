@@ -32,4 +32,6 @@ Em30/10/2026 o usuário aprovou substituir o primeiro plano2.5D por fita contín
 
 ## Portais em imagem — decisão vigente em 03/11/2026
 
+Especificação detalhada vigente: `docs/design-transition/portals-2d5-specification.md`, publicada como issue #49 com `ready-for-agent`. Validar pelo hero completo na página real. A expansão dos caminhos durante a rolagem é escopo futuro; nesta entrega apenas documentar a conexão visual futura.
+
 O usuário interrompeu a reconstrução 3D e escolheu integrar a imagem dos três portais e fita violeta em 2.5D. Usar `docs/design-transition/assets/ribbon-portals/model-reference.png`, sem retornar à paisagem antiga das casinhas. Consultar `docs/design-transition/portals-image-integration.md` para a proposta atual: imagem fullbleed, realces recortados por máscaras, navegação HTML e composição responsiva. Esta decisão supera o primeiro plano em 3D acima. Preservar experimentos Blender como histórico; não confundir proposta com implementação concluída. Sem paralaxe seguindo mouse ou cursor oculto; publicação continua separada.
