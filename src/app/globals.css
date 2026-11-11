@@ -90,7 +90,9 @@ input, textarea, [contenteditable="true"] { cursor:text; }
 .portal-composition { display:grid; }
 .portal-intro { width:min(1433px,100%); margin:auto; padding:24px clamp(24px,4.5vw,72px); display:grid; gap:28px; position:relative; z-index:2; }
 .portal-intro h1 { font-size:clamp(2.15rem,4.7vw,4.5rem); font-weight:700; letter-spacing:-.045em; line-height:1.08; }
-.portal-intro h1 span { display:block; color:var(--portal-accent); }
+.portal-intro h1 [data-intro-target] { display:block; width:fit-content; }
+.portal-intro h1 [data-intro-target="second"] { color:var(--portal-accent); }
+[data-intro-docking] .portal-intro [data-intro-target] { visibility:hidden; }
 .portal-areas { margin-top:16px; font-size:clamp(1rem,1.65vw,1.5rem); color:var(--portal-muted); }
 .portal-presentation { border-left:2px solid #8b5cf666; padding-left:20px; align-self:start; font-size:1rem; line-height:1.7; max-width:420px; }
 .portal-presentation p { color:var(--portal-muted); }

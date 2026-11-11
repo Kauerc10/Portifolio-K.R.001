@@ -45,7 +45,9 @@
     "greetingH1Line1": "Hello, great to have",
     "greetingH1Line2": "you here.",
     "locationEdu": "Blumenau, SC · Software Analysis & Dev",
-    "ctaResumeShort": "Resume"
+    "ctaResumeShort": "Resume",
+    "introContinue": "Continue",
+    "introPresentation": "I’m Kauê. Here is a little of what I build."
   },
   "sobre": {
     "eyebrow": "About me",

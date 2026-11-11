@@ -7,7 +7,7 @@ import ptBR from '@/i18n/locales/pt-BR.json';
 describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
   describe('HeroSection — renders_work_resume_and_world_links_before_renderer_ready', () => {
     it('deve renderizar apresentação, CTAs e destinos da paisagem sem depender de renderer 3D', () => {
-      render(<HeroSection dict={ptBR.hero} />);
+      const { container } = render(<HeroSection dict={ptBR.hero} />);
 
       // Cumprimento H1 acessível
       const heading = screen.getByRole('heading', { level: 1 });
@@ -41,11 +41,9 @@ describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
       expect(linksSupport.length).toBeGreaterThanOrEqual(1);
       expect(linksSupport[0]).toHaveAttribute('href', '#experiencia');
 
-      // Poster com fetchpriority="high" e asset limpo
-      const poster = screen.getByRole('img', {
-        name: /Paisagem mineral/i,
-      });
-      expect(poster).toHaveAttribute('src', '/models/ribbon-portals/poster.webp');
+      const poster = container.querySelector('picture img');
+      expect(poster).toHaveAttribute('src', '/images/portals/portals-1672.webp');
+      expect(poster).toHaveAttribute('alt', '');
       expect(poster).toHaveAttribute('fetchpriority', 'high');
     });
   });
