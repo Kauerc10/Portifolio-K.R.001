@@ -30,6 +30,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     if (!dialog?.open) return;
 
     const heading = dialog.closest('#hero')?.querySelector<HTMLElement>('h1');
+    dialog.closest('#hero')?.querySelectorAll<HTMLElement>('[data-intro-target]').forEach(node => { node.style.removeProperty('visibility'); });
     dialog.close();
     animations.current.splice(0).forEach(animation => animation.cancel());
     delete document.documentElement.dataset.introDocking;
@@ -99,6 +100,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
 
     setMoving(true);
     document.documentElement.dataset.introDocking = 'true';
+    const incoming: Animation[] = [];
     animations.current = pairs.map(({ source, destination }, index) => {
       const from = initial[index];
       const to = final[index];
@@ -106,12 +108,18 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
       const scale = source.dataset.introSource === 'support'
         ? parseFloat(targetStyle.fontSize) / parseFloat(getComputedStyle(source).fontSize)
         : to.width / from.width;
+      const support = source.dataset.introSource === 'support';
+      if (support) {
+        destination.style.visibility = 'visible';
+        incoming.push(destination.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .6 }, { opacity: 1, offset: 1 }], docking));
+      }
       return source.animate([
         { transform: 'none', opacity: 1 },
-        { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${scale})`, color: targetStyle.color, opacity: 1 },
+        { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${scale})`, color: targetStyle.color, opacity: support ? 0 : 1 },
       ], docking);
     });
 
+    animations.current.push(...incoming);
     const cover = dialog.querySelector<HTMLElement>('[data-intro-cover]');
     if (cover) animations.current.push(cover.animate([{ opacity: 1 }, { opacity: 0 }], docking));
     void Promise.allSettled(animations.current.map(animation => animation.finished)).then(finish);

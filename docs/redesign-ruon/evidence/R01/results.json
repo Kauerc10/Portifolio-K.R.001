@@ -1,0 +1,12 @@
+[
+  "desktop: sequence, manual continuation, focus, session PASS (50 filmstrip frames)",
+  "mobile: sequence, manual continuation, focus, session PASS (59 filmstrip frames)",
+  "reduced: PASS",
+  "hash: PASS",
+  "nojs: PASS",
+  "storage: PASS",
+  "resize: PASS",
+  "preference: PASS",
+  "failure: PASS",
+  "escape: PASS"
+]
