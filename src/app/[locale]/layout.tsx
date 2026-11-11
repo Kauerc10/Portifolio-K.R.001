@@ -3,8 +3,6 @@ import Script from 'next/script';
 import { notFound } from 'next/navigation';
 import { Syne, Inter, JetBrains_Mono } from 'next/font/google';
 import '../globals.css';
-import AevoWidget from '@/components/ai/AevoWidget';
-import AevoEffects from '@/components/ai/AevoEffects';
 import JsonLd from '@/components/seo/json-ld';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { isValidLocale, locales, type Locale } from '@/i18n/config';
@@ -237,10 +235,6 @@ export default async function RootLayout({
 
           {/* CONTEÚDO PRINCIPAL (Sem aninhamento de <main>) */}
           {children}
-
-          {/* WIDGET DO AGENTE ÆVO AI BILINGUE */}
-          <AevoEffects />
-          <AevoWidget locale={validLocale} />
 
           {/* ENGINE DE SCRIPTS 3D & GSAP (Montado APENAS no shell legado para garantir exclusividade mútua) */}
           {useLegacyShell && (
