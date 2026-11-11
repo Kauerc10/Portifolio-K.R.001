@@ -12,9 +12,9 @@
 
 .editorial-display {
   margin: 0;
-  font-size: clamp(2.7rem, 6vw, 6.5rem);
+  font-size: clamp(2.3rem, 12cqi, 6rem);
   line-height: .95;
-  letter-spacing: -.065em;
+  letter-spacing: -.04em;
   font-weight: 700;
 }
 
@@ -218,3 +218,15 @@
   .projects-editorial__layout { grid-template-columns: minmax(0, 1fr); }
   .projects-editorial__index { padding-inline-end: 0; border-inline-end: 0; }
 }
+
+.projects-editorial__heading > *, .contact-editorial__copy {
+  min-width: 0;
+  container-type: inline-size;
+}
+.editorial-display { text-wrap: balance; overflow-wrap: normal; }
+@media (min-width: 701px) and (max-width: 900px) {
+  .projects-editorial__heading { grid-template-columns: minmax(0, 1fr); }
+}
+
+.projects-editorial__heading { container-type: inline-size; }
+.projects-editorial__heading .editorial-display { font-size: clamp(2.3rem, 6cqi, 6rem); }

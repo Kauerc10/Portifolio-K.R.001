@@ -54,7 +54,7 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
 
   return (
     <header className="relative w-full z-40 bg-[#F7F7FA] dark:bg-[#111015] transition-colors duration-200">
-      <div className="max-w-[1433px] mx-auto px-6 sm:px-12 lg:px-16 h-20 sm:h-24 flex items-center justify-between">
+      <div className="portfolio-shell mx-auto h-20 sm:h-24 flex items-center justify-between">
         {/* U01: Marca Pessoal Typographic "kauêruon" (Idêntico à referência aprovada) */}
         <Link
           href="#hero"
