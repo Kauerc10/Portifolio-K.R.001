@@ -27,13 +27,13 @@
 }
 
 .copy { width: min(75rem, 100%); padding: 1.5rem; text-align: center; }
-.copy h2 { font-size: clamp(2.2rem, 7.7vw, 7rem); font-weight: 700; letter-spacing: -.055em; line-height: 1; }
-.copy h2:focus { outline: none; }
+.heading { margin: 0; font-size: clamp(2.2rem, 7.7vw, 7rem); font-weight: 700; letter-spacing: -.055em; line-height: 1; }
+.heading:focus { outline: none; }
 .line { display: table; margin: 0 auto; transform-origin: top left; }
 .line > span { display: block; animation: arrive .8s cubic-bezier(.22, 1, .36, 1) both; }
 .line + .line > span { animation-delay: .17s; }
 .line em { color: #7024d7; font-style: normal; }
-.copy p {
+.support {
   display: table;
   margin: clamp(1.2rem, 4vw, 2.4rem) auto 0;
   max-width: 50ch;
@@ -54,10 +54,11 @@
   color: #6020b8;
   font-weight: 700;
   animation: appear .45s .78s ease-out both;
-  transition: color .18s ease, background .18s ease;
+  transition: color .18s ease, background .18s ease, transform .14s ease;
 }
 
 .copy button:hover { background: #7024d7; color: #fff; }
+.copy button:active { transform: scale(.97); }
 .copy button:focus-visible { outline: 2px solid #7024d7; outline-offset: 4px; }
 .copy[data-moving] button { visibility: hidden; }
 .copy[data-moving] .line > span { clip-path: none; }

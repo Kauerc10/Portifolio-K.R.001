@@ -23,4 +23,5 @@ it('shows six courses first and keeps the remaining institutions reachable witho
   expect(summary.closest('details')).toHaveAttribute('open');
   expect(within(group).getByText('Curso 8')).toBeVisible();
   expect(within(group).getByText('Outra instituição')).toBeVisible();
+  expect(within(group).getAllByText('VisualMídia')).toHaveLength(1);
 });

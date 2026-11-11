@@ -301,8 +301,9 @@
 
 .formacao-editorial__item + .formacao-editorial__item { border-top: 1px solid var(--editorial-rule); }
 .formacao-editorial__item span { color: var(--editorial-muted); }
-.formacao-editorial__more { margin-top: .65rem; }
-.formacao-editorial__more summary { width: fit-content; color: var(--editorial-violet); font-weight: 700; padding-block: .45rem; }
+.formacao-editorial__more { display: flex; flex-direction: column; margin-top: .25rem; }
+.formacao-editorial__more summary { order: 2; width: fit-content; color: var(--editorial-violet); font-weight: 700; padding-block: .45rem; cursor: pointer; }
+.formacao-editorial__more > div { order: 1; }
 
 .conquistas-editorial__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 

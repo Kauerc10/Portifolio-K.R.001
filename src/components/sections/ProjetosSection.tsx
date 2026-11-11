@@ -3,6 +3,7 @@
 import { useEffect, useState, type MouseEvent } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
+import { splitAccentTitle } from '@/lib/editorial';
 
 const projects = [
   { key: 'atlas', id: 'project-atlas' },
@@ -50,12 +51,12 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
     event.currentTarget.focus({ preventScroll: true });
   }
 
-  const titleBreak = dict.editorialTitle.lastIndexOf(' ');
+  const [titleLead, titleAccent] = splitAccentTitle(dict.editorialTitle);
   return (
     <section className="section editorial-section projects-editorial" id="projetos" data-section="7">
       <div className="projects-editorial__heading">
         <h2 className="editorial-display">
-          {dict.editorialTitle.slice(0, titleBreak)}{' '}<em>{dict.editorialTitle.slice(titleBreak + 1)}</em>
+          {titleLead}{' '}<em>{titleAccent}</em>
         </h2>
         <p className="projects-editorial__intro">{dict.editorialDescription}</p>
       </div>
@@ -80,6 +81,7 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
               <article key={project.id} id={project.id} className="projects-editorial__case" hidden={selected !== null && selected !== project.id}>
                 <span className="editorial-kicker">{item.status}</span>
                 <h3>{item.title}</h3>
+                <p className="projects-editorial__role">{item.role}</p>
                 <p>{item.problem}</p>
                 <p className="projects-editorial__solution">{item.solution}</p>
                 {project.key === 'atlas' && (

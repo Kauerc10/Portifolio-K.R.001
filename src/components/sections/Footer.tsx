@@ -3,6 +3,7 @@
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import type { MouseEvent } from 'react';
 import type { Dictionary } from '@/i18n/types';
+import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
 
 export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
   function returnToTop(event: MouseEvent<HTMLAnchorElement>) {
@@ -17,9 +18,9 @@ export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
     <footer className="editorial-section footer-editorial" id="rodape">
       <div className="footer-editorial__brand">kauê<span>ruon</span></div>
       <nav className="footer-editorial__channels" aria-label={dict.channelsLabel}>
-        <a href="mailto:kaue.ruon@gmail.com"><Mail aria-hidden="true" />{dict.email}</a>
-        <a href="https://www.linkedin.com/in/kauerc/" target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />LinkedIn</a>
-        <a href="https://github.com/Kauerc10" target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" />GitHub</a>
+        <a href={DIRECT_CONTACT_LINKS.email}><Mail aria-hidden="true" />{dict.email}</a>
+        <a href={DIRECT_CONTACT_LINKS.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />LinkedIn</a>
+        <a href={DIRECT_CONTACT_LINKS.github} target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" />GitHub</a>
       </nav>
       <a className="footer-editorial__top" href="#hero" onClick={returnToTop}>{dict.topLabel}<ArrowUpRight aria-hidden="true" /></a>
       <p>{dict.copyright}</p>

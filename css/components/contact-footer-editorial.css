@@ -87,8 +87,25 @@
   font-weight: 700;
 }
 
+.contact-editorial__form input[aria-invalid='true'],
+.contact-editorial__form textarea[aria-invalid='true'] {
+  border-color: #b42318;
+  border-width: 2px;
+}
+
+.contact-editorial__field-error {
+  color: #b42318;
+  font-size: .82rem;
+  font-weight: 600;
+}
+
 .contact-editorial__form button:disabled { opacity: .65; cursor: wait; }
-.contact-editorial__feedback { min-height: 1.3em; margin: 0; color: var(--editorial-muted); }
+.contact-editorial__feedback { min-height: 1.3em; margin: 0; color: var(--editorial-muted); font-weight: 600; }
+.contact-editorial__feedback[data-state='success'] { color: #1b6e53; }
+.contact-editorial__feedback[data-state='error'] { color: #b42318; }
+.dark .contact-editorial__field-error,
+.dark .contact-editorial__feedback[data-state='error'] { color: #f98080; }
+.dark .contact-editorial__feedback[data-state='success'] { color: #83cfb7; }
 
 .footer-editorial {
   display: flex;

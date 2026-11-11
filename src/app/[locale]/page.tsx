@@ -10,6 +10,7 @@ import ConquistasSection from '@/components/sections/ConquistasSection';
 import FormacaoSection from '@/components/sections/FormacaoSection';
 import ProjetosSection from '@/components/sections/ProjetosSection';
 import ContatoSection from '@/components/sections/ContatoSection';
+import KonamiModal from '@/components/sections/KonamiModal';
 import Footer from '@/components/sections/Footer';
 
 export default async function HomePage({
@@ -38,6 +39,7 @@ export default async function HomePage({
         <ConquistasSection dict={dict.conquistas} />
         <ContatoSection dict={dict.contato} />
       </main>
+      <KonamiModal dict={dict.modals} />
       <Footer dict={dict.footer} />
     </>
   );

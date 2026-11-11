@@ -55,7 +55,7 @@
     "lede": "Technology for solving",
     "headlineAccent": "real problems.",
     "name": "Kauê Ruon Cardoso",
-    "profile": "I create applications, automate routines, and help people use technology.",
+    "profile": "Based in Blumenau, I combine web development, process automation, and hands-on technical support to turn complex routines into simple tools.",
     "pillarsLabel": "Areas of work",
     "pillars": [
       { "title": "Development", "description": "Purpose-built applications." },
@@ -91,7 +91,6 @@
     "authenticated": "AUTHENTICATED ✓"
   },
   "experiencia": {
-    "eyebrow": "Experience",
     "lede": "Practical experience in development, support, and automation, applying technology to real contexts.",
     "timelineLabel": "Professional trajectory",
     "title": "Experience",
@@ -292,7 +291,6 @@
     "showAll": "View all courses"
   },
   "projetos": {
-    "editorialKicker": "Projects",
     "editorialTitle": "Selected projects",
     "editorialDescription": "Real solutions I built to automate processes, simplify routines, and solve everyday problems with technology.",
     "flowLabels": ["Search", "Vehicle data", "Power of attorney"],
@@ -306,6 +304,7 @@
       "docfacil": {
         "title": "DocFácil — Generative AI for Legal Documents",
         "status": "LIVE DEMO · AI SAAS",
+        "role": "Role: Full-stack architecture, AI layer, and interface",
         "problem": "Manual legal-document drafting is prone to inconsistencies and unnecessary bureaucracy.",
         "solution": "Next.js 16 platform with an AI-provider-agnostic layer (`AIProvider`), server-side streaming, and pluggable OpenAI, Anthropic, and Gemini support.",
         "stack": "Next.js 16 · TypeScript · Generative AI · RAG",
@@ -314,6 +313,7 @@
       "atlas": {
         "title": "Atlas Notarial — Detran-RS API Automation",
         "status": "IN PRODUCTION · CARTÓRIO GAYA",
+        "role": "Role: Conception, development, and notary workflow integration",
         "problem": "Vehicle powers of attorney required manual lookups and data entry.",
         "solution": "I automated lookup and data entry to support document issuance at Cartório Gaya.",
         "stack": "Node.js · REST APIs · Notarial Automation · Vitest",
@@ -322,6 +322,7 @@
       "ckf": {
         "title": "CKF Maintenance — Quotes & Machinery",
         "status": "IN PRODUCTION · ENTERPRISE",
+        "role": "Role: Application development, database, and reporting",
         "problem": "No centralized control for issuing heavy-machinery maintenance quotes.",
         "solution": "React interface with Supabase, CSV/XLSX report exports, and an automated Vitest unit-test suite.",
         "stack": "React · TypeScript · Supabase · Vitest · XLSX",
@@ -330,6 +331,7 @@
       "folilib": {
         "title": "Foli — PDF Layout Engine in TypeScript",
         "status": "OPEN SOURCE · TYPESCRIPT LIB",
+        "role": "Role: Library authorship and layout engine",
         "problem": "Unexpected layout breaks and overflow when generating complex PDFs in Node.js and the browser.",
         "solution": "Fluent Builder API with a layout engine that guarantees zero overflow, native primitives, and Unicode support.",
         "stack": "TypeScript · PDF Engine · Open Source · Zero-Overflow",

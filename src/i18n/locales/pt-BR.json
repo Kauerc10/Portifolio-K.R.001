@@ -55,7 +55,7 @@
     "lede": "Tecnologia para resolver problemas",
     "headlineAccent": "de forma prática.",
     "name": "Kauê Ruon Cardoso",
-    "profile": "Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia.",
+    "profile": "Atuo em Blumenau unindo desenvolvimento web, automação de processos e suporte técnico próximo para transformar rotinas complexas em ferramentas simples.",
     "pillarsLabel": "Áreas de atuação",
     "pillars": [
       { "title": "Desenvolvimento", "description": "Criação de aplicações sob medida." },
@@ -91,7 +91,6 @@
     "authenticated": "AUTENTICADO ✓"
   },
   "experiencia": {
-    "eyebrow": "Experiência",
     "lede": "Vivência prática em desenvolvimento, suporte e automações, aplicando tecnologia em contextos reais.",
     "timelineLabel": "Trajetória profissional",
     "title": "Experiência",
@@ -292,7 +291,6 @@
     "showAll": "Ver todos os cursos"
   },
   "projetos": {
-    "editorialKicker": "Projetos",
     "editorialTitle": "Projetos selecionados",
     "editorialDescription": "Soluções reais que desenvolvi para automatizar processos, simplificar rotinas e resolver problemas do dia a dia com tecnologia.",
     "flowLabels": ["Consulta", "Dados do veículo", "Procuração"],
@@ -306,6 +304,7 @@
       "docfacil": {
         "title": "DocFácil — IA Generativa em Documentos Legais",
         "status": "DEMO AO VIVO · SAAS IA",
+        "role": "Papel: Arquitetura full-stack, camada de IA e interface",
         "problem": "Redação manual de documentos jurídicos propensa a inconsistências e burocracia desnecessária.",
         "solution": "Plataforma Next.js 16 com camada de IA agnóstica (`AIProvider`), streaming server-side e suporte plugável a OpenAI, Anthropic e Gemini.",
         "stack": "Next.js 16 · TypeScript · IA Generativa · RAG",
@@ -314,6 +313,7 @@
       "atlas": {
         "title": "Atlas Notarial — Automação com API Detran-RS",
         "status": "EM PRODUÇÃO · CARTÓRIO GAYA",
+        "role": "Papel: Concepção, desenvolvimento e integração notarial",
         "problem": "A emissão de procurações de veículos exigia consultas e digitação manual.",
         "solution": "Automatizei a consulta e o preenchimento dos dados para apoiar a emissão no Cartório Gaya.",
         "stack": "Node.js · REST APIs · Automação Notarial · Vitest",
@@ -322,6 +322,7 @@
       "ckf": {
         "title": "CKF Manutenção — Orçamentos & Maquinário",
         "status": "EM PRODUÇÃO · CORPORATIVO",
+        "role": "Papel: Desenvolvimento da aplicação, banco de dados e relatórios",
         "problem": "Falta de controle centralizado para emissão de orçamentos de manutenção em máquinas pesadas.",
         "solution": "Interface React com Supabase, exportação de relatórios (CSV/XLSX) e suíte de testes unitários automatizada com Vitest.",
         "stack": "React · TypeScript · Supabase · Vitest · XLSX",
@@ -330,6 +331,7 @@
       "folilib": {
         "title": "Foli — PDF Layout Engine em TypeScript",
         "status": "OPEN SOURCE · LIB TYPESCRIPT",
+        "role": "Papel: Autoria da biblioteca e motor de layout",
         "problem": "Quebras de layout e overflow inesperado ao gerar PDFs complexos no Node.js e navegador.",
         "solution": "Fluent Builder API com motor de layout que garante zero overflow, primitivas nativas e suporte Unicode pt-BR.",
         "stack": "TypeScript · PDF Engine · Open Source · Zero-Overflow",

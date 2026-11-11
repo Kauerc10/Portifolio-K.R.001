@@ -52,7 +52,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     if (!dialog || dialog.open) return;
 
     dialog.showModal();
-    dialog.querySelector('h2')?.focus();
+    dialog.querySelector<HTMLElement>('#portfolio-intro-heading')?.focus();
     const media = window.matchMedia(motionPreference);
     const stopForPreference = () => { if (media.matches) finish(); };
     const stopForResize = () => { if (animations.current.length) finish(); };
@@ -119,12 +119,12 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     >
       <div className={styles.cover} data-intro-cover aria-hidden="true" />
       <div className={styles.copy} data-moving={moving || undefined}>
-        <h2 id="portfolio-intro-heading" tabIndex={-1}>
+        <p id="portfolio-intro-heading" className={styles.heading} tabIndex={-1}>
           <span className={styles.line} data-intro-source="first"><span>{dict.greetingH1Line1}</span></span>
           {' '}
           <span className={styles.line} data-intro-source="second"><span><em>{highlight}</em>{' '}{remainingWords.join(' ')}</span></span>
-        </h2>
-        <p data-intro-source="support">{dict.introPresentation}</p>
+        </p>
+        <p className={styles.support} data-intro-source="support">{dict.introPresentation}</p>
         <button type="button" disabled={moving} onClick={continueIntoHero}>
           {dict.introContinue}<ArrowRight size={17} aria-hidden="true" />
         </button>
