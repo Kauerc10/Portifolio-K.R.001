@@ -159,6 +159,8 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <style dangerouslySetInnerHTML={{ __html: 'html[data-intro-pending="true"]::after{content:"";position:fixed;inset:0;background:white;z-index:2147483647;pointer-events:none}' }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{if(!location.hash&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof HTMLDialogElement!=='undefined'&&HTMLDialogElement.prototype.showModal){var seen=false;try{seen=sessionStorage.getItem('portfolio-intro-complete')==='true'}catch(e){}if(!seen){document.documentElement.dataset.introPending='true';setTimeout(function(){if(document.documentElement.dataset.introPending==='true')document.documentElement.dataset.introPending='expired'},4000)}}}catch(e){delete document.documentElement.dataset.introPending}})()` }} />
         <link rel="llms" href="/llms.txt" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

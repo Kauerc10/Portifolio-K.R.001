@@ -22,6 +22,8 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
   const animations = useRef<Animation[]>([]);
   const [enabled, setEnabled] = useState(false);
   const [moving, setMoving] = useState(false);
+  const [phase, setPhase] = useState('white');
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   function finish() {
     const dialog = dialogRef.current;
@@ -31,6 +33,8 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     dialog.close();
     animations.current.splice(0).forEach(animation => animation.cancel());
     delete document.documentElement.dataset.introDocking;
+    delete document.documentElement.dataset.introPending;
+    timers.current.splice(0).forEach(clearTimeout);
     try {
       sessionStorage.setItem(sessionKey, 'true');
     } catch {
@@ -42,7 +46,10 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
 
   useEffect(() => {
     const media = window.matchMedia?.(motionPreference);
-    if (!media || media.matches || window.location.hash || alreadyVisited()) return;
+    if (!media || media.matches || window.location.hash || alreadyVisited() || document.documentElement.dataset.introPending === 'expired') {
+      delete document.documentElement.dataset.introPending;
+      return;
+    }
     if (typeof HTMLDialogElement.prototype.showModal === 'function') setEnabled(true);
   }, []);
 
@@ -51,7 +58,9 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     const dialog = dialogRef.current;
     if (!dialog || dialog.open) return;
 
-    dialog.showModal();
+    try { dialog.showModal(); } catch { delete document.documentElement.dataset.introPending; setEnabled(false); return; }
+    delete document.documentElement.dataset.introPending;
+    timers.current = ([['first', 180], ['second', 650], ['support', 1250], ['button', 1600], ['ready', 1850]] as const).map(([next, delay]) => setTimeout(() => setPhase(next), delay));
     dialog.querySelector<HTMLElement>('#portfolio-intro-heading')?.focus();
     const media = window.matchMedia(motionPreference);
     const stopForPreference = () => { if (media.matches) finish(); };
@@ -64,6 +73,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
       media.removeEventListener('change', stopForPreference);
       window.removeEventListener('resize', stopForResize);
       window.removeEventListener('hashchange', stopForHash);
+      timers.current.splice(0).forEach(clearTimeout);
       if (dialog.open) dialog.close();
       animations.current.splice(0).forEach(animation => animation.cancel());
       delete document.documentElement.dataset.introDocking;
@@ -72,7 +82,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
 
   function continueIntoHero() {
     const dialog = dialogRef.current;
-    if (!dialog?.open || animations.current.length || moving) return;
+    if (!dialog?.open || animations.current.length || moving || phase !== 'ready') return;
     const hero = dialog.closest('#hero');
     if (!hero || typeof dialog.animate !== 'function') return finish();
 
@@ -115,17 +125,18 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
       ref={dialogRef}
       className={styles.dialog}
       aria-labelledby="portfolio-intro-heading"
+      data-phase={phase}
       onCancel={(event) => { event.preventDefault(); finish(); }}
     >
       <div className={styles.cover} data-intro-cover aria-hidden="true" />
       <div className={styles.copy} data-moving={moving || undefined}>
         <p id="portfolio-intro-heading" className={styles.heading} tabIndex={-1}>
-          <span className={styles.line} data-intro-source="first"><span>{dict.greetingH1Line1}</span></span>
+          <span className={styles.line} data-intro-source="first"><span>{dict.greetingH1Line1.split(' ').map((word, index) => <span className={styles.word} style={{ animationDelay: `${180 + index * 40}ms` }} key={index}>{word}{' '}</span>)}</span></span>
           {' '}
-          <span className={styles.line} data-intro-source="second"><span><em>{highlight}</em>{' '}{remainingWords.join(' ')}</span></span>
+          <span className={styles.line} data-intro-source="second"><span>{[highlight, ...remainingWords].map((word, index) => <span className={styles.word} style={{ animationDelay: `${650 + index * 40}ms` }} key={index}>{index === 0 ? <em>{word}</em> : word}{' '}</span>)}</span></span>
         </p>
         <p className={styles.support} data-intro-source="support">{dict.introPresentation}</p>
-        <button type="button" disabled={moving} onClick={continueIntoHero}>
+        <button type="button" disabled={moving || phase !== 'ready'} onClick={continueIntoHero}>
           {dict.introContinue}<ArrowRight size={17} aria-hidden="true" />
         </button>
       </div>

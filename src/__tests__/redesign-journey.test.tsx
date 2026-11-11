@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import ptBR from '@/i18n/locales/pt-BR.json';
 import enUS from '@/i18n/locales/en-US.json';
@@ -47,13 +47,18 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
 
   describe('P08 (#60) — Abertura e encaixe no hero', () => {
     it('abre na primeira visita da sessão com um único título acessível, aguarda Continuar e transfere foco para o H1 do hero', () => {
+      vi.useFakeTimers();
       mockMatchMedia(false);
 
       render(<HeroSection dict={ptBR.hero} />);
 
       expect(screen.getAllByRole('heading')).toHaveLength(1);
       const continueBtn = screen.getByRole('button', { name: /Continuar/i });
-      expect(continueBtn).toBeInTheDocument();
+      expect(continueBtn).toBeDisabled();
+      fireEvent.click(continueBtn);
+      expect(window.sessionStorage.getItem('portfolio-intro-complete')).toBeNull();
+      act(() => vi.advanceTimersByTime(1850));
+      expect(continueBtn).toBeEnabled();
       expect(screen.getByText(/Eu sou o Kauê\. Aqui está um pouco do que eu construo\./i)).toBeInTheDocument();
 
       fireEvent.click(continueBtn);
@@ -61,6 +66,7 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
       expect(window.sessionStorage.getItem('portfolio-intro-complete')).toBe('true');
       const heroH1 = screen.getByRole('heading', { level: 1 });
       expect(document.activeElement).toBe(heroH1);
+      vi.useRealTimers();
     });
 
     it('não reabre na mesma sessão nem quando há âncora direta ou preferência por movimento reduzido', () => {
