@@ -15,7 +15,9 @@ export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] })
           <p className="editorial-profile__copy">{d.profile}</p>
         </div>
       </div>
-      <div className="editorial-about-ribbon" aria-hidden="true" />
+      <picture className="editorial-about-ribbon" aria-hidden="true">
+        <img src="/images/editorial-details/about-ribbon-2172.webp" srcSet="/images/editorial-details/about-ribbon-1100.webp 1100w, /images/editorial-details/about-ribbon-2172.webp 2172w" sizes="100vw" width="2172" height="300" alt="" loading="lazy" decoding="async" />
+      </picture>
       <div className="editorial-pillars" aria-label={d.pillarsLabel}>
         {d.pillars.map((pillar) => (
           <article className="editorial-pillar" key={pillar.title}>

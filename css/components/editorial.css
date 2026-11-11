@@ -189,11 +189,16 @@
 }
 
 .editorial-about-ribbon {
-  height: clamp(1.2rem, 4vw, 3rem);
-  margin: clamp(2.4rem, 6vw, 5rem) -5vw 0;
-  border-radius: 0 55% 65% 0 / 0 70% 100% 0;
-  background: linear-gradient(92deg, #6c22d3, #8743e7 56%, #b88cff);
-  transform: skewY(-3deg);
+  display: block;
+  margin: clamp(2.4rem, 6vw, 5rem) calc(-1 * var(--portfolio-gutter)) 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.editorial-about-ribbon img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .editorial-about-ribbon + .editorial-pillars {

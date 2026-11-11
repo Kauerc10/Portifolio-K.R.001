@@ -25,8 +25,8 @@ export default function ExperienciaSection({ dict: d }: { dict: Dictionary['expe
         </ol>
       </div>
       <picture className={styles.landscape} aria-hidden="true">
-        <source media="(max-width: 900px)" srcSet="/images/editorial-details/experience-ribbon-mobile.webp" />
-        <img src="/images/editorial-details/experience-ribbon-desktop.webp" alt="" width="1600" height="224" loading="lazy" decoding="async" />
+        <source media="(max-width: 900px)" srcSet="/images/editorial-details/experience-ribbon-mobile.webp 800w" sizes="100vw" />
+        <img src="/images/editorial-details/experience-ribbon-desktop.webp" sizes="100vw" alt="" width="2172" height="304" loading="lazy" decoding="async" />
       </picture>
     </section>
   );
