@@ -1,12 +1,18 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { ArrowRight } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
 import styles from './PortfolioIntro.module.css';
 
 const sessionKey = 'portfolio-intro-complete';
 const motionPreference = '(prefers-reduced-motion: reduce)';
+const revealTiming = { first: 180, second: 650, support: 1250, button: 1600, ready: 1850, wordStagger: 40 } as const;
+const revealPhases = ['first', 'second', 'support', 'button', 'ready'] as const;
+const revealStyles = {
+  '--intro-support-delay': `${revealTiming.support}ms`,
+  '--intro-button-delay': `${revealTiming.button}ms`,
+} as CSSProperties;
 const docking = { duration: 950, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' } as const;
 
 function alreadyVisited() {
@@ -61,7 +67,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
 
     try { dialog.showModal(); } catch { delete document.documentElement.dataset.introPending; setEnabled(false); return; }
     delete document.documentElement.dataset.introPending;
-    timers.current = ([['first', 180], ['second', 650], ['support', 1250], ['button', 1600], ['ready', 1850]] as const).map(([next, delay]) => setTimeout(() => setPhase(next), delay));
+    timers.current = revealPhases.map(next => setTimeout(() => setPhase(next), revealTiming[next]));
     dialog.querySelector<HTMLElement>('#portfolio-intro-heading')?.focus();
     const media = window.matchMedia(motionPreference);
     const stopForPreference = () => { if (media.matches) finish(); };
@@ -132,6 +138,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     <dialog
       ref={dialogRef}
       className={styles.dialog}
+      style={revealStyles}
       aria-labelledby="portfolio-intro-heading"
       data-phase={phase}
       onCancel={(event) => { event.preventDefault(); finish(); }}
@@ -139,9 +146,9 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
       <div className={styles.cover} data-intro-cover aria-hidden="true" />
       <div className={styles.copy} data-moving={moving || undefined}>
         <p id="portfolio-intro-heading" className={styles.heading} tabIndex={-1}>
-          <span className={styles.line} data-intro-source="first"><span>{dict.greetingH1Line1.split(' ').map((word, index) => <span className={styles.word} style={{ animationDelay: `${180 + index * 40}ms` }} key={index}>{word}{' '}</span>)}</span></span>
+          <span className={styles.line} data-intro-source="first"><span>{dict.greetingH1Line1.split(' ').map((word, index) => <span className={styles.word} style={{ animationDelay: `${revealTiming.first + index * revealTiming.wordStagger}ms` }} key={index}>{word}{' '}</span>)}</span></span>
           {' '}
-          <span className={styles.line} data-intro-source="second"><span>{[highlight, ...remainingWords].map((word, index) => <span className={styles.word} style={{ animationDelay: `${650 + index * 40}ms` }} key={index}>{index === 0 ? <em>{word}</em> : word}{' '}</span>)}</span></span>
+          <span className={styles.line} data-intro-source="second"><span>{[highlight, ...remainingWords].map((word, index) => <span className={styles.word} style={{ animationDelay: `${revealTiming.second + index * revealTiming.wordStagger}ms` }} key={index}>{index === 0 ? <em>{word}</em> : word}{' '}</span>)}</span></span>
         </p>
         <p className={styles.support} data-intro-source="support">{dict.introPresentation}</p>
         <button type="button" disabled={moving || phase !== 'ready'} onClick={continueIntoHero}>

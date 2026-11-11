@@ -26,11 +26,6 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
   useEffect(() => {
     if (!selected) return;
     const panel = document.getElementById(selected);
-    const control = indexRef.current?.querySelector<HTMLElement>('[aria-current="true"]');
-    if (control && indexRef.current) {
-      indexRef.current.style.setProperty('--project-marker-y', `${control.offsetTop}px`);
-      indexRef.current.style.setProperty('--project-marker-height', `${control.offsetHeight}px`);
-    }
     const media = window.matchMedia?.('(prefers-reduced-motion: reduce)');
     if (media?.matches || !panel?.animate) return;
     const animation = panel.animate(
@@ -41,6 +36,30 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
     media?.addEventListener('change', stop);
     return () => { stop(); media?.removeEventListener('change', stop); };
   }, [selected]);
+
+  useEffect(() => {
+    const index = indexRef.current;
+    const control = index?.querySelector<HTMLElement>('[aria-current="true"]');
+    if (!index || !control) return;
+    let disposed = false;
+    const measure = () => {
+      if (disposed) return;
+      index.style.setProperty('--project-marker-y', `${control.offsetTop}px`);
+      index.style.setProperty('--project-marker-height', `${control.offsetHeight}px`);
+    };
+    measure();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+    observer?.observe(index);
+    // Earlier labels can wrap and move the active item without changing its size.
+    index.querySelectorAll('a').forEach(item => observer?.observe(item));
+    window.addEventListener('resize', measure);
+    void document.fonts?.ready.then(measure);
+    return () => {
+      disposed = true;
+      observer?.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [selected, dict]);
 
   useEffect(() => {
     let frame = 0;
