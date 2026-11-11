@@ -48,7 +48,17 @@
     "ctaResumeShort": "Resume"
   },
   "sobre": {
+    "eyebrow": "About me",
     "title": "ABOUT ME",
+    "lede": "Technology for solving problems in practical ways.",
+    "name": "Kauê Ruon Cardoso",
+    "profile": "I create applications, automate routines, and help people use technology.",
+    "pillarsLabel": "Areas of work",
+    "pillars": [
+      { "title": "Development", "description": "Purpose-built applications." },
+      { "title": "Automation", "description": "Routines that save time." },
+      { "title": "Support", "description": "Support for using and evolving technology." }
+    ],
     "bioP1": "My interest in technology started early. Whenever I see a manual, repetitive process, I cannot resist trying to automate it. That curiosity took me from iPhone board repair to notary desks and back to technology.",
     "bioP2": "Today I work as a notary clerk at Cartório Gaya in Blumenau, Brazil. I found that I work well in the legal world, but I am always drawn back to technology: I try to improve or automate processes even when nobody asks.",
     "bioP3": "I build software using generative AI (Claude, GPT) as my primary tool, from LLM prototypes to back-end and front-end. I do not write every line from scratch; my work is to decompose the problem, structure the instruction, and connect the pieces until the entire flow works. That is exactly the engineering I want to do in production: put AI to work solving real problems.",

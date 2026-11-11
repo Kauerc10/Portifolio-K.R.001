@@ -48,7 +48,17 @@
     "ctaResumeShort": "Currículo"
   },
   "sobre": {
+    "eyebrow": "Sobre mim",
     "title": "SOBRE MIM",
+    "lede": "Tecnologia para resolver problemas de forma prática.",
+    "name": "Kauê Ruon Cardoso",
+    "profile": "Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia.",
+    "pillarsLabel": "Áreas de atuação",
+    "pillars": [
+      { "title": "Desenvolvimento", "description": "Criação de aplicações sob medida." },
+      { "title": "Automações", "description": "Rotinas que poupam tempo." },
+      { "title": "Suporte", "description": "Apoio no uso e na evolução da tecnologia." }
+    ],
     "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",
     "bioP2": "Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou automatizar processos, mesmo sem ninguém me pedir.",
     "bioP3": "Construo software guiando IA generativa (Claude, GPT) como ferramenta primária, de protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é decompor o problema, estruturar a instrução e conectar as peças até o fluxo inteiro funcionar. É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.",

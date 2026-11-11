@@ -17,5 +17,6 @@ A seleção reúne onze referências para a próxima rodada. A composição reco
 
 **[Formação e cursos · opção C](11-formacao-trilha.png)** foi escolhida. Aproveitar o título lateral, o filete violeta e a hierarquia dos três grupos. A lista deve acomodar novos cursos e instituições.
 
-[Plano de reformulação](../plano.md)
+[Especificação de reformulação](../especificacao.md)
+
 
