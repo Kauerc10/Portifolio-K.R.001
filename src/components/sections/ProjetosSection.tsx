@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type MouseEvent } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
 import { splitAccentTitle } from '@/lib/editorial';
@@ -20,6 +20,27 @@ const flowAssets = [
 
 export default function ProjetosSection({ dict }: { dict: Dictionary['projetos'] }) {
   const [selected, setSelected] = useState<string | null>(null);
+
+  const indexRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!selected) return;
+    const panel = document.getElementById(selected);
+    const control = indexRef.current?.querySelector<HTMLElement>('[aria-current="true"]');
+    if (control && indexRef.current) {
+      indexRef.current.style.setProperty('--project-marker-y', `${control.offsetTop}px`);
+      indexRef.current.style.setProperty('--project-marker-height', `${control.offsetHeight}px`);
+    }
+    const media = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    if (media?.matches || !panel?.animate) return;
+    const animation = panel.animate(
+      [{ opacity: .4, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 180, easing: 'cubic-bezier(.16,1,.3,1)' },
+    );
+    const stop = () => animation.cancel();
+    media?.addEventListener('change', stop);
+    return () => { stop(); media?.removeEventListener('change', stop); };
+  }, [selected]);
 
   useEffect(() => {
     let frame = 0;
@@ -61,7 +82,8 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
         <p className="projects-editorial__intro">{dict.editorialDescription}</p>
       </div>
       <div className="projects-editorial__layout">
-        <nav className="projects-editorial__index" aria-label={dict.editorialTitle}>
+        <nav ref={indexRef} className="projects-editorial__index" aria-label={dict.editorialTitle}>
+          <span className="projects-editorial__marker" aria-hidden="true" />
           {projects.map(({ id, key }) => (
             <a
               key={id}
@@ -74,11 +96,11 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
             </a>
           ))}
         </nav>
-        <div className="projects-editorial__detail">
+        <div className="projects-editorial__detail" data-enhanced={selected !== null || undefined}>
           {projects.map(project => {
             const item = dict.items[project.key];
             return (
-              <article key={project.id} id={project.id} className="projects-editorial__case" hidden={selected !== null && selected !== project.id}>
+              <article key={project.id} id={project.id} className="projects-editorial__case" hidden={selected !== null && selected !== project.id} inert={selected !== null && selected !== project.id} aria-hidden={selected !== null && selected !== project.id || undefined}>
                 <span className="editorial-kicker">{item.status}</span>
                 <h3>{item.title}</h3>
                 <p className="projects-editorial__role">{item.role}</p>

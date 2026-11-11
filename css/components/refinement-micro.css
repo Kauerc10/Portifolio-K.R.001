@@ -1,0 +1,65 @@
+/* R03: responses belong to controls; reading content stays still. */
+.projects-editorial__index { position: relative; align-self: start; }
+.projects-editorial__index a::before { display: none; }
+.projects-editorial__marker {
+  position: absolute;
+  inset-inline-start: -.65rem;
+  inset-block-start: 0;
+  width: 3px;
+  height: var(--project-marker-height, 0px);
+  border-radius: 999px;
+  background: var(--editorial-violet);
+  transform: translateY(var(--project-marker-y, 0px));
+  transition: transform 180ms cubic-bezier(.16,1,.3,1), height 180ms ease-out;
+}
+.projects-editorial__detail[data-enhanced] { display: grid; align-items: start; }
+.projects-editorial__detail[data-enhanced] > .projects-editorial__case {
+  grid-area: 1 / 1;
+  margin-top: 0;
+  min-width: 0;
+  animation: none;
+}
+/* Retain every panel's intrinsic size, while hidden/inert excludes inactive actions. */
+.projects-editorial__detail[data-enhanced] > .projects-editorial__case[hidden] {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+:is(.projects-editorial__index, .projects-editorial__actions, .editorial-skills, .conquistas-editorial, .formacao-editorial, .contact-editorial, .footer-editorial) a {
+  text-underline-offset: .25em;
+  text-decoration-thickness: 1px;
+  transition: color 160ms ease-out, border-color 160ms ease-out, text-decoration-color 160ms ease-out;
+}
+:is(.projects-editorial__index, .projects-editorial__actions, .editorial-skills, .conquistas-editorial, .formacao-editorial) a svg,
+.contact-editorial__form button svg { transition: transform 180ms cubic-bezier(.16,1,.3,1); }
+:is(.projects-editorial__index, .projects-editorial__actions, .editorial-skills, .conquistas-editorial, .formacao-editorial) a:is(:hover, :focus-visible) svg,
+.contact-editorial__form button:is(:hover, :focus-visible):not(:disabled) svg { transform: translate(2px, -2px); }
+:is(.projects-editorial__actions, .editorial-skills, .conquistas-editorial, .formacao-editorial, .contact-editorial__links, .footer-editorial) a:is(:hover, :focus-visible) { text-decoration-line: underline; }
+.formacao-editorial__more summary { min-height: 44px; align-content: center; transition: color 160ms ease-out; }
+.formacao-editorial__more summary:is(:hover, :focus-visible) { color: var(--editorial-text); }
+/* Browsers without intrinsic-size interpolation keep native, immediate details. */
+@supports (interpolate-size: allow-keywords) {
+  .formacao-editorial__more { interpolate-size: allow-keywords; }
+  .formacao-editorial__more::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 200ms cubic-bezier(.16,1,.3,1), content-visibility 200ms allow-discrete;
+  }
+  .formacao-editorial__more[open]::details-content { block-size: auto; }
+}
+.contact-editorial__form :is(input, textarea) { transition: border-color 160ms ease-out, background-color 160ms ease-out, box-shadow 160ms ease-out; }
+.contact-editorial__form :is(input, textarea):focus-visible { box-shadow: 0 2px 0 var(--editorial-violet); }
+.contact-editorial__form button { transition: transform 140ms ease-out, background-color 160ms ease-out, color 160ms ease-out; }
+.contact-editorial__form button:active:not(:disabled) { transform: translateY(2px); }
+.contact-editorial__form button:disabled { cursor: progress; }
+.contact-editorial__feedback { transition: color 160ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .projects-editorial__marker,
+  :is(.projects-editorial, .editorial-skills, .conquistas-editorial, .formacao-editorial, .contact-editorial, .footer-editorial) :is(a, svg, button, input, textarea, summary),
+  .contact-editorial__feedback,
+  .formacao-editorial__more::details-content { transition: none; animation: none; }
+  .contact-editorial__form button:active:not(:disabled),
+  :is(.projects-editorial, .editorial-skills, .conquistas-editorial, .formacao-editorial) a:is(:hover, :focus-visible) svg,
+  .contact-editorial__form button:is(:hover, :focus-visible):not(:disabled) svg { transform: none; }
+}
+

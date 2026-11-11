@@ -53,6 +53,8 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
     const errors = validateForm(form);
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
+      const firstInvalid = form.elements.namedItem(Object.keys(errors)[0]);
+      if (firstInvalid instanceof HTMLElement) firstInvalid.focus();
       setFeedbackState('error');
       setFeedback(dict.messages.VALIDATION_ERROR);
       return;

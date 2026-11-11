@@ -46,3 +46,5 @@
 /* ── 5. Responsividade ── */
 /* Precisa vir por ÚLTIMO pra sobrescrever os componentes */
 @import './layout/responsive.css';
+
+@import './components/refinement-micro.css';
