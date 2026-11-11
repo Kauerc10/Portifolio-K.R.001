@@ -7,8 +7,7 @@ export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] })
       <div className="editorial-section__rule" aria-hidden="true" />
       <div className="editorial-grid editorial-grid--about">
         <div className="editorial-intro">
-          <h2 className="editorial-title editorial-title--display">{d.title}</h2>
-          <p className="editorial-lede">{d.lede}</p>
+          <h2 className="editorial-title editorial-title--display editorial-title--about">{d.lede}{' '}<span>{d.headlineAccent}</span></h2>
         </div>
         <div className="editorial-profile">
           <h3 className="editorial-profile__name">{d.name}</h3>

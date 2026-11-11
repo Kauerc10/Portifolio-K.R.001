@@ -52,6 +52,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     if (!dialog || dialog.open) return;
 
     dialog.showModal();
+    dialog.querySelector('h2')?.focus();
     const media = window.matchMedia(motionPreference);
     const stopForPreference = () => { if (media.matches) finish(); };
     const stopForResize = () => { if (animations.current.length) finish(); };
@@ -75,15 +76,15 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     const hero = dialog.closest('#hero');
     if (!hero || typeof dialog.animate !== 'function') return finish();
 
-    const pairs = [...dialog.querySelectorAll<HTMLElement>('[data-intro-source]')].map(source => ({
-      source,
-      destination: hero.querySelector<HTMLElement>(`[data-intro-target="${source.dataset.introSource}"]`),
-    }));
-    if (pairs.some(({ destination }) => !destination)) return finish();
+    const pairs = [...dialog.querySelectorAll<HTMLElement>('[data-intro-source]')].flatMap(source => {
+      const destination = hero.querySelector<HTMLElement>(`[data-intro-target="${source.dataset.introSource}"]`);
+      return destination ? [{ source, destination }] : [];
+    });
+    if (pairs.length !== 3) return finish();
 
     const initial = pairs.map(({ source }) => source.getBoundingClientRect());
     window.scrollTo({ top: 0, behavior: 'instant' });
-    const final = pairs.map(({ destination }) => destination!.getBoundingClientRect());
+    const final = pairs.map(({ destination }) => destination.getBoundingClientRect());
     if (initial.some(rect => !rect.width) || final.some(rect => !rect.width)) return finish();
 
     setMoving(true);
@@ -91,12 +92,13 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     animations.current = pairs.map(({ source, destination }, index) => {
       const from = initial[index];
       const to = final[index];
-      const scale = index === 2
-        ? parseFloat(getComputedStyle(destination!).fontSize) / parseFloat(getComputedStyle(source).fontSize)
+      const targetStyle = getComputedStyle(destination);
+      const scale = source.dataset.introSource === 'support'
+        ? parseFloat(targetStyle.fontSize) / parseFloat(getComputedStyle(source).fontSize)
         : to.width / from.width;
       return source.animate([
         { transform: 'none', opacity: 1 },
-        { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${scale})`, opacity: 1 },
+        { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${scale})`, color: targetStyle.color, opacity: 1 },
       ], docking);
     });
 
@@ -117,7 +119,7 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     >
       <div className={styles.cover} data-intro-cover aria-hidden="true" />
       <div className={styles.copy} data-moving={moving || undefined}>
-        <h2 id="portfolio-intro-heading">
+        <h2 id="portfolio-intro-heading" tabIndex={-1}>
           <span className={styles.line} data-intro-source="first"><span>{dict.greetingH1Line1}</span></span>
           {' '}
           <span className={styles.line} data-intro-source="second"><span><em>{highlight}</em>{' '}{remainingWords.join(' ')}</span></span>

@@ -52,7 +52,8 @@
   "sobre": {
     "eyebrow": "About me",
     "title": "ABOUT ME",
-    "lede": "Technology for solving problems in practical ways.",
+    "lede": "Technology for solving",
+    "headlineAccent": "real problems.",
     "name": "Kauê Ruon Cardoso",
     "profile": "I create applications, automate routines, and help people use technology.",
     "pillarsLabel": "Areas of work",

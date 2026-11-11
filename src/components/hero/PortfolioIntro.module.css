@@ -27,7 +27,8 @@
 }
 
 .copy { width: min(75rem, 100%); padding: 1.5rem; text-align: center; }
-.copy h2 { font-size: clamp(2.2rem, 7.7vw, 7rem); font-weight: 700; letter-spacing: -.065em; line-height: 1; }
+.copy h2 { font-size: clamp(2.2rem, 7.7vw, 7rem); font-weight: 700; letter-spacing: -.055em; line-height: 1; }
+.copy h2:focus { outline: none; }
 .line { display: table; margin: 0 auto; transform-origin: top left; }
 .line > span { display: block; animation: arrive .8s cubic-bezier(.22, 1, .36, 1) both; }
 .line + .line > span { animation-delay: .17s; }
