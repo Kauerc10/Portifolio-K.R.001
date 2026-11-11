@@ -1,8 +1,9 @@
 import type { Dictionary } from '@/i18n/types';
+import styles from './ExperienciaSection.module.css';
 
 export default function ExperienciaSection({ dict: d }: { dict: Dictionary['experiencia'] }) {
   return (
-    <section className="section editorial-section experience-section experiencia" id="experiencia" data-section="3">
+    <section className={`section editorial-section experience-section experiencia ${styles.section}`} id="experiencia" data-section="3">
       <div className="editorial-grid editorial-grid--experience">
         <div className="editorial-intro">
           <h2 className="editorial-title editorial-title--display">{d.title}</h2>
@@ -23,6 +24,10 @@ export default function ExperienciaSection({ dict: d }: { dict: Dictionary['expe
           ))}
         </ol>
       </div>
+      <picture className={styles.landscape} aria-hidden="true">
+        <source media="(max-width: 900px)" srcSet="/images/editorial-details/experience-ribbon-mobile.webp" />
+        <img src="/images/editorial-details/experience-ribbon-desktop.webp" alt="" width="1600" height="224" loading="lazy" decoding="async" />
+      </picture>
     </section>
   );
 }
