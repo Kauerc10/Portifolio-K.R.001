@@ -42,7 +42,7 @@ describe('Suíte de Testes da Arquitetura i18n (Next.js 15 Nativo)', () => {
   it('preserva todas as medalhas e formações do design original nos dois idiomas', () => {
     for (const dictionary of [ptBR, enUS]) {
       expect(dictionary.conquistas.medals).toHaveLength(4);
-      expect(dictionary.formacao.items).toHaveLength(5);
+      expect(dictionary.formacao.groups.find((group) => group.id === 'complementary')?.items).toHaveLength(4);
       expect(dictionary.conquistas.medals.every((medal) => medal.cursorLabel.length > 0)).toBe(true);
       expect(dictionary.conquistas.medals.every((medal) => medal.editionLabel.length > 0)).toBe(true);
     }
@@ -52,12 +52,12 @@ describe('Suíte de Testes da Arquitetura i18n (Next.js 15 Nativo)', () => {
 
   it('preserva o conteúdo factual do portfólio original nos dois idiomas', () => {
     expect(ptBR.sobre.bioP1).toContain('manutenção de placas de iPhone');
-    expect(ptBR.experiencia.roles).toHaveLength(3);
-    expect(ptBR.experiencia.roles[0].title).toBe('Founder & Builder — DocFácil');
-    expect(ptBR.experiencia.roles[1].company).toBe('Cartório Gaya');
-    expect(ptBR.skills.groups).toHaveLength(4);
-    expect(ptBR.projetos.items.atlas.solution).toContain('5 minutos para 20 segundos');
-    expect(enUS.experiencia.roles[2].title).toBe('Apple Repair Technician');
+    expect(ptBR.experiencia.roles).toHaveLength(2);
+    expect(ptBR.projetos.items.docfacil.title).toContain('DocFácil');
+    expect(ptBR.experiencia.roles[0].company).toBe('Cartório Gaya');
+    expect(ptBR.skills.groups).toHaveLength(3);
+    expect(ptBR.projetos.items.atlas.solution).toContain('Cartório Gaya');
+    expect(enUS.experiencia.roles[1].title).toBe('Apple Repair Technician');
     expect(enUS.projetos.items.folilib.title).toContain('PDF Layout Engine');
   });
 

@@ -91,34 +91,18 @@
     "authenticated": "AUTENTICADO ✓"
   },
   "experiencia": {
-    "title": "DO HISTÓRICO DE ATUAÇÃO",
+    "eyebrow": "Experiência",
+    "lede": "Vivência prática em desenvolvimento, suporte e automações, aplicando tecnologia em contextos reais.",
+    "timelineLabel": "Trajetória profissional",
+    "title": "Experiência",
     "roles": [
-      {
-        "period": "Jul 2026 → ATUAL",
-        "status": "EM DESENVOLVIMENTO",
-        "title": "Founder & Builder — DocFácil",
-        "company": "K-HUB Soluções",
-        "location": "github.com/Kauerc10/docfacil ↗",
-        "description": "Plataforma Next.js que gera documentos legais conversando com o usuário. Construí uma camada agnóstica de provedor (`AIProvider`) com factory por env var, API route server-side (`/api/ai/generate`) que mantém a chave secreta no servidor, streaming de respostas e tratamento de erro tipado (`AIError`). Providers reais (OpenAI / Anthropic / Gemini) são pluggáveis sem tocar no resto do app.",
-        "achievements": [
-          "Interface conversacional (chat guiado) com preview do documento em tempo real.",
-          "A camada de IA é desacoplada. Trocar de LLM não exige mudar o front-end."
-        ],
-        "skills": [
-          "Next.js 16",
-          "TypeScript",
-          "Prisma",
-          "IA Generativa"
-        ],
-        "projectLabel": "ARQUITETURA DE IA: AI PROVIDER + STREAMING"
-      },
       {
         "period": "2023 → ATUAL",
         "status": "EM CURSO",
         "title": "Cartorário / Depto. de Procurações",
         "company": "Cartório Gaya",
         "location": "Blumenau/SC",
-        "description": "Construí uma automação que consome endpoints do Detran-RS pra gerar procurações de veículos automaticamente, eliminando digitação manual repetitiva. Está em produção no cartório até hoje. Uma tarefa que tomava minutos virou poucos cliques.",
+        "description": "Atuação em procurações, automação de rotinas e suporte técnico no cartório.",
         "achievements": [
           "Redação de procurações, escrituras e inventários.",
           "Melhoria não supervisionada de metodologias digitais.",
@@ -149,21 +133,21 @@
     ]
   },
   "skills": {
-    "title": "DAS COMPETÊNCIAS",
-    "subtitle": "O que eu realmente uso nos projetos (verificável nos repositórios públicos). Sem porcentagens inventadas. Eu construo com IA como ferramenta primária e domino o fluxo de decompor, instruir e conectar.",
+    "eyebrow": "Competências",
+    "groupsLabel": "Áreas de competência",
+    "resumeCta": "Ver meu currículo",
+    "title": "Como eu construo",
+    "subtitle": "Ferramentas para criar aplicações, integrar sistemas e automatizar rotinas.",
     "groups": [
       {
-        "title": "IA Generativa",
-        "items": [
-          "Integração de LLMs",
-          "Arquitetura de Providers",
-          "OpenAI / Anthropic / Gemini",
-          "Streaming de respostas",
-          "Prompt engineering"
-        ]
-      },
-      {
-        "title": "Construindo com",
+        "title": "Desenvolvimento",
+        "description": "Produtos web modernos, tipados e sustentáveis.",
+        "links": [
+          {
+            "label": "CKF Manutenção",
+            "href": "#project-ckf"
+          }
+        ],
         "items": [
           "JavaScript / TypeScript",
           "React / Next.js",
@@ -172,7 +156,14 @@
         ]
       },
       {
-        "title": "Praticando",
+        "title": "Automação",
+        "description": "Fluxos que conectam produto, dados e operação.",
+        "links": [
+          {
+            "label": "Atlas Notarial",
+            "href": "#project-atlas"
+          }
+        ],
         "items": [
           "APIs REST",
           "Automação de processos",
@@ -181,22 +172,30 @@
         ]
       },
       {
-        "title": "Competências Complementares",
+        "title": "IA aplicada",
+        "description": "Modelos e integrações aplicados a problemas reais.",
+        "links": [
+          {
+            "label": "Ver no DocFácil",
+            "href": "#project-docfacil"
+          }
+        ],
         "items": [
-          "Gestão Documental",
-          "Atenção a Detalhes",
-          "Resolução de Problemas",
-          "Aprendizagem Rápida",
-          "Raciocínio Lógico",
-          "Trabalho em Equipe",
-          "Inglês (Intermediário)"
+          "Integração de LLMs",
+          "Arquitetura de Providers",
+          "OpenAI / Anthropic / Gemini",
+          "Streaming de respostas",
+          "Prompt engineering"
         ]
       }
     ]
   },
   "conquistas": {
     "article": "Artigo IV",
-    "title": "Museu de Conquistas (OBMEP)",
+    "title": "Conquistas",
+    "description": "Reconhecimentos que marcam minha trajetória em matemática e tecnologia.",
+    "honorsLabel": "Menções honrosas",
+    "certificateLabel": "Ver certificado",
     "medals": [
       {
         "ariaLabel": "Medalha de Prata OBMEP",
@@ -234,33 +233,70 @@
   },
   "formacao": {
     "article": "Anexo I",
-    "title": "DA FORMAÇÃO E CERTIFICAÇÕES",
-    "statusCompleted": "CONCLUÍDO",
-    "btnOpen": "ABRIR",
-    "items": [
+    "title": "Formação e cursos",
+    "groups": [
       {
-        "title": "Ensino Médio Completo",
-        "info": "EEB Cel. Pedro Christiano Feddersen"
+        "id": "higher",
+        "title": "Ensino superior",
+        "items": [
+          {
+            "id": "ads",
+            "title": "Análise e Desenvolvimento de Sistemas",
+            "status": "Em formação"
+          }
+        ]
       },
       {
-        "title": "Téc. Gestão Administrativa",
-        "info": "156h · VisualMídia · 2020"
+        "id": "complementary",
+        "title": "Cursos complementares",
+        "institution": "VisualMídia",
+        "items": [
+          {
+            "id": "gestao",
+            "title": "Téc. Gestão Administrativa",
+            "hours": "156 h",
+            "year": "2020"
+          },
+          {
+            "id": "operador",
+            "title": "Operador de Tecnologia",
+            "hours": "92 h",
+            "year": "2017"
+          },
+          {
+            "id": "games",
+            "title": "Programador de Games",
+            "hours": "40 h",
+            "year": "2017"
+          },
+          {
+            "id": "max",
+            "title": "3ds Max",
+            "hours": "32 h",
+            "year": "2018"
+          }
+        ]
       },
       {
-        "title": "Operador de Tecnologia",
-        "info": "92h · VisualMídia · 2017"
-      },
-      {
-        "title": "Programador de Games",
-        "info": "40h · VisualMídia · 2017"
-      },
-      {
-        "title": "3Ds Max",
-        "info": "32h · VisualMídia · 2018"
+        "id": "basic",
+        "title": "Educação básica",
+        "items": [
+          {
+            "id": "high-school",
+            "title": "Ensino médio completo",
+            "institution": "EEB Cel. Pedro Christiano Feddersen"
+          }
+        ]
       }
-    ]
+    ],
+    "showAll": "Ver todos os cursos"
   },
   "projetos": {
+    "editorialKicker": "Projetos",
+    "editorialTitle": "Projetos selecionados",
+    "editorialDescription": "Soluções reais que desenvolvi para automatizar processos, simplificar rotinas e resolver problemas do dia a dia com tecnologia.",
+    "flowLabels": ["Consulta", "Dados do veículo", "Procuração"],
+    "navLabels": { "atlas": "Atlas Notarial", "ckf": "CKF Manutenção", "docfacil": "DocFácil", "folilib": "Foli" },
     "title": "DAS EVIDÊNCIAS DE PROJETO",
     "btnDemo": "DEMO AO VIVO",
     "btnRepo": "REPOSITÓRIO",
@@ -278,8 +314,8 @@
       "atlas": {
         "title": "Atlas Notarial — Automação com API Detran-RS",
         "status": "EM PRODUÇÃO · CARTÓRIO GAYA",
-        "problem": "Emissão manual de procurações de veículos levando 5 minutos de digitação por documento.",
-        "solution": "Tempo reduzido de 5 minutos para 20 segundos por procuração com 100% de precisão jurídica.",
+        "problem": "A emissão de procurações de veículos exigia consultas e digitação manual.",
+        "solution": "Automatizei a consulta e o preenchimento dos dados para apoiar a emissão no Cartório Gaya.",
         "stack": "Node.js · REST APIs · Automação Notarial · Vitest",
         "solutionLabel": "MÉTRICA DE IMPACTO:"
       },
@@ -303,16 +339,16 @@
   },
   "contato": {
     "title": "ENTRE EM CONTATO",
-    "nameLabel": "REQUERENTE (seu nome)",
+    "nameLabel": "Nome",
     "namePlaceholder": "Seu nome completo...",
-    "emailLabel": "E-MAIL DE CONTATO",
+    "emailLabel": "E-mail",
     "emailPlaceholder": "seu.email@dominio.com...",
-    "subjectLabel": "OBJETO DO CONTATO (assunto)",
-    "subjectPlaceholder": "Selecione o assunto...",
-    "messageLabel": "EXPOSIÇÃO DOS FATOS (mensagem)",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "Sobre o que você quer conversar?",
+    "messageLabel": "Mensagem",
     "messagePlaceholder": "Descreva detalhes do projeto ou oportunidade...",
-    "btnSubmit": "Protocolar Solicitação",
-    "btnSubmitting": "Protocolando...",
+    "btnSubmit": "Enviar mensagem",
+    "btnSubmitting": "Enviando…",
     "subjects": {
       "proposta": "Proposta de Trabalho / Contratação",
       "projeto": "Desenvolvimento de Projeto / Consultoria",
@@ -326,16 +362,21 @@
       "githubTitle": "Repositório de Código"
     },
     "messages": {
-      "SUCCESS": "✓ Petição protocolada com sucesso! Respondo em breve.",
-      "RATE_LIMITED": "Muitas solicitações enviadas. Aguarde alguns minutos para protocolar novamente.",
+      "SUCCESS": "Mensagem enviada com sucesso.",
+      "RATE_LIMITED": "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
       "VALIDATION_ERROR": "Por favor, preencha todos os campos obrigatórios corretamente.",
       "SERVICE_UNAVAILABLE": "Serviço de e-mail temporariamente indisponível. Envie diretamente para kaue.ruon@gmail.com",
       "INTERNAL_ERROR": "Falha interna ao processar envio. Envie diretamente para kaue.ruon@gmail.com"
     },
     "location": "Blumenau / SC — Disponível para atuação remota e projetos globais",
-    "copied": "Copiado!"
+    "copied": "Copiado!",
+    "editorialLabel": "Contato",
+    "editorialTitle": "Vamos",
+    "editorialAccent": "conversar?",
+    "editorialDescription": "Tem um projeto, uma ideia ou uma oportunidade? Me chame por um dos canais diretos ou envie uma mensagem."
   },
   "footer": {
+    "topLabel": "Voltar ao topo",
     "channelsLabel": "Canais de contato",
     "emailLabel": "Copiar endereço de e-mail",
     "email": "E-mail",

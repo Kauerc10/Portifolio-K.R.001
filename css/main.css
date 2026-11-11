@@ -38,6 +38,8 @@
 /* ── 4. Seções do Portfólio ── */
 @import './components/secoes.css';
 @import './components/editorial.css';
+@import './components/projects-editorial.css';
+@import './components/contact-footer-editorial.css';
 @import './components/obmep.css';
 @import './components/efeitos.css';
 

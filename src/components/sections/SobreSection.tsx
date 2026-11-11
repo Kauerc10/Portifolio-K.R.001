@@ -15,6 +15,7 @@ export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] })
           <p className="editorial-profile__copy">{d.profile}</p>
         </div>
       </div>
+      <div className="editorial-about-ribbon" aria-hidden="true" />
       <div className="editorial-pillars" aria-label={d.pillarsLabel}>
         {d.pillars.map((pillar) => (
           <article className="editorial-pillar" key={pillar.title}>

@@ -91,34 +91,18 @@
     "authenticated": "AUTHENTICATED ✓"
   },
   "experiencia": {
-    "title": "PROFESSIONAL HISTORY",
+    "eyebrow": "Experience",
+    "lede": "Practical experience in development, support, and automation, applying technology to real contexts.",
+    "timelineLabel": "Professional trajectory",
+    "title": "Experience",
     "roles": [
-      {
-        "period": "Jul 2026 → PRESENT",
-        "status": "IN DEVELOPMENT",
-        "title": "Founder & Builder — DocFácil",
-        "company": "K-HUB Soluções",
-        "location": "github.com/Kauerc10/docfacil ↗",
-        "description": "A Next.js platform that generates legal documents through conversation. I built a provider-agnostic layer (`AIProvider`) with an environment-based factory, a server-side API route (`/api/ai/generate`) that keeps secrets on the server, response streaming, and typed error handling (`AIError`). Real providers (OpenAI / Anthropic / Gemini) are pluggable without changing the rest of the app.",
-        "achievements": [
-          "Guided chat interface with real-time document preview.",
-          "The AI layer is decoupled. Changing the LLM requires no front-end changes."
-        ],
-        "skills": [
-          "Next.js 16",
-          "TypeScript",
-          "Prisma",
-          "Generative AI"
-        ],
-        "projectLabel": "AI ARCHITECTURE: AI PROVIDER + STREAMING"
-      },
       {
         "period": "2023 → PRESENT",
         "status": "ONGOING",
         "title": "Notary Clerk / Powers of Attorney Dept.",
         "company": "Cartório Gaya",
         "location": "Blumenau, Brazil",
-        "description": "I built an automation that consumes Detran-RS endpoints to generate vehicle powers of attorney automatically, eliminating repetitive manual entry. It remains in production at the notary office. A task that took minutes now takes only a few clicks.",
+        "description": "Powers of attorney, workflow automation and technical support for the notary office.",
         "achievements": [
           "Drafting powers of attorney, deeds, and estate inventories.",
           "Self-directed improvement of digital workflows.",
@@ -149,21 +133,21 @@
     ]
   },
   "skills": {
-    "title": "SKILLS",
-    "subtitle": "What I actually use in projects (verifiable in public repositories). No invented percentages. I build with AI as my primary tool and master the workflow of decomposing, instructing, and connecting.",
+    "eyebrow": "Skills",
+    "groupsLabel": "Skill areas",
+    "resumeCta": "View my resume",
+    "title": "How I build",
+    "subtitle": "Tools for building applications, connecting systems and automating workflows.",
     "groups": [
       {
-        "title": "Generative AI",
-        "items": [
-          "LLM Integration",
-          "Provider Architecture",
-          "OpenAI / Anthropic / Gemini",
-          "Response streaming",
-          "Prompt engineering"
-        ]
-      },
-      {
-        "title": "Building with",
+        "title": "Development",
+        "description": "Modern, typed, and maintainable web products.",
+        "links": [
+          {
+            "label": "CKF Manutenção",
+            "href": "#project-ckf"
+          }
+        ],
         "items": [
           "JavaScript / TypeScript",
           "React / Next.js",
@@ -172,7 +156,14 @@
         ]
       },
       {
-        "title": "Practicing",
+        "title": "Automation",
+        "description": "Flows connecting product, data, and operations.",
+        "links": [
+          {
+            "label": "Atlas Notarial",
+            "href": "#project-atlas"
+          }
+        ],
         "items": [
           "REST APIs",
           "Process automation",
@@ -181,22 +172,30 @@
         ]
       },
       {
-        "title": "Complementary Skills",
+        "title": "Applied AI",
+        "description": "Models and integrations applied to real problems.",
+        "links": [
+          {
+            "label": "See DocFácil",
+            "href": "#project-docfacil"
+          }
+        ],
         "items": [
-          "Document Management",
-          "Attention to Detail",
-          "Problem Solving",
-          "Fast Learning",
-          "Logical Reasoning",
-          "Teamwork",
-          "English (Intermediate)"
+          "LLM Integration",
+          "Provider Architecture",
+          "OpenAI / Anthropic / Gemini",
+          "Response streaming",
+          "Prompt engineering"
         ]
       }
     ]
   },
   "conquistas": {
     "article": "Article IV",
-    "title": "Achievement Museum (OBMEP)",
+    "title": "Achievements",
+    "description": "Recognitions that mark my path through mathematics and technology.",
+    "honorsLabel": "Honorable mentions",
+    "certificateLabel": "View certificate",
     "medals": [
       {
         "ariaLabel": "OBMEP Silver Medal",
@@ -234,33 +233,70 @@
   },
   "formacao": {
     "article": "Appendix I",
-    "title": "EDUCATION AND CERTIFICATIONS",
-    "statusCompleted": "COMPLETED",
-    "btnOpen": "OPEN",
-    "items": [
+    "title": "Education and courses",
+    "groups": [
       {
-        "title": "High School Diploma",
-        "info": "EEB Cel. Pedro Christiano Feddersen"
+        "id": "higher",
+        "title": "Higher education",
+        "items": [
+          {
+            "id": "ads",
+            "title": "Systems Analysis and Development",
+            "status": "In progress"
+          }
+        ]
       },
       {
-        "title": "Administrative Management Technician",
-        "info": "156h · VisualMídia · 2020"
+        "id": "complementary",
+        "title": "Complementary courses",
+        "institution": "VisualMídia",
+        "items": [
+          {
+            "id": "gestao",
+            "title": "Administrative Management Technician",
+            "hours": "156 h",
+            "year": "2020"
+          },
+          {
+            "id": "operador",
+            "title": "Technology Operator",
+            "hours": "92 h",
+            "year": "2017"
+          },
+          {
+            "id": "games",
+            "title": "Game Programmer",
+            "hours": "40 h",
+            "year": "2017"
+          },
+          {
+            "id": "max",
+            "title": "3ds Max",
+            "hours": "32 h",
+            "year": "2018"
+          }
+        ]
       },
       {
-        "title": "Technology Operator",
-        "info": "92h · VisualMídia · 2017"
-      },
-      {
-        "title": "Game Programmer",
-        "info": "40h · VisualMídia · 2017"
-      },
-      {
-        "title": "3Ds Max",
-        "info": "32h · VisualMídia · 2018"
+        "id": "basic",
+        "title": "Basic education",
+        "items": [
+          {
+            "id": "high-school",
+            "title": "High school diploma",
+            "institution": "EEB Cel. Pedro Christiano Feddersen"
+          }
+        ]
       }
-    ]
+    ],
+    "showAll": "View all courses"
   },
   "projetos": {
+    "editorialKicker": "Projects",
+    "editorialTitle": "Selected projects",
+    "editorialDescription": "Real solutions I built to automate processes, simplify routines, and solve everyday problems with technology.",
+    "flowLabels": ["Search", "Vehicle data", "Power of attorney"],
+    "navLabels": { "atlas": "Atlas Notarial", "ckf": "CKF Maintenance", "docfacil": "DocFácil", "folilib": "Foli" },
     "title": "PROJECT EVIDENCE",
     "btnDemo": "LIVE DEMO",
     "btnRepo": "REPOSITORY",
@@ -278,8 +314,8 @@
       "atlas": {
         "title": "Atlas Notarial — Detran-RS API Automation",
         "status": "IN PRODUCTION · CARTÓRIO GAYA",
-        "problem": "Manual vehicle power-of-attorney issuance required five minutes of data entry per document.",
-        "solution": "Time reduced from 5 minutes to 20 seconds per document with 100% legal accuracy.",
+        "problem": "Vehicle powers of attorney required manual lookups and data entry.",
+        "solution": "I automated lookup and data entry to support document issuance at Cartório Gaya.",
         "stack": "Node.js · REST APIs · Notarial Automation · Vitest",
         "solutionLabel": "IMPACT METRIC:"
       },
@@ -303,16 +339,16 @@
   },
   "contato": {
     "title": "CONTACT",
-    "nameLabel": "REQUESTER (your name)",
+    "nameLabel": "Name",
     "namePlaceholder": "Your full name...",
-    "emailLabel": "CONTACT EMAIL",
+    "emailLabel": "Email",
     "emailPlaceholder": "your.email@domain.com...",
-    "subjectLabel": "CONTACT PURPOSE (subject)",
-    "subjectPlaceholder": "Select a subject...",
-    "messageLabel": "STATEMENT OF FACTS (message)",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "What would you like to discuss?",
+    "messageLabel": "Message",
     "messagePlaceholder": "Describe project details or inquiry...",
-    "btnSubmit": "Submit Inquiry",
-    "btnSubmitting": "Submitting...",
+    "btnSubmit": "Send message",
+    "btnSubmitting": "Sending…",
     "subjects": {
       "proposta": "Job Offer / Career Opportunity",
       "projeto": "Project Development / Consulting",
@@ -326,16 +362,21 @@
       "githubTitle": "Code Repository"
     },
     "messages": {
-      "SUCCESS": "✓ Inquiry submitted successfully! I will reply shortly.",
-      "RATE_LIMITED": "Too many requests. Please wait a few minutes before submitting again.",
+      "SUCCESS": "Your message was sent successfully.",
+      "RATE_LIMITED": "Too many attempts. Please try again in a few minutes.",
       "VALIDATION_ERROR": "Please fill out all required fields correctly.",
       "SERVICE_UNAVAILABLE": "Email service temporarily unavailable. Please email directly to kaue.ruon@gmail.com",
       "INTERNAL_ERROR": "Internal server error. Please email directly to kaue.ruon@gmail.com"
     },
     "location": "Blumenau / SC — Available for remote work and global projects",
-    "copied": "Copied!"
+    "copied": "Copied!",
+    "editorialLabel": "Contact",
+    "editorialTitle": "Let’s",
+    "editorialAccent": "talk",
+    "editorialDescription": "Have a project, an idea or an opportunity? Reach out directly or send me a message."
   },
   "footer": {
+    "topLabel": "Back to top",
     "channelsLabel": "Contact channels",
     "emailLabel": "Copy email address",
     "email": "Email",
