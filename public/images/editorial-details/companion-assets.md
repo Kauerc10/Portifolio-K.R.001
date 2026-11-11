@@ -12,6 +12,12 @@ Inspeção: materiais e iluminação coerentes; faixa tem curva rasa, não S pro
 
 ## Prompts finais
 
+### Revisão de preferência — terraços v2
+
+O usuário rejeitou mineral-terraces-v1 por realismo excessivo; aprovou a direção dos demais assets. Preservar v1 somente como histórico. Candidato v2 em mineral-terraces-v2.png, gerado com imagegen integrado a partir da imagem anexada, com alpha solicitado. Superfícies lisas e base orgânica substituem pedra porosa e bronze. Ainda aguarda avaliação do usuário; possíveis franjas de alpha precisam de revisão antes da integração.
+
+Prompt: Edit the attached three circular terrace asset. Preserve its three-tier arrangement, gentle three-quarter camera, ivory and violet palette, and true transparent background. Change style substantially away from photorealism to refined stylized 3D editorial illustration matching a minimal architectural portfolio. Smooth matte ivory ceramic/plaster surfaces with barely perceptible fine grain, rounded clean edges, soft broad ambient shadows. Remove ALL coarse porous rock texture and jagged realistic stone base; replace base with one clean low organic rounded ivory island. Remove metallic bronze rim; use a subtle pale lavender inset on back terrace instead. Left terrace retains satin violet #6534D8 top, front terrace ivory. Restrained premium sculptural geometry, not toy, not plastic shine. No photorealistic pits, cracks, dirt, rough rocks, photographic texture, text, logos or backdrop. Generous transparent margins, genuinely transparent alpha, clean antialiased silhouette.
+
 ### mineral-dunes-v1
 
 Generate a companion production website decorative asset, not a mockup. Reference supplies exact warm ivory finely porous limestone material, soft architectural light and restrained satin violet #6534D8. ONE wide low strip of gently layered mineral hills and limestone dune ridges, with a tiny inset violet seam along one ridge near right edge. Landscape3:1 composition, only bottom20percent occupied, upper80percent truly transparent alpha. Beautiful subtle fine natural texture, low contrast cream, soft realistic contact shadows, natural irregular upper silhouette. No sky/background/floor rectangle, no UI, text, logos, arches, buildings. Useful as quiet section boundary behind editorial portfolio. Keep no content in upper center.
