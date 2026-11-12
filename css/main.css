@@ -38,6 +38,7 @@
 /* ── 4. Seções do Portfólio ── */
 @import './components/secoes.css';
 @import './components/editorial.css';
+@import './components/language-transition.css';
 @import './components/projects-editorial.css';
 @import './components/contact-footer-editorial.css';
 @import './components/obmep.css';
