@@ -16,7 +16,7 @@ export default function SectionMotionEnhancer({ sectionId, kind }: Props) {
       cleanups.push(scope.onEnter(element, () => { scope.animate(element, keyframes, { duration: 650, ...options }); }));
     };
     if (kind === 'sobre') {
-      reveal(root.querySelector('[data-motion-art]'), [{ clipPath: 'inset(0 100% 0 0 round 10rem)' }, { clipPath: 'inset(0 0% 0 0 round 10rem)' }], { duration: 850 });
+      reveal(root.querySelector('[data-motion-art]'), [{ clipPath: 'inset(0 100% 0 0 round 10rem)' }, { clipPath: 'inset(0 0% 0 0 round 0)' }], { duration: 850 });
       root.querySelectorAll('[data-motion-pillar-accent]').forEach((accent, index) => reveal(accent, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 420, delay: index * 80 }));
     }
     if (kind === 'experiencia') {
