@@ -12,7 +12,6 @@ export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const hero = () => document.querySelector<HTMLElement>('#hero h1');
     const cancel = () => {
       pendingTop.current = false;
       cancelAnimationFrame(trackingFrame.current);

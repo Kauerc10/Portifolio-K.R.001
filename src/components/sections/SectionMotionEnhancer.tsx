@@ -20,7 +20,7 @@ export default function SectionMotionEnhancer({ sectionId, kind }: Props) {
       root.querySelectorAll('[data-motion-pillar-accent]').forEach((accent, index) => reveal(accent, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 420, delay: index * 80 }));
     }
     if (kind === 'experiencia') {
-      root.querySelectorAll<HTMLElement>('[data-motion-experience-item]').forEach((item, index) => {
+      root.querySelectorAll<HTMLElement>('[data-motion-experience-item]').forEach((item) => {
         reveal(item.querySelector('[data-motion-segment]'), [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 450 });
         reveal(item.querySelector('[data-motion-dot]'), [{ transform: 'scale(.55)', opacity: .55 }, { transform: 'scale(1)', opacity: 1 }], { duration: 260, delay: 470 });
         reveal(item.querySelector('[data-motion-period]'), [{ backgroundColor: 'transparent' }, { backgroundColor: 'color-mix(in srgb, var(--editorial-violet) 16%, transparent)' }], { duration: 300, delay: 540 });
