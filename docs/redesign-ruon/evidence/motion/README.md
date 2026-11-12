@@ -12,6 +12,24 @@ Scripts nesta pasta executam a jornada contra um servidor Next em build de produ
 
 O baseline `before.json` foi obtido antes de integrar os movimentos, com build de produção da base de trabalho `ecd46fd`. As medidas começam depois de carregar a página; não medem o carregamento inicial nem constituem um benchmark de dispositivos móveis reais.
 
+## Resultado da rodada final
+
+Código validado: `bb58a60` (os commits seguintes acrescentam documentação/evidências). Build de produção e TypeScript passaram. Vitest: **68 testes em 16 arquivos**, sem avisos de atualização fora de `act`.
+
+| Verificação | Resultado |
+|---|---|
+| Matriz integrada Chrome | 32/32 combinações; sem overflow ou erros de execução |
+| Sem JavaScript | 2/2 idiomas; todas as seções e quatro projetos acessíveis |
+| Ciclo de vida Chrome/Edge | 4/4; abertura manual, encaixe, resize, idioma, zoom 200%, interrupção e movimento reduzido |
+| Cancelamento do filete | Estilo computado em repouso: `transform: none` após preferência dinâmica |
+| Baseline: seis percursos | CLS 0; zero tarefas longas; intervalo entre frames P95 de 16,8 ms |
+| Final: seis percursos | CLS 0; zero tarefas longas; intervalo entre frames P95 de 16,8–16,9 ms |
+| Bundle informado pelo Next | First Load JS da página: 118 kB → 120 kB |
+
+A diferença de 0,1 ms no intervalo entre frames fica dentro da variação destas execuções. Não foi observado custo relevante neste percurso; isso não comprova desempenho em todos os dispositivos. Dados completos em [antes](before.json), [depois](after.json), [jornada](journey.json) e [ciclo de vida](lifecycle.json).
+
+Capturas de repouso e passagem foram inspecionadas e comparadas às referências aprovadas. Exemplos: [Projetos em desktop](desktop-projects-rest.png), [fita de Sobre durante a passagem](desktop-about-passage.png), [Conquistas em repouso](desktop-achievements-rest.png) e [Contato em celular](mobile-contact-rest.png). Gravações: [desktop](desktop.webm) e [celular](mobile.webm). O conjunto completo de quadros está na pasta local de visualizações da sessão, em `section-motion-final`.
+
 ## Revisão em dois eixos
 
 **Standards:** nenhuma violação documentada encontrada. Corrigidos código morto no acompanhamento do retorno e `will-change` permanente no marcador. O acompanhamento possui limite de duração e é cancelado por interação, navegação e preferência. A observação de que reativar movimento deveria repetir uma entrada já resolvida foi rejeitada: a spec exige uma entrada por montagem, inclusive quando resolvida imediatamente com movimento reduzido.
