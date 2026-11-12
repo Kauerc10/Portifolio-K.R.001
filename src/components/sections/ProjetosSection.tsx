@@ -5,6 +5,8 @@ import { ArrowUpRight } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
 import { splitAccentTitle } from '@/lib/editorial';
 import { createMotionScope, type MotionScope } from '@/lib/section-motion';
+import VioPreview from '@/components/projects/VioPreview';
+import type { Locale } from '@/i18n/config';
 
 const projects = [
   { key: 'atlas', id: 'project-atlas' },
@@ -19,7 +21,7 @@ const flowAssets = [
   '/assets/atlas-procuracao.svg',
 ] as const;
 
-export default function ProjetosSection({ dict }: { dict: Dictionary['projetos'] }) {
+export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dictionary['projetos']; locale?: Locale }) {
   const [selected, setSelected] = useState<string | null>(null);
 
   const indexRef = useRef<HTMLElement>(null);
@@ -165,6 +167,7 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
         <p className="projects-editorial__intro">{dict.editorialDescription}</p>
         <span ref={borderRef} className="projects-editorial__directional-border" aria-hidden="true" />
       </div>
+      <VioPreview locale={locale} />
       <div className="projects-editorial__layout">
         <nav ref={indexRef} className="projects-editorial__index" aria-label={dict.editorialTitle}>
           <span className="projects-editorial__marker" aria-hidden="true" />

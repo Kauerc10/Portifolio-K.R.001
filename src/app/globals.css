@@ -3,6 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cross-document shared artwork: native navigation, history and no-JS fallback. */
+@view-transition { navigation: auto; }
+/* overflow:hidden on body creates a non-scrolling sticky ancestor. Clip only x. */
+html:has([data-vio-document]), body:has([data-vio-document]) { overflow-x: clip !important; }
+::view-transition-group(vio-document) { animation-duration: 1100ms; animation-timing-function: cubic-bezier(.22,1,.36,1); }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*) { animation-duration: 0s !important; }
+}
+
 /* ÆVO cinematic protocols: every animation restores its original state. */
 .aevo-effect-notice {
   position: fixed; inset-block-start: 5rem; inset-inline-start: 50%; z-index: 80;

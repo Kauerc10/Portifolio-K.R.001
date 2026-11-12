@@ -34,3 +34,6 @@ next-env.d.ts
 
 # Isolated implementation branches
 /.worktrees/
+
+# User-supplied style references can contain operational records.
+/docs/redesign-ruon/referencias-estilo-projetos/originais/

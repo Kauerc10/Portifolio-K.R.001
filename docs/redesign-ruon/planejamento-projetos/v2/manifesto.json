@@ -1,0 +1,25 @@
+{
+  "versao": "v2",
+  "imagens": [
+    {
+      "arquivo": "imagens/atlas.png",
+      "origem": "C:\\Users\\Kauerc\\.codex\\generated_images\\01a1c240-c001-7740-9855-6d86cae1c56d\\exec-0661c30a-6342-42a6-a5c2-01b445405926.png",
+      "sha256": "DA45FA09B01061D5B83A10DA621FF9887F2D593CC629239DBC2E55B729C4D886",
+      "largura": 1024,
+      "altura": 1536,
+      "prompt": "prompts/atlas.txt",
+      "ferramenta": "imagegen",
+      "estado": "aguardando-revisao"
+    },
+    {
+      "arquivo": "imagens/vecom.png",
+      "origem": "C:\\Users\\Kauerc\\.codex\\generated_images\\01a1c240-c001-7740-9855-6d86cae1c56d\\exec-44b08eff-81f7-4f3b-b58c-5bc0e55dbd8b.png",
+      "sha256": "115B4C7382907E33E3F3E1AE17D2DF8AD6486FA1BE85F5A6CD8E79B77FA4FBB4",
+      "largura": 1024,
+      "altura": 1536,
+      "prompt": "prompts/vecom.txt",
+      "ferramenta": "imagegen",
+      "estado": "aguardando-revisao"
+    }
+  ]
+}
