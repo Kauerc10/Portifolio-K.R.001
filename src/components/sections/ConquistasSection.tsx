@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
+import SectionMotionEnhancer from './SectionMotionEnhancer';
 
 const medalAssets = [
   {
@@ -32,7 +33,10 @@ export default function ConquistasSection({ dict }: { dict: Dictionary['conquist
             const { illustration, certificate } = medalAssets[index];
             return (
               <article className={`conquistas-editorial__card conquistas-editorial__card--${index === 0 ? 'silver' : 'bronze'}`} key={certificate}>
-                <img className="conquistas-editorial__medal" src={illustration} alt="" width="160" height="160" loading="lazy" />
+                <span className="conquistas-editorial__medal-frame">
+                  <img className="conquistas-editorial__medal" src={illustration} alt="" width="160" height="160" loading="lazy" />
+                  <span className="conquistas-editorial__medal-sweep" data-motion-medal-sweep aria-hidden="true" />
+                </span>
                 <div>
                   <span className="editorial-kicker">OBMEP</span>
                   <h3>{medal.title}</h3>
@@ -57,6 +61,7 @@ export default function ConquistasSection({ dict }: { dict: Dictionary['conquist
           </div>
         </div>
       </div>
+      <SectionMotionEnhancer sectionId="conquistas" kind="conquistas" />
     </section>
   );
 }
