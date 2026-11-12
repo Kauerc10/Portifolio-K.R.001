@@ -53,7 +53,8 @@ export function createMotionScope(root: HTMLElement) {
   });
   coverObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-language-phase', 'data-intro-pending'] });
   // The intro is a native dialog inside the hero; only its open attribute is relevant.
-  document.querySelectorAll('dialog').forEach(dialog => coverObserver.observe(dialog, { attributes: true, attributeFilter: ['open'] }));
+  const hero = document.getElementById('hero');
+  if (hero) coverObserver.observe(hero, { subtree: true, childList: true, attributes: true, attributeFilter: ['open'] });
   media?.addEventListener('change', onPreference);
   document.addEventListener('visibilitychange', onVisibility);
   window.addEventListener('resize', cancel);
