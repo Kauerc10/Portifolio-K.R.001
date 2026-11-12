@@ -19,11 +19,12 @@
 .formacao-editorial__more { position: relative; }
 .formacao-editorial__expansion-edge { position: absolute; inset-inline-start: -.8rem; inset-block-start: 2.3rem; width: 2px; height: calc(100% - 2.3rem); background: var(--editorial-violet); transform: scaleY(0); transform-origin: top; transition: transform .45s cubic-bezier(.16,1,.3,1); pointer-events: none; }
 .formacao-editorial__more[open] .formacao-editorial__expansion-edge { transform: scaleY(1); }
-.conquistas-editorial__medal-frame { position: relative; display: block; width: 10rem; height: 10rem; margin: 0 auto 1.2rem; overflow: visible; }
+.conquistas-editorial__medal-frame { position: relative; display: block; width: min(9rem, 100%); aspect-ratio: 1; margin: 0 auto 1.2rem; overflow: visible; }
 .conquistas-editorial__medal-frame .conquistas-editorial__medal { width: 100%; height: 100%; margin: 0; }
-.conquistas-editorial__medal-sweep { position: absolute; inset: 0; width: 100%; background: linear-gradient(110deg, transparent 38%, color-mix(in srgb, var(--editorial-violet) 38%, white) 50%, transparent 62%); transform: translateX(-110%); pointer-events: none; mix-blend-mode: screen; mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; }
-.conquistas-editorial__medal-frame[data-medal-kind='silver'] .conquistas-editorial__medal-sweep { mask-image: url('/assets/achievement-silver.svg'); -webkit-mask-image: url('/assets/achievement-silver.svg'); }
-.conquistas-editorial__medal-frame[data-medal-kind='bronze'] .conquistas-editorial__medal-sweep { mask-image: url('/assets/achievement-bronze.svg'); -webkit-mask-image: url('/assets/achievement-bronze.svg'); }
+.conquistas-editorial__medal-mask { position: absolute; inset: 0; overflow: hidden; pointer-events: none; mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; }
+.conquistas-editorial__medal-frame[data-medal-kind='silver'] .conquistas-editorial__medal-mask { mask-image: url('/assets/achievement-silver.svg'); -webkit-mask-image: url('/assets/achievement-silver.svg'); }
+.conquistas-editorial__medal-frame[data-medal-kind='bronze'] .conquistas-editorial__medal-mask { mask-image: url('/assets/achievement-bronze.svg'); -webkit-mask-image: url('/assets/achievement-bronze.svg'); }
+.conquistas-editorial__medal-sweep { position: absolute; inset: 0; width: 100%; background: linear-gradient(110deg, transparent 38%, color-mix(in srgb, var(--editorial-violet) 38%, white) 50%, transparent 62%); transform: translateX(-110%); pointer-events: none; mix-blend-mode: screen; }
 .conquistas-editorial__medal { display: block; }
 .conquistas-editorial__card a { position: relative; text-decoration: none; }
 .conquistas-editorial__card a::after { content: ''; position: absolute; inset-inline: 0; inset-block-end: -.16em; height: 2px; background: var(--editorial-violet); transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
