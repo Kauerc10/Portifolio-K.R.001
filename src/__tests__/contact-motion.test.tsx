@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
 import Contact from '@/components/sections/ContatoSection';
 import Footer from '@/components/sections/Footer';
@@ -29,9 +29,9 @@ it('cancels the arrow motion when the document is covered by a navigation transi
     fireEvent.change(screen.getByRole('textbox', { name: /Assunto/i }), { target: { value: 'Oi' } });
     fireEvent.change(screen.getByRole('textbox', { name: /Mensagem/i }), { target: { value: 'Olá' } });
     fireEvent.click(screen.getByRole('button', { name: /Enviar mensagem/i }));
-    document.documentElement.dataset.languagePhase = 'cover';
+    await act(async () => { document.documentElement.dataset.languagePhase = 'cover'; });
     await waitFor(() => expect(container.querySelector('form')).not.toHaveAttribute('data-submitting'));
-    resolve(new Response(JSON.stringify({ success: true }), { status: 200 }));
+    await act(async () => { resolve(new Response(JSON.stringify({ success: true }), { status: 200 })); });
   } finally {
     delete document.documentElement.dataset.languagePhase;
     vi.unstubAllGlobals();

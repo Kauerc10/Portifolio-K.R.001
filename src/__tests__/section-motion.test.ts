@@ -69,7 +69,7 @@ it('enters only when visible, settles on leaving, and never replays the same ent
   const scope = createMotionScope(root);
   const run = vi.fn(() => scope.animate(root, [], { duration: 650 }));
   scope.onEnter(root, run);
-  const visible = (isIntersecting: boolean) => intersection([{ target: root, isIntersecting } as IntersectionObserverEntry], {} as IntersectionObserver);
+  const visible = (isIntersecting: boolean) => intersection([{ target: root, isIntersecting } as unknown as IntersectionObserverEntry], {} as IntersectionObserver);
   expect(run).not.toHaveBeenCalled();
   visible(true);
   expect(run).toHaveBeenCalledOnce();
