@@ -27,7 +27,6 @@
   background: var(--editorial-violet);
   opacity: 0;
   pointer-events: none;
-  will-change: transform, height;
 }
 
 .contact-editorial__form:focus-within::before {

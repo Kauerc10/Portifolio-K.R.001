@@ -8,20 +8,17 @@ import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
 export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
   const pendingTop = useRef(false);
   const trackingFrame = useRef(0);
+  const trackingDeadline = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const hero = () => document.querySelector<HTMLElement>('#hero h1');
-    const track = () => {
-      if (!pendingTop.current) return;
-      if (window.scrollY <= 2) {
-        pendingTop.current = false;
-        hero()?.focus({ preventScroll: true });
-        return;
-      }
-      trackingFrame.current = requestAnimationFrame(track);
+    const cancel = () => {
+      pendingTop.current = false;
+      cancelAnimationFrame(trackingFrame.current);
+      if (trackingDeadline.current) clearTimeout(trackingDeadline.current);
+      trackingDeadline.current = null;
     };
-    const cancel = () => { pendingTop.current = false; cancelAnimationFrame(trackingFrame.current); };
     const stopReduced = () => {
       if (!motion.matches || !pendingTop.current) return;
       window.scrollTo({ top: window.scrollY, behavior: 'instant' });
@@ -73,6 +70,11 @@ export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
       }
       trackingFrame.current = requestAnimationFrame(trackTop);
     });
+    trackingDeadline.current = setTimeout(() => {
+      pendingTop.current = false;
+      cancelAnimationFrame(trackingFrame.current);
+      trackingDeadline.current = null;
+    }, 4000);
   }
 
   return (

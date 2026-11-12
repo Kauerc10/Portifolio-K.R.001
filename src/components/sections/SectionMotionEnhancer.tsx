@@ -21,9 +21,9 @@ export default function SectionMotionEnhancer({ sectionId, kind }: Props) {
     }
     if (kind === 'experiencia') {
       root.querySelectorAll<HTMLElement>('[data-motion-experience-item]').forEach((item, index) => {
-        reveal(item.querySelector('[data-motion-dot]'), [{ transform: 'scale(.55)', opacity: .55 }, { transform: 'scale(1)', opacity: 1 }], { duration: 460, delay: index * 100 });
-        reveal(item.querySelector('[data-motion-segment]'), [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 500, delay: 70 + index * 100 });
-        reveal(item.querySelector('[data-motion-period]'), [{ backgroundColor: 'transparent' }, { backgroundColor: 'color-mix(in srgb, var(--editorial-violet) 16%, transparent)' }], { duration: 430, delay: 120 + index * 100 });
+        reveal(item.querySelector('[data-motion-segment]'), [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 450 });
+        reveal(item.querySelector('[data-motion-dot]'), [{ transform: 'scale(.55)', opacity: .55 }, { transform: 'scale(1)', opacity: 1 }], { duration: 260, delay: 470 });
+        reveal(item.querySelector('[data-motion-period]'), [{ backgroundColor: 'transparent' }, { backgroundColor: 'color-mix(in srgb, var(--editorial-violet) 16%, transparent)' }], { duration: 300, delay: 540 });
       });
     }
     if (kind === 'skills') {
@@ -38,7 +38,7 @@ export default function SectionMotionEnhancer({ sectionId, kind }: Props) {
       });
       root.querySelectorAll('[data-motion-skill-rule]').forEach((rule, index) => reveal(rule, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 420, delay: index * 70 }));
     }
-    if (kind === 'conquistas') root.querySelectorAll('[data-motion-medal-sweep]').forEach((sweep, index) => reveal(sweep, [{ transform: 'translateX(-120%)' }, { transform: 'translateX(120%)' }], { duration: 850, delay: index * 110 }));
+    if (kind === 'conquistas') root.querySelectorAll('[data-motion-medal-sweep]').forEach((sweep, index) => reveal(sweep, [{ transform: 'translateX(-110%)' }, { transform: 'translateX(110%)' }], { duration: 850, delay: index * 110 }));
     if (kind === 'formacao') {
       root.querySelectorAll<HTMLDetailsElement>('details.formacao-editorial__more').forEach(details => {
         // The native details-content transition in refinement-micro.css owns the
