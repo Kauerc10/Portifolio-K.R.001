@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
-import { useRef, useState, type FormEvent } from 'react';
+import { useRef, useState, type FocusEvent, type FormEvent } from 'react';
 import type { Dictionary } from '@/i18n/types';
 import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
 
@@ -20,6 +20,7 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
   const [feedbackState, setFeedbackState] = useState<'idle' | 'success' | 'error'>('idle');
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [sending, setSending] = useState(false);
+  const [activeField, setActiveField] = useState<FieldName | null>(null);
 
   function validateForm(form: HTMLFormElement) {
     const data = new FormData(form);
@@ -43,6 +44,13 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
       delete next[name];
       return next;
     });
+  }
+
+  function focusField(event: FocusEvent<HTMLFormElement>) {
+    const target = event.target;
+    if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+      setActiveField(target.name as FieldName);
+    }
   }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -114,8 +122,12 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
         action="/api/contato"
         noValidate
         onSubmit={submit}
+        onFocus={focusField}
+        onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setActiveField(null); }}
         onFocusCapture={() => { if (!started.current) started.current = Date.now(); }}
         aria-busy={sending}
+        data-active-field={activeField ?? undefined}
+        data-submitting={sending || undefined}
       >
         <input type="text" name="botcheck" hidden autoComplete="off" tabIndex={-1} />
         {fields.map(field => (
