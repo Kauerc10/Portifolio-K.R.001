@@ -64,12 +64,14 @@ it('animates the submit state only while the request is in flight', async () => 
 });
 
 it('only focuses the hero after a reduced-motion return reaches the top', async () => {
-  vi.stubGlobal('scrollY', 128);
+  Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 });
+  vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
   vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() })));
   const focus = vi.spyOn(HTMLElement.prototype, 'focus');
   render(<><section id="hero"><h1>Hero</h1></section><Footer dict={pt.footer} /></>);
   fireEvent.click(screen.getByRole('link', { name: /Voltar ao topo/i }));
   await waitFor(() => expect(focus).toHaveBeenCalled());
   focus.mockRestore();
+  vi.mocked(window.scrollTo).mockRestore();
   vi.unstubAllGlobals();
 });

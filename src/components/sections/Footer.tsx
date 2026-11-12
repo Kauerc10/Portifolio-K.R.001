@@ -54,9 +54,13 @@ export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     pendingTop.current = true;
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' });
-    if (reduceMotion) {
+    if (window.scrollY <= 2) {
       pendingTop.current = false;
       document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+      return;
+    }
+    if (reduceMotion) {
+      pendingTop.current = false;
       return;
     }
     cancelAnimationFrame(trackingFrame.current);
