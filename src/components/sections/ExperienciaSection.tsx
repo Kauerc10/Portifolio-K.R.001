@@ -1,5 +1,6 @@
 import type { Dictionary } from '@/i18n/types';
 import styles from './ExperienciaSection.module.css';
+import SectionMotionEnhancer from './SectionMotionEnhancer';
 
 export default function ExperienciaSection({ dict: d }: { dict: Dictionary['experiencia'] }) {
   return (
@@ -11,12 +12,12 @@ export default function ExperienciaSection({ dict: d }: { dict: Dictionary['expe
         </div>
         <ol className="editorial-timeline" aria-label={d.timelineLabel}>
           {d.roles.map((role, idx) => (
-            <li key={`${role.company}-${role.title}`} className="editorial-timeline__item">
-              <span className={`editorial-timeline__dot ${idx === 1 ? 'editorial-timeline__dot--warm' : ''}`} aria-hidden="true" />
+            <li key={`${role.company}-${role.title}`} className="editorial-timeline__item" data-motion-experience-item>
+              <span data-motion-dot className={`editorial-timeline__dot ${idx === 1 ? 'editorial-timeline__dot--warm' : ''}`} aria-hidden="true" />
               <div>
                 <h3>{role.company}</h3>
                 <strong>{role.title}</strong>
-                <span className="editorial-timeline__period">{role.period}</span>
+                <span className="editorial-timeline__period" data-motion-period>{role.period}</span>
                 <p>{role.description}</p>
                 <ul>{role.achievements.map((ach) => <li key={ach}>{ach}</li>)}</ul>
               </div>
@@ -24,6 +25,7 @@ export default function ExperienciaSection({ dict: d }: { dict: Dictionary['expe
           ))}
         </ol>
       </div>
+      <SectionMotionEnhancer sectionId="experiencia" kind="experiencia" />
       <picture className={styles.landscape} aria-hidden="true">
         <source media="(max-width: 900px)" srcSet="/images/editorial-details/experience-ribbon-mobile.webp 800w" sizes="100vw" />
         <img src="/images/editorial-details/experience-ribbon-desktop.webp" sizes="100vw" alt="" width="2172" height="304" loading="lazy" decoding="async" />

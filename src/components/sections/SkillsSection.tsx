@@ -17,6 +17,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { splitAccentTitle } from '@/lib/editorial';
+import SectionMotionEnhancer from './SectionMotionEnhancer';
 
 const groupIcons = [Braces, Cpu, Sparkles];
 
@@ -60,7 +61,7 @@ export default function SkillsSection({ dict: d }: { dict: Dictionary['skills'] 
         {d.groups.map((group, groupIndex) => {
           const GroupIcon = groupIcons[groupIndex] ?? Cpu;
           return (
-            <article className="editorial-skill-row" key={group.title}>
+            <article className="editorial-skill-row" key={group.title} data-motion-skill-row>
               <div className="editorial-skill-row__copy">
                 <GroupIcon className="editorial-skill-row__icon" aria-hidden="true" />
                 <h3>{group.title}</h3>
@@ -87,6 +88,7 @@ export default function SkillsSection({ dict: d }: { dict: Dictionary['skills'] 
         })}
         </div>
       </div>
+      <SectionMotionEnhancer sectionId="skills" kind="skills" />
     </section>
   );
 }

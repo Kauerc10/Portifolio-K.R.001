@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { SHARED_FORMATION_META, splitAccentTitle } from '@/lib/editorial';
+import SectionMotionEnhancer from './SectionMotionEnhancer';
 
 type Study = {
   id: string;
@@ -92,18 +93,21 @@ export default function FormacaoSection({ dict }: { dict: { title: string; showA
               {hasMore && (
                 <details className="formacao-editorial__more">
                   <summary>{dict.showAll} ({group.items.length})</summary>
-                  <StudyList
+                  <div data-motion-details-content>
+                    <StudyList
                     studies={group.items.slice(summaryLimit)}
                     institution={group.institution}
                     continuedInstitution={lastSummaryInstitution}
                     otherCourses={dict.otherCourses}
-                  />
+                    />
+                  </div>
                 </details>
               )}
             </section>
           );
         })}
       </div>
+      <SectionMotionEnhancer sectionId="formacao" kind="formacao" />
     </section>
   );
 }
