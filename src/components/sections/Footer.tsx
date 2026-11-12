@@ -1,36 +1,29 @@
 'use client';
 
-import { useState } from 'react';
-import { Check, Copy, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import type { MouseEvent } from 'react';
 import type { Dictionary } from '@/i18n/types';
+import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
 
-export default function Footer({ dict: d }: { dict: Dictionary['footer'] }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard?.writeText('kaue.ruon@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
-  };
+export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
+  function returnToTop(event: MouseEvent<HTMLAnchorElement>) {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    event.preventDefault();
+    document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' });
+  }
 
   return (
-    <footer className="footer">
-      <nav className="footer__channels" aria-label={d.channelsLabel}>
-        <button type="button" onClick={handleCopyEmail} className="footer__channel" aria-label={d.emailLabel}>
-          <Mail aria-hidden="true" />
-          <span>{copied ? d.copied : d.email}</span>
-          {copied ? <Check aria-hidden="true" /> : <Copy className="footer__channel-action" aria-hidden="true" />}
-        </button>
-        <a href="https://www.linkedin.com/in/kauerc/" target="_blank" rel="noopener noreferrer" className="footer__channel">
-          <Linkedin aria-hidden="true" />
-          <span>LinkedIn</span>
-        </a>
-        <a href="https://github.com/Kauerc10" target="_blank" rel="noopener noreferrer" className="footer__channel">
-          <Github aria-hidden="true" />
-          <span>GitHub</span>
-        </a>
+    <footer className="editorial-section footer-editorial" id="rodape">
+      <div className="footer-editorial__brand">kauê<span>ruon</span></div>
+      <nav className="footer-editorial__channels" aria-label={dict.channelsLabel}>
+        <a href={DIRECT_CONTACT_LINKS.email}><Mail aria-hidden="true" />{dict.email}</a>
+        <a href={DIRECT_CONTACT_LINKS.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />LinkedIn</a>
+        <a href={DIRECT_CONTACT_LINKS.github} target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" />GitHub</a>
       </nav>
-      <p className="text-[11px] text-slate-500 font-mono mt-1">{d.copyright}</p>
+      <a className="footer-editorial__top" href="#hero" onClick={returnToTop}>{dict.topLabel}<ArrowUpRight aria-hidden="true" /></a>
+      <p>{dict.copyright}</p>
     </footer>
   );
 }

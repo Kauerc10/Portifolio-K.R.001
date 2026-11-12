@@ -1,0 +1,22 @@
+{
+  "touch": "CKF selected",
+  "zoomMethod": "root font 200%; not browser zoom",
+  "overflow": false,
+  "cls": 0.286596184226516,
+  "navigation": [
+    {
+      "domContentLoaded": 515.1999999992549,
+      "duration": 589.3000000007451
+    }
+  ],
+  "paint": [
+    {
+      "name": "first-paint",
+      "startTime": 268
+    },
+    {
+      "name": "first-contentful-paint",
+      "startTime": 480
+    }
+  ]
+}

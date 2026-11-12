@@ -45,10 +45,23 @@
     "greetingH1Line1": "Olá, que bom ter",
     "greetingH1Line2": "você por aqui.",
     "locationEdu": "Blumenau, SC · ADS em formação",
-    "ctaResumeShort": "Currículo"
+    "ctaResumeShort": "Currículo",
+    "introContinue": "Continuar",
+    "introPresentation": "Eu sou o Kauê. Aqui está um pouco do que eu construo."
   },
   "sobre": {
+    "eyebrow": "Sobre mim",
     "title": "SOBRE MIM",
+    "lede": "Tecnologia para resolver problemas",
+    "headlineAccent": "de forma prática.",
+    "name": "Kauê Ruon Cardoso",
+    "profile": "Atuo em Blumenau unindo desenvolvimento web, automação de processos e suporte técnico próximo para transformar rotinas complexas em ferramentas simples.",
+    "pillarsLabel": "Áreas de atuação",
+    "pillars": [
+      { "title": "Desenvolvimento", "description": "Criação de aplicações sob medida." },
+      { "title": "Automações", "description": "Rotinas que poupam tempo." },
+      { "title": "Suporte", "description": "Apoio no uso e na evolução da tecnologia." }
+    ],
     "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",
     "bioP2": "Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou automatizar processos, mesmo sem ninguém me pedir.",
     "bioP3": "Construo software guiando IA generativa (Claude, GPT) como ferramenta primária, de protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é decompor o problema, estruturar a instrução e conectar as peças até o fluxo inteiro funcionar. É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.",
@@ -78,38 +91,21 @@
     "authenticated": "AUTENTICADO ✓"
   },
   "experiencia": {
-    "title": "DO HISTÓRICO DE ATUAÇÃO",
+    "lede": "Vivência prática em desenvolvimento, suporte e automações, aplicando tecnologia em contextos reais.",
+    "timelineLabel": "Trajetória profissional",
+    "title": "Experiência",
     "roles": [
       {
-        "period": "Jul 2026 → ATUAL",
-        "status": "EM DESENVOLVIMENTO",
-        "title": "Founder & Builder — DocFácil",
-        "company": "K-HUB Soluções",
-        "location": "github.com/Kauerc10/docfacil ↗",
-        "description": "Plataforma Next.js que gera documentos legais conversando com o usuário. Construí uma camada agnóstica de provedor (`AIProvider`) com factory por env var, API route server-side (`/api/ai/generate`) que mantém a chave secreta no servidor, streaming de respostas e tratamento de erro tipado (`AIError`). Providers reais (OpenAI / Anthropic / Gemini) são pluggáveis sem tocar no resto do app.",
-        "achievements": [
-          "Interface conversacional (chat guiado) com preview do documento em tempo real.",
-          "A camada de IA é desacoplada. Trocar de LLM não exige mudar o front-end."
-        ],
-        "skills": [
-          "Next.js 16",
-          "TypeScript",
-          "Prisma",
-          "IA Generativa"
-        ],
-        "projectLabel": "ARQUITETURA DE IA: AI PROVIDER + STREAMING"
-      },
-      {
-        "period": "2023 → ATUAL",
+        "period": "Ago 2023 → Atual",
         "status": "EM CURSO",
-        "title": "Cartorário / Depto. de Procurações",
+        "title": "Cartorário · Procurações, atendimento e automação",
         "company": "Cartório Gaya",
         "location": "Blumenau/SC",
-        "description": "Construí uma automação que consome endpoints do Detran-RS pra gerar procurações de veículos automaticamente, eliminando digitação manual repetitiva. Está em produção no cartório até hoje. Uma tarefa que tomava minutos virou poucos cliques.",
+        "description": "Atendimento e organização de demandas no Tabelionato de Notas e Registro Civil do Distrito de Itoupava, em Blumenau.",
         "achievements": [
-          "Redação de procurações, escrituras e inventários.",
-          "Melhoria não supervisionada de metodologias digitais.",
-          "Suporte e diagnóstico geral das redes e hardwares do ambiente."
+          "Orientação a clientes, conferência documental e acompanhamento de prazos e pendências.",
+          "Implantação do Vikunja na Oracle Cloud, com fluxos Kanban, manuais e orientação de usuários.",
+          "Automação de consulta de veículos por API REST, reduzindo uma etapa de cerca de 5 minutos para 20 segundos."
         ],
         "skills": [
           "Node.js",
@@ -136,21 +132,21 @@
     ]
   },
   "skills": {
-    "title": "DAS COMPETÊNCIAS",
-    "subtitle": "O que eu realmente uso nos projetos (verificável nos repositórios públicos). Sem porcentagens inventadas. Eu construo com IA como ferramenta primária e domino o fluxo de decompor, instruir e conectar.",
+    "eyebrow": "Competências",
+    "groupsLabel": "Áreas de competência",
+    "resumeCta": "Ver meu currículo",
+    "title": "Como eu construo",
+    "subtitle": "Ferramentas para criar aplicações, integrar sistemas e automatizar rotinas.",
     "groups": [
       {
-        "title": "IA Generativa",
-        "items": [
-          "Integração de LLMs",
-          "Arquitetura de Providers",
-          "OpenAI / Anthropic / Gemini",
-          "Streaming de respostas",
-          "Prompt engineering"
-        ]
-      },
-      {
-        "title": "Construindo com",
+        "title": "Desenvolvimento",
+        "description": "Produtos web modernos, tipados e sustentáveis.",
+        "links": [
+          {
+            "label": "CKF Manutenção",
+            "href": "#project-ckf"
+          }
+        ],
         "items": [
           "JavaScript / TypeScript",
           "React / Next.js",
@@ -159,7 +155,14 @@
         ]
       },
       {
-        "title": "Praticando",
+        "title": "Automação",
+        "description": "Fluxos que conectam produto, dados e operação.",
+        "links": [
+          {
+            "label": "Atlas Notarial",
+            "href": "#project-atlas"
+          }
+        ],
         "items": [
           "APIs REST",
           "Automação de processos",
@@ -168,22 +171,30 @@
         ]
       },
       {
-        "title": "Competências Complementares",
+        "title": "IA aplicada",
+        "description": "Modelos e integrações aplicados a problemas reais.",
+        "links": [
+          {
+            "label": "Ver no DocFácil",
+            "href": "#project-docfacil"
+          }
+        ],
         "items": [
-          "Gestão Documental",
-          "Atenção a Detalhes",
-          "Resolução de Problemas",
-          "Aprendizagem Rápida",
-          "Raciocínio Lógico",
-          "Trabalho em Equipe",
-          "Inglês (Intermediário)"
+          "Integração de LLMs",
+          "Arquitetura de Providers",
+          "OpenAI / Anthropic / Gemini",
+          "Streaming de respostas",
+          "Prompt engineering"
         ]
       }
     ]
   },
   "conquistas": {
     "article": "Artigo IV",
-    "title": "Museu de Conquistas (OBMEP)",
+    "title": "Conquistas",
+    "description": "Reconhecimentos que marcam minha trajetória em matemática e tecnologia.",
+    "honorsLabel": "Menções honrosas",
+    "certificateLabel": "Ver certificado",
     "medals": [
       {
         "ariaLabel": "Medalha de Prata OBMEP",
@@ -221,33 +232,79 @@
   },
   "formacao": {
     "article": "Anexo I",
-    "title": "DA FORMAÇÃO E CERTIFICAÇÕES",
-    "statusCompleted": "CONCLUÍDO",
-    "btnOpen": "ABRIR",
-    "items": [
+    "title": "Formação e cursos",
+    "groups": [
       {
-        "title": "Ensino Médio Completo",
-        "info": "EEB Cel. Pedro Christiano Feddersen"
+        "id": "higher",
+        "title": "Ensino superior",
+        "items": [
+          {
+            "id": "ads",
+            "title": "Análise e Desenvolvimento de Sistemas",
+            "status": "Cursando desde agosto de 2026"
+          }
+        ]
       },
       {
-        "title": "Téc. Gestão Administrativa",
-        "info": "156h · VisualMídia · 2020"
+        "id": "complementary",
+        "title": "Cursos e certificações",
+        "items": [
+          {
+            "id": "sfc",
+            "title": "Scrum Fundamentals Certified (SFC)",
+            "status": "Emitido em 05/11/2026 · Credencial nº 1205645",
+            "evidence": "https://www.linkedin.com/in/kauerc/"
+          },
+          {
+            "id": "gestao",
+            "title": "Téc. Gestão Administrativa",
+            "hours": "156 h",
+            "year": "2020"
+          },
+          {
+            "id": "operador",
+            "title": "Operador de Tecnologia",
+            "hours": "92 h",
+            "year": "2017"
+          },
+          {
+            "id": "games",
+            "title": "Programador de Games",
+            "hours": "40 h",
+            "year": "2017"
+          },
+          {
+            "id": "max",
+            "title": "3ds Max",
+            "hours": "32 h",
+            "year": "2018"
+          },
+          {
+            "id": "fraudes",
+            "title": "Documentoscopia, Grafotécnica e Prevenção de Fraudes Digitais"
+          }
+        ]
       },
       {
-        "title": "Operador de Tecnologia",
-        "info": "92h · VisualMídia · 2017"
-      },
-      {
-        "title": "Programador de Games",
-        "info": "40h · VisualMídia · 2017"
-      },
-      {
-        "title": "3Ds Max",
-        "info": "32h · VisualMídia · 2018"
+        "id": "basic",
+        "title": "Educação básica",
+        "items": [
+          {
+            "id": "high-school",
+            "title": "Ensino médio completo",
+            "institution": "EEB Cel. Pedro Christiano Feddersen"
+          }
+        ]
       }
-    ]
+    ],
+    "otherCourses": "Outros cursos",
+    "showAll": "Ver todos os cursos"
   },
   "projetos": {
+    "editorialTitle": "Projetos selecionados",
+    "editorialDescription": "Soluções reais que desenvolvi para automatizar processos, simplificar rotinas e resolver problemas do dia a dia com tecnologia.",
+    "flowLabels": ["Consulta", "Dados do veículo", "Procuração"],
+    "navLabels": { "atlas": "Atlas Notarial", "ckf": "CKF Manutenção", "docfacil": "DocFácil", "folilib": "Foli" },
     "title": "DAS EVIDÊNCIAS DE PROJETO",
     "btnDemo": "DEMO AO VIVO",
     "btnRepo": "REPOSITÓRIO",
@@ -257,6 +314,7 @@
       "docfacil": {
         "title": "DocFácil — IA Generativa em Documentos Legais",
         "status": "DEMO AO VIVO · SAAS IA",
+        "role": "Papel: Arquitetura full-stack, camada de IA e interface",
         "problem": "Redação manual de documentos jurídicos propensa a inconsistências e burocracia desnecessária.",
         "solution": "Plataforma Next.js 16 com camada de IA agnóstica (`AIProvider`), streaming server-side e suporte plugável a OpenAI, Anthropic e Gemini.",
         "stack": "Next.js 16 · TypeScript · IA Generativa · RAG",
@@ -265,14 +323,16 @@
       "atlas": {
         "title": "Atlas Notarial — Automação com API Detran-RS",
         "status": "EM PRODUÇÃO · CARTÓRIO GAYA",
-        "problem": "Emissão manual de procurações de veículos levando 5 minutos de digitação por documento.",
-        "solution": "Tempo reduzido de 5 minutos para 20 segundos por procuração com 100% de precisão jurídica.",
+        "role": "Papel: Concepção, desenvolvimento e integração notarial",
+        "problem": "A emissão de procurações de veículos exigia consultas e digitação manual.",
+        "solution": "Automatizei a consulta e o preenchimento dos dados para apoiar a emissão no Cartório Gaya.",
         "stack": "Node.js · REST APIs · Automação Notarial · Vitest",
         "solutionLabel": "MÉTRICA DE IMPACTO:"
       },
       "ckf": {
         "title": "CKF Manutenção — Orçamentos & Maquinário",
         "status": "EM PRODUÇÃO · CORPORATIVO",
+        "role": "Papel: Desenvolvimento da aplicação, banco de dados e relatórios",
         "problem": "Falta de controle centralizado para emissão de orçamentos de manutenção em máquinas pesadas.",
         "solution": "Interface React com Supabase, exportação de relatórios (CSV/XLSX) e suíte de testes unitários automatizada com Vitest.",
         "stack": "React · TypeScript · Supabase · Vitest · XLSX",
@@ -281,6 +341,7 @@
       "folilib": {
         "title": "Foli — PDF Layout Engine em TypeScript",
         "status": "OPEN SOURCE · LIB TYPESCRIPT",
+        "role": "Papel: Autoria da biblioteca e motor de layout",
         "problem": "Quebras de layout e overflow inesperado ao gerar PDFs complexos no Node.js e navegador.",
         "solution": "Fluent Builder API com motor de layout que garante zero overflow, primitivas nativas e suporte Unicode pt-BR.",
         "stack": "TypeScript · PDF Engine · Open Source · Zero-Overflow",
@@ -290,16 +351,16 @@
   },
   "contato": {
     "title": "ENTRE EM CONTATO",
-    "nameLabel": "REQUERENTE (seu nome)",
+    "nameLabel": "Nome",
     "namePlaceholder": "Seu nome completo...",
-    "emailLabel": "E-MAIL DE CONTATO",
+    "emailLabel": "E-mail",
     "emailPlaceholder": "seu.email@dominio.com...",
-    "subjectLabel": "OBJETO DO CONTATO (assunto)",
-    "subjectPlaceholder": "Selecione o assunto...",
-    "messageLabel": "EXPOSIÇÃO DOS FATOS (mensagem)",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "Sobre o que você quer conversar?",
+    "messageLabel": "Mensagem",
     "messagePlaceholder": "Descreva detalhes do projeto ou oportunidade...",
-    "btnSubmit": "Protocolar Solicitação",
-    "btnSubmitting": "Protocolando...",
+    "btnSubmit": "Enviar mensagem",
+    "btnSubmitting": "Enviando…",
     "subjects": {
       "proposta": "Proposta de Trabalho / Contratação",
       "projeto": "Desenvolvimento de Projeto / Consultoria",
@@ -313,16 +374,21 @@
       "githubTitle": "Repositório de Código"
     },
     "messages": {
-      "SUCCESS": "✓ Petição protocolada com sucesso! Respondo em breve.",
-      "RATE_LIMITED": "Muitas solicitações enviadas. Aguarde alguns minutos para protocolar novamente.",
+      "SUCCESS": "Mensagem enviada com sucesso.",
+      "RATE_LIMITED": "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
       "VALIDATION_ERROR": "Por favor, preencha todos os campos obrigatórios corretamente.",
       "SERVICE_UNAVAILABLE": "Serviço de e-mail temporariamente indisponível. Envie diretamente para kaue.ruon@gmail.com",
       "INTERNAL_ERROR": "Falha interna ao processar envio. Envie diretamente para kaue.ruon@gmail.com"
     },
     "location": "Blumenau / SC — Disponível para atuação remota e projetos globais",
-    "copied": "Copiado!"
+    "copied": "Copiado!",
+    "editorialLabel": "Contato",
+    "editorialTitle": "Vamos",
+    "editorialAccent": "conversar?",
+    "editorialDescription": "Tem um projeto, uma ideia ou uma oportunidade? Me chame por um dos canais diretos ou envie uma mensagem."
   },
   "footer": {
+    "topLabel": "Voltar ao topo",
     "channelsLabel": "Canais de contato",
     "emailLabel": "Copiar endereço de e-mail",
     "email": "E-mail",

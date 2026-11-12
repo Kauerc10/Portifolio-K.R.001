@@ -31,12 +31,12 @@ export default async function HomePage({
       <Navbar dict={dict.nav} />
       <main>
         <HeroSection dict={dict.hero} />
+        <ProjetosSection dict={dict.projetos} />
         <SobreSection dict={dict.sobre} />
         <ExperienciaSection dict={dict.experiencia} />
         <SkillsSection dict={dict.skills} />
-        <ConquistasSection dict={dict.conquistas} />
         <FormacaoSection dict={dict.formacao} />
-        <ProjetosSection dict={dict.projetos} />
+        <ConquistasSection dict={dict.conquistas} />
         <ContatoSection dict={dict.contato} />
       </main>
       <KonamiModal dict={dict.modals} />

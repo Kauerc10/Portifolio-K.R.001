@@ -37,9 +37,15 @@
 
 /* ── 4. Seções do Portfólio ── */
 @import './components/secoes.css';
+@import './components/editorial.css';
+@import './components/language-transition.css';
+@import './components/projects-editorial.css';
+@import './components/contact-footer-editorial.css';
 @import './components/obmep.css';
 @import './components/efeitos.css';
 
 /* ── 5. Responsividade ── */
 /* Precisa vir por ÚLTIMO pra sobrescrever os componentes */
 @import './layout/responsive.css';
+
+@import './components/refinement-micro.css';

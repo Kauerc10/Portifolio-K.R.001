@@ -1,0 +1,21 @@
+const {chromium}=require('C:/Users/suelen.morais/.codex/tmp/portals49-qa/node_modules/playwright');
+const fs=require('fs'); const path=require('path');
+const output=path.resolve('docs/redesign-ruon/evidence/R04/intro');
+(async()=>{ const browser=await chromium.launch({executablePath:'C:/Users/suelen.morais/AppData/Local/ms-playwright/chromium_headless_shell-1248/chrome-headless-shell-win64/chrome-headless-shell.exe'});const results=[];
+for(const [name,width,height] of [['desktop',1440,1000],['mobile',390,844]]){
+ const context=await browser.newContext({viewport:{width,height},recordVideo:{dir:output,size:{width,height}}});const page=await context.newPage();await page.route(/fonts\.(googleapis|gstatic)\.com/,route=>route.abort());
+ const cdp=await context.newCDPSession(page);let frames=0;await cdp.send('Page.enable');cdp.on('Page.screencastFrame',async event=>{if(frames<120)fs.writeFileSync(path.join(output,`${name}-${String(frames++).padStart(2,'0')}.jpg`),Buffer.from(event.data,'base64'));await cdp.send('Page.screencastFrameAck',{sessionId:event.sessionId}).catch(()=>{});});await cdp.send('Page.startScreencast',{format:'jpeg',quality:70,everyNthFrame:3});
+ await page.goto('http://localhost:3067/pt-BR',{waitUntil:'domcontentloaded',timeout:90000});const dialog=page.locator('dialog[open]');await dialog.waitFor();await page.waitForFunction(()=>document.querySelector('dialog')?.dataset.phase==='ready');const button=dialog.getByRole('button');if(!await button.isEnabled())throw Error('button never ready');await page.waitForTimeout(300);if(!await dialog.isVisible())throw Error('auto advanced');await page.screenshot({path:path.join(output,`${name}-ready.png`)});await button.click();await page.waitForTimeout(450);await page.screenshot({path:path.join(output,`${name}-docking.png`)});await page.waitForFunction(()=>!document.querySelector('dialog[open]'));if(await page.locator('h1').evaluate(el=>document.activeElement!==el))throw Error('focus lost');await page.screenshot({path:path.join(output,`${name}-complete.png`)});await cdp.send('Page.stopScreencast');await page.reload({waitUntil:"domcontentloaded"});await page.waitForTimeout(300);if(await page.locator('dialog[open]').count())throw Error('session replay');results.push(`${name}: sequence, manual continuation, focus, session PASS (${frames} filmstrip frames)`);await context.close();
+}
+for(const scenario of ['reduced','hash','nojs','storage','resize','preference','failure','escape']){
+ const context=await browser.newContext({javaScriptEnabled:scenario!=='nojs',reducedMotion:scenario==='reduced'?'reduce':'no-preference'});const page=await context.newPage();await page.route(/fonts\.(googleapis|gstatic)\.com/,route=>route.abort());
+ if(scenario==='storage')await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('blocked')};Storage.prototype.setItem=()=>{throw Error('blocked')}});
+ if(scenario==='failure')await page.route('**/_next/static/**/*.js',route=>route.abort());
+ await page.goto('http://localhost:3067/pt-BR'+(scenario==='hash'?'#projetos':''),{waitUntil:'domcontentloaded',timeout:90000});
+ if(['storage','resize','preference','escape'].includes(scenario)){await page.locator('dialog[open]').waitFor();if(scenario==='preference')await page.emulateMedia({reducedMotion:'reduce'});else if(scenario==='escape')await page.keyboard.press('Escape');else {await page.waitForFunction(()=>document.querySelector('dialog')?.dataset.phase==='ready');await page.locator('dialog button').click();if(scenario==='resize')await page.setViewportSize({width:768,height:900});}await page.waitForFunction(()=>!document.querySelector('dialog[open]'));}
+ if(scenario==='failure')await page.waitForFunction(()=>document.documentElement.dataset.introPending!=='true');
+ if(await page.locator('dialog[open]').count())throw Error(scenario+' blocked');if(!await page.locator('h1').isVisible())throw Error(scenario+' missing content');results.push(scenario+': PASS');await context.close();
+}
+fs.writeFileSync(path.join(output,'results.json'),JSON.stringify(results,null,2));console.log(results.join('\n'));await browser.close();})().catch(e=>{console.error(e);process.exit(1)});
+
+

@@ -1,0 +1,178 @@
+[
+  {
+    "width": 390,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 513.484375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 390,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 513.484375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 390,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 516.53125,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 390,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 516.53125,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 768,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 497.8125,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 768,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 497.8125,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 768,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 522.609375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 768,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 522.609375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 1440,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 598.859375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 1440,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 598.859375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 1440,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 598.859375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 1440,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 598.859375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 1920,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 667.59375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 1920,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 667.59375,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 1920,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 606.40625,
+    "keyboard": "selection and invalid form focus PASS"
+  },
+  {
+    "width": 1920,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "focus": "#project-foli",
+    "idle": 0,
+    "h1": 1,
+    "panelHeight": 606.40625,
+    "keyboard": "selection and invalid form focus PASS"
+  }
+]

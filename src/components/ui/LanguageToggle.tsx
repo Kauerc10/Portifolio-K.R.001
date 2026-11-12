@@ -1,88 +1,149 @@
 'use client';
 
-import { useState, useEffect, type MouseEvent } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import type { Locale } from '@/i18n/config';
+import { languageTransitionKey, type LanguageTransition } from '@/lib/language-transition';
+import styles from './LanguageToggle.module.css';
+
+const motionPreference = '(prefers-reduced-motion: reduce)';
+
+function clearCover() {
+  delete document.documentElement.dataset.languagePhase;
+  delete document.documentElement.dataset.languageDirection;
+}
+
+function restorePosition(record: LanguageTransition) {
+  const section = record.section ? document.getElementById(record.section) : null;
+  const target = section ? section.getBoundingClientRect().top + window.scrollY + record.offset : record.scrollY;
+  window.scrollTo({ top: Math.max(0, target), behavior: 'instant' });
+}
 
 export default function LanguageToggle() {
-  const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname() || '/pt-BR';
+  const currentLocale: Locale = pathname.startsWith('/en-US') ? 'en-US' : 'pt-BR';
+  const isEnglish = currentLocale === 'en-US';
+  const inFlight = useRef(false);
+  const controllerId = useId();
+  const [busy, setBusy] = useState(false);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="w-16 h-8 rounded-full bg-slate-200 dark:bg-white/10 opacity-50 animate-pulse" />
-    );
-  }
-
-  // Extrair o locale atual da URL (/pt-BR/... ou /en-US/...)
-  const currentLocale: Locale = (pathname || '').startsWith('/en-US') ? 'en-US' : 'pt-BR';
-  const isEnglish = currentLocale === 'en-US';
-
-  const handleLanguageSwitch = (targetLocale: Locale, event: MouseEvent<HTMLButtonElement>) => {
-    if (targetLocale === currentLocale) return;
-
-    // Substituir a rota mantendo query params e o hash de seção atual
-    const newPath = (pathname || '').replace(`/${currentLocale}`, `/${targetLocale}`);
-    const searchString = typeof window !== 'undefined' ? window.location.search : '';
-    const hashString = typeof window !== 'undefined' ? window.location.hash : '';
-    const targetUrl = `${newPath}${searchString}${hashString}`;
-
-    // Atualizar o cookie e preservar a posição do cursor antes da navegação
-    try {
-      document.cookie = `portfolio_lang=${targetLocale}; path=/; max-age=31536000; SameSite=Lax`;
-      if (typeof sessionStorage !== 'undefined') {
-        sessionStorage.setItem(
-          'portfolio_cursor_position',
-          JSON.stringify({ x: event.clientX, y: event.clientY })
-        );
-      }
-    } catch {
-      // Cookies/storage may be unavailable in hardened privacy modes.
+    let disposed = false;
+    const root = document.documentElement;
+    function reset() {
+      inFlight.current = false;
+      setBusy(false);
+      clearCover();
     }
 
-    window.location.assign(targetUrl);
-  };
+    async function arrive() {
+      let record: LanguageTransition | null = null;
+      try {
+        record = JSON.parse(sessionStorage.getItem(languageTransitionKey) || 'null');
+      } catch {
+        return;
+      }
+      if (!record) return;
+      if (record.target !== location.pathname + location.search + location.hash || record.expires <= Date.now()) {
+        try { sessionStorage.removeItem(languageTransitionKey); } catch { /* Storage may be blocked. */ }
+        reset();
+        return;
+      }
+      if (root.dataset.languageController && root.dataset.languageController !== controllerId) return;
+      root.dataset.languageController = controllerId;
+
+      await Promise.race([
+        document.fonts.ready,
+        new Promise<void>(resolve => { timers.current.push(setTimeout(resolve, 450)); }),
+      ]);
+      if (disposed) return;
+      restorePosition(record);
+      if (window.matchMedia(motionPreference).matches) {
+        try { sessionStorage.removeItem(languageTransitionKey); } catch { /* Storage may be blocked. */ }
+        reset();
+        return;
+      }
+
+      root.dataset.languageDirection = record.locale === 'en-US' ? 'forward' : 'backward';
+      // Give project/hash and font layouts one frame before uncovering the page.
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (disposed) return;
+        restorePosition(record);
+        root.dataset.languagePhase = 'reveal';
+        timers.current.push(setTimeout(() => {
+          reset();
+          try { sessionStorage.removeItem(languageTransitionKey); } catch { /* Storage may be blocked. */ }
+          const button = [...document.querySelectorAll<HTMLButtonElement>(`[data-language="${record.locale}"]`)]
+            .find(node => node.getClientRects().length > 0);
+          const target = button ?? document.querySelector<HTMLElement>('header button[aria-expanded]');
+          target?.focus({ preventScroll: true });
+        }, 720));
+      }));
+    }
+
+    void arrive();
+    const onPageShow = (event: PageTransitionEvent) => { if (event.persisted) reset(); };
+    window.addEventListener('pageshow', onPageShow);
+    return () => {
+      disposed = true;
+      timers.current.splice(0).forEach(clearTimeout);
+      window.removeEventListener('pageshow', onPageShow);
+      if (root.dataset.languageController === controllerId) delete root.dataset.languageController;
+    };
+  }, []);
+
+  function switchLanguage(targetLocale: Locale) {
+    if (targetLocale === currentLocale || inFlight.current) return;
+    const target = pathname.replace(/^\/(pt-BR|en-US)(?=\/|$)/, '/' + targetLocale) + location.search + location.hash;
+    let canAnimate = false;
+
+    try {
+      document.cookie = `portfolio_lang=${targetLocale}; path=/; max-age=31536000; SameSite=Lax`;
+      sessionStorage.setItem('portfolio-intro-complete', 'true');
+      const sections = [...document.querySelectorAll<HTMLElement>('main > section[id], footer[id]')];
+      const section = sections.find(node => {
+        const rect = node.getBoundingClientRect();
+        return rect.top <= 120 && rect.bottom > 120;
+      });
+      const record: LanguageTransition = {
+        target,
+        locale: targetLocale,
+        expires: Date.now() + 10000,
+        section: section?.id,
+        offset: section ? -section.getBoundingClientRect().top : 0,
+        scrollY: window.scrollY,
+      };
+      sessionStorage.setItem(languageTransitionKey, JSON.stringify(record));
+      canAnimate = !window.matchMedia(motionPreference).matches;
+    } catch {
+      // A direct locale navigation remains available when storage is blocked.
+    }
+
+    inFlight.current = true;
+    setBusy(true);
+    if (!canAnimate) {
+      window.location.assign(target);
+      return;
+    }
+
+    document.documentElement.dataset.languageDirection = targetLocale === 'en-US' ? 'forward' : 'backward';
+    document.documentElement.dataset.languagePhase = 'cover';
+    timers.current.push(setTimeout(() => { window.location.assign(target); }, 480));
+    // Restore the current document if navigation cannot proceed.
+    timers.current.push(setTimeout(() => {
+      clearCover();
+      inFlight.current = false;
+      setBusy(false);
+      try { sessionStorage.removeItem(languageTransitionKey); } catch { /* Storage can be unavailable. */ }
+    }, 3500));
+  }
 
   return (
-    <div
-      className="relative grid h-8 w-20 shrink-0 grid-cols-2 items-center rounded-full border border-[#D9D9E3] dark:border-[#2E2D3B] bg-white/70 dark:bg-black/40 p-0.5 text-xs font-semibold transition-all"
-      role="group"
-      aria-label={isEnglish ? 'Language selector' : 'Seletor de idioma'}
-    >
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-y-0.5 left-0.5 w-[calc(50%-0.125rem)] rounded-full bg-[#14131C] dark:bg-[#F3F2F5] shadow-xs transition-transform duration-200 ease-out ${
-          isEnglish ? 'translate-x-full' : 'translate-x-0'
-        }`}
-      />
-      <button
-        type="button"
-        onClick={(e) => handleLanguageSwitch('pt-BR', e)}
-        aria-pressed={!isEnglish}
-        className={`relative z-10 flex h-full items-center justify-center rounded-full text-xs font-semibold transition-colors ${
-          !isEnglish
-            ? 'text-white dark:text-[#14131C]'
-            : 'text-[#565565] dark:text-[#A09FA8] hover:text-[#14131C]'
-        }`}
-      >
-        PT
-      </button>
-      <button
-        type="button"
-        onClick={(e) => handleLanguageSwitch('en-US', e)}
-        aria-pressed={isEnglish}
-        className={`relative z-10 flex h-full items-center justify-center rounded-full text-xs font-semibold transition-colors ${
-          isEnglish
-            ? 'text-white dark:text-[#14131C]'
-            : 'text-[#565565] dark:text-[#A09FA8] hover:text-[#14131C]'
-        }`}
-      >
-        EN
-      </button>
+    <div className={styles.group} role="group" aria-label={isEnglish ? 'Language selector' : 'Seletor de idioma'} aria-busy={busy}>
+      <span className={styles.marker} aria-hidden="true" data-english={isEnglish} />
+      <button type="button" data-language="pt-BR" onClick={() => switchLanguage('pt-BR')} disabled={busy} aria-pressed={!isEnglish}>PT</button>
+      <button type="button" data-language="en-US" onClick={() => switchLanguage('en-US')} disabled={busy} aria-pressed={isEnglish}>EN</button>
     </div>
   );
 }

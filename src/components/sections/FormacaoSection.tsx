@@ -1,68 +1,108 @@
-import type { Dictionary } from '@/i18n/types';
+import { ArrowUpRight } from 'lucide-react';
+import { SHARED_FORMATION_META, splitAccentTitle } from '@/lib/editorial';
 
-export default function FormacaoSection({ dict }: { dict: Dictionary['formacao'] }) {
+type Study = {
+  id: string;
+  title: string;
+  institution?: string;
+  status?: string;
+  hours?: string;
+  year?: string;
+  evidence?: string;
+};
+
+type StudyGroup = {
+  id: string;
+  title: string;
+  institution?: string;
+  items: Study[];
+};
+
+const summaryLimit = 6;
+
+function resolveInstitution(study: Study, defaultInstitution?: string) {
+  return study.institution ?? SHARED_FORMATION_META[study.id]?.institution ?? defaultInstitution;
+}
+
+function StudyList({
+  studies,
+  institution,
+  continuedInstitution,
+  otherCourses,
+}: {
+  studies: Study[];
+  institution?: string;
+  continuedInstitution?: string;
+  otherCourses?: string;
+}) {
+  const byInstitution = new Map<string | undefined, Study[]>();
+  for (const study of studies) {
+    const name = resolveInstitution(study, institution);
+    const group = byInstitution.get(name);
+    if (group) group.push(study);
+    else byInstitution.set(name, [study]);
+  }
+
+  return [...byInstitution].map(([name, items], index) => {
+    const showHeading = Boolean(name ?? otherCourses) && !(name && index === 0 && name === continuedInstitution);
+    return (
+      <div key={name ?? ''}>
+        {showHeading && <p className="formacao-editorial__institution">{name ?? otherCourses}</p>}
+        <ul className="formacao-editorial__items">
+          {items.map(study => {
+            const shared = SHARED_FORMATION_META[study.id];
+            const hours = study.hours ?? shared?.hours;
+            const year = study.year ?? shared?.year;
+            const details = [study.status, hours, year].filter(Boolean).join(' · ');
+            return (
+              <li className="formacao-editorial__item" key={study.id}>
+                {study.evidence ? (
+                  <a href={study.evidence}>{study.title}<ArrowUpRight size={14} aria-hidden="true" /></a>
+                ) : <strong>{study.title}</strong>}
+                {details && <span>{details}</span>}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  });
+}
+
+export default function FormacaoSection({ dict }: { dict: { title: string; showAll: string; otherCourses?: string; groups: StudyGroup[] } }) {
+  const [titleLead, titleAccent] = splitAccentTitle(dict.title);
   return (
-    <section className="section formacao" id="formacao" data-section="6">
-      <div className="section__line"></div>
-      <span className="section__article">{dict.article}</span>
-      <h2 className="section__title">{dict.title}</h2>
-
-      <div className="formacao__grid">
-        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
-          <div className="formacao__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
-              <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
-            </svg>
-          </div>
-          <h3 className="formacao__name">{dict.items[0].title}</h3>
-          <p className="formacao__info">{dict.items[0].info}</p>
-          <div className="formacao__stamp">{dict.statusCompleted}</div>
-        </div>
-        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
-          <div className="formacao__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-          </div>
-          <h3 className="formacao__name">{dict.items[1].title}</h3>
-          <p className="formacao__info">{dict.items[1].info}</p>
-          <div className="formacao__stamp">{dict.statusCompleted}</div>
-        </div>
-        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
-          <div className="formacao__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-          </div>
-          <h3 className="formacao__name">{dict.items[2].title}</h3>
-          <p className="formacao__info">{dict.items[2].info}</p>
-          <div className="formacao__stamp">{dict.statusCompleted}</div>
-        </div>
-        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
-          <div className="formacao__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
-            </svg>
-          </div>
-          <h3 className="formacao__name">{dict.items[3].title}</h3>
-          <p className="formacao__info">{dict.items[3].info}</p>
-          <div className="formacao__stamp">{dict.statusCompleted}</div>
-        </div>
-        <div className="formacao__card anim-slide magnetic" data-cursor={dict.btnOpen}>
-          <div className="formacao__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-            </svg>
-          </div>
-          <h3 className="formacao__name">{dict.items[4].title}</h3>
-          <p className="formacao__info">{dict.items[4].info}</p>
-          <div className="formacao__stamp">{dict.statusCompleted}</div>
-        </div>
+    <section className="section editorial-section formacao-editorial" id="formacao" data-section="6">
+      <div>
+        <h2 className="editorial-title editorial-title--display">
+          {titleLead}{' '}<em>{titleAccent}</em>
+        </h2>
+      </div>
+      <div className="formacao-editorial__groups">
+        {dict.groups.filter(group => group.items.length > 0).map(group => {
+          const hasMore = group.id === 'complementary' && group.items.length > summaryLimit;
+          const summaryItems = hasMore ? group.items.slice(0, summaryLimit) : group.items;
+          const lastSummaryInstitution = summaryItems.length > 0
+            ? resolveInstitution(summaryItems[summaryItems.length - 1], group.institution)
+            : undefined;
+          return (
+            <section className="formacao-editorial__group" key={group.id} aria-labelledby={`formacao-${group.id}`}>
+              <h3 id={`formacao-${group.id}`}>{group.title}</h3>
+              <StudyList studies={summaryItems} institution={group.institution} otherCourses={dict.otherCourses} />
+              {hasMore && (
+                <details className="formacao-editorial__more">
+                  <summary>{dict.showAll} ({group.items.length})</summary>
+                  <StudyList
+                    studies={group.items.slice(summaryLimit)}
+                    institution={group.institution}
+                    continuedInstitution={lastSummaryInstitution}
+                    otherCourses={dict.otherCourses}
+                  />
+                </details>
+              )}
+            </section>
+          );
+        })}
       </div>
     </section>
   );

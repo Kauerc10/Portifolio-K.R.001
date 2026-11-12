@@ -45,10 +45,23 @@
     "greetingH1Line1": "Hello, great to have",
     "greetingH1Line2": "you here.",
     "locationEdu": "Blumenau, SC · Software Analysis & Dev",
-    "ctaResumeShort": "Resume"
+    "ctaResumeShort": "Resume",
+    "introContinue": "Continue",
+    "introPresentation": "I’m Kauê. Here is a little of what I build."
   },
   "sobre": {
+    "eyebrow": "About me",
     "title": "ABOUT ME",
+    "lede": "Technology for solving",
+    "headlineAccent": "real problems.",
+    "name": "Kauê Ruon Cardoso",
+    "profile": "Based in Blumenau, I combine web development, process automation, and hands-on technical support to turn complex routines into simple tools.",
+    "pillarsLabel": "Areas of work",
+    "pillars": [
+      { "title": "Development", "description": "Purpose-built applications." },
+      { "title": "Automation", "description": "Routines that save time." },
+      { "title": "Support", "description": "Support for using and evolving technology." }
+    ],
     "bioP1": "My interest in technology started early. Whenever I see a manual, repetitive process, I cannot resist trying to automate it. That curiosity took me from iPhone board repair to notary desks and back to technology.",
     "bioP2": "Today I work as a notary clerk at Cartório Gaya in Blumenau, Brazil. I found that I work well in the legal world, but I am always drawn back to technology: I try to improve or automate processes even when nobody asks.",
     "bioP3": "I build software using generative AI (Claude, GPT) as my primary tool, from LLM prototypes to back-end and front-end. I do not write every line from scratch; my work is to decompose the problem, structure the instruction, and connect the pieces until the entire flow works. That is exactly the engineering I want to do in production: put AI to work solving real problems.",
@@ -78,38 +91,21 @@
     "authenticated": "AUTHENTICATED ✓"
   },
   "experiencia": {
-    "title": "PROFESSIONAL HISTORY",
+    "lede": "Practical experience in development, support, and automation, applying technology to real contexts.",
+    "timelineLabel": "Professional trajectory",
+    "title": "Experience",
     "roles": [
       {
-        "period": "Jul 2026 → PRESENT",
-        "status": "IN DEVELOPMENT",
-        "title": "Founder & Builder — DocFácil",
-        "company": "K-HUB Soluções",
-        "location": "github.com/Kauerc10/docfacil ↗",
-        "description": "A Next.js platform that generates legal documents through conversation. I built a provider-agnostic layer (`AIProvider`) with an environment-based factory, a server-side API route (`/api/ai/generate`) that keeps secrets on the server, response streaming, and typed error handling (`AIError`). Real providers (OpenAI / Anthropic / Gemini) are pluggable without changing the rest of the app.",
-        "achievements": [
-          "Guided chat interface with real-time document preview.",
-          "The AI layer is decoupled. Changing the LLM requires no front-end changes."
-        ],
-        "skills": [
-          "Next.js 16",
-          "TypeScript",
-          "Prisma",
-          "Generative AI"
-        ],
-        "projectLabel": "AI ARCHITECTURE: AI PROVIDER + STREAMING"
-      },
-      {
-        "period": "2023 → PRESENT",
+        "period": "Aug 2023 → Present",
         "status": "ONGOING",
-        "title": "Notary Clerk / Powers of Attorney Dept.",
+        "title": "Notary clerk · Powers of attorney, service and automation",
         "company": "Cartório Gaya",
         "location": "Blumenau, Brazil",
-        "description": "I built an automation that consumes Detran-RS endpoints to generate vehicle powers of attorney automatically, eliminating repetitive manual entry. It remains in production at the notary office. A task that took minutes now takes only a few clicks.",
+        "description": "Client service and request coordination at Tabelionato de Notas e Registro Civil do Distrito de Itoupava, in Blumenau.",
         "achievements": [
-          "Drafting powers of attorney, deeds, and estate inventories.",
-          "Self-directed improvement of digital workflows.",
-          "General network and hardware support and diagnostics."
+          "Guiding clients, reviewing documents and tracking deadlines and pending requests.",
+          "Deploying Vikunja on Oracle Cloud with Kanban workflows, manuals and user guidance.",
+          "Automating vehicle lookups through a REST API, reducing one step from about 5 minutes to 20 seconds."
         ],
         "skills": [
           "Node.js",
@@ -136,21 +132,21 @@
     ]
   },
   "skills": {
-    "title": "SKILLS",
-    "subtitle": "What I actually use in projects (verifiable in public repositories). No invented percentages. I build with AI as my primary tool and master the workflow of decomposing, instructing, and connecting.",
+    "eyebrow": "Skills",
+    "groupsLabel": "Skill areas",
+    "resumeCta": "View my resume",
+    "title": "How I build",
+    "subtitle": "Tools for building applications, connecting systems and automating workflows.",
     "groups": [
       {
-        "title": "Generative AI",
-        "items": [
-          "LLM Integration",
-          "Provider Architecture",
-          "OpenAI / Anthropic / Gemini",
-          "Response streaming",
-          "Prompt engineering"
-        ]
-      },
-      {
-        "title": "Building with",
+        "title": "Development",
+        "description": "Modern, typed, and maintainable web products.",
+        "links": [
+          {
+            "label": "CKF Manutenção",
+            "href": "#project-ckf"
+          }
+        ],
         "items": [
           "JavaScript / TypeScript",
           "React / Next.js",
@@ -159,7 +155,14 @@
         ]
       },
       {
-        "title": "Practicing",
+        "title": "Automation",
+        "description": "Flows connecting product, data, and operations.",
+        "links": [
+          {
+            "label": "Atlas Notarial",
+            "href": "#project-atlas"
+          }
+        ],
         "items": [
           "REST APIs",
           "Process automation",
@@ -168,22 +171,30 @@
         ]
       },
       {
-        "title": "Complementary Skills",
+        "title": "Applied AI",
+        "description": "Models and integrations applied to real problems.",
+        "links": [
+          {
+            "label": "See DocFácil",
+            "href": "#project-docfacil"
+          }
+        ],
         "items": [
-          "Document Management",
-          "Attention to Detail",
-          "Problem Solving",
-          "Fast Learning",
-          "Logical Reasoning",
-          "Teamwork",
-          "English (Intermediate)"
+          "LLM Integration",
+          "Provider Architecture",
+          "OpenAI / Anthropic / Gemini",
+          "Response streaming",
+          "Prompt engineering"
         ]
       }
     ]
   },
   "conquistas": {
     "article": "Article IV",
-    "title": "Achievement Museum (OBMEP)",
+    "title": "Achievements",
+    "description": "Recognitions that mark my path through mathematics and technology.",
+    "honorsLabel": "Honorable mentions",
+    "certificateLabel": "View certificate",
     "medals": [
       {
         "ariaLabel": "OBMEP Silver Medal",
@@ -221,33 +232,79 @@
   },
   "formacao": {
     "article": "Appendix I",
-    "title": "EDUCATION AND CERTIFICATIONS",
-    "statusCompleted": "COMPLETED",
-    "btnOpen": "OPEN",
-    "items": [
+    "title": "Education and courses",
+    "groups": [
       {
-        "title": "High School Diploma",
-        "info": "EEB Cel. Pedro Christiano Feddersen"
+        "id": "higher",
+        "title": "Higher education",
+        "items": [
+          {
+            "id": "ads",
+            "title": "Systems Analysis and Development",
+            "status": "Enrolled since August 2026"
+          }
+        ]
       },
       {
-        "title": "Administrative Management Technician",
-        "info": "156h · VisualMídia · 2020"
+        "id": "complementary",
+        "title": "Courses and certifications",
+        "items": [
+          {
+            "id": "sfc",
+            "title": "Scrum Fundamentals Certified (SFC)",
+            "status": "Issued November 5, 2026 · Credential #1205645",
+            "evidence": "https://www.linkedin.com/in/kauerc/"
+          },
+          {
+            "id": "gestao",
+            "title": "Administrative Management Technician",
+            "hours": "156 h",
+            "year": "2020"
+          },
+          {
+            "id": "operador",
+            "title": "Technology Operator",
+            "hours": "92 h",
+            "year": "2017"
+          },
+          {
+            "id": "games",
+            "title": "Game Programmer",
+            "hours": "40 h",
+            "year": "2017"
+          },
+          {
+            "id": "max",
+            "title": "3ds Max",
+            "hours": "32 h",
+            "year": "2018"
+          },
+          {
+            "id": "fraudes",
+            "title": "Document Examination, Handwriting Analysis and Digital Fraud Prevention"
+          }
+        ]
       },
       {
-        "title": "Technology Operator",
-        "info": "92h · VisualMídia · 2017"
-      },
-      {
-        "title": "Game Programmer",
-        "info": "40h · VisualMídia · 2017"
-      },
-      {
-        "title": "3Ds Max",
-        "info": "32h · VisualMídia · 2018"
+        "id": "basic",
+        "title": "Basic education",
+        "items": [
+          {
+            "id": "high-school",
+            "title": "High school diploma",
+            "institution": "EEB Cel. Pedro Christiano Feddersen"
+          }
+        ]
       }
-    ]
+    ],
+    "otherCourses": "Other courses",
+    "showAll": "View all courses"
   },
   "projetos": {
+    "editorialTitle": "Selected projects",
+    "editorialDescription": "Real solutions I built to automate processes, simplify routines, and solve everyday problems with technology.",
+    "flowLabels": ["Search", "Vehicle data", "Power of attorney"],
+    "navLabels": { "atlas": "Atlas Notarial", "ckf": "CKF Maintenance", "docfacil": "DocFácil", "folilib": "Foli" },
     "title": "PROJECT EVIDENCE",
     "btnDemo": "LIVE DEMO",
     "btnRepo": "REPOSITORY",
@@ -257,6 +314,7 @@
       "docfacil": {
         "title": "DocFácil — Generative AI for Legal Documents",
         "status": "LIVE DEMO · AI SAAS",
+        "role": "Role: Full-stack architecture, AI layer, and interface",
         "problem": "Manual legal-document drafting is prone to inconsistencies and unnecessary bureaucracy.",
         "solution": "Next.js 16 platform with an AI-provider-agnostic layer (`AIProvider`), server-side streaming, and pluggable OpenAI, Anthropic, and Gemini support.",
         "stack": "Next.js 16 · TypeScript · Generative AI · RAG",
@@ -265,14 +323,16 @@
       "atlas": {
         "title": "Atlas Notarial — Detran-RS API Automation",
         "status": "IN PRODUCTION · CARTÓRIO GAYA",
-        "problem": "Manual vehicle power-of-attorney issuance required five minutes of data entry per document.",
-        "solution": "Time reduced from 5 minutes to 20 seconds per document with 100% legal accuracy.",
+        "role": "Role: Conception, development, and notary workflow integration",
+        "problem": "Vehicle powers of attorney required manual lookups and data entry.",
+        "solution": "I automated lookup and data entry to support document issuance at Cartório Gaya.",
         "stack": "Node.js · REST APIs · Notarial Automation · Vitest",
         "solutionLabel": "IMPACT METRIC:"
       },
       "ckf": {
         "title": "CKF Maintenance — Quotes & Machinery",
         "status": "IN PRODUCTION · ENTERPRISE",
+        "role": "Role: Application development, database, and reporting",
         "problem": "No centralized control for issuing heavy-machinery maintenance quotes.",
         "solution": "React interface with Supabase, CSV/XLSX report exports, and an automated Vitest unit-test suite.",
         "stack": "React · TypeScript · Supabase · Vitest · XLSX",
@@ -281,6 +341,7 @@
       "folilib": {
         "title": "Foli — PDF Layout Engine in TypeScript",
         "status": "OPEN SOURCE · TYPESCRIPT LIB",
+        "role": "Role: Library authorship and layout engine",
         "problem": "Unexpected layout breaks and overflow when generating complex PDFs in Node.js and the browser.",
         "solution": "Fluent Builder API with a layout engine that guarantees zero overflow, native primitives, and Unicode support.",
         "stack": "TypeScript · PDF Engine · Open Source · Zero-Overflow",
@@ -290,16 +351,16 @@
   },
   "contato": {
     "title": "CONTACT",
-    "nameLabel": "REQUESTER (your name)",
+    "nameLabel": "Name",
     "namePlaceholder": "Your full name...",
-    "emailLabel": "CONTACT EMAIL",
+    "emailLabel": "Email",
     "emailPlaceholder": "your.email@domain.com...",
-    "subjectLabel": "CONTACT PURPOSE (subject)",
-    "subjectPlaceholder": "Select a subject...",
-    "messageLabel": "STATEMENT OF FACTS (message)",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "What would you like to discuss?",
+    "messageLabel": "Message",
     "messagePlaceholder": "Describe project details or inquiry...",
-    "btnSubmit": "Submit Inquiry",
-    "btnSubmitting": "Submitting...",
+    "btnSubmit": "Send message",
+    "btnSubmitting": "Sending…",
     "subjects": {
       "proposta": "Job Offer / Career Opportunity",
       "projeto": "Project Development / Consulting",
@@ -313,16 +374,21 @@
       "githubTitle": "Code Repository"
     },
     "messages": {
-      "SUCCESS": "✓ Inquiry submitted successfully! I will reply shortly.",
-      "RATE_LIMITED": "Too many requests. Please wait a few minutes before submitting again.",
+      "SUCCESS": "Your message was sent successfully.",
+      "RATE_LIMITED": "Too many attempts. Please try again in a few minutes.",
       "VALIDATION_ERROR": "Please fill out all required fields correctly.",
       "SERVICE_UNAVAILABLE": "Email service temporarily unavailable. Please email directly to kaue.ruon@gmail.com",
       "INTERNAL_ERROR": "Internal server error. Please email directly to kaue.ruon@gmail.com"
     },
     "location": "Blumenau / SC — Available for remote work and global projects",
-    "copied": "Copied!"
+    "copied": "Copied!",
+    "editorialLabel": "Contact",
+    "editorialTitle": "Let’s",
+    "editorialAccent": "talk",
+    "editorialDescription": "Have a project, an idea or an opportunity? Reach out directly or send me a message."
   },
   "footer": {
+    "topLabel": "Back to top",
     "channelsLabel": "Contact channels",
     "emailLabel": "Copy email address",
     "email": "Email",
