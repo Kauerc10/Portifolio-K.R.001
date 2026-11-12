@@ -7,34 +7,44 @@ import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
 
 export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
   const pendingTop = useRef(false);
+  const trackingFrame = useRef(0);
 
   useEffect(() => {
-    let frame = 0;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const hero = () => document.querySelector<HTMLElement>('#hero h1');
-    const finish = () => {
-      if (!pendingTop.current || window.scrollY > 2) return;
-      pendingTop.current = false;
-      hero()?.focus({ preventScroll: true });
+    const track = () => {
+      if (!pendingTop.current) return;
+      if (window.scrollY <= 2) {
+        pendingTop.current = false;
+        hero()?.focus({ preventScroll: true });
+        return;
+      }
+      trackingFrame.current = requestAnimationFrame(track);
     };
-    const cancel = () => { pendingTop.current = false; cancelAnimationFrame(frame); };
-    const check = () => { finish(); if (pendingTop.current) frame = requestAnimationFrame(check); };
-    const onScroll = () => { if (pendingTop.current) frame = requestAnimationFrame(check); };
-    const reduce = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const onPreference = () => { if (reduce()) cancel(); };
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const cancel = () => { pendingTop.current = false; cancelAnimationFrame(trackingFrame.current); };
+    const stopReduced = () => {
+      if (!motion.matches || !pendingTop.current) return;
+      window.scrollTo({ top: window.scrollY, behavior: 'instant' });
+      cancel();
+    };
+    const onPreference = () => {
+      if (motion.matches) stopReduced();
+    };
+    const onPageHide = () => cancel();
     window.addEventListener('wheel', cancel, { passive: true });
     window.addEventListener('touchstart', cancel, { passive: true });
     window.addEventListener('pointerdown', cancel, { passive: true });
     window.addEventListener('keydown', cancel);
-    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', onPreference);
+    window.addEventListener('pagehide', onPageHide);
+    motion.addEventListener('change', onPreference);
     return () => {
       cancel();
-      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('wheel', cancel);
       window.removeEventListener('touchstart', cancel);
       window.removeEventListener('pointerdown', cancel);
       window.removeEventListener('keydown', cancel);
-      window.matchMedia('(prefers-reduced-motion: reduce)').removeEventListener('change', onPreference);
+      window.removeEventListener('pagehide', onPageHide);
+      motion.removeEventListener('change', onPreference);
     };
   }, []);
 
@@ -44,9 +54,20 @@ export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     pendingTop.current = true;
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' });
-    if (reduceMotion) pendingTop.current = false;
-    requestAnimationFrame(() => {
-      if (reduceMotion) document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+    if (reduceMotion) {
+      pendingTop.current = false;
+      document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+      return;
+    }
+    cancelAnimationFrame(trackingFrame.current);
+    trackingFrame.current = requestAnimationFrame(function trackTop() {
+      if (!pendingTop.current) return;
+      if (window.scrollY <= 2) {
+        pendingTop.current = false;
+        document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+        return;
+      }
+      trackingFrame.current = requestAnimationFrame(trackTop);
     });
   }
 
