@@ -24,3 +24,29 @@ it('does not hide the section when animation APIs are unavailable', () => {
   expect(container.querySelector('#projetos')).toHaveAttribute('data-motion-state', 'entered');
   expect(screen.getByRole('heading', { name: /Projetos selecionados/i })).toBeVisible();
 });
+
+it('animates only supporting content and records the latest selection direction', () => {
+  vi.stubGlobal('IntersectionObserver', undefined);
+  const animate = vi.fn(() => ({ cancel: vi.fn(), finished: Promise.resolve() }));
+  HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
+  const { container } = render(<ProjetosSection dict={pt.projetos} />);
+  fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
+  fireEvent.click(screen.getByRole('link', { name: /DocFácil/i }));
+  const section = container.querySelector('#projetos');
+  expect(section).toHaveAttribute('data-selection-direction', 'forward');
+  expect(animate.mock.calls.some(([element]) => (element as HTMLElement)?.matches?.('article'))).toBe(false);
+  expect(animate.mock.calls.some(([element]) => (element as HTMLElement)?.matches?.('h3'))).toBe(false);
+});
+
+it('plays Atlas flow once when it first becomes visible and does not replay on revisit', () => {
+  vi.stubGlobal('IntersectionObserver', undefined);
+  const animate = vi.fn(() => ({ cancel: vi.fn(), finished: Promise.resolve() }));
+  HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
+  render(<ProjetosSection dict={pt.projetos} />);
+  fireEvent.click(screen.getByRole('link', { name: /Atlas Notarial/i }));
+  const flow = document.querySelector('.projects-editorial__flow');
+  expect(flow).toHaveAttribute('data-motion-played', 'true');
+  fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
+  fireEvent.click(screen.getByRole('link', { name: /Atlas Notarial/i }));
+  expect(flow).toHaveAttribute('data-motion-play-count', '1');
+});

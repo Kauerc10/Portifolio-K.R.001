@@ -17,7 +17,9 @@
 }
 
 .projects-editorial[data-motion-state='entered'] .projects-editorial__directional-border {
-  animation: projects-edge-reveal 780ms cubic-bezier(.22, 1, .36, 1) both;
+  opacity: 1;
+  transform: none;
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .projects-editorial__index {
@@ -42,15 +44,11 @@
   will-change: transform, opacity;
 }
 
-@keyframes projects-edge-reveal {
-  to { opacity: 1; transform: translateY(0) scaleY(1); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .projects-editorial__directional-border {
     opacity: 1;
     transform: none;
-    animation: none;
+    transition: none;
   }
 
   .projects-editorial__index::after { transition: none; }

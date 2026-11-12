@@ -24,7 +24,12 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
 
   const indexRef = useRef<HTMLElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const borderRef = useRef<HTMLSpanElement>(null);
   const motionRef = useRef<MotionScope | null>(null);
+  const previousSelectedRef = useRef<string | null>(null);
+  const selectionReadyRef = useRef(false);
+  const atlasPlayedRef = useRef(false);
+  const atlasEntryCleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -47,27 +52,61 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
     const motion = motionRef.current;
     if (!panel || !motion) return;
     motion.cancel();
-    const animation = motion.animate(panel,
-      [{ opacity: .4, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }],
-      { duration: 180, easing: 'cubic-bezier(.16,1,.3,1)' },
-    );
-    if (!animation) return;
-    const stop = () => animation.cancel();
-    return stop;
+    // Keep the project title and layout anchors stable; animate only supporting content.
+    const content = [...panel.querySelectorAll<HTMLElement>(
+      '.editorial-kicker, .projects-editorial__role, .projects-editorial__solution, .projects-editorial__stack, .projects-editorial__actions',
+    )];
+    content.forEach((element, index) => motion.animate(element,
+      [{ opacity: .45, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 180, delay: index * 18 },
+    ));
+
+    const previous = previousSelectedRef.current;
+    const changed = previous !== null && previous !== selected;
+    const border = borderRef.current;
+    if (border && changed) {
+      const fromIndex = projects.findIndex(project => project.id === previous);
+      const toIndex = projects.findIndex(project => project.id === selected);
+      const direction = toIndex >= fromIndex ? 'forward' : 'backward';
+      const section = sectionRef.current;
+      if (section) section.dataset.selectionDirection = direction;
+      motion.animate(border,
+        direction === 'forward'
+          ? [{ opacity: .45, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }]
+          : [{ opacity: .45, transform: 'translateY(-12px)' }, { opacity: 1, transform: 'translateY(0)' }],
+        { duration: 320 },
+      );
+    }
+    previousSelectedRef.current = selected;
+    selectionReadyRef.current = true;
   }, [selected]);
 
   useEffect(() => {
     if (selected !== 'project-atlas') return;
     const motion = motionRef.current;
     const panel = document.getElementById(selected);
-    if (!motion || !panel) return;
-    const nodes = [...panel.querySelectorAll<HTMLElement>('.projects-editorial__flow li')];
-    nodes.forEach((node, index) => {
-      motion.animate(node, [
+    if (!motion || !panel || atlasPlayedRef.current) return;
+    const flow = panel.querySelector<HTMLElement>('.projects-editorial__flow');
+    if (!flow) return;
+    atlasEntryCleanupRef.current?.();
+    const playAtlas = () => {
+      if (atlasPlayedRef.current) return;
+      atlasPlayedRef.current = true;
+      flow.dataset.motionPlayed = 'true';
+      flow.dataset.motionPlayCount = String(Number(flow.dataset.motionPlayCount ?? '0') + 1);
+      const nodes = [...flow.querySelectorAll<HTMLElement>('li')];
+      nodes.forEach((node, index) => motion.animate(node, [
         { opacity: .35, transform: 'translateY(8px)' },
         { opacity: 1, transform: 'translateY(0)' },
-      ], { duration: 420, delay: index * 90 });
-    });
+      ], { duration: 420, delay: index * 90 }));
+    };
+    atlasEntryCleanupRef.current = motion.onEnter(flow, playAtlas);
+    // In a non-browser test/fallback environment there is no visibility API.
+    if (typeof IntersectionObserver === 'undefined') playAtlas();
+    return () => {
+      atlasEntryCleanupRef.current?.();
+      atlasEntryCleanupRef.current = null;
+    };
   }, [selected]);
 
   useEffect(() => {
@@ -127,7 +166,7 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
   const [titleLead, titleAccent] = splitAccentTitle(dict.editorialTitle);
   return (
     <section ref={sectionRef} className="section editorial-section projects-editorial" id="projetos" data-section="7" data-motion-state="idle">
-      <span className="projects-editorial__directional-border" aria-hidden="true" />
+      <span ref={borderRef} className="projects-editorial__directional-border" aria-hidden="true" />
       <div className="projects-editorial__heading">
         <h2 className="editorial-display">
           {titleLead}{' '}<em>{titleAccent}</em>
