@@ -1,0 +1,60 @@
+/* R04: local contact and footer responses remain usable while they move. */
+.contact-editorial__form {
+  position: relative;
+}
+
+.contact-editorial__form::before {
+  content: '';
+  position: absolute;
+  inset: clamp(1.05rem, 3vw, 2.4rem) auto clamp(1.05rem, 3vw, 2.4rem) 0;
+  width: 2px;
+  border-radius: 99px;
+  background: var(--editorial-violet);
+  opacity: 0;
+  transform: scaleY(.2);
+  transform-origin: center;
+  transition: opacity 180ms ease, transform 220ms cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+}
+
+.contact-editorial__form:focus-within::before {
+  opacity: .9;
+  transform: scaleY(1);
+}
+
+.contact-editorial__form label:has(input:focus-visible),
+.contact-editorial__form label:has(textarea:focus-visible) {
+  color: var(--editorial-ink);
+}
+
+.contact-editorial__form label:has(input:focus-visible)::before,
+.contact-editorial__form label:has(textarea:focus-visible)::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: -1.05rem;
+  margin-top: 1.8rem;
+  width: .35rem;
+  height: .35rem;
+  border-radius: 50%;
+  background: var(--editorial-violet);
+  box-shadow: 0 0 0 .25rem color-mix(in srgb, var(--editorial-violet) 15%, transparent);
+}
+
+.contact-editorial__form label { position: relative; }
+.contact-editorial__form[data-submitting='true'] button svg { animation: contact-arrow-flight 560ms cubic-bezier(.16,1,.3,1) both; }
+
+@keyframes contact-arrow-flight {
+  0% { transform: translate(0, 0); }
+  55% { transform: translate(3px, -3px); }
+  100% { transform: translate(0, 0); }
+}
+
+.footer-editorial__top svg { transition: transform 180ms cubic-bezier(.16,1,.3,1); }
+.footer-editorial__top:is(:hover, :focus-visible) svg { transform: translate(2px, -2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-editorial__form::before,
+  .contact-editorial__form label::before,
+  .contact-editorial__form[data-submitting='true'] button svg,
+  .footer-editorial__top svg { animation: none; transition: none; transform: none; }
+}
