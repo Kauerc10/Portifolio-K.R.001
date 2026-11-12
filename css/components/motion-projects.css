@@ -5,13 +5,14 @@
 
 .projects-editorial__directional-border {
   position: absolute;
-  inset: clamp(1rem, 4vw, 3rem) auto auto 0;
+  inset: auto auto clamp(-1.25rem, -3vw, -.65rem) 0;
   width: 3px;
   height: clamp(4rem, 18vw, 12rem);
   border-radius: 999px;
   background: linear-gradient(180deg, transparent, var(--editorial-violet) 42%, transparent);
   opacity: 0;
-  transform: translateY(-1.5rem) scaleY(.35);
+  transform: none;
+  clip-path: polygon(0 0, 100% 0, 76% 100%, 0 100%);
   transform-origin: top;
   pointer-events: none;
 }
@@ -19,11 +20,36 @@
 .projects-editorial[data-motion-state='entered'] .projects-editorial__directional-border {
   opacity: 1;
   transform: none;
-  transition: opacity 220ms ease, transform 220ms ease;
+  transition: opacity 220ms ease;
 }
 
 .projects-editorial__index {
   position: relative;
+}
+
+.projects-editorial__heading { position: relative; }
+
+.projects-editorial__directional-border {
+  width: clamp(4.5rem, 10vw, 8rem);
+  height: 4px;
+}
+
+.projects-editorial__detail { position: relative; }
+
+.projects-editorial__selection-sweep {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, transparent, var(--editorial-violet) 36%, #a17aff 64%, transparent);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  pointer-events: none;
+}
+
+.projects-editorial[data-selection-direction='backward'] .projects-editorial__selection-sweep {
+  transform-origin: bottom;
 }
 
 .projects-editorial__index::after {
@@ -40,14 +66,11 @@
   pointer-events: none;
 }
 
-.projects-editorial__flow li {
-  will-change: transform, opacity;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .projects-editorial__directional-border {
     opacity: 1;
     transform: none;
+    clip-path: polygon(0 0, 100% 0, 76% 100%, 0 100%);
     transition: none;
   }
 

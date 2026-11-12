@@ -25,9 +25,10 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
   const indexRef = useRef<HTMLElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const borderRef = useRef<HTMLSpanElement>(null);
+  const detailRef = useRef<HTMLDivElement>(null);
+  const selectionSweepRef = useRef<HTMLSpanElement>(null);
   const motionRef = useRef<MotionScope | null>(null);
   const previousSelectedRef = useRef<string | null>(null);
-  const selectionReadyRef = useRef(false);
   const atlasPlayedRef = useRef(false);
   const atlasEntryCleanupRef = useRef<(() => void) | null>(null);
 
@@ -38,6 +39,10 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
     motionRef.current = motion;
     const stopEntry = motion.onEnter(section, () => {
       section.dataset.motionState = 'entered';
+      motion.animate(borderRef.current, [
+        { opacity: 0, clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' },
+        { opacity: 1, clipPath: 'polygon(0 0, 100% 0, 76% 100%, 0 100%)' },
+      ], { duration: 650 });
     });
     return () => {
       stopEntry();
@@ -63,7 +68,7 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
 
     const previous = previousSelectedRef.current;
     const changed = previous !== null && previous !== selected;
-    const border = borderRef.current;
+    const border = selectionSweepRef.current;
     if (border && changed) {
       const fromIndex = projects.findIndex(project => project.id === previous);
       const toIndex = projects.findIndex(project => project.id === selected);
@@ -72,13 +77,12 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
       if (section) section.dataset.selectionDirection = direction;
       motion.animate(border,
         direction === 'forward'
-          ? [{ opacity: .45, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }]
-          : [{ opacity: .45, transform: 'translateY(-12px)' }, { opacity: 1, transform: 'translateY(0)' }],
+          ? [{ opacity: .2, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }]
+          : [{ opacity: .2, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }],
         { duration: 320 },
       );
     }
     previousSelectedRef.current = selected;
-    selectionReadyRef.current = true;
   }, [selected]);
 
   useEffect(() => {
@@ -101,8 +105,6 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
       ], { duration: 420, delay: index * 90 }));
     };
     atlasEntryCleanupRef.current = motion.onEnter(flow, playAtlas);
-    // In a non-browser test/fallback environment there is no visibility API.
-    if (typeof IntersectionObserver === 'undefined') playAtlas();
     return () => {
       atlasEntryCleanupRef.current?.();
       atlasEntryCleanupRef.current = null;
@@ -166,12 +168,12 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
   const [titleLead, titleAccent] = splitAccentTitle(dict.editorialTitle);
   return (
     <section ref={sectionRef} className="section editorial-section projects-editorial" id="projetos" data-section="7" data-motion-state="idle">
-      <span ref={borderRef} className="projects-editorial__directional-border" aria-hidden="true" />
       <div className="projects-editorial__heading">
         <h2 className="editorial-display">
           {titleLead}{' '}<em>{titleAccent}</em>
         </h2>
         <p className="projects-editorial__intro">{dict.editorialDescription}</p>
+        <span ref={borderRef} className="projects-editorial__directional-border" aria-hidden="true" />
       </div>
       <div className="projects-editorial__layout">
         <nav ref={indexRef} className="projects-editorial__index" aria-label={dict.editorialTitle}>
@@ -188,7 +190,8 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
             </a>
           ))}
         </nav>
-        <div className="projects-editorial__detail" data-enhanced={selected !== null || undefined}>
+        <div ref={detailRef} className="projects-editorial__detail" data-enhanced={selected !== null || undefined}>
+          <span ref={selectionSweepRef} className="projects-editorial__selection-sweep" aria-hidden="true" />
           {projects.map(project => {
             const item = dict.items[project.key];
             return (
