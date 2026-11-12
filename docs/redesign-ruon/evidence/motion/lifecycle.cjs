@@ -27,6 +27,14 @@ const [url, output] = process.argv.slice(2);
         await page.setViewportSize({ width: width === 390 ? 410 : 1280, height: 900 });
         await page.waitForTimeout(80);
         await page.locator('#experiencia').evaluate(el => el.scrollIntoView({ behavior: 'instant' }));
+        await page.waitForTimeout(120);
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await page.waitForTimeout(80);
+        const restingSegments = await page.locator('[data-motion-segment]').evaluateAll(nodes => nodes.map(node => getComputedStyle(node).transform));
+        assert.ok(restingSegments.every(transform => transform === 'none'));
+        await page.emulateMedia({ reducedMotion: 'no-preference' });
+        const mobileMenu = page.locator('button[aria-controls="mobile-nav"]:visible');
+        if (await mobileMenu.count()) await mobileMenu.click();
         await page.locator('button[data-language="en-US"]:visible').first().click();
         await page.waitForURL('**/en-US*');
         await page.waitForFunction(() => !document.documentElement.dataset.languagePhase);
@@ -47,7 +55,7 @@ const [url, output] = process.argv.slice(2);
         assert.deepEqual(errors, []);
         results.push({ browser: executablePath.includes('Edge') ? 'Edge' : 'Chrome', version: await browser.version(), width,
           introManual: true, introDocked: true, resize: true, languageNavigation: true, zoom200: true,
-          interruptedReturn: true, reducedReturn: true, errors });
+          interruptedReturn: true, reducedReturn: true, restingSegments, errors });
         await page.screenshot({ path: path.join(output, `${executablePath.includes('Edge') ? 'edge' : 'chrome'}-${width}-hero.png`) });
         await context.close();
       }

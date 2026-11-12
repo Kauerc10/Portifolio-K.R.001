@@ -38,6 +38,7 @@ const sections = ['projetos', 'sobre', 'experiencia', 'skills', 'formacao', 'con
         for (const id of ['project-ckf', 'project-docfacil', 'project-atlas', 'project-foli']) {
           await page.locator(`.projects-editorial__index a[href="#${id}"]`).click();
         }
+        await page.locator('#project-foli').waitFor({ state: 'visible' });
         assert.equal(await page.locator('.projects-editorial__case:visible').count(), 1);
         assert.equal(await page.locator('#project-foli').isVisible(), true);
         assert.equal(await page.evaluate(() => document.activeElement?.getAttribute('href')), '#project-foli');
@@ -57,8 +58,14 @@ const sections = ['projetos', 'sobre', 'experiencia', 'skills', 'formacao', 'con
         assert.equal(await form.locator('[name=mensagem]').inputValue(), 'Mensagem sintética de teste local.');
         // Toggle preference while local effects can be running, then allow resting state.
         await page.emulateMedia({ reducedMotion: 'reduce' });
+        await page.waitForFunction(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
         await page.waitForTimeout(100);
-        assert.equal(await page.locator('main').evaluate(el => el.getAnimations({ subtree: true }).filter(a => a.playState === 'running').length), 0);
+        const running = await page.locator('main').evaluate(el => el.getAnimations({ subtree: true }).filter(a => a.playState === 'running').map(a => ({
+          target: a.effect?.target?.outerHTML?.slice(0, 300), owner: a.effect?.target?.parentElement?.outerHTML?.slice(0, 300), name: a.animationName,
+          transition: getComputedStyle(a.effect.target).transition, reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+          keyframes: a.effect?.getKeyframes(),
+        })));
+        assert.deepEqual(running, [], JSON.stringify({ width, locale, dark, reduce, running }));
         await page.locator('.footer-editorial__top').click();
         await page.waitForFunction(() => window.scrollY < 2 && document.activeElement === document.querySelector('#hero h1'));
         assert.equal(await page.locator('dialog[open]').count(), 0);
