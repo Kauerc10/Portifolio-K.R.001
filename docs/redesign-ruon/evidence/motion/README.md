@@ -1,5 +1,7 @@
 # Evidências — coreografia das seções (#68)
 
+**Revisão de ritmo:** as entradas temporizadas desta primeira rodada foram substituídas por progresso de scroll após feedback de Kauê. Consulte [o comportamento atual](../../scroll-motion.md), [o teste de pausa/avanço/retorno](scroll.json) e as gravações [desktop](scroll-desktop.webm) / [celular](scroll-mobile.webm). Os números e vídeos abaixo são o histórico da primeira rodada.
+
 ## Escopo e método
 
 Implementação em `codex/section-motion-68`, PR #74, sobre a base `e948c7e` da PR #63. As onze referências de `imagens-selecionadas` foram visualizadas antes da implementação. A home continua usando sua arte e composição; as novas passagens ocupam ornamentos e margens das seções.

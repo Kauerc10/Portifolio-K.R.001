@@ -30,7 +30,7 @@ it('animates only supporting content and records the latest selection direction'
   const targets: HTMLElement[] = [];
   const animate = vi.fn(function (this: HTMLElement) {
     targets.push(this);
-    return { cancel: vi.fn(), finished: Promise.resolve() };
+    return { cancel: vi.fn(), pause: vi.fn(), finished: Promise.resolve() };
   });
   HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
   const { container } = render(<ProjetosSection dict={pt.projetos} />);
@@ -42,31 +42,10 @@ it('animates only supporting content and records the latest selection direction'
   expect(targets.some(element => element.matches('h3'))).toBe(false);
 });
 
-it('plays Atlas flow once when it first becomes visible and does not replay on revisit', () => {
-  const observers: Array<{ callback: IntersectionObserverCallback; targets: Element[] }> = [];
-  vi.stubGlobal('IntersectionObserver', class {
-    callback: IntersectionObserverCallback;
-    targets: Element[] = [];
-    constructor(callback: IntersectionObserverCallback) { this.callback = callback; observers.push(this); }
-    observe(target: Element) { this.targets.push(target); }
-    unobserve() {}
-    disconnect() {}
-  });
-  const targets: HTMLElement[] = [];
-  const animate = vi.fn(function (this: HTMLElement) {
-    targets.push(this);
-    return { cancel: vi.fn(), finished: Promise.resolve() };
-  });
-  HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
+it('keeps Atlas flow readable when returning from another project', () => {
   render(<ProjetosSection dict={pt.projetos} />);
-  fireEvent.click(screen.getByRole('link', { name: /Atlas Notarial/i }));
-  const flow = document.querySelector('.projects-editorial__flow');
-  expect(flow).not.toHaveAttribute('data-motion-played');
-  const flowObserver = observers.find(observer => observer.targets.includes(flow as Element));
-  flowObserver?.callback([{ target: flow, isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver);
-  expect(flow).toHaveAttribute('data-motion-played', 'true');
   fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
   fireEvent.click(screen.getByRole('link', { name: /Atlas Notarial/i }));
-  expect(flow).toHaveAttribute('data-motion-play-count', '1');
-  expect(targets.filter(element => element.matches('.projects-editorial__flow li'))).toHaveLength(3);
+  expect(document.querySelector('.projects-editorial__flow')).toBeVisible();
+  expect(screen.getByRole('link', { name: /Atlas Notarial/i })).toHaveAttribute('aria-current', 'true');
 });

@@ -29,7 +29,6 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
   const selectionSweepRef = useRef<HTMLSpanElement>(null);
   const motionRef = useRef<MotionScope | null>(null);
   const previousSelectedRef = useRef<string | null>(null);
-  const atlasPlayedRef = useRef(false);
   const atlasEntryCleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
@@ -37,13 +36,11 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
     if (!section) return;
     const motion = createMotionScope(section);
     motionRef.current = motion;
-    const stopEntry = motion.onEnter(section, () => {
-      section.dataset.motionState = 'entered';
-      motion.animate(borderRef.current, [
+    section.dataset.motionState = 'entered';
+    const stopEntry = motion.scrub(borderRef.current, [
         { opacity: 0, clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' },
         { opacity: 1, clipPath: 'polygon(0 0, 100% 0, 76% 100%, 0 100%)' },
-      ], { duration: 650 });
-    });
+      ], { anchor: section.querySelector('.projects-editorial__heading') ?? section });
     return () => {
       stopEntry();
       motion.dispose();
@@ -57,17 +54,17 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
     const motion = motionRef.current;
     if (!panel || !motion) return;
     motion.cancel();
+    const previous = previousSelectedRef.current;
+    const changed = previous !== null && previous !== selected;
     // Keep the project title and layout anchors stable; animate only supporting content.
     const content = [...panel.querySelectorAll<HTMLElement>(
       '.editorial-kicker, .projects-editorial__role, .projects-editorial__solution, .projects-editorial__stack, .projects-editorial__actions',
     )];
-    content.forEach((element, index) => motion.animate(element,
+    if (changed) content.forEach((element, index) => motion.animate(element,
       [{ opacity: .45, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
-      { duration: 180, delay: index * 18 },
+      { duration: 420, delay: index * 40 },
     ));
 
-    const previous = previousSelectedRef.current;
-    const changed = previous !== null && previous !== selected;
     const border = selectionSweepRef.current;
     if (border && changed) {
       const fromIndex = projects.findIndex(project => project.id === previous);
@@ -79,7 +76,7 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
         direction === 'forward'
           ? [{ opacity: .2, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }]
           : [{ opacity: .2, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }],
-        { duration: 320 },
+        { duration: 650 },
       );
     }
     previousSelectedRef.current = selected;
@@ -89,22 +86,15 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
     if (selected !== 'project-atlas') return;
     const motion = motionRef.current;
     const panel = document.getElementById(selected);
-    if (!motion || !panel || atlasPlayedRef.current) return;
+    if (!motion || !panel) return;
     const flow = panel.querySelector<HTMLElement>('.projects-editorial__flow');
     if (!flow) return;
     atlasEntryCleanupRef.current?.();
-    const playAtlas = () => {
-      if (atlasPlayedRef.current) return;
-      atlasPlayedRef.current = true;
-      flow.dataset.motionPlayed = 'true';
-      flow.dataset.motionPlayCount = String(Number(flow.dataset.motionPlayCount ?? '0') + 1);
-      const nodes = [...flow.querySelectorAll<HTMLElement>('li')];
-      nodes.forEach((node, index) => motion.animate(node, [
-        { opacity: .35, transform: 'translateY(8px)' },
-        { opacity: 1, transform: 'translateY(0)' },
-      ], { duration: 420, delay: index * 90 }));
-    };
-    atlasEntryCleanupRef.current = motion.onEnter(flow, playAtlas);
+    const stops = [...flow.querySelectorAll<HTMLElement>('li > span')].map((node, index) => motion.scrub(node, [
+      { opacity: .5, transform: 'translateY(8px)' },
+      { opacity: 1, transform: 'translateY(0)' },
+    ], { anchor: flow, from: index * .2, to: .55 + index * .2 }));
+    atlasEntryCleanupRef.current = () => stops.forEach(stop => stop());
     return () => {
       atlasEntryCleanupRef.current?.();
       atlasEntryCleanupRef.current = null;

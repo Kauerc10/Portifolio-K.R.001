@@ -1,5 +1,7 @@
 # Spec — Coreografia e microinterações entre as seções
 
+Atualização após revisão de Kauê: entradas e ornamentos devem acompanhar o scroll, pausar com a rolagem e recuar ao rolar para cima. Esta decisão substitui o gatilho temporizado e a execução única das entradas descritos abaixo. Detalhes em `scroll-motion.md`; abertura, troca de idioma e respostas a ações mantêm seus próprios contratos.
+
 Data: 11/11/2026. Complementa a spec #52 e o plano de movimento aprovado. Status: planejamento; os movimentos novos descritos aqui aguardam implementação. A abertura e a transição PT↔EN já aprovadas são referências de linguagem e entram como regressões.
 
 ## Problem Statement

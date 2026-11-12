@@ -2,9 +2,47 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { createMotionScope } from '@/lib/section-motion';
 
 afterEach(() => {
+  vi.useRealTimers();
   document.body.innerHTML = '';
   delete document.documentElement.dataset.languagePhase;
   vi.unstubAllGlobals();
+});
+
+it('scrubs with scroll, holds while the reader stops, reverses, and settles with reduced motion', () => {
+  vi.useFakeTimers();
+  let preference: (() => void) | undefined;
+  const media = { matches: false, addEventListener: vi.fn((_event, fn) => { preference = fn; }), removeEventListener: vi.fn() };
+  vi.stubGlobal('matchMedia', () => media);
+  const root = document.createElement('section');
+  document.body.append(root);
+  let top = window.innerHeight * .8;
+  root.getBoundingClientRect = () => ({ top } as DOMRect);
+  const effects: Array<{ currentTime: number; pause: ReturnType<typeof vi.fn>; cancel: ReturnType<typeof vi.fn>; finished: Promise<void> }> = [];
+  root.animate = vi.fn(() => {
+    const animation = { currentTime: 0, pause: vi.fn(), cancel: vi.fn(), finished: new Promise<void>(() => {}) };
+    effects.push(animation);
+    return animation as unknown as Animation;
+  });
+  const scope = createMotionScope(root);
+  scope.scrub(root, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }]);
+  vi.advanceTimersByTime(20);
+  const animation = effects[0];
+  expect(animation.pause).toHaveBeenCalledOnce();
+  const first = animation.currentTime;
+  vi.advanceTimersByTime(3000);
+  expect(animation.currentTime).toBe(first);
+  top = window.innerHeight * .5;
+  window.dispatchEvent(new Event('scroll'));
+  vi.advanceTimersByTime(20);
+  expect(animation.currentTime).toBeGreaterThan(first);
+  top = window.innerHeight * .8;
+  window.dispatchEvent(new Event('scroll'));
+  vi.advanceTimersByTime(20);
+  expect(animation.currentTime).toBeCloseTo(first);
+  media.matches = true;
+  preference?.();
+  expect(animation.cancel).toHaveBeenCalledOnce();
+  scope.dispose();
 });
 
 it('waits for the language cover, enters once, and cancels active decoration on preference changes', async () => {
