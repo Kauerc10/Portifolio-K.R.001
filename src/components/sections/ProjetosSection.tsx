@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
 import { splitAccentTitle } from '@/lib/editorial';
+import { createMotionScope, type MotionScope } from '@/lib/section-motion';
 
 const projects = [
   { key: 'atlas', id: 'project-atlas' },
@@ -22,19 +23,51 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
   const [selected, setSelected] = useState<string | null>(null);
 
   const indexRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const motionRef = useRef<MotionScope | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const motion = createMotionScope(section);
+    motionRef.current = motion;
+    const stopEntry = motion.onEnter(section, () => {
+      section.dataset.motionState = 'entered';
+    });
+    return () => {
+      stopEntry();
+      motion.dispose();
+      motionRef.current = null;
+    };
+  }, []);
 
   useEffect(() => {
     if (!selected) return;
     const panel = document.getElementById(selected);
-    const media = window.matchMedia?.('(prefers-reduced-motion: reduce)');
-    if (media?.matches || !panel?.animate) return;
-    const animation = panel.animate(
+    const motion = motionRef.current;
+    if (!panel || !motion) return;
+    motion.cancel();
+    const animation = motion.animate(panel,
       [{ opacity: .4, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }],
       { duration: 180, easing: 'cubic-bezier(.16,1,.3,1)' },
     );
+    if (!animation) return;
     const stop = () => animation.cancel();
-    media?.addEventListener('change', stop);
-    return () => { stop(); media?.removeEventListener('change', stop); };
+    return stop;
+  }, [selected]);
+
+  useEffect(() => {
+    if (selected !== 'project-atlas') return;
+    const motion = motionRef.current;
+    const panel = document.getElementById(selected);
+    if (!motion || !panel) return;
+    const nodes = [...panel.querySelectorAll<HTMLElement>('.projects-editorial__flow li')];
+    nodes.forEach((node, index) => {
+      motion.animate(node, [
+        { opacity: .35, transform: 'translateY(8px)' },
+        { opacity: 1, transform: 'translateY(0)' },
+      ], { duration: 420, delay: index * 90 });
+    });
   }, [selected]);
 
   useEffect(() => {
@@ -93,7 +126,8 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
 
   const [titleLead, titleAccent] = splitAccentTitle(dict.editorialTitle);
   return (
-    <section className="section editorial-section projects-editorial" id="projetos" data-section="7">
+    <section ref={sectionRef} className="section editorial-section projects-editorial" id="projetos" data-section="7" data-motion-state="idle">
+      <span className="projects-editorial__directional-border" aria-hidden="true" />
       <div className="projects-editorial__heading">
         <h2 className="editorial-display">
           {titleLead}{' '}<em>{titleAccent}</em>
