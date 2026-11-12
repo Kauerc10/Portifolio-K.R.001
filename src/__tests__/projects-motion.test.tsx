@@ -27,26 +27,46 @@ it('does not hide the section when animation APIs are unavailable', () => {
 
 it('animates only supporting content and records the latest selection direction', () => {
   vi.stubGlobal('IntersectionObserver', undefined);
-  const animate = vi.fn(() => ({ cancel: vi.fn(), finished: Promise.resolve() }));
+  const targets: HTMLElement[] = [];
+  const animate = vi.fn(function (this: HTMLElement) {
+    targets.push(this);
+    return { cancel: vi.fn(), finished: Promise.resolve() };
+  });
   HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
   const { container } = render(<ProjetosSection dict={pt.projetos} />);
   fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
   fireEvent.click(screen.getByRole('link', { name: /DocFácil/i }));
   const section = container.querySelector('#projetos');
   expect(section).toHaveAttribute('data-selection-direction', 'forward');
-  expect(animate.mock.calls.some(([element]) => (element as HTMLElement)?.matches?.('article'))).toBe(false);
-  expect(animate.mock.calls.some(([element]) => (element as HTMLElement)?.matches?.('h3'))).toBe(false);
+  expect(targets.some(element => element.matches('article'))).toBe(false);
+  expect(targets.some(element => element.matches('h3'))).toBe(false);
 });
 
 it('plays Atlas flow once when it first becomes visible and does not replay on revisit', () => {
-  vi.stubGlobal('IntersectionObserver', undefined);
-  const animate = vi.fn(() => ({ cancel: vi.fn(), finished: Promise.resolve() }));
+  const observers: Array<{ callback: IntersectionObserverCallback; targets: Element[] }> = [];
+  vi.stubGlobal('IntersectionObserver', class {
+    callback: IntersectionObserverCallback;
+    targets: Element[] = [];
+    constructor(callback: IntersectionObserverCallback) { this.callback = callback; observers.push(this); }
+    observe(target: Element) { this.targets.push(target); }
+    unobserve() {}
+    disconnect() {}
+  });
+  const targets: HTMLElement[] = [];
+  const animate = vi.fn(function (this: HTMLElement) {
+    targets.push(this);
+    return { cancel: vi.fn(), finished: Promise.resolve() };
+  });
   HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
   render(<ProjetosSection dict={pt.projetos} />);
   fireEvent.click(screen.getByRole('link', { name: /Atlas Notarial/i }));
   const flow = document.querySelector('.projects-editorial__flow');
+  expect(flow).not.toHaveAttribute('data-motion-played');
+  const flowObserver = observers.find(observer => observer.targets.includes(flow as Element));
+  flowObserver?.callback([{ target: flow, isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver);
   expect(flow).toHaveAttribute('data-motion-played', 'true');
   fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
   fireEvent.click(screen.getByRole('link', { name: /Atlas Notarial/i }));
   expect(flow).toHaveAttribute('data-motion-play-count', '1');
+  expect(targets.filter(element => element.matches('.projects-editorial__flow li'))).toHaveLength(3);
 });
