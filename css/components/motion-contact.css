@@ -17,6 +17,19 @@
   pointer-events: none;
 }
 
+.contact-editorial__focus-marker {
+  position: absolute;
+  inset-inline-start: -.55rem;
+  inset-block-start: 0;
+  width: 3px;
+  min-height: .4rem;
+  border-radius: 99px;
+  background: var(--editorial-violet);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, height;
+}
+
 .contact-editorial__form:focus-within::before {
   opacity: .9;
   transform: scaleY(1);
@@ -54,6 +67,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .contact-editorial__form::before,
+  .contact-editorial__focus-marker,
   .contact-editorial__form label::before,
   .contact-editorial__form[data-submitting='true'] button svg,
   .footer-editorial__top svg { animation: none; transition: none; transform: none; }
