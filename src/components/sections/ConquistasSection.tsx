@@ -33,7 +33,7 @@ export default function ConquistasSection({ dict }: { dict: Dictionary['conquist
             const { illustration, certificate } = medalAssets[index];
             return (
               <article className={`conquistas-editorial__card conquistas-editorial__card--${index === 0 ? 'silver' : 'bronze'}`} key={certificate}>
-                <span className="conquistas-editorial__medal-frame">
+                <span className="conquistas-editorial__medal-frame" data-medal-kind={index === 0 ? 'silver' : 'bronze'}>
                   <img className="conquistas-editorial__medal" src={illustration} alt="" width="160" height="160" loading="lazy" />
                   <span className="conquistas-editorial__medal-sweep" data-motion-medal-sweep aria-hidden="true" />
                 </span>

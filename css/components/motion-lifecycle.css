@@ -8,3 +8,12 @@ html:has(#hero dialog[open]) .editorial-section *::after {
   animation: none !important;
   transition: none !important;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html .editorial-section *,
+  html .editorial-section *::before,
+  html .editorial-section *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
