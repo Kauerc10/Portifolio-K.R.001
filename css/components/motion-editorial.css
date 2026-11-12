@@ -1,0 +1,25 @@
+/* Local section motion; the server-rendered resting state remains the source of truth. */
+.editorial-about-ribbon[data-motion-art] { clip-path: inset(0 0 0 0 round 10rem); }
+.editorial-pillars[data-motion-pillars] { will-change: transform, opacity; }
+.editorial-timeline__dot[data-motion-dot],
+.editorial-timeline__period[data-motion-period],
+.editorial-skill-row[data-motion-skill-row],
+.conquistas-editorial__medal[data-motion-medal] { will-change: transform, opacity; }
+.editorial-skill-row { position: relative; transition: border-color .24s ease, background-color .24s ease; }
+.editorial-skill-row::after {
+  content: ''; position: absolute; inset-inline: 0; bottom: 0; height: 2px;
+  background: var(--editorial-violet); transform: scaleX(0); transform-origin: left;
+  transition: transform .24s ease;
+}
+.editorial-skill-row.is-motion-linked { border-color: color-mix(in srgb, var(--editorial-violet) 42%, transparent); }
+.editorial-skill-row.is-motion-linked::after { transform: scaleX(1); }
+.formacao-editorial__more [data-motion-details-content] { overflow: clip; }
+.conquistas-editorial__card a { text-decoration-thickness: .12em; text-underline-offset: .18em; transition: text-decoration-color .2s ease; }
+.conquistas-editorial__card a:hover,
+.conquistas-editorial__card a:focus-visible { text-decoration-color: var(--editorial-violet); }
+@media (prefers-reduced-motion: reduce) {
+  .editorial-skill-row, .editorial-skill-row::after, .conquistas-editorial__card a { transition: none; }
+  .editorial-about-ribbon[data-motion-art], .editorial-pillars[data-motion-pillars],
+  .editorial-timeline__dot[data-motion-dot], .editorial-timeline__period[data-motion-period],
+  .editorial-skill-row[data-motion-skill-row], .conquistas-editorial__medal[data-motion-medal] { will-change: auto; }
+}
