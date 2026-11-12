@@ -96,16 +96,16 @@
     "title": "Experiência",
     "roles": [
       {
-        "period": "2023 → ATUAL",
+        "period": "Ago 2023 → Atual",
         "status": "EM CURSO",
-        "title": "Cartorário / Depto. de Procurações",
+        "title": "Cartorário · Procurações, atendimento e automação",
         "company": "Cartório Gaya",
         "location": "Blumenau/SC",
-        "description": "Atuação em procurações, automação de rotinas e suporte técnico no cartório.",
+        "description": "Atendimento e organização de demandas no Tabelionato de Notas e Registro Civil do Distrito de Itoupava, em Blumenau.",
         "achievements": [
-          "Redação de procurações, escrituras e inventários.",
-          "Melhoria não supervisionada de metodologias digitais.",
-          "Suporte e diagnóstico geral das redes e hardwares do ambiente."
+          "Orientação a clientes, conferência documental e acompanhamento de prazos e pendências.",
+          "Implantação do Vikunja na Oracle Cloud, com fluxos Kanban, manuais e orientação de usuários.",
+          "Automação de consulta de veículos por API REST, reduzindo uma etapa de cerca de 5 minutos para 20 segundos."
         ],
         "skills": [
           "Node.js",
@@ -241,15 +241,20 @@
           {
             "id": "ads",
             "title": "Análise e Desenvolvimento de Sistemas",
-            "status": "Em formação"
+            "status": "Cursando desde agosto de 2026"
           }
         ]
       },
       {
         "id": "complementary",
-        "title": "Cursos complementares",
-        "institution": "VisualMídia",
+        "title": "Cursos e certificações",
         "items": [
+          {
+            "id": "sfc",
+            "title": "Scrum Fundamentals Certified (SFC)",
+            "status": "Emitido em 05/11/2026 · Credencial nº 1205645",
+            "evidence": "https://www.linkedin.com/in/kauerc/"
+          },
           {
             "id": "gestao",
             "title": "Téc. Gestão Administrativa",
@@ -273,6 +278,10 @@
             "title": "3ds Max",
             "hours": "32 h",
             "year": "2018"
+          },
+          {
+            "id": "fraudes",
+            "title": "Documentoscopia, Grafotécnica e Prevenção de Fraudes Digitais"
           }
         ]
       },
@@ -288,6 +297,7 @@
         ]
       }
     ],
+    "otherCourses": "Outros cursos",
     "showAll": "Ver todos os cursos"
   },
   "projetos": {

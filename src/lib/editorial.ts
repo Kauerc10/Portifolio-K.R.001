@@ -14,7 +14,9 @@ export const SHARED_FORMATION_META: Record<
   string,
   { institution?: string; hours?: string; year?: string }
 > = {
-  ads: {},
+  ads: { institution: 'Universidade Cruzeiro do Sul' },
+  sfc: { institution: 'SCRUMstudy' },
+  fraudes: { hours: '8 h', year: '2026' },
   gestao: { institution: 'VisualMídia', hours: '156 h', year: '2020' },
   operador: { institution: 'VisualMídia', hours: '92 h', year: '2017' },
   games: { institution: 'VisualMídia', hours: '40 h', year: '2017' },

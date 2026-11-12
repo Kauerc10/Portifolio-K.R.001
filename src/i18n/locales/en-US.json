@@ -96,16 +96,16 @@
     "title": "Experience",
     "roles": [
       {
-        "period": "2023 → PRESENT",
+        "period": "Aug 2023 → Present",
         "status": "ONGOING",
-        "title": "Notary Clerk / Powers of Attorney Dept.",
+        "title": "Notary clerk · Powers of attorney, service and automation",
         "company": "Cartório Gaya",
         "location": "Blumenau, Brazil",
-        "description": "Powers of attorney, workflow automation and technical support for the notary office.",
+        "description": "Client service and request coordination at Tabelionato de Notas e Registro Civil do Distrito de Itoupava, in Blumenau.",
         "achievements": [
-          "Drafting powers of attorney, deeds, and estate inventories.",
-          "Self-directed improvement of digital workflows.",
-          "General network and hardware support and diagnostics."
+          "Guiding clients, reviewing documents and tracking deadlines and pending requests.",
+          "Deploying Vikunja on Oracle Cloud with Kanban workflows, manuals and user guidance.",
+          "Automating vehicle lookups through a REST API, reducing one step from about 5 minutes to 20 seconds."
         ],
         "skills": [
           "Node.js",
@@ -241,15 +241,20 @@
           {
             "id": "ads",
             "title": "Systems Analysis and Development",
-            "status": "In progress"
+            "status": "Enrolled since August 2026"
           }
         ]
       },
       {
         "id": "complementary",
-        "title": "Complementary courses",
-        "institution": "VisualMídia",
+        "title": "Courses and certifications",
         "items": [
+          {
+            "id": "sfc",
+            "title": "Scrum Fundamentals Certified (SFC)",
+            "status": "Issued November 5, 2026 · Credential #1205645",
+            "evidence": "https://www.linkedin.com/in/kauerc/"
+          },
           {
             "id": "gestao",
             "title": "Administrative Management Technician",
@@ -273,6 +278,10 @@
             "title": "3ds Max",
             "hours": "32 h",
             "year": "2018"
+          },
+          {
+            "id": "fraudes",
+            "title": "Document Examination, Handwriting Analysis and Digital Fraud Prevention"
           }
         ]
       },
@@ -288,6 +297,7 @@
         ]
       }
     ],
+    "otherCourses": "Other courses",
     "showAll": "View all courses"
   },
   "projetos": {

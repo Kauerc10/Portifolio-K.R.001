@@ -28,10 +28,12 @@ function StudyList({
   studies,
   institution,
   continuedInstitution,
+  otherCourses,
 }: {
   studies: Study[];
   institution?: string;
   continuedInstitution?: string;
+  otherCourses?: string;
 }) {
   const byInstitution = new Map<string | undefined, Study[]>();
   for (const study of studies) {
@@ -42,10 +44,10 @@ function StudyList({
   }
 
   return [...byInstitution].map(([name, items], index) => {
-    const showHeading = Boolean(name) && !(index === 0 && name === continuedInstitution);
+    const showHeading = Boolean(name ?? otherCourses) && !(name && index === 0 && name === continuedInstitution);
     return (
       <div key={name ?? ''}>
-        {showHeading && <p className="formacao-editorial__institution">{name}</p>}
+        {showHeading && <p className="formacao-editorial__institution">{name ?? otherCourses}</p>}
         <ul className="formacao-editorial__items">
           {items.map(study => {
             const shared = SHARED_FORMATION_META[study.id];
@@ -67,7 +69,7 @@ function StudyList({
   });
 }
 
-export default function FormacaoSection({ dict }: { dict: { title: string; showAll: string; groups: StudyGroup[] } }) {
+export default function FormacaoSection({ dict }: { dict: { title: string; showAll: string; otherCourses?: string; groups: StudyGroup[] } }) {
   const [titleLead, titleAccent] = splitAccentTitle(dict.title);
   return (
     <section className="section editorial-section formacao-editorial" id="formacao" data-section="6">
@@ -86,7 +88,7 @@ export default function FormacaoSection({ dict }: { dict: { title: string; showA
           return (
             <section className="formacao-editorial__group" key={group.id} aria-labelledby={`formacao-${group.id}`}>
               <h3 id={`formacao-${group.id}`}>{group.title}</h3>
-              <StudyList studies={summaryItems} institution={group.institution} />
+              <StudyList studies={summaryItems} institution={group.institution} otherCourses={dict.otherCourses} />
               {hasMore && (
                 <details className="formacao-editorial__more">
                   <summary>{dict.showAll} ({group.items.length})</summary>
@@ -94,6 +96,7 @@ export default function FormacaoSection({ dict }: { dict: { title: string; showA
                     studies={group.items.slice(summaryLimit)}
                     institution={group.institution}
                     continuedInstitution={lastSummaryInstitution}
+                    otherCourses={dict.otherCourses}
                   />
                 </details>
               )}

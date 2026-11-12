@@ -42,7 +42,8 @@ describe('Suíte de Testes da Arquitetura i18n (Next.js 15 Nativo)', () => {
   it('preserva todas as medalhas e formações do design original nos dois idiomas', () => {
     for (const dictionary of [ptBR, enUS]) {
       expect(dictionary.conquistas.medals).toHaveLength(4);
-      expect(dictionary.formacao.groups.find((group) => group.id === 'complementary')?.items).toHaveLength(4);
+      const courses = dictionary.formacao.groups.find((group) => group.id === 'complementary')?.items;
+      expect(courses?.map(course => course.id)).toEqual(expect.arrayContaining(['gestao', 'operador', 'games', 'max', 'sfc', 'fraudes']));
       expect(dictionary.conquistas.medals.every((medal) => medal.cursorLabel.length > 0)).toBe(true);
       expect(dictionary.conquistas.medals.every((medal) => medal.editionLabel.length > 0)).toBe(true);
     }
