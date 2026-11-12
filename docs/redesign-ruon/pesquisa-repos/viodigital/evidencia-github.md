@@ -44,4 +44,3 @@ O primeiro commit público encontrado na história consultada é `649914c`, de 1
 ## Direção visual para o case
 
 Usar a referência visual enviada pelo usuário apenas como **referência de estilo**, não como prova de estado do GitHub. A narrativa mais forte é: problema notarial real → privacidade/offline → motor técnico → interface acessível e comunitária. O case pode mostrar QR/scan, selo de validação, fluxo local e contribuição open source sem expor documentos reais.
-
