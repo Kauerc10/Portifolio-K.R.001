@@ -49,8 +49,7 @@
 @import './layout/responsive.css';
 
 @import './components/refinement-micro.css';
-@import './components/motion-projects.css';
 @import './components/motion-editorial.css';
+@import './components/motion-projects.css';
 @import './components/motion-contact.css';
 @import './components/motion-lifecycle.css';
-@import './components/motion-editorial.css';

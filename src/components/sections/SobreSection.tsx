@@ -21,7 +21,8 @@ export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] })
       </picture>
       <div className="editorial-pillars" aria-label={d.pillarsLabel} data-motion-pillars>
         {d.pillars.map((pillar) => (
-          <article className="editorial-pillar" key={pillar.title}>
+          <article className="editorial-pillar" key={pillar.title} data-motion-pillar>
+            <span className="editorial-pillar__accent" data-motion-pillar-accent aria-hidden="true" />
             <h3>{pillar.title}</h3>
             <p>{pillar.description}</p>
           </article>

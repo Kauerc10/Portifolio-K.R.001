@@ -92,6 +92,7 @@ export default function FormacaoSection({ dict }: { dict: { title: string; showA
               <StudyList studies={summaryItems} institution={group.institution} otherCourses={dict.otherCourses} />
               {hasMore && (
                 <details className="formacao-editorial__more">
+                  <span className="formacao-editorial__expansion-edge" aria-hidden="true" />
                   <summary>{dict.showAll} ({group.items.length})</summary>
                   <div data-motion-details-content>
                     <StudyList

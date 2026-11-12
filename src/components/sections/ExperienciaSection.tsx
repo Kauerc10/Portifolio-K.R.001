@@ -14,6 +14,7 @@ export default function ExperienciaSection({ dict: d }: { dict: Dictionary['expe
           {d.roles.map((role, idx) => (
             <li key={`${role.company}-${role.title}`} className="editorial-timeline__item" data-motion-experience-item>
               <span data-motion-dot className={`editorial-timeline__dot ${idx === 1 ? 'editorial-timeline__dot--warm' : ''}`} aria-hidden="true" />
+              <span data-motion-segment className="editorial-timeline__segment" aria-hidden="true" />
               <div>
                 <h3>{role.company}</h3>
                 <strong>{role.title}</strong>
