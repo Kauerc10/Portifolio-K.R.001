@@ -7,13 +7,16 @@ import styles from './PortfolioIntro.module.css';
 
 const sessionKey = 'portfolio-intro-complete';
 const motionPreference = '(prefers-reduced-motion: reduce)';
-const revealTiming = { first: 180, second: 650, support: 1250, button: 1600, ready: 1850, wordStagger: 40 } as const;
+const revealTiming = { first: 300, second: 1100, support: 2150, button: 2800, ready: 3350, wordStagger: 65 } as const;
 const revealPhases = ['first', 'second', 'support', 'button', 'ready'] as const;
 const revealStyles = {
   '--intro-support-delay': `${revealTiming.support}ms`,
   '--intro-button-delay': `${revealTiming.button}ms`,
 } as CSSProperties;
-const docking = { duration: 950, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' } as const;
+const docking = { duration: 1900, easing: 'cubic-bezier(.65,0,.22,1)', fill: 'forwards' } as const;
+const sweepStart = 'polygon(-30% 0, -20% 0, -40% 100%, -50% 100%)';
+const sweepMiddle = 'polygon(-30% 0, 130% 0, 110% 100%, -50% 100%)';
+const sweepEnd = 'polygon(150% 0, 160% 0, 140% 100%, 130% 100%)';
 
 function alreadyVisited() {
   try {
@@ -107,6 +110,14 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     setMoving(true);
     document.documentElement.dataset.introDocking = 'true';
     const incoming: Animation[] = [];
+    for (const detail of hero.querySelectorAll<HTMLElement>('.portal-areas, .portal-primary-links')) {
+      incoming.push(detail.animate([
+        { opacity: 0 },
+        { opacity: 0, offset: .85 },
+        { opacity: 1 },
+      ], docking));
+    }
+    const contrastWindow = dialog.querySelector<HTMLElement>('[data-intro-contrast]');
     animations.current = pairs.map(({ source, destination }, index) => {
       const from = initial[index];
       const to = final[index];
@@ -117,17 +128,56 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
       const support = source.dataset.introSource === 'support';
       if (support) {
         destination.style.visibility = 'visible';
-        incoming.push(destination.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .6 }, { opacity: 1, offset: 1 }], docking));
+        incoming.push(destination.animate([{ opacity: 0, offset: 0 }, { opacity: 0, offset: .82 }, { opacity: 1, offset: 1 }], docking));
+      }
+      const motion = [
+        { transform: 'none', opacity: 1 },
+        { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${scale})`, opacity: support ? 0 : 1 },
+      ];
+      if (contrastWindow) {
+        // A decorative light copy follows the violet mask, keeping contrast at its edge.
+        const copy = source.cloneNode(true) as HTMLElement;
+        const computed = getComputedStyle(source);
+        copy.removeAttribute('data-intro-source');
+        Object.assign(copy.style, {
+          position: 'fixed', left: `${from.left}px`, top: `${from.top}px`,
+          width: `${from.width}px`, margin: '0', color: '#fff',
+          fontFamily: computed.fontFamily, fontSize: computed.fontSize,
+          fontWeight: computed.fontWeight, lineHeight: computed.lineHeight,
+          letterSpacing: computed.letterSpacing, textAlign: computed.textAlign,
+          transformOrigin: 'top left',
+        });
+        const accent = copy.querySelector('em');
+        if (accent) accent.style.color = '#e0caff';
+        contrastWindow.append(copy);
+        incoming.push(copy.animate(motion, docking));
       }
       return source.animate([
-        { transform: 'none', opacity: 1 },
-        { transform: `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${scale})`, color: targetStyle.color, opacity: support ? 0 : 1 },
+        motion[0], { ...motion[1], color: targetStyle.color },
       ], docking);
     });
 
     animations.current.push(...incoming);
     const cover = dialog.querySelector<HTMLElement>('[data-intro-cover]');
-    if (cover) animations.current.push(cover.animate([{ opacity: 1 }, { opacity: 0 }], docking));
+    if (cover) animations.current.push(cover.animate([
+      { opacity: 1 },
+      { opacity: 1, offset: .35 },
+      { opacity: 0, offset: .55 },
+      { opacity: 0 },
+    ], docking));
+    for (const sheet of dialog.querySelectorAll<HTMLElement>('[data-intro-sheet]')) {
+      const isEdge = sheet.dataset.introSheet === 'edge';
+      animations.current.push(sheet.animate([
+        { clipPath: sweepStart },
+        { clipPath: sweepMiddle, offset: isEdge ? .36 : .4 },
+        { clipPath: sweepEnd },
+      ], docking));
+    }
+    if (contrastWindow) animations.current.push(contrastWindow.animate([
+      { clipPath: sweepStart },
+      { clipPath: sweepMiddle, offset: .4 },
+      { clipPath: sweepEnd },
+    ], docking));
     void Promise.allSettled(animations.current.map(animation => animation.finished)).then(finish);
   }
 
@@ -144,6 +194,9 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
       onCancel={(event) => { event.preventDefault(); finish(); }}
     >
       <div className={styles.cover} data-intro-cover aria-hidden="true" />
+      <div className={styles.sweepEdge} data-intro-sheet="edge" aria-hidden="true" />
+      <div className={styles.sweep} data-intro-sheet="violet" aria-hidden="true" />
+      <div className={styles.contrastWindow} data-intro-contrast aria-hidden="true" />
       <div className={styles.copy} data-moving={moving || undefined}>
         <p id="portfolio-intro-heading" className={styles.heading} tabIndex={-1}>
           <span className={styles.line} data-intro-source="first"><span>{dict.greetingH1Line1.split(' ').map((word, index) => <span className={styles.word} style={{ animationDelay: `${revealTiming.first + index * revealTiming.wordStagger}ms` }} key={index}>{word}{' '}</span>)}</span></span>

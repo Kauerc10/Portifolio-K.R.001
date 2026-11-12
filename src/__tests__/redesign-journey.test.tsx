@@ -57,7 +57,7 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
       expect(continueBtn).toBeDisabled();
       fireEvent.click(continueBtn);
       expect(window.sessionStorage.getItem('portfolio-intro-complete')).toBeNull();
-      act(() => vi.advanceTimersByTime(1850));
+      act(() => vi.advanceTimersByTime(3500));
       expect(continueBtn).toBeEnabled();
       expect(screen.getByText(/Eu sou o Kauê\. Aqui está um pouco do que eu construo\./i)).toBeInTheDocument();
 

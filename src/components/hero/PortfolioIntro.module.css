@@ -21,17 +21,39 @@
 .cover {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   background: #fff;
   pointer-events: none;
 }
+
+.sweep,
+.sweepEdge {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  clip-path: polygon(-30% 0, -20% 0, -40% 100%, -50% 100%);
+}
+
+.sweep { background: linear-gradient(110deg, #51219e, #7024d7 55%, #8243df); }
+.sweepEdge { background: #dfd1f5; }
+
+.contrastWindow {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  clip-path: polygon(-30% 0, -20% 0, -40% 100%, -50% 100%);
+}
+
+.contrastWindow * { animation: none !important; }
 
 .copy { width: min(75rem, 100%); padding: 1.5rem; text-align: center; }
 .heading { margin: 0; font-size: clamp(2.2rem, 7.7vw, 7rem); font-weight: 700; letter-spacing: -.055em; line-height: 1; }
 .heading:focus { outline: none; }
 .line { display: table; margin: 0 auto; transform-origin: top left; }
 .line > span { display: block; overflow: hidden; }
-.word { display: inline-block; white-space: pre; animation: arrive .58s cubic-bezier(.16,1,.3,1) both; }
+.word { display: inline-block; white-space: pre; animation: arrive .82s cubic-bezier(.16,1,.3,1) both; }
 .line em { color: #7024d7; font-style: normal; }
 .support {
   display: table;
@@ -39,7 +61,7 @@
   max-width: 50ch;
   font-size: clamp(1.1rem, 2.4vw, 2rem);
   transform-origin: top left;
-  animation: support-arrive .35s var(--intro-support-delay) cubic-bezier(.22,1,.36,1) both;
+  animation: support-arrive .55s var(--intro-support-delay) cubic-bezier(.22,1,.36,1) both;
 }
 
 .copy button {
@@ -53,7 +75,7 @@
   border-radius: 999px;
   color: #6020b8;
   font-weight: 700;
-  animation: support-arrive .25s var(--intro-button-delay) cubic-bezier(.22,1,.36,1) both;
+  animation: support-arrive .45s var(--intro-button-delay) cubic-bezier(.22,1,.36,1) both;
   transition: color .18s ease, background .18s ease, transform .14s ease;
 }
 
