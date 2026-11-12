@@ -1,9 +1,10 @@
 'use client';
 
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
-import { useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FocusEvent, type FormEvent } from 'react';
 import type { Dictionary } from '@/i18n/types';
 import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
+import { createMotionScope } from '@/lib/section-motion';
 
 const fields = [
   { name: 'nome', type: 'text', label: 'nameLabel', placeholder: 'namePlaceholder', autoComplete: 'name' },
@@ -20,6 +21,51 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
   const [feedbackState, setFeedbackState] = useState<'idle' | 'success' | 'error'>('idle');
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [sending, setSending] = useState(false);
+  const [submitMotionActive, setSubmitMotionActive] = useState(false);
+  const [activeField, setActiveField] = useState<FieldName | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const markerRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const form = formRef.current;
+    const marker = markerRef.current;
+    if (!form || !marker) return;
+    const scope = createMotionScope(form);
+    const active = activeField ? form.elements.namedItem(activeField) : null;
+    const label = active instanceof HTMLElement ? active.closest('label') : null;
+    const setFinal = () => {
+      if (!label) {
+        marker.style.opacity = '0';
+        return;
+      }
+      marker.style.opacity = '1';
+      marker.style.height = `${label.offsetHeight}px`;
+      marker.style.transform = `translateY(${label.offsetTop}px)`;
+      marker.dataset.y = String(label.offsetTop);
+      marker.dataset.height = String(label.offsetHeight);
+    };
+    if (!label) {
+      setFinal();
+      scope.dispose();
+      return;
+    }
+    const fromY = Number.parseFloat(marker.dataset.y ?? `${label.offsetTop}`);
+    const fromHeight = Number.parseFloat(marker.dataset.height ?? `${label.offsetHeight}`);
+    marker.style.opacity = '1';
+    marker.style.height = `${fromHeight}px`;
+    marker.style.transform = `translateY(${fromY}px)`;
+    const animation = scope.animate(marker, [
+      { transform: `translateY(${fromY}px)`, height: `${fromHeight}px` },
+      { transform: `translateY(${label.offsetTop}px)`, height: `${label.offsetHeight}px` },
+    ], { duration: 220 });
+    if (animation) animation.onfinish = setFinal;
+    else setFinal();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(setFinal);
+    observer?.observe(form);
+    observer?.observe(label);
+    scope.onCancel(setFinal);
+    return () => { observer?.disconnect(); scope.dispose(); };
+  }, [activeField, fieldErrors]);
 
   function validateForm(form: HTMLFormElement) {
     const data = new FormData(form);
@@ -45,6 +91,13 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
     });
   }
 
+  function focusField(event: FocusEvent<HTMLFormElement>) {
+    const target = event.target;
+    if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+      setActiveField(target.name as FieldName);
+    }
+  }
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (inFlight.current) return;
@@ -63,6 +116,7 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
     setFieldErrors({});
     inFlight.current = true;
     setSending(true);
+    setSubmitMotionActive(true);
     setFeedback('');
     setFeedbackState('idle');
 
@@ -93,8 +147,20 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
     } finally {
       inFlight.current = false;
       setSending(false);
+      setSubmitMotionActive(false);
     }
   }
+
+  useEffect(() => {
+    if (!sending) return;
+    const covered = () => Boolean(document.documentElement.dataset.languagePhase
+      || document.documentElement.dataset.introPending
+      || document.querySelector('dialog[open]'));
+    const observer = new MutationObserver(() => { if (covered()) setSubmitMotionActive(false); });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-language-phase', 'data-intro-pending'] });
+    document.querySelectorAll('dialog').forEach(dialog => observer.observe(dialog, { attributes: true, attributeFilter: ['open'] }));
+    return () => observer.disconnect();
+  }, [sending]);
 
   return (
     <section className="section editorial-section contact-editorial" id="contato" data-section="8">
@@ -109,14 +175,20 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
         </nav>
       </div>
       <form
+        ref={formRef}
         className="contact-editorial__form"
         method="post"
         action="/api/contato"
         noValidate
         onSubmit={submit}
+        onFocus={focusField}
+        onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setActiveField(null); }}
         onFocusCapture={() => { if (!started.current) started.current = Date.now(); }}
         aria-busy={sending}
+        data-active-field={activeField ?? undefined}
+        data-submitting={sending && submitMotionActive || undefined}
       >
+        <span ref={markerRef} className="contact-editorial__focus-marker" aria-hidden="true" />
         <input type="text" name="botcheck" hidden autoComplete="off" tabIndex={-1} />
         {fields.map(field => (
           <label key={field.name} htmlFor={field.name}>

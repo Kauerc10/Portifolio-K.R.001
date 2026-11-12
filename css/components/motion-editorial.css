@@ -1,0 +1,38 @@
+/* Local section motion; the server-rendered resting state remains the source of truth. */
+.editorial-about-ribbon[data-motion-art] { clip-path: inset(0 0 0 0 round 0); }
+.editorial-pillar { position: relative; }
+.editorial-pillar__accent { display: block; width: 2.4rem; height: 2px; margin-bottom: .8rem; background: var(--editorial-violet); transform-origin: left; }
+.editorial-timeline__item { position: relative; }
+.editorial-timeline__segment { position: absolute; left: -2.5rem; top: 1rem; width: 1px; height: calc(100% - 1rem); background: color-mix(in srgb, var(--editorial-violet) 55%, transparent); transform-origin: top; }
+.editorial-timeline__item:last-child .editorial-timeline__segment { display: none; }
+.editorial-timeline__period { border-radius: .2rem; padding-inline: .2rem; }
+.editorial-skill-row__motion-rule { display: block; width: 100%; height: 1px; margin-bottom: .8rem; background: color-mix(in srgb, var(--editorial-violet) 35%, transparent); transform-origin: left; }
+.editorial-skill-row { position: relative; transition: border-color .24s ease, background-color .24s ease; }
+.editorial-skill-row::after {
+  content: ''; position: absolute; inset-inline: 0; bottom: 0; height: 2px;
+  background: var(--editorial-violet); transform: scaleX(0); transform-origin: left;
+  transition: transform .24s ease;
+}
+.editorial-skill-row.is-motion-linked { border-color: color-mix(in srgb, var(--editorial-violet) 42%, transparent); }
+.editorial-skill-row.is-motion-linked::after { transform: scaleX(1); }
+.formacao-editorial__more [data-motion-details-content] { overflow: visible; }
+.formacao-editorial__more { position: relative; }
+.formacao-editorial__expansion-edge { position: absolute; inset-inline-start: -.8rem; inset-block-start: 2.3rem; width: 2px; height: calc(100% - 2.3rem); background: var(--editorial-violet); transform: scaleY(0); transform-origin: top; transition: transform .45s cubic-bezier(.16,1,.3,1); pointer-events: none; }
+.formacao-editorial__more[open] .formacao-editorial__expansion-edge { transform: scaleY(1); }
+.conquistas-editorial__medal-frame { position: relative; display: block; width: min(9rem, 100%); aspect-ratio: 1; margin: 0 auto 1.2rem; overflow: visible; }
+.conquistas-editorial__medal-frame .conquistas-editorial__medal { width: 100%; height: 100%; margin: 0; }
+.conquistas-editorial__medal-mask { position: absolute; inset: 0; overflow: hidden; pointer-events: none; mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; }
+.conquistas-editorial__medal-frame[data-medal-kind='silver'] .conquistas-editorial__medal-mask { mask-image: url('/assets/achievement-silver.svg'); -webkit-mask-image: url('/assets/achievement-silver.svg'); }
+.conquistas-editorial__medal-frame[data-medal-kind='bronze'] .conquistas-editorial__medal-mask { mask-image: url('/assets/achievement-bronze.svg'); -webkit-mask-image: url('/assets/achievement-bronze.svg'); }
+.conquistas-editorial__medal-sweep { position: absolute; inset: 0; width: 100%; background: linear-gradient(110deg, transparent 38%, color-mix(in srgb, var(--editorial-violet) 38%, white) 50%, transparent 62%); transform: translateX(-110%); pointer-events: none; mix-blend-mode: screen; }
+.conquistas-editorial__medal { display: block; }
+.conquistas-editorial__card a { position: relative; text-decoration: none; }
+.conquistas-editorial__card a::after { content: ''; position: absolute; inset-inline: 0; inset-block-end: -.16em; height: 2px; background: var(--editorial-violet); transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
+.conquistas-editorial__card a:hover,
+.conquistas-editorial__card a:focus-visible { text-decoration-color: var(--editorial-violet); }
+.conquistas-editorial__card a:hover::after,
+.conquistas-editorial__card a:focus-visible::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .editorial-skill-row, .editorial-skill-row::after, .conquistas-editorial__card a, .conquistas-editorial__card a::after { transition: none; }
+  .formacao-editorial__expansion-edge { transition: none; }
+}

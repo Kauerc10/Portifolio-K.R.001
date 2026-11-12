@@ -1,17 +1,79 @@
 'use client';
 
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
-import type { MouseEvent } from 'react';
+import { useEffect, useRef, type MouseEvent } from 'react';
 import type { Dictionary } from '@/i18n/types';
 import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
 
 export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
+  const pendingTop = useRef(false);
+  const trackingFrame = useRef(0);
+  const trackingDeadline = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const cancel = () => {
+      pendingTop.current = false;
+      cancelAnimationFrame(trackingFrame.current);
+      if (trackingDeadline.current) clearTimeout(trackingDeadline.current);
+      trackingDeadline.current = null;
+    };
+    const stopReduced = () => {
+      if (!motion.matches || !pendingTop.current) return;
+      window.scrollTo({ top: window.scrollY, behavior: 'instant' });
+      cancel();
+    };
+    const onPreference = () => {
+      if (motion.matches) stopReduced();
+    };
+    const onPageHide = () => cancel();
+    window.addEventListener('wheel', cancel, { passive: true });
+    window.addEventListener('touchstart', cancel, { passive: true });
+    window.addEventListener('pointerdown', cancel, { passive: true });
+    window.addEventListener('keydown', cancel);
+    window.addEventListener('pagehide', onPageHide);
+    motion.addEventListener('change', onPreference);
+    return () => {
+      cancel();
+      window.removeEventListener('wheel', cancel);
+      window.removeEventListener('touchstart', cancel);
+      window.removeEventListener('pointerdown', cancel);
+      window.removeEventListener('keydown', cancel);
+      window.removeEventListener('pagehide', onPageHide);
+      motion.removeEventListener('change', onPreference);
+    };
+  }, []);
+
   function returnToTop(event: MouseEvent<HTMLAnchorElement>) {
     if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
     event.preventDefault();
-    document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    pendingTop.current = true;
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' });
+    if (window.scrollY <= 2) {
+      pendingTop.current = false;
+      document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+      return;
+    }
+    if (reduceMotion) {
+      pendingTop.current = false;
+      return;
+    }
+    cancelAnimationFrame(trackingFrame.current);
+    trackingFrame.current = requestAnimationFrame(function trackTop() {
+      if (!pendingTop.current) return;
+      if (window.scrollY <= 2) {
+        pendingTop.current = false;
+        document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+        return;
+      }
+      trackingFrame.current = requestAnimationFrame(trackTop);
+    });
+    trackingDeadline.current = setTimeout(() => {
+      pendingTop.current = false;
+      cancelAnimationFrame(trackingFrame.current);
+      trackingDeadline.current = null;
+    }, 4000);
   }
 
   return (

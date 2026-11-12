@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
 import { splitAccentTitle } from '@/lib/editorial';
+import { createMotionScope, type MotionScope } from '@/lib/section-motion';
 
 const projects = [
   { key: 'atlas', id: 'project-atlas' },
@@ -22,19 +23,82 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
   const [selected, setSelected] = useState<string | null>(null);
 
   const indexRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const borderRef = useRef<HTMLSpanElement>(null);
+  const detailRef = useRef<HTMLDivElement>(null);
+  const selectionSweepRef = useRef<HTMLSpanElement>(null);
+  const motionRef = useRef<MotionScope | null>(null);
+  const previousSelectedRef = useRef<string | null>(null);
+  const atlasEntryCleanupRef = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const motion = createMotionScope(section);
+    motionRef.current = motion;
+    section.dataset.motionState = 'entered';
+    const stopEntry = motion.scrub(borderRef.current, [
+        { opacity: 0, clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' },
+        { opacity: 1, clipPath: 'polygon(0 0, 100% 0, 76% 100%, 0 100%)' },
+      ], { anchor: section.querySelector('.projects-editorial__heading') ?? section });
+    return () => {
+      stopEntry();
+      motion.dispose();
+      motionRef.current = null;
+    };
+  }, []);
 
   useEffect(() => {
     if (!selected) return;
     const panel = document.getElementById(selected);
-    const media = window.matchMedia?.('(prefers-reduced-motion: reduce)');
-    if (media?.matches || !panel?.animate) return;
-    const animation = panel.animate(
-      [{ opacity: .4, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }],
-      { duration: 180, easing: 'cubic-bezier(.16,1,.3,1)' },
-    );
-    const stop = () => animation.cancel();
-    media?.addEventListener('change', stop);
-    return () => { stop(); media?.removeEventListener('change', stop); };
+    const motion = motionRef.current;
+    if (!panel || !motion) return;
+    motion.cancel();
+    const previous = previousSelectedRef.current;
+    const changed = previous !== null && previous !== selected;
+    // Keep the project title and layout anchors stable; animate only supporting content.
+    const content = [...panel.querySelectorAll<HTMLElement>(
+      '.editorial-kicker, .projects-editorial__role, .projects-editorial__solution, .projects-editorial__stack, .projects-editorial__actions',
+    )];
+    if (changed) content.forEach((element, index) => motion.animate(element,
+      [{ opacity: .45, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
+      { duration: 420, delay: index * 40 },
+    ));
+
+    const border = selectionSweepRef.current;
+    if (border && changed) {
+      const fromIndex = projects.findIndex(project => project.id === previous);
+      const toIndex = projects.findIndex(project => project.id === selected);
+      const direction = toIndex >= fromIndex ? 'forward' : 'backward';
+      const section = sectionRef.current;
+      if (section) section.dataset.selectionDirection = direction;
+      motion.animate(border,
+        direction === 'forward'
+          ? [{ opacity: .2, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }]
+          : [{ opacity: .2, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }],
+        { duration: 650 },
+      );
+    }
+    previousSelectedRef.current = selected;
+  }, [selected]);
+
+  useEffect(() => {
+    if (selected !== 'project-atlas') return;
+    const motion = motionRef.current;
+    const panel = document.getElementById(selected);
+    if (!motion || !panel) return;
+    const flow = panel.querySelector<HTMLElement>('.projects-editorial__flow');
+    if (!flow) return;
+    atlasEntryCleanupRef.current?.();
+    const stops = [...flow.querySelectorAll<HTMLElement>('li > span')].map((node, index) => motion.scrub(node, [
+      { opacity: .5, transform: 'translateY(8px)' },
+      { opacity: 1, transform: 'translateY(0)' },
+    ], { anchor: flow, from: index * .2, to: .55 + index * .2 }));
+    atlasEntryCleanupRef.current = () => stops.forEach(stop => stop());
+    return () => {
+      atlasEntryCleanupRef.current?.();
+      atlasEntryCleanupRef.current = null;
+    };
   }, [selected]);
 
   useEffect(() => {
@@ -93,12 +157,13 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
 
   const [titleLead, titleAccent] = splitAccentTitle(dict.editorialTitle);
   return (
-    <section className="section editorial-section projects-editorial" id="projetos" data-section="7">
+    <section ref={sectionRef} className="section editorial-section projects-editorial" id="projetos" data-section="7" data-motion-state="idle">
       <div className="projects-editorial__heading">
         <h2 className="editorial-display">
           {titleLead}{' '}<em>{titleAccent}</em>
         </h2>
         <p className="projects-editorial__intro">{dict.editorialDescription}</p>
+        <span ref={borderRef} className="projects-editorial__directional-border" aria-hidden="true" />
       </div>
       <div className="projects-editorial__layout">
         <nav ref={indexRef} className="projects-editorial__index" aria-label={dict.editorialTitle}>
@@ -115,7 +180,8 @@ export default function ProjetosSection({ dict }: { dict: Dictionary['projetos']
             </a>
           ))}
         </nav>
-        <div className="projects-editorial__detail" data-enhanced={selected !== null || undefined}>
+        <div ref={detailRef} className="projects-editorial__detail" data-enhanced={selected !== null || undefined}>
+          <span ref={selectionSweepRef} className="projects-editorial__selection-sweep" aria-hidden="true" />
           {projects.map(project => {
             const item = dict.items[project.key];
             return (

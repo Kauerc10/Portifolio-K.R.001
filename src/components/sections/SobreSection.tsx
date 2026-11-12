@@ -1,4 +1,5 @@
 import type { Dictionary } from '@/i18n/types';
+import SectionMotionEnhancer from './SectionMotionEnhancer';
 
 export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] }) {
   return (
@@ -15,17 +16,19 @@ export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] })
           <p className="editorial-profile__copy">{d.profile}</p>
         </div>
       </div>
-      <picture className="editorial-about-ribbon" aria-hidden="true">
+      <picture className="editorial-about-ribbon" aria-hidden="true" data-motion-art>
         <img src="/images/editorial-details/about-ribbon-2172.webp" srcSet="/images/editorial-details/about-ribbon-1100.webp 1100w, /images/editorial-details/about-ribbon-2172.webp 2172w" sizes="100vw" width="2172" height="300" alt="" loading="lazy" decoding="async" />
       </picture>
-      <div className="editorial-pillars" aria-label={d.pillarsLabel}>
+      <div className="editorial-pillars" aria-label={d.pillarsLabel} data-motion-pillars>
         {d.pillars.map((pillar) => (
-          <article className="editorial-pillar" key={pillar.title}>
+          <article className="editorial-pillar" key={pillar.title} data-motion-pillar>
+            <span className="editorial-pillar__accent" data-motion-pillar-accent aria-hidden="true" />
             <h3>{pillar.title}</h3>
             <p>{pillar.description}</p>
           </article>
         ))}
       </div>
+      <SectionMotionEnhancer sectionId="sobre" kind="sobre" />
     </section>
   );
 }

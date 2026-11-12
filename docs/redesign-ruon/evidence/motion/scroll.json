@@ -1,0 +1,38 @@
+[
+  {
+    "width": 390,
+    "start": {
+      "time": 214.11210317460316,
+      "clip": "inset(0px 78.5888% 0px 0px round 125.742px)"
+    },
+    "forward": {
+      "time": 420.4613095238095,
+      "clip": "inset(0px 57.9539% 0px 0px round 92.7262px)"
+    },
+    "backward": {
+      "time": 277.60416666666663,
+      "clip": "inset(0px 72.2396% 0px 0px round 115.583px)"
+    },
+    "heldForMs": 1400,
+    "reducedMotion": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "start": {
+      "time": 214.58333333333331,
+      "clip": "inset(0px 78.5417% 0px 0px round 125.667px)"
+    },
+    "forward": {
+      "time": 420.9325396825397,
+      "clip": "inset(0px 57.9067% 0px 0px round 92.6508px)"
+    },
+    "backward": {
+      "time": 278.07539682539687,
+      "clip": "inset(0px 72.1925% 0px 0px round 115.508px)"
+    },
+    "heldForMs": 1400,
+    "reducedMotion": true,
+    "errors": []
+  }
+]
