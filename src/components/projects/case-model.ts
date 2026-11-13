@@ -73,3 +73,20 @@ export const docFacilCase: CaseDefinition = {
   homePath: (locale) => `/${locale}`,
   casePath: (locale) => `/${locale}/projetos/docfacil`,
 };
+
+export const ckfCase: CaseDefinition = {
+  id: 'ckf',
+  slug: 'ckf',
+  title: { 'pt-BR': 'CKF Manutenção', 'en-US': 'CKF Maintenance' },
+  nature: 'on-demand',
+  deliveries: [
+    { id: 'institutional-site', label: { 'pt-BR': 'Site institucional', 'en-US': 'Institutional website' }, kind: 'service' },
+    { id: 'quotes-system', label: { 'pt-BR': 'Sistema de orçamentos', 'en-US': 'Quotes system' }, kind: 'service' },
+  ],
+  links: {
+    home: { 'pt-BR': '/pt-BR#project-ckf', 'en-US': '/en-US#project-ckf' },
+    case: { 'pt-BR': '/pt-BR/projetos/ckf', 'en-US': '/en-US/projetos/ckf' },
+  },
+  homePath: locale => `/${locale}`,
+  casePath: locale => `/${locale}/projetos/ckf`,
+};

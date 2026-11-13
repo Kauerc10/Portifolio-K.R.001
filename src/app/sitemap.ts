@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/${locale}/projetos/vecom`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/vecom`, 'en-US': `${baseUrl}/en-US/projetos/vecom` } } },
     { url: `${baseUrl}/${locale}/projetos/atlas-notarial`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/atlas-notarial`, 'en-US': `${baseUrl}/en-US/projetos/atlas-notarial` } } },
     { url: `${baseUrl}/${locale}/projetos/docfacil`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/docfacil`, 'en-US': `${baseUrl}/en-US/projetos/docfacil` } } },
+    { url: `${baseUrl}/${locale}/projetos/ckf`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/ckf`, 'en-US': `${baseUrl}/en-US/projetos/ckf` } } },
   ]);
   return [...homeEntries, ...caseEntries];
 }

@@ -9,11 +9,12 @@ import VioPreview from '@/components/projects/VioPreview';
 import VecomPreview from '@/components/projects/VecomPreview';
 import AtlasPreview from '@/components/projects/AtlasPreview';
 import DocFacilPreview from '@/components/projects/DocFacilPreview';
+import CkfPreview from '@/components/projects/CkfPreview';
 import type { Locale } from '@/i18n/config';
 
 const projects = [
   { key: 'atlas', id: 'project-atlas' },
-  { key: 'ckf', id: 'project-ckf', demo: 'https://ckf-manutencao-orcamentos.vercel.app', repo: 'https://github.com/Kauerc10/ckf-manutencao-orcamentos' },
+  { key: 'ckf', id: 'project-ckf-legacy', demo: 'https://ckf-manutencao-orcamentos.vercel.app', repo: 'https://github.com/Kauerc10/ckf-manutencao-orcamentos' },
   { key: 'docfacil', id: 'project-docfacil-legacy', demo: 'https://docfacil-indol.vercel.app', repo: 'https://github.com/Kauerc10/docfacil' },
   { key: 'folilib', id: 'project-foli', repo: 'https://github.com/Kauerc10/foli' },
 ] as const;
@@ -174,6 +175,7 @@ export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dict
       <VecomPreview locale={locale} />
       <AtlasPreview locale={locale} />
       <DocFacilPreview locale={locale} />
+      <CkfPreview locale={locale} />
       <div className="projects-editorial__layout">
         <nav ref={indexRef} className="projects-editorial__index" aria-label={dict.editorialTitle}>
           <span className="projects-editorial__marker" aria-hidden="true" />

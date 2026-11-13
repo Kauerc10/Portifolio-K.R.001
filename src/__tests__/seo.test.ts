@@ -11,13 +11,13 @@ describe('Arquitetura de SEO & GEO (Search + AI Readiness)', () => {
   it('deve gerar sitemap.xml com o hostname canônico que responde em produção', () => {
     const sitemapData = sitemap();
 
-    expect(sitemapData).toHaveLength(10);
+    expect(sitemapData).toHaveLength(12);
     expect(sitemapData[0].url).toBe(`${canonicalHost}/pt-BR`);
     expect(sitemapData[1].url).toBe(`${canonicalHost}/en-US`);
     expect(sitemapData[0].alternates?.languages?.['pt-BR']).toBe(`${canonicalHost}/pt-BR`);
     expect(sitemapData[0].alternates?.languages?.['en-US']).toBe(`${canonicalHost}/en-US`);
     expect(sitemapData[0].priority).toBe(1.0);
-    for (const slug of ['viodigital', 'vecom', 'atlas-notarial', 'docfacil']) {
+    for (const slug of ['viodigital', 'vecom', 'atlas-notarial', 'docfacil', 'ckf']) {
       for (const locale of ['pt-BR', 'en-US']) {
         const entry = sitemapData.find(item => item.url === `${canonicalHost}/${locale}/projetos/${slug}`);
         expect(entry).toBeDefined();

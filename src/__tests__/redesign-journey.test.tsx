@@ -94,7 +94,7 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
       const { container } = render(<ProjetosSection dict={ptBR.projetos} />);
 
       const atlasArticle = container.querySelector('#project-atlas') as HTMLElement;
-      const ckfArticle = container.querySelector('#project-ckf') as HTMLElement;
+      const ckfArticle = container.querySelector('#project-ckf-legacy') as HTMLElement;
       expect(atlasArticle).not.toHaveAttribute('hidden');
       expect(ckfArticle).toHaveAttribute('hidden');
 
@@ -111,7 +111,7 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
       expect(ckfArticle).not.toHaveAttribute('hidden');
       expect(atlasArticle).toHaveAttribute('hidden');
       expect(document.activeElement).toBe(ckfLink);
-      expect(window.location.hash).toBe('#project-ckf');
+      expect(window.location.hash).toBe('#project-ckf-legacy');
     });
 
     it('seleciona o projeto correspondente ao abrir com hash direto', () => {
