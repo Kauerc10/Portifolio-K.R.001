@@ -55,3 +55,21 @@ export const atlasCase: CaseDefinition = {
   links: { home: { 'pt-BR': '/pt-BR#project-atlas-notarial', 'en-US': '/en-US#project-atlas-notarial' }, case: { 'pt-BR': '/pt-BR/projetos/atlas-notarial', 'en-US': '/en-US/projetos/atlas-notarial' } },
   homePath: (locale) => `/${locale}`, casePath: (locale) => `/${locale}/projetos/atlas-notarial`,
 };
+
+export const docFacilCase: CaseDefinition = {
+  id: 'docfacil',
+  slug: 'docfacil',
+  title: { 'pt-BR': 'DocFácil', 'en-US': 'DocFácil' },
+  nature: 'own-product',
+  deliveries: [{
+    id: 'guided-documents',
+    label: { 'pt-BR': 'Criação guiada de documentos', 'en-US': 'Guided document creation' },
+    kind: 'product',
+  }],
+  links: {
+    home: { 'pt-BR': '/pt-BR#project-docfacil', 'en-US': '/en-US#project-docfacil' },
+    case: { 'pt-BR': '/pt-BR/projetos/docfacil', 'en-US': '/en-US/projetos/docfacil' },
+  },
+  homePath: (locale) => `/${locale}`,
+  casePath: (locale) => `/${locale}/projetos/docfacil`,
+};
