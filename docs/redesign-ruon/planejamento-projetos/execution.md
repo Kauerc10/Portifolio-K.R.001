@@ -43,3 +43,5 @@ C05 #80 foi aprovado por Kauê após os refinamentos de conteúdo e movimento (6
 C06 #81 DocFácil foi aprovado por Kauê após o preview e encerrado. C07 #82 está atribuído, sem bloqueios abertos, com conteúdo integrado em c388e6b, composição em e764018 e ajustes em b292f96. [Entrega C07](c07-handoff.md): única rota CKF com duas frentes distintas, foco institucional nesta fatia e resumo demonstrativo do sistema. C08 aguarda o aceite desta etapa.
 
 C07 #82 foi aprovado por Kauê após os ajustes de localização, largura e capturas completas (90949f2), e encerrado. C08 #83 está atribuído, sem bloqueios, com narrativa e rota integradas em 5d9b9c2 e demonstração visual em eec3ebd. [Entrega C08](c08-handoff.md): mesmo case CKF, sistema com sequência própria, PDF demonstrativo e galeria separada. C09 permanece aguardando o aceite desta fatia.
+
+C08 #83 foi aprovado por Kauê e encerrado. C09 #84 consolida a vitrine em cinco cases, com leitura rápida, percursos menores, navegação por âncoras e compatibilidade legada. [Entrega C09](c09-handoff.md): testes, build e jornadas locais desktop/celular, PT/EN, tema escuro e fallbacks. C09 aguarda teste do usuário; C10 não iniciado.
