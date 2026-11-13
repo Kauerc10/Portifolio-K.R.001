@@ -13,7 +13,7 @@ it('keeps project content immediate while moving the selection marker', () => {
   fireEvent.click(ckf);
 
   expect(ckf).toHaveAttribute('aria-current', 'true');
-  expect(container.querySelector('#project-ckf')).not.toHaveAttribute('hidden');
+  expect(container.querySelector('#project-ckf-legacy')).not.toHaveAttribute('hidden');
   expect(container.querySelector('#project-atlas')).toHaveAttribute('hidden');
   expect(container.querySelector('.projects-editorial__directional-border')).toBeTruthy();
 });

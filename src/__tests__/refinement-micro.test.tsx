@@ -12,7 +12,7 @@ it('rapid project choices expose only the latest panel and preserve focus on its
   expect(active).toHaveAttribute('aria-current', 'true');
   expect(document.activeElement).toBe(active);
   expect(container.querySelector('#project-foli')).not.toHaveAttribute('inert');
-  expect(container.querySelector('#project-ckf')).toHaveAttribute('inert');
+  expect(container.querySelector('#project-ckf-legacy')).toHaveAttribute('inert');
   expect(container.querySelector('#project-docfacil-legacy')).toHaveAttribute('aria-hidden', 'true');
 });
 
