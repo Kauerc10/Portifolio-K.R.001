@@ -37,3 +37,11 @@ A mesma revisão editorial alcança VioDigital, VECOM, Atlas e DocFácil em PT/E
 Validação da revisão: TypeScript e 74 testes aprovados. A jornada CKF foi repetida com cinco imagens na galeria e passou em desktop/celular, teclado, retorno, histórico, nova aba, idiomas/metadata, claro/escuro, falhas de mídia, storage bloqueado, sem JS e tela baixa. Os cinco cases tiveram revisão de heading/layout e ausência de overflow em desktop e celular; inglês também conferido no celular. Resultados em `evidence/c07-ckf-clarity/journey/results.json` e `evidence/case-content-clarity/results.json`. A revisão de fonte não encontrou claims sem suporte ou bugs bloqueantes. As capturas locais do sistema estão identificadas em `evidence/c07-ckf-clarity/system-capture.json`.
 
 Build de produção da revisão aprovado no checkout isolado `content-proof`, sem alteração da configuração entregue. As páginas PT/EN dos cinco cases foram geradas com sucesso.
+
+## Ajuste de localização, largura e proporção — 13/11/2026
+
+Kauê confirmou CKF em Itajaí/SC e VECOM em Blumenau/SC. A localização agora aparece no contexto e na abertura das duas entregas, em PT/EN. As capturas VECOM existentes já eram da interface original em execução local com fixtures; as legendas foram esclarecidas, sem gerar interfaces substitutas.
+
+As páginas dos cinco cases usam abertura de até 1760px e seções de até 1680px em telas largas, com gutters proporcionais e medidas de leitura preservadas. A CKF usa apresentação em duas colunas no capítulo animado: explicação à esquerda e captura completa à direita. Foi removido o recorte por `object-fit: cover` das molduras CKF e VECOM.
+
+A galeria compartilhada classifica cada captura por suas dimensões reais. Paisagens e retratos não dependem mais da posição na lista; thumbnails são limitados a 440px/480px de altura, preservam proporção e não são esticados. Isso corrige especialmente o terceiro print vertical da CKF. O modal mantém a captura inteira e oferece link nativo ao arquivo original para consulta em resolução completa.

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import styles from './VioDigital.module.css';
 
 export type CaseGalleryItem = { id: string; src: string; alt: string; caption: string; width: number; height: number; className: string };
@@ -22,7 +22,7 @@ export default function CaseGallery({ items, enlarge, close, naming, mediaUnavai
   }, [items]);
   return <>
     <div className={styles.galleryGrid}>
-      {items.map((item) => <figure key={item.id} className={item.className}>
+      {items.map((item) => <figure key={item.id} className={item.className} data-media-format={item.width < item.height ? 'portrait' : 'landscape'} style={{ '--capture-ratio': item.width / item.height, '--capture-width': `${item.width}px` } as CSSProperties}>
         <button type="button" aria-label={`${enlarge}: ${item.caption}`} onClick={(event) => {
           trigger.current = event.currentTarget;
           setSelected(item);
@@ -34,7 +34,7 @@ export default function CaseGallery({ items, enlarge, close, naming, mediaUnavai
       </figure>)}
     </div>
     <dialog ref={dialog} className={styles.lightbox} aria-label={enlarge} onClose={() => trigger.current?.focus()} onClick={(event) => { if (event.target === dialog.current) dialog.current.close(); }}>
-      <div className={styles.lightboxToolbar}><span>{naming}</span><button type="button" autoFocus onClick={() => dialog.current?.close()}>{close} ×</button></div>
+      <div className={styles.lightboxToolbar}><span>{naming}</span><a href={selected.src} target="_blank" rel="noopener noreferrer">{openOriginal} ↗</a><button type="button" autoFocus onClick={() => dialog.current?.close()}>{close} ×</button></div>
       {failed[selected.id] ? <p className={styles.mediaFallback}>{mediaUnavailable} <a href={selected.src} target="_blank" rel="noopener noreferrer">{openOriginal}</a></p> : <img src={selected.src} alt={selected.alt} width={selected.width} height={selected.height} onError={() => setFailed((current) => ({ ...current, [selected.id]: true }))} />}
     </dialog>
   </>;

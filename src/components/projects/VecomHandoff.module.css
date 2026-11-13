@@ -48,3 +48,10 @@
  .journey { min-height:0; }.sticky { position:relative; top:auto; min-height:0; }
  .receipt { opacity:1; transform:none; transition:none; }
 }
+
+.screen { object-fit:contain; object-position:center; }
+@media(min-width:1000px) {
+ .journey { width:calc(100% - clamp(3rem,8vw,10rem)); max-width:1680px; }
+ .sticky { padding-inline:clamp(1.5rem,3vw,3rem); }
+ .scene { max-width:1250px; }
+}

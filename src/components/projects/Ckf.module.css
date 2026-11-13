@@ -42,3 +42,39 @@
  .preview,.story { min-height:0; }.sticky,.storySticky { position:relative; top:auto; min-height:0; }.progress { display:none; }.siteFrame,.systemFrame,.button { transition:none; transform:none; }
 }
 .story .storyNote { color:#c3ccca; font-size:.7rem; }
+
+/* Wide case pages share the available screen; reading measure stays bounded. */
+@media(min-width:1000px) {
+ .caseHero { width:calc(100% - clamp(3rem,8vw,10rem)); max-width:1760px; margin-inline:auto; }
+ .caseHero .composition { width:100%; max-width:none; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(2rem,4vw,5rem); padding:3rem 0; }
+ .caseHero .copy { min-width:0; }
+ .caseHero .copy h1 { overflow-wrap:break-word; }
+ .chapter,.screens,.invitation,.chapterNav { width:calc(100% - clamp(3rem,8vw,10rem)); max-width:1680px; margin-inline:auto; padding-inline:0; }
+ .chapter > .story { width:100%; max-width:none; margin-inline:0; }
+}
+
+/* Keep every pixel of the source capture visible in the industrial frames. */
+.siteFrame>img,.systemFrame>img,.storyScreen>img { object-fit:contain; object-position:center; }
+.story[data-ckf-motion=static] .storyScreen>img { object-fit:contain; }
+@media(min-width:1000px) {
+ .storySticky { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); align-content:center; align-items:center; gap:1.4rem clamp(2rem,3vw,3rem); padding:2.5rem clamp(1.5rem,3vw,3rem); }
+ .storyHeading { grid-column:1; grid-row:1; }
+ .storyHeading h2 { font-size:clamp(2rem,2.6vw,3rem); }
+ .storyStage { grid-column:2; grid-row:1 / span 2; min-width:0; margin:0; }
+ .storyFrames { height:clamp(350px,55svh,620px); }
+ .storyLabels { grid-column:1; grid-row:2; grid-template-columns:1fr; gap:.8rem; margin:0; }
+ .storyLabels li { padding-top:.65rem; }
+ .storyNote { grid-column:1 / -1; margin:0; }
+ .story[data-ckf-motion=static] .storySticky { display:flex; }
+ .story[data-ckf-motion=static] .storyFrames { height:auto; grid-template-columns:repeat(3,minmax(0,1fr)); }
+ .story[data-ckf-motion=static] .storyScreen { min-width:0; }
+ .story[data-ckf-motion=static] .storyLabels { display:grid; grid-template-columns:repeat(3,1fr); }
+}
+@media(max-width:999px) {
+ .storyFrames { height:clamp(290px,45svh,460px); }
+}
+@media(min-width:1000px) {
+ .case main > .story { width:calc(100% - clamp(3rem,8vw,10rem)); max-width:1680px; }
+}
+@media(min-width:1000px) { .chapterNav { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:760px) { .storyFrames { height:clamp(280px,38svh,380px); } }

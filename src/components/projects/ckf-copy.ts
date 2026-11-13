@@ -1,8 +1,8 @@
 import type { Locale } from '@/i18n/config';
 const pt = {
-  "kind": "Desenvolvimento sob demanda",
+  "kind": "Desenvolvimento sob demanda · Itajaí/SC",
   "title": "Site institucional e sistema de orçamentos.",
-  "description": "A CKF MANUTENCAO LTDA trabalha com manutenção de caminhões e máquinas pesadas, centrais de concreto, reforma de equipamentos e estruturas metálicas. Desenvolvi duas entregas para a empresa: um site para apresentar esses serviços e um sistema interno para preparar e acompanhar orçamentos.",
+  "description": "A CKF MANUTENCAO LTDA, de Itajaí (SC), trabalha com manutenção de caminhões e máquinas pesadas, centrais de concreto, reforma de equipamentos e estruturas metálicas. Desenvolvi o site para apresentar esses serviços e o sistema interno para preparar e acompanhar orçamentos.",
   "open": "Conhecer o projeto",
   "back": "Voltar aos projetos",
   "visit": "Abrir o site da CKF",
@@ -39,7 +39,7 @@ const pt = {
   "mediaUnavailable": "Esta imagem não carregou agora.",
   "result": "Ver o site e conhecer a entrega",
   "resultText": "O site institucional pode ser aberto no link acima. As telas do sistema mostram como o projeto organiza a rotina de orçamentos; os dados utilizados nesta apresentação são apenas de demonstração.",
-  "homeDescription": "Para a CKF MANUTENCAO LTDA, desenvolvi o site de serviços de manutenção industrial e o sistema usado pela equipe para organizar clientes e orçamentos.",
+  "homeDescription": "Para a CKF MANUTENCAO LTDA, de Itajaí (SC), desenvolvi o site de serviços de manutenção industrial e o sistema usado pela equipe para organizar clientes e orçamentos.",
   "companyTitle": "Quem é a CKF e como o projeto começou",
   "companyText": "A CKF MANUTENCAO LTDA é uma empresa de manutenção geral com unidade em Itajaí, Santa Catarina. Atende operações que dependem de caminhões, máquinas, equipamentos e estruturas em funcionamento, como frotas, centrais de concreto e construtoras.",
   "companyOrigin": "Eu ofereci o serviço à empresa, apresentei a proposta e a CKF gostou da ideia. A partir daí, elaborei o site institucional e o sistema de orçamentos. São duas entregas para o mesmo cliente: uma voltada a quem procura os serviços e outra ao trabalho interno da equipe.",
@@ -73,9 +73,9 @@ const pt = {
   ]
 };
 const en: typeof pt = {
-  "kind": "On-demand development",
+  "kind": "On-demand development · Itajaí, SC",
   "title": "Institutional website and quote management system.",
-  "description": "CKF MANUTENCAO LTDA maintains trucks, heavy machinery, concrete plants, equipment and metal structures. I developed two deliveries for the company: a website to present its services and an internal system to prepare and track quotes.",
+  "description": "CKF MANUTENCAO LTDA, based in Itajaí, Santa Catarina, maintains trucks, heavy machinery, concrete plants, equipment and metal structures. I developed its website to present these services and its internal system to prepare and track quotes.",
   "open": "See the project",
   "back": "Back to projects",
   "visit": "Open CKF website",
@@ -112,7 +112,7 @@ const en: typeof pt = {
   "mediaUnavailable": "This image did not load.",
   "result": "Explore the website and the delivery",
   "resultText": "The public website is available through the link above. The system screens show how the project organizes quote-related work; the records in this presentation are demonstration data.",
-  "homeDescription": "For CKF MANUTENCAO LTDA, I developed the industrial maintenance website and the internal system used to organize customers and quotes.",
+  "homeDescription": "For CKF MANUTENCAO LTDA in Itajaí, Santa Catarina, I developed the industrial maintenance website and the internal system used to organize customers and quotes.",
   "companyTitle": "About CKF and how the project started",
   "companyText": "CKF MANUTENCAO LTDA is a maintenance company with a facility in Itajaí, Santa Catarina, Brazil. It serves businesses that depend on trucks, machinery, equipment and structures, including fleet operators, concrete plants and construction companies.",
   "companyOrigin": "I offered the service, presented the proposal and CKF liked the idea. I then developed its institutional website and quote system: two deliveries for the same client, serving prospective customers and the internal team respectively.",

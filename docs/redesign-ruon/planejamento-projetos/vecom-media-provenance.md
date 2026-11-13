@@ -1,4 +1,4 @@
-# VECOM Ficha Fácil — mídia preparada
+# VECOM Ficha Fácil — capturas da interface real
 
 As imagens em `public/assets/projects/vecom/` foram capturadas em 13/11/2026 a partir do frontend real do repositório local `Vecom_ficha_nine/apps/web`, no commit `6a9e0ec90f9b71483699fa75850e1cec02b4f9c1`, executado em modo `test` com a autenticação de demonstração já prevista pelo próprio projeto. Nenhuma API externa, conta real, banco ou registro de cliente foi acessado ou alterado.
 

@@ -1,7 +1,7 @@
 const { chromium } = require(process.env.VIO_PLAYWRIGHT);
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
-const out = 'docs/redesign-ruon/evidence/c07-ckf/story';
+const out = process.env.CASE_EVIDENCE_DIR || 'docs/redesign-ruon/evidence/c07-ckf/story';
 (async () => {
   fs.mkdirSync(out, { recursive: true });
   const browser = await chromium.launch({ executablePath: process.env.VIO_BROWSER });
