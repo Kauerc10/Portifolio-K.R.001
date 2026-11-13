@@ -17,7 +17,8 @@ const out = 'docs/redesign-ruon/evidence/case-content-clarity';
         await page.screenshot({path:`${out}/${name}-${slug}.png`});
         if(slug==='ckf') {
           assert((await page.locator('main').innerText()).includes('CKF MANUTENCAO LTDA'));
-          assert.equal(await page.locator('#telas figure').count(),5);
+          assert.equal(await page.locator('#telas figure').count(),2);
+          assert.equal(await page.locator('#telas-sistema figure').count(),4);
           await page.locator('#sistema').scrollIntoViewIfNeeded();
           await page.screenshot({path:`${out}/${name}-ckf-system.png`});
           assert((await page.locator('#sistema').innerText()).includes('interface real'));

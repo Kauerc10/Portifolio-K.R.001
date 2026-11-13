@@ -43,3 +43,16 @@ Uma tentativa somente leitura em `https://ckf-manutencao-orcamentos.vercel.app/`
 - As capturas do site podem ser usadas como evidência visual da entrega pública da CKF no portfólio; preservar a indicação de fonte/estado temporal.
 - As capturas do sistema devem manter a legenda “interface real em demonstração local / dados fictícios”. A ilustração conceitual anterior permanece apenas no histórico do Git e não é mais o asset atual.
 - Não reutilizar os assets como prova de contrato, pagamento, autoria exclusiva ou acesso aos dados internos.
+
+## C08 — evidência real da rotina operacional
+
+- Fonte fixada: `Kauerc10/ckf-manutencao-orcamentos`, branch funcional `feat/catalogo-tabelas-leads`, SHA `f1797812433928c55d0cb3d600788258c504b1ca`.
+- O harness local usou o código original do CKF com modo demo nativo sem Supabase, em `127.0.0.1:3071`. Não houve acesso a produção, criação de orçamento, alteração, envio ou autenticação externa.
+- `public/assets/projects/ckf/system-editor.png` — 1440×1000. Captura real da rota de edição do orçamento demo nº 286, mostrando cliente fictício, item “Revisão mecânica completa”, quantidade 1, valor unitário/total R$ 980,00 e prévia documental. A captura foi feita sem salvar alterações.
+- `public/assets/projects/ckf/example-quote.pdf` — PDF baixado pelo botão nativo “Baixar PDF” na linha do orçamento demo nº 286.
+- `public/assets/projects/ckf/quote-pdf.png` — 1240×1754, renderização da primeira página do PDF baixado; não é redesenho nem mock.
+- A demo local identifica a sessão como `Modo local sem Supabase`; os dados pertencem ao fixture versionado do modo demo (`demo-2`/nº 286), não a registros reais acessados durante a coleta. Ainda assim, a narrativa deve chamá-los de **fixture demo** e não de cliente real.
+- Antes da segunda captura, a região foi alterada exclusivamente pela tela local `Configurações` para `ITAJAÍ / SC`, conforme a direção atual do case; nenhum código de produto ou backend foi modificado. Os demais dados empresariais permanecem os defaults do fixture demo.
+- O servidor local foi encerrado após a captura. A captura anterior `system-document.png` permanece como mídia existente; a nova dupla PDF/editor é a evidência preferencial para o capítulo “itens → orçamento → PDF”.
+
+Curadoria C08: a galeria operacional usa quatro capturas atuais — dashboard, editor, celular e PDF. A consulta `system-document.png` anterior fica preservada no histórico/arquivos, mas sai da seleção atual por carregar a região padrão antiga. O editor e o PDF C08 usam a região local de demonstração `ITAJAÍ / SC`; o endereço fictício do atendimento em Blumenau não é a sede da empresa.
