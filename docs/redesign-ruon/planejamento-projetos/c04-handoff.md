@@ -32,3 +32,16 @@ URLs locais previstas:
 
 - http://localhost:3064/pt-BR#project-vecom
 - http://localhost:3064/pt-BR/projetos/vecom
+
+## Refinamento solicitado — entrada e passagem da ficha
+
+Em 13/11/2026, Kauê pediu uma entrada mais trabalhada e uma cena mostrando a ficha sair do celular e chegar ao computador da equipe. Esta revisão mantém a composição e a natureza sob demanda.
+
+- A transição nativa compartilha agora a composição inteira (`vecom-scene`) durante 1,35 s, com deslocamento entre os enquadramentos, revelação suave e ordem de profundidade preservada. Pasta e celular deixam de gerar snapshots separados que cobriam o notebook. Navegação e histórico continuam nativos; sem espera ou tela de carregamento obrigatória.
+- O capítulo Jornada recebeu uma cena 2.5D: cliente preenche → ficha percorre um arco → chega à fila da equipe e se acomoda no computador. Cartão e etapas seguem o scroll; pausa e reversão são possíveis em qualquer ponto. A ficha é ilustrativa, com dados fictícios, sem envio real.
+- A fixação é temporária, com percurso menor no celular. Movimento reduzido, tela baixa e ausência de JavaScript mostram o estado final legível.
+- Os dois idiomas e os fallbacks usam as capturas oficiais já preparadas. Nenhum novo serviço ou integração foi acionado.
+
+Provas adicionais: `evidence/c04-vecom-refinement/`, com três estados em desktop/celular, captura da entrada, gravações e resultados. A jornada padrão prévia → case → retorno, galeria por teclado, nova aba, mídia indisponível e temas foi revalidada. Os 74 testes, TypeScript e build passaram. A validação de build precisou liberar caches temporários, incluir o CSS compartilhado no checkout reduzido e baixar as fontes; o cache webpack foi desativado somente no checkout isolado para poupar disco, sem alterar a configuração da aplicação entregue.
+
+Teste: entrar pela home e, no case, usar o atalho Jornada ou continuar rolando. Aguardar nova revisão de Kauê antes de encerrar #79 ou seguir ao Atlas.

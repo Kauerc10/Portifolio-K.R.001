@@ -26,3 +26,7 @@ Assets: pasta azul, fichas e cartões são ilustração. Usar captura oficial pr
 ## Viewports e mídia
 
 Desktop revela o conjunto; celular faz fichas → organizar → acompanhar em percurso curto, com uma alteração clara por gesto. Tela baixa desmonta o palco em cards normais. Reduced motion mantém pasta aberta e cartões visíveis. Comparar vídeo de fichas, 2.5D com pasta/camadas e híbrido com screenshot real em sequência; técnica permanece em aberto.
+
+## Refinamento aprovado para execução — 13/11/2026
+
+Entrada compartilha a composição inteira, preservando a profundidade da pasta atrás dos dispositivos. No capítulo Jornada, uma ficha de exemplo se destaca do celular do cliente, segue um arco conduzido pela rolagem e se acomoda no computador da equipe. Etapas Preencher/Enviar/Receber acompanham o progresso; reversão e pausa independem de tempo. Em movimento reduzido, tela baixa e sem JavaScript, mostrar a chegada estática com os textos completos. Não simular envio real.
