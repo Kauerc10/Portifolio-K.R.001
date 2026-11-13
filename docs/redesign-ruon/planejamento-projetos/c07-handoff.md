@@ -1,0 +1,27 @@
+# C07 — CKF: site institucional
+
+Ticket #82 da spec #75. [Roteiro](roteiros/05-ckf.md) e [referência aprovada](v1/imagens/05-ckf.png). Primeira fatia do case único CKF; o detalhamento do sistema pertence a C08 e aguarda o aceite desta entrega.
+
+## Direção e conteúdo
+
+Desenvolvimento sob demanda: Kauê ofereceu o serviço, a CKF aceitou a proposta e ele elaborou as entregas. A home apresenta site institucional e sistema de orçamentos como frentes distintas para o mesmo cliente. A página própria detalha presença digital, serviços e contato, com contribuição e galeria; o sistema recebe resumo e imagem preparada sem dados operacionais.
+
+Carvão e amarelo sobre base mineral, dois displays com moldura metálica e ligação gráfica amarela. A ligação organiza a narrativa e não demonstra troca de dados ou integração automática. As capturas públicas do site permanecem distintas da imagem demonstrativa do sistema.
+
+## Escolha de movimento
+
+Nesta prova foi adotada composição nativa 2.5D: a separação espacial das telas acompanha o scroll, a entrada mantém o conjunto inteiro e o capítulo institucional percorre apresentação → serviços → contato em um trilho amarelo. A composição favorece leitura, pausa e reversão sem espera por tempo. Vídeo de fundo não foi produzido nesta fatia; fica como possibilidade posterior, sem necessidade para demonstrar o site.
+
+O percurso mobile é menor. Movimento reduzido, ausência de JavaScript e tela baixa exibem as capturas em sequência estática. Títulos, links e retorno permanecem HTML nativo, com histórico/nova aba e namespace de retorno próprio. O catálogo antigo permanece até C09, com ID CKF separado do novo destaque.
+
+## Validação e aceite
+
+Resultados e capturas serão registrados em `docs/redesign-ruon/evidence/c07-ckf`. Scripts: `scripts/qa/ckf-case.cjs` e `scripts/qa/ckf-story.cjs`.
+
+Teste de Kauê: entrar pela home em `#project-ckf`, abrir `/pt-BR/projetos/ckf`, percorrer o site, ampliar as mídias e voltar. C07 permanece aberto até o aceite; C08 não será iniciado antes dele. Preview no branch da PR rascunho #86, sem merge de produção.
+
+## Evidência técnica local
+
+TypeScript e 74 testes em 18 arquivos passaram após integrar C07. A sequência institucional passou em desktop 1440×1000 e celular 390×844: três etapas, deslocamento perceptível das telas, pausa/reversão e ausência de overflow. As três capturas ficam disponíveis no layout estático em movimento reduzido, sem JavaScript e tela baixa. Na revisão foram corrigidos o contraste da legenda no fundo carvão, a extensão da copy da home no celular e a posição do capítulo institucional (separado do resumo do sistema).
+
+A jornada completa no navegador passou em desktop/celular: retorno por link e histórico, nova aba, foco na galeria, PT/EN e canonical/hreflang, claro/escuro, mídia indisponível, storage bloqueado, sem JavaScript e tela baixa. A confirmação visual final inclui o link público do site CKF. Build de produção aprovado no checkout isolado, com cache webpack desativado apenas na prova; a configuração entregue permanece intacta. [Resultados](../evidence/c07-ckf/results.json), [story](../evidence/c07-ckf/story/results.json) e [procedência](ckf-media-provenance.md).
