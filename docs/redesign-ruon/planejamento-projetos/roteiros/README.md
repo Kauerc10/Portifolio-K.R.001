@@ -14,7 +14,29 @@ Status: C01 — material para revisão manual de Kauê. Este diretório descreve
 
 Prévia rápida das referências: [VioDigital](../../storyboards/viodigital/v1/imagens/02-transicao-case.png), [VECOM](../v3/imagens/vecom.png), [Atlas](../v3/imagens/atlas.png), [DocFácil](../v1/imagens/04-docfacil.png) e [CKF](../v1/imagens/05-ckf.png). A tabela mantém os links diretos para abrir cada prancha em tamanho completo.
 
-As imagens acima foram abertas e usadas como referência de composição. Elas são storyboards/arte conceitual, não prova de funcionamento. Capturas reais serão preparadas separadamente, com dados sintéticos.
+As referências foram abertas e usadas para a composição. São storyboards/arte conceitual, não prova de funcionamento. O VioDigital já possui duas capturas reais da aplicação pública na página aprovada; as capturas dos outros cases serão preparadas separadamente com dados demonstrativos.
+
+### Pranchas aprovadas para consulta
+
+**VioDigital**
+
+![VioDigital: prévia, expansão e abertura do case](../../storyboards/viodigital/v1/imagens/02-transicao-case.png)
+
+**VECOM Ficha Fácil — v3**
+
+![VECOM: notebook, celular e pasta azul](../v3/imagens/vecom.png)
+
+**Atlas Notarial — v3**
+
+![Atlas: documento de veículo e camadas de formatação](../v3/imagens/atlas.png)
+
+**DocFácil**
+
+![DocFácil: corujinha e documento guiado](../v1/imagens/04-docfacil.png)
+
+**CKF Manutenção**
+
+![CKF: site e sistema no mesmo case](../v1/imagens/05-ckf.png)
 
 ## Coreografia comum
 

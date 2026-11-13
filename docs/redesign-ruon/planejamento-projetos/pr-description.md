@@ -4,7 +4,7 @@ Esta PR reúne a implementação das prévias e páginas dedicadas dos cinco cas
 
 - Vio aprovado preservado na branch, incluindo história corrigida, galeria real, links e prova de movimento.
 - Tickets C01–C10 publicados com bloqueios nativos.
-- C01 em execução: roteiros dos cinco cases. As demais entregas aguardam as dependências e revisão de Kauê.
+- C01 entregue para revisão manual: índice visual e roteiros dos cinco cases, com estados desktop/mobile, conteúdo-base, assets e critérios de comparação de mídia. Links locais e coerência com aprovações revisados. Aguarda aceite de Kauê antes de encerrar o ticket e iniciar C02.
 - Vídeo, camadas 2.5D ou combinação serão avaliados por case; nenhuma escolha técnica geral foi antecipada.
 
 ## Fluxo de revisão
