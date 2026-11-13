@@ -12,6 +12,8 @@ Status: C01 — material para revisão manual de Kauê. Este diretório descreve
 | DocFácil | Produto próprio da RUON | [prancha DocFácil v1](../v1/imagens/04-docfacil.png) | [04-docfacil.md](04-docfacil.md) |
 | CKF Manutenção | Desenvolvimento sob demanda, duas entregas | [prancha CKF v1](../v1/imagens/05-ckf.png) | [05-ckf.md](05-ckf.md) |
 
+Prévia rápida das referências: [VioDigital](../../storyboards/viodigital/v1/imagens/02-transicao-case.png), [VECOM](../v3/imagens/vecom.png), [Atlas](../v3/imagens/atlas.png), [DocFácil](../v1/imagens/04-docfacil.png) e [CKF](../v1/imagens/05-ckf.png). A tabela mantém os links diretos para abrir cada prancha em tamanho completo.
+
 As imagens acima foram abertas e usadas como referência de composição. Elas são storyboards/arte conceitual, não prova de funcionamento. Capturas reais serão preparadas separadamente, com dados sintéticos.
 
 ## Coreografia comum
@@ -29,6 +31,8 @@ O pin é temporário, proporcional à composição e termina depois do percurso.
 - Movimento reduzido mantém os mesmos textos, CTA e ordem dos capítulos, trocando a transformação por estados estáveis/crossfade discreto. Vídeo fica pausado e poster/resumo textual substitui mídia indisponível.
 - Hover/foco, seta, mudança de legenda e abertura de galeria devem confirmar ações sem deslocar o conteúdo. Toda galeria fecha devolvendo o foco.
 
-## Revisão manual conjunta
+## Revisão documental antes de C02
 
-Antes de C02, comparar as cinco prévias em sequência: legibilidade em desktop/celular, identidade sem competição, duração percebida, retorno ao scroll e distinção entre próprio/sob demanda. Conferir link direto, nova aba, refresh, teclado, tema claro/escuro, PT/EN, tela baixa, reduced motion e falha de mídia. Nenhum roteiro autoriza publicar ou inventar métrica, estágio, contrato, autoria exclusiva ou integração entre produtos.
+Antes de C02, comparar as cinco pranchas e roteiros em sequência: legibilidade prevista em desktop/celular, identidade sem competição e distinção entre próprio/sob demanda. Conferir se cada referência abre, se a legenda identifica direção visual ou captura real e se PT/EN preservam os mesmos fatos. Nenhum roteiro autoriza publicar ou inventar métrica, estágio, contrato, autoria exclusiva ou integração entre produtos.
+
+Os cenários de navegador — link direto, nova aba, refresh, teclado, tema claro/escuro, PT/EN, tela baixa, reduced motion, falha de mídia e retorno ao scroll — ficam para a implementação e validação de cada case. Não há UI implementada neste C01.

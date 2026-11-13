@@ -7,7 +7,7 @@ Referência: [storyboard aprovado](../../storyboards/viodigital/v1/imagens/02-tr
 - **Chegada (home):** documento “EXEMPLO” entra sobre o plano mineral, QR em foco e três marcadores verde/vermelho ao lado. Copy PT: “VioDigital — do documento à informação.” Selo: “Projeto open source”. EN: “VioDigital — from document to information.” / “Open-source project”.
 - **Transformação:** o mesmo documento cresce e abre uma placa posterior; o QR conduz linhas de leitura para módulos de informação. O título e “Conhecer o projeto” permanecem legíveis. A expansão comunica leitura/organização, não uma validação real no portfólio.
 - **Repouso:** documento, módulos e CTA estabilizam. Um gesto de scroll conclui o percurso e libera a próxima seção.
-- **Entrada/retorno:** clique em “Conhecer o projeto” leva a `/pt-BR/projetos/viodigital`; transição pode ampliar o documento. Retorno restaura o ponto da prévia. Links externos preparados: [VioWeb](https://vioweb.vercel.app) e [repositório](https://github.com/Kauerc10/VioWeb).
+- **Entrada/retorno:** clique em “Conhecer o projeto” leva a `/pt-BR/projetos/viodigital`; transição pode ampliar o documento. Retorno restaura o ponto da prévia. Links externos preparados: [VioDigital](https://vioweb.vercel.app) e [repositório](https://github.com/Kauerc10/VioWeb).
 
 ## Página e capítulos
 
