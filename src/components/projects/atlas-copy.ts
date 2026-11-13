@@ -1,9 +1,59 @@
 import type { Locale } from '@/i18n/config';
 
-export function atlasCopy(locale: Locale) {
-  return locale === 'en-US' ? {
-    kind: 'Own product', title: 'From registry routine to useful tools.', description: 'Atlas started with a practical question: how could a daily cartório routine become clearer, safer and easier to move forward?', open: 'See the project', back: 'Back to projects', steps: ['Routine', 'Format', 'Organize'], challenge: 'It started with a problem that kept coming back.', context: 'At the cartório, powers of attorney often returned with errors. Checking and rewriting details took time, and the rework made a routine task heavier than it needed to be.', contextMore: 'I noticed an opportunity to bring those steps together. The Vehicle Formatter was the first tool. As the idea grew, it became Atlas: a toolkit designed for useful, everyday notary workflows.', gallery: 'The tools in context.', galleryText: 'Prepared interface captures show the product direction. The visual scene is an illustration of the flow, not a live operation.', desktopCaption: 'Prepared Atlas interface · illustrative product direction.', mobileCaption: 'Prepared responsive view · illustrative product direction.', enlarge: 'Enlarge image', close: 'Close image', naming: 'Prepared interface · Atlas Notarial', mediaUnavailable: 'This prepared capture is unavailable right now.', openOriginal: 'Open capture', chapterNav: ['Context', 'Evolution', 'Screens', 'Contribution'], invitation: 'A small tool became a wider idea.', choices: [{ title: 'Notice the friction', text: 'Start with the errors, waiting and rework that make a routine harder for the people doing it.' }, { title: 'Build the first useful piece', text: 'The Vehicle Formatter gives the first workflow a clearer place to begin.' }, { title: 'Let the toolkit grow', text: 'Atlas keeps room for more tools without losing the simplicity of the original need.' }], contribution: 'My contribution', contributionText: 'Atlas is my own product. I identified the problem in the cartório routine, shaped the first tool and expanded the direction into a product concept.', result: 'A clearer bench for notary work.', resultText: 'Atlas turns a real routine into a product direction that can continue growing with the people who use it.', presentation: 'See the story', visit: 'Open Atlas', evolutionTitle: 'From one document to a toolkit', evolutionText: 'The story moves in three quiet steps: the routine is visible, the first formatter aligns the data, and the toolkit gives the next ideas a place to land.'
-  } : {
-    kind: 'Produto próprio', title: 'Da rotina do cartório a ferramentas úteis.', description: 'O Atlas começou com uma pergunta prática: como deixar uma rotina diária mais clara, segura e fácil de levar adiante?', open: 'Conhecer o projeto', back: 'Voltar aos projetos', steps: ['Rotina', 'Formatar', 'Organizar'], challenge: 'Começou com um problema que voltava sempre.', context: 'No cartório, muitas procurações voltavam com erros. Conferir e redigir os dados de novo tomava tempo, e o retrabalho deixava uma tarefa comum mais pesada do que precisava ser.', contextMore: 'Eu percebi que dava para aproximar essas etapas. O Formatador de Veículos foi a primeira ferramenta. Conforme a ideia cresceu, ela virou o Atlas: uma bancada de ferramentas úteis para a rotina dos cartórios.', gallery: 'As ferramentas no seu contexto.', galleryText: 'As capturas preparadas mostram a direção do produto. A cena visual é uma ilustração do fluxo, não uma operação ao vivo.', desktopCaption: 'Interface preparada do Atlas · direção ilustrativa do produto.', mobileCaption: 'Visão responsiva preparada · direção ilustrativa do produto.', enlarge: 'Ampliar imagem', close: 'Fechar imagem', naming: 'Interface preparada · Atlas Notarial', mediaUnavailable: 'Esta captura preparada não está disponível agora.', openOriginal: 'Abrir captura', chapterNav: ['Contexto', 'Evolução', 'Telas', 'Contribuição'], invitation: 'Uma ferramenta pequena virou uma ideia maior.', choices: [{ title: 'Perceber o atrito', text: 'Começar pelos erros, pela espera e pelo retrabalho que pesam na rotina de quem está fazendo o serviço.' }, { title: 'Construir a primeira peça útil', text: 'O Formatador de Veículos dá um lugar mais claro para o primeiro fluxo começar.' }, { title: 'Deixar a bancada crescer', text: 'O Atlas abre espaço para outras ferramentas sem perder a simplicidade da necessidade original.' }], contribution: 'Minha contribuição', contributionText: 'O Atlas é um produto próprio. Eu identifiquei o problema na rotina do cartório, estruturei a primeira ferramenta e ampliei a direção para um conceito de produto.', result: 'Uma bancada mais clara para o trabalho notarial.', resultText: 'O Atlas transforma uma rotina real numa direção de produto que pode continuar crescendo junto de quem usa.', presentation: 'Ver a história', visit: 'Abrir o Atlas', evolutionTitle: 'De um documento a uma bancada de ferramentas', evolutionText: 'A história acontece em três passos tranquilos: a rotina aparece, o primeiro formatador alinha os dados e a bancada dá espaço para as próximas ideias.'
-  };
-}
+const pt = {
+  kind: 'Produto próprio',
+  title: 'Da rotina do cartório a ferramentas úteis.',
+  description: 'Eu comecei tentando resolver um problema que conhecia de perto: procurações que voltavam e dados que precisavam ser conferidos de novo.',
+  open: 'Conhecer o projeto', back: 'Voltar aos projetos',
+  steps: ['Formatar', 'Conferir', 'Organizar'],
+  challenge: 'Começou com um problema que voltava sempre.',
+  context: 'No cartório, eu via procurações voltarem com erros. Conferir os dados e redigir tudo de novo tomava tempo. Aquilo fazia parte da rotina, mas eu sentia que dava para melhorar.',
+  contextMore: 'Comecei pelo Formatador de Veículos. A primeira ferramenta ajudou a dar forma a uma ideia maior: reunir soluções úteis para o trabalho do cartório. Foi assim que o Atlas ganhou espaço como um produto meu.',
+  gallery: 'Um olhar para a bancada.',
+  galleryText: 'Estas imagens vêm do material público do Atlas. A bancada mostra onde as ferramentas se encontram; a apresentação no celular ajuda a conhecer a proposta. O documento animado deste case é ilustrativo, com dados de exemplo.',
+  desktopCaption: 'Bancada Atlas · imagem oficial publicada pelo produto, com acesso ao Formatador de Veículos.',
+  mobileCaption: 'Apresentação pública no celular · prévia do produto, sem dados de atendimento.',
+  enlarge: 'Ampliar imagem', close: 'Fechar imagem', naming: 'Atlas Notarial · material público',
+  mediaUnavailable: 'Esta imagem não carregou agora. Você pode tentar abrir o arquivo diretamente.', openOriginal: 'Abrir imagem',
+  chapterNav: ['Contexto', 'Evolução', 'Telas', 'Contribuição'],
+  invitation: 'Uma ferramenta útil abre caminho.',
+  choices: [
+    { title: 'Começar pela rotina real', text: 'O ponto de partida foi o trabalho que eu acompanhava todos os dias, com suas dúvidas e repetições.' },
+    { title: 'Resolver uma parte de cada vez', text: 'O Formatador de Veículos veio primeiro. Eu queria uma primeira peça útil antes de ampliar o conjunto.' },
+    { title: 'Dar espaço às próximas ferramentas', text: 'O Atlas cresceu como uma bancada: cada ferramenta tem uma função, mas todas partem do cuidado com a rotina.' },
+  ],
+  contribution: 'Minha contribuição',
+  contributionText: 'Eu identifiquei o problema no cartório, criei a primeira ferramenta para veículos e ampliei o conjunto. Depois, decidi transformar essa solução em um produto próprio: o Atlas Notarial.',
+  result: 'Da necessidade à próxima ideia.',
+  resultText: 'O que começou com um documento virou um jeito de olhar para o trabalho: perceber o que pesa na rotina e construir algo que possa ajudar.',
+  presentation: 'Ver a história', visit: 'Abrir o Atlas',
+};
+const en: typeof pt = {
+  kind: 'Own product',
+  title: 'From notary-office routine to useful tools.',
+  description: 'I started with a problem I knew first-hand: powers of attorney coming back for correction and details that needed checking again.',
+  open: 'See the project', back: 'Back to projects',
+  steps: ['Format', 'Review', 'Organize'],
+  challenge: 'It started with a problem that kept coming back.',
+  context: 'At the notary office, I saw powers of attorney return with errors. Checking the details and writing them again took time. It was part of the routine, but I felt there was a better way.',
+  contextMore: 'I started with the Vehicle Formatter. That first tool made room for a bigger idea: bringing useful tools together for everyday notary work. That is how Atlas grew into a product of my own.',
+  gallery: 'A look at the workspace.',
+  galleryText: 'These images come from Atlas’s public material. The workspace shows how its tools come together; the phone view presents the product. The animated document in this case is an illustration with fictional details.',
+  desktopCaption: 'Atlas workspace · official image published by the product, showing access to the Vehicle Formatter.',
+  mobileCaption: 'Public presentation on a phone · product preview without client records.',
+  enlarge: 'Enlarge image', close: 'Close image', naming: 'Atlas Notarial · public material',
+  mediaUnavailable: 'This image did not load. You can try opening the file directly.', openOriginal: 'Open image',
+  chapterNav: ['Context', 'Evolution', 'Screens', 'Contribution'],
+  invitation: 'One useful tool makes room for more.',
+  choices: [
+    { title: 'Start with everyday work', text: 'The starting point was work I saw every day, with its questions and repeated tasks.' },
+    { title: 'Solve one part at a time', text: 'The Vehicle Formatter came first. I wanted one useful piece before expanding the toolkit.' },
+    { title: 'Make room for the next tools', text: 'Atlas grew into a workspace: each tool has a purpose, and all of them begin with care for the routine.' },
+  ],
+  contribution: 'My contribution',
+  contributionText: 'I identified the problem at the notary office, built the first vehicle tool and expanded the toolkit. I then decided to develop the solution as my own product: Atlas Notarial.',
+  result: 'From a need to the next idea.',
+  resultText: 'What started with one document became a way of looking at work: noticing what makes the routine harder and building something that can help.',
+  presentation: 'See the story', visit: 'Open Atlas',
+};
+export function atlasCopy(locale: Locale) { return locale === 'en-US' ? en : pt; }

@@ -11,7 +11,7 @@ import AtlasPreview from '@/components/projects/AtlasPreview';
 import type { Locale } from '@/i18n/config';
 
 const projects = [
-  { key: 'atlas', id: 'project-atlas-notarial' },
+  { key: 'atlas', id: 'project-atlas' },
   { key: 'ckf', id: 'project-ckf', demo: 'https://ckf-manutencao-orcamentos.vercel.app', repo: 'https://github.com/Kauerc10/ckf-manutencao-orcamentos' },
   { key: 'docfacil', id: 'project-docfacil', demo: 'https://docfacil-indol.vercel.app', repo: 'https://github.com/Kauerc10/docfacil' },
   { key: 'folilib', id: 'project-foli', repo: 'https://github.com/Kauerc10/foli' },
