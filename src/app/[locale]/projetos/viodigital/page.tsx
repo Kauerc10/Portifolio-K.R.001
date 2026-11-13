@@ -5,6 +5,8 @@ import { vioCopy } from '@/components/projects/viodigital-copy';
 import VioDocument from '@/components/projects/VioDocument';
 import VioStory from '@/components/projects/VioStory';
 import VioGallery from '@/components/projects/VioGallery';
+import CaseHeader from '@/components/projects/CaseHeader';
+import { vioDigitalCase } from '@/components/projects/case-model';
 import styles from '@/components/projects/VioDigital.module.css';
 
 export const metadata: Metadata = { title: 'VioDigital — Kauê Ruon Cardoso' };
@@ -14,7 +16,7 @@ export default async function VioDigitalCase({ params }: { params: Promise<{ loc
   if (!isValidLocale(locale)) notFound();
   const copy = vioCopy(locale);
   return <div className={styles.case}>
-    <header className={styles.header}><a href={`/${locale}#project-viodigital`}>kauê<span>ruon</span></a><a href={`/${locale}#project-viodigital`}>← {copy.back}</a></header>
+    <CaseHeader homeHref={vioDigitalCase.links.home[locale]} backLabel={copy.back} />
     <main>
       <section className={styles.caseHero} aria-labelledby="vio-title">
         <div className={styles.composition}><div className={styles.copy}>
