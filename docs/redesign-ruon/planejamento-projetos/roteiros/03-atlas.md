@@ -36,3 +36,7 @@ A explicação deve aparecer na abertura, nas legendas da evolução e na narrat
 ## Lapidação da coreografia
 
 A evolução passa a transformar um documento central em texto estruturado e, depois, desdobrá-lo numa bancada Atlas com ferramentas nomeadas. Não é apenas a entrada de três papéis lado a lado. O scroll conduz formatação, expansão e abertura das ferramentas; o retorno reverte a sequência. A prévia mantém a composição aprovada, com grade alinhada à VECOM e conector vinculado aos encaixes reais dos cards durante o movimento.
+
+### Percurso contínuo
+
+O documento original e o formatado ocupam posições distintas; pequenos cartões de informação percorrem um arco entre eles. A bancada nasce da posição do documento formatado, e suas ferramentas se abrem em leque a partir da mesma origem. O progresso acompanha o scroll com assentamento curto, sem reprodução obrigatória, e todos os movimentos são reversíveis. Preservar o estado imediato/empilhado em movimento reduzido, sem JS e em tela baixa.

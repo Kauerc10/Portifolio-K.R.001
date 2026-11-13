@@ -50,3 +50,11 @@ Pedido posterior de Kauê: reforçar a criatividade de “Um documento foi só o
 - A evolução foi revalidada em desktop/celular para etapas, pausa/reversão e overflow; os três papéis permanecem acessíveis nos modos estáticos. Capturas e gravações da evolução foram atualizadas. TypeScript e 74 testes passaram antes da última sincronização do traçado; os testes focados de jornada foram repetidos após ela.
 
 Aguardar teste de Kauê; #80 continua aberta e o DocFácil permanece na próxima fatia.
+
+## Movimento contínuo — percurso e assentamento
+
+Refinamento posterior: o usuário aprovou a ideia da transformação, mas pediu mais movimento e fluidez visual. A composição ganhou percurso espacial entre documento original e formatado, traço em arco e três pequenos cartões de informação que viajam pela mesma curva. O papel inclina em profundidade; a bancada se abre a partir da posição do documento formatado e as ferramentas se desdobram desse ponto com deslocamentos, rotação e escala próprios, conduzidos pelo progresso do scroll.
+
+A resposta à rolagem usa amortecimento curto de 90 ms, independente da taxa de quadros, com término explícito do RAF quando alcança o destino. Não há reprodução automática obrigatória: voltar o scroll reverte o percurso. Movimento reduzido e layouts estáticos continuam imediatos, com os três papéis disponíveis. A opacidade apenas acompanha a passagem; a trajetória e a abertura do material carregam a narrativa.
+
+A prova de scroll aguarda o assentamento antes de comparar a pausa e mantém as verificações de reversão, ausência de overflow e fallback. A grade da home e os encaixes do conector permanecem preservados.

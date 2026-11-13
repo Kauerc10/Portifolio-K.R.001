@@ -129,3 +129,35 @@
  .toolkitHeading strong { font-size:1rem; }.toolkitHeading>span { font-size:.65rem; }
  .toolTiles { gap:.4rem; margin:1rem 0; }.toolTiles>div { padding:.7rem .45rem; gap:.7rem; }.toolTiles span { font-size:.64rem; }.formatterOrigin { font-size:.6rem; }
 }
+
+/* A visible handoff carries the story, with every pose determined by the scroll. */
+.storyFlow { position:absolute; inset:0; width:100%; height:100%; z-index:2; pointer-events:none; overflow:visible; opacity:calc(1 - var(--expand-phase)); }
+.storyFlow path { stroke:#b28add; stroke-width:1.5; stroke-dasharray:650; stroke-dashoffset:calc(650 - var(--format-phase)*650); vector-effect:non-scaling-stroke; }
+.flowMobile { display:none; }
+.payload { position:absolute; z-index:4; display:flex; align-items:center; gap:.4rem; padding:.55rem .75rem; border:1px solid #fff; border-radius:9px; background:#fff9f0; color:#7c4c9c; box-shadow:0 8px 16px #67478624; font-size:.68rem; font-weight:600; white-space:nowrap; opacity:0; pointer-events:none; }
+.storyRoutine { left:14%; width:25%; opacity:calc((1 - var(--format-phase)*.72)*(1 - var(--expand-phase))); transform:translate(calc(var(--format-phase)*-35px),calc(var(--format-phase)*14px)) rotateY(calc(-18deg + var(--format-phase)*8deg)) rotate(calc(-8deg - var(--format-phase)*7deg)) scale(calc(1 - var(--format-phase)*.08)); }
+.storyFormatter { left:54%; width:27%; opacity:calc(var(--format-phase)*(1 - var(--expand-phase))); transform:translate(calc((1 - var(--format-phase))*80px),calc((1 - var(--format-phase))*45px - var(--expand-phase)*30px)) rotateY(calc((1 - var(--format-phase))*20deg)) rotate(calc(8deg - var(--format-phase)*8deg)) scale(calc(.88 + var(--format-phase)*.12 - var(--expand-phase)*.08)); }
+.storyToolkit { left:calc(54% - var(--expand-phase)*46%); width:calc(27% + var(--expand-phase)*57%); transform:translateY(calc((1 - var(--expand-phase))*-30px)) rotateY(calc((1 - var(--expand-phase))*-25deg)) rotate(calc((1 - var(--expand-phase))*-4deg)); transform-origin:75% 50%; }
+.toolTiles>div { --tool-progress:var(--tool-one,1); --tool-x:160px; --tool-angle:-12deg; opacity:var(--tool-progress); transform:translate(calc((1 - var(--tool-progress))*var(--tool-x)),calc((1 - var(--tool-progress))*75px)) rotate(calc((1 - var(--tool-progress))*var(--tool-angle))) scale(calc(.76 + var(--tool-progress)*.24)); }
+.toolTiles>div:nth-child(2) { --tool-progress:var(--tool-two,1); --tool-x:0px; --tool-angle:6deg; transform:translate(calc((1 - var(--tool-progress))*var(--tool-x)),calc((1 - var(--tool-progress))*75px)) rotate(calc((1 - var(--tool-progress))*var(--tool-angle))) scale(calc(.76 + var(--tool-progress)*.24)); }
+.toolTiles>div:nth-child(3) { --tool-progress:var(--tool-three,1); --tool-x:-160px; --tool-angle:12deg; transform:translate(calc((1 - var(--tool-progress))*var(--tool-x)),calc((1 - var(--tool-progress))*75px)) rotate(calc((1 - var(--tool-progress))*var(--tool-angle))) scale(calc(.76 + var(--tool-progress)*.24)); }
+.story[data-atlas-motion=static] .storyFlow,.story[data-atlas-motion=static] .payload { display:none; }
+.story[data-atlas-motion=static] .storyPaper,.story[data-atlas-motion=static] .toolTiles>div { opacity:1; }
+@media(max-width:760px) {
+ .flowDesktop { display:none; }.flowMobile { display:initial; }
+ .storyRoutine { left:0; top:18%; width:40%; height:68%; padding:1rem; transform:translateX(calc(var(--format-phase)*-8px)) rotateY(-12deg) rotate(calc(-7deg - var(--format-phase)*5deg)); }
+ .storyFormatter { left:57%; top:18%; width:40%; height:68%; padding:1rem; transform:translateY(calc((1 - var(--format-phase))*35px - var(--expand-phase)*15px)) rotate(calc(7deg - var(--format-phase)*7deg)); }
+ .storyRoutine>small,.storyFormatter>small { font-size:.43rem; margin-bottom:.7rem; }.storyRoutine>svg,.storyFormatter>svg { width:26px; height:26px; }
+ .storyRoutine .rawLines i,.storyFormatter .cleanLines i { height:4px; margin:9px 0; }
+ .storyToolkit { left:calc(57% - var(--expand-phase)*56%); width:calc(40% + var(--expand-phase)*58%); }
+ .payload { font-size:.55rem; padding:.4rem .5rem; gap:.25rem; }
+ .toolTiles>div { --tool-x:70px; }.toolTiles>div:nth-child(2) { --tool-x:0px; }.toolTiles>div:nth-child(3) { --tool-x:-70px; }
+}
+
+/* Keep the material solid during the opening; motion carries the handoff. */
+.storyRoutine { opacity:calc((1 - var(--format-phase)*.3)*clamp(0,calc(1 - var(--expand-phase)*3),1)); }
+.storyFormatter { opacity:calc(var(--format-phase)*clamp(0,calc(1 - var(--expand-phase)*3),1)); }
+.storyToolkit { opacity:clamp(0,calc(var(--expand-phase)*4),1); }
+.storyGuide { opacity:calc(var(--format-phase)*clamp(0,calc(1 - var(--expand-phase)*3),1)); }
+.storyFlow { opacity:clamp(0,calc(1 - var(--expand-phase)*3),1); }
+.toolTiles>div { opacity:clamp(0,calc(var(--tool-progress)*3),1); }
