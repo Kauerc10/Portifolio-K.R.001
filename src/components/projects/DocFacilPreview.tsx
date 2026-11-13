@@ -1,38 +1,19 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import type { Locale } from '@/i18n/config';
 import { docFacilCase } from './case-model';
 import { docFacilCopy } from './docfacil-copy';
-import { captureCaseReturnPosition, isPlainPrimaryClick, restoreCaseReturnPosition } from './case-return-position';
+import { captureCaseReturnPosition, isPlainPrimaryClick } from './case-return-position';
 import DocFacilComposition from './DocFacilComposition';
+import { useProjectPreview } from './useProjectPreview';
 import styles from './DocFacil.module.css';
 
 export default function DocFacilPreview({ locale }: { locale: Locale }) {
   const root = useRef<HTMLElement>(null);
   const copy = docFacilCopy(locale);
-  useEffect(() => {
-    const element = root.current;
-    if (!element) return;
-    let frame = 0;
-    const reduced = matchMedia?.('(prefers-reduced-motion: reduce)');
-    const update = () => {
-      frame = 0;
-      const rect = element.getBoundingClientRect();
-      const travel = element.offsetHeight - innerHeight + 80;
-      const progress = reduced?.matches || innerHeight <= 700 || travel <= 0 ? 1 : Math.max(0, Math.min(1, (80 - rect.top) / travel));
-      element.style.setProperty('--docfacil-progress', String(progress));
-    };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const restore = () => requestAnimationFrame(() => {
-      if (location.hash && location.hash !== '#project-docfacil') return;
-      restoreCaseReturnPosition({ locale, caseSlug: docFacilCase.slug, homePath: docFacilCase.homePath(locale) }, { scrollTo: position => scrollTo(position), focus: () => element.querySelector<HTMLElement>('#docfacil-preview-title')?.focus({ preventScroll: true }) });
-      update();
-    });
-    update(); restore(); addEventListener('pageshow', restore); addEventListener('scroll', schedule, { passive: true }); addEventListener('resize', schedule); reduced?.addEventListener('change', schedule);
-    return () => { cancelAnimationFrame(frame); removeEventListener('pageshow', restore); removeEventListener('scroll', schedule); removeEventListener('resize', schedule); reduced?.removeEventListener('change', schedule); };
-  }, [locale]);
-  return <article ref={root} id="project-docfacil" className={styles.preview} aria-labelledby="docfacil-preview-title">
-    <div className={styles.sticky}>
+  useProjectPreview(root, locale, docFacilCase, '--docfacil-progress', 'docfacil-preview-title');
+  return <article ref={root} id="project-docfacil" className={styles.preview} data-project-preview aria-labelledby="docfacil-preview-title">
+    <div className={styles.sticky} data-project-sticky>
       <div className={styles.composition}>
         <div className={styles.copy}>
 
