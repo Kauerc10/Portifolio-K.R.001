@@ -6,7 +6,8 @@ Esta PR reúne a implementação das prévias e páginas dedicadas dos cinco cas
 - Tickets C01–C10 publicados com bloqueios nativos.
 - C01 aprovado por Kauê e #76 encerrada.
 - C02 integrado: modelo localizado de case/múltiplas entregas, cabeçalho e galeria reutilizáveis, retorno isolado por case/idioma com guardas de dados inválidos. Vio migrado para essa base sem alterar copy, CSS ou coreografia.
-- C02 aguarda teste manual de Kauê antes de encerrar #77 e avançar.
+- C02 aprovado por Kauê e #77 encerrada.
+- C03 entregue para teste: versão nativa 2.5D documentada, manifesto de arte decorativa, galeria resiliente com acesso sem JavaScript e metadados/sitemap do case nas duas línguas. História e composição aprovadas preservadas. Aguarda aceite de Kauê antes de encerrar #78 e avançar para VECOM.
 - Vídeo, camadas 2.5D ou combinação serão avaliados por case; nenhuma escolha técnica geral foi antecipada.
 
 ## Fluxo de revisão
@@ -19,8 +20,10 @@ C02: TypeScript e 72 testes passando. Roteiro independente no navegador verifico
 
 ## Escopo final planejado
 
+C03: 74 testes em 18 arquivos, TypeScript e build passando. Browser independente validou metadados/sitemap, desktop/celular, pausa/reversão, erro de mídia antes da hidratação, erro no modal com foco restaurado e imagens sem JavaScript. Jornada completa de retorno e fallbacks revalidada. Capturas e gravações acompanham a entrega.
+
 - [x] C01 #76 — Roteiros completos e aprovados.
-- [ ] C02 #77 — Base reutilizável.
+- [x] C02 #77 — Base reutilizável aprovada.
 - [ ] C03 #78 — VioDigital completo.
 - [ ] C04 #79 — VECOM.
 - [ ] C05 #80 — Atlas.

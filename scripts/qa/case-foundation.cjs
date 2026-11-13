@@ -5,7 +5,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const phase = process.env.CASE_PHASE || 'after';
 const base = process.env.VIO_BASE_URL || 'http://localhost:3064';
-const out = path.resolve('docs/redesign-ruon/evidence/c02-foundation');
+const out = path.resolve(process.env.CASE_EVIDENCE_DIR || 'docs/redesign-ruon/evidence/c02-foundation');
 fs.mkdirSync(out, { recursive: true });
 (async () => {
   const browser = await chromium.launch(process.env.VIO_BROWSER ? { executablePath: process.env.VIO_BROWSER } : {});
