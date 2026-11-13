@@ -25,3 +25,11 @@ Teste de Kauê: entrar pela home em `#project-ckf`, abrir `/pt-BR/projetos/ckf`,
 TypeScript e 74 testes em 18 arquivos passaram após integrar C07. A sequência institucional passou em desktop 1440×1000 e celular 390×844: três etapas, deslocamento perceptível das telas, pausa/reversão e ausência de overflow. As três capturas ficam disponíveis no layout estático em movimento reduzido, sem JavaScript e tela baixa. Na revisão foram corrigidos o contraste da legenda no fundo carvão, a extensão da copy da home no celular e a posição do capítulo institucional (separado do resumo do sistema).
 
 A jornada completa no navegador passou em desktop/celular: retorno por link e histórico, nova aba, foco na galeria, PT/EN e canonical/hreflang, claro/escuro, mídia indisponível, storage bloqueado, sem JavaScript e tela baixa. A confirmação visual final inclui o link público do site CKF. Build de produção aprovado no checkout isolado, com cache webpack desativado apenas na prova; a configuração entregue permanece intacta. [Resultados](../evidence/c07-ckf/results.json), [story](../evidence/c07-ckf/story/results.json) e [procedência](ckf-media-provenance.md).
+
+## Revisão de conteúdo e evidência — 13/11/2026
+
+Kauê pediu menos frases de efeito e mais explicação e conexão entre empresa, problema e entregas. A revisão identifica CKF MANUTENCAO LTDA (razão social confirmada no rodapé público de https://ckf-home.vercel.app/), descreve serviços e público, registra a oferta aceita do projeto e explica separadamente o site e o fluxo interno de clientes, serviços, valores, histórico e PDF. As listas descrevem tarefas reais em vez de slogans.
+
+A prévia conceitual do sistema foi substituída por captura da interface original do projeto em seu modo local de demonstração, escolha confirmada por Kauê. A galeria inclui dashboard, celular e consulta de documento. As legendas distinguem interface real e dados fictícios. A versão publicada pediu login; nenhum acesso autenticado de produção foi alegado. Ver [procedência atualizada](ckf-media-provenance.md).
+
+A mesma revisão editorial alcança VioDigital, VECOM, Atlas e DocFácil em PT/EN: descrição do produto, usuários, entrada/processamento/saída e contribuição, preservando histórias confirmadas e animações aprovadas.

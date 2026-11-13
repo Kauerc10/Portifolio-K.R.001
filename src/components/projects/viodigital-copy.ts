@@ -20,7 +20,7 @@ export function vioCopy(locale: Locale) {
     mobileCaption: 'The same starting point, adapted to a smaller screen.',
     enlarge: 'Enlarge image', close: 'Close image', mediaUnavailable: 'This capture is unavailable right now.', openOriginal: 'Open the original capture', screenAlt: 'VioDigital public document-checking screen, with file and camera options',
     mobileAlt: 'VioDigital public application on a mobile screen',
-    decisions: 'The choices behind the experience.',
+    decisions: 'Decisions about processing and access',
     choices: [
       { title: 'Leave the shared phone behind', text: 'The first need was straightforward: let the team check documents on their computers, without relying on one phone or passing it around.' },
       { title: 'Keep the information close', text: 'The project uses local processing in the browser. Document information stays part of the task, without an unnecessary trip through another service.' },
@@ -55,7 +55,7 @@ export function vioCopy(locale: Locale) {
     mobileCaption: 'O mesmo ponto de partida, adaptado a uma tela menor.',
     enlarge: 'Ampliar imagem', close: 'Fechar imagem', mediaUnavailable: 'Esta captura não está disponível agora.', openOriginal: 'Abrir captura original', screenAlt: 'Tela pública do VioDigital para conferência de documentos, com opções de arquivo e câmera',
     mobileAlt: 'Aplicação pública do VioDigital em uma tela de celular',
-    decisions: 'As escolhas por trás da experiência.',
+    decisions: 'Decisões sobre processamento e acesso',
     choices: [
       { title: 'Sair do celular compartilhado', text: 'A primeira necessidade era bem direta: permitir que a equipe conferisse os documentos pelo computador, sem depender de um único aparelho nem ficar passando o celular de mão em mão.' },
       { title: 'Manter os dados por perto', text: 'O projeto usa processamento local no navegador. A informação do documento fica no contexto da tarefa, sem uma ida desnecessária a outro serviço.' },

@@ -39,7 +39,7 @@ export default function CkfPreview({ locale }: { locale: Locale }) {
           <p className={styles.kicker}>{copy.kind}</p>
           <h3 id="ckf-preview-title" tabIndex={-1}>CKF Manutenção</h3>
           <p className={styles.tagline}>{copy.title}</p>
-          <p className={styles.description}>{locale === 'pt-BR' ? 'Um site para apresentar a empresa. Um sistema para organizar os orçamentos. Duas soluções sob medida para o dia a dia da CKF.' : 'A website to present the company. A system to organize quotes. Two solutions shaped around CKF’s everyday work.'}</p>
+          <p className={styles.description}>{copy.homeDescription}</p>
           <a className={styles.button} href={ckfCase.links.case[locale]} onClick={event => {
             if (isPlainPrimaryClick(event)) captureCaseReturnPosition({ locale, caseSlug: ckfCase.slug, homePath: ckfCase.homePath(locale) });
           }}>{copy.open} ↗</a>

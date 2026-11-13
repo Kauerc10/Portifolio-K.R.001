@@ -23,15 +23,23 @@ Todas as capturas abaixo foram feitas com Playwright em página pública, sem lo
 - `public/assets/projects/ckf/logo.webp` — cópia direta do asset público [`logo-ckf-ui.webp`](https://ckfmanutencao.com.br/assets/logo-ckf-ui.webp), sem edição.
 - `public/assets/projects/ckf/industrial-welding.webp` — cópia direta do asset público [`solda-ckf.webp`](https://ckfmanutencao.com.br/assets/solda-ckf.webp), sem edição; usar apenas como referência visual autorizada/publicada, não como prova de contribuição específica.
 
-## Prévia do sistema
+## Sistema — interface real em demonstração local
 
-- `public/assets/projects/ckf/system-preview.png` — **ilustração conceitual local**, 1440×1000, criada para o case com layout inspirado na documentação pública do sistema.
-- Não é screenshot do produto real e não deve ser descrita como captura operacional.
-- Todos os nomes, números, valores, datas e status são sintéticos (`Oficina Horizonte`, `Concreto Vale Azul`, `Frota Serra Norte`, `Metalúrgica Aurora`). Não contém dados de clientes, PDFs ou registros operacionais.
-- A tarja na imagem identifica “DADOS SINTÉTICOS — NÃO É INTERFACE OPERACIONAL”.
+Em revisão solicitada por Kauê em 13/11/2026, a ilustração conceitual anterior foi substituída por capturas da interface real do repositório `Kauerc10/ckf-manutencao-orcamentos`, SHA `f1797812433928c55d0cb3d600788258c504b1ca`. O código e o CSS dos componentes originais foram executados sem redesenho ou alteração do produto.
+
+- `system-preview.png` — dashboard real, 1440×1000.
+- `system-mobile.png` — dashboard real no celular, 390×844.
+- `system-editor.png` — formulário original de novo orçamento e prévia, 1440×1000, sem salvar.
+- `system-document.png` — consulta de orçamento e documento comercial originais, 1440×1000.
+
+As capturas usam exclusivamente o modo local já existente no produto, com `DEMO_PROFILE`, `DEMO_CLIENTES` e orçamentos demonstrativos de `src/lib/demo-data.ts`. Os nomes, documentos pessoais, valores, datas e status mostrados são fixtures do projeto, não registros de clientes. A sessão demonstrativa utiliza configurações padrão do código; não comprova configurações atuais da empresa em produção.
+
+O harness de captura fica ignorado em `.scratch-vecom/ckf-real`, no workspace do portfólio. Ele usa o `src/main.tsx`, os componentes, CSS e assets públicos originais; isola as configurações de PostCSS/React dos dois projetos e define as variáveis públicas de Supabase como vazias. Nenhum `.env`, sessão existente ou credencial real foi lido. A coleta registrou zero requisições externas; a consulta de orçamento usou bloqueio adicional de rede externa. Não houve salvamento de orçamento, alteração do produto ou acesso ao backend de clientes.
+
+Uma tentativa somente leitura em `https://ckf-manutencao-orcamentos.vercel.app/` chegou à tela de login. O uso da interface real local com dados fictícios foi escolhido explicitamente por Kauê. Portanto, as imagens comprovam o visual da interface em execução local, não o funcionamento autenticado do deploy.
 
 ## Limites e próximos usos
 
 - As capturas do site podem ser usadas como evidência visual da entrega pública da CKF no portfólio; preservar a indicação de fonte/estado temporal.
-- A prévia do sistema pode demonstrar a rotina e a linguagem visual, mas deve manter a legenda “prévia conceitual / dados sintéticos”.
+- As capturas do sistema devem manter a legenda “interface real em demonstração local / dados fictícios”. A ilustração conceitual anterior permanece apenas no histórico do Git e não é mais o asset atual.
 - Não reutilizar os assets como prova de contrato, pagamento, autoria exclusiva ou acesso aos dados internos.
