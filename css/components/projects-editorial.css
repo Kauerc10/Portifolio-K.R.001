@@ -2,6 +2,9 @@
   font-family: var(--font-body);
 }
 
+/* The case return restores an explicit position after the reading mode settles. */
+.projects-editorial[data-project-enhanced="true"] { overflow-anchor: none; }
+
 .projects-editorial__heading {
   display: grid;
   grid-template-columns: minmax(0, .8fr) minmax(0, 1fr);

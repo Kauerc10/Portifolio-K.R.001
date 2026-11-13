@@ -45,10 +45,11 @@ export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dict
   useEffect(() => {
     let frame = 0;
     const normalizeAlias = () => {
+      cancelAnimationFrame(frame);
       const alias = aliases.find(([from]) => from === window.location.hash.slice(1));
       if (!alias) return;
-      cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
+        if (window.location.hash !== `#${alias[0]}`) return;
         const target = document.getElementById(alias[1]);
         if (!target) return;
         target.scrollIntoView({ block: 'start', behavior: 'instant' as ScrollBehavior });

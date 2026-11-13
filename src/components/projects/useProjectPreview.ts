@@ -31,13 +31,15 @@ export function useProjectPreview(root: RefObject<HTMLElement | null>, locale: L
     const restore = () => {
       cancelAnimationFrame(restoreFrame);
       if (location.hash && location.hash !== `#project-${project.slug}`) return;
-      restoreFrame = requestAnimationFrame(() => {
+      // Let the persisted reading mode settle before consuming the return record.
+      // Otherwise browser scroll anchoring can adjust the restored position again.
+      restoreFrame = requestAnimationFrame(() => { restoreFrame = requestAnimationFrame(() => {
         restoreCaseReturnPosition({ locale, caseSlug: project.slug, homePath: project.homePath(locale) }, {
           scrollTo: position => scrollTo(position),
           focus: () => element.querySelector<HTMLElement>(`#${title}`)?.focus({ preventScroll: true }),
         });
         schedule();
-      });
+      }); });
     };
     const visibility = () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0; } else schedule(); };
     const observer = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver(entries => {

@@ -29,6 +29,7 @@ it('suspends offscreen and hidden previews, resumes on visibility, and cancels p
   const mounted = render(<Preview />);
   const flush = () => { const pending = [...frames.values()]; frames.clear(); pending.forEach(fn => fn(0)); };
   act(flush);
+  act(flush);
   act(() => intersection([{ isIntersecting: false }]));
   act(() => window.dispatchEvent(new Event('scroll')));
   expect(frames.size).toBe(0);
