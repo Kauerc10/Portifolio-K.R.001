@@ -48,3 +48,10 @@ export const vecomCase: CaseDefinition = {
   homePath: (locale) => `/${locale}`,
   casePath: (locale) => `/${locale}/projetos/vecom`,
 };
+
+export const atlasCase: CaseDefinition = {
+  id: 'atlas-notarial', slug: 'atlas-notarial', title: { 'pt-BR': 'Atlas Notarial', 'en-US': 'Atlas Notarial' }, nature: 'own-product',
+  deliveries: [{ id: 'toolkit', label: { 'pt-BR': 'Bancada de ferramentas para cartórios', 'en-US': 'Toolkit for notary offices' }, kind: 'product' }],
+  links: { home: { 'pt-BR': '/pt-BR#project-atlas-notarial', 'en-US': '/en-US#project-atlas-notarial' }, case: { 'pt-BR': '/pt-BR/projetos/atlas-notarial', 'en-US': '/en-US/projetos/atlas-notarial' } },
+  homePath: (locale) => `/${locale}`, casePath: (locale) => `/${locale}/projetos/atlas-notarial`,
+};
