@@ -21,6 +21,7 @@ export default function CkfPreview({ locale }: { locale: Locale }) {
       const travel = element.offsetHeight - innerHeight + 80;
       const progress = reduced?.matches || innerHeight <= 700 || travel <= 0 ? 1 : Math.max(0, Math.min(1, (80 - rect.top) / travel));
       element.style.setProperty('--ckf-progress', String(progress));
+      element.dataset.ckfFocus = progress < .5 ? 'site' : 'system';
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     const restore = () => requestAnimationFrame(() => {

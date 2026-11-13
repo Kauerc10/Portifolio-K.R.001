@@ -78,3 +78,13 @@
 }
 @media(min-width:1000px) { .chapterNav { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 @media(max-width:760px) { .storyFrames { height:clamp(280px,38svh,380px); } }
+
+/* The scroll changes emphasis between the two deliveries, without merging them. */
+.preview .siteFrame { transform:translateX(calc(var(--ckf-progress)*-4%)) rotateY(calc(-9deg + var(--ckf-progress)*3deg)) rotateZ(calc(-6deg + var(--ckf-progress)*2deg)); }
+.preview .systemFrame { left:calc(48% - var(--ckf-progress)*16%); width:calc(50% + var(--ckf-progress)*12%); transform:translateY(calc((1 - var(--ckf-progress))*30px)) rotateY(calc(-8deg + var(--ckf-progress)*8deg)) rotateZ(calc(5deg - var(--ckf-progress)*5deg)); }
+.preview[data-ckf-focus=system] .systemFrame { z-index:3; }
+.preview .progress>span { padding-bottom:.4rem; border-bottom:2px solid transparent; }
+.preview[data-ckf-focus=site] .progress>span:first-child,.preview[data-ckf-focus=system] .progress>span:nth-of-type(2) { border-color:#b88b00; color:var(--ckf-ink); font-weight:700; }
+@media(max-width:760px) {
+ .preview .systemFrame { width:calc(52% + var(--ckf-progress)*10%); }
+}
