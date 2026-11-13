@@ -1,216 +1,110 @@
 'use client';
 
-import { useEffect, useRef, useState, type MouseEvent } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowUpRight, Gauge } from 'lucide-react';
 import type { Dictionary } from '@/i18n/types';
 import { splitAccentTitle } from '@/lib/editorial';
-import { createMotionScope, type MotionScope } from '@/lib/section-motion';
+import VioPreview from '@/components/projects/VioPreview';
+import VecomPreview from '@/components/projects/VecomPreview';
+import AtlasPreview from '@/components/projects/AtlasPreview';
+import DocFacilPreview from '@/components/projects/DocFacilPreview';
+import CkfPreview from '@/components/projects/CkfPreview';
+import type { Locale } from '@/i18n/config';
 
-const projects = [
-  { key: 'atlas', id: 'project-atlas' },
-  { key: 'ckf', id: 'project-ckf', demo: 'https://ckf-manutencao-orcamentos.vercel.app', repo: 'https://github.com/Kauerc10/ckf-manutencao-orcamentos' },
-  { key: 'docfacil', id: 'project-docfacil', demo: 'https://docfacil-indol.vercel.app', repo: 'https://github.com/Kauerc10/docfacil' },
-  { key: 'folilib', id: 'project-foli', repo: 'https://github.com/Kauerc10/foli' },
+const cases = [
+  { id: 'project-viodigital', label: { 'pt-BR': 'VioDigital', 'en-US': 'VioDigital' } },
+  { id: 'project-vecom', label: { 'pt-BR': 'VECOM Ficha Fácil', 'en-US': 'VECOM Ficha Fácil' } },
+  { id: 'project-atlas-notarial', label: { 'pt-BR': 'Atlas Notarial', 'en-US': 'Atlas Notarial' } },
+  { id: 'project-docfacil', label: { 'pt-BR': 'DocFácil', 'en-US': 'DocFácil' } },
+  { id: 'project-ckf', label: { 'pt-BR': 'CKF Manutenção', 'en-US': 'CKF Maintenance' } },
 ] as const;
 
-const flowAssets = [
-  '/assets/atlas-consulta.svg',
-  '/assets/atlas-veiculo.svg',
-  '/assets/atlas-procuracao.svg',
+const aliases = [
+  ['project-atlas', 'project-atlas-notarial'],
+  ['project-ckf-legacy', 'project-ckf'],
+  ['project-docfacil-legacy', 'project-docfacil'],
 ] as const;
 
-export default function ProjetosSection({ dict }: { dict: Dictionary['projetos'] }) {
-  const [selected, setSelected] = useState<string | null>(null);
-
-  const indexRef = useRef<HTMLElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const borderRef = useRef<HTMLSpanElement>(null);
-  const detailRef = useRef<HTMLDivElement>(null);
-  const selectionSweepRef = useRef<HTMLSpanElement>(null);
-  const motionRef = useRef<MotionScope | null>(null);
-  const previousSelectedRef = useRef<string | null>(null);
-  const atlasEntryCleanupRef = useRef<(() => void) | null>(null);
+export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dictionary['projetos']; locale?: Locale }) {
+  const [readingMode, setReadingMode] = useState<'normal' | 'quick'>('normal');
+  const [mounted, setMounted] = useState(false);
+  const [titleLead, titleAccent] = splitAccentTitle(dict.editorialTitle);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const motion = createMotionScope(section);
-    motionRef.current = motion;
-    section.dataset.motionState = 'entered';
-    const stopEntry = motion.scrub(borderRef.current, [
-        { opacity: 0, clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' },
-        { opacity: 1, clipPath: 'polygon(0 0, 100% 0, 76% 100%, 0 100%)' },
-      ], { anchor: section.querySelector('.projects-editorial__heading') ?? section });
-    return () => {
-      stopEntry();
-      motion.dispose();
-      motionRef.current = null;
-    };
+    setMounted(true);
+    try {
+      const stored = window.sessionStorage.getItem('ruon:projects-reading');
+      if (stored === 'quick' || stored === 'normal') setReadingMode(stored);
+    } catch { /* storage may be blocked */ }
   }, []);
 
   useEffect(() => {
-    if (!selected) return;
-    const panel = document.getElementById(selected);
-    const motion = motionRef.current;
-    if (!panel || !motion) return;
-    motion.cancel();
-    const previous = previousSelectedRef.current;
-    const changed = previous !== null && previous !== selected;
-    // Keep the project title and layout anchors stable; animate only supporting content.
-    const content = [...panel.querySelectorAll<HTMLElement>(
-      '.editorial-kicker, .projects-editorial__role, .projects-editorial__solution, .projects-editorial__stack, .projects-editorial__actions',
-    )];
-    if (changed) content.forEach((element, index) => motion.animate(element,
-      [{ opacity: .45, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
-      { duration: 420, delay: index * 40 },
-    ));
-
-    const border = selectionSweepRef.current;
-    if (border && changed) {
-      const fromIndex = projects.findIndex(project => project.id === previous);
-      const toIndex = projects.findIndex(project => project.id === selected);
-      const direction = toIndex >= fromIndex ? 'forward' : 'backward';
-      const section = sectionRef.current;
-      if (section) section.dataset.selectionDirection = direction;
-      motion.animate(border,
-        direction === 'forward'
-          ? [{ opacity: .2, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }]
-          : [{ opacity: .2, transform: 'scaleY(0)' }, { opacity: 1, transform: 'scaleY(1)' }],
-        { duration: 650 },
-      );
-    }
-    previousSelectedRef.current = selected;
-  }, [selected]);
-
-  useEffect(() => {
-    if (selected !== 'project-atlas') return;
-    const motion = motionRef.current;
-    const panel = document.getElementById(selected);
-    if (!motion || !panel) return;
-    const flow = panel.querySelector<HTMLElement>('.projects-editorial__flow');
-    if (!flow) return;
-    atlasEntryCleanupRef.current?.();
-    const stops = [...flow.querySelectorAll<HTMLElement>('li > span')].map((node, index) => motion.scrub(node, [
-      { opacity: .5, transform: 'translateY(8px)' },
-      { opacity: 1, transform: 'translateY(0)' },
-    ], { anchor: flow, from: index * .2, to: .55 + index * .2 }));
-    atlasEntryCleanupRef.current = () => stops.forEach(stop => stop());
-    return () => {
-      atlasEntryCleanupRef.current?.();
-      atlasEntryCleanupRef.current = null;
-    };
-  }, [selected]);
-
-  useEffect(() => {
-    const index = indexRef.current;
-    const control = index?.querySelector<HTMLElement>('[aria-current="true"]');
-    if (!index || !control) return;
-    let disposed = false;
-    const measure = () => {
-      if (disposed) return;
-      index.style.setProperty('--project-marker-y', `${control.offsetTop}px`);
-      index.style.setProperty('--project-marker-height', `${control.offsetHeight}px`);
-    };
-    measure();
-    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
-    observer?.observe(index);
-    // Earlier labels can wrap and move the active item without changing its size.
-    index.querySelectorAll('a').forEach(item => observer?.observe(item));
-    window.addEventListener('resize', measure);
-    void document.fonts?.ready.then(measure);
-    return () => {
-      disposed = true;
-      observer?.disconnect();
-      window.removeEventListener('resize', measure);
-    };
-  }, [selected, dict]);
+    try { window.sessionStorage.setItem('ruon:projects-reading', readingMode); } catch { /* storage may be blocked */ }
+  }, [readingMode]);
 
   useEffect(() => {
     let frame = 0;
-    function syncHash() {
-      const target = projects.find(({ id }) => '#' + id === window.location.hash);
-      setSelected(target?.id ?? projects[0].id);
+    const normalizeAlias = () => {
       cancelAnimationFrame(frame);
-      if (target) {
-        frame = requestAnimationFrame(() => {
-          if (window.location.hash === '#' + target.id) {
-            document.getElementById(target.id)?.scrollIntoView({ block: 'start', behavior: 'instant' });
-          }
-        });
-      }
-    }
-    syncHash();
-    window.addEventListener('hashchange', syncHash);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('hashchange', syncHash);
+      const alias = aliases.find(([from]) => from === window.location.hash.slice(1));
+      if (!alias) return;
+      frame = requestAnimationFrame(() => {
+        if (window.location.hash !== `#${alias[0]}`) return;
+        const target = document.getElementById(alias[1]);
+        if (!target) return;
+        target.scrollIntoView({ block: 'start', behavior: 'instant' as ScrollBehavior });
+        window.history.replaceState(null, '', `#${alias[1]}`);
+      });
     };
+    normalizeAlias();
+    window.addEventListener('hashchange', normalizeAlias);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener('hashchange', normalizeAlias); };
   }, []);
 
-  function selectProject(event: MouseEvent<HTMLAnchorElement>, id: string) {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
-    event.preventDefault();
-    setSelected(id);
-    window.history.replaceState(null, '', '#' + id);
-    event.currentTarget.focus({ preventScroll: true });
+  function toggleReadingMode() {
+    setReadingMode(mode => mode === 'normal' ? 'quick' : 'normal');
   }
 
-  const [titleLead, titleAccent] = splitAccentTitle(dict.editorialTitle);
+  const quickLabel = locale === 'pt-BR' ? 'Leitura rápida' : 'Quick read';
+  const quickDescription = locale === 'pt-BR'
+    ? 'Prefere ir direto ao ponto? Veja os projetos com uma rolagem mais curta.'
+    : 'Prefer getting to the point? Explore the projects with a shorter scroll.';
+  const folilibLabel = locale === 'pt-BR' ? 'Foli continua disponível no repositório.' : 'Foli remains available in the repository.';
+
   return (
-    <section ref={sectionRef} className="section editorial-section projects-editorial" id="projetos" data-section="7" data-motion-state="idle">
+    <section className="section editorial-section projects-editorial" id="projetos" data-section="7" data-motion-state="idle" data-project-reading={readingMode} data-project-enhanced={mounted || undefined}>
       <div className="projects-editorial__heading">
-        <h2 className="editorial-display">
-          {titleLead}{' '}<em>{titleAccent}</em>
-        </h2>
+        <h2 className="editorial-display">{titleLead}{' '}<em>{titleAccent}</em></h2>
         <p className="projects-editorial__intro">{dict.editorialDescription}</p>
-        <span ref={borderRef} className="projects-editorial__directional-border" aria-hidden="true" />
       </div>
-      <div className="projects-editorial__layout">
-        <nav ref={indexRef} className="projects-editorial__index" aria-label={dict.editorialTitle}>
-          <span className="projects-editorial__marker" aria-hidden="true" />
-          {projects.map(({ id, key }) => (
-            <a
-              key={id}
-              href={'#' + id}
-              aria-current={selected === id ? 'true' : undefined}
-              className={selected === id ? 'is-active' : undefined}
-              onClick={(event) => selectProject(event, id)}
-            >
-              <span>{dict.navLabels[key as keyof typeof dict.navLabels]}</span><ArrowUpRight aria-hidden="true" />
-            </a>
-          ))}
-        </nav>
-        <div ref={detailRef} className="projects-editorial__detail" data-enhanced={selected !== null || undefined}>
-          <span ref={selectionSweepRef} className="projects-editorial__selection-sweep" aria-hidden="true" />
-          {projects.map(project => {
-            const item = dict.items[project.key];
-            return (
-              <article key={project.id} id={project.id} className="projects-editorial__case" hidden={selected !== null && selected !== project.id} inert={selected !== null && selected !== project.id} aria-hidden={selected !== null && selected !== project.id || undefined}>
-                <span className="editorial-kicker">{item.status}</span>
-                <h3>{item.title}</h3>
-                <p className="projects-editorial__role">{item.role}</p>
-                <p>{item.problem}</p>
-                <p className="projects-editorial__solution">{item.solution}</p>
-                {project.key === 'atlas' && (
-                  <ol className="projects-editorial__flow">
-                    {flowAssets.map((assetSrc, index) => (
-                      <li key={dict.flowLabels[index]} className={index === flowAssets.length - 1 ? 'is-result' : undefined}>
-                        <span><img src={assetSrc} alt="" width="44" height="44" loading="lazy" /></span><strong>{dict.flowLabels[index]}</strong>
-                      </li>
-                    ))}
-                  </ol>
-                )}
-                <p className="projects-editorial__stack">{item.stack}</p>
-                <div className="projects-editorial__actions">
-                  {'demo' in project && <a href={project.demo} target="_blank" rel="noopener noreferrer">{dict.btnDemo}<ArrowUpRight aria-hidden="true" /></a>}
-                  {'repo' in project && <a href={project.repo} target="_blank" rel="noopener noreferrer">{dict.btnRepo}<ArrowUpRight aria-hidden="true" /></a>}
-                  {project.key === 'atlas' && <span>{dict.privateRepo}</span>}
-                </div>
-              </article>
-            );
-          })}
+
+      <div className="projects-editorial__controls" aria-label={locale === 'pt-BR' ? 'Controles dos projetos' : 'Project controls'}>
+        <div>
+          <span className="editorial-kicker">{locale === 'pt-BR' ? 'Cinco histórias, seis entregas' : 'Five stories, six deliveries'}</span>
+          <p>{quickDescription}</p>
         </div>
+        <button type="button" className={`projects-editorial__reading-toggle${mounted ? '' : ' is-pending'}`} aria-pressed={readingMode === 'quick'} onClick={toggleReadingMode}>
+          <Gauge aria-hidden="true" /> {quickLabel}
+        </button>
       </div>
+
+      <nav className="projects-editorial__quicknav" aria-label={locale === 'pt-BR' ? 'Ir para um projeto' : 'Jump to a project'}>
+        {cases.map((item, index) => <a key={item.id} href={`#${item.id}`}><span>{String(index + 1).padStart(2, '0')}</span>{item.label[locale]}</a>)}
+      </nav>
+
+      <VioPreview locale={locale} />
+      <VecomPreview locale={locale} />
+      <AtlasPreview locale={locale} />
+      <span id="project-atlas" className="projects-editorial__alias" aria-hidden="true" />
+      <DocFacilPreview locale={locale} />
+      <span id="project-docfacil-legacy" className="projects-editorial__alias" aria-hidden="true" />
+      <CkfPreview locale={locale} />
+      <span id="project-ckf-legacy" className="projects-editorial__alias" aria-hidden="true" />
+
+      <aside id="project-foli" className="projects-editorial__legacy-note">
+        <span>{folilibLabel}</span>
+        <a href="https://github.com/Kauerc10/foli" target="_blank" rel="noopener noreferrer">Foli <ArrowUpRight aria-hidden="true" /></a>
+      </aside>
     </section>
   );
 }

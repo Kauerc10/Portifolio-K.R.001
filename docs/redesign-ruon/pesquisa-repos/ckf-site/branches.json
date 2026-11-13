@@ -1,0 +1,24 @@
+{
+  "repository": "Kauerc10/ckf-site-institucional",
+  "queriedAt": "2026-11-12",
+  "defaultBranch": "main",
+  "selectedFunctionalBranch": "main",
+  "latestOverall": {
+    "branch": "dependabot/npm_and_yarn/production-dependencies-3d4b4b2be0",
+    "sha": "ee39ecbefa7383f83b1f7f987fea7ee4a7ceb058",
+    "committedDate": "2026-10-01T01:48:59Z",
+    "reasonExcluded": "Dependabot tip; comparison with main is one commit ahead and changes only package.json/package-lock.json. It is not a product-feature state."
+  },
+  "branches": [
+    {"name":"codex/seo-indexability","sha":"11e69554ab4d57bc8f09517861eebd9f98e04852","committedDate":"2026-08-31T13:14:58Z"},
+    {"name":"dependabot/npm_and_yarn/production-dependencies-3d4b4b2be0","sha":"ee39ecbefa7383f83b1f7f987fea7ee4a7ceb058","committedDate":"2026-10-01T01:48:59Z"},
+    {"name":"docs/ticket-engine-implementation-plans","sha":"e2ca56c15894df26cd5d866e9d00113f20fdaa9b","committedDate":"2026-08-25T21:53:25Z"},
+    {"name":"fix/flush-ticket-success-ga4-red","sha":"e92e56032c060a30787c6f3a6fc08a3c4f4f9df1","committedDate":"2026-08-27T16:46:00Z"},
+    {"name":"fix/flush-ticket-success-ga4-test","sha":"e92e56032c060a30787c6f3a6fc08a3c4f4f9df1","committedDate":"2026-08-27T16:46:00Z"},
+    {"name":"fix/flush-ticket-success-ga4","sha":"e92e56032c060a30787c6f3a6fc08a3c4f4f9df1","committedDate":"2026-08-27T16:46:00Z"},
+    {"name":"main","sha":"5a30ffa1aac38d36bf8282704a72a6de196d528a","committedDate":"2026-09-25T14:41:56Z"}
+  ],
+  "comparisons": {
+    "main...dependabot/npm_and_yarn/production-dependencies-3d4b4b2be0": {"ahead": 1, "behind": 0}
+  }
+}

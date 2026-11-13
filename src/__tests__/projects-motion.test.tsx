@@ -1,51 +1,29 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { expect, it, vi } from 'vitest';
+import { expect, it } from 'vitest';
 import ProjetosSection from '@/components/sections/ProjetosSection';
 import pt from '@/i18n/locales/pt-BR.json';
 
-it('keeps project content immediate while moving the selection marker', () => {
-  vi.stubGlobal('IntersectionObserver', undefined);
+it('renders exactly five project previews in editorial order', () => {
   const { container } = render(<ProjetosSection dict={pt.projetos} />);
-  const atlas = screen.getByRole('link', { name: /Atlas Notarial/i });
-  const ckf = screen.getByRole('link', { name: /CKF Manutenção/i });
-
-  fireEvent.click(atlas);
-  fireEvent.click(ckf);
-
-  expect(ckf).toHaveAttribute('aria-current', 'true');
-  expect(container.querySelector('#project-ckf')).not.toHaveAttribute('hidden');
-  expect(container.querySelector('#project-atlas')).toHaveAttribute('hidden');
-  expect(container.querySelector('.projects-editorial__directional-border')).toBeTruthy();
+  expect(container.querySelectorAll('.projects-editorial > article')).toHaveLength(5);
+  expect([...container.querySelectorAll('.projects-editorial > article')].map(item => item.id)).toEqual([
+    'project-viodigital', 'project-vecom', 'project-atlas-notarial', 'project-docfacil', 'project-ckf',
+  ]);
+  expect(screen.getByRole('button', { name: /Leitura rápida/i })).toBeInTheDocument();
 });
 
-it('does not hide the section when animation APIs are unavailable', () => {
-  vi.stubGlobal('IntersectionObserver', undefined);
+it('toggles quick reading mode without hiding the five previews', () => {
   const { container } = render(<ProjetosSection dict={pt.projetos} />);
-  expect(container.querySelector('#projetos')).toHaveAttribute('data-motion-state', 'entered');
-  expect(screen.getByRole('heading', { name: /Projetos selecionados/i })).toBeVisible();
+  const toggle = screen.getByRole('button', { name: /Leitura rápida/i });
+  fireEvent.click(toggle);
+  expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  expect(container.querySelector('#projetos')).toHaveAttribute('data-project-reading', 'quick');
+  expect(container.querySelectorAll('.projects-editorial > article')).toHaveLength(5);
 });
 
-it('animates only supporting content and records the latest selection direction', () => {
-  vi.stubGlobal('IntersectionObserver', undefined);
-  const targets: HTMLElement[] = [];
-  const animate = vi.fn(function (this: HTMLElement) {
-    targets.push(this);
-    return { cancel: vi.fn(), pause: vi.fn(), finished: Promise.resolve() };
-  });
-  HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
+it('keeps the Foli compatibility destination as a compact repository link', () => {
   const { container } = render(<ProjetosSection dict={pt.projetos} />);
-  fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
-  fireEvent.click(screen.getByRole('link', { name: /DocFácil/i }));
-  const section = container.querySelector('#projetos');
-  expect(section).toHaveAttribute('data-selection-direction', 'forward');
-  expect(targets.some(element => element.matches('article'))).toBe(false);
-  expect(targets.some(element => element.matches('h3'))).toBe(false);
-});
-
-it('keeps Atlas flow readable when returning from another project', () => {
-  render(<ProjetosSection dict={pt.projetos} />);
-  fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
-  fireEvent.click(screen.getByRole('link', { name: /Atlas Notarial/i }));
-  expect(document.querySelector('.projects-editorial__flow')).toBeVisible();
-  expect(screen.getByRole('link', { name: /Atlas Notarial/i })).toHaveAttribute('aria-current', 'true');
+  const note = container.querySelector('#project-foli');
+  expect(note).toHaveAttribute('id', 'project-foli');
+  expect(note?.querySelector('a')).toHaveAttribute('href', 'https://github.com/Kauerc10/foli');
 });

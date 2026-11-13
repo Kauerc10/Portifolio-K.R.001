@@ -1,0 +1,42 @@
+[
+  {
+    "viewport": "desktop",
+    "explicitReturn": "PASS",
+    "history": "PASS",
+    "expectedHistoryY": 2390,
+    "beforeClickY": 1994,
+    "actualHistoryY": 2390,
+    "galleryKeyboardFocus": "PASS",
+    "english": "PASS",
+    "newTab": "PASS",
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "explicitReturn": "PASS",
+    "history": "PASS",
+    "expectedHistoryY": 1249,
+    "beforeClickY": 1608,
+    "actualHistoryY": 1249,
+    "galleryKeyboardFocus": "PASS",
+    "english": "PASS",
+    "newTab": "PASS",
+    "errors": []
+  },
+  {
+    "scenario": "storage-blocked",
+    "navigation": "PASS"
+  },
+  {
+    "scenario": "nojs",
+    "navigation": "PASS"
+  },
+  {
+    "scenario": "reduced",
+    "navigation": "PASS"
+  },
+  {
+    "scenario": "dark",
+    "navigation": "PASS"
+  }
+]

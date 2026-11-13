@@ -1,0 +1,39 @@
+[
+  {
+    "locale": "pt-BR",
+    "caseMetadata": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "caseMetadata": "PASS"
+  },
+  {
+    "sitemapActiveVioLocales": "PASS"
+  },
+  {
+    "viewport": "desktop",
+    "motionAndLayout": "PASS",
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "motionAndLayout": "PASS",
+    "errors": []
+  },
+  {
+    "locale": "pt-BR",
+    "mediaFailureFallback": "PASS",
+    "errors": []
+  },
+  {
+    "locale": "en-US",
+    "mediaFailureFallback": "PASS",
+    "errors": []
+  },
+  {
+    "modalMediaFailureAndFocus": "PASS"
+  },
+  {
+    "noJavaScriptImageAccess": "PASS"
+  }
+]

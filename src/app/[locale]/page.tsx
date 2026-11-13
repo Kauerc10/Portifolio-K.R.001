@@ -31,7 +31,7 @@ export default async function HomePage({
       <Navbar dict={dict.nav} />
       <main>
         <HeroSection dict={dict.hero} />
-        <ProjetosSection dict={dict.projetos} />
+        <ProjetosSection dict={dict.projetos} locale={locale} />
         <SobreSection dict={dict.sobre} />
         <ExperienciaSection dict={dict.experiencia} />
         <SkillsSection dict={dict.skills} />

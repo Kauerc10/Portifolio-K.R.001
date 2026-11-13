@@ -3,6 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cross-document shared artwork: native navigation, history and no-JS fallback. */
+@view-transition { navigation: auto; }
+/* overflow:hidden on body creates a non-scrolling sticky ancestor. Clip only x. */
+html:has([data-vio-document]), body:has([data-vio-document]) { overflow-x: clip !important; }
+::view-transition-group(vio-document) { animation-duration: 1100ms; animation-timing-function: cubic-bezier(.22,1,.36,1); }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*) { animation-duration: 0s !important; }
+}
+
 /* ÆVO cinematic protocols: every animation restores its original state. */
 .aevo-effect-notice {
   position: fixed; inset-block-start: 5rem; inset-inline-start: 50%; z-index: 80;
@@ -146,3 +155,53 @@ input, textarea, [contenteditable="true"] { cursor:text; }
 .portal-scene { position:relative; min-width:0; }
 
 .portfolio-shell { max-width: var(--portfolio-shell); padding-inline: var(--portfolio-gutter); }
+
+/* Snapshot the complete VECOM composition as one object: its depth order stays intact. */
+::view-transition-group(vecom-scene) {
+  animation-duration:1350ms;
+  animation-timing-function:cubic-bezier(.16,1,.3,1);
+  z-index:30;
+}
+::view-transition-image-pair(vecom-scene) { isolation:isolate; }
+::view-transition-old(vecom-scene),::view-transition-new(vecom-scene) { mix-blend-mode:normal; }
+::view-transition-old(vecom-scene) { animation:vecom-scene-out 320ms ease both; }
+::view-transition-new(vecom-scene) { animation:vecom-scene-in 1150ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes vecom-scene-out { to { opacity:0; filter:blur(3px); } }
+@keyframes vecom-scene-in { from { opacity:0; clip-path:inset(8% 4% 3% round 24px); filter:blur(3px); } to { opacity:1; clip-path:inset(0 round 0); filter:blur(0); } }
+@media(prefers-reduced-motion:reduce) {
+ ::view-transition-old(vecom-scene),::view-transition-new(vecom-scene) { animation:none !important; }
+}
+html:has([data-vecom-handoff]),body:has([data-vecom-handoff]) { overflow-x:clip !important; }
+
+/* Atlas keeps the full paper composition together during native navigation. */
+html:has([data-atlas-story]),body:has([data-atlas-story]) { overflow-x:clip !important; }
+::view-transition-group(atlas-scene) { animation-duration:1250ms; animation-timing-function:cubic-bezier(.16,1,.3,1); z-index:30; }
+::view-transition-image-pair(atlas-scene) { isolation:isolate; }
+::view-transition-old(atlas-scene),::view-transition-new(atlas-scene) { mix-blend-mode:normal; }
+::view-transition-old(atlas-scene) { animation:vecom-scene-out 300ms ease both; }
+::view-transition-new(atlas-scene) { animation:vecom-scene-in 1100ms cubic-bezier(.16,1,.3,1) both; }
+@media(prefers-reduced-motion:reduce) {
+ ::view-transition-old(atlas-scene),::view-transition-new(atlas-scene) { animation:none !important; }
+}
+
+/* Keep the owl and document together across native case navigation. */
+html:has([data-docfacil-story]),body:has([data-docfacil-story]) { overflow-x:clip !important; }
+::view-transition-group(docfacil-scene) { animation-duration:1250ms; animation-timing-function:cubic-bezier(.16,1,.3,1); z-index:30; }
+::view-transition-image-pair(docfacil-scene) { isolation:isolate; }
+::view-transition-old(docfacil-scene),::view-transition-new(docfacil-scene) { mix-blend-mode:normal; }
+::view-transition-old(docfacil-scene) { animation:vecom-scene-out 300ms ease both; }
+::view-transition-new(docfacil-scene) { animation:vecom-scene-in 1100ms cubic-bezier(.16,1,.3,1) both; }
+@media(prefers-reduced-motion:reduce) {
+ ::view-transition-old(docfacil-scene),::view-transition-new(docfacil-scene) { animation:none !important; }
+}
+
+/* CKF keeps the paired deliveries intact during native navigation. */
+html:has([data-ckf-story]),body:has([data-ckf-story]) { overflow-x:clip !important; }
+::view-transition-group(ckf-scene) { animation-duration:1250ms; animation-timing-function:cubic-bezier(.16,1,.3,1); z-index:30; }
+::view-transition-image-pair(ckf-scene) { isolation:isolate; }
+::view-transition-old(ckf-scene),::view-transition-new(ckf-scene) { mix-blend-mode:normal; }
+::view-transition-old(ckf-scene) { animation:vecom-scene-out 300ms ease both; }
+::view-transition-new(ckf-scene) { animation:vecom-scene-in 1100ms cubic-bezier(.16,1,.3,1) both; }
+@media(prefers-reduced-motion:reduce) {
+ ::view-transition-old(ckf-scene),::view-transition-new(ckf-scene) { animation:none !important; }
+}

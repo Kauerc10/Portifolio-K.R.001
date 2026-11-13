@@ -1,0 +1,19 @@
+{
+  "repository": "Kauerc10/VioWeb",
+  "portfolio_label": "VioDigital (nome planejado; repositório canônico permanece VioWeb)",
+  "default_branch": "main",
+  "selected_branch": "main",
+  "selected_sha": "002e0c8f7f2cfeac997997def7100407f985177d",
+  "selected_commit_date": "2026-11-12T12:53:24Z",
+  "selection_reason": "Default branch and newest functional snapshot; feat/spec-0003-browser-wasm-privacy was merged immediately before it.",
+  "observed_branches": [
+    {"name":"feat/spec-0003-browser-wasm-privacy","sha":"ee1aa6ed3c9c2041cbae693c893bf60a0bde1311","commit_date":"2026-11-12T12:51:20Z"},
+    {"name":"feat/vioweb-core-implementation","sha":"cf8e1764389c5ae993e7ab71edfd5b9e2d8f9a79","commit_date":"2026-11-11T20:43:39Z"}
+  ],
+  "branch_inventory": [
+    "feat/spec-0003-browser-wasm-privacy",
+    "feat/vioweb-core-implementation",
+    "main"
+  ],
+  "genesis_observed": {"sha":"649914c6c536d3c0fdb84fa87ec6679d46975bb6","date":"2026-11-10T20:14:24Z"}
+}

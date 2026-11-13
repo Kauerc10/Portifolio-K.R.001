@@ -1,0 +1,4 @@
+import type { Metadata } from 'next';
+import type { Locale } from '@/i18n/config';
+const baseUrl = 'https://www.kaueruon.dev';
+export function getVecomMetadata(locale: Locale): Metadata { const en = locale === 'en-US'; const title = en ? 'VECOM Ficha Fácil — On-demand development' : 'VECOM Ficha Fácil — Desenvolvimento sob demanda'; const description = en ? 'A case study about a request and service flow developed for VECOM.' : 'Um case sobre o fluxo de cadastro e atendimento desenvolvido sob demanda para a VECOM.'; const path = `/${locale}/projetos/vecom`; return { title, description, alternates: { canonical: `${baseUrl}${path}`, languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/vecom`, 'en-US': `${baseUrl}/en-US/projetos/vecom` } }, openGraph: { title, description, url: `${baseUrl}${path}`, siteName: 'Kauê Ruon Cardoso', type: 'article' } }; }

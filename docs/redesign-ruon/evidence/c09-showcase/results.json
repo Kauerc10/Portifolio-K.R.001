@@ -1,0 +1,39 @@
+[
+  {
+    "name": "desktop",
+    "fiveCaseJourneys": "PASS",
+    "quickReading": "PASS",
+    "layout": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "fiveCaseJourneys": "PASS",
+    "quickReading": "PASS",
+    "layout": "PASS",
+    "errors": []
+  },
+  {
+    "name": "english-dark",
+    "fiveCaseJourneys": "PASS",
+    "quickReading": "PASS",
+    "layout": "PASS",
+    "errors": []
+  },
+  {
+    "mode": "nojs",
+    "aliasesAndFallback": "PASS"
+  },
+  {
+    "mode": "reduced",
+    "aliasesAndFallback": "PASS"
+  },
+  {
+    "mode": "storage-blocked",
+    "aliasesAndFallback": "PASS"
+  },
+  {
+    "mode": "low-height",
+    "aliasesAndFallback": "PASS"
+  }
+]
