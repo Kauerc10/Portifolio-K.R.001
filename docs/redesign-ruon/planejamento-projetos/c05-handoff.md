@@ -38,3 +38,15 @@ Teste sugerido: entrar pela home, percorrer Evolução no case, ampliar as image
 ## Complemento de conteúdo — funcionamento e motivação
 
 Após testar as animações, Kauê pediu maior clareza sobre a ferramenta: API do Detran → dados formatados → texto pronto para inserir na procuração. A abertura, o contexto e as legendas da evolução foram atualizados nos dois idiomas. Uma seção identifica declaração de residência, notas promissórias e chat para a equipe entre as ferramentas atuais. O fechamento explica a decisão de produto: como ajudou o próprio cartório, Kauê percebeu que poderia ajudar outros também. A coreografia aprovada permanece. A informação sobre a API foi confirmada pelo usuário, sem novas chamadas ao produto ou validação da integração nesta entrega.
+
+## Lapidação visual — documento que vira bancada
+
+Pedido posterior de Kauê: reforçar a criatividade de “Um documento foi só o começo”, alinhar a prévia com o projeto acima e encaixar o conector violeta nos cards.
+
+- A sequência foi recomposta como transformação central: documento de veículo → texto estruturado → papel que se abre numa bancada Atlas com declaração de residência, notas promissórias e chat. Cada fase é calculada pelo scroll, incluindo expansão do papel e desdobramento das ferramentas. A narrativa funcional da API do Detran permanece.
+- A prévia usa a mesma largura disponível, grade, padding e alinhamento horizontal da VECOM; removido o limite interno que a deslocava em telas largas.
+- O conector deriva sua geometria dos pontos de encaixe reais dos três cards, incluindo suas transformações. Resize, mudanças de progresso e movimento reduzido atualizam o traçado; não há coordenadas fixas de layout assumidas como posição final. A luz âmbar segue o barramento.
+- Prova de geometria em 1440, 1918 e 390 pixels: espaçamento compartilhado confirmado e distância máxima entre linha e encaixes inferior a 1,2 px nas posições de chegada, meio e repouso. Resultados em `evidence/c05-atlas-polish/results.json`.
+- A evolução foi revalidada em desktop/celular para etapas, pausa/reversão e overflow; os três papéis permanecem acessíveis nos modos estáticos. Capturas e gravações da evolução foram atualizadas. TypeScript e 74 testes passaram antes da última sincronização do traçado; os testes focados de jornada foram repetidos após ela.
+
+Aguardar teste de Kauê; #80 continua aberta e o DocFácil permanece na próxima fatia.

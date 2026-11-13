@@ -88,3 +88,44 @@
  .story[data-atlas-motion=static] .storyStage { grid-template-columns:1fr; }
  .story[data-atlas-motion=static] .storyPaper { width:75%; margin:auto; height:260px; }
 }
+
+/* Shared preview grid: match the spacing and available width of VECOM above. */
+.preview .composition { max-width:none; margin:0; }
+.tagline { margin:.8rem 0; }
+.connector { inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; }
+.socket { position:absolute; left:0; top:50%; width:6px; height:6px; border-radius:50%; background:#8e45ef; transform:translate(-50%,-50%); }
+/* Direct scroll transforms keep the connector and its measured sockets in sync. */
+.layer { transition:none; }
+
+/* One document becomes a formatter, then unfolds into the Atlas workspace. */
+.story { --format-phase:1; --expand-phase:1; }
+.storyHeading h2 span { color:var(--atlas-purple); }
+.storyStage { perspective:1100px; height:350px; }
+.storyGuide { position:absolute; top:0; left:50%; display:flex; align-items:center; gap:.7rem; transform:translateX(-50%) translateY(calc((1 - var(--format-phase))*15px)); color:#7546b2; font-size:.75rem; white-space:nowrap; opacity:calc(var(--format-phase)*(1 - var(--expand-phase))); }
+.storyPaper { top:11%; height:84%; transform-origin:center; }
+.storyRoutine { left:35%; width:30%; z-index:1; opacity:calc(1 - var(--format-phase)); transform:translateX(calc(var(--format-phase)*-170px)) rotate(calc(-7deg - var(--format-phase)*9deg)) scale(calc(1 - var(--format-phase)*.18)); }
+.storyFormatter { left:35%; width:30%; z-index:2; opacity:calc(var(--format-phase)*(1 - var(--expand-phase))); transform:translateY(calc((1 - var(--format-phase))*26px)) rotate(calc(3deg - var(--format-phase)*3deg)) scale(calc(.9 + var(--format-phase)*.1 - var(--expand-phase)*.15)); }
+.storyFormatter .cleanLines i { transform-origin:left; transform:scaleX(calc(.65 + var(--format-phase)*.35)); }
+.storyToolkit { top:11%; left:calc(35% - var(--expand-phase)*27%); width:calc(30% + var(--expand-phase)*54%); height:84%; padding:1.5rem 2rem; border-radius:18px; z-index:3; opacity:var(--expand-phase); transform:rotateY(calc((1 - var(--expand-phase))*-18deg)); background:linear-gradient(125deg,#fff,#f0e5fc); box-shadow:0 28px 50px #63387b26,inset 0 0 0 1px #fff; overflow:hidden; }
+.toolkitHeading { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:.25rem .6rem; color:#7034bf; }
+.toolkitHeading strong { font-size:1.2rem; letter-spacing:-.035em; }.toolkitHeading>span { grid-column:2; font-size:.75rem; color:#766185; }
+.toolTiles { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.2rem 0 1rem; }
+.toolTiles>div { display:flex; flex-direction:column; align-items:flex-start; gap:.7rem; padding:1rem; border:1px solid #e0d1ee; border-radius:12px; background:#ffffffb5; transform:translateY(calc((1 - var(--expand-phase))*36px)); }
+.toolTiles>div:nth-child(2) { transform:translateY(calc((1 - var(--expand-phase))*56px)); }.toolTiles>div:nth-child(3) { transform:translateY(calc((1 - var(--expand-phase))*76px)); }
+.toolTiles svg { padding:0; width:25px; height:25px; border:0; border-radius:0; background:none; color:#8b52db; }
+.toolTiles span { color:#4f3b60; font-size:.8rem; font-weight:600; line-height:1.35; }
+.formatterOrigin { display:flex; align-items:center; gap:.4rem; color:#766185; font-size:.7rem; }
+.story[data-atlas-motion=static] .storyGuide { display:none; }
+.story[data-atlas-motion=static] .storyPaper { opacity:1; }
+.story[data-atlas-motion=static] .storyToolkit { padding:1rem; }
+.story[data-atlas-motion=static] .toolTiles { gap:.4rem; }.story[data-atlas-motion=static] .toolTiles>div { padding:.55rem; transform:none; }.story[data-atlas-motion=static] .toolTiles span { font-size:.65rem; }
+@media(max-width:760px) {
+ .storyStage { height:290px; overflow:clip; }
+ .storyRoutine,.storyFormatter { left:19%; width:62%; }
+ .storyRoutine { transform:translateX(calc(var(--format-phase)*-100px)) rotate(calc(-5deg - var(--format-phase)*8deg)) scale(calc(1 - var(--format-phase)*.15)); }
+ .storyFormatter { transform:translateY(calc((1 - var(--format-phase))*20px)) scale(calc(.9 + var(--format-phase)*.1 - var(--expand-phase)*.15)); }
+ .storyToolkit { left:calc(19% - var(--expand-phase)*18%); width:calc(62% + var(--expand-phase)*36%); height:88%; padding:1rem .8rem; }
+ .storyGuide { font-size:.65rem; }
+ .toolkitHeading strong { font-size:1rem; }.toolkitHeading>span { font-size:.65rem; }
+ .toolTiles { gap:.4rem; margin:1rem 0; }.toolTiles>div { padding:.7rem .45rem; gap:.7rem; }.toolTiles span { font-size:.64rem; }.formatterOrigin { font-size:.6rem; }
+}
