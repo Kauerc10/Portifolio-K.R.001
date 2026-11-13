@@ -34,6 +34,7 @@ next-env.d.ts
 
 # Isolated implementation branches
 /.worktrees/
+/.scratch-vecom/
 
 # User-supplied style references can contain operational records.
 /docs/redesign-ruon/referencias-estilo-projetos/originais/
