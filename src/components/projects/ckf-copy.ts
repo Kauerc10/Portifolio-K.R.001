@@ -18,7 +18,7 @@ const pt = {
   gallery: 'Interfaces das duas frentes.', galleryText: 'As imagens identificam qual entrega está sendo mostrada. As capturas são referências públicas e materiais preparados para apresentar o trabalho; o sistema interno não é operado por esta página.',
   siteDesktopCaption: 'Site institucional CKF · desktop · presença pública, serviços e contato.',
   siteMobileCaption: 'Site institucional CKF · mobile · navegação e frentes de serviço.',
-  systemCaption: 'Sistema de orçamentos CKF · imagem preparada · itens, orçamento e documento demonstrativo.',
+  systemCaption: 'Sistema de orçamentos CKF · prévia conceitual com registros fictícios.',
   enlarge: 'Ampliar imagem', close: 'Fechar imagem', naming: 'CKF Manutenção · case de desenvolvimento sob demanda', openOriginal: 'Abrir imagem', mediaUnavailable: 'Esta imagem não carregou agora.',
   result: 'Cada frente resolve uma parte da rotina.', resultText: 'O site dá clareza para quem chega. O sistema dá organização para quem trabalha. A apresentação mantém as duas entregas distintas, com a mesma história de origem.',
 };
@@ -35,6 +35,6 @@ const en: typeof pt = {
   closing: 'Two deliveries for the same client.', closingText: 'One front presents the company to the world. The other helps the team organize daily work. Both came from a real CKF need.',
   contribution: 'My contribution', contributionText: 'I offered the service, CKF liked the proposal and I shaped both deliveries, caring for their structure, experience and presentation.',
   gallery: 'Interfaces from both fronts.', galleryText: 'Each image identifies the delivery being shown. The captures are public references and prepared presentation material; this page does not operate the internal system.',
-  siteDesktopCaption: 'CKF institutional website · desktop · public presence, services and contact.', siteMobileCaption: 'CKF institutional website · mobile · navigation and service fronts.', systemCaption: 'CKF quotes system · prepared image · items, quote and illustrated document.', enlarge: 'Enlarge image', close: 'Close image', naming: 'CKF Maintenance · on-demand development case', openOriginal: 'Open image', mediaUnavailable: 'This image did not load.', result: 'Each front solves part of the routine.', resultText: 'The site brings clarity to visitors. The system brings organization to the team. The presentation keeps both deliveries distinct, with the same origin story.',
+  siteDesktopCaption: 'CKF institutional website · desktop · public presence, services and contact.', siteMobileCaption: 'CKF institutional website · mobile · navigation and service fronts.', systemCaption: 'CKF quotes system · conceptual preview with fictional records.', enlarge: 'Enlarge image', close: 'Close image', naming: 'CKF Maintenance · on-demand development case', openOriginal: 'Open image', mediaUnavailable: 'This image did not load.', result: 'Each front solves part of the routine.', resultText: 'The site brings clarity to visitors. The system brings organization to the team. The presentation keeps both deliveries distinct, with the same origin story.',
 };
 export function ckfCopy(locale: Locale) { return locale === 'en-US' ? en : pt; }
