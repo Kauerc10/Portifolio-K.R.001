@@ -1,0 +1,28 @@
+[
+  {
+    "name": "desktop",
+    "stages": "PASS",
+    "pauseReverse": "PASS",
+    "replyTravel": "PASS",
+    "owl": "PASS"
+  },
+  {
+    "name": "mobile",
+    "stages": "PASS",
+    "pauseReverse": "PASS",
+    "replyTravel": "PASS",
+    "owl": "PASS"
+  },
+  {
+    "mode": "reduced",
+    "readableStaticFlow": "PASS"
+  },
+  {
+    "mode": "nojs",
+    "readableStaticFlow": "PASS"
+  },
+  {
+    "mode": "low",
+    "readableStaticFlow": "PASS"
+  }
+]

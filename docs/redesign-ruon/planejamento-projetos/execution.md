@@ -37,3 +37,5 @@ Prévia preservada: http://localhost:3064/pt-BR/projetos/viodigital
 ## Publicação
 
 Tickets foram publicados com ready-for-agent e bloqueios nativos conferidos. A spec original não foi editada ou encerrada nesta rodada. A PR permanece rascunho; sem merge nem publicação de produção.
+
+C05 #80 foi aprovado por Kauê após os refinamentos de conteúdo e movimento (6978dfc) e encerrado. C06 #81 DocFácil foi integrado em 8461902, com visual em 3f348a1 e validação em c10d3b1. [Entrega C06](c06-handoff.md): prévia, case PT/EN, corujinha original, fluxo ilustrado por scroll e capturas públicas. Testes de navegador locais passaram; aguarda teste e aceite do usuário. C07 permanece fora desta fatia.
