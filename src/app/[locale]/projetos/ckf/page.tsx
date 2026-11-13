@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { isValidLocale } from '@/i18n/config';
 import CaseHeader from '@/components/projects/CaseHeader';
 import CaseGallery from '@/components/projects/CaseGallery';
-import CkfComposition from '@/components/projects/CkfComposition';
+import CkfComposition, { CkfImage } from '@/components/projects/CkfComposition';
 import CkfStory from '@/components/projects/CkfStory';
 import { ckfCase } from '@/components/projects/case-model';
 import { ckfCopy } from '@/components/projects/ckf-copy';
@@ -26,7 +26,7 @@ export default async function CkfCase({ params }: Params) {
     <section className={styles.caseHero} aria-labelledby="ckf-title"><div className={styles.composition}><div className={styles.copy}><p className={styles.kicker}>{c.kind}</p><h1 id="ckf-title">CKF <span>{en ? 'Maintenance' : 'Manutenção'}</span></h1><p className={styles.tagline}>{c.title}</p><p className={styles.description}>{c.description}</p><div className={styles.heroActions}><a className={styles.button} href="#site">{c.presentation} ↓</a></div></div><CkfComposition locale={locale} progress={1} label={en ? 'CKF institutional website and quotes system presented as separate deliveries' : 'Site institucional e sistema de orçamentos CKF apresentados como entregas separadas'} /></div></section>
     <nav className={styles.chapterNav} aria-label={en ? 'Explore the project' : 'Explorar o projeto'}>{['site','sistema','fechamento'].map((id,i)=><a key={id} href={'#'+id}><span>0{i+1}</span>{c.chapters[i]} ↘</a>)}</nav>
     <section id="site" className={styles.chapter}><h2>{c.siteTitle}</h2><div className={styles.prose}><p>{c.siteText}</p><p>{c.siteMore}</p></div><CkfStory locale={locale} /></section>
-    <section id="sistema" className={styles.chapter}><h2>{c.systemTitle}</h2><div className={styles.prose}><p>{c.systemText}</p><p>{c.systemMore}</p></div></section>
+    <section id="sistema" className={styles.chapter}><div className={styles.systemSummary}><div><h2>{c.systemTitle}</h2><p>{c.systemText}</p><p>{c.systemMore}</p></div><figure><CkfImage src="/assets/projects/ckf/system-preview.png" alt={items[2].alt} /><figcaption>{c.systemCaption}</figcaption></figure></div></section>
     <section id="telas" className={styles.screens}><div className={styles.screensHeading}><h2>{c.gallery}</h2><p>{c.galleryText}</p></div><CaseGallery items={items} enlarge={c.enlarge} close={c.close} naming={c.naming} mediaUnavailable={c.mediaUnavailable} openOriginal={c.openOriginal} /></section>
     <section id="fechamento" className={styles.chapter}><h2>{c.closing}</h2><div className={styles.prose}><p>{c.closingText}</p><p><strong>{c.contribution}.</strong> {c.contributionText}</p></div></section>
     <section className={styles.invitation}><h2>{c.result}</h2><p>{c.resultText}</p><a className={styles.button} href={ckfCase.links.home[locale]}>← {c.back}</a></section>

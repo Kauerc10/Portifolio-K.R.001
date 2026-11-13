@@ -41,7 +41,7 @@ const out = 'docs/redesign-ruon/evidence/c07-ckf/story';
     for (const mode of ['reduced','nojs','low']) {
       const context = await browser.newContext({viewport:{width:390,height:mode==='low'?600:844},reducedMotion:mode==='reduced'?'reduce':'no-preference',javaScriptEnabled:mode!=='nojs'});
       const page = await context.newPage();
-      await page.goto('http://localhost:3064/pt-BR/projetos/ckf#jornada',{waitUntil:'networkidle'});
+      await page.goto('http://localhost:3064/pt-BR/projetos/ckf#site',{waitUntil:'networkidle'});
       const root = page.locator('[data-ckf-story]');
       assert.equal(await root.getAttribute('data-ckf-motion'),'static');
       assert.equal(await root.locator('ol li').count(),3);

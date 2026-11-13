@@ -41,3 +41,4 @@
 @media(max-height:700px),(prefers-reduced-motion:reduce) {
  .preview,.story { min-height:0; }.sticky,.storySticky { position:relative; top:auto; min-height:0; }.progress { display:none; }.siteFrame,.systemFrame,.button { transition:none; transform:none; }
 }
+.story .storyNote { color:#c3ccca; font-size:.7rem; }
