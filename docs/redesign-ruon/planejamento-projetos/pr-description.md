@@ -4,7 +4,9 @@ Esta PR reúne a implementação das prévias e páginas dedicadas dos cinco cas
 
 - Vio aprovado preservado na branch, incluindo história corrigida, galeria real, links e prova de movimento.
 - Tickets C01–C10 publicados com bloqueios nativos.
-- C01 entregue para revisão manual: índice visual e roteiros dos cinco cases, com estados desktop/mobile, conteúdo-base, assets e critérios de comparação de mídia. Links locais e coerência com aprovações revisados. Aguarda aceite de Kauê antes de encerrar o ticket e iniciar C02.
+- C01 aprovado por Kauê e #76 encerrada.
+- C02 integrado: modelo localizado de case/múltiplas entregas, cabeçalho e galeria reutilizáveis, retorno isolado por case/idioma com guardas de dados inválidos. Vio migrado para essa base sem alterar copy, CSS ou coreografia.
+- C02 aguarda teste manual de Kauê antes de encerrar #77 e avançar.
 - Vídeo, camadas 2.5D ou combinação serão avaliados por case; nenhuma escolha técnica geral foi antecipada.
 
 ## Fluxo de revisão
@@ -13,11 +15,11 @@ Cada ticket termina com material ou prévia verificável e aguarda o teste de Ka
 
 ## Validação
 
-A base Vio possui validação local anterior: TypeScript, 69 testes, roteiros de navegador desktop/celular, navegação de retorno, imagens e galeria por teclado. Essa evidência é ponto de partida e não valida os demais cases ainda não implementados. C01 recebe revisão documental e visual, sem testes de código artificiais.
+C02: TypeScript e 72 testes passando. Roteiro independente no navegador verificou desktop/celular, retorno pelo link/histórico, galeria por teclado e foco, conteúdo inglês, nova aba, storage bloqueado, sem JavaScript, movimento reduzido e persistência do tema escuro. Comparação antes/depois teve zero pixels alterados nas seis capturas de home, hero e galeria, excluindo o badge do ambiente de desenvolvimento. Build validado em worktree isolado. Isso não valida os cases ainda não implementados.
 
 ## Escopo final planejado
 
-- [ ] C01 #76 — Roteiros completos.
+- [x] C01 #76 — Roteiros completos e aprovados.
 - [ ] C02 #77 — Base reutilizável.
 - [ ] C03 #78 — VioDigital completo.
 - [ ] C04 #79 — VECOM.

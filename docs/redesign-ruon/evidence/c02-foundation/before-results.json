@@ -1,0 +1,40 @@
+[
+  {
+    "viewport": "desktop",
+    "explicitReturn": "PASS",
+    "history": "PASS",
+    "expectedHistoryY": 1994,
+    "actualHistoryY": 1994,
+    "galleryKeyboardFocus": "PASS",
+    "english": "PASS",
+    "newTab": "PASS",
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "explicitReturn": "PASS",
+    "history": "BASELINE FAILURE",
+    "expectedHistoryY": 1608,
+    "actualHistoryY": 1694,
+    "galleryKeyboardFocus": "PASS",
+    "english": "PASS",
+    "newTab": "PASS",
+    "errors": []
+  },
+  {
+    "scenario": "storage-blocked",
+    "navigation": "PASS"
+  },
+  {
+    "scenario": "nojs",
+    "navigation": "PASS"
+  },
+  {
+    "scenario": "reduced",
+    "navigation": "PASS"
+  },
+  {
+    "scenario": "dark",
+    "navigation": "PASS"
+  }
+]
