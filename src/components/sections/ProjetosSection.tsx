@@ -27,9 +27,11 @@ const aliases = [
 
 export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dictionary['projetos']; locale?: Locale }) {
   const [readingMode, setReadingMode] = useState<'normal' | 'quick'>('normal');
+  const [mounted, setMounted] = useState(false);
   const [titleLead, titleAccent] = splitAccentTitle(dict.editorialTitle);
 
   useEffect(() => {
+    setMounted(true);
     try {
       const stored = window.sessionStorage.getItem('ruon:projects-reading');
       if (stored === 'quick' || stored === 'normal') setReadingMode(stored);
@@ -41,15 +43,21 @@ export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dict
   }, [readingMode]);
 
   useEffect(() => {
-    const current = window.location.hash.slice(1);
-    const alias = aliases.find(([from]) => from === current);
-    if (!alias) return;
-    const target = document.getElementById(alias[1]);
-    if (!target) return;
-    requestAnimationFrame(() => {
-      target.scrollIntoView({ block: 'start', behavior: 'instant' as ScrollBehavior });
-      window.history.replaceState(null, '', `#${alias[1]}`);
-    });
+    let frame = 0;
+    const normalizeAlias = () => {
+      const alias = aliases.find(([from]) => from === window.location.hash.slice(1));
+      if (!alias) return;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const target = document.getElementById(alias[1]);
+        if (!target) return;
+        target.scrollIntoView({ block: 'start', behavior: 'instant' as ScrollBehavior });
+        window.history.replaceState(null, '', `#${alias[1]}`);
+      });
+    };
+    normalizeAlias();
+    window.addEventListener('hashchange', normalizeAlias);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener('hashchange', normalizeAlias); };
   }, []);
 
   function toggleReadingMode() {
@@ -58,12 +66,12 @@ export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dict
 
   const quickLabel = locale === 'pt-BR' ? 'Leitura rápida' : 'Quick read';
   const quickDescription = locale === 'pt-BR'
-    ? 'Percorra os cinco cases sem fixação longa.'
-    : 'Scan the five cases without long pinned sequences.';
+    ? 'Prefere ir direto ao ponto? Veja os projetos com uma rolagem mais curta.'
+    : 'Prefer getting to the point? Explore the projects with a shorter scroll.';
   const folilibLabel = locale === 'pt-BR' ? 'Foli continua disponível no repositório.' : 'Foli remains available in the repository.';
 
   return (
-    <section className="section editorial-section projects-editorial" id="projetos" data-section="7" data-motion-state="idle" data-project-reading={readingMode}>
+    <section className="section editorial-section projects-editorial" id="projetos" data-section="7" data-motion-state="idle" data-project-reading={readingMode} data-project-enhanced={mounted || undefined}>
       <div className="projects-editorial__heading">
         <h2 className="editorial-display">{titleLead}{' '}<em>{titleAccent}</em></h2>
         <p className="projects-editorial__intro">{dict.editorialDescription}</p>
@@ -74,7 +82,7 @@ export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dict
           <span className="editorial-kicker">{locale === 'pt-BR' ? 'Cinco histórias, seis entregas' : 'Five stories, six deliveries'}</span>
           <p>{quickDescription}</p>
         </div>
-        <button type="button" className="projects-editorial__reading-toggle" aria-pressed={readingMode === 'quick'} onClick={toggleReadingMode}>
+        <button type="button" className={`projects-editorial__reading-toggle${mounted ? '' : ' is-pending'}`} aria-pressed={readingMode === 'quick'} onClick={toggleReadingMode}>
           <Gauge aria-hidden="true" /> {quickLabel}
         </button>
       </div>
@@ -83,14 +91,14 @@ export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dict
         {cases.map((item, index) => <a key={item.id} href={`#${item.id}`}><span>{String(index + 1).padStart(2, '0')}</span>{item.label[locale]}</a>)}
       </nav>
 
-      <span id="project-atlas" className="projects-editorial__alias" aria-hidden="true" />
       <VioPreview locale={locale} />
       <VecomPreview locale={locale} />
       <AtlasPreview locale={locale} />
+      <span id="project-atlas" className="projects-editorial__alias" aria-hidden="true" />
       <DocFacilPreview locale={locale} />
+      <span id="project-docfacil-legacy" className="projects-editorial__alias" aria-hidden="true" />
       <CkfPreview locale={locale} />
       <span id="project-ckf-legacy" className="projects-editorial__alias" aria-hidden="true" />
-      <span id="project-docfacil-legacy" className="projects-editorial__alias" aria-hidden="true" />
 
       <aside id="project-foli" className="projects-editorial__legacy-note">
         <span>{folilibLabel}</span>
