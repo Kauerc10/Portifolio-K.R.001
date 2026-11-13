@@ -10,13 +10,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'en-US': `${baseUrl}/en-US`,
   };
 
-  return locales.map((locale) => ({
+  const homeEntries = locales.map((locale) => ({
     url: `${baseUrl}/${locale}`,
     lastModified: now,
-    changeFrequency: 'weekly',
+    changeFrequency: 'weekly' as const,
     priority: locale === 'pt-BR' ? 1.0 : 0.9,
     alternates: {
       languages: languageAlternates,
     },
   }));
+  const caseEntries = locales.map((locale) => ({ url: `${baseUrl}/${locale}/projetos/viodigital`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/viodigital`, 'en-US': `${baseUrl}/en-US/projetos/viodigital` } } }));
+  return [...homeEntries, ...caseEntries];
 }

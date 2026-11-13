@@ -18,7 +18,7 @@ export function vioCopy(locale: Locale) {
     galleryText: 'These are screenshots of the public application. The idea is simple: a clear place to start, on a computer or a phone.',
     desktopCaption: 'The starting screen on a computer: file, image or camera as entry points.',
     mobileCaption: 'The same starting point, adapted to a smaller screen.',
-    enlarge: 'Enlarge image', close: 'Close image', screenAlt: 'VioDigital public document-checking screen, with file and camera options',
+    enlarge: 'Enlarge image', close: 'Close image', mediaUnavailable: 'This capture is unavailable right now.', openOriginal: 'Open the original capture', screenAlt: 'VioDigital public document-checking screen, with file and camera options',
     mobileAlt: 'VioDigital public application on a mobile screen',
     decisions: 'The choices behind the experience.',
     choices: [
@@ -53,7 +53,7 @@ export function vioCopy(locale: Locale) {
     galleryText: 'Estas são telas da aplicação pública. A proposta é ter um ponto de partida claro, seja no computador ou no celular.',
     desktopCaption: 'A entrada pelo computador: arquivo, imagem ou câmera como caminhos para começar.',
     mobileCaption: 'O mesmo ponto de partida, adaptado a uma tela menor.',
-    enlarge: 'Ampliar imagem', close: 'Fechar imagem', screenAlt: 'Tela pública do VioDigital para conferência de documentos, com opções de arquivo e câmera',
+    enlarge: 'Ampliar imagem', close: 'Fechar imagem', mediaUnavailable: 'Esta captura não está disponível agora.', openOriginal: 'Abrir captura original', screenAlt: 'Tela pública do VioDigital para conferência de documentos, com opções de arquivo e câmera',
     mobileAlt: 'Aplicação pública do VioDigital em uma tela de celular',
     decisions: 'As escolhas por trás da experiência.',
     choices: [

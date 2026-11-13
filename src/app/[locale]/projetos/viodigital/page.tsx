@@ -8,8 +8,12 @@ import VioGallery from '@/components/projects/VioGallery';
 import CaseHeader from '@/components/projects/CaseHeader';
 import { vioDigitalCase } from '@/components/projects/case-model';
 import styles from '@/components/projects/VioDigital.module.css';
+import { getVioMetadata } from '@/components/projects/viodigital-metadata';
 
-export const metadata: Metadata = { title: 'VioDigital — Kauê Ruon Cardoso' };
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return isValidLocale(locale) ? getVioMetadata(locale) : {};
+}
 
 export default async function VioDigitalCase({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
