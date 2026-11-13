@@ -7,10 +7,11 @@ import { splitAccentTitle } from '@/lib/editorial';
 import { createMotionScope, type MotionScope } from '@/lib/section-motion';
 import VioPreview from '@/components/projects/VioPreview';
 import VecomPreview from '@/components/projects/VecomPreview';
+import AtlasPreview from '@/components/projects/AtlasPreview';
 import type { Locale } from '@/i18n/config';
 
 const projects = [
-  { key: 'atlas', id: 'project-atlas' },
+  { key: 'atlas', id: 'project-atlas-notarial' },
   { key: 'ckf', id: 'project-ckf', demo: 'https://ckf-manutencao-orcamentos.vercel.app', repo: 'https://github.com/Kauerc10/ckf-manutencao-orcamentos' },
   { key: 'docfacil', id: 'project-docfacil', demo: 'https://docfacil-indol.vercel.app', repo: 'https://github.com/Kauerc10/docfacil' },
   { key: 'folilib', id: 'project-foli', repo: 'https://github.com/Kauerc10/foli' },
@@ -170,6 +171,7 @@ export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dict
       </div>
       <VioPreview locale={locale} />
       <VecomPreview locale={locale} />
+      <AtlasPreview locale={locale} />
       <div className="projects-editorial__layout">
         <nav ref={indexRef} className="projects-editorial__index" aria-label={dict.editorialTitle}>
           <span className="projects-editorial__marker" aria-hidden="true" />

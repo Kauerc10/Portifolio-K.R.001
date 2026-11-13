@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const caseEntries = locales.flatMap((locale) => [
     { url: `${baseUrl}/${locale}/projetos/viodigital`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/viodigital`, 'en-US': `${baseUrl}/en-US/projetos/viodigital` } } },
     { url: `${baseUrl}/${locale}/projetos/vecom`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/vecom`, 'en-US': `${baseUrl}/en-US/projetos/vecom` } } },
+    { url: `${baseUrl}/${locale}/projetos/atlas-notarial`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/atlas-notarial`, 'en-US': `${baseUrl}/en-US/projetos/atlas-notarial` } } },
   ]);
   return [...homeEntries, ...caseEntries];
 }
