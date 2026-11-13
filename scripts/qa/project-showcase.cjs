@@ -25,6 +25,10 @@ assert.equal(await page.locator('dialog[open]').count(),0,'intro not repeated');
 await toggle.click();await page.waitForFunction(()=>document.querySelector('#projetos').dataset.projectReading==='normal');
 const first=root.locator('[data-project-preview]').first();await first.scrollIntoViewIfNeeded();await page.waitForTimeout(100);
 assert.equal(await first.locator('[data-project-sticky]').evaluate(e=>getComputedStyle(e).position),'sticky');
+const geometry=await first.evaluate(e=>({top:e.getBoundingClientRect().top+scrollY,travel:e.offsetHeight-innerHeight+80}));
+const seek=async value=>{await page.evaluate(({top,travel,value})=>scrollTo({top:top-80+travel*value,behavior:'instant'}),{...geometry,value});await page.waitForTimeout(120);return first.evaluate(e=>Number(e.style.getPropertyValue('--vio-progress')))};
+const early=await seek(.1),late=await seek(.85),reverse=await seek(.3);assert(early<late&&reverse<late,'normal scroll moves and reverses');await page.waitForTimeout(350);assert.equal(await first.evaluate(e=>Number(e.style.getPropertyValue('--vio-progress'))),reverse,'scroll pause holds scene');
+
 assert.deepEqual(errors,[]);results.push({name,fiveCaseJourneys:'PASS',quickReading:'PASS',layout:'PASS',errors});await context.close();}
 for(const mode of ['nojs','reduced','storage-blocked','low-height']){const context=await browser.newContext({viewport:{width:mode==='low-height'?1280:390,height:mode==='low-height'?600:844},javaScriptEnabled:mode!=='nojs',reducedMotion:mode==='reduced'?'reduce':'no-preference'});const page=await context.newPage();if(mode==='storage-blocked')await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('blocked')};Storage.prototype.setItem=()=>{throw Error('blocked')}});
 await page.goto('http://localhost:3064/pt-BR#project-atlas',{waitUntil:'networkidle'});assert.equal(await page.locator('[data-project-preview]').count(),5);
