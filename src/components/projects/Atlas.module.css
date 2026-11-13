@@ -78,3 +78,13 @@
 @media(prefers-reduced-motion:reduce) {
  .document,.outputPaper,.layer,.storyPaper,.button { transition:none; transform:none; }
 }
+
+/* Static layouts keep every paper available without horizontal clipping. */
+.story[data-atlas-motion=static] { min-height:0; }
+.story[data-atlas-motion=static] .storySticky { position:relative; top:auto; min-height:0; }
+.story[data-atlas-motion=static] .storyStage { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2rem; height:auto; overflow:visible; }
+.story[data-atlas-motion=static] .storyPaper { position:relative; left:auto; top:auto; width:auto; height:280px; transform:none; }
+@media(max-width:760px) {
+ .story[data-atlas-motion=static] .storyStage { grid-template-columns:1fr; }
+ .story[data-atlas-motion=static] .storyPaper { width:75%; margin:auto; height:260px; }
+}
