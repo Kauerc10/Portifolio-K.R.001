@@ -89,37 +89,19 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
     });
   });
 
-  describe('P02 (#54) — Projetos selecionados, índice lateral e links profundos', () => {
-    it('abre Atlas Notarial por padrão com papel de Kauê e fluxo ilustrado em 3 etapas, alternando mantendo o foco no controle', () => {
+  describe('P02 (#54) — Vitrine de cases e links profundos', () => {
+    it('renderiza os cinco cases aprovados na ordem editorial e oferece leitura rápida', () => {
       const { container } = render(<ProjetosSection dict={ptBR.projetos} />);
-
-      const atlasArticle = container.querySelector('#project-atlas') as HTMLElement;
-      const ckfArticle = container.querySelector('#project-ckf-legacy') as HTMLElement;
-      expect(atlasArticle).not.toHaveAttribute('hidden');
-      expect(ckfArticle).toHaveAttribute('hidden');
-
-      expect(within(atlasArticle).getByText(/Concepção, desenvolvimento e integração notarial/i)).toBeInTheDocument();
-      expect(within(atlasArticle).getByText('Consulta')).toBeInTheDocument();
-      expect(within(atlasArticle).getByText('Dados do veículo')).toBeInTheDocument();
-      expect(within(atlasArticle).getByText('Procuração')).toBeInTheDocument();
-
-      const ckfLink = screen.getByRole('link', { name: /CKF Manutenção/i });
-      ckfLink.focus();
-      fireEvent.click(ckfLink);
-
-      expect(ckfLink).toHaveAttribute('aria-current', 'true');
-      expect(ckfArticle).not.toHaveAttribute('hidden');
-      expect(atlasArticle).toHaveAttribute('hidden');
-      expect(document.activeElement).toBe(ckfLink);
-      expect(window.location.hash).toBe('#project-ckf-legacy');
+      expect([...container.querySelectorAll('.projects-editorial > article')].map(item => item.id)).toEqual([
+        'project-viodigital', 'project-vecom', 'project-atlas-notarial', 'project-docfacil', 'project-ckf',
+      ]);
+      expect(screen.getByRole('button', { name: /Leitura rápida/i })).toBeInTheDocument();
     });
 
-    it('seleciona o projeto correspondente ao abrir com hash direto', () => {
+    it('mantém aliases antigos disponíveis para o case atual', () => {
       window.history.replaceState(null, '', '/pt-BR#project-docfacil-legacy');
       const { container } = render(<ProjetosSection dict={enUS.projetos} />);
-
-      expect(container.querySelector('#project-docfacil-legacy')).not.toHaveAttribute('hidden');
-      expect(container.querySelector('#project-atlas')).toHaveAttribute('hidden');
+      expect(container.querySelector('#project-docfacil-legacy')).toBeInTheDocument();
     });
   });
 
