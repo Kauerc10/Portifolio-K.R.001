@@ -28,7 +28,7 @@ export default function VioPreview({ locale }: { locale: Locale }) {
         </div>
         <VioDocument example={copy.example} />
       </div>
-      <div className={styles.progress} aria-hidden="true"><span>{copy.scroll} ↓</span><ol>{copy.steps.map((step, i) => <li key={step} data-step={i}>{step}</li>)}</ol><div><i /></div></div>
+      <div className={styles.progress} data-project-progress aria-hidden="true"><span>{copy.scroll} ↓</span><ol>{copy.steps.map((step, i) => <li key={step} data-step={i}>{step}</li>)}</ol><div><i /></div></div>
     </div>
   </article>;
 }

@@ -27,7 +27,7 @@ export default function CkfPreview({ locale }: { locale: Locale }) {
         </div>
         <CkfComposition locale={locale} label={locale === 'pt-BR' ? 'Site institucional e sistema de orçamentos da CKF, duas entregas distintas' : 'CKF institutional website and quote system, two distinct deliveries'} />
       </div>
-      <div className={styles.progress} aria-hidden="true"><span>{copy.steps[0]}</span><i /><span>{copy.steps[1]}</span><span>{copy.steps[2]}</span></div>
+      <div className={styles.progress} data-project-progress aria-hidden="true"><span>{copy.steps[0]}</span><i /><span>{copy.steps[1]}</span><span>{copy.steps[2]}</span></div>
     </div>
   </article>;
 }

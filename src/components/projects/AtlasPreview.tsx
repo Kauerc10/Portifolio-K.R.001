@@ -27,7 +27,7 @@ export default function AtlasPreview({ locale }: { locale: Locale }) {
         </div>
         <AtlasComposition locale={locale} label={locale === 'pt-BR' ? 'Documento de veículo de exemplo e camadas Formatar, Conferir e Organizar' : 'Example vehicle document and Format, Review and Organize layers'} />
       </div>
-      <div className={styles.progress} aria-hidden="true"><span>{copy.steps[0]}</span><i /><span>{copy.steps[1]}</span><span>{copy.steps[2]}</span></div>
+      <div className={styles.progress} data-project-progress aria-hidden="true"><span>{copy.steps[0]}</span><i /><span>{copy.steps[1]}</span><span>{copy.steps[2]}</span></div>
     </div>
   </article>;
 }

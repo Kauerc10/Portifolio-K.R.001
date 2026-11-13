@@ -4,7 +4,10 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { useProjectPreview } from '@/components/projects/useProjectPreview';
 import { vecomCase } from '@/components/projects/case-model';
 
-afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
+afterEach(() => {
+  delete (document as unknown as { hidden?: boolean }).hidden;
+  vi.unstubAllGlobals(); vi.restoreAllMocks();
+});
 
 it('suspends offscreen and hidden previews, resumes on visibility, and cancels pending work on unmount', () => {
   let intersection: (entries: { isIntersecting: boolean }[]) => void = () => {};
@@ -39,5 +42,4 @@ it('suspends offscreen and hidden previews, resumes on visibility, and cancels p
   expect(frames.size).toBe(1);
   mounted.unmount();
   expect(frames.size).toBe(0);
-  delete (document as unknown as { hidden?: boolean }).hidden;
 });

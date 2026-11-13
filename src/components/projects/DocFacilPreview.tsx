@@ -27,7 +27,7 @@ export default function DocFacilPreview({ locale }: { locale: Locale }) {
         </div>
         <DocFacilComposition locale={locale} label={locale === 'pt-BR' ? 'Corujinha azul orienta uma pergunta enquanto um documento de exemplo ganha forma' : 'A blue owl guides a question as an example document takes shape'} />
       </div>
-      <div className={styles.progress} aria-hidden="true"><span>{copy.steps[0]}</span><i /><span>{copy.steps[1]}</span><span>{copy.steps[2]}</span></div>
+      <div className={styles.progress} data-project-progress aria-hidden="true"><span>{copy.steps[0]}</span><i /><span>{copy.steps[1]}</span><span>{copy.steps[2]}</span></div>
     </div>
   </article>;
 }

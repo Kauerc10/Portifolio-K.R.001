@@ -27,7 +27,7 @@ export default function VecomPreview({ locale }: { locale: Locale }) {
         </div>
         <VecomComposition label={locale === 'pt-BR' ? 'Pasta azul, notebook e celular com capturas preparadas da VECOM' : 'Blue folder, laptop and phone with prepared VECOM screens'} />
       </div>
-      <div className={styles.progress} aria-hidden="true"><span>{copy.steps[0]}</span><i /><span>{copy.steps[1]}</span><span>{copy.steps[2]}</span></div>
+      <div className={styles.progress} data-project-progress aria-hidden="true"><span>{copy.steps[0]}</span><i /><span>{copy.steps[1]}</span><span>{copy.steps[2]}</span></div>
     </div>
   </article>;
 }
