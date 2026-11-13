@@ -1,11 +1,11 @@
 import styles from './VioDigital.module.css';
 
-/** Provisional layered artwork. Decorative QR-like pattern never processes a document. */
+/** Deterministic native artwork (manifest: docs/.../c03-viodigital-art-manifest.json). The QR-like mark is decorative only. */
 export default function VioDocument({ example, shared = true }: { example: string; shared?: boolean }) {
   return <div className={styles.art} aria-hidden="true">
     <div className={styles.plinth} />
     <div className={styles.backplate} />
-    <div className={styles.document} data-vio-document style={shared ? undefined : { viewTransitionName: 'none' }}>
+    <div className={styles.document} data-vio-document data-vio-art="document-example-qr-v1" style={shared ? undefined : { viewTransitionName: 'none' }}>
       <div className={styles.paper}>
         <span className={styles.brandMarks}><i /><i /></span>
         <strong>{example}</strong>
