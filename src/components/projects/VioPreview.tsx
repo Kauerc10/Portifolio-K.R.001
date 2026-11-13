@@ -26,6 +26,7 @@ export default function VioPreview({ locale }: { locale: Locale }) {
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     const restore = () => {
+      if (window.location.hash && window.location.hash !== '#project-viodigital') return;
       requestAnimationFrame(() => {
         restoreCaseReturnPosition({ locale, caseSlug: vioDigitalCase.slug, homePath: vioDigitalCase.homePath(locale) }, {
           scrollTo: (position) => scrollTo(position),

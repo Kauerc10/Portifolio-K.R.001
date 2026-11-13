@@ -6,6 +6,7 @@ import type { Dictionary } from '@/i18n/types';
 import { splitAccentTitle } from '@/lib/editorial';
 import { createMotionScope, type MotionScope } from '@/lib/section-motion';
 import VioPreview from '@/components/projects/VioPreview';
+import VecomPreview from '@/components/projects/VecomPreview';
 import type { Locale } from '@/i18n/config';
 
 const projects = [
@@ -168,6 +169,7 @@ export default function ProjetosSection({ dict, locale = 'pt-BR' }: { dict: Dict
         <span ref={borderRef} className="projects-editorial__directional-border" aria-hidden="true" />
       </div>
       <VioPreview locale={locale} />
+      <VecomPreview locale={locale} />
       <div className="projects-editorial__layout">
         <nav ref={indexRef} className="projects-editorial__index" aria-label={dict.editorialTitle}>
           <span className="projects-editorial__marker" aria-hidden="true" />

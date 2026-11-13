@@ -34,3 +34,17 @@ export const vioDigitalCase: CaseDefinition = {
   homePath: (locale) => `/${locale}`,
   casePath: (locale) => `/${locale}/projetos/viodigital`,
 };
+
+export const vecomCase: CaseDefinition = {
+  id: 'vecom',
+  slug: 'vecom',
+  title: { 'pt-BR': 'VECOM Ficha Fácil', 'en-US': 'VECOM Ficha Fácil' },
+  nature: 'on-demand',
+  deliveries: [{ id: 'ficha-facil', label: { 'pt-BR': 'Sistema Ficha Fácil', 'en-US': 'Ficha Fácil system' }, kind: 'service' }],
+  links: {
+    home: { 'pt-BR': '/pt-BR#project-vecom', 'en-US': '/en-US#project-vecom' },
+    case: { 'pt-BR': '/pt-BR/projetos/vecom', 'en-US': '/en-US/projetos/vecom' },
+  },
+  homePath: (locale) => `/${locale}`,
+  casePath: (locale) => `/${locale}/projetos/vecom`,
+};
