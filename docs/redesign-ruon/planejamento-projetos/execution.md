@@ -28,9 +28,9 @@ flowchart TD
 
 C01 foi implementado documentalmente e integrado em 76170131e29902f318c7692ac4330d9552f9809c. Está pronto para revisão manual de Kauê: [índice e cinco roteiros](roteiros/README.md). Links locais e comparação com os conceitos foram revisados; git diff --check passou. Nenhum código de interface foi alterado por C01 e testes de aplicação não foram repetidos como validação documental.
 
-C01 e C02 aprovados por Kauê; #76 e #77 encerradas. C02 foi integrado em a5cc9e0, com ajuste de foco em 35873e8; [entrega e evidências](c02-handoff.md). C03 #78 foi integrado em 268d601 e está pronto para teste manual: [entrega e evidências C03](c03-handoff.md). As demais entregas aguardam seu lugar no fluxo e o aceite por ticket.
+C01 e C02 aprovados por Kauê; #76 e #77 encerradas. C02 foi integrado em a5cc9e0, com ajuste de foco em 35873e8; [entrega e evidências](c02-handoff.md). C03 #78 foi integrado em 268d601, aprovado por Kauê e encerrado: [entrega e evidências C03](c03-handoff.md). As demais entregas aguardam seu lugar no fluxo e o aceite por ticket.
 
-O trabalho de cada ticket usa branch/worktree próprios, integração na mesma PR e evidência apropriada. Roteiros recebem revisão documental/visual; UI recebe teste no navegador. C03 deverá permanecer aberto até o teste/aceite desta entrega, antes de avançar ao próximo case.
+O trabalho de cada ticket usa branch/worktree próprios, integração na mesma PR e evidência apropriada. Roteiros recebem revisão documental/visual; UI recebe teste no navegador. C04 #79 está atribuído e sem bloqueios abertos. Implementação integrada via d058675, com fechamento visual em 6d89b71, referência v3 e mídia oficial preparada com registros sintéticos. [Entrega e provas C04](c04-handoff.md). C04 permanece aberto até o teste/aceite de Kauê.
 
 Prévia preservada: http://localhost:3064/pt-BR/projetos/viodigital
 

@@ -1,6 +1,6 @@
-# C03 — VioDigital pronto para teste final desta fatia
+# C03 — VioDigital aprovado
 
-Integrado na PR #86 em 268d6014ee0205b6c25b91c20abdbca97e1eb833. C02 aprovado e encerrado; manter #78 aberto enquanto aguarda revisão manual de Kauê. Nenhum outro case foi iniciado.
+Integrado na PR #86 em 268d6014ee0205b6c25b91c20abdbca97e1eb833. C02 aprovado e encerrado. Após a entrega e o teste, Kauê aprovou C03; #78 foi encerrada e C04 VECOM foi iniciado conforme a sequência acordada.
 
 ## Fechamento
 
@@ -27,4 +27,4 @@ Integrado na PR #86 em 268d6014ee0205b6c25b91c20abdbca97e1eb833. C02 aprovado e 
 3. Abrir/fechar as capturas e testar os links da aplicação e código.
 4. Voltar para a home, também pelo histórico.
 
-A aparência principal deve continuar como aprovada. Esta fatia fecha o Vio usando as camadas atuais; não produz um vídeo novo nem muda a direção dos demais cases. Aguardar o retorno de Kauê antes de seguir para VECOM.
+A aparência principal deve continuar como aprovada. Esta fatia fecha o Vio usando as camadas atuais; não produz um vídeo novo nem muda a direção dos demais cases. Aceite de Kauê registrado; a próxima fatia é C04 VECOM.

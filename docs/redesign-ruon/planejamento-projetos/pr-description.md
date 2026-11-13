@@ -7,7 +7,8 @@ Esta PR reúne a implementação das prévias e páginas dedicadas dos cinco cas
 - C01 aprovado por Kauê e #76 encerrada.
 - C02 integrado: modelo localizado de case/múltiplas entregas, cabeçalho e galeria reutilizáveis, retorno isolado por case/idioma com guardas de dados inválidos. Vio migrado para essa base sem alterar copy, CSS ou coreografia.
 - C02 aprovado por Kauê e #77 encerrada.
-- C03 entregue para teste: versão nativa 2.5D documentada, manifesto de arte decorativa, galeria resiliente com acesso sem JavaScript e metadados/sitemap do case nas duas línguas. História e composição aprovadas preservadas. Aguarda aceite de Kauê antes de encerrar #78 e avançar para VECOM.
+- C03 aprovado por Kauê e #78 encerrada: versão nativa 2.5D, galeria resiliente e metadados/sitemap PT/EN. História e composição preservadas.
+- C04 VECOM entregue para teste: pasta azul e dispositivos compartilhados na home/case, capturas oficiais com fixtures, movimento reversível pelo scroll, galeria e PT/EN. Aguarda aceite de Kauê; #79 continua aberta.
 - Vídeo, camadas 2.5D ou combinação serão avaliados por case; nenhuma escolha técnica geral foi antecipada.
 
 ## Fluxo de revisão
@@ -24,8 +25,8 @@ C03: 74 testes em 18 arquivos, TypeScript e build passando. Browser independente
 
 - [x] C01 #76 — Roteiros completos e aprovados.
 - [x] C02 #77 — Base reutilizável aprovada.
-- [ ] C03 #78 — VioDigital completo.
-- [ ] C04 #79 — VECOM.
+- [x] C03 #78 — VioDigital completo e aprovado.
+- [ ] C04 #79 — VECOM implementado, aguardando teste de Kauê.
 - [ ] C05 #80 — Atlas.
 - [ ] C06 #81 — DocFácil.
 - [ ] C07 #82 — CKF institucional.
@@ -44,3 +45,5 @@ Closes #82
 Closes #83
 Closes #84
 Closes #85
+
+C04: 74 testes, TypeScript e build passaram. Prova no navegador em desktop/celular validou jornada, scroll, pausa/reversão, teclado, falhas de mídia, idiomas, tema, movimento reduzido, tela baixa, nova aba e isolamento do retorno por case. Vio preservado em seis comparações com zero pixels alterados (badge de desenvolvimento excluído).
