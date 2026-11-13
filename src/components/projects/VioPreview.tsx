@@ -29,7 +29,7 @@ export default function VioPreview({ locale }: { locale: Locale }) {
       requestAnimationFrame(() => {
         restoreCaseReturnPosition({ locale, caseSlug: vioDigitalCase.slug, homePath: vioDigitalCase.homePath(locale) }, {
           scrollTo: (position) => scrollTo(position),
-          focus: () => element.focus({ preventScroll: true }),
+          focus: () => element.querySelector<HTMLElement>('#vio-preview-title')?.focus({ preventScroll: true }),
         });
         update();
       });
@@ -42,12 +42,12 @@ export default function VioPreview({ locale }: { locale: Locale }) {
     media?.addEventListener('change', schedule);
     return () => { cancelAnimationFrame(frame); removeEventListener('pageshow', restore); removeEventListener('scroll', schedule); removeEventListener('resize', schedule); media?.removeEventListener('change', schedule); };
   }, []);
-  return <article ref={root} tabIndex={-1} id="project-viodigital" className={styles.preview} aria-labelledby="vio-preview-title">
+  return <article ref={root} id="project-viodigital" className={styles.preview} aria-labelledby="vio-preview-title">
     <div className={styles.sticky}>
       <div className={styles.composition}>
         <div className={styles.copy}>
           <p className={styles.kicker}>{copy.kind}</p>
-          <h3 id="vio-preview-title">VioDigital</h3>
+          <h3 id="vio-preview-title" tabIndex={-1}>VioDigital</h3>
           <p className={styles.tagline}>{copy.title}</p>
           <p className={styles.description}>{copy.description}</p>
           <a className={styles.button} href={vioDigitalCase.links.case[locale]} onClick={event => {
