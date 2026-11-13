@@ -34,3 +34,7 @@ Resultados, capturas e gravações: [evidence/c05-atlas](../evidence/c05-atlas/r
 Limite da galeria: utiliza somente o material oficial já público. Não foi validada uma sessão autenticada do Formatador nem foram acessadas APIs ou registros do cartório. A ilustração explica a proposta, sem alegar execução real ou resultado medido.
 
 Teste sugerido: entrar pela home, percorrer Evolução no case, ampliar as imagens e voltar para a posição anterior. Aguardar aceite de Kauê antes de encerrar #80 e iniciar C06.
+
+## Complemento de conteúdo — funcionamento e motivação
+
+Após testar as animações, Kauê pediu maior clareza sobre a ferramenta: API do Detran → dados formatados → texto pronto para inserir na procuração. A abertura, o contexto e as legendas da evolução foram atualizados nos dois idiomas. Uma seção identifica declaração de residência, notas promissórias e chat para a equipe entre as ferramentas atuais. O fechamento explica a decisão de produto: como ajudou o próprio cartório, Kauê percebeu que poderia ajudar outros também. A coreografia aprovada permanece. A informação sobre a API foi confirmada pelo usuário, sem novas chamadas ao produto ou validação da integração nesta entrega.

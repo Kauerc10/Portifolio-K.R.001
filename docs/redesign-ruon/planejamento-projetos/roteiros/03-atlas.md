@@ -26,3 +26,9 @@ Assets: papel de veículo, camadas e conectores são ilustração; recortes de i
 ## Viewports e mídia
 
 Desktop faz rotina → Formatador → Atlas em três passos; no celular cada documento ocupa um cartão e o próximo aparece após um gesto. Tela baixa usa sequência vertical sem pin. Reduced motion deixa as três camadas alinhadas. Comparar vídeo de alinhamento, 2.5D de papéis/camadas e híbrido com recortes de ferramentas; sem escolher técnica agora.
+
+## Esclarecimento de Kauê — Formatador e origem do produto
+
+O Formatador de Veículos consulta os dados na API do Detran, formata as informações e entrega o texto pronto para inserir na procuração. O conjunto evoluiu para o Atlas, que hoje reúne também declaração de residência, notas promissórias, chat para a equipe e outras ferramentas. A utilidade observada no próprio cartório levou Kauê a oferecer a solução como produto para outros cartórios. Estes fatos foram confirmados diretamente pelo usuário; não implicam uma nova validação de API, endpoints, disponibilidade ou resultados quantitativos.
+
+A explicação deve aparecer na abertura, nas legendas da evolução e na narrativa aprofundada, em PT/EN. Preservar a coreografia aprovada. A página explica a integração; não consulta a API real do Detran.

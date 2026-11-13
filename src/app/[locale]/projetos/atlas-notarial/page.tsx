@@ -49,6 +49,11 @@ export default async function AtlasCase({ params }: Params) {
         <h2>{c.challenge}</h2><div className={styles.prose}><p>{c.context}</p><p>{c.contextMore}</p></div>
       </section>
       <div id="evolucao"><AtlasStory locale={locale} /></div>
+      <section className={styles.chapter} aria-labelledby="atlas-tools-title">
+        <h2 id="atlas-tools-title">{c.toolkitTitle}</h2>
+        <p>{c.toolkitIntro}</p>
+        <ul className={styles.steps}>{c.tools.map(tool => <li key={tool}><strong>{tool}</strong></li>)}</ul>
+      </section>
       <section id="telas" className={styles.screens}>
         <div className={styles.screensHeading}><h2>{c.gallery}</h2><p>{c.galleryText}</p></div>
         <CaseGallery items={items} enlarge={c.enlarge} close={c.close} naming={c.naming} mediaUnavailable={c.mediaUnavailable} openOriginal={c.openOriginal} />
