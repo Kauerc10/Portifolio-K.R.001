@@ -33,3 +33,7 @@ Kauê pediu menos frases de efeito e mais explicação e conexão entre empresa,
 A prévia conceitual do sistema foi substituída por captura da interface original do projeto em seu modo local de demonstração, escolha confirmada por Kauê. A galeria inclui dashboard, celular e consulta de documento. As legendas distinguem interface real e dados fictícios. A versão publicada pediu login; nenhum acesso autenticado de produção foi alegado. Ver [procedência atualizada](ckf-media-provenance.md).
 
 A mesma revisão editorial alcança VioDigital, VECOM, Atlas e DocFácil em PT/EN: descrição do produto, usuários, entrada/processamento/saída e contribuição, preservando histórias confirmadas e animações aprovadas.
+
+Validação da revisão: TypeScript e 74 testes aprovados. A jornada CKF foi repetida com cinco imagens na galeria e passou em desktop/celular, teclado, retorno, histórico, nova aba, idiomas/metadata, claro/escuro, falhas de mídia, storage bloqueado, sem JS e tela baixa. Os cinco cases tiveram revisão de heading/layout e ausência de overflow em desktop e celular; inglês também conferido no celular. Resultados em `evidence/c07-ckf-clarity/journey/results.json` e `evidence/case-content-clarity/results.json`. A revisão de fonte não encontrou claims sem suporte ou bugs bloqueantes. As capturas locais do sistema estão identificadas em `evidence/c07-ckf-clarity/system-capture.json`.
+
+Build de produção da revisão aprovado no checkout isolado `content-proof`, sem alteração da configuração entregue. As páginas PT/EN dos cinco cases foram geradas com sucesso.

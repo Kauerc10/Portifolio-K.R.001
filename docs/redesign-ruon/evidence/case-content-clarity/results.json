@@ -1,0 +1,97 @@
+[
+  {
+    "name": "desktop",
+    "slug": "ckf",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "slug": "viodigital",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "slug": "vecom",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "slug": "atlas-notarial",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "slug": "docfacil",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "slug": "ckf",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "slug": "viodigital",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "slug": "vecom",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "slug": "atlas-notarial",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "slug": "docfacil",
+    "heading": "PASS",
+    "overflow": "PASS",
+    "errors": []
+  },
+  {
+    "locale": "en-US",
+    "slug": "ckf",
+    "overflow": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "slug": "viodigital",
+    "overflow": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "slug": "vecom",
+    "overflow": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "slug": "atlas-notarial",
+    "overflow": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "slug": "docfacil",
+    "overflow": "PASS"
+  }
+]
