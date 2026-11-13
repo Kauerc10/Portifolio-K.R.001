@@ -8,7 +8,7 @@ Esta PR reúne a implementação das prévias e páginas dedicadas dos cinco cas
 - C02 integrado: modelo localizado de case/múltiplas entregas, cabeçalho e galeria reutilizáveis, retorno isolado por case/idioma com guardas de dados inválidos. Vio migrado para essa base sem alterar copy, CSS ou coreografia.
 - C02 aprovado por Kauê e #77 encerrada.
 - C03 aprovado por Kauê e #78 encerrada: versão nativa 2.5D, galeria resiliente e metadados/sitemap PT/EN. História e composição preservadas.
-- C04 VECOM entregue para teste: pasta azul e dispositivos compartilhados na home/case, capturas oficiais com fixtures, movimento reversível pelo scroll, galeria e PT/EN. Aguarda aceite de Kauê; #79 continua aberta.
+- C04 VECOM entregue para teste: pasta azul e dispositivos compartilhados na home/case, capturas oficiais com fixtures, movimento reversível pelo scroll, galeria e PT/EN. Aprovado por Kauê, incluindo o refinamento da entrada e da passagem celular → equipe; #79 encerrada.
 - Vídeo, camadas 2.5D ou combinação serão avaliados por case; nenhuma escolha técnica geral foi antecipada.
 
 ## Fluxo de revisão
@@ -26,8 +26,8 @@ C03: 74 testes em 18 arquivos, TypeScript e build passando. Browser independente
 - [x] C01 #76 — Roteiros completos e aprovados.
 - [x] C02 #77 — Base reutilizável aprovada.
 - [x] C03 #78 — VioDigital completo e aprovado.
-- [ ] C04 #79 — VECOM implementado, aguardando teste de Kauê.
-- [ ] C05 #80 — Atlas.
+- [x] C04 #79 — VECOM completo e aprovado.
+- [ ] C05 #80 — Atlas implementado, aguardando teste de Kauê.
 - [ ] C06 #81 — DocFácil.
 - [ ] C07 #82 — CKF institucional.
 - [ ] C08 #83 — CKF sistema.
@@ -47,3 +47,5 @@ Closes #84
 Closes #85
 
 C04: 74 testes, TypeScript e build passaram. Prova no navegador em desktop/celular validou jornada, scroll, pausa/reversão, teclado, falhas de mídia, idiomas, tema, movimento reduzido, tela baixa, nova aba e isolamento do retorno por case. Vio preservado em seis comparações com zero pixels alterados (badge de desenvolvimento excluído).
+
+C05 Atlas: documento de veículo e camadas 2.5D, entrada compartilhada, evolução por scroll e material oficial público identificado. 74 testes, TypeScript e build passaram; jornada desktop/celular, falhas, idiomas, temas, retorno e sequência estática completa foram validados. Aguarda aceite de Kauê na #80.

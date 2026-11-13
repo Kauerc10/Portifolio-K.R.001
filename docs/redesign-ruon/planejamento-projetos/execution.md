@@ -30,7 +30,7 @@ C01 foi implementado documentalmente e integrado em 76170131e29902f318c7692ac433
 
 C01 e C02 aprovados por Kauê; #76 e #77 encerradas. C02 foi integrado em a5cc9e0, com ajuste de foco em 35873e8; [entrega e evidências](c02-handoff.md). C03 #78 foi integrado em 268d601, aprovado por Kauê e encerrado: [entrega e evidências C03](c03-handoff.md). As demais entregas aguardam seu lugar no fluxo e o aceite por ticket.
 
-O trabalho de cada ticket usa branch/worktree próprios, integração na mesma PR e evidência apropriada. Roteiros recebem revisão documental/visual; UI recebe teste no navegador. C04 #79 está atribuído e sem bloqueios abertos. Implementação integrada via d058675, com fechamento visual em 6d89b71, referência v3 e mídia oficial preparada com registros sintéticos. [Entrega e provas C04](c04-handoff.md). C04 permanece aberto até o teste/aceite de Kauê.
+O trabalho de cada ticket usa branch/worktree próprios, integração na mesma PR e evidência apropriada. Roteiros recebem revisão documental/visual; UI recebe teste no navegador. C04 #79 está atribuído e sem bloqueios abertos. Implementação integrada via d058675, com fechamento visual em 6d89b71, referência v3 e mídia oficial preparada com registros sintéticos. [Entrega e provas C04](c04-handoff.md). C04 e seu refinamento foram aprovados por Kauê; #79 encerrada. C05 #80 Atlas foi atribuído, sem bloqueios abertos, e integrado em a8ddb49, com composição final em 06408a1 e fallback em 16431f2. Está entregue para o teste de Kauê: [entrega C05](c05-handoff.md). [Roteiro Atlas](roteiros/03-atlas.md).
 
 Prévia preservada: http://localhost:3064/pt-BR/projetos/viodigital
 
