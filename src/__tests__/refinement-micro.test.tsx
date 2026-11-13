@@ -13,7 +13,7 @@ it('rapid project choices expose only the latest panel and preserve focus on its
   expect(document.activeElement).toBe(active);
   expect(container.querySelector('#project-foli')).not.toHaveAttribute('inert');
   expect(container.querySelector('#project-ckf')).toHaveAttribute('inert');
-  expect(container.querySelector('#project-docfacil')).toHaveAttribute('aria-hidden', 'true');
+  expect(container.querySelector('#project-docfacil-legacy')).toHaveAttribute('aria-hidden', 'true');
 });
 
 it('contact validation returns keyboard focus to the first invalid field', async () => {
@@ -44,7 +44,7 @@ it('keeps the selection marker aligned after layout changes without changing the
     expect(index?.style.getPropertyValue('--project-marker-y')).toBe('144px');
     expect(index?.style.getPropertyValue('--project-marker-height')).toBe('72px');
     expect(active).toHaveAttribute('aria-current', 'true');
-    expect(container.querySelector('#project-docfacil')).not.toHaveAttribute('hidden');
+    expect(container.querySelector('#project-docfacil-legacy')).not.toHaveAttribute('hidden');
     unmount();
   } finally {
     vi.unstubAllGlobals();

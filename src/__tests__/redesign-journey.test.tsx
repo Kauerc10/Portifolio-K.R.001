@@ -115,10 +115,10 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
     });
 
     it('seleciona o projeto correspondente ao abrir com hash direto', () => {
-      window.history.replaceState(null, '', '/pt-BR#project-docfacil');
+      window.history.replaceState(null, '', '/pt-BR#project-docfacil-legacy');
       const { container } = render(<ProjetosSection dict={enUS.projetos} />);
 
-      expect(container.querySelector('#project-docfacil')).not.toHaveAttribute('hidden');
+      expect(container.querySelector('#project-docfacil-legacy')).not.toHaveAttribute('hidden');
       expect(container.querySelector('#project-atlas')).toHaveAttribute('hidden');
     });
   });
