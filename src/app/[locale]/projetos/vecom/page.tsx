@@ -7,6 +7,7 @@ import VecomComposition, { VecomBrand } from '@/components/projects/VecomComposi
 import { vecomCase } from '@/components/projects/case-model';
 import { vecomCopy } from '@/components/projects/vecom-copy';
 import { getVecomMetadata } from '@/components/projects/vecom-metadata';
+import VecomHandoff from '@/components/projects/VecomHandoff';
 import styles from '@/components/projects/Vecom.module.css';
 import galleryStyles from '@/components/projects/VioDigital.module.css';
 
@@ -25,10 +26,6 @@ export default async function VecomCase({ params }: Params) {
     { id: 'desktop', src: '/assets/projects/vecom/interface-desktop.png', alt: en ? 'VECOM internal interface with synthetic records' : 'Interface interna da VECOM com registros sintéticos', caption: c.desktopCaption, width: 1440, height: 1377, className: '' },
     { id: 'mobile', src: '/assets/projects/vecom/interface-mobile.png', alt: en ? 'VECOM public form on mobile in demonstration mode' : 'Cadastro público da VECOM no celular em modo de demonstração', caption: c.mobileCaption, width: 390, height: 1907, className: galleryStyles.mobileShot },
   ];
-  const steps = en
-    ? ['The request arrives with the essential information.', 'The team reviews and organizes what arrived.', 'The service flow keeps the next step visible.']
-    : ['A ficha chega com as informações essenciais.', 'A equipe confere e organiza o que recebeu.', 'O atendimento acompanha o próximo passo.'];
-
   return <div className={styles.case}>
     <CaseHeader homeHref={vecomCase.links.home[locale]} backLabel={c.back} />
     <main>
@@ -55,10 +52,7 @@ export default async function VecomCase({ params }: Params) {
         <h2>{c.challenge}</h2>
         <div className={styles.prose}><p>{c.context}</p><p>{c.contextMore}</p></div>
       </section>
-      <section id="jornada" className={styles.chapter}>
-        <h2>{c.solution}</h2><p>{c.solutionText}</p>
-        <ol className={styles.steps}>{c.steps.map((step, i) => <li key={step}><strong>0{i + 1} · {step}</strong><p>{steps[i]}</p></li>)}</ol>
-      </section>
+      <VecomHandoff locale={locale} />
       <section id="telas" className={styles.screens}>
         <div className={styles.screensHeading}>
           <div><span className={styles.kicker}>03 / {c.chapterNav[2]}</span><h2>{c.gallery}</h2></div><p>{c.galleryText}</p>

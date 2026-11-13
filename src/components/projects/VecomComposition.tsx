@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import styles from './Vecom.module.css';
 
-function PreparedImage({ src, className, width, height }: { src: string; className: string; width: number; height: number }) {
+export function PreparedImage({ src, className, width, height }: { src: string; className: string; width: number; height: number }) {
   const image = useRef<HTMLImageElement>(null);
   const [failed, setFailed] = useState(false);
   useEffect(() => {
