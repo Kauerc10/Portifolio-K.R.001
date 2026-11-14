@@ -91,7 +91,9 @@ export default function StageProof({ locale, embedded = false }: { locale: Local
         const incoming = panelIndex === next;
         if (!incoming && snapshots[panelIndex].every(pose => Number(pose.opacity) < .001)) return;
         const depth = Number(item.dataset.layer);
-        const distance = width * (1.18 + depth * .12);
+        const scene = item.closest<HTMLElement>('[data-stage-scene]');
+        const scale = scene ? scene.getBoundingClientRect().width / scene.offsetWidth : 1;
+        const distance = width * (1.18 + depth * .12) / Math.max(scale, .1);
         const offstage = (sign: number) => `translate3d(${sign * distance}px,${depth > 1 ? 22 : 0}px,0px) rotate(${sign * (depth > 1 ? 9 : 0)}deg) scale(${depth > 1 ? .92 : .98})`;
         const start = incoming && !interrupted ? { transform: offstage(direction), opacity: '1' } : snapshots[panelIndex][index];
         const end = { transform: incoming ? identity : offstage(-direction), opacity: '1' };
@@ -160,7 +162,7 @@ export default function StageProof({ locale, embedded = false }: { locale: Local
             <p data-layer="0.9" className={styles.tagline}>{project.title[en ? 1 : 0]}</p>
             <p data-layer="0.95" className={styles.description}>{project.description[en ? 1 : 0]}</p>
             <div data-layer="1" className={styles.actions}><a className={styles.cta} href={`/${locale}/projetos/${project.slug}`} onClick={event=>{if(embedded && isPlainPrimaryClick(event)) captureCaseReturnPosition({locale,caseSlug:project.slug,homePath:`/${locale}`});}}>{en ? 'Explore the project' : 'Conhecer o projeto'} <ArrowUpRight size={18} /></a></div>          </div>
-          <div className={styles.scene} aria-hidden="true">
+          <div className={styles.scene} data-stage-scene aria-hidden="true">
             {stageProjects.indexOf(project) > 1 ? <AdditionalStageArt project={stageProjects.indexOf(project)} locale={locale}/> : project.slug === "docfacil" ? <>
               <div className={styles.plinth} data-layer="1.05"><div /></div>
               <div className={styles.document} data-layer="1.2"><div className={styles.paper} data-doc-paper>

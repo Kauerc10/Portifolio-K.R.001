@@ -296,3 +296,19 @@
 
 .projects-editorial__heading { container-type: inline-size; }
 .projects-editorial__heading .editorial-display { font-size: clamp(2.3rem, 6cqi, 6rem); }
+/* Desktop showcase: title and complete card share the viewport. */
+@media(min-width:1000px){
+ .projects-editorial[data-project-showcase="stage"]{padding-block:clamp(1.25rem,3svh,2.5rem) 2rem;scroll-margin-top:5rem}
+ .projects-editorial[data-project-showcase="stage"] .projects-editorial__heading{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:2rem;margin-bottom:1.25rem}
+ .projects-editorial[data-project-showcase="stage"] .editorial-display{font-size:clamp(2rem,3.2vw,3.5rem);line-height:1.05}
+ .projects-editorial[data-project-showcase="stage"] .editorial-display em{display:inline}
+ .projects-editorial[data-project-showcase="stage"] .projects-editorial__intro{font-size:1rem;line-height:1.5}
+}
+@media(min-width:1000px) and (max-height:680px){
+ .projects-editorial[data-project-showcase="stage"]{scroll-margin-top:4rem;padding-top:1rem}
+ .projects-editorial[data-project-showcase="stage"] .editorial-display{font-size:1.9rem}
+ .projects-editorial[data-project-showcase="stage"] .projects-editorial__heading{margin-bottom:1rem}
+}
+@media(min-width:1000px){
+ .projects-editorial[data-project-showcase="stage"] .editorial-display em{margin-inline-start:.16em}
+}

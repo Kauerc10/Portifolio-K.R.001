@@ -49,3 +49,9 @@ Validação: TypeScript; 74 testes em 19 arquivos; 15 percursos home/case/retorn
 Ajuste aprovado: link público da CKF fica somente na página dedicada, no botão 'Abrir o site da CKF' da abertura. Removido do card da vitrine. Navegação home → case → retorno, destino e abertura em nova aba conferidos no navegador; TypeScript passou.
 
 Revisão integrada e build local concluídos após os últimos aceites: [entrega C10](../c10-handoff.md). Build para revisão em http://localhost:3067/pt-BR#projetos. O histórico acompanha a seleção e movimento reduzido elimina snapshots entre páginas. Sem publicação remota.
+
+## Ajuste desktop após preview
+
+Título e card passam a compartilhar o enquadramento da tela: cabeçalho em uma linha quando há largura, espaçamento vertical menor e altura do palco vinculada à altura útil do viewport. Tipografia e escala das artes são proporcionais; a grade interna permite centralizar a arte sem conservar uma linha mínima de 530 px em cards menores. A distância de saída considera a escala da cena para preservar a saída completa pela borda. Regras restritas à home a partir de 1000 px de largura.
+
+Verificação em 1920 × 1080, 1440 × 900, 1366 × 768 e 1280 × 600, com os cinco projetos: título visível, card inteiro acima do limite inferior da tela, CTA e área da arte contidos e sem overflow horizontal. Script `stage-viewport.cjs`, capturas e resultados em `docs/redesign-ruon/evidence/stage-viewport/`. TypeScript e smoke de navegação com movimento normal também verificados.
