@@ -24,6 +24,6 @@ export default function VioDocument({ example, shared = true }: { example: strin
       <span className={styles.scan} />
     </div>
     <div className={styles.tiles}>{Array.from({ length: 9 }, (_, i) => <i key={i} />)}</div>
-    <div className={styles.dataStrips}>{[0, 1, 2].map(i => <div key={i}><b /><span><i /><i /></span></div>)}</div>
+    <div className={styles.dataStrips} data-vio-results>{[0, 1, 2].map(i => <div key={i}><b /><span><i /><i /></span></div>)}</div>
   </div>;
 }

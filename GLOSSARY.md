@@ -45,8 +45,12 @@ Narrativa aprofundada de um destaque na página do case, mostrando problema, sol
 _Evitar_: Exigir uma demonstração funcional para contar a história do trabalho.
 
 **Prévia de projeto**:
-Bloco breve na sequência vertical da home que comunica proposta, identidade e uma amostra visual de um case, com acesso opcional à sua página dedicada.
+Apresentação breve na home que comunica proposta, identidade e uma amostra visual de um case, com acesso opcional à sua página dedicada. Não exige uma disposição vertical ou simultânea de todos os projetos.
 _Evitar_: Exigir abrir o case para compreender a prévia.
+
+**Vitrine em palco**:
+Área única da home que apresenta uma prévia de projeto por vez. Setas alternam os cases e a composição visual se transforma, mantendo uma moldura comum. No celular também admite deslize lateral, sem impedir a rolagem vertical.
+_Evitar_: Confundir com troca automática, demonstração funcional ou página dedicada do case.
 
 **Página de case**:
 Página dedicada à história e às evidências de um case, reunindo suas entregas, contribuição, telas, assets e demonstrações.

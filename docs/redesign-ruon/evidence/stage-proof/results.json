@@ -1,0 +1,32 @@
+[
+  {
+    "name": "desktop",
+    "geometry": "WebGL ready",
+    "interruptAndReverse": "PASS",
+    "keyboard": "PASS",
+    "stableFrame": "PASS",
+    "idle": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "geometry": "WebGL ready",
+    "interruptAndReverse": "PASS",
+    "keyboard": "PASS",
+    "stableFrame": "PASS",
+    "idle": "PASS",
+    "errors": []
+  },
+  {
+    "mode": "reduced",
+    "fallback": "PASS"
+  },
+  {
+    "mode": "nojs",
+    "fallback": "PASS"
+  },
+  {
+    "mode": "no-webgl",
+    "fallback": "PASS"
+  }
+]

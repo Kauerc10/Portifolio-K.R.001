@@ -1,0 +1,3 @@
+# Vitrine em palco com escolha visual condicionada ao movimento
+
+Kauê escolheu substituir as prévias verticais da home por um único palco com setas laterais, ciclo entre os cinco cases e transformações próprias de cada projeto, preservando as páginas dedicadas; esta decisão substitui apenas a disposição vertical descrita no ADR 0001. A composição B, folha contínua, é a direção experimental, condicionada a uma prova convincente de deformação, continuidade e interação; se o movimento não atingir o resultado esperado, usar A, editorial, mais próxima da composição aprovada anterior. A imagem estática não aprova a animação: testar uma passagem representativa, reversão, interrupção por novo comando e versão mobile antes de reformular toda a vitrine.

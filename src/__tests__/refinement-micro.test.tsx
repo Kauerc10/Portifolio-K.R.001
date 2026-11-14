@@ -5,7 +5,7 @@ import pt from '@/i18n/locales/pt-BR.json';
 
 it('project showcase exposes the five current cases and a Foli fallback', () => {
   const { container } = render(<ProjetosSection dict={pt.projetos} />);
-  expect(container.querySelectorAll('.projects-editorial > article')).toHaveLength(5);
+  expect(container.querySelectorAll('[data-panel]')).toHaveLength(5);
   expect(container.querySelector('#project-foli a')).toHaveAttribute('href', 'https://github.com/Kauerc10/foli');
 });
 
@@ -17,20 +17,11 @@ it('contact validation returns keyboard focus to the first invalid field', async
 });
 
 
-it('keeps the quick reading control keyboard accessible', () => {
-  const callbacks = new Set<ResizeObserverCallback>();
-  vi.stubGlobal('ResizeObserver', class {
-    constructor(callback: ResizeObserverCallback) { callbacks.add(callback); }
-    observe() {}
-    disconnect() {}
-  });
-  try {
-    const { unmount } = render(<ProjetosSection dict={pt.projetos} />);
-    const toggle = screen.getByRole('button', { name: /Leitura rápida/i });
-    fireEvent.click(toggle);
-    expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    unmount();
-  } finally {
-    vi.unstubAllGlobals();
-  }
+it('keeps the stage arrows keyboard accessible', () => {
+ render(<ProjetosSection dict={pt.projetos}/>);
+ const next=screen.getByRole('button',{name:'Próximo projeto'});
+ next.focus();
+ expect(document.activeElement).toBe(next);
+ fireEvent.keyDown(next,{key:'ArrowRight'});
+ expect(document.querySelector('[data-stage-proof]')).toHaveAttribute('data-active','vecom');
 });

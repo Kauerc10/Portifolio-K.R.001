@@ -90,12 +90,12 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
   });
 
   describe('P02 (#54) — Vitrine de cases e links profundos', () => {
-    it('renderiza os cinco cases aprovados na ordem editorial e oferece leitura rápida', () => {
+    it('renderiza os cinco cases aprovados em um palco com setas', () => {
       const { container } = render(<ProjetosSection dict={ptBR.projetos} />);
-      expect([...container.querySelectorAll('.projects-editorial > article')].map(item => item.id)).toEqual([
+      expect([...container.querySelectorAll('[data-panel] a')].map(item => 'project-' + item.getAttribute('href')?.split('/').pop())).toEqual([
         'project-viodigital', 'project-vecom', 'project-atlas-notarial', 'project-docfacil', 'project-ckf',
       ]);
-      expect(screen.getByRole('button', { name: /Leitura rápida/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /Próximo projeto/i })).toBeInTheDocument();
     });
 
     it('mantém aliases antigos disponíveis para o case atual', () => {

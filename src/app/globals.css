@@ -9,7 +9,9 @@
 html:has([data-vio-document]), body:has([data-vio-document]) { overflow-x: clip !important; }
 ::view-transition-group(vio-document) { animation-duration: 1100ms; animation-timing-function: cubic-bezier(.22,1,.36,1); }
 @media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
   ::view-transition-group(*) { animation-duration: 0s !important; }
+  ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
 /* ÆVO cinematic protocols: every animation restores its original state. */

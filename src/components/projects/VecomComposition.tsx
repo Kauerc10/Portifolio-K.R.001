@@ -22,10 +22,10 @@ export default function VecomComposition({ label, progress }: { label: string; p
   return <div className={styles.art} data-vecom-art role="img" aria-label={label} style={style}>
     <div className={styles.folder} data-vecom-layer="folder" />
     <div className={styles.cards} aria-hidden="true"><i /><i /><i /></div>
-    <div className={styles.laptop}>
+    <div className={styles.laptop} data-vecom-layer="laptop">
       <PreparedImage className={styles.desktopInterface} src="/assets/projects/vecom/interface-desktop-device.png" width={1440} height={1000} />
     </div>
-    <div className={styles.phone}>
+    <div className={styles.phone} data-vecom-layer="phone">
       <PreparedImage className={styles.mobileInterface} src="/assets/projects/vecom/interface-mobile-device.png" width={390} height={844} />
     </div>
     <div className={styles.plinth} aria-hidden="true" />
