@@ -1,12 +1,14 @@
+import type { StageProjectSlug } from './stage-projects';
+
 /** Finite product stories, separate from the directional carousel movement. */
-export function playStageEntrance(panel: HTMLElement, project: number): Animation[] {
+export function playStageEntrance(panel: HTMLElement, project: StageProjectSlug): Animation[] {
   const animations: Animation[] = [];
   const animate = (selector: string, frames: Keyframe[], duration: number, delay = 0) => {
     panel.querySelectorAll<HTMLElement>(selector).forEach(element => {
       animations.push(element.animate(frames, { duration, delay, fill: 'backwards', easing: 'cubic-bezier(.22,1,.36,1)' }));
     });
   };
-  if (project === 0) {
+  if (project === 'docfacil') {
     const paper = panel.querySelector<HTMLElement>('[data-doc-paper]');
     const pose = paper ? getComputedStyle(paper).transform : 'none';
     animate('[data-doc-paper]', [
@@ -30,7 +32,7 @@ export function playStageEntrance(panel: HTMLElement, project: number): Animatio
       }));
     });
     animate('[data-doc-success]', [{ opacity: 0, transform: 'translateY(10px) scale(.9)' }, { opacity: 1, transform: 'translateY(0) scale(1)' }], 700, 1500);
-  } else if (project === 1) {
+  } else if (project === 'vecom') {
     // The two screens remain real captures. Only the sample form and receipt are illustrative.
     for (const [layer, rotation, delay] of [['phone', -5, 0], ['laptop', 2, 1100], ['folder', -2, 1450]] as const) {
       const element = panel.querySelector<HTMLElement>(`[data-vecom-layer="${layer}"]`);
@@ -56,18 +58,18 @@ export function playStageEntrance(panel: HTMLElement, project: number): Animatio
     }
     animate('[data-vecom-receipt]', [{ opacity: 0, transform: 'translateY(12px) scale(.85)' }, { opacity: 1, transform: 'translateY(0) scale(1)' }], 700, 2150);
   }
-  if (project > 1) {
+  if (project !== 'docfacil' && project !== 'vecom') {
     const reveal = (selector: string, delay: number) => animate(selector, [{opacity:0,translate:'0 18px'},{opacity:1,translate:'0 0'}],750,delay);
     const rock = (selector: string, delay: number, rotation = 4) => panel.querySelectorAll<HTMLElement>(selector).forEach(element => {
       const pose = getComputedStyle(element).transform;
       animations.push(element.animate([{transform:pose},{transform:`${pose} translateY(-12px) rotate(${rotation}deg)`},{transform:pose}],{duration:1800,delay,fill:'backwards',easing:'ease-in-out'}));
     });
-    if (project === 2) {
+    if (project === 'viodigital') {
       rock('[data-vio-document]',0,-3);
       animate('[data-vio-scan]',[{opacity:0,top:'20%'},{opacity:1,top:'25%',offset:.15},{opacity:1,top:'78%',offset:.85},{opacity:0,top:'80%'}],1600,200);
       panel.querySelectorAll<HTMLElement>('[data-vio-results]>div').forEach((element,index)=>{ animations.push(element.animate([{opacity:0,translate:'-22px 8px'},{opacity:1,translate:'0 0'}],{duration:650,delay:1000+index*200,fill:'backwards',easing:'cubic-bezier(.22,1,.36,1)'})); });
       reveal('[data-extra-receipt]',1750);
-    } else if (project === 3) {
+    } else if (project === 'atlas-notarial') {
       rock('[data-atlas-layer="document"]',0,-3);
       panel.querySelectorAll<HTMLElement>('[data-atlas-socket]').forEach((socket,index)=>{
         const element=socket.parentElement!;
