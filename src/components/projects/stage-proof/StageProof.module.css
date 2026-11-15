@@ -51,6 +51,7 @@
 :global(.dark) .embedded .cta{background:#f8f5ff;color:#402278;border-color:#d5c6f3}
 .actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 @media(min-width:1000px){
+ .embedded{padding-inline:0}
  .embedded .stage{min-height:clamp(430px,calc(100svh - 250px),620px);margin:.5rem 0 1rem}
  .embedded .panel{padding:1.5rem 4%;grid-template-columns:44% 56%}
  .embedded .scene{height:530px;transform:scale(.88);width:113.636%;margin-left:-6.818%}
