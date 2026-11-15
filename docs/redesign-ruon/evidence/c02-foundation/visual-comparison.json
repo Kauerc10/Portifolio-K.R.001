@@ -1,0 +1,50 @@
+[
+  {
+    "name": "desktop-home",
+    "changedPixels": 0,
+    "comparedPixels": 1434470,
+    "changedRatio": 0,
+    "meanMaxChannelDelta": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "name": "desktop-hero",
+    "changedPixels": 0,
+    "comparedPixels": 1434470,
+    "changedRatio": 0,
+    "meanMaxChannelDelta": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "name": "desktop-gallery",
+    "changedPixels": 0,
+    "comparedPixels": 1434470,
+    "changedRatio": 0,
+    "meanMaxChannelDelta": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "name": "mobile-home",
+    "changedPixels": 0,
+    "comparedPixels": 323630,
+    "changedRatio": 0,
+    "meanMaxChannelDelta": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "name": "mobile-hero",
+    "changedPixels": 0,
+    "comparedPixels": 323630,
+    "changedRatio": 0,
+    "meanMaxChannelDelta": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "name": "mobile-gallery",
+    "changedPixels": 0,
+    "comparedPixels": 323630,
+    "changedRatio": 0,
+    "meanMaxChannelDelta": 0,
+    "excludedDevelopmentBadge": true
+  }
+]

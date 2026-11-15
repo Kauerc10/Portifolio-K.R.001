@@ -1,0 +1,146 @@
+{
+  "base": "http://localhost:3067",
+  "browser": "158.0.8127.18",
+  "results": [
+    {
+      "locale": "pt-BR",
+      "width": 1440,
+      "slug": "viodigital",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "pt-BR",
+      "width": 1440,
+      "slug": "vecom",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "pt-BR",
+      "width": 1440,
+      "slug": "atlas-notarial",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "pt-BR",
+      "width": 1440,
+      "slug": "docfacil",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "pt-BR",
+      "width": 1440,
+      "slug": "ckf",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "en-US",
+      "width": 390,
+      "slug": "viodigital",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "en-US",
+      "width": 390,
+      "slug": "vecom",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "en-US",
+      "width": 390,
+      "slug": "atlas-notarial",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "en-US",
+      "width": 390,
+      "slug": "docfacil",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "locale": "en-US",
+      "width": 390,
+      "slug": "ckf",
+      "refresh": "PASS",
+      "gallery": "PASS",
+      "focus": "PASS",
+      "return": "PASS",
+      "newTab": "PASS",
+      "history": "PASS"
+    },
+    {
+      "mode": "blocked-storage",
+      "result": "PASS"
+    },
+    {
+      "mode": "missing-media",
+      "result": "PASS"
+    },
+    {
+      "mode": "no-waapi",
+      "result": "PASS"
+    },
+    {
+      "mode": "low-viewport",
+      "result": "PASS"
+    },
+    {
+      "mode": "dark",
+      "result": "PASS"
+    },
+    {
+      "normalMotion": "PASS",
+      "offscreenPause": "PASS",
+      "keyboard": "PASS",
+      "frameSample": {
+        "frames": 36,
+        "maxFrameMs": 50,
+        "over50ms": 0
+      }
+    }
+  ]
+}

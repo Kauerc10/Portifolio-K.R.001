@@ -1,0 +1,38 @@
+[
+  {
+    "viewport": "desktop",
+    "view": "home",
+    "changedPixels": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "viewport": "desktop",
+    "view": "hero",
+    "changedPixels": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "viewport": "desktop",
+    "view": "gallery",
+    "changedPixels": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "viewport": "mobile",
+    "view": "home",
+    "changedPixels": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "viewport": "mobile",
+    "view": "hero",
+    "changedPixels": 0,
+    "excludedDevelopmentBadge": true
+  },
+  {
+    "viewport": "mobile",
+    "view": "gallery",
+    "changedPixels": 0,
+    "excludedDevelopmentBadge": true
+  }
+]

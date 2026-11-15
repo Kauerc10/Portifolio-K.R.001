@@ -1,51 +1,27 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { expect, it, vi } from 'vitest';
+import { fireEvent, render, screen, cleanup } from '@testing-library/react';
+import { expect, it, beforeEach, afterEach, vi } from 'vitest';
 import ProjetosSection from '@/components/sections/ProjetosSection';
 import pt from '@/i18n/locales/pt-BR.json';
-
-it('keeps project content immediate while moving the selection marker', () => {
-  vi.stubGlobal('IntersectionObserver', undefined);
-  const { container } = render(<ProjetosSection dict={pt.projetos} />);
-  const atlas = screen.getByRole('link', { name: /Atlas Notarial/i });
-  const ckf = screen.getByRole('link', { name: /CKF Manutenção/i });
-
-  fireEvent.click(atlas);
-  fireEvent.click(ckf);
-
-  expect(ckf).toHaveAttribute('aria-current', 'true');
-  expect(container.querySelector('#project-ckf')).not.toHaveAttribute('hidden');
-  expect(container.querySelector('#project-atlas')).toHaveAttribute('hidden');
-  expect(container.querySelector('.projects-editorial__directional-border')).toBeTruthy();
+beforeEach(()=>{sessionStorage.clear();history.replaceState(null,'','/pt-BR');vi.stubGlobal('matchMedia',()=>({matches:true,addEventListener:vi.fn(),removeEventListener:vi.fn()}));vi.stubGlobal('IntersectionObserver',class{observe(){}disconnect(){}});});
+afterEach(()=>{cleanup();vi.unstubAllGlobals();});
+it('presents five cases in the approved home order with one active case',()=>{
+ const {container}=render(<ProjetosSection dict={pt.projetos}/>);
+ expect([...container.querySelectorAll('[data-panel] h3')].map(e=>e.textContent)).toEqual(['VioDigital','VECOM Ficha Fácil','Atlas Notarial','DocFácil','CKF Manutenção']);
+ expect(container.querySelectorAll('[data-panel]:not([inert])')).toHaveLength(1);
+ expect(screen.queryByRole('button',{name:/Leitura rápida/i})).toBeNull();
+ expect(container.querySelectorAll('[data-stage-proof]')).toHaveLength(1);
 });
-
-it('does not hide the section when animation APIs are unavailable', () => {
-  vi.stubGlobal('IntersectionObserver', undefined);
-  const { container } = render(<ProjetosSection dict={pt.projetos} />);
-  expect(container.querySelector('#projetos')).toHaveAttribute('data-motion-state', 'entered');
-  expect(screen.getByRole('heading', { name: /Projetos selecionados/i })).toBeVisible();
+it('cycles in both directions and exposes the selected native case link',()=>{
+ const {container}=render(<ProjetosSection dict={pt.projetos}/>);
+ fireEvent.click(screen.getByRole('button',{name:'Projeto anterior'}));
+ expect(container.querySelector('[data-stage-proof]')).toHaveAttribute('data-active','ckf');
+ expect(location.hash).toBe('#project-ckf');
+ expect(container.querySelector('[data-panel]:not([inert]) a')).toHaveAttribute('href','/pt-BR/projetos/ckf');
+ fireEvent.click(screen.getByRole('button',{name:'Próximo projeto'}));
+ expect(container.querySelector('[data-stage-proof]')).toHaveAttribute('data-active','viodigital');
 });
-
-it('animates only supporting content and records the latest selection direction', () => {
-  vi.stubGlobal('IntersectionObserver', undefined);
-  const targets: HTMLElement[] = [];
-  const animate = vi.fn(function (this: HTMLElement) {
-    targets.push(this);
-    return { cancel: vi.fn(), pause: vi.fn(), finished: Promise.resolve() };
-  });
-  HTMLElement.prototype.animate = animate as unknown as typeof HTMLElement.prototype.animate;
-  const { container } = render(<ProjetosSection dict={pt.projetos} />);
-  fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
-  fireEvent.click(screen.getByRole('link', { name: /DocFácil/i }));
-  const section = container.querySelector('#projetos');
-  expect(section).toHaveAttribute('data-selection-direction', 'forward');
-  expect(targets.some(element => element.matches('article'))).toBe(false);
-  expect(targets.some(element => element.matches('h3'))).toBe(false);
-});
-
-it('keeps Atlas flow readable when returning from another project', () => {
-  render(<ProjetosSection dict={pt.projetos} />);
-  fireEvent.click(screen.getByRole('link', { name: /CKF Manutenção/i }));
-  fireEvent.click(screen.getByRole('link', { name: /Atlas Notarial/i }));
-  expect(document.querySelector('.projects-editorial__flow')).toBeVisible();
-  expect(screen.getByRole('link', { name: /Atlas Notarial/i })).toHaveAttribute('aria-current', 'true');
+it('retains legacy project destinations and the Foli repository link',()=>{
+ const {container}=render(<ProjetosSection dict={pt.projetos}/>);
+ for(const id of ['project-atlas','project-ckf-legacy','project-docfacil-legacy'])expect(container.querySelector('#'+id)).not.toBeNull();
+ expect(container.querySelector('#project-foli a')).toHaveAttribute('href','https://github.com/Kauerc10/foli');
 });

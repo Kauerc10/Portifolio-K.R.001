@@ -1,0 +1,30 @@
+[
+  {
+    "name": "desktop",
+    "scrollAdvancePauseReverse": "PASS",
+    "stageCaptures": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "scrollAdvancePauseReverse": "PASS",
+    "stageCaptures": "PASS",
+    "errors": []
+  },
+  {
+    "mode": "reduced",
+    "result": "PASS"
+  },
+  {
+    "mode": "low",
+    "result": "PASS"
+  },
+  {
+    "mode": "nojs",
+    "result": "PASS"
+  },
+  {
+    "mode": "english",
+    "result": "PASS"
+  }
+]

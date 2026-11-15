@@ -1,0 +1,26 @@
+[
+  {
+    "name": "desktop",
+    "stages": "PASS",
+    "pauseReverse": "PASS",
+    "overflow": "PASS"
+  },
+  {
+    "name": "mobile",
+    "stages": "PASS",
+    "pauseReverse": "PASS",
+    "overflow": "PASS"
+  },
+  {
+    "mode": "reduced",
+    "allThreePapersReachable": "PASS"
+  },
+  {
+    "mode": "nojs",
+    "allThreePapersReachable": "PASS"
+  },
+  {
+    "mode": "low",
+    "allThreePapersReachable": "PASS"
+  }
+]

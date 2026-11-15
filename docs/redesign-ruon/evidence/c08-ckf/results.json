@@ -1,0 +1,48 @@
+[
+  {
+    "name": "desktop",
+    "homeEmphasis": "PASS",
+    "stages": "PASS",
+    "pauseReverse": "PASS",
+    "tokenMovement": "PASS",
+    "pdf": "PASS",
+    "separateGalleries": "PASS",
+    "keyboard": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "homeEmphasis": "PASS",
+    "stages": "PASS",
+    "pauseReverse": "PASS",
+    "tokenMovement": "PASS",
+    "pdf": "PASS",
+    "separateGalleries": "PASS",
+    "keyboard": "PASS",
+    "errors": []
+  },
+  {
+    "mode": "reduced",
+    "flowAccessible": "PASS"
+  },
+  {
+    "mode": "nojs",
+    "flowAccessible": "PASS"
+  },
+  {
+    "mode": "low",
+    "flowAccessible": "PASS"
+  },
+  {
+    "mode": "dark",
+    "flowAccessible": "PASS"
+  },
+  {
+    "mode": "media-failure",
+    "flowAccessible": "PASS"
+  },
+  {
+    "mode": "english",
+    "flowAccessible": "PASS"
+  }
+]

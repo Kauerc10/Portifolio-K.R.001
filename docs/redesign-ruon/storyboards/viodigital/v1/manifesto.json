@@ -1,0 +1,43 @@
+{
+  "projeto": "VioDigital",
+  "versao": "v1",
+  "data": "2026-11-12",
+  "imagens": [
+    {
+      "arquivo": "imagens/01-home-scroll.png",
+      "largura": 1024,
+      "altura": 1536,
+      "sha256": "4917E3A3FF7C30D54A018C935904D85DAC441CB213B5FA85D249796730AF2F4B",
+      "ferramenta": "imagegen",
+      "estado": "conceito-aguardando-revisao",
+      "prompt": "prompts/01-home-scroll.txt"
+    },
+    {
+      "arquivo": "imagens/02-transicao-case.png",
+      "largura": 1024,
+      "altura": 1536,
+      "sha256": "29F8DEF87DBF29486D8F37F18EDFBC551E3754A2C9EA68108FA182CD42681DF9",
+      "ferramenta": "imagegen",
+      "estado": "conceito-aguardando-revisao",
+      "prompt": "prompts/02-transicao-case.txt"
+    },
+    {
+      "arquivo": "imagens/03-mobile.png",
+      "largura": 1536,
+      "altura": 1024,
+      "sha256": "04C3388F7D7DF379DB7CC8A66D6D3EE31093B2290E447B6CD4D5585AF3E513F2",
+      "ferramenta": "imagegen",
+      "estado": "conceito-aguardando-revisao",
+      "prompt": "prompts/03-mobile.txt"
+    },
+    {
+      "arquivo": "imagens/04-case-capitulos.png",
+      "largura": 1024,
+      "altura": 1536,
+      "sha256": "21E43F52B783F74815683F48EE261FFAE4B3E3BDEF855CD026767E5915A38287",
+      "ferramenta": "imagegen",
+      "estado": "conceito-aguardando-revisao",
+      "prompt": "prompts/04-case-capitulos.txt"
+    }
+  ]
+}

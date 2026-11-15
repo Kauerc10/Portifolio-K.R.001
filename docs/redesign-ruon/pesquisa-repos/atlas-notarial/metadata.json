@@ -1,0 +1,23 @@
+{
+  "repository": "Kauerc10/Atlas_Notarial",
+  "defaultBranch": "main",
+  "selectedFunctionalBranch": "main",
+  "selectedSha": "2091d644ca65a98eb76c1ce13bb4e3c0e6e014f3",
+  "selectedCommitDate": "2026-10-23T16:27:04Z",
+  "latestOverallBranch": "dependabot/npm_and_yarn/npm-minor-patch-7ae330122e",
+  "latestOverallSha": "e5c53e0e6be2992a08b21d90b93ff3a9c043a0c7",
+  "latestOverallCommitDate": "2026-11-09T19:45:28Z",
+  "classification": "operational product for notary offices; commercial/ownership relationship unproven",
+  "confidence": "medium-high scope, low ownership",
+  "branches": [
+    {"name":"dependabot/npm_and_yarn/npm-minor-patch-7ae330122e","sha":"e5c53e0e6be2992a08b21d90b93ff3a9c043a0c7","date":"2026-11-09T19:45:28Z","role":"latest overall; dependency update"},
+    {"name":"main","sha":"2091d644ca65a98eb76c1ce13bb4e3c0e6e014f3","date":"2026-10-23T16:27:04Z","role":"default integrated functional reference"},
+    {"name":"fix/chat-estabilidade","sha":"778b86e691559ccd9deb93e6fa257eecf44f574d","date":"2026-10-23T16:25:56Z","role":"functional fix"},
+    {"name":"feat/team-chat-whatsapp-experience","sha":"d5bb5b69c9f7b86be2b70e468bb46c37195e4e55","date":"2026-10-16T20:09:25Z","role":"feature"},
+    {"name":"feat/fail-closed-tenancy-and-performance-v7.6","sha":"4fb4023c4a5ad44c600761c16fce40dd43ec14e8","date":"2026-10-14T17:41:52Z","role":"feature"},
+    {"name":"feat/creator","sha":"5f215321202eb97bdd405504d3a3f6c63d6f98d4","date":"2026-07-23T20:48:16Z","role":"feature"},
+    {"name":"feat/consulta-selo-tj","sha":"2bb5c30b819e61b0118d1a0ee7889824d4cf7e81","date":"2026-07-17T17:14:36Z","role":"feature"},
+    {"name":"docs/atlas-commercialization-master-plan","sha":"0069fc101b4af6519d318223a06aed76e24ccfd0","date":"2026-08-24T18:33:57Z","role":"documentation plan"},
+    {"name":"dependabot/github_actions/softprops/action-gh-release-3","sha":"cf7c872304670e218d2bb69e6c3b058e916c5a4f","date":"2026-09-01T19:41:01Z","role":"dependency update"}
+  ]
+}

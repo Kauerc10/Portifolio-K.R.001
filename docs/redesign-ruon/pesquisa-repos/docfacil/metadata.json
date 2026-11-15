@@ -1,0 +1,61 @@
+{
+  "repository": "Kauerc10/docfacil",
+  "defaultBranch": "main",
+  "selectedFunctionalBranch": "feat/abacatepay-real-billing",
+  "selectedSha": "06bff176f97093a78bdb8ef6cd17fd3013d4cf59",
+  "selectedCommitDate": "2026-10-20T19:30:58Z",
+  "integratedReferenceBranch": "main",
+  "integratedReferenceSha": "e350ff740f3eb04923a956024e3bcae3738b11e0",
+  "integratedReferenceCommitDate": "2026-09-25T19:59:13Z",
+  "classification": "RUON-owned commercial product in evolution; individual authorship scope unproven",
+  "confidence": "high product affiliation and scope, medium individual contribution",
+  "branches": [
+    {
+      "name": "feat/abacatepay-real-billing",
+      "sha": "06bff176f97093a78bdb8ef6cd17fd3013d4cf59",
+      "date": "2026-10-20T19:30:58Z",
+      "role": "latest functional billing"
+    },
+    {
+      "name": "feat/ai-document-creation",
+      "sha": "93f06c5f60188da745e91b60793078b18f61c7b7",
+      "date": "2026-09-25T18:42:49Z",
+      "role": "AI pilot"
+    },
+    {
+      "name": "main",
+      "sha": "e350ff740f3eb04923a956024e3bcae3738b11e0",
+      "date": "2026-09-25T19:59:13Z",
+      "role": "default integrated reference"
+    },
+    {
+      "name": "fix/fluxo-campos-comodatario",
+      "sha": "9cd3147c49abe13b6352f6b906f78a35d8375a34",
+      "date": "2026-08-22T23:08:49Z",
+      "role": "fix"
+    },
+    {
+      "name": "fix/geracao-uniao-estavel",
+      "sha": "2c8dcefa470691487015b9770c92fb8b464b7604",
+      "date": "2026-08-22T23:37:53Z",
+      "role": "fix"
+    },
+    {
+      "name": "temp-do-not-use",
+      "sha": "c668beb6d99e5c20febd10055a575d57dbdfc781",
+      "date": "2026-08-24T17:58:06Z",
+      "role": "temporary; not selected"
+    },
+    {
+      "name": "plan/abacatepay-real-billing",
+      "sha": "6ba58c9adcfd5e9c279614223c9b25b9e4403766",
+      "date": "2026-08-21T23:03:54Z",
+      "role": "plan; not selected"
+    }
+  ],
+  "comparisonToMain": {
+    "status": "diverged",
+    "ahead": 110,
+    "behind": 12
+  }
+}
