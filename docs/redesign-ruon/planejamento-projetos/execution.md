@@ -47,3 +47,9 @@ C07 #82 foi aprovado por Kauê após os ajustes de localização, largura e capt
 C08 #83 foi aprovado por Kauê e encerrado. C09 #84 consolida a vitrine em cinco cases, com leitura rápida, percursos menores, navegação por âncoras e compatibilidade legada. [Entrega C09](c09-handoff.md): testes, build e jornadas locais desktop/celular, PT/EN, tema escuro e fallbacks. C09 aguarda teste do usuário; C10 não iniciado.
 
 Direção posterior aprovada: as prévias empilhadas de C09 foram substituídas pelo palco com setas, cinco apresentações e integração à home, conforme v2-vitrine-palco. A revisão local C10 está documentada em [entrega C10](c10-handoff.md): build de produção, matriz integrada, correções de histórico e movimento reduzido, evidências e limites. Estado remoto dos tickets não foi alterado; nenhuma publicação foi feita.
+
+## Consolidação vigente — 15/11/2026
+
+Kauê aprovou os cinco projetos no palco, a integração à home, o link público da CKF somente no case, o enquadramento desktop e o alinhamento lateral. O preview foi autorizado e publicado. #84 foi atualizado para a decisão do palco e encerrado; #85 contém o aceite e os limites, com ready-for-human para a revisão final da PR.
+
+O fluxo implement-spec foi retomado para encerrar a revisão técnica: [dois eixos da revisão e resolução](final-code-review.md). Correções mecânicas de identidade/controlador e ADRs integradas em 05d156a; 76 testes, build e navegação pós-merge passaram. A PR #86 continua apontando para codex/section-motion-68; esse é um alvo de integração, não main. Atualização da descrição e marcação pronta para revisão são a próxima ação remota desta consolidação; merge e publicação principal continuam separados.

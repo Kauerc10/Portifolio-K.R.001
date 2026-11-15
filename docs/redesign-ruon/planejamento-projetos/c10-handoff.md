@@ -46,3 +46,7 @@ Revisados os rótulos de natureza: VioDigital próprio/open source; Atlas própr
 - Não há vídeo novo nesta fatia; a evidência em vídeo é gravação de QA das animações nativas.
 - GitHub #85 foi consultada em leitura. Estado/bloqueios remotos não foram alterados; não foi presumida publicação ou encerramento das issues.
 - Sem commit/push, merge, deploy ou certificação de produção remota nesta entrega. Pronto para revisão de Kauê no build local; aceite e publicação são etapas distintas.
+
+## Consolidação posterior — 15/11/2026
+
+O recorte acima foi aprovado por Kauê e publicado no preview de branch após autorização. Enquadramento e alinhamento lateral também foram aprovados. A [revisão final](final-code-review.md) resolveu os achados de identidade por índice, separação do controlador e decisões arquiteturais antigas. Após integrar as correções, passaram 76 testes em 20 arquivos, novo build com checagem de tipos e as jornadas de navegação; limites de navegador e comparação quantitativa continuam explícitos. #84 encerrada; #85 pronta para revisão humana da PR #86. A base da PR é codex/section-motion-68. Não confundir o preview autorizado com merge ou publicação na branch principal.
