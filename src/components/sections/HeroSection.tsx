@@ -1,13 +1,12 @@
 'use client';
-import { useState, type CSSProperties } from 'react';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { type CSSProperties } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import PortalArtwork from '../hero/PortalArtwork';
 import PortfolioIntro from '../hero/PortfolioIntro';
-import { portalDestinations, type PortalDestination } from '../hero/portal-art';
+import { portalDestinations } from '../hero/portal-art';
 import type { Dictionary } from '@/i18n/types';
 
 export default function HeroSection({dict:d}:{dict:Dictionary['hero']}) {
-  const [active,setActive]=useState<PortalDestination|null>(null);
   const labels={development:d.destDevelopment,automation:d.destAutomation,support:d.destSupport};
   return <section id="hero" aria-label={d.greetingH1} className="portal-hero">
     <PortfolioIntro dict={d} />
@@ -18,10 +17,5 @@ export default function HeroSection({dict:d}:{dict:Dictionary['hero']}) {
       </div>
       <div className="portal-scene"><PortalArtwork /><nav className="portal-indicators" aria-label="Destinos da paisagem">{portalDestinations.map(destination=><a key={destination.id} href={destination.href} className="portal-indicator" style={{'--portal-x':`${destination.anchor[0]/1672*100}%`,'--portal-y':`${destination.anchor[1]/941*100}%`} as CSSProperties}>{labels[destination.id]}<span aria-hidden="true" /></a>)}</nav></div>
     </div>
-    <div className="portal-explorer">
-      <div className="portal-controls" role="group" aria-label="Explorar áreas">{portalDestinations.map(destination=><button type="button" key={destination.id} aria-label={`Explorar ${labels[destination.id]}`} aria-pressed={active===destination.id} onClick={()=>setActive(destination.id)}>{labels[destination.id]}<ArrowUpRight size={15} aria-hidden="true" /></button>)}</div>
-      <div className="portal-preview"><p>{d.scrollHint}</p></div>
-    </div>
-    <div className="portal-footer"><span>{d.locationEdu}</span><a href="#project-atlas">Atlas Notarial<ArrowRight size={16} aria-hidden="true" /></a><a href="#project-ckf">CKF Manutenção<ArrowRight size={16} aria-hidden="true" /></a></div>
   </section>;
 }

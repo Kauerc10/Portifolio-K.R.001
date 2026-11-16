@@ -10,5 +10,4 @@ it('presents the approved portal artwork and native destinations before any sele
   expect(screen.getByRole('link',{name:'Desenvolvimento'})).toHaveAttribute('href','#projetos');
   expect(screen.getByRole('link',{name:'Automação'})).toHaveAttribute('href','#project-atlas');
   expect(screen.getByRole('link',{name:'Suporte'})).toHaveAttribute('href','#experiencia');
-  expect(screen.getByRole('button',{name:'Explorar Automação'})).toHaveAttribute('aria-pressed','false');
 });
