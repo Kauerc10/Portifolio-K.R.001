@@ -1,5 +1,9 @@
 # Direção por seção — 16/11/2026
 
+## Confirmação posterior do usuário
+
+As propostas isoladas anexadas de Sobre, Experiência, Formação, Contato e Conquistas orientam o refinamento. Rodapé deve permanecer como está: proposta de rodapé gerada não será aplicada. Prioridade expressa: fundo vivo, transições e animações fluidas de rolagem, com otimização mensurada. Implementar progressivamente pela sequência H01–H04 da #88, com prévia antes de avançar. Primeira fatia: fundação corrigida e prova de fundo/movimento em Competências; preservar introdução, hero, vitrine e cases.
+
 O usuário escolheu a proposta B isolada de Competências como referência de linguagem: branco com camadas lilás discretas, escala equilibrada, divisórias finas, ícones pequenos e grupos legíveis. Uma imagem por seção, derivada da captura atual da aplicação na branch home-editorial-88, não das referências antigas. Demais imagens são propostas aguardando escolha, não implementação aprovada.
 
 ## Movimento planejado
