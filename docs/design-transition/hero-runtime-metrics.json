@@ -1,0 +1,82 @@
+{
+  "environment": "Chrome headless / production build / emulated viewports; not physical-device or field performance",
+  "results": [
+    {
+      "width": 1440,
+      "restFrames": 0,
+      "hash": "#projetos",
+      "fallbackLinks": 3,
+      "frames": 603,
+      "median": 16.699999999254942,
+      "p95": 19.400000002235174,
+      "longTasks": [
+        66,
+        67,
+        60,
+        161
+      ],
+      "gpu": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "canvas": [
+        1433,
+        1018
+      ],
+      "dpr": 1,
+      "assets": [
+        {
+          "url": "http://localhost:4189/images/hero-detailed.webp",
+          "bytes": 108792
+        },
+        {
+          "url": "http://localhost:4189/images/hero-detailed.webp",
+          "bytes": 300
+        },
+        {
+          "url": "http://localhost:4189/images/hero-detailed-depth.webp",
+          "bytes": 24720
+        },
+        {
+          "url": "http://localhost:4189/images/hero-detailed-paths.webp",
+          "bytes": 2582
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "restFrames": 0,
+      "hash": "#projetos",
+      "fallbackLinks": 3,
+      "frames": 601,
+      "median": 16.699999999254942,
+      "p95": 19,
+      "longTasks": [
+        76,
+        60,
+        153
+      ],
+      "gpu": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "canvas": [
+        390,
+        850
+      ],
+      "dpr": 1,
+      "assets": [
+        {
+          "url": "http://localhost:4189/images/hero-detailed.webp",
+          "bytes": 108792
+        },
+        {
+          "url": "http://localhost:4189/images/hero-detailed.webp",
+          "bytes": 300
+        },
+        {
+          "url": "http://localhost:4189/images/hero-detailed-depth.webp",
+          "bytes": 24720
+        },
+        {
+          "url": "http://localhost:4189/images/hero-detailed-paths.webp",
+          "bytes": 2582
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Consolida a reformulação visual e editorial de todo o portfólio:
+- Hero 2.5D com máscaras SVG vetoriais, 3 portais de destino e links acessíveis (#49).
+- Vitrine de Projetos (StageProof) com os 5 cases aprovados (Atlas, CKF, DocFácil, VECOM, VioDigital), DPR e proporções reais (#52, #87).
+- Seções editoriais completas: Sobre (3 áreas sem repetição), Experiência em timeline, Competências, Formação (6 cursos primários com expansão acessível) e Conquistas (#52, #88).
+- Fechamento: Formulário de contato acessível com foco dinâmico no primeiro campo inválido e rodapé canônico (#52, #68).
+- Suporte estrito a prefers-reduced-motion e acessibilidade completa (landmarks, contraste, teclado).
+- Limpeza de infraestrutura: remoção de ResizeObserver órfão em JSDOM e 100% de testes passando (80/80).
+
+Closes #49, #52, #53, #54, #55, #56, #57, #58, #59, #60, #61, #62, #68, #88, #89, #90, #91, #92

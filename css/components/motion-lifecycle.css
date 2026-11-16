@@ -1,0 +1,19 @@
+/* Full-document transitions own the stage; local CSS responses settle immediately. */
+html[data-language-phase] .editorial-section *,
+html[data-language-phase] .editorial-section *::before,
+html[data-language-phase] .editorial-section *::after,
+html:has(#hero dialog[open]) .editorial-section *,
+html:has(#hero dialog[open]) .editorial-section *::before,
+html:has(#hero dialog[open]) .editorial-section *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html .editorial-section *,
+  html .editorial-section *::before,
+  html .editorial-section *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

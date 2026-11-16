@@ -1,0 +1,92 @@
+[
+  {
+    "project": "ckf",
+    "view": "CKF — site institucional, home",
+    "file": "originais/ckf/01-site-institucional-home.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\3bce1431-88cf-4762-a531-8f95d7901470\\codex-clipboard-6373d6b7-6b1e-435d-b38e-b91cae165059.png",
+    "sha256": "6990464E491CC92EC5811BF122E3DAC2420096FB263F90EF6DC41A4F16C13530",
+    "bytes": 869591,
+    "width": 1919,
+    "height": 939
+  },
+  {
+    "project": "vecom",
+    "view": "VECOM — acesso da equipe",
+    "file": "originais/vecom/01-acesso-equipe.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\6b321733-dc12-4889-8382-531c66182d99\\codex-clipboard-dff8a007-4bab-4b25-9480-e0e60fe5c437.png",
+    "sha256": "21F0701F4DF2D3524F2F19CAC5D71836759449CF26557D040F3D27CE9BF81862",
+    "bytes": 700165,
+    "width": 1916,
+    "height": 991
+  },
+  {
+    "project": "atlas-notarial",
+    "view": "Atlas — apresentação pública e bancada",
+    "file": "originais/atlas-notarial/01-site-e-previa-bancada.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\adc461ea-e017-4457-a937-65611d482fbb\\codex-clipboard-098369a7-227b-4910-a81d-a4317181c0b0.png",
+    "sha256": "DFE15245F9E4F4E8DDC63E250916920A04049F7BC9E85709BDB32A4EF7304B05",
+    "bytes": 185046,
+    "width": 1912,
+    "height": 983
+  },
+  {
+    "project": "viodigital",
+    "view": "VioWeb/VioDigital — verificador",
+    "file": "originais/viodigital/01-verificador-documentos.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\07e9825c-6603-4b61-b1ee-2d5656747687\\codex-clipboard-b8ae5d23-2320-4d24-a8c7-0e0f913c6aeb.png",
+    "sha256": "3312DF4F04234FB62526FEF5AC3D060560614EE753C23783EBB07309E25F59E3",
+    "bytes": 200199,
+    "width": 1914,
+    "height": 989
+  },
+  {
+    "project": "ckf",
+    "view": "CKF — dashboard de orçamentos",
+    "file": "originais/ckf/02-sistema-orcamentos.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\e5ca0ddd-5b19-474f-b1b0-3b2172a8d48c\\codex-clipboard-55a3c726-cd52-49d0-98d9-420f42bf96a4.png",
+    "sha256": "81CE7768B05B0EA950B567C6CCA3BF45171749D3882D24FBE66CBF913EA994A2",
+    "bytes": 150140,
+    "width": 1915,
+    "height": 986
+  },
+  {
+    "project": "vecom",
+    "view": "VECOM — dashboard de fichas",
+    "file": "originais/vecom/02-dashboard-fichas.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\44c5ddc2-89b7-4850-80aa-d98288b8b4fc\\codex-clipboard-45e2de3a-1eee-43b2-a4b0-e6a8b909f1fa.png",
+    "sha256": "39974F0122D5D627EEF250C18CE816EEEFEC7DE0807CF7ECBA1D991F67BDC08A",
+    "bytes": 190132,
+    "width": 1919,
+    "height": 990
+  },
+  {
+    "project": "docfacil",
+    "view": "DocFácil — home e coruja",
+    "file": "originais/docfacil/01-home-coruja.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\8d6d9e74-b53f-4970-a623-a81a7e94f67a\\codex-clipboard-d19a02de-4dbd-4121-87ae-39afc313aa4e.png",
+    "sha256": "C9C96110C00ACD219B5435C4CDE47204FB93537D51A7F303B601E5AF12BEF183",
+    "bytes": 228972,
+    "width": 1910,
+    "height": 993
+  },
+  {
+    "project": "docfacil",
+    "view": "DocFácil — segunda captura da home",
+    "file": "originais/docfacil/02-home-coruja-segunda-captura.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\d2d36c2f-e1ea-41d2-94e6-ab86912531ec\\codex-clipboard-2bc9f94c-927b-4bd5-8eb9-09d1cfa7c0aa.png",
+    "sha256": "C9C96110C00ACD219B5435C4CDE47204FB93537D51A7F303B601E5AF12BEF183",
+    "bytes": 228972,
+    "width": 1910,
+    "height": 993
+  },
+  {
+    "project": "docfacil",
+    "view": "DocFácil — benefícios e ajuda",
+    "file": "originais/docfacil/03-beneficios-e-ajuda-coruja.png",
+    "source": "C:\\Users\\Kauerc\\.codex\\attachments\\3aba5fe1-eb86-4a1d-942b-2b3bfb434c72\\codex-clipboard-ef09cceb-351f-4efb-8cf7-2f2e7541feae.png",
+    "sha256": "3B0F7C5BBD5DD7953036B0BC2C9320484CC6CF1693E7E66217E9BC7CCFB79EF3",
+    "bytes": 227436,
+    "width": 1917,
+    "height": 1006
+  }
+]

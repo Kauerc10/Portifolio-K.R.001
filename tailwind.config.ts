@@ -17,6 +17,7 @@ const config: Config = {
         cyanNeon: '#00f0ff',
       },
       fontFamily: {
+        sans: ['"Instrument Sans"', 'Inter', 'system-ui', 'sans-serif'],
         syne: ['Syne', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],

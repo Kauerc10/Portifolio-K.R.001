@@ -1,0 +1,51 @@
+[
+  {
+    "viewport": "desktop",
+    "journey": "PASS",
+    "galleryFocus": "PASS",
+    "history": "PASS",
+    "newTab": "PASS",
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "journey": "PASS",
+    "galleryFocus": "PASS",
+    "history": "PASS",
+    "newTab": "PASS",
+    "errors": []
+  },
+  {
+    "locale": "pt-BR",
+    "metadata": "PASS",
+    "mediaFailure": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "metadata": "PASS",
+    "mediaFailure": "PASS"
+  },
+  {
+    "mode": "reduced",
+    "navigationAndLayout": "PASS"
+  },
+  {
+    "mode": "dark",
+    "navigationAndLayout": "PASS"
+  },
+  {
+    "mode": "nojs",
+    "navigationAndLayout": "PASS"
+  },
+  {
+    "mode": "storage-blocked",
+    "navigationAndLayout": "PASS"
+  },
+  {
+    "mode": "low-height",
+    "navigationAndLayout": "PASS"
+  },
+  {
+    "crossCaseReturnIsolation": "PASS"
+  }
+]

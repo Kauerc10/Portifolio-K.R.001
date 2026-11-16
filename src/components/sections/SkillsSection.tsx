@@ -1,25 +1,89 @@
 import type { Dictionary } from '@/i18n/types';
+import {
+  Bot,
+  Braces,
+  CheckCircle2,
+  Code2,
+  Cpu,
+  Database,
+  GitBranch,
+  Layers,
+  Server,
+  Sparkles,
+  Wand2,
+  Webhook,
+  Workflow,
+  type LucideIcon,
+} from 'lucide-react';
+import { splitAccentTitle } from '@/lib/editorial';
+import LilacWaves from './LilacWaves';
+import './SkillsLiving.css';
+import SectionMotionEnhancer from './SectionMotionEnhancer';
+
+const groupIcons = [Braces, Cpu, Sparkles, Workflow];
+
+const itemIcons: Record<string, LucideIcon> = {
+  'JavaScript / TypeScript': Code2,
+  'React / Next.js': Layers,
+  'Supabase': Database,
+  'Node.js': Server,
+  'APIs REST': Webhook,
+  'REST APIs': Webhook,
+  'Automação de processos': Workflow,
+  'Process automation': Workflow,
+  'Testes unitários': CheckCircle2,
+  'Unit testing': CheckCircle2,
+  'Git / Deploy (Vercel)': GitBranch,
+  'Integração de LLMs': Sparkles,
+  'LLM Integration': Sparkles,
+  'Arquitetura de Providers': Cpu,
+  'Provider Architecture': Cpu,
+  'OpenAI / Anthropic / Gemini': Bot,
+  'Prompt engineering': Wand2,
+};
 
 export default function SkillsSection({ dict: d }: { dict: Dictionary['skills'] }) {
+  const [titleLead, titleAccent] = splitAccentTitle(d.title);
   return (
-    <section className="section skills" id="skills" data-section="4">
-      <div className="section__line" />
-      <span className="section__article">Art. III</span>
-      <h2 className="section__title">{d.title}</h2>
-      <p className="skills__intro anim-slide">{d.subtitle}</p>
+    <section className="section editorial-section skills editorial-skills" id="skills" data-section="4">
+      <LilacWaves />
+      <div className="editorial-grid editorial-grid--skills">
+        <div className="editorial-intro">
+          <h2 className="editorial-display">
+            {titleLead}{' '}<em>{titleAccent}</em>
+          </h2>
+          <p className="editorial-lede">{d.subtitle}</p>
+          <a className="editorial-cta" href="/curriculo_kaue.pdf" target="_blank" rel="noopener noreferrer">{d.resumeCta}<span aria-hidden="true">↗</span></a>
+        </div>
+        <div className="editorial-skill-list" aria-label={d.groupsLabel}>
+        {d.groups.map((group, groupIndex) => {
+          const GroupIcon = groupIcons[groupIndex] ?? Cpu;
+          return (
+            <article className="editorial-skill-row" key={group.title} data-motion-skill-row>
+              <span className="editorial-skill-row__motion-rule" data-motion-skill-rule aria-hidden="true" />
+              <div className="editorial-skill-row__copy">
+                <span className="editorial-skill-row__icon-plate" aria-hidden="true"><GroupIcon className="editorial-skill-row__icon" /></span>
+                <h3>{group.title}</h3>
+                <p>{group.description}</p>
 
-      <div className="skills__grid">
-        {d.groups.map((group) => (
-          <div className="skills__technical" key={group.title}>
-            <h3 className="skills__soft-title">{group.title}</h3>
-            <div className="skills__chips">
-              {group.items.map((item) => (
-                <span className="chip magnetic" data-skill={item} data-cursor="✓" key={item}>{item}</span>
-              ))}
-            </div>
-          </div>
-        ))}
+              </div>
+              <div className="editorial-skill-row__chips">
+                {group.items.map((item) => {
+                  const ChipIcon = itemIcons[item] ?? GroupIcon;
+                  return (
+                    <span className="editorial-skill-chip" key={item}>
+                      <ChipIcon className="editorial-skill-chip__icon" aria-hidden="true" />
+                      {item}
+                    </span>
+                  );
+                })}
+              </div>
+            </article>
+          );
+        })}
+        </div>
       </div>
+      <SectionMotionEnhancer sectionId="skills" kind="skills" />
     </section>
   );
 }

@@ -138,6 +138,8 @@
     // ── SMOOTH NAV LINKS ──
     function initSmoothLinks() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // The hero keeps native hashes/history and immediate navigation.
+            if (anchor.closest('#hero')) return;
             anchor.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = document.querySelector(anchor.getAttribute('href'));

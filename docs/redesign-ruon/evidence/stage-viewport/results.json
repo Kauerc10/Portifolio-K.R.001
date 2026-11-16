@@ -1,0 +1,162 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "slug": "viodigital",
+    "headingTop": 111.953125,
+    "cardBottom": 812.75,
+    "pass": true
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "slug": "vecom",
+    "headingTop": 111.953125,
+    "cardBottom": 812.75,
+    "pass": true
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "slug": "atlas-notarial",
+    "headingTop": 111.953125,
+    "cardBottom": 812.75,
+    "pass": true
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "slug": "docfacil",
+    "headingTop": 111.953125,
+    "cardBottom": 812.75,
+    "pass": true
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "slug": "ckf",
+    "headingTop": 111.953125,
+    "cardBottom": 812.75,
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "slug": "viodigital",
+    "headingTop": 107.421875,
+    "cardBottom": 797.796875,
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "slug": "vecom",
+    "headingTop": 107.421875,
+    "cardBottom": 797.796875,
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "slug": "atlas-notarial",
+    "headingTop": 107.421875,
+    "cardBottom": 797.796875,
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "slug": "docfacil",
+    "headingTop": 107.421875,
+    "cardBottom": 797.796875,
+    "pass": true
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "slug": "ckf",
+    "headingTop": 107.421875,
+    "cardBottom": 797.796875,
+    "pass": true
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "slug": "viodigital",
+    "headingTop": 103.859375,
+    "cardBottom": 690.8125,
+    "pass": true
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "slug": "vecom",
+    "headingTop": 103.859375,
+    "cardBottom": 690.8125,
+    "pass": true
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "slug": "atlas-notarial",
+    "headingTop": 103.859375,
+    "cardBottom": 690.8125,
+    "pass": true
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "slug": "docfacil",
+    "headingTop": 103.859375,
+    "cardBottom": 690.8125,
+    "pass": true
+  },
+  {
+    "width": 1366,
+    "height": 768,
+    "slug": "ckf",
+    "headingTop": 103.859375,
+    "cardBottom": 690.8125,
+    "pass": true
+  },
+  {
+    "width": 1280,
+    "height": 600,
+    "slug": "viodigital",
+    "headingTop": 88.40625,
+    "cardBottom": 576.375,
+    "pass": true
+  },
+  {
+    "width": 1280,
+    "height": 600,
+    "slug": "vecom",
+    "headingTop": 88.40625,
+    "cardBottom": 576.375,
+    "pass": true
+  },
+  {
+    "width": 1280,
+    "height": 600,
+    "slug": "atlas-notarial",
+    "headingTop": 88.40625,
+    "cardBottom": 576.375,
+    "pass": true
+  },
+  {
+    "width": 1280,
+    "height": 600,
+    "slug": "docfacil",
+    "headingTop": 88.40625,
+    "cardBottom": 576.375,
+    "pass": true
+  },
+  {
+    "width": 1280,
+    "height": 600,
+    "slug": "ckf",
+    "headingTop": 88.40625,
+    "cardBottom": 576.375,
+    "pass": true
+  }
+]

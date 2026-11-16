@@ -1,0 +1,52 @@
+html[data-language-direction='forward'] { --language-direction: 1; }
+html[data-language-direction='backward'] { --language-direction: -1; }
+
+html[data-language-phase]::before,
+html[data-language-phase]::after {
+  content: '';
+  position: fixed;
+  inset: -12vh -25vw;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+html[data-language-phase]::before {
+  z-index: 2147483645;
+  background: #dfd1f5;
+}
+
+html[data-language-phase]::after {
+  z-index: 2147483646;
+  background: linear-gradient(110deg, #51219e, #7024d7 55%, #8243df);
+}
+
+html[data-language-phase='cover']::before {
+  animation: language-cover .42s cubic-bezier(.76, 0, .24, 1) both;
+}
+
+html[data-language-phase='cover']::after {
+  animation: language-cover .42s .045s cubic-bezier(.76, 0, .24, 1) both;
+}
+
+html[data-language-phase='reveal']::before {
+  animation: language-reveal .62s .055s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+html[data-language-phase='reveal']::after {
+  animation: language-reveal .62s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes language-cover {
+  from { transform: translateX(calc(var(--language-direction) * -125%)) skewX(-12deg); }
+  to { transform: translateX(0) skewX(-12deg); }
+}
+
+@keyframes language-reveal {
+  from { transform: translateX(0) skewX(-12deg); }
+  to { transform: translateX(calc(var(--language-direction) * 125%)) skewX(-12deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-language-phase]::before,
+  html[data-language-phase]::after { display: none; }
+}

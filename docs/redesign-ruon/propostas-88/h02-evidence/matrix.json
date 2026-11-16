@@ -1,0 +1,626 @@
+[
+  {
+    "width": 390,
+    "locale": "pt-BR",
+    "theme": "light",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 390,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 390,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 390,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(112, 36, 215) solid 2px",
+      "color": "rgb(20, 19, 28)",
+      "background": "color(srgb 0.439216 0.141176 0.843137 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "Como eu construoFerramentas para criar aplicações, integrar sistemas e automatizar rotinas.Ver meu currículo↗DesenvolvimentoProdutos web modernos, tipados e sustentáveis.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomaçãoFluxos que conectam produto, dados e operação.APIs RESTAutomação de processosTestes unitáriosGit / Deploy (Vercel)IA e LLMsIA no desenvolvimento e em soluções para problemas reais.Integração de LLMsArquitetura de ProvidersOpenAI / Anthropic / GeminiStreaming de respostasPrompt engineeringIA no desenvolvimentoMetodologia e resolução de problemasEntender o contexto, organizar prioridades e evoluir a solução em etapas.Metodologia ágilScrum / KanbanResolução de problemas"
+    }
+  },
+  {
+    "width": 390,
+    "locale": "pt-BR",
+    "theme": "dark",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 390,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 390,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 390,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(180, 147, 255) solid 2px",
+      "color": "rgb(243, 242, 245)",
+      "background": "color(srgb 0.705882 0.576471 1 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "Como eu construoFerramentas para criar aplicações, integrar sistemas e automatizar rotinas.Ver meu currículo↗DesenvolvimentoProdutos web modernos, tipados e sustentáveis.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomaçãoFluxos que conectam produto, dados e operação.APIs RESTAutomação de processosTestes unitáriosGit / Deploy (Vercel)IA e LLMsIA no desenvolvimento e em soluções para problemas reais.Integração de LLMsArquitetura de ProvidersOpenAI / Anthropic / GeminiStreaming de respostasPrompt engineeringIA no desenvolvimentoMetodologia e resolução de problemasEntender o contexto, organizar prioridades e evoluir a solução em etapas.Metodologia ágilScrum / KanbanResolução de problemas"
+    }
+  },
+  {
+    "width": 390,
+    "locale": "en-US",
+    "theme": "light",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 390,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 390,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 390,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(112, 36, 215) solid 2px",
+      "color": "rgb(20, 19, 28)",
+      "background": "color(srgb 0.439216 0.141176 0.843137 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+    }
+  },
+  {
+    "width": 390,
+    "locale": "en-US",
+    "theme": "dark",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 390,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 390,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 390,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(180, 147, 255) solid 2px",
+      "color": "rgb(243, 242, 245)",
+      "background": "color(srgb 0.705882 0.576471 1 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+    }
+  },
+  {
+    "width": 768,
+    "locale": "pt-BR",
+    "theme": "light",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 768,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 768,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 768,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(112, 36, 215) solid 2px",
+      "color": "rgb(20, 19, 28)",
+      "background": "color(srgb 0.439216 0.141176 0.843137 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "Como eu construoFerramentas para criar aplicações, integrar sistemas e automatizar rotinas.Ver meu currículo↗DesenvolvimentoProdutos web modernos, tipados e sustentáveis.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomaçãoFluxos que conectam produto, dados e operação.APIs RESTAutomação de processosTestes unitáriosGit / Deploy (Vercel)IA e LLMsIA no desenvolvimento e em soluções para problemas reais.Integração de LLMsArquitetura de ProvidersOpenAI / Anthropic / GeminiStreaming de respostasPrompt engineeringIA no desenvolvimentoMetodologia e resolução de problemasEntender o contexto, organizar prioridades e evoluir a solução em etapas.Metodologia ágilScrum / KanbanResolução de problemas"
+    }
+  },
+  {
+    "width": 768,
+    "locale": "pt-BR",
+    "theme": "dark",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 768,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 768,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 768,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(180, 147, 255) solid 2px",
+      "color": "rgb(243, 242, 245)",
+      "background": "color(srgb 0.705882 0.576471 1 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "Como eu construoFerramentas para criar aplicações, integrar sistemas e automatizar rotinas.Ver meu currículo↗DesenvolvimentoProdutos web modernos, tipados e sustentáveis.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomaçãoFluxos que conectam produto, dados e operação.APIs RESTAutomação de processosTestes unitáriosGit / Deploy (Vercel)IA e LLMsIA no desenvolvimento e em soluções para problemas reais.Integração de LLMsArquitetura de ProvidersOpenAI / Anthropic / GeminiStreaming de respostasPrompt engineeringIA no desenvolvimentoMetodologia e resolução de problemasEntender o contexto, organizar prioridades e evoluir a solução em etapas.Metodologia ágilScrum / KanbanResolução de problemas"
+    }
+  },
+  {
+    "width": 768,
+    "locale": "en-US",
+    "theme": "light",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 768,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 768,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 768,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(112, 36, 215) solid 2px",
+      "color": "rgb(20, 19, 28)",
+      "background": "color(srgb 0.439216 0.141176 0.843137 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+    }
+  },
+  {
+    "width": 768,
+    "locale": "en-US",
+    "theme": "dark",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 768,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 768,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 768,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(180, 147, 255) solid 2px",
+      "color": "rgb(243, 242, 245)",
+      "background": "color(srgb 0.705882 0.576471 1 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+    }
+  },
+  {
+    "width": 1440,
+    "locale": "pt-BR",
+    "theme": "light",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(112, 36, 215) solid 2px",
+      "color": "rgb(20, 19, 28)",
+      "background": "color(srgb 0.439216 0.141176 0.843137 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "Como eu construoFerramentas para criar aplicações, integrar sistemas e automatizar rotinas.Ver meu currículo↗DesenvolvimentoProdutos web modernos, tipados e sustentáveis.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomaçãoFluxos que conectam produto, dados e operação.APIs RESTAutomação de processosTestes unitáriosGit / Deploy (Vercel)IA e LLMsIA no desenvolvimento e em soluções para problemas reais.Integração de LLMsArquitetura de ProvidersOpenAI / Anthropic / GeminiStreaming de respostasPrompt engineeringIA no desenvolvimentoMetodologia e resolução de problemasEntender o contexto, organizar prioridades e evoluir a solução em etapas.Metodologia ágilScrum / KanbanResolução de problemas"
+    }
+  },
+  {
+    "width": 1440,
+    "locale": "pt-BR",
+    "theme": "dark",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(180, 147, 255) solid 2px",
+      "color": "rgb(243, 242, 245)",
+      "background": "color(srgb 0.705882 0.576471 1 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "Como eu construoFerramentas para criar aplicações, integrar sistemas e automatizar rotinas.Ver meu currículo↗DesenvolvimentoProdutos web modernos, tipados e sustentáveis.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomaçãoFluxos que conectam produto, dados e operação.APIs RESTAutomação de processosTestes unitáriosGit / Deploy (Vercel)IA e LLMsIA no desenvolvimento e em soluções para problemas reais.Integração de LLMsArquitetura de ProvidersOpenAI / Anthropic / GeminiStreaming de respostasPrompt engineeringIA no desenvolvimentoMetodologia e resolução de problemasEntender o contexto, organizar prioridades e evoluir a solução em etapas.Metodologia ágilScrum / KanbanResolução de problemas"
+    }
+  },
+  {
+    "width": 1440,
+    "locale": "en-US",
+    "theme": "light",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(112, 36, 215) solid 2px",
+      "color": "rgb(20, 19, 28)",
+      "background": "color(srgb 0.439216 0.141176 0.843137 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+    }
+  },
+  {
+    "width": 1440,
+    "locale": "en-US",
+    "theme": "dark",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 1440,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(180, 147, 255) solid 2px",
+      "color": "rgb(243, 242, 245)",
+      "background": "color(srgb 0.705882 0.576471 1 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+    }
+  },
+  {
+    "width": 1920,
+    "locale": "pt-BR",
+    "theme": "light",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(112, 36, 215) solid 2px",
+      "color": "rgb(20, 19, 28)",
+      "background": "color(srgb 0.439216 0.141176 0.843137 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "Como eu construoFerramentas para criar aplicações, integrar sistemas e automatizar rotinas.Ver meu currículo↗DesenvolvimentoProdutos web modernos, tipados e sustentáveis.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomaçãoFluxos que conectam produto, dados e operação.APIs RESTAutomação de processosTestes unitáriosGit / Deploy (Vercel)IA e LLMsIA no desenvolvimento e em soluções para problemas reais.Integração de LLMsArquitetura de ProvidersOpenAI / Anthropic / GeminiStreaming de respostasPrompt engineeringIA no desenvolvimentoMetodologia e resolução de problemasEntender o contexto, organizar prioridades e evoluir a solução em etapas.Metodologia ágilScrum / KanbanResolução de problemas"
+    }
+  },
+  {
+    "width": 1920,
+    "locale": "pt-BR",
+    "theme": "dark",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(180, 147, 255) solid 2px",
+      "color": "rgb(243, 242, 245)",
+      "background": "color(srgb 0.705882 0.576471 1 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "Como eu construoFerramentas para criar aplicações, integrar sistemas e automatizar rotinas.Ver meu currículo↗DesenvolvimentoProdutos web modernos, tipados e sustentáveis.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomaçãoFluxos que conectam produto, dados e operação.APIs RESTAutomação de processosTestes unitáriosGit / Deploy (Vercel)IA e LLMsIA no desenvolvimento e em soluções para problemas reais.Integração de LLMsArquitetura de ProvidersOpenAI / Anthropic / GeminiStreaming de respostasPrompt engineeringIA no desenvolvimentoMetodologia e resolução de problemasEntender o contexto, organizar prioridades e evoluir a solução em etapas.Metodologia ágilScrum / KanbanResolução de problemas"
+    }
+  },
+  {
+    "width": 1920,
+    "locale": "en-US",
+    "theme": "light",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(112, 36, 215) solid 2px",
+      "color": "rgb(20, 19, 28)",
+      "background": "color(srgb 0.439216 0.141176 0.843137 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+    }
+  },
+  {
+    "width": 1920,
+    "locale": "en-US",
+    "theme": "dark",
+    "sections": [
+      {
+        "id": "sobre",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 3
+      },
+      {
+        "id": "experiencia",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 0,
+        "articles": 0
+      },
+      {
+        "id": "skills",
+        "width": 1920,
+        "overflow": false,
+        "focusables": 1,
+        "articles": 4
+      }
+    ],
+    "errors": [],
+    "focus": {
+      "outline": "rgb(180, 147, 255) solid 2px",
+      "color": "rgb(243, 242, 245)",
+      "background": "color(srgb 0.705882 0.576471 1 / 0.12)"
+    },
+    "staticSkills": {
+      "projectLinks": 0,
+      "extraTabs": 0,
+      "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+    }
+  }
+]

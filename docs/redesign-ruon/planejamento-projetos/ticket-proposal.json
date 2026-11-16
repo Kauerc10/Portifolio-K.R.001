@@ -1,0 +1,202 @@
+{
+  "parent": 75,
+  "status": "publicado-implementacao-autorizada-com-revisao-por-ticket",
+  "recommendedExecutionOrder": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10"
+  ],
+  "tickets": [
+    {
+      "id": "C01",
+      "title": "Detalhar os roteiros dos cinco cases aprovados",
+      "blockers": [],
+      "deliver": "Um roteiro executável para cada prévia, página e retorno, preservando as imagens escolhidas e deixando a técnica de animação para a prova de cada case.",
+      "accept": [
+        "Consolidar Vio aprovado, VECOM/Atlas v3 aprovados, DocFácil e CKF aprovados, com acesso às imagens e fontes para outro agente.",
+        "Descrever chegada, transformação, repouso, entrada no case e retorno em desktop e celular; incluir alternativa para tela baixa e movimento reduzido.",
+        "Mapear capítulos, contribuição confirmada, textos PT/EN, mídia e assets por case; listar lacunas factuais sem inventar dados nem bloquear o roteiro por informação secundária.",
+        "Preservar VECOM com notebook/celular/pasta e captura oficial preparada; Atlas com documento/camadas e fundo mineral, sem a direção de arquivo antigo ou tablet dominante.",
+        "Definir cenários de comparação para vídeo/2.5D/híbrido sem eleger obrigatoriamente uma técnica agora; não produzir toda a mídia final nem reabrir as composições aprovadas.",
+        "Verificar a continuidade das cinco prévias juntas e registrar as decisões; nenhuma mudança na interface nesta entrega."
+      ]
+    },
+    {
+      "id": "C02",
+      "title": "Preparar a base reutilizável pela jornada existente do Vio",
+      "blockers": [
+        "C01"
+      ],
+      "deliver": "A jornada já existente do Vio continua funcionando sobre uma base pequena reutilizável de conteúdo, navegação e mídia, antes de adicionar os outros cases.",
+      "accept": [
+        "Preservar a aparência e o comportamento observável da prova atual ao extrair somente responsabilidades comprovadamente compartilhadas.",
+        "Permitir conteúdo PT/EN e uma ou várias entregas por case, sem recriar backend ou introduzir um framework genérico desnecessário.",
+        "Manter navegação HTML, entrada direta, volta por link/histórico, posição restaurada, foco e fallback quando storage ou transição compartilhada não funcionarem.",
+        "Preservar integração de tema e idioma, hero e introdução existentes; a introdução não cobre nem se repete na navegação de cases.",
+        "Demonstrar home → Vio → retorno em desktop/celular, sem regressão da prova; não adicionar páginas vazias dos outros projetos.",
+        "Conservar o catálogo legado enquanto os cases migram em fatias e manter a suíte pertinente passando."
+      ]
+    },
+    {
+      "id": "C03",
+      "title": "Concluir VioDigital: prévia, case e apresentação visual",
+      "blockers": [
+        "C02"
+      ],
+      "deliver": "VioDigital completo, da prévia animada à narrativa e evidências da página própria, substituindo o estado provisório da prova.",
+      "accept": [
+        "Abrir e visualizar as imagens aprovadas e o roteiro deste case antes de codar; respeitar as escolhas posteriores da conversa.",
+        "Entregar prévia compreensível na home, página dedicada e retorno à posição anterior, com acesso direto e nova aba.",
+        "Incluir narrativa, contribuição confirmada, mídia real preparada e legendas; ilustrações não substituem evidência funcional.",
+        "Avaliar vídeo, 2.5D ou combinação na prova deste case, registrando a escolha sem alterar a composição aprovada. Produzir apenas a mídia necessária ao roteiro.",
+        "Validar desktop/celular, PT/EN, claro/escuro, teclado, movimento reduzido, pausa/reversão de scroll, término da fixação e falha de mídia. Não impor espera nem ocultar título/CTA.",
+        "Registrar capturas e passagem gravada comparadas às referências; executar verificações técnicas pertinentes. Não operar os produtos reais nem publicar o site.",
+        "Produzir documento EXEMPLO/QR ilustrativo, camadas e mídia finais; preservar objeto reconhecível na transição e evitar qualquer decodificação real.",
+        "Substituir o conteúdo provisório por contexto, solução, decisões, galeria preparada e créditos upstream; não afirmar autoria integral do zero.",
+        "Usar a prova existente como ponto de partida, não como aprovação do acabamento final."
+      ]
+    },
+    {
+      "id": "C04",
+      "title": "Entregar VECOM: cadastro e operação da equipe",
+      "blockers": [
+        "C02"
+      ],
+      "deliver": "Prévia e case VECOM mostram a jornada entre cadastro e atendimento, com a composição escolhida e telas oficiais preparadas.",
+      "accept": [
+        "Abrir e visualizar as imagens aprovadas e o roteiro deste case antes de codar; respeitar as escolhas posteriores da conversa.",
+        "Entregar prévia compreensível na home, página dedicada e retorno à posição anterior, com acesso direto e nova aba.",
+        "Incluir narrativa, contribuição confirmada, mídia real preparada e legendas; ilustrações não substituem evidência funcional.",
+        "Avaliar vídeo, 2.5D ou combinação na prova deste case, registrando a escolha sem alterar a composição aprovada. Produzir apenas a mídia necessária ao roteiro.",
+        "Validar desktop/celular, PT/EN, claro/escuro, teclado, movimento reduzido, pausa/reversão de scroll, término da fixação e falha de mídia. Não impor espera nem ocultar título/CTA.",
+        "Registrar capturas e passagem gravada comparadas às referências; executar verificações técnicas pertinentes. Não operar os produtos reais nem publicar o site.",
+        "Preservar pasta azul, notebook/celular, integração de luz/sombra e detalhe laranja da v3; não retomar a curva escultórica rejeitada.",
+        "Inserir capturas preparadas da interface oficial em vez de tratar dashboard recriado pelo gerador como screenshot real.",
+        "Diferenciar jornada pública de operação interna e identificar desenvolvimento sob demanda; preparar fichas e registros sintéticos."
+      ]
+    },
+    {
+      "id": "C05",
+      "title": "Entregar Atlas: do Formatador ao produto próprio",
+      "blockers": [
+        "C02"
+      ],
+      "deliver": "Prévia e case Atlas contam a origem no cartório e a evolução para produto próprio através dos documentos e camadas aprovados.",
+      "accept": [
+        "Abrir e visualizar as imagens aprovadas e o roteiro deste case antes de codar; respeitar as escolhas posteriores da conversa.",
+        "Entregar prévia compreensível na home, página dedicada e retorno à posição anterior, com acesso direto e nova aba.",
+        "Incluir narrativa, contribuição confirmada, mídia real preparada e legendas; ilustrações não substituem evidência funcional.",
+        "Avaliar vídeo, 2.5D ou combinação na prova deste case, registrando a escolha sem alterar a composição aprovada. Produzir apenas a mídia necessária ao roteiro.",
+        "Validar desktop/celular, PT/EN, claro/escuro, teclado, movimento reduzido, pausa/reversão de scroll, término da fixação e falha de mídia. Não impor espera nem ocultar título/CTA.",
+        "Registrar capturas e passagem gravada comparadas às referências; executar verificações técnicas pertinentes. Não operar os produtos reais nem publicar o site.",
+        "Preservar documento de veículo e camadas Formatar/Conferir/Organizar, tipografia sans e ambiente mineral claro da v3.",
+        "Contar erros/retrabalho e tempo de conferência/redação como contexto qualitativo; primeira ferramenta Formatador de Veículos e evolução para conjunto de ferramentas.",
+        "Usar telas reais preparadas na galeria, sem apoiar o acabamento no site comercial inicial nem inventar ganhos percentuais."
+      ]
+    },
+    {
+      "id": "C06",
+      "title": "Entregar DocFácil: corujinha e documento guiado",
+      "blockers": [
+        "C02"
+      ],
+      "deliver": "Prévia e case DocFácil mostram a criação guiada de documentos com a corujinha contextual e a estética aprovada.",
+      "accept": [
+        "Abrir e visualizar as imagens aprovadas e o roteiro deste case antes de codar; respeitar as escolhas posteriores da conversa.",
+        "Entregar prévia compreensível na home, página dedicada e retorno à posição anterior, com acesso direto e nova aba.",
+        "Incluir narrativa, contribuição confirmada, mídia real preparada e legendas; ilustrações não substituem evidência funcional.",
+        "Avaliar vídeo, 2.5D ou combinação na prova deste case, registrando a escolha sem alterar a composição aprovada. Produzir apenas a mídia necessária ao roteiro.",
+        "Validar desktop/celular, PT/EN, claro/escuro, teclado, movimento reduzido, pausa/reversão de scroll, término da fixação e falha de mídia. Não impor espera nem ocultar título/CTA.",
+        "Registrar capturas e passagem gravada comparadas às referências; executar verificações técnicas pertinentes. Não operar os produtos reais nem publicar o site.",
+        "Preservar mascote azul existente e composição aprovada; produzir poses/camadas necessárias sem mudar sua identidade.",
+        "Demonstrar escolher → responder → revisar → documento/PDF por mídia ilustrativa e capturas preparadas, sem executar geração real.",
+        "Fazer a coruja orientar um passo e repousar sem cobrir texto, capturar cursor ou repetir movimentos que prejudiquem a leitura.",
+        "Identificar produto próprio da RUON e não apresentar piloto ou integração não validada como função liberada."
+      ]
+    },
+    {
+      "id": "C07",
+      "title": "Entregar CKF com a frente do site institucional",
+      "blockers": [
+        "C02"
+      ],
+      "deliver": "Primeira fatia do case CKF já navegável e útil, apresentando a entrega institucional e uma prévia verdadeira da existência das duas frentes.",
+      "accept": [
+        "Abrir e visualizar as imagens aprovadas e o roteiro deste case antes de codar; respeitar as escolhas posteriores da conversa.",
+        "Entregar prévia compreensível na home, página dedicada e retorno à posição anterior, com acesso direto e nova aba.",
+        "Incluir narrativa, contribuição confirmada, mídia real preparada e legendas; ilustrações não substituem evidência funcional.",
+        "Avaliar vídeo, 2.5D ou combinação na prova deste case, registrando a escolha sem alterar a composição aprovada. Produzir apenas a mídia necessária ao roteiro.",
+        "Validar desktop/celular, PT/EN, claro/escuro, teclado, movimento reduzido, pausa/reversão de scroll, término da fixação e falha de mídia. Não impor espera nem ocultar título/CTA.",
+        "Registrar capturas e passagem gravada comparadas às referências; executar verificações técnicas pertinentes. Não operar os produtos reais nem publicar o site.",
+        "Criar uma única página CKF e preservar estética carvão/amarelo e composição industrial aprovada.",
+        "Entregar narrativa, contribuição confirmada, telas desktop/mobile e mídia do site institucional, com serviços e finalidade comercial.",
+        "Na prévia comum, identificar site e sistema como entregas distintas; o sistema recebe resumo factual e imagem preparada, com detalhamento entregue em C08.",
+        "Não expor links vazios, simular o sistema como completo ou sugerir integração funcional pela linha gráfica entre as frentes.",
+        "Preparar a seção do sistema sem duplicar navegação, cliente ou rota do case."
+      ]
+    },
+    {
+      "id": "C08",
+      "title": "Completar CKF com o sistema de orçamentos",
+      "blockers": [
+        "C07"
+      ],
+      "deliver": "O mesmo case CKF passa a explicar também o sistema, com demonstração própria, orçamento/PDF e equilíbrio entre as duas entregas.",
+      "accept": [
+        "Abrir e visualizar as imagens aprovadas e o roteiro deste case antes de codar; respeitar as escolhas posteriores da conversa.",
+        "Entregar prévia compreensível na home, página dedicada e retorno à posição anterior, com acesso direto e nova aba.",
+        "Incluir narrativa, contribuição confirmada, mídia real preparada e legendas; ilustrações não substituem evidência funcional.",
+        "Avaliar vídeo, 2.5D ou combinação na prova deste case, registrando a escolha sem alterar a composição aprovada. Produzir apenas a mídia necessária ao roteiro.",
+        "Validar desktop/celular, PT/EN, claro/escuro, teclado, movimento reduzido, pausa/reversão de scroll, término da fixação e falha de mídia. Não impor espera nem ocultar título/CTA.",
+        "Registrar capturas e passagem gravada comparadas às referências; executar verificações técnicas pertinentes. Não operar os produtos reais nem publicar o site.",
+        "Expandir a página CKF existente; não criar outro case ou contar a empresa como dois clientes.",
+        "Detalhar itens → orçamento → PDF com demonstração visual, telas reais preparadas e dados sintéticos; sem criar orçamentos reais.",
+        "Dar ao sistema contribuição, decisões e galeria próprias, mantendo acessível o conteúdo institucional.",
+        "Concluir a passagem de ênfase entre as frentes na prévia e a sequência compacta no celular; conferir as duas jornadas no mesmo case."
+      ]
+    },
+    {
+      "id": "C09",
+      "title": "Consolidar a vitrine vertical e retirar o catálogo antigo",
+      "blockers": [
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C08"
+      ],
+      "deliver": "A home apresenta somente os cinco cases atuais como uma sequência coerente, com links antigos úteis preservados e sem duplicação do catálogo.",
+      "accept": [
+        "Exibir VioDigital, VECOM, Atlas, DocFácil e CKF na ordem editorial acordada; manter seis entregas dentro de cinco cases.",
+        "Retirar índice/painel antigo somente após todas as substituições estarem disponíveis e preservar destinos antigos úteis ou compatibilizá-los.",
+        "Revisar espaçamento, continuidade de materiais/paletas e duração acumulada: evitar cinco fixações longas e manter atalho/leitura rápida.",
+        "Conferir entrada a partir do hero, transições entre prévias, acesso aos cases e retorno sem introdução repetida.",
+        "Garantir poster primeiro e carregamento progressivo: não baixar cinco vídeos grandes na entrada; pausar mídia fora da viewport/aba.",
+        "Validar a sequência completa em desktop/celular, PT/EN e ambos os temas; não alterar as outras seções por consequência da consolidação."
+      ]
+    },
+    {
+      "id": "C10",
+      "title": "Validar a jornada completa e preparar entrega revisável",
+      "blockers": [
+        "C09"
+      ],
+      "deliver": "Uma versão integral revisável dos cinco cases, com evidência visual, factual e de navegação suficiente para decidir publicação separadamente.",
+      "accept": [
+        "Executar a matriz integrada home → cada case → retorno, link direto/refresh/nova aba, teclado/foco, toque, histórico e storage bloqueado.",
+        "Verificar scroll, pausa, reversão, fim da fixação, viewport baixo, movimento reduzido, fallback de transição e mídia indisponível.",
+        "Validar conteúdo PT/EN, claro/escuro, galerias, controles/legendas de vídeo quando aplicáveis e links reais.",
+        "Revalidar contribuição, natureza de cada trabalho, estágio do produto e créditos; confirmar que nenhum dado operacional ou afirmação não sustentada entrou na mídia pública.",
+        "Comparar capturas e gravações às referências aprovadas, registrar limitações/navegadores e desempenho no mesmo cenário antes/depois.",
+        "Executar TypeScript, testes pertinentes e build; entregar evidências e pendências sem fazer merge ou deploy automaticamente."
+      ]
+    }
+  ]
+}

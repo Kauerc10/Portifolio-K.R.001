@@ -1,0 +1,28 @@
+[
+  {
+    "name": "desktop",
+    "direction": "PASS",
+    "interrupt": "PASS",
+    "rapidClicks": "PASS",
+    "keyboard": "PASS",
+    "idle": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "direction": "PASS",
+    "interrupt": "PASS",
+    "rapidClicks": "PASS",
+    "keyboard": "PASS",
+    "idle": "PASS",
+    "errors": []
+  },
+  {
+    "mode": "reduced",
+    "result": "PASS"
+  },
+  {
+    "mode": "nojs",
+    "result": "PASS"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "versao": "v3",
+  "imagens": [
+    {
+      "arquivo": "imagens/atlas.png",
+      "origem": "C:\\Users\\Kauerc\\.codex\\generated_images\\01a1c240-c001-7740-9855-6d86cae1c56d\\exec-456cca8a-a280-4a74-996e-070f34926f95.png",
+      "largura": 1024,
+      "altura": 1536,
+      "sha256": "27A52A71A185A0AB1B62316BBEC3D0EE2EFCBB9A3C77AEDD1615A6EC9764F6DB",
+      "ferramenta": "imagegen",
+      "prompt": "prompts/atlas.txt",
+      "estado": "composicao-aprovada-pelo-usuario"
+    },
+    {
+      "arquivo": "imagens/vecom.png",
+      "origem": "C:\\Users\\Kauerc\\.codex\\generated_images\\01a1c240-c001-7740-9855-6d86cae1c56d\\exec-45a9ae57-2a30-40ac-9209-fd6f16b018f1.png",
+      "largura": 1024,
+      "altura": 1536,
+      "sha256": "2EE8DE10FA184CD9CE8D7716208A3D346D27CA7113D63A3CD01D2AC76FD79E57",
+      "ferramenta": "imagegen",
+      "prompt": "prompts/vecom.txt",
+      "estado": "composicao-aprovada-pelo-usuario"
+    }
+  ]
+}

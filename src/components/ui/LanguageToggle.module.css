@@ -1,0 +1,37 @@
+.group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+  width: 80px;
+  height: 34px;
+  padding: 2px;
+  border: 1px solid #d9d9e3;
+  border-radius: 999px;
+  background: #ffffffb3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.marker {
+  position: absolute;
+  inset: 2px auto 2px 2px;
+  width: calc(50% - 2px);
+  border-radius: 999px;
+  background: #14131c;
+  transition: transform .24s cubic-bezier(.22, 1, .36, 1);
+}
+
+.marker[data-english='true'] { transform: translateX(100%); }
+.group button { position: relative; border-radius: 999px; color: #565565; }
+.group button[aria-pressed='true'] { color: #fff; }
+.group button:focus-visible { outline: 2px solid #7024d7; outline-offset: 4px; }
+.group button:disabled { cursor: progress; }
+
+:global(.dark) .group { border-color: #45404e; background: #111015; }
+:global(.dark) .marker { background: #f3f2f5; }
+:global(.dark) .group button { color: #c5c4d0; }
+:global(.dark) .group button[aria-pressed='true'] { color: #14131c; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marker { transition: none; }
+}

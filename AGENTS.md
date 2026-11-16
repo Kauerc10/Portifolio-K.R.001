@@ -1,0 +1,37 @@
+# Agent instructions
+
+## Agent skills
+
+### Issue tracker
+
+Issues e especificações ficam no GitHub de `Kauerc10/Portifolio-K.R.001`. Consulte `docs/agents/issue-tracker.md` para operações e dependências entre tarefas.
+
+### Triage labels
+
+Usar os cinco papéis padrão de triagem: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human` e `wontfix`. Consulte `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: vocabulário em `GLOSSARY.md` na raiz e decisões em `docs/adr/`, criados quando necessários. Consulte `docs/agents/domain.md` antes de explorar a área relevante.
+
+## Design transition
+
+A referência visual aprovada e a especificação atual estão em `docs/design-transition/README.md` e `docs/design-transition/specification.md`. O plano de implementação está em `docs/superpowers/plans/2026-10-27-interactive-portfolio.md`.
+
+Consulte esses documentos antes de alterar a interface. A proposta preliminar em `docs/superpowers/specs/2026-10-27-portfolio-design.md` foi superada. Aprovação de design ou planejamento não autoriza publicação.
+
+Para localizar os elementos da imagem, leia `docs/design-transition/reference-map.md` junto com a referência original. O diagrama usa IDs U01–U16 para HTML e W01–W11 para cena/arte; `reference-map.json` contém coordenadas 2D aproximadas, não medidas CSS ou geometria 3D. O traçado laranja acompanha apenas as faixas roxas visíveis; o trecho oculto não está desenhado e não deve ser tratado como geometria comprovada.
+
+Os tickets T01–T11 foram aprovados e publicados como issues #36–#46. Consulte `docs/design-transition/ticket-breakdown.md`, `ticket-proposal.json` e `ticket-numbers.json` para os vínculos. Os arquivos em `ticket-drafts/` são cópias locais de consulta, não autorização para recriar issues. Antes de iniciar, conferir estado, responsáveis e bloqueios nativos no GitHub; `ready-for-agent` não significa ausência de bloqueios.
+
+## Hero 2.5D — decisão atual
+A escolha posterior do usuário substitui a reconstrução 3D completa da paisagem por 2.5D. Para o hero, consultar `docs/design-transition/hero-2d5-specification.md` (#48) e `hero-2d5-integration-plan.md`. Manter referência, links HTML e indicadores elevados24px. Candidato de arte mais detalhado aprovado pelo usuário em29/10/2026; procedência em `assets/hero-quality/README.md`. A prova isolada não confirma integração: validar a página pública, fallback, movimento reduzido e pausa. Demais seções e publicação continuam fora do escopo desta rodada.
+
+## Fita e portais — direção posterior
+Em30/10/2026 o usuário aprovou substituir o primeiro plano2.5D por fita contínua e três portais em3D real. Referência única de modelagem: `docs/design-transition/assets/ribbon-portals/model-reference.png`; colagem é apenas histórico. Medidas/grid propostos em `design/ribbon-portals/technical-sheet.png`, fonte Blender e manifesto da cena acompanham modelo. Manter câmera estável, cursor nativo, composição fullbleed e fluxo compacto semsobreposição; realce percorre fita ao selecionar destino e préviaHTML permanece acessível. Montanhas são imagem de fundo. Esta instrução supera o mandato anterior de plano2.5D, preservando testes de ciclo de vida/fallback e limites de escopo. Usuário autorizou baixar ferramentas necessárias e abrir Blender/MCP; publicação segue separada.
+
+## Portais em imagem — decisão vigente em 03/11/2026
+
+Especificação detalhada vigente: `docs/design-transition/portals-2d5-specification.md`, publicada como issue #49 com `ready-for-agent`. Validar pelo hero completo na página real. A expansão dos caminhos durante a rolagem é escopo futuro; nesta entrega apenas documentar a conexão visual futura.
+
+O usuário interrompeu a reconstrução 3D e escolheu integrar a imagem dos três portais e fita violeta em 2.5D. Usar `docs/design-transition/assets/ribbon-portals/model-reference.png`, sem retornar à paisagem antiga das casinhas. Consultar `docs/design-transition/portals-image-integration.md` para a proposta atual: imagem fullbleed, realces recortados por máscaras, navegação HTML e composição responsiva. Esta decisão supera o primeiro plano em 3D acima. Preservar experimentos Blender como histórico; não confundir proposta com implementação concluída. Sem paralaxe seguindo mouse ou cursor oculto; publicação continua separada.

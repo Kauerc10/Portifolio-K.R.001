@@ -1,0 +1,27 @@
+{
+  "idle": [
+    {
+      "state": "running",
+      "target": "modal__crt-overlay"
+    },
+    {
+      "state": "running",
+      "target": "modal__icon glitch"
+    },
+    {
+      "state": "running",
+      "target": "modal__title glitch"
+    }
+  ],
+  "hover": {
+    "glow": "1",
+    "icon": "matrix(1.07195, -0.131619, 0.131619, 1.07195, 0, 0)"
+  },
+  "reduced": 3,
+  "offscreen": 0,
+  "nojs": {
+    "groups": 4,
+    "links": 1,
+    "text": "How I buildTools for building applications, connecting systems and automating workflows.View my resume↗DevelopmentModern, typed, and maintainable web products.JavaScript / TypeScriptReact / Next.jsSupabase / PrismaNode.jsAutomationFlows connecting product, data, and operations.REST APIsProcess automationUnit testingGit / Deploy (Vercel)AI and LLMsAI for development and solutions to real problems.LLM IntegrationProvider ArchitectureOpenAI / Anthropic / GeminiResponse streamingPrompt engineeringAI-assisted developmentMethods and problem solvingUnderstand context, organize priorities and improve solutions step by step.Agile methodologyScrum / KanbanProblem solving"
+  }
+}

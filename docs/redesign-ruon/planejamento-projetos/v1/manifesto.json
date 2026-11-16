@@ -1,0 +1,56 @@
+{
+  "versao": "v1",
+  "data": "2026-11-12",
+  "imagens": [
+    {
+      "arquivo": "imagens/01-viodigital.png",
+      "origem": "docs/redesign-ruon/storyboards/viodigital/v1/imagens/02-transicao-case.png",
+      "sha256": "29F8DEF87DBF29486D8F37F18EDFBC551E3754A2C9EA68108FA182CD42681DF9",
+      "largura": 1024,
+      "altura": 1536,
+      "ferramenta": "imagegen",
+      "estado": "estetica-aprovada-anteriormente",
+      "prompt": "referencia-reutilizada-ver-storyboard-viodigital"
+    },
+    {
+      "arquivo": "imagens/02-vecom.png",
+      "origem": "C:\\Users\\Kauerc\\.codex\\generated_images\\01a1c240-c001-7740-9855-6d86cae1c56d\\exec-62efbd61-3aa9-4273-bcfc-42fc40afc8d6.png",
+      "sha256": "87F3FD9E9B5704FA7F0E79CF864D26A654CC674AEB764A3E8483A7B344FF5D06",
+      "largura": 1024,
+      "altura": 1536,
+      "ferramenta": "imagegen",
+      "estado": "proposta-aguardando-revisao",
+      "prompt": "prompts/02-vecom.txt"
+    },
+    {
+      "arquivo": "imagens/03-atlas.png",
+      "origem": "C:\\Users\\Kauerc\\.codex\\generated_images\\01a1c240-c001-7740-9855-6d86cae1c56d\\exec-ce429780-e49f-4161-b9f5-2ffebacab525.png",
+      "sha256": "ED58BBE15BC6A7C37C8FF767BBB7AF82C35CA0D959D6B886E583B0486EDFB50E",
+      "largura": 1024,
+      "altura": 1536,
+      "ferramenta": "imagegen",
+      "estado": "proposta-aguardando-revisao",
+      "prompt": "prompts/03-atlas.txt"
+    },
+    {
+      "arquivo": "imagens/04-docfacil.png",
+      "origem": "C:\\Users\\Kauerc\\.codex\\generated_images\\01a1c240-c001-7740-9855-6d86cae1c56d\\exec-058bbfd1-d914-4b44-94cb-c9e039345433.png",
+      "sha256": "26FA97BC9031240E151A8CDC38C17BF580B142081C15054EB85D28689C505502",
+      "largura": 1024,
+      "altura": 1536,
+      "ferramenta": "imagegen",
+      "estado": "proposta-aguardando-revisao",
+      "prompt": "prompts/04-docfacil.txt"
+    },
+    {
+      "arquivo": "imagens/05-ckf.png",
+      "origem": "C:\\Users\\Kauerc\\.codex\\generated_images\\01a1c240-c001-7740-9855-6d86cae1c56d\\exec-21e8ba3b-fd32-428f-86af-96d021169bee.png",
+      "sha256": "8B7086912404B870100DB540DC11660477B56789F588EB034A4293CF39A6733F",
+      "largura": 1024,
+      "altura": 1536,
+      "ferramenta": "imagegen",
+      "estado": "proposta-aguardando-revisao",
+      "prompt": "prompts/05-ckf.txt"
+    }
+  ]
+}

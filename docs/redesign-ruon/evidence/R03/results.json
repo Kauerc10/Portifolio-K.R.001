@@ -1,0 +1,37 @@
+[
+  {
+    "width": 1440,
+    "reduced": false,
+    "panelHeight": 598.859375,
+    "focus": true,
+    "animations": 0,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "reduced": true,
+    "panelHeight": 598.859375,
+    "focus": true,
+    "animations": 0,
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "reduced": false,
+    "panelHeight": 513.484375,
+    "focus": true,
+    "animations": 0,
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "reduced": true,
+    "panelHeight": 513.484375,
+    "focus": true,
+    "animations": 0,
+    "overflow": false
+  },
+  {
+    "noJS": "four projects and real links visible"
+  }
+]

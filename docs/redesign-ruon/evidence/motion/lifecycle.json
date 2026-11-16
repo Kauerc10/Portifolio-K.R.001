@@ -1,0 +1,70 @@
+[
+  {
+    "browser": "Chrome",
+    "version": "157.0.8103.50",
+    "width": 390,
+    "introManual": true,
+    "introDocked": true,
+    "resize": true,
+    "languageNavigation": true,
+    "zoom200": true,
+    "interruptedReturn": true,
+    "reducedReturn": true,
+    "restingSegments": [
+      "none",
+      "none"
+    ],
+    "errors": []
+  },
+  {
+    "browser": "Chrome",
+    "version": "157.0.8103.50",
+    "width": 1440,
+    "introManual": true,
+    "introDocked": true,
+    "resize": true,
+    "languageNavigation": true,
+    "zoom200": true,
+    "interruptedReturn": true,
+    "reducedReturn": true,
+    "restingSegments": [
+      "none",
+      "none"
+    ],
+    "errors": []
+  },
+  {
+    "browser": "Edge",
+    "version": "157.0.4341.46",
+    "width": 390,
+    "introManual": true,
+    "introDocked": true,
+    "resize": true,
+    "languageNavigation": true,
+    "zoom200": true,
+    "interruptedReturn": true,
+    "reducedReturn": true,
+    "restingSegments": [
+      "none",
+      "none"
+    ],
+    "errors": []
+  },
+  {
+    "browser": "Edge",
+    "version": "157.0.4341.46",
+    "width": 1440,
+    "introManual": true,
+    "introDocked": true,
+    "resize": true,
+    "languageNavigation": true,
+    "zoom200": true,
+    "interruptedReturn": true,
+    "reducedReturn": true,
+    "restingSegments": [
+      "none",
+      "none"
+    ],
+    "errors": []
+  }
+]

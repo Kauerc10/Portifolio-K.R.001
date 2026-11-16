@@ -1,0 +1,46 @@
+/* H02: the reading plane is shared with Skills; content remains sharp and still. */
+.editorial-reading { position: relative; isolation: isolate; max-width: none; }
+.editorial-reading > .editorial-grid, .editorial-reading > .editorial-pillars, .editorial-reading > .editorial-section__eyebrow, .editorial-reading > .editorial-section__rule { max-width: var(--portfolio-shell); margin-inline: auto; }
+.editorial-reading .editorial-profile { border-left: 1px solid var(--editorial-rule); }
+.editorial-reading .editorial-title--about { font-size: clamp(2.5rem, 4.6vw, 5rem); line-height: 1.04; letter-spacing: -.045em; }
+.editorial-reading .editorial-profile__copy { max-width: 36ch; }
+.editorial-reading .editorial-pillars { margin-top: clamp(1.6rem, 3vw, 3rem); }
+.editorial-reading .editorial-pillar { position: relative; padding-top: 2rem; padding-inline-start: 4.7rem; min-height: 8.5rem; }
+.editorial-reading .editorial-pillar + .editorial-pillar { padding-inline-start: 5.7rem; }
+.editorial-reading .editorial-pillar__accent { position: absolute; top: -1px; inset-inline-start: 0; height: 1px; }
+.editorial-reading .editorial-pillar h3 { font-size: clamp(1.2rem, 1.8vw, 1.8rem); line-height: 1.1; }
+.editorial-reading .editorial-pillar:last-child h3::after { display: none; }
+.editorial-reading__icon { display: grid; place-items: center; width: 3.3rem; height: 3.3rem; border-radius: .85rem; background: color-mix(in srgb, var(--editorial-violet) 9%, transparent); color: var(--editorial-violet); }
+.editorial-reading__icon svg { width: 1.7rem; height: 1.7rem; stroke-width: 2; }
+.editorial-pillar > .editorial-reading__icon { position: absolute; top: 2rem; inset-inline-start: 0; }
+.editorial-pillar + .editorial-pillar > .editorial-reading__icon { inset-inline-start: 1rem; }
+.editorial-reading.experiencia { padding-bottom: clamp(4rem, 7vw, 7rem); }
+.editorial-reading .editorial-grid--experience { grid-template-columns: minmax(0, .76fr) minmax(0, 1.24fr); gap: clamp(2.5rem, 5vw, 6rem); }
+.editorial-reading .editorial-timeline__body { position: relative; padding-inline-start: 4.7rem; }
+.editorial-timeline__body > .editorial-reading__icon { position: absolute; top: 0; inset-inline-start: 0; }
+.editorial-reading .editorial-timeline__item + .editorial-timeline__item { padding-top: 2rem; border-top: 1px solid var(--editorial-rule); }
+.editorial-reading .editorial-timeline__item + .editorial-timeline__item > .editorial-timeline__dot { top: 2.35rem; }
+.editorial-reading .editorial-timeline__period { width: fit-content; line-height: 1.5; margin-top: .5rem; }
+.editorial-reading .editorial-timeline__item h3 { font-size: clamp(1.6rem, 2.2vw, 2.4rem); line-height: 1.1; }
+.editorial-reading .editorial-timeline__item strong { line-height: 1.4; }
+@media (hover: hover) and (pointer: fine) {
+  .editorial-reading .editorial-pillar:hover .editorial-reading__icon, .editorial-reading .editorial-timeline__item:hover .editorial-reading__icon { background: color-mix(in srgb, var(--editorial-violet) 19%, transparent); }
+}
+@media (max-width: 900px) {
+  .editorial-reading .editorial-grid--about, .editorial-reading .editorial-grid--experience { grid-template-columns: minmax(0, 1fr); }
+  .editorial-reading .editorial-lede { max-width: 38ch; }
+  .editorial-reading .editorial-pillars { grid-template-columns: minmax(0, 1fr); }
+  .editorial-reading .editorial-pillar, .editorial-reading .editorial-pillar + .editorial-pillar { border-left: 0; border-bottom: 1px solid var(--editorial-rule); padding: 1.5rem 0 1.5rem 4.5rem; min-height: 0; }
+  .editorial-reading .editorial-pillar > .editorial-reading__icon, .editorial-reading .editorial-pillar + .editorial-pillar > .editorial-reading__icon { top: 1.5rem; inset-inline-start: 0; }
+  .editorial-reading .editorial-pillar:last-child { border-bottom: 0; }
+}
+@media (max-width: 600px) {
+  .editorial-reading .editorial-timeline { padding-left: 1.25rem; }
+  .editorial-reading .editorial-timeline__dot { left: -1.67rem; }
+  .editorial-reading .editorial-timeline__segment { left: -1.25rem; }
+  .editorial-reading .editorial-timeline__body { padding-inline-start: 0; }
+  .editorial-timeline__body > .editorial-reading__icon { position: static; margin-bottom: 1rem; }
+}
+
+.editorial-reading > .editorial-section__rule { margin-inline: 0; }
+.editorial-reading__ribbon { width: calc(100% + 2 * var(--portfolio-gutter)); height: clamp(5rem, 9vw, 8.5rem); color: var(--editorial-violet); }

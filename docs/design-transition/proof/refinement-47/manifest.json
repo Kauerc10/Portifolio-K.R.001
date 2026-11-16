@@ -1,0 +1,34 @@
+{
+  "status": "full refinement complete; awaiting human visual review",
+  "stagesCompleted": [
+    "focus",
+    "full"
+  ],
+  "uvValidation": {
+    "resolution": 1024,
+    "overlappingPixels": 0
+  },
+  "modelBytes": 1626164,
+  "embeddedTextures": [
+    {
+      "mimeType": "image/webp",
+      "bytes": 91566
+    },
+    {
+      "mimeType": "image/webp",
+      "bytes": 341162
+    }
+  ],
+  "runtimeBytes": 652212,
+  "runtimeGzipBytes": 168888,
+  "posterBytes": {
+    "desktop": 47896,
+    "mobile": 10134
+  },
+  "destinations": {
+    "development": "#projetos",
+    "automation": "#project-atlas",
+    "support": "#experiencia"
+  },
+  "destinationValidation": "three named meshes loaded and projected; application HTML behavior belongs to T02/T03"
+}

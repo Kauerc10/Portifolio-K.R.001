@@ -1,0 +1,42 @@
+import CaseEnding from '@/components/projects/CaseEnding';
+import editorial from '@/components/projects/CaseEditorial.module.css';
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import { isValidLocale } from '@/i18n/config';
+import { vioCopy } from '@/components/projects/viodigital-copy';
+import VioDocument from '@/components/projects/VioDocument';
+import VioStory from '@/components/projects/VioStory';
+import VioGallery from '@/components/projects/VioGallery';
+import CaseHeader from '@/components/projects/CaseHeader';
+import { vioDigitalCase } from '@/components/projects/case-model';
+import styles from '@/components/projects/VioDigital.module.css';
+import { getVioMetadata } from '@/components/projects/viodigital-metadata';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return isValidLocale(locale) ? getVioMetadata(locale) : {};
+}
+
+export default async function VioDigitalCase({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) notFound();
+  const copy = vioCopy(locale);
+  return <div className={`${styles.case} ${editorial.page}`}>
+    <CaseHeader homeHref={vioDigitalCase.links.home[locale]} backLabel={copy.back} />
+    <main>
+      <section className={styles.caseHero} aria-labelledby="vio-title">
+        <div className={styles.composition}><div className={styles.copy}>
+          <p className={styles.kicker}>{copy.kind}</p><h1 id="vio-title">VioDigital</h1>
+          <p className={styles.tagline}>{copy.title}</p><p className={styles.description}>{copy.description}</p>
+          <div className={styles.heroActions}><a href="https://vioweb.vercel.app" target="_blank" rel="noopener noreferrer" className={`${styles.button} ${styles.primaryButton}`}>{copy.visit} <span aria-hidden="true">↗</span></a><a href="#contexto" className={styles.textLink}>{copy.presentation} ↓</a></div>
+        </div><VioDocument example={copy.example} /></div>
+      </section>
+
+      <section id="contexto" className={`${styles.chapter} ${editorial.chapter} ${editorial.context}`}><h2>{copy.challenge}</h2><div className={editorial.prose}><p>{copy.context}</p><p>{copy.contextMore}</p></div></section>
+      <VioStory locale={locale} />
+      <section id="telas" className={`${styles.screens} ${editorial.gallery}`}><div className={styles.screensHeading}><h2>{copy.gallery}</h2><p>{copy.galleryText}</p></div><VioGallery locale={locale} /></section>
+      <section id="escolhas" className={`${styles.chapter} ${editorial.chapter}`}><div><h2>{copy.decisions}</h2><ol className={editorial.decisions}>{copy.choices.map(choice => <li key={choice.title}><div><h3>{choice.title}</h3><p>{choice.text}</p></div></li>)}</ol><div className={styles.stack}><span>{copy.stackLabel}</span><ul>{copy.stack.map(item => <li key={item}>{item}</li>)}</ul></div><aside className={styles.credit}><h3>{copy.credit}</h3><p>{copy.creditText}</p><a href="https://github.com/Kauerc10/VioWeb/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className={styles.textLink}>{locale === 'pt-BR' ? 'Conhecer a origem e os créditos' : 'Read about the origins and credits'} ↗</a></aside></div></section>
+      <CaseEnding locale={locale} slug="viodigital" title={copy.result} text={copy.resultText} />
+    </main>
+  </div>;
+}

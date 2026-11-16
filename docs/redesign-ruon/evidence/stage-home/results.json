@@ -1,0 +1,23 @@
+[
+  {
+    "locale": "pt-BR",
+    "width": 1440,
+    "caseRoundTrips": 5,
+    "legacyHash": "PASS",
+    "errors": []
+  },
+  {
+    "locale": "pt-BR",
+    "width": 390,
+    "caseRoundTrips": 5,
+    "legacyHash": "PASS",
+    "errors": []
+  },
+  {
+    "locale": "en-US",
+    "width": 1440,
+    "caseRoundTrips": 5,
+    "legacyHash": "PASS",
+    "errors": []
+  }
+]

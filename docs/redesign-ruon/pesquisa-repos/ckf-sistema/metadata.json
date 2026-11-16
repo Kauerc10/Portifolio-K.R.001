@@ -1,0 +1,26 @@
+{
+  "repository": "Kauerc10/ckf-manutencao-orcamentos",
+  "defaultBranch": "main",
+  "selectedBranch": "feat/catalogo-tabelas-leads",
+  "selectedSha": "f1797812433928c55d0cb3d600788258c504b1ca",
+  "selectedCommitDate": "2026-09-30T13:17:10Z",
+  "defaultSha": "b35c8eb42a6bd20059ac4b76dfa4fdb3fa55afb2",
+  "latestOverallBranch": "dependabot/npm_and_yarn/production-dependencies-ac33e65d2a",
+  "latestOverallSha": "b4fc5a0a30f4776845c603e5842ea2b8b63ed6b5",
+  "latestOverallDate": "2026-10-01T07:32:30Z",
+  "latestOverallExcluded": "Dependabot-only package.json/package-lock.json update; one commit ahead of main",
+  "selectionReason": "functional branch newer than main; dependency and verification branches excluded",
+  "classification": "custom internal solution for CKF Manutencao",
+  "confidence": "high for internal/custom scope; unknown commercial arrangement and team authorship",
+  "sources": [
+    "https://github.com/Kauerc10/ckf-manutencao-orcamentos/blob/f1797812433928c55d0cb3d600788258c504b1ca/README.md",
+    "https://github.com/Kauerc10/ckf-manutencao-orcamentos/blob/f1797812433928c55d0cb3d600788258c504b1ca/PRODUCT.md",
+    "https://github.com/Kauerc10/ckf-manutencao-orcamentos/blob/f1797812433928c55d0cb3d600788258c504b1ca/docs/REPOSITORY_GUIDE.md",
+    "https://github.com/Kauerc10/ckf-manutencao-orcamentos/commits/f1797812433928c55d0cb3d600788258c504b1ca"
+  ],
+  "functionalComparisonToMain": {
+    "status": "ahead",
+    "ahead": 6,
+    "behind": 0
+  }
+}

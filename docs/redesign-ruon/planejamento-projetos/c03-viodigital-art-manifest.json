@@ -1,0 +1,11 @@
+{
+  "id": "document-example-qr-v1",
+  "case": "viodigital",
+  "version": "c03",
+  "source": "native-react-svg",
+  "purpose": "Illustrative document used by the approved home-to-case transition",
+  "layers": ["mineral-plinth", "translucent-backplate", "example-paper", "decorative-qr", "green-red-rules", "scan-highlight", "information-strips"],
+  "content": { "documentLabel": "EXEMPLO", "qr": "decorative-non-scannable" },
+  "constraints": ["Keep EXEMPLO as HTML text", "Never send uploads or decode the decorative QR", "Keep the document recognizable between preview and case", "Reduced motion shows the resting composition" ],
+  "visualReference": "docs/redesign-ruon/storyboards/viodigital/v1/imagens/02-transicao-case.png"
+}

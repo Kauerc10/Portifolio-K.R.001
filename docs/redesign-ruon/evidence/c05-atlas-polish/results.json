@@ -1,0 +1,20 @@
+[
+  {
+    "width": 1440,
+    "sharedSpacing": "PASS",
+    "maxConnectorGapPx": 0.86224365234375,
+    "evolution": "PASS"
+  },
+  {
+    "width": 1918,
+    "sharedSpacing": "PASS",
+    "maxConnectorGapPx": 0.5570068359375,
+    "evolution": "PASS"
+  },
+  {
+    "width": 390,
+    "sharedSpacing": "PASS",
+    "maxConnectorGapPx": 0.9846343994140625,
+    "evolution": "PASS"
+  }
+]

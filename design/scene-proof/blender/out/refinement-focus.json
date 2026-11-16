@@ -1,0 +1,20 @@
+{
+  "issue": 47,
+  "stage": "focus",
+  "source": "build_scene.py at 440f2e3",
+  "blender": "4.5.15 LTS",
+  "elapsed_seconds": 54.211058378219604,
+  "focus": [
+    "dest-development",
+    "foliage",
+    "path-bridge",
+    "path-development",
+    "stairs-dev",
+    "stairs-w01-entry",
+    "terraces-left"
+  ],
+  "geometry_objects": 23,
+  "baked": false,
+  "renderer": "Cycles CPU",
+  "view_transform": "Standard"
+}

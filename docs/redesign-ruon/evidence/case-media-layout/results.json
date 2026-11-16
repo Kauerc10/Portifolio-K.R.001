@@ -1,0 +1,137 @@
+[
+  {
+    "name": "wide",
+    "slug": "ckf",
+    "heroWidth": 1760,
+    "viewport": 1920,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "wide",
+    "slug": "vecom",
+    "heroWidth": 1760,
+    "viewport": 1920,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "wide",
+    "slug": "atlas-notarial",
+    "heroWidth": 1760,
+    "viewport": 1920,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "wide",
+    "slug": "docfacil",
+    "heroWidth": 1760,
+    "viewport": 1920,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "wide",
+    "slug": "viodigital",
+    "heroWidth": 1760,
+    "viewport": 1920,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "desktop",
+    "slug": "ckf",
+    "heroWidth": 1325,
+    "viewport": 1440,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "desktop",
+    "slug": "vecom",
+    "heroWidth": 1325,
+    "viewport": 1440,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "desktop",
+    "slug": "atlas-notarial",
+    "heroWidth": 1325,
+    "viewport": 1440,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "desktop",
+    "slug": "docfacil",
+    "heroWidth": 1325,
+    "viewport": 1440,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "desktop",
+    "slug": "viodigital",
+    "heroWidth": 1325,
+    "viewport": 1440,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "mobile",
+    "slug": "ckf",
+    "heroWidth": 390,
+    "viewport": 390,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "mobile",
+    "slug": "vecom",
+    "heroWidth": 390,
+    "viewport": 390,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "mobile",
+    "slug": "atlas-notarial",
+    "heroWidth": 390,
+    "viewport": 390,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "mobile",
+    "slug": "docfacil",
+    "heroWidth": 390,
+    "viewport": 390,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  },
+  {
+    "name": "mobile",
+    "slug": "viodigital",
+    "heroWidth": 390,
+    "viewport": 390,
+    "fullCaptures": "PASS",
+    "boundedGallery": "PASS",
+    "focus": "PASS"
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "repository": "Kauerc10/vecom-ficha-facil",
+  "default_branch": "main",
+  "selected_branch": "main",
+  "selected_sha": "f1c8e288fd1ec69a63c61d0d978c4bff50e9300a",
+  "selected_commit_date": "2026-11-10T14:36:57Z",
+  "selection_reason": "main is the functional code reference; latest docs/hospedagem-producao-vecom is one documentation commit ahead and was also read for readiness evidence",
+  "observed_branches": [
+    {
+      "name": "docs/hospedagem-producao-vecom",
+      "sha": "d98d2388b085ca532b93b5218afdc273e201c4be",
+      "commit_date": "2026-11-10T20:54:15Z",
+      "note": "documentation branch; not selected as functional snapshot"
+    },
+    {
+      "name": "feat/remover-botao-abrir-ficha-modal",
+      "sha": "fb0ce2994c44071b45e681dc9e4cf5101011f80c",
+      "commit_date": "2026-10-16T02:23:55Z",
+      "note": "behind/divergent"
+    }
+  ],
+  "branch_inventory": [
+    "dependabot/github_actions/actions/checkout-7.0.1",
+    "dependabot/github_actions/actions/setup-node-7.1.0",
+    "dependabot/github_actions/actions/upload-artifact-7.0.2",
+    "dependabot/npm_and_yarn/aws-sdk/client-s3-3.1152.0",
+    "dependabot/npm_and_yarn/build-tools-b58372f079",
+    "dependabot/npm_and_yarn/hono/zod-openapi-1.6.3",
+    "dependabot/npm_and_yarn/react-ecosystem-22d3d62787",
+    "dependabot/npm_and_yarn/test-and-lint-eeff233293",
+    "docs/hospedagem-producao-vecom",
+    "feat/remover-botao-abrir-ficha-modal",
+    "main"
+  ],
+  "genesis_observed": {
+    "sha": "2efb1b48d9ba73654f5812960eecfb84e7f0a26c",
+    "date": "2026-08-31T00:47:26Z"
+  },
+  "latestDocumentationComparisonToMain": {
+    "status": "ahead",
+    "ahead": 1,
+    "behind": 0
+  }
+}

@@ -1,0 +1,722 @@
+[
+  {
+    "width": 390,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 364.078125,
+          "bottom": 480.734375
+        },
+        "tools": {
+          "x": 19.1875,
+          "y": 499.921875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 687.140625,
+          "bottom": 803.796875
+        },
+        "tools": {
+          "x": 19.18772315979004,
+          "y": 822.984375
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 1053.609375,
+          "bottom": 1170.265625
+        },
+        "tools": {
+          "x": 19.1875,
+          "y": 1189.453125
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 390,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 364.078125,
+          "bottom": 480.734375
+        },
+        "tools": {
+          "x": 19.188047409057617,
+          "y": 499.921875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 687.140625,
+          "bottom": 803.796875
+        },
+        "tools": {
+          "x": 19.19559097290039,
+          "y": 822.984375
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 1053.609375,
+          "bottom": 1170.265625
+        },
+        "tools": {
+          "x": 19.1875,
+          "y": 1189.453125
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 390,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 363.8125,
+          "bottom": 480.46875
+        },
+        "tools": {
+          "x": 19.18766975402832,
+          "y": 499.65625
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 686.875,
+          "bottom": 803.53125
+        },
+        "tools": {
+          "x": 19.19249153137207,
+          "y": 822.71875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 966.53125,
+          "bottom": 1083.1875
+        },
+        "tools": {
+          "x": 19.1875,
+          "y": 1102.375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 390,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 363.8125,
+          "bottom": 480.46875
+        },
+        "tools": {
+          "x": 19.1875,
+          "y": 499.65625
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 686.875,
+          "bottom": 803.53125
+        },
+        "tools": {
+          "x": 19.188993453979492,
+          "y": 822.71875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 966.53125,
+          "bottom": 1083.1875
+        },
+        "tools": {
+          "x": 19.1875,
+          "y": 1102.375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 768,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 373.421875,
+          "bottom": 490.078125
+        },
+        "tools": {
+          "x": 400.54852294921875,
+          "y": 373.421875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 571.078125,
+          "bottom": 687.734375
+        },
+        "tools": {
+          "x": 400.5711669921875,
+          "y": 571.078125
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 768.734375,
+          "bottom": 885.390625
+        },
+        "tools": {
+          "x": 400.66107177734375,
+          "y": 768.734375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 768,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 373.421875,
+          "bottom": 490.078125
+        },
+        "tools": {
+          "x": 400.5507507324219,
+          "y": 373.421875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 571.078125,
+          "bottom": 687.734375
+        },
+        "tools": {
+          "x": 400.5841369628906,
+          "y": 571.078125
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 768.734375,
+          "bottom": 885.390625
+        },
+        "tools": {
+          "x": 400.7012023925781,
+          "y": 768.734375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 768,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 373.421875,
+          "bottom": 490.078125
+        },
+        "tools": {
+          "x": 400.54852294921875,
+          "y": 373.421875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 571.078125,
+          "bottom": 687.734375
+        },
+        "tools": {
+          "x": 400.5711669921875,
+          "y": 571.078125
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 768.734375,
+          "bottom": 885.390625
+        },
+        "tools": {
+          "x": 400.6611022949219,
+          "y": 768.734375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 768,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 373.421875,
+          "bottom": 490.078125
+        },
+        "tools": {
+          "x": 400.5473937988281,
+          "y": 373.421875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 571.078125,
+          "bottom": 687.734375
+        },
+        "tools": {
+          "x": 400.5619812011719,
+          "y": 571.078125
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 19.1875,
+          "y": 768.734375,
+          "bottom": 885.390625
+        },
+        "tools": {
+          "x": 400.6300048828125,
+          "y": 768.734375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 1440,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 135.84375,
+          "bottom": 236.46875
+        },
+        "tools": {
+          "x": 907.83203125,
+          "y": 135.84375
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 317.46875,
+          "bottom": 418.09375
+        },
+        "tools": {
+          "x": 907.8653564453125,
+          "y": 317.46875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 499.09375,
+          "bottom": 599.71875
+        },
+        "tools": {
+          "x": 907.982421875,
+          "y": 499.09375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 1440,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 135.84375,
+          "bottom": 236.46875
+        },
+        "tools": {
+          "x": 907.82861328125,
+          "y": 135.84375
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 317.46875,
+          "bottom": 418.09375
+        },
+        "tools": {
+          "x": 907.8431396484375,
+          "y": 317.46875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 499.09375,
+          "bottom": 599.71875
+        },
+        "tools": {
+          "x": 907.9110107421875,
+          "y": 499.09375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 1440,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 136.1875,
+          "bottom": 236.8125
+        },
+        "tools": {
+          "x": 907.8297119140625,
+          "y": 136.1875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 317.8125,
+          "bottom": 418.4375
+        },
+        "tools": {
+          "x": 907.852294921875,
+          "y": 317.8125
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 499.4375,
+          "bottom": 600.0625
+        },
+        "tools": {
+          "x": 907.9419555664062,
+          "y": 499.4375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 1440,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 136.1875,
+          "bottom": 236.8125
+        },
+        "tools": {
+          "x": 907.83203125,
+          "y": 136.1875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 317.8125,
+          "bottom": 418.4375
+        },
+        "tools": {
+          "x": 907.865478515625,
+          "y": 317.8125
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 400.484375,
+          "y": 499.4375,
+          "bottom": 600.0625
+        },
+        "tools": {
+          "x": 907.982666015625,
+          "y": 499.4375
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 1920,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 150.375,
+          "bottom": 259.0625
+        },
+        "tools": {
+          "x": 1208.62890625,
+          "y": 150.375
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 340.0625,
+          "bottom": 448.75
+        },
+        "tools": {
+          "x": 1208.662353515625,
+          "y": 340.0625
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 529.75,
+          "bottom": 638.4375
+        },
+        "tools": {
+          "x": 1208.779541015625,
+          "y": 529.75
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 1920,
+    "locale": "pt-BR",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 150.375,
+          "bottom": 259.0625
+        },
+        "tools": {
+          "x": 1208.62890625,
+          "y": 150.375
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 340.0625,
+          "bottom": 448.75
+        },
+        "tools": {
+          "x": 1208.662353515625,
+          "y": 340.0625
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 529.75,
+          "bottom": 638.4375
+        },
+        "tools": {
+          "x": 1208.7796630859375,
+          "y": 529.75
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 1920,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 light",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 150.296875,
+          "bottom": 258.984375
+        },
+        "tools": {
+          "x": 1208.62890625,
+          "y": 150.296875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 339.984375,
+          "bottom": 448.671875
+        },
+        "tools": {
+          "x": 1208.6622314453125,
+          "y": 339.984375
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 529.671875,
+          "bottom": 638.359375
+        },
+        "tools": {
+          "x": 1208.779296875,
+          "y": 529.671875
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  },
+  {
+    "width": 1920,
+    "locale": "en-US",
+    "theme": "__variable_0c54b3 __variable_12fc7c __variable_a3cc63 dark",
+    "overflow": false,
+    "rows": [
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 150.296875,
+          "bottom": 258.984375
+        },
+        "tools": {
+          "x": 1208.626708984375,
+          "y": 150.296875
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 339.984375,
+          "bottom": 448.671875
+        },
+        "tools": {
+          "x": 1208.6494140625,
+          "y": 339.984375
+        },
+        "overlap": false
+      },
+      {
+        "copy": {
+          "x": 530.25,
+          "y": 529.671875,
+          "bottom": 638.359375
+        },
+        "tools": {
+          "x": 1208.7392578125,
+          "y": 529.671875
+        },
+        "overlap": false
+      }
+    ],
+    "svg": 4
+  }
+]

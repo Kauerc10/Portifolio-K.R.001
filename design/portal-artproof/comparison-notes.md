@@ -1,0 +1,3 @@
+## Visual review notes
+
+The cap topology seam is resolved in the artifact verification render. Violet saturation is substantially closer after Standard display transform. The block has real depth, a softly rounded arris and source mineral normal/roughness; contact shadows are shared with the real ground. Remaining differences are material identity (recolored rock rather than limestone), a flatter terrain and no mountains, and missing luminous haze beyond the opening. The camera is a perspective approximation, not a solved camera from measured geometry. The far ground currently remains darker than the reference, while the near ground has less highlight headroom. Do not interpret this isolated proof as production approval.

@@ -1,0 +1,122 @@
+[
+  {
+    "locale": "pt-BR",
+    "width": 1440,
+    "slug": "viodigital",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 1440,
+    "slug": "vecom",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 1440,
+    "slug": "atlas-notarial",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 1440,
+    "slug": "docfacil",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 1440,
+    "slug": "ckf",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 390,
+    "slug": "viodigital",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 390,
+    "slug": "vecom",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 390,
+    "slug": "atlas-notarial",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 390,
+    "slug": "docfacil",
+    "status": "PASS"
+  },
+  {
+    "locale": "pt-BR",
+    "width": 390,
+    "slug": "ckf",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 1440,
+    "slug": "viodigital",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 1440,
+    "slug": "vecom",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 1440,
+    "slug": "atlas-notarial",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 1440,
+    "slug": "docfacil",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 1440,
+    "slug": "ckf",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 390,
+    "slug": "viodigital",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 390,
+    "slug": "vecom",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 390,
+    "slug": "atlas-notarial",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 390,
+    "slug": "docfacil",
+    "status": "PASS"
+  },
+  {
+    "locale": "en-US",
+    "width": 390,
+    "slug": "ckf",
+    "status": "PASS"
+  }
+]

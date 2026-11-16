@@ -59,13 +59,13 @@ body::-webkit-scrollbar-thumb,
     background: transparent !important;
 }
 
-/* Body: cursor custom ativo em desktop, sem overflow horizontal */
+/* Body: cursor nativo, sem overflow horizontal */
 body {
     background: var(--void);
     overflow-x: hidden !important;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
-    cursor: none;
+    cursor: auto;
     position: relative;
 }
 
@@ -82,8 +82,8 @@ ul {
 
 /* Buttons com cursor herdado e sem borda/fundo padrão */
 button {
-    cursor: none;
-    /* Cursor custom também nos botões */
+    cursor: auto;
+
     background: none;
     border: none;
     font: inherit;

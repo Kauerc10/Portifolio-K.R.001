@@ -21,7 +21,7 @@
     font-size: 0.78rem;
     letter-spacing: 0.08em;
     border: 1px solid transparent;
-    cursor: none;
+    cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;

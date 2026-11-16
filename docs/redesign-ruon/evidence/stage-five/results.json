@@ -1,0 +1,22 @@
+[
+  {
+    "name": "desktop",
+    "cycle": "PASS",
+    "reverse": "PASS",
+    "interruption": "PASS",
+    "idle": "PASS",
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "cycle": "PASS",
+    "reverse": "PASS",
+    "interruption": "PASS",
+    "idle": "PASS",
+    "errors": []
+  },
+  {
+    "reduced": "PASS",
+    "english": "PASS"
+  }
+]

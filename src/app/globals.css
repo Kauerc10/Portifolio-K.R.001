@@ -3,6 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cross-document shared artwork: native navigation, history and no-JS fallback. */
+@view-transition { navigation: auto; }
+/* overflow:hidden on body creates a non-scrolling sticky ancestor. Clip only x. */
+html:has([data-vio-document]), body:has([data-vio-document]) { overflow-x: clip !important; }
+::view-transition-group(vio-document) { animation-duration: 1100ms; animation-timing-function: cubic-bezier(.22,1,.36,1); }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  ::view-transition-group(*) { animation-duration: 0s !important; }
+  ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+
 /* ÆVO cinematic protocols: every animation restores its original state. */
 .aevo-effect-notice {
   position: fixed; inset-block-start: 5rem; inset-inline-start: 50%; z-index: 80;
@@ -80,4 +91,119 @@
 @media (prefers-reduced-motion: reduce) {
   .aevo-chat-panel, .aevo-chat-panel--closing { animation-duration:.01ms; }
   .aevo-thinking__icon, .aevo-thinking__dots i, .aevo-message-reveal { animation:none; }
+}
+
+:root {
+  --portfolio-shell: 1920px;
+  --portfolio-gutter: clamp(1.25rem, 5vw, 6rem);
+  --editorial-column-gap: clamp(2rem, 5vw, 6rem);
+}
+/* Native input and document scrolling; the hero has no camera or render loop. */
+a[href], button, [role="button"], summary { cursor:pointer; }
+input, textarea, [contenteditable="true"] { cursor:text; }
+.portal-hero { --portal-bg:#f7f7fa; --portal-ink:#14131c; --portal-muted:#565565; --portal-accent:#6534d8; background:var(--portal-bg); color:var(--portal-ink); overflow:hidden; }
+.dark .portal-hero { --portal-bg:#111015; --portal-ink:#f3f2f5; --portal-muted:#c5c4d0; --portal-accent:#b493ff; }
+.portal-composition { display:grid; }
+.portal-intro { width:min(var(--portfolio-shell),100%); margin:auto; padding:24px var(--portfolio-gutter); display:grid; gap:28px; position:relative; z-index:2; }
+.portal-intro h1 { font-size:clamp(2.15rem,4.7vw,4.5rem); font-weight:700; letter-spacing:-.045em; line-height:1.08; }
+.portal-intro h1 [data-intro-target] { display:block; width:fit-content; }
+.portal-intro h1 [data-intro-target="second"] { color:var(--portal-accent); }
+[data-intro-docking] .portal-intro [data-intro-target] { visibility:hidden; }
+.portal-areas { margin-top:16px; font-size:clamp(1rem,1.65vw,1.5rem); color:var(--portal-muted); }
+.portal-presentation { border-left:2px solid #8b5cf666; padding-left:20px; align-self:start; font-size:1rem; line-height:1.7; max-width:420px; }
+.portal-presentation p { color:var(--portal-muted); }
+.portal-primary-links { display:flex; flex-wrap:wrap; align-items:center; gap:20px; margin-top:20px; font-size:.875rem; font-weight:600; }
+.portal-primary { display:inline-flex; align-items:center; gap:10px; min-height:44px; padding:12px 22px; border-radius:999px; background:var(--portal-ink); color:var(--portal-bg); }
+.portal-resume { display:inline-flex; align-items:center; min-height:44px; text-decoration:underline; text-decoration-color:var(--portal-accent); text-underline-offset:6px; }
+.portal-artwork { position:relative; width:100%; aspect-ratio:1672 / 701; overflow:hidden; }
+.portal-artwork-plane { position:absolute; width:100%; aspect-ratio:1672 / 941; top:calc(-240 / 1672 * 100vw); }
+.portal-artwork img { width:100%; height:auto; display:block; }
+.portal-artwork::after { content:''; pointer-events:none; position:absolute; inset:0; background:linear-gradient(to bottom,var(--portal-bg),transparent 12%,transparent 85%,var(--portal-bg)); }
+.portal-indicators { position:absolute; inset:0; z-index:1; }
+.portal-indicator { position:absolute; left:var(--portal-x); top:var(--portal-y); transform:translate(-50%,calc(-100% - 24px)); font-size:.875rem; font-weight:600; min-height:44px; display:flex; align-items:center; padding:8px 14px; border-radius:999px; background:#f7f7faf5; color:#2e1e6b; white-space:nowrap; }
+.portal-indicator span { position:absolute; width:1px; height:20px; background:#6534d8; top:100%; left:50%; }
+.portal-indicator span::after { content:''; position:absolute; bottom:0; left:-3px; width:7px; height:7px; border-radius:50%; background:#6534d8; }
+.portal-explorer { width:min(800px,calc(100% - 48px)); margin:0 auto; position:relative; z-index:2; }
+.portal-controls { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+.portal-controls button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:44px; padding:10px 18px; border-radius:999px; border:1px solid #a19ba9; font-size:.875rem; color:var(--portal-ink); background:var(--portal-bg); }
+.portal-controls button[aria-pressed=true] { border-color:var(--portal-accent); box-shadow:inset 0 0 0 1px var(--portal-accent); }
+.portal-hero a:focus-visible,.portal-hero button:focus-visible { outline:3px solid var(--portal-accent); outline-offset:4px; }
+.portal-preview { min-height:140px; padding:24px 0; display:flex; align-items:center; justify-content:center; color:var(--portal-muted); }
+.portal-footer { max-width:1433px; margin:0 auto; padding:0 clamp(24px,4.5vw,72px) 40px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:center; justify-content:center; font-size:.8rem; color:var(--portal-muted); }
+.portal-footer a { display:inline-flex; min-height:44px; align-items:center; gap:12px; }
+@media(min-width:768px) { .portal-intro { grid-template-columns:1.3fr 1fr; gap:48px; } }
+@media(min-width:1280px) {
+ .portal-intro,.portal-scene { grid-area:1/1; }
+ .portal-intro { align-self:start; margin:0 auto; }
+ .portal-artwork { aspect-ratio:1672 / 941; }
+ .portal-artwork-plane { top:0; }
+ .portal-artwork::after { background:linear-gradient(to bottom,var(--portal-bg),transparent 25%,transparent 87%,var(--portal-bg)); }
+ .portal-footer { justify-content:flex-end; } .portal-footer > span { margin-right:auto; }
+}
+@media(max-width:1279px) {
+ .portal-indicators { display:flex; position:relative; flex-wrap:wrap; justify-content:center; gap:8px; padding:12px 24px; }
+ .portal-indicator { position:static; transform:none; white-space:normal; font-size:.8rem; }
+ .portal-indicator span { display:none; }
+
+}
+@media(max-width:479px) {
+ .portal-intro { padding-top:16px; }
+ .portal-controls { display:grid; grid-template-columns:1fr; }
+ .portal-controls button { justify-content:space-between; }
+ .portal-preview { min-height:164px; }
+
+}
+
+.portal-scene { position:relative; min-width:0; }
+
+.portfolio-shell { max-width: var(--portfolio-shell); padding-inline: var(--portfolio-gutter); }
+
+/* Snapshot the complete VECOM composition as one object: its depth order stays intact. */
+::view-transition-group(vecom-scene) {
+  animation-duration:1350ms;
+  animation-timing-function:cubic-bezier(.16,1,.3,1);
+  z-index:30;
+}
+::view-transition-image-pair(vecom-scene) { isolation:isolate; }
+::view-transition-old(vecom-scene),::view-transition-new(vecom-scene) { mix-blend-mode:normal; }
+::view-transition-old(vecom-scene) { animation:vecom-scene-out 320ms ease both; }
+::view-transition-new(vecom-scene) { animation:vecom-scene-in 1150ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes vecom-scene-out { to { opacity:0; filter:blur(3px); } }
+@keyframes vecom-scene-in { from { opacity:0; clip-path:inset(8% 4% 3% round 24px); filter:blur(3px); } to { opacity:1; clip-path:inset(0 round 0); filter:blur(0); } }
+@media(prefers-reduced-motion:reduce) {
+ ::view-transition-old(vecom-scene),::view-transition-new(vecom-scene) { animation:none !important; }
+}
+html:has([data-vecom-handoff]),body:has([data-vecom-handoff]) { overflow-x:clip !important; }
+
+/* Atlas keeps the full paper composition together during native navigation. */
+html:has([data-atlas-story]),body:has([data-atlas-story]) { overflow-x:clip !important; }
+::view-transition-group(atlas-scene) { animation-duration:1250ms; animation-timing-function:cubic-bezier(.16,1,.3,1); z-index:30; }
+::view-transition-image-pair(atlas-scene) { isolation:isolate; }
+::view-transition-old(atlas-scene),::view-transition-new(atlas-scene) { mix-blend-mode:normal; }
+::view-transition-old(atlas-scene) { animation:vecom-scene-out 300ms ease both; }
+::view-transition-new(atlas-scene) { animation:vecom-scene-in 1100ms cubic-bezier(.16,1,.3,1) both; }
+@media(prefers-reduced-motion:reduce) {
+ ::view-transition-old(atlas-scene),::view-transition-new(atlas-scene) { animation:none !important; }
+}
+
+/* Keep the owl and document together across native case navigation. */
+html:has([data-docfacil-story]),body:has([data-docfacil-story]) { overflow-x:clip !important; }
+::view-transition-group(docfacil-scene) { animation-duration:1250ms; animation-timing-function:cubic-bezier(.16,1,.3,1); z-index:30; }
+::view-transition-image-pair(docfacil-scene) { isolation:isolate; }
+::view-transition-old(docfacil-scene),::view-transition-new(docfacil-scene) { mix-blend-mode:normal; }
+::view-transition-old(docfacil-scene) { animation:vecom-scene-out 300ms ease both; }
+::view-transition-new(docfacil-scene) { animation:vecom-scene-in 1100ms cubic-bezier(.16,1,.3,1) both; }
+@media(prefers-reduced-motion:reduce) {
+ ::view-transition-old(docfacil-scene),::view-transition-new(docfacil-scene) { animation:none !important; }
+}
+
+/* CKF keeps the paired deliveries intact during native navigation. */
+html:has([data-ckf-story]),body:has([data-ckf-story]) { overflow-x:clip !important; }
+::view-transition-group(ckf-scene) { animation-duration:1250ms; animation-timing-function:cubic-bezier(.16,1,.3,1); z-index:30; }
+::view-transition-image-pair(ckf-scene) { isolation:isolate; }
+::view-transition-old(ckf-scene),::view-transition-new(ckf-scene) { mix-blend-mode:normal; }
+::view-transition-old(ckf-scene) { animation:vecom-scene-out 300ms ease both; }
+::view-transition-new(ckf-scene) { animation:vecom-scene-in 1100ms cubic-bezier(.16,1,.3,1) both; }
+@media(prefers-reduced-motion:reduce) {
+ ::view-transition-old(ckf-scene),::view-transition-new(ckf-scene) { animation:none !important; }
 }

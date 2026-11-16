@@ -1,0 +1,51 @@
+{
+  "status": "authored-gltf-baked",
+  "source": "design/scene-proof/blender/build_scene.py",
+  "license": "original authored Blender 4.5 geometry and baked lightmap atlases",
+  "cameras": {
+    "desktop": {
+      "viewport": [
+        1433,
+        1098
+      ],
+      "position": [
+        0,
+        16,
+        28
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ]
+    },
+    "mobile": {
+      "viewport": [
+        390,
+        340
+      ],
+      "position": [
+        -3,
+        24,
+        34
+      ],
+      "target": [
+        0,
+        1.5,
+        5.8
+      ]
+    }
+  },
+  "assets": [
+    {
+      "file": "poster-desktop.webp",
+      "bytes": 44278,
+      "containsUI": false
+    },
+    {
+      "file": "poster-mobile.webp",
+      "bytes": 10040,
+      "containsUI": false
+    }
+  ]
+}

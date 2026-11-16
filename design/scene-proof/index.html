@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prova local da paisagem — T01</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: #f7f7fa; }
+      canvas { display: block; width: 100vw; height: 100vh; touch-action: pan-y; }
+      #failure { margin: 24px; font: 16px system-ui; }
+    </style>
+  </head>
+  <body>
+    <canvas aria-label="Prova de paisagem arquitetônica em três dimensões"></canvas>
+    <p id="failure" hidden>A prévia 3D não está disponível neste navegador.</p>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

@@ -1,36 +1,91 @@
 'use client';
 
-import { useState } from 'react';
-import { Check, Copy, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { useEffect, useRef, type MouseEvent } from 'react';
 import type { Dictionary } from '@/i18n/types';
+import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
 
-export default function Footer({ dict: d }: { dict: Dictionary['footer'] }) {
-  const [copied, setCopied] = useState(false);
+export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
+  const pendingTop = useRef(false);
+  const trackingFrame = useRef(0);
+  const trackingDeadline = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard?.writeText('kaue.ruon@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
-  };
+  useEffect(() => {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const cancel = () => {
+      pendingTop.current = false;
+      cancelAnimationFrame(trackingFrame.current);
+      if (trackingDeadline.current) clearTimeout(trackingDeadline.current);
+      trackingDeadline.current = null;
+    };
+    const stopReduced = () => {
+      if (!motion.matches || !pendingTop.current) return;
+      window.scrollTo({ top: window.scrollY, behavior: 'instant' });
+      cancel();
+    };
+    const onPreference = () => {
+      if (motion.matches) stopReduced();
+    };
+    const onPageHide = () => cancel();
+    window.addEventListener('wheel', cancel, { passive: true });
+    window.addEventListener('touchstart', cancel, { passive: true });
+    window.addEventListener('pointerdown', cancel, { passive: true });
+    window.addEventListener('keydown', cancel);
+    window.addEventListener('pagehide', onPageHide);
+    motion.addEventListener('change', onPreference);
+    return () => {
+      cancel();
+      window.removeEventListener('wheel', cancel);
+      window.removeEventListener('touchstart', cancel);
+      window.removeEventListener('pointerdown', cancel);
+      window.removeEventListener('keydown', cancel);
+      window.removeEventListener('pagehide', onPageHide);
+      motion.removeEventListener('change', onPreference);
+    };
+  }, []);
+
+  function returnToTop(event: MouseEvent<HTMLAnchorElement>) {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    event.preventDefault();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    pendingTop.current = true;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' });
+    if (window.scrollY <= 2) {
+      pendingTop.current = false;
+      document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+      return;
+    }
+    if (reduceMotion) {
+      pendingTop.current = false;
+      return;
+    }
+    cancelAnimationFrame(trackingFrame.current);
+    trackingFrame.current = requestAnimationFrame(function trackTop() {
+      if (!pendingTop.current) return;
+      if (window.scrollY <= 2) {
+        pendingTop.current = false;
+        document.querySelector<HTMLElement>('#hero h1')?.focus({ preventScroll: true });
+        return;
+      }
+      trackingFrame.current = requestAnimationFrame(trackTop);
+    });
+    trackingDeadline.current = setTimeout(() => {
+      pendingTop.current = false;
+      cancelAnimationFrame(trackingFrame.current);
+      trackingDeadline.current = null;
+    }, 4000);
+  }
 
   return (
-    <footer className="footer">
-      <nav className="footer__channels" aria-label={d.channelsLabel}>
-        <button type="button" onClick={handleCopyEmail} className="footer__channel" aria-label={d.emailLabel}>
-          <Mail aria-hidden="true" />
-          <span>{copied ? d.copied : d.email}</span>
-          {copied ? <Check aria-hidden="true" /> : <Copy className="footer__channel-action" aria-hidden="true" />}
-        </button>
-        <a href="https://www.linkedin.com/in/kauerc/" target="_blank" rel="noopener noreferrer" className="footer__channel">
-          <Linkedin aria-hidden="true" />
-          <span>LinkedIn</span>
-        </a>
-        <a href="https://github.com/Kauerc10" target="_blank" rel="noopener noreferrer" className="footer__channel">
-          <Github aria-hidden="true" />
-          <span>GitHub</span>
-        </a>
+    <footer className="editorial-section footer-editorial" id="rodape">
+      <div className="footer-editorial__brand">kauê<span>ruon</span></div>
+      <nav className="footer-editorial__channels" aria-label={dict.channelsLabel}>
+        <a href={DIRECT_CONTACT_LINKS.email}><Mail aria-hidden="true" />{dict.email}</a>
+        <a href={DIRECT_CONTACT_LINKS.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />LinkedIn</a>
+        <a href={DIRECT_CONTACT_LINKS.github} target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" />GitHub</a>
       </nav>
-      <p className="text-[11px] text-slate-500 font-mono mt-1">{d.copyright}</p>
+      <a className="footer-editorial__top" href="#hero" onClick={returnToTop}>{dict.topLabel}<ArrowUpRight aria-hidden="true" /></a>
+      <p>{dict.copyright}</p>
     </footer>
   );
 }

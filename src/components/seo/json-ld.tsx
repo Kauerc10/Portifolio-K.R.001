@@ -13,12 +13,9 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
     name: 'Kauê Ruon Cardoso',
     givenName: 'Kauê',
     familyName: 'Ruon Cardoso',
-    jobTitle: isEnglish
-      ? 'Software Architect & AI Systems Engineer'
-      : 'Arquiteto de Software & Engenheiro de IA',
     description: isEnglish
-      ? 'Software Architect and AI Engineer specializing in Next.js 15, TypeScript, Generative AI (RAG), and zero-tolerance notarial automation.'
-      : 'Engenheiro de Software e Arquiteto de IA especializado em Next.js 15, TypeScript, IA Generativa (RAG) e automação notarial de tolerância zero a erros.',
+      ? 'I build applications, automate workflows, and help people use technology.'
+      : 'Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia.',
     url: localizedUrl,
     image: 'https://github.com/Kauerc10.png',
     email: 'mailto:kaue.ruon@gmail.com',
@@ -28,22 +25,6 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
       addressRegion: 'SC',
       addressCountry: 'BR',
     },
-    alumniOf: {
-      '@type': 'EducationalOrganization',
-      name: 'IMPA — Olimpíada Brasileira de Matemática das Escolas Públicas (OBMEP)',
-    },
-    worksFor: [
-      {
-        '@type': 'Organization',
-        name: 'Serviços Notariais e Registrais / LegalTech',
-        jobTitle: isEnglish ? 'Software Architect & Notarial Innovation' : 'Engenheiro de Software & Inovação Notarial',
-      },
-      {
-        '@type': 'Organization',
-        name: 'K-HUB Soluções',
-        jobTitle: 'Founder & Software Architect',
-      },
-    ],
     sameAs: [
       'https://github.com/Kauerc10',
       'https://www.linkedin.com/in/kauerc/',
@@ -66,8 +47,8 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
     '@id': `${localizedUrl}#website`,
     url: localizedUrl,
     name: isEnglish
-      ? 'Kauê Ruon Cardoso — Software Architect & AI Systems Engineer'
-      : 'Kauê Ruon Cardoso — Arquiteto de Software & Engenheiro de IA',
+      ? 'Kauê Ruon Cardoso — Development, automations and support'
+      : 'Kauê Ruon Cardoso — Desenvolvimento, automações e suporte',
     description: isEnglish
       ? 'Software Engineering Portfolio, Generative AI Systems & Production Case Studies by Kauê Ruon Cardoso.'
       : 'Portfólio de Engenharia de Software, Arquitetura de IA Generativa e projetos em produção de Kauê Ruon Cardoso.',

@@ -1,0 +1,67 @@
+{
+  "url": "http://localhost:3101",
+  "browser": "157.0.8103.50",
+  "runtime": "production",
+  "results": [
+    {
+      "width": 390,
+      "run": 0,
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "frameP95Ms": 16.800000000000182,
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "run": 1,
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "frameP95Ms": 16.899999999999636,
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "run": 2,
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "frameP95Ms": 16.899999999999636,
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "run": 0,
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "frameP95Ms": 16.800000000000182,
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "run": 1,
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "frameP95Ms": 16.899999999999636,
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "run": 2,
+      "cls": 0,
+      "longTasks": 0,
+      "longTaskMs": 0,
+      "frameP95Ms": 16.899999999999636,
+      "overflow": 0,
+      "errors": []
+    }
+  ]
+}
