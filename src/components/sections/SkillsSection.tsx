@@ -21,7 +21,7 @@ import LilacWaves from './LilacWaves';
 import './SkillsLiving.css';
 import SectionMotionEnhancer from './SectionMotionEnhancer';
 
-const groupIcons = [Braces, Cpu, Sparkles];
+const groupIcons = [Braces, Cpu, Sparkles, Workflow];
 
 const itemIcons: Record<string, LucideIcon> = {
   'JavaScript / TypeScript': Code2,
@@ -68,11 +68,7 @@ export default function SkillsSection({ dict: d }: { dict: Dictionary['skills'] 
                 <span className="editorial-skill-row__icon-plate" aria-hidden="true"><GroupIcon className="editorial-skill-row__icon" /></span>
                 <h3>{group.title}</h3>
                 <p>{group.description}</p>
-                {group.links?.length ? (
-                  <div className="editorial-skill-row__links">
-                    {group.links.map((link) => <a key={link.href} href={link.href}>{link.label}<span aria-hidden="true">↗</span></a>)}
-                  </div>
-                ) : null}
+
               </div>
               <div className="editorial-skill-row__chips">
                 {group.items.map((item) => {

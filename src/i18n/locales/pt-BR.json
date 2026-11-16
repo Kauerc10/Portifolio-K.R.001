@@ -61,9 +61,18 @@
     "profile": "Atuo em Blumenau unindo desenvolvimento web, automação de processos e suporte técnico próximo para transformar rotinas complexas em ferramentas simples.",
     "pillarsLabel": "Áreas de atuação",
     "pillars": [
-      { "title": "Desenvolvimento", "description": "Criação de aplicações sob medida." },
-      { "title": "Automações", "description": "Rotinas que poupam tempo." },
-      { "title": "Suporte", "description": "Apoio no uso e na evolução da tecnologia." }
+      {
+        "title": "Desenvolvimento",
+        "description": "Criação de aplicações sob medida."
+      },
+      {
+        "title": "Automações",
+        "description": "Rotinas que poupam tempo."
+      },
+      {
+        "title": "Suporte",
+        "description": "Apoio no uso e na evolução da tecnologia."
+      }
     ],
     "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",
     "bioP2": "Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou automatizar processos, mesmo sem ninguém me pedir.",
@@ -144,12 +153,6 @@
       {
         "title": "Desenvolvimento",
         "description": "Produtos web modernos, tipados e sustentáveis.",
-        "links": [
-          {
-            "label": "CKF Manutenção",
-            "href": "#project-ckf"
-          }
-        ],
         "items": [
           "JavaScript / TypeScript",
           "React / Next.js",
@@ -160,12 +163,6 @@
       {
         "title": "Automação",
         "description": "Fluxos que conectam produto, dados e operação.",
-        "links": [
-          {
-            "label": "Atlas Notarial",
-            "href": "#project-atlas"
-          }
-        ],
         "items": [
           "APIs REST",
           "Automação de processos",
@@ -174,20 +171,24 @@
         ]
       },
       {
-        "title": "IA aplicada",
-        "description": "Modelos e integrações aplicados a problemas reais.",
-        "links": [
-          {
-            "label": "Ver no DocFácil",
-            "href": "#project-docfacil"
-          }
-        ],
+        "title": "IA e LLMs",
+        "description": "IA no desenvolvimento e em soluções para problemas reais.",
         "items": [
           "Integração de LLMs",
           "Arquitetura de Providers",
           "OpenAI / Anthropic / Gemini",
           "Streaming de respostas",
-          "Prompt engineering"
+          "Prompt engineering",
+          "IA no desenvolvimento"
+        ]
+      },
+      {
+        "title": "Metodologia e resolução de problemas",
+        "description": "Entender o contexto, organizar prioridades e evoluir a solução em etapas.",
+        "items": [
+          "Metodologia ágil",
+          "Scrum / Kanban",
+          "Resolução de problemas"
         ]
       }
     ]
@@ -306,8 +307,17 @@
   "projetos": {
     "editorialTitle": "Projetos selecionados",
     "editorialDescription": "Soluções reais que desenvolvi para automatizar processos, simplificar rotinas e resolver problemas do dia a dia com tecnologia.",
-    "flowLabels": ["Consulta", "Dados do veículo", "Procuração"],
-    "navLabels": { "atlas": "Atlas Notarial", "ckf": "CKF Manutenção", "docfacil": "DocFácil", "folilib": "Foli" },
+    "flowLabels": [
+      "Consulta",
+      "Dados do veículo",
+      "Procuração"
+    ],
+    "navLabels": {
+      "atlas": "Atlas Notarial",
+      "ckf": "CKF Manutenção",
+      "docfacil": "DocFácil",
+      "folilib": "Foli"
+    },
     "title": "DAS EVIDÊNCIAS DE PROJETO",
     "btnDemo": "DEMO AO VIVO",
     "btnRepo": "REPOSITÓRIO",

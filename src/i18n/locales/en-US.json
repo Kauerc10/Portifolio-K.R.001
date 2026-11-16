@@ -61,9 +61,18 @@
     "profile": "Based in Blumenau, I combine web development, process automation, and hands-on technical support to turn complex routines into simple tools.",
     "pillarsLabel": "Areas of work",
     "pillars": [
-      { "title": "Development", "description": "Purpose-built applications." },
-      { "title": "Automation", "description": "Routines that save time." },
-      { "title": "Support", "description": "Support for using and evolving technology." }
+      {
+        "title": "Development",
+        "description": "Purpose-built applications."
+      },
+      {
+        "title": "Automation",
+        "description": "Routines that save time."
+      },
+      {
+        "title": "Support",
+        "description": "Support for using and evolving technology."
+      }
     ],
     "bioP1": "My interest in technology started early. Whenever I see a manual, repetitive process, I cannot resist trying to automate it. That curiosity took me from iPhone board repair to notary desks and back to technology.",
     "bioP2": "Today I work as a notary clerk at Cartório Gaya in Blumenau, Brazil. I found that I work well in the legal world, but I am always drawn back to technology: I try to improve or automate processes even when nobody asks.",
@@ -144,12 +153,6 @@
       {
         "title": "Development",
         "description": "Modern, typed, and maintainable web products.",
-        "links": [
-          {
-            "label": "CKF Manutenção",
-            "href": "#project-ckf"
-          }
-        ],
         "items": [
           "JavaScript / TypeScript",
           "React / Next.js",
@@ -160,12 +163,6 @@
       {
         "title": "Automation",
         "description": "Flows connecting product, data, and operations.",
-        "links": [
-          {
-            "label": "Atlas Notarial",
-            "href": "#project-atlas"
-          }
-        ],
         "items": [
           "REST APIs",
           "Process automation",
@@ -174,20 +171,24 @@
         ]
       },
       {
-        "title": "Applied AI",
-        "description": "Models and integrations applied to real problems.",
-        "links": [
-          {
-            "label": "See DocFácil",
-            "href": "#project-docfacil"
-          }
-        ],
+        "title": "AI and LLMs",
+        "description": "AI for development and solutions to real problems.",
         "items": [
           "LLM Integration",
           "Provider Architecture",
           "OpenAI / Anthropic / Gemini",
           "Response streaming",
-          "Prompt engineering"
+          "Prompt engineering",
+          "AI-assisted development"
+        ]
+      },
+      {
+        "title": "Methods and problem solving",
+        "description": "Understand context, organize priorities and improve solutions step by step.",
+        "items": [
+          "Agile methodology",
+          "Scrum / Kanban",
+          "Problem solving"
         ]
       }
     ]
@@ -306,8 +307,17 @@
   "projetos": {
     "editorialTitle": "Selected projects",
     "editorialDescription": "Real solutions I built to automate processes, simplify routines, and solve everyday problems with technology.",
-    "flowLabels": ["Search", "Vehicle data", "Power of attorney"],
-    "navLabels": { "atlas": "Atlas Notarial", "ckf": "CKF Maintenance", "docfacil": "DocFácil", "folilib": "Foli" },
+    "flowLabels": [
+      "Search",
+      "Vehicle data",
+      "Power of attorney"
+    ],
+    "navLabels": {
+      "atlas": "Atlas Notarial",
+      "ckf": "CKF Maintenance",
+      "docfacil": "DocFácil",
+      "folilib": "Foli"
+    },
     "title": "PROJECT EVIDENCE",
     "btnDemo": "LIVE DEMO",
     "btnRepo": "REPOSITORY",

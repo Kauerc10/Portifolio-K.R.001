@@ -1,3 +1,4 @@
+import './LilacWaves.css';
 /** Lightweight decorative planes shared by the editorial sections as they adopt this direction. */
 export default function LilacWaves() {
   return (

@@ -56,7 +56,7 @@ describe('Suíte de Testes da Arquitetura i18n (Next.js 15 Nativo)', () => {
     expect(ptBR.experiencia.roles).toHaveLength(2);
     expect(ptBR.projetos.items.docfacil.title).toContain('DocFácil');
     expect(ptBR.experiencia.roles[0].company).toBe('Cartório Gaya');
-    expect(ptBR.skills.groups).toHaveLength(3);
+    expect(ptBR.skills.groups).toHaveLength(4);
     expect(ptBR.projetos.items.atlas.solution).toContain('Cartório Gaya');
     expect(enUS.experiencia.roles[1].title).toBe('Apple Repair Technician');
     expect(enUS.projetos.items.folilib.title).toContain('PDF Layout Engine');

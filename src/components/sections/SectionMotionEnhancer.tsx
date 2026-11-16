@@ -25,8 +25,7 @@ export default function SectionMotionEnhancer({ sectionId, kind }: Props) {
         reveal(item.querySelector('[data-motion-period]'), [{ backgroundColor: 'transparent' }, { backgroundColor: 'color-mix(in srgb, var(--editorial-violet) 16%, transparent)', offset: .5 }, { backgroundColor: 'transparent' }], { anchor: item, from: .55 });
       });
     }
-    if (kind === 'skills') {
-      const mobile = window.matchMedia?.('(max-width: 600px)')?.matches ?? false;
+    const mobile = window.matchMedia?.('(max-width: 600px)')?.matches ?? false;
       root.querySelectorAll<SVGElement>('[data-motion-wave]').forEach(plane => {
         const near = plane.dataset.motionWave === 'near';
         const offset = (near ? 4 : -2.5) * (mobile ? .4 : 1);
@@ -36,6 +35,7 @@ export default function SectionMotionEnhancer({ sectionId, kind }: Props) {
         ], { anchor: root, travel: 'section' }));
       });
 
+    if (kind === 'skills') {
       root.querySelectorAll<HTMLElement>('.editorial-skill-row').forEach((row, index) => {
         // One local composition per group; text itself stays sharp and in place.
         scope.onEnter(row, () => {
@@ -48,13 +48,7 @@ export default function SectionMotionEnhancer({ sectionId, kind }: Props) {
             { transform: 'translateX(0)', opacity: 1 },
           ], { duration: 560, delay: index * 70 + 60 });
         });
-        row.querySelectorAll<HTMLAnchorElement>('.editorial-skill-row__links a').forEach(link => {
-          const enter = () => row.classList.add('is-motion-linked');
-          const leave = () => row.classList.remove('is-motion-linked');
-          link.addEventListener('pointerenter', enter); link.addEventListener('focus', enter);
-          link.addEventListener('pointerleave', leave); link.addEventListener('blur', leave);
-          cleanups.push(() => { link.removeEventListener('pointerenter', enter); link.removeEventListener('focus', enter); link.removeEventListener('pointerleave', leave); link.removeEventListener('blur', leave); });
-        });
+
       });
       root.querySelectorAll('[data-motion-skill-rule]').forEach(rule => reveal(rule, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }]));
     }

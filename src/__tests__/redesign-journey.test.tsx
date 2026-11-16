@@ -106,7 +106,7 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
   });
 
   describe('P01 (#53), P03 (#55), P04 (#56), P05 (#57), P06 (#58) — Seções editoriais e evidências', () => {
-    it('renderiza Sobre sem repetição com 3 áreas, Experiência em linha de trajetória e Competências com currículo e links', () => {
+    it('renderiza Sobre sem repetição com 3 áreas, Experiência em linha de trajetória e Competências com currículo e habilidades sem links de projeto', () => {
       render(
         <>
           <SobreSection dict={ptBR.sobre} />
@@ -122,7 +122,12 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
 
       const resumeLink = screen.getByRole('link', { name: /Ver meu currículo/i });
       expect(resumeLink).toHaveAttribute('href', '/curriculo_kaue.pdf');
-      expect(screen.getByRole('link', { name: /Atlas Notarial/i })).toHaveAttribute('href', '#project-atlas');
+      const skills = document.getElementById('skills')!;
+      expect(skills.querySelectorAll('a')).toHaveLength(1);
+      expect(skills.querySelector('a[href^="#project-"]')).toBeNull();
+      expect(skills.querySelectorAll('article')).toHaveLength(4);
+      expect(screen.getByText('Metodologia e resolução de problemas')).toBeInTheDocument();
+      expect(screen.getByText('IA no desenvolvimento')).toBeInTheDocument();
     });
 
     it('renderiza Formação atual sem botão de expansão quando há até 6 cursos e suporta metadados opcionais em en-US', () => {

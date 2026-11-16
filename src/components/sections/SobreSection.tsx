@@ -1,9 +1,13 @@
 import type { Dictionary } from '@/i18n/types';
+import { Braces, Workflow, Headphones } from 'lucide-react';
+import LilacWaves from './LilacWaves';
+import './ReadingLiving.css';
 import SectionMotionEnhancer from './SectionMotionEnhancer';
 
 export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] }) {
   return (
-    <section className="section editorial-section sobre" id="sobre" data-section="2">
+    <section className="section editorial-section sobre editorial-reading" id="sobre" data-section="2">
+      <LilacWaves />
       <div className="editorial-section__eyebrow">{d.eyebrow}</div>
       <div className="editorial-section__rule" aria-hidden="true" />
       <div className="editorial-grid editorial-grid--about">
@@ -20,13 +24,16 @@ export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] })
         <img src="/images/editorial-details/about-ribbon-2172.webp" srcSet="/images/editorial-details/about-ribbon-1100.webp 1100w, /images/editorial-details/about-ribbon-2172.webp 2172w" sizes="100vw" width="2172" height="300" alt="" loading="lazy" decoding="async" />
       </picture>
       <div className="editorial-pillars" aria-label={d.pillarsLabel} data-motion-pillars>
-        {d.pillars.map((pillar) => (
+        {d.pillars.map((pillar, index) => {
+          const Icon = [Braces, Workflow, Headphones][index] ?? Braces;
+          return (
           <article className="editorial-pillar" key={pillar.title} data-motion-pillar>
             <span className="editorial-pillar__accent" data-motion-pillar-accent aria-hidden="true" />
+            <span className="editorial-reading__icon" aria-hidden="true"><Icon /></span>
             <h3>{pillar.title}</h3>
             <p>{pillar.description}</p>
           </article>
-        ))}
+        ); })}
       </div>
       <SectionMotionEnhancer sectionId="sobre" kind="sobre" />
     </section>

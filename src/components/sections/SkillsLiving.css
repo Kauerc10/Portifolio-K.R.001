@@ -1,8 +1,3 @@
-/* Shared vector material: no bitmap, blur, idle animation or interaction surface. */
-.lilac-waves { position: absolute; inset: 0; overflow: clip; pointer-events: none; z-index: -1; color: var(--editorial-violet); mask-image: linear-gradient(transparent, #000 10%, #000 84%, transparent); }
-.lilac-waves__plane { position: absolute; inset: -8% -5%; width: 110%; height: 116%; fill: currentColor; }
-.lilac-waves__plane--far { opacity: .055; }
-.lilac-waves__plane--near { opacity: .045; }
 .editorial-skills { position: relative; isolation: isolate; max-width: none; }
 .editorial-skills .editorial-grid--skills { max-width: var(--portfolio-shell); margin-inline: auto; grid-template-columns: minmax(0, .28fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4.5rem); }
 .editorial-skills .editorial-display { font-size: clamp(2.5rem, 3.8vw, 4.4rem); line-height: 1.03; letter-spacing: -.04em; }
@@ -19,12 +14,10 @@
 .editorial-skills .editorial-skill-row__icon { width: 1.6rem; height: 1.6rem; margin: 0; stroke-width: 2.3; }
 .editorial-skills .editorial-skill-row__copy h3 { font-size: clamp(1.4rem, 2vw, 2.25rem); line-height: 1.12; letter-spacing: -.04em; overflow-wrap: normal; }
 .editorial-skills .editorial-skill-row__copy p { font-size: 1rem; margin-top: .6rem; }
-.editorial-skills .editorial-skill-row__links { margin-top: .8rem; }
-.editorial-skills .editorial-skill-row__links a { font-size: .95rem; line-height: 1.5; }
 .editorial-skills .editorial-skill-row__chips { border-inline-start: 1px solid var(--editorial-rule); padding-inline-start: clamp(1rem, 2vw, 2rem); gap: .65rem; }
 .editorial-skills .editorial-skill-chip { border: 0; font-size: clamp(.78rem, .9vw, .95rem); line-height: 1.3; padding: .7rem .8rem; max-width: 100%; }
 .editorial-skills .editorial-skill-chip:hover { transform: none; }
-.editorial-skills .editorial-skill-row:is(:hover, :focus-within) .editorial-skill-row__icon-plate { background: color-mix(in srgb, var(--editorial-violet) 14%, transparent); }
+
 .editorial-skill-row__icon-plate { transition: background-color .18s ease; }
 @media (max-width: 1100px) {
   .editorial-skills .editorial-grid--skills { grid-template-columns: minmax(0, 1fr); }
@@ -39,3 +32,21 @@
   .lilac-waves__plane { width: 160%; inset-inline-start: -30%; }
 }
 @media (prefers-reduced-motion: reduce) { .editorial-skill-row__icon-plate { transition: none; } }
+/* Local illumination: one opacity layer, no pointer tracking or idle timeline. */
+.editorial-skills .editorial-skill-row { isolation: isolate; }
+.editorial-skills .editorial-skill-row::before { content: ''; position: absolute; z-index: -1; inset: .3rem -.9rem; border-radius: 1rem; background: radial-gradient(ellipse at 18% 35%, color-mix(in srgb, var(--editorial-violet) 13%, transparent), transparent 75%); opacity: 0; transition: opacity 180ms ease; pointer-events: none; }
+.editorial-skills .editorial-skill-row__icon { transition: transform 180ms ease, stroke-width 180ms ease; }
+.editorial-skills .editorial-skill-chip { transition: color 180ms ease, background-color 180ms ease; cursor: default; }
+.editorial-skills .editorial-cta { transition: background-color 180ms ease, color 180ms ease; }
+.editorial-skills .editorial-cta:focus-visible { outline: 2px solid var(--editorial-violet); outline-offset: 6px; background: color-mix(in srgb, var(--editorial-violet) 12%, transparent); }
+@media (hover: hover) and (pointer: fine) {
+  .editorial-skills .editorial-skill-row:hover::before { opacity: 1; }
+  .editorial-skills .editorial-skill-row:hover .editorial-skill-row__icon-plate { background: color-mix(in srgb, var(--editorial-violet) 18%, transparent); }
+  .editorial-skills .editorial-skill-row:hover .editorial-skill-row__icon { transform: rotate(-7deg) scale(1.08); stroke-width: 2.6; }
+  .editorial-skills .editorial-skill-chip:hover { color: var(--editorial-violet); background: color-mix(in srgb, var(--editorial-violet) 16%, var(--editorial-surface)); }
+  .editorial-skills .editorial-cta:hover { background: color-mix(in srgb, var(--editorial-violet) 12%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editorial-skills .editorial-skill-row::before, .editorial-skills .editorial-skill-row__icon, .editorial-skills .editorial-skill-chip, .editorial-skills .editorial-cta { transition: none; }
+  .editorial-skills .editorial-skill-row:hover .editorial-skill-row__icon { transform: none; }
+}
