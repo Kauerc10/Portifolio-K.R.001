@@ -8,6 +8,10 @@ O usuário escolheu a proposta B isolada de Competências como referência de li
 
 ## Movimento planejado
 
+### Ajuste após teste da primeira fatia
+
+Kauê aprovou a prévia de Competências e autorizou continuar. A seção Como eu construo passa a apresentar habilidades sem links de projetos: incluir metodologia ágil, uso de IA no desenvolvimento e em soluções, LLMs e resolução de problemas, preservando tecnologias e fatos confirmados. Isso supera o requisito anterior de links de evidências nessa seção. Acrescentar respostas de hover e foco expressivas, sem tornar texto estático um falso botão ou criar novos focos artificiais. Próxima fatia visual: Sobre e Experiência, com a mesma linguagem e ciclos de vida existentes. Rodapé permanece preservado.
+
 Um plano de fundo visualmente vivo não exige animação contínua. Ondas são planos decorativos suaves, de baixo contraste e separados do conteúdo; sua forma pode se revelar/recompor uma vez durante entrada da seção e depois repousar. Nada segue o mouse ou distorce texto. Aproveitar a infraestrutura de escopos, pausa e interrupção da vitrine, com intensidade menor nas áreas de leitura. Não importar o palco nem fixar cada seção durante scroll.
 
 | Seção | Coreografia proposta | Resposta à ação |
