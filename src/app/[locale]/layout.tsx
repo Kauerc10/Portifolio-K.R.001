@@ -170,7 +170,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="transition-colors duration-300 font-sans bg-[#F7F7FA] text-[#14131C] dark:bg-[#111015] dark:text-[#F3F2F5] min-h-screen">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false}>
           {/* DADOS ESTRUTURADOS JSON-LD PARA SEO E AI READINESS LOCALIZADOS */}
           <JsonLd locale={validLocale} />
 

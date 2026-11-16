@@ -8,7 +8,6 @@ import {
   Database,
   GitBranch,
   Layers,
-  Radio,
   Server,
   Sparkles,
   Wand2,
@@ -26,7 +25,7 @@ const groupIcons = [Braces, Cpu, Sparkles, Workflow];
 const itemIcons: Record<string, LucideIcon> = {
   'JavaScript / TypeScript': Code2,
   'React / Next.js': Layers,
-  'Supabase / Prisma': Database,
+  'Supabase': Database,
   'Node.js': Server,
   'APIs REST': Webhook,
   'REST APIs': Webhook,
@@ -40,8 +39,6 @@ const itemIcons: Record<string, LucideIcon> = {
   'Arquitetura de Providers': Cpu,
   'Provider Architecture': Cpu,
   'OpenAI / Anthropic / Gemini': Bot,
-  'Streaming de respostas': Radio,
-  'Response streaming': Radio,
   'Prompt engineering': Wand2,
 };
 

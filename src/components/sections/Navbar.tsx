@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import ThemeToggle from '@/components/ui/ThemeToggle';
 import LanguageToggle from '@/components/ui/LanguageToggle';
 import type { Dictionary } from '@/i18n/types';
 
@@ -104,13 +103,11 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
           {/* Controles Secundários Discretos */}
           <div className="flex items-center gap-1.5 pl-2 border-l border-[#D9D9E3] dark:border-[#2E2D3B]">
             <LanguageToggle />
-            <ThemeToggle labels={{ light: d.lightThemeLabel, dark: d.darkThemeLabel }} />
           </div>
         </nav>
 
         {/* Menu Mobile Burger */}
         <div className="flex md:hidden items-center gap-3">
-          <ThemeToggle labels={{ light: d.lightThemeLabel, dark: d.darkThemeLabel }} />
           <button
             ref={burgerRef}
             type="button"

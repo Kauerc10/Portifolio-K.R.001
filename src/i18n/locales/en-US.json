@@ -156,7 +156,7 @@
         "items": [
           "JavaScript / TypeScript",
           "React / Next.js",
-          "Supabase / Prisma",
+          "Supabase",
           "Node.js"
         ]
       },
@@ -177,7 +177,6 @@
           "LLM Integration",
           "Provider Architecture",
           "OpenAI / Anthropic / Gemini",
-          "Response streaming",
           "Prompt engineering",
           "AI-assisted development"
         ]
