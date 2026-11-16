@@ -91,7 +91,7 @@ export function useStageProjectController({
         const incoming = panelIndex === next;
         if (!incoming && snapshots[panelIndex].every(pose => Number(pose.opacity) < .001)) return;
         const depth = Number(item.dataset.layer);
-        const scene = item.closest<HTMLElement>('[data-stage-scene]');
+        const scene = item.closest<HTMLElement>('[data-stage-canvas]');
         const scale = scene ? scene.getBoundingClientRect().width / scene.offsetWidth : 1;
         const distance = width * (1.18 + depth * .12) / Math.max(scale, .1);
         const offstage = (sign: number) => `translate3d(${sign * distance}px,${depth > 1 ? 22 : 0}px,0px) rotate(${sign * (depth > 1 ? 9 : 0)}deg) scale(${depth > 1 ? .92 : .98})`;
@@ -147,3 +147,4 @@ export function useStageProjectController({
 
   return { active, engine };
 }
+

@@ -4,10 +4,11 @@ const url=process.env.STAGE_URL || 'http://localhost:3070/pt-BR#projetos';
 const matrix=[[1920,900],[1440,900],[1280,720],[1024,768],[390,844],[1536,720],[1280,600],[960,600],[853,480]];
 (async()=>{const browser=await chromium.launch({channel:'chrome'});const failures=[];try{
 for(const deviceScaleFactor of [1,2]) for(const [width,height] of matrix){
- const context=await browser.newContext({viewport:{width,height},deviceScaleFactor,reducedMotion:'reduce'});
+ const context=await browser.newContext({viewport:{width,height},deviceScaleFactor,reducedMotion:process.env.STAGE_MOTION ? 'no-preference' : 'reduce'});
  const page=await context.newPage();await page.addInitScript(()=>sessionStorage.setItem('portfolio-intro-complete','true'));
  await page.goto(url,{waitUntil:'networkidle'});const stage=page.locator('#projetos [data-stage-proof]');await stage.scrollIntoViewIfNeeded();
  for(let i=0;i<5;i++){
+  if(process.env.STAGE_MOTION){await page.waitForFunction(()=>['presenting','rest'].includes(document.querySelector('[data-stage-proof]').dataset.motion));await stage.evaluate(s=>s.getAnimations({subtree:true}).forEach(a=>{a.pause();const t=a.effect.getTiming();a.currentTime=Number(t.delay)+Number(t.duration)*.5}));}
   const result=await stage.evaluate(stage=>{
    const panel=stage.querySelector('article[aria-hidden=false]');const errors=[];
    const box=e=>{const b=e.getBoundingClientRect();return {left:b.left,top:b.top,right:b.right,bottom:b.bottom,width:b.width,height:b.height}};
@@ -22,9 +23,11 @@ for(const deviceScaleFactor of [1,2]) for(const [width,height] of matrix){
   });
   if(result.errors.length) failures.push({width,height,deviceScaleFactor,...result});
   if(width===1920&&deviceScaleFactor===1)await stage.screenshot({path:'C:/Users/suelen.morais/.codex/tmp/stage-fit-'+result.slug+'.png'});
+  await stage.evaluate(s=>s.getAnimations({subtree:true}).forEach(a=>a.finish()));
   await page.getByRole('button',{name:'Próximo projeto',exact:true}).click();
  }
- await context.close();
+ console.log('PASS',width,height,deviceScaleFactor,process.env.STAGE_MOTION?'mid-animation':'rest');await context.close();
 }
 console.log(JSON.stringify(failures,null,2));assert.equal(failures.length,0,'Nested stage geometry must fit at every viewport and DPR');
 }finally{await browser.close()}})().catch(error=>{console.error(error);process.exitCode=1});
+
