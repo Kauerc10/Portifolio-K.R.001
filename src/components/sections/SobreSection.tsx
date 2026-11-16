@@ -20,9 +20,11 @@ export default function SobreSection({ dict: d }: { dict: Dictionary['sobre'] })
           <p className="editorial-profile__copy">{d.profile}</p>
         </div>
       </div>
-      <picture className="editorial-about-ribbon" aria-hidden="true" data-motion-art>
-        <img src="/images/editorial-details/about-ribbon-2172.webp" srcSet="/images/editorial-details/about-ribbon-1100.webp 1100w, /images/editorial-details/about-ribbon-2172.webp 2172w" sizes="100vw" width="2172" height="300" alt="" loading="lazy" decoding="async" />
-      </picture>
+      <svg className="editorial-about-ribbon editorial-reading__ribbon" aria-hidden="true" focusable="false" data-motion-art viewBox="0 0 1600 160" preserveAspectRatio="none">
+        <path d="M-40 72C480 210 1050-40 1640 48L1640 73C1050-13 480 229-40 94Z" fill="currentColor" opacity=".07" />
+        <path d="M-40 72C480 210 1050-40 1640 48" fill="none" stroke="currentColor" strokeWidth="1.5" opacity=".2" />
+        <path d="M-40 95C480 230 1050-10 1640 75" fill="none" stroke="currentColor" strokeWidth="1" opacity=".12" />
+      </svg>
       <div className="editorial-pillars" aria-label={d.pillarsLabel} data-motion-pillars>
         {d.pillars.map((pillar, index) => {
           const Icon = [Braces, Workflow, Headphones][index] ?? Braces;

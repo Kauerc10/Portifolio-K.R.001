@@ -41,3 +41,6 @@
   .editorial-reading .editorial-timeline__body { padding-inline-start: 0; }
   .editorial-timeline__body > .editorial-reading__icon { position: static; margin-bottom: 1rem; }
 }
+
+.editorial-reading > .editorial-section__rule { margin-inline: 0; }
+.editorial-reading__ribbon { width: calc(100% + 2 * var(--portfolio-gutter)); height: clamp(5rem, 9vw, 8.5rem); color: var(--editorial-violet); }
