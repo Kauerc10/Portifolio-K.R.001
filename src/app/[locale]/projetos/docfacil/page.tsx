@@ -70,8 +70,6 @@ export default async function DocFacilCase({ params }: Params) {
         <div className={editorial.prose}><p>{c.context}</p><p>{c.contextMore}</p></div>
       </section>
       <section id="jornada" className={`${styles.chapter} ${editorial.chapter}`}>
-        <h2>{c.guidanceTitle}</h2>
-        <p>{c.guidanceIntro}</p>
         <DocFacilStory locale={locale} />
 
       </section>
