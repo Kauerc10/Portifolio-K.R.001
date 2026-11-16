@@ -55,6 +55,8 @@
 
 /* Keep every pixel of the source capture visible in the industrial frames. */
 .siteFrame>img,.systemFrame>img,.storyScreen>img { object-fit:contain; object-position:center; }
+.art .siteFrame,.art .systemFrame { height:auto; }
+.art .siteFrame>img,.art .systemFrame>img { height:auto; width:100%; }
 .story[data-ckf-motion=static] .storyScreen>img { object-fit:contain; }
 @media(min-width:1000px) {
  .storySticky { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); align-content:center; align-items:center; gap:1.4rem clamp(2rem,3vw,3rem); padding:2.5rem clamp(1.5rem,3vw,3rem); }

@@ -1,3 +1,5 @@
+import CaseEnding from '@/components/projects/CaseEnding';
+import editorial from '@/components/projects/CaseEditorial.module.css';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { isValidLocale } from '@/i18n/config';
@@ -44,7 +46,7 @@ export default async function DocFacilCase({ params }: Params) {
     },
   ];
 
-  return <div className={styles.case}>
+  return <div className={`${styles.case} ${editorial.page}`}>
     <CaseHeader homeHref={docFacilCase.links.home[locale]} backLabel={c.back} />
     <main>
       <section className={styles.caseHero} aria-labelledby="docfacil-title">
@@ -62,32 +64,27 @@ export default async function DocFacilCase({ params }: Params) {
           <DocFacilComposition locale={locale} progress={1} label={en ? 'DocFácil document with a contextual owl and guided steps' : 'Documento DocFácil com corujinha contextual e etapas guiadas'} />
         </div>
       </section>
-      <nav className={styles.chapterNav} aria-label={en ? 'Explore the project' : 'Explorar o projeto'}>
-        {['contexto', 'jornada', 'telas', 'escolhas'].map((id, i) => <a key={id} href={'#' + id}><span>0{i + 1}</span>{c.chapterNav[i]} ↘</a>)}
-      </nav>
-      <section id="contexto" className={styles.chapter}>
+
+      <section id="contexto" className={`${styles.chapter} ${editorial.chapter} ${editorial.context}`}>
         <h2>{c.challenge}</h2>
-        <div className={styles.prose}><p>{c.context}</p><p>{c.contextMore}</p></div>
+        <div className={editorial.prose}><p>{c.context}</p><p>{c.contextMore}</p></div>
       </section>
-      <section id="jornada" className={styles.chapter}>
+      <section id="jornada" className={`${styles.chapter} ${editorial.chapter}`}>
         <h2>{c.guidanceTitle}</h2>
         <p>{c.guidanceIntro}</p>
         <DocFacilStory locale={locale} />
-        <ol className={styles.steps}>{c.guidanceSteps.map((step, i) => <li key={step.title}><strong>0{i + 1} · {step.title}</strong><p>{step.text}</p></li>)}</ol>
+
       </section>
-      <section id="telas" className={styles.screens}>
+      <section id="telas" className={`${styles.screens} ${editorial.gallery}`}>
         <div className={styles.screensHeading}><h2>{c.gallery}</h2><p>{c.galleryText}</p></div>
         <CaseGallery items={items} enlarge={c.enlarge} close={c.close} naming={c.naming} mediaUnavailable={c.mediaUnavailable} openOriginal={c.openOriginal} />
       </section>
-      <section id="escolhas" className={styles.chapter}>
+      <section id="escolhas" className={`${styles.chapter} ${editorial.chapter}`}>
         <h2>{c.invitation}</h2>
-        <ol className={styles.steps}>{c.choices.map((choice, i) => <li key={choice.title}><strong>0{i + 1} · {choice.title}</strong><p>{choice.text}</p></li>)}</ol>
+        <ol className={styles.steps}>{c.choices.map(choice => <li key={choice.title}><strong>{choice.title}</strong><p>{choice.text}</p></li>)}</ol>
         <p><strong>{c.contribution}.</strong> {c.contributionText}</p>
       </section>
-      <section className={styles.invitation}>
-        <h2>{c.result}</h2><p>{c.resultText}</p>
-        <a className={styles.button} href={docFacilCase.links.home[locale]}>← {c.back}</a>
-      </section>
+      <CaseEnding locale={locale} slug="docfacil" title={c.result} text={c.resultText} />
     </main>
   </div>;
 }
