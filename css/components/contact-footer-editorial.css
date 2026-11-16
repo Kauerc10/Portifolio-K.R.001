@@ -71,6 +71,13 @@
 .contact-editorial__form input::placeholder,
 .contact-editorial__form textarea::placeholder { color: var(--editorial-muted); }
 
+.contact-editorial__form input:focus-visible,
+.contact-editorial__form textarea:focus-visible {
+  outline: 2px solid var(--editorial-violet);
+  outline-offset: 1px;
+  border-color: var(--editorial-violet);
+}
+
 .contact-editorial__form textarea { resize: vertical; }
 
 .contact-editorial__form button,

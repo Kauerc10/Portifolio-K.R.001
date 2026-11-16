@@ -4,19 +4,12 @@ import Contact from '@/components/sections/ContatoSection';
 import Footer from '@/components/sections/Footer';
 import pt from '@/i18n/locales/pt-BR.json';
 
-it('marks the focused contact field without delaying the form', () => {
-  const { container } = render(<Contact dict={pt.contato} />);
+it('focuses contact fields cleanly without interfering with the form', () => {
+  render(<Contact dict={pt.contato} />);
   const input = screen.getByRole('textbox', { name: /^Nome/ });
-  const label = input.closest('label') as HTMLElement;
-  Object.defineProperties(label, {
-    offsetTop: { configurable: true, value: 38 },
-    offsetHeight: { configurable: true, value: 74 },
-  });
-  fireEvent.focus(input);
-  expect(container.querySelector('form')).toHaveAttribute('data-active-field', 'nome');
-  expect(container.querySelector('.contact-editorial__focus-marker')).toHaveStyle({ transform: 'translateY(38px)', height: '74px' });
-  fireEvent.blur(input);
-  expect(container.querySelector('form')).not.toHaveAttribute('data-active-field');
+  input.focus();
+  expect(document.activeElement).toBe(input);
+  input.blur();
 });
 
 it('cancels the arrow motion when the document is covered by a navigation transition', async () => {

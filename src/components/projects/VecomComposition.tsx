@@ -17,8 +17,11 @@ export function VecomBrand() {
 }
 
 /** The prepared screens are still images; folder and devices are decorative layers. */
-export default function VecomComposition({ label, progress }: { label: string; progress?: number }) {
-  const style = progress === undefined ? undefined : { '--vecom-progress': progress } as CSSProperties;
+export default function VecomComposition({ label, progress, shared = false }: { label: string; progress?: number; shared?: boolean }) {
+  const style = {
+    ...(progress === undefined ? {} : { '--vecom-progress': progress }),
+    ...(shared ? {} : { viewTransitionName: 'none' }),
+  } as CSSProperties;
   return <div className={styles.art} data-vecom-art role="img" aria-label={label} style={style}>
     <div className={styles.folder} data-vecom-layer="folder" />
     <div className={styles.cards} aria-hidden="true"><i /><i /><i /></div>

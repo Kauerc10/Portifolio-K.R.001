@@ -46,6 +46,14 @@ html[data-language-phase='reveal']::after {
   to { transform: translateX(calc(var(--language-direction) * 125%)) skewX(-12deg); }
 }
 
+html[data-language-phase] *,
+html[data-language-phase]::view-transition-group(*),
+html[data-language-phase]::view-transition-old(*),
+html[data-language-phase]::view-transition-new(*) {
+  view-transition-name: none !important;
+  animation: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html[data-language-phase]::before,
   html[data-language-phase]::after { display: none; }

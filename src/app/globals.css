@@ -13,6 +13,12 @@ html:has([data-vio-document]), body:has([data-vio-document]) { overflow-x: clip 
   ::view-transition-group(*) { animation-duration: 0s !important; }
   ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
+html[data-language-phase] {
+  view-transition-name: none !important;
+}
+html[data-language-phase] * {
+  view-transition-name: none !important;
+}
 
 /* ÆVO cinematic protocols: every animation restores its original state. */
 .aevo-effect-notice {

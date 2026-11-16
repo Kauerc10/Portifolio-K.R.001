@@ -5,11 +5,14 @@ import { useLayoutEffect, useRef, type CSSProperties } from 'react';
 import type { Locale } from '@/i18n/config';
 import styles from './Atlas.module.css';
 
-export default function AtlasComposition({ locale, progress, label }: { locale: Locale; progress?: number; label: string }) {
+export default function AtlasComposition({ locale, progress, label, shared = false }: { locale: Locale; progress?: number; label: string; shared?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   const connector = useRef<SVGSVGElement>(null);
   const en = locale === 'en-US';
-  const style = progress === undefined ? undefined : { '--atlas-progress': progress } as CSSProperties;
+  const style = {
+    ...(progress === undefined ? {} : { '--atlas-progress': progress }),
+    ...(shared ? {} : { viewTransitionName: 'none' }),
+  } as CSSProperties;
   const layers = [{ key: 'format', icon: Type, text: en ? 'Format' : 'Formatar' }, { key: 'check', icon: Check, text: en ? 'Review' : 'Conferir' }, { key: 'organize', icon: Layers3, text: en ? 'Organize' : 'Organizar' }];
   useLayoutEffect(() => {
     const element = root.current;

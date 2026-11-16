@@ -20,7 +20,18 @@ export function useStageProjectController({
   projects: readonly StageProject[];
 }) {
   const engine = useRef<Engine | null>(null);
-  const [active, setActive] = useState<StageProjectSlug>(projects[0].slug);
+  const [active, setActive] = useState<StageProjectSlug>(() => {
+    if (typeof window === 'undefined') return projects[0].slug;
+    const hash = window.location.hash.slice(1);
+    const alias: Record<string, string> = { 'project-atlas': 'atlas-notarial', 'project-docfacil-legacy': 'docfacil', 'project-ckf-legacy': 'ckf' };
+    const slug = alias[hash] || (hash.startsWith('project-') ? hash.slice(8) : '');
+    if (slug && projects.some(p => p.slug === slug)) return slug as StageProjectSlug;
+    try {
+      const saved = sessionStorage.getItem('ruon:stage-project');
+      if (saved && projects.some(p => p.slug === saved)) return saved as StageProjectSlug;
+    } catch {}
+    return projects[0].slug;
+  });
 
   useEffect(() => {
     const el = root.current;
@@ -28,7 +39,7 @@ export function useStageProjectController({
     const panels = Array.from(el.querySelectorAll<HTMLElement>('[data-panel]'));
     const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)') ?? { matches: true, addEventListener() {}, removeEventListener() {} };
     const canAnimate = typeof el.animate === 'function';
-    let current = 0, generation = 0, visible = !embedded;
+    let current = Math.max(0, projects.findIndex(p => p.slug === active)), generation = 0, visible = !embedded;
     let animations: Animation[] = []; let story: Animation[] = []; let storyRun = 0; let storyFrozen = false; let prepared: Animation[] = [];
     const identity = 'translate3d(0px,0px,0px) rotate(0deg) scale(1)';
     const layers = panels.map(panel => Array.from(panel.querySelectorAll<HTMLElement>('[data-layer]')));
@@ -45,11 +56,12 @@ export function useStageProjectController({
       if (!visible || document.hidden) animation.pause();
       else if (animation.playState === 'paused') animation.play();
     });
+    const isLanguageTransitioning = () => Boolean(document.documentElement.dataset.languagePhase);
     const present = () => {
       storyFrozen = false;
       story.forEach(animation => animation.cancel()); story = [];
       const run = ++storyRun;
-      if (reduced.matches || !canAnimate) return;
+      if (reduced.matches || !canAnimate || isLanguageTransitioning()) return;
       el.dataset.motion = 'presenting';
       const project = projects[current];
       story = prepared.length ? prepared : playStageEntrance(panels[current], project.story); prepared = []; story.forEach(animation => animation.play());
@@ -129,13 +141,15 @@ export function useStageProjectController({
       if (index >= 0 && index !== current) {
         storyRun++; [...story,...prepared].forEach(animation=>animation.cancel()); story=[]; prepared=[];
         current=index; setActive(projects[index].slug); el.dataset.active=projects[index].slug;
-        panels.forEach((panel,i)=>{panel.inert=i!==index;}); settle(); present();
+        panels.forEach((panel,i)=>{panel.inert=i!==index;}); settle();
+        if (!isLanguageTransitioning()) present();
       }
       restoreFrame=requestAnimationFrame(()=>{restoreFrame=requestAnimationFrame(()=>{
         restoreCaseReturnPosition({locale,caseSlug:projects[current].slug,homePath:`/${locale}`},{focus:()=>panels[current].querySelector<HTMLElement>('h3')?.focus({preventScroll:true})});
       });});
     };
-    restore(); present();
+    restore();
+    if (!isLanguageTransitioning()) present();
     if(embedded){addEventListener('hashchange',restore);addEventListener('pageshow',restore);}
     return () => {
       cancelAnimationFrame(restoreFrame); removeEventListener('hashchange',restore); removeEventListener('pageshow',restore);

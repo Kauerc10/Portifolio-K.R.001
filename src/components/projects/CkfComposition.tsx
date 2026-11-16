@@ -11,9 +11,13 @@ export function CkfImage({ src, alt, className, width = 1440, height = 1000 }: {
   return failed ? <span className={styles.imageFallback}>{alt}</span> : <img ref={ref} className={className} src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" onError={() => setFailed(true)} />;
 }
 
-export default function CkfComposition({ locale, progress, label }: { locale: Locale; progress?: number; label: string }) {
+export default function CkfComposition({ locale, progress, label, shared = false }: { locale: Locale; progress?: number; label: string; shared?: boolean }) {
   const en = locale === 'en-US';
-  return <div className={styles.art} role="img" aria-label={label} data-ckf-art style={progress === undefined ? undefined : { '--ckf-progress': progress } as CSSProperties}>
+  const style: CSSProperties = {
+    ...(progress === undefined ? {} : { '--ckf-progress': progress }),
+    ...(shared ? {} : { viewTransitionName: 'none' }),
+  };
+  return <div className={styles.art} role="img" aria-label={label} data-ckf-art style={style}>
     <div className={styles.plinth} aria-hidden="true" />
     <svg className={styles.connector} viewBox="0 0 700 450" preserveAspectRatio="none" aria-hidden="true"><path d="M200 125 V55 Q200 35 220 35 H520 Q540 35 540 55 V100" /><circle cx="200" cy="125" r="4" /><circle cx="540" cy="100" r="4" /></svg>
     <div className={styles.systemFrame} data-ckf-layer="system" aria-hidden="true"><div className={styles.browserBar}><i /><i /><i /><span>{en ? 'Internal operations' : 'Rotina interna'}</span></div><CkfImage src="/assets/projects/ckf/system-preview.png" alt={en ? 'Actual quote system running locally with fictional records' : 'Sistema de orçamentos real em demonstração local com dados fictícios'} /><strong className={styles.frameCaption}>{en ? 'Quote system' : 'Sistema de orçamentos'}</strong></div>
