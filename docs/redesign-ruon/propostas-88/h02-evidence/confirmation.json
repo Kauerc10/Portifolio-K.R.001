@@ -1,0 +1,72 @@
+{
+  "rows": [
+    {
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "overflow": false
+    }
+  ],
+  "idle": [
+    {
+      "id": "sobre",
+      "animations": 0
+    },
+    {
+      "id": "experiencia",
+      "animations": 0
+    },
+    {
+      "id": "skills",
+      "animations": 0
+    }
+  ],
+  "reduced": [
+    {
+      "id": "sobre",
+      "animations": 0
+    },
+    {
+      "id": "experiencia",
+      "animations": 2
+    },
+    {
+      "id": "skills",
+      "animations": 4
+    }
+  ],
+  "offscreen": [
+    {
+      "id": "sobre",
+      "animations": 0
+    },
+    {
+      "id": "experiencia",
+      "animations": 0
+    },
+    {
+      "id": "skills",
+      "animations": 0
+    }
+  ],
+  "cpuThrottle": 4,
+  "longTasks": [
+    52
+  ],
+  "reducedAfterPreferenceEvent": [
+    {
+      "id": "sobre",
+      "animations": 0
+    },
+    {
+      "id": "experiencia",
+      "animations": 0
+    },
+    {
+      "id": "skills",
+      "animations": 0
+    }
+  ]
+}
