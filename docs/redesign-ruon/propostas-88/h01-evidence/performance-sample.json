@@ -1,0 +1,20 @@
+[
+  {
+    "port": 3070,
+    "longTasks": 1,
+    "longTaskMs": 62,
+    "layoutShift": 0,
+    "frames": 200,
+    "framesOver34ms": 1,
+    "p95ms": 16.800000000000182
+  },
+  {
+    "port": 3072,
+    "longTasks": 0,
+    "longTaskMs": 0,
+    "layoutShift": 0,
+    "frames": 199,
+    "framesOver34ms": 1,
+    "p95ms": 33.099999999999454
+  }
+]

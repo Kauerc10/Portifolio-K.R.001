@@ -26,6 +26,9 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
     closeMenu: 'Fechar menu',
     brandAria: 'Kauê Ruon Cardoso - Início',
     indicator: '§ 01 / 08',
+    navigationLabel: 'Navegação principal',
+    lightThemeLabel: 'Ativar tema claro',
+    darkThemeLabel: 'Ativar tema escuro',
   };
 
   useEffect(() => {
@@ -67,7 +70,7 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
         </Link>
 
         {/* U02 + U03: Navegação Desktop Minimalista */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-10" aria-label="Navegação principal">
+        <nav className="hidden md:flex items-center gap-8 lg:gap-10" aria-label={d.navigationLabel}>
           <Link
             href="#projetos"
             className="text-[15px] font-medium text-[#2E1E6B] dark:text-[#C5C4D0] hover:text-[#14131C] dark:hover:text-[#F3F2F5] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6534D8] py-2"
@@ -101,13 +104,13 @@ export default function Navbar({ dict }: { dict?: Dictionary['nav'] }) {
           {/* Controles Secundários Discretos */}
           <div className="flex items-center gap-1.5 pl-2 border-l border-[#D9D9E3] dark:border-[#2E2D3B]">
             <LanguageToggle />
-            <ThemeToggle />
+            <ThemeToggle labels={{ light: d.lightThemeLabel, dark: d.darkThemeLabel }} />
           </div>
         </nav>
 
         {/* Menu Mobile Burger */}
         <div className="flex md:hidden items-center gap-3">
-          <ThemeToggle />
+          <ThemeToggle labels={{ light: d.lightThemeLabel, dark: d.darkThemeLabel }} />
           <button
             ref={burgerRef}
             type="button"

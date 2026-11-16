@@ -13,7 +13,10 @@
     "resume": "Currículo",
     "menu": "Menu",
     "closeMenu": "Fechar menu",
-    "brandAria": "Kauê Ruon Cardoso - Início"
+    "brandAria": "Kauê Ruon Cardoso - Início",
+    "navigationLabel": "Navegação principal",
+    "lightThemeLabel": "Ativar tema claro",
+    "darkThemeLabel": "Ativar tema escuro"
   },
   "loader": {
     "shaders": "CARREGANDO SHADERS GLSL...",

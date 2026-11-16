@@ -5,7 +5,7 @@ export function createMotionScope(root: HTMLElement) {
   const cancellations = new Set<() => void>();
   const entries = new Map<Element, { run: () => void; visible: boolean; seen: boolean }>();
   const scrollEffects = new Set<{
-    element: Element; anchor: Element; frames: Keyframe[]; from: number; to: number; animation: Animation | null;
+    element: Element; anchor: Element; frames: Keyframe[]; from: number; to: number; travel: 'entry' | 'section'; animation: Animation | null;
   }>();
   let scrollFrame = 0;
   let disposed = false;
@@ -37,7 +37,9 @@ export function createMotionScope(root: HTMLElement) {
     if (!canAnimate()) return;
     scrollEffects.forEach(effect => {
       // A full viewport of travel gives the reader control instead of a timer.
-      const progress = Math.max(0, Math.min(1, (window.innerHeight - effect.anchor.getBoundingClientRect().top) / (window.innerHeight * .7)));
+      const bounds = effect.anchor.getBoundingClientRect();
+      const distance = effect.travel === 'section' ? window.innerHeight + bounds.height : window.innerHeight * .7;
+      const progress = Math.max(0, Math.min(1, (window.innerHeight - bounds.top) / distance));
       const local = Math.max(0, Math.min(1, (progress - effect.from) / (effect.to - effect.from)));
       if (local >= 1) {
         effect.animation?.cancel(); effect.animation = null;
@@ -53,7 +55,7 @@ export function createMotionScope(root: HTMLElement) {
     });
   }
   function scheduleScroll() {
-    if (!scrollFrame && scrollEffects.size) scrollFrame = requestAnimationFrame(updateScroll);
+    if (canAnimate() && !scrollFrame && scrollEffects.size) scrollFrame = requestAnimationFrame(updateScroll);
   }
   function onResize() { cancel(); scheduleScroll(); }
 
@@ -95,9 +97,9 @@ export function createMotionScope(root: HTMLElement) {
   return {
     canAnimate,
     cancel,
-    scrub(element: Element | null, frames: Keyframe[], options: { anchor?: Element; from?: number; to?: number } = {}) {
+    scrub(element: Element | null, frames: Keyframe[], options: { anchor?: Element; from?: number; to?: number; travel?: 'entry' | 'section' } = {}) {
       if (!element) return () => {};
-      const effect = { element, anchor: options.anchor ?? element, frames, from: options.from ?? 0, to: options.to ?? 1, animation: null as Animation | null };
+      const effect = { element, anchor: options.anchor ?? element, frames, from: options.from ?? 0, to: options.to ?? 1, travel: options.travel ?? 'entry', animation: null as Animation | null };
       scrollEffects.add(effect);
       scheduleScroll();
       return () => { effect.animation?.cancel(); scrollEffects.delete(effect); };

@@ -13,7 +13,10 @@
     "resume": "Resume",
     "menu": "Menu",
     "closeMenu": "Close menu",
-    "brandAria": "Kauê Ruon Cardoso - Home"
+    "brandAria": "Kauê Ruon Cardoso - Home",
+    "navigationLabel": "Main navigation",
+    "lightThemeLabel": "Activate light theme",
+    "darkThemeLabel": "Activate dark theme"
   },
   "loader": {
     "shaders": "LOADING GLSL SHADERS...",

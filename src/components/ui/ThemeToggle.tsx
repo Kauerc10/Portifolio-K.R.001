@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Sun, Moon } from 'lucide-react';
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ labels = { light: 'Ativar tema claro', dark: 'Ativar tema escuro' } }: { labels?: { light: string; dark: string } }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -30,9 +30,9 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={handleToggle}
-      aria-label={isDark ? 'Ativar tema claro' : 'Ativar tema escuro'}
+      aria-label={isDark ? labels.light : labels.dark}
       aria-pressed={isDark}
-      title={isDark ? 'Tema escuro — mudar para claro' : 'Tema claro — mudar para escuro'}
+      title={isDark ? labels.light : labels.dark}
       className="group relative grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-xl border border-slate-300/80 bg-white/80 text-slate-700 shadow-[0_6px_20px_rgba(15,23,42,0.12)] transition-[transform,border-color,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-amber-500/70 hover:shadow-[0_10px_26px_rgba(180,131,18,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--void)] active:translate-y-0 dark:border-white/15 dark:bg-[#0d1424]/95 dark:text-amber-300 dark:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
     >
       <span className="absolute inset-1 rounded-lg bg-amber-400/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

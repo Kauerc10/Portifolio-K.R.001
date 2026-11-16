@@ -17,6 +17,8 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { splitAccentTitle } from '@/lib/editorial';
+import LilacWaves from './LilacWaves';
+import './SkillsLiving.css';
 import SectionMotionEnhancer from './SectionMotionEnhancer';
 
 const groupIcons = [Braces, Cpu, Sparkles];
@@ -47,8 +49,7 @@ export default function SkillsSection({ dict: d }: { dict: Dictionary['skills'] 
   const [titleLead, titleAccent] = splitAccentTitle(d.title);
   return (
     <section className="section editorial-section skills editorial-skills" id="skills" data-section="4">
-      <div className="editorial-section__eyebrow">{d.eyebrow}</div>
-      <div className="editorial-section__rule" aria-hidden="true" />
+      <LilacWaves />
       <div className="editorial-grid editorial-grid--skills">
         <div className="editorial-intro">
           <h2 className="editorial-display">
@@ -64,7 +65,7 @@ export default function SkillsSection({ dict: d }: { dict: Dictionary['skills'] 
             <article className="editorial-skill-row" key={group.title} data-motion-skill-row>
               <span className="editorial-skill-row__motion-rule" data-motion-skill-rule aria-hidden="true" />
               <div className="editorial-skill-row__copy">
-                <GroupIcon className="editorial-skill-row__icon" aria-hidden="true" />
+                <span className="editorial-skill-row__icon-plate" aria-hidden="true"><GroupIcon className="editorial-skill-row__icon" /></span>
                 <h3>{group.title}</h3>
                 <p>{group.description}</p>
                 {group.links?.length ? (

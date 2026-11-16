@@ -49,12 +49,12 @@ export async function generateMetadata({
   const baseUrl = 'https://www.kaueruon.dev';
 
   const title = isEnglish
-    ? 'Kauê Ruon Cardoso — Software Architect & AI Systems Engineer'
-    : 'Kauê Ruon Cardoso — Arquiteto de Software & Engenheiro de IA';
+    ? 'Kauê Ruon Cardoso — Development, automations and support'
+    : 'Kauê Ruon Cardoso — Desenvolvimento, automações e suporte';
 
   const description = isEnglish
-    ? 'Software Architect and AI Systems Engineer in Blumenau/SC, Brazil. Specializing in high-performance SaaS, Next.js 15, TypeScript, Generative AI (RAG), and zero-tolerance notarial automation.'
-    : 'Arquiteto de Software e Engenheiro de IA em Blumenau/SC. Desenvolvo aplicações SaaS de alta performance com Next.js 15, TypeScript, IA Generativa (RAG) e automação notarial de tolerância zero a erros.';
+    ? 'I am Kauê Ruon Cardoso. I build applications, automate workflows, and help people use technology. Explore my projects and experience.'
+    : 'Sou Kauê Ruon Cardoso. Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia. Conheça meus projetos e minha experiência.';
 
   return {
     metadataBase: new URL(baseUrl),
@@ -67,16 +67,14 @@ export async function generateMetadata({
       'Atlas Notarial',
       'DocFacil',
       'Foli Lib',
-      'Software Architect',
       'Full Stack Developer',
-      'AI Engineer',
       'Generative AI',
       'RAG Automation',
       'Blumenau',
     ],
     authors: [{ name: 'Kauê Ruon Cardoso', url: baseUrl }],
     creator: 'Kauê Ruon Cardoso',
-    publisher: 'K-HUB Soluções',
+    publisher: 'Kauê Ruon Cardoso',
     alternates: {
       canonical: `${baseUrl}/${locale}`,
       languages: {

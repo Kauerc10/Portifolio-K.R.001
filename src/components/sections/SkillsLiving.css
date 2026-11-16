@@ -1,0 +1,41 @@
+/* Shared vector material: no bitmap, blur, idle animation or interaction surface. */
+.lilac-waves { position: absolute; inset: 0; overflow: clip; pointer-events: none; z-index: -1; color: var(--editorial-violet); mask-image: linear-gradient(transparent, #000 10%, #000 84%, transparent); }
+.lilac-waves__plane { position: absolute; inset: -8% -5%; width: 110%; height: 116%; fill: currentColor; }
+.lilac-waves__plane--far { opacity: .055; }
+.lilac-waves__plane--near { opacity: .045; }
+.editorial-skills { position: relative; isolation: isolate; max-width: none; }
+.editorial-skills .editorial-grid--skills { max-width: var(--portfolio-shell); margin-inline: auto; grid-template-columns: minmax(0, .28fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4.5rem); }
+.editorial-skills .editorial-display { font-size: clamp(2.5rem, 3.8vw, 4.4rem); line-height: 1.03; letter-spacing: -.04em; }
+.editorial-skills .editorial-lede { font-size: clamp(1rem, 1.25vw, 1.3rem); line-height: 1.5; max-width: 25ch; margin-block: 1.8rem; }
+.editorial-skills .editorial-skill-list { border-top: 0; }
+.editorial-skills .editorial-skill-row { grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr); gap: clamp(1.2rem, 2vw, 2.5rem); padding: 2.5rem 0; align-items: start; }
+.editorial-skills .editorial-skill-row:first-child { padding-top: .4rem; }
+.editorial-skills .editorial-skill-row:last-child { border-bottom: 0; padding-bottom: 1rem; }
+/* The line is decoration, never a third cell in the two-column content grid. */
+.editorial-skills .editorial-skill-row__motion-rule { position: absolute; bottom: -1px; inset-inline: 0; margin: 0; }
+.editorial-skills .editorial-skill-row:last-child .editorial-skill-row__motion-rule { display: none; }
+.editorial-skills .editorial-skill-row__copy { position: relative; padding-inline-start: clamp(3.7rem, 5vw, 5rem); }
+.editorial-skill-row__icon-plate { position: absolute; top: 0; inset-inline-start: 0; display: grid; place-items: center; width: clamp(2.7rem, 4vw, 3.5rem); height: clamp(2.7rem, 4vw, 3.5rem); border-radius: .8rem; background: color-mix(in srgb, var(--editorial-violet) 8%, transparent); }
+.editorial-skills .editorial-skill-row__icon { width: 1.6rem; height: 1.6rem; margin: 0; stroke-width: 2.3; }
+.editorial-skills .editorial-skill-row__copy h3 { font-size: clamp(1.4rem, 2vw, 2.25rem); line-height: 1.12; letter-spacing: -.04em; overflow-wrap: normal; }
+.editorial-skills .editorial-skill-row__copy p { font-size: 1rem; margin-top: .6rem; }
+.editorial-skills .editorial-skill-row__links { margin-top: .8rem; }
+.editorial-skills .editorial-skill-row__links a { font-size: .95rem; line-height: 1.5; }
+.editorial-skills .editorial-skill-row__chips { border-inline-start: 1px solid var(--editorial-rule); padding-inline-start: clamp(1rem, 2vw, 2rem); gap: .65rem; }
+.editorial-skills .editorial-skill-chip { border: 0; font-size: clamp(.78rem, .9vw, .95rem); line-height: 1.3; padding: .7rem .8rem; max-width: 100%; }
+.editorial-skills .editorial-skill-chip:hover { transform: none; }
+.editorial-skills .editorial-skill-row:is(:hover, :focus-within) .editorial-skill-row__icon-plate { background: color-mix(in srgb, var(--editorial-violet) 14%, transparent); }
+.editorial-skill-row__icon-plate { transition: background-color .18s ease; }
+@media (max-width: 1100px) {
+  .editorial-skills .editorial-grid--skills { grid-template-columns: minmax(0, 1fr); }
+  .editorial-skills .editorial-intro { max-width: 38rem; }
+  .editorial-skills .editorial-display { font-size: clamp(2.6rem, 6vw, 4rem); }
+  .editorial-skills .editorial-lede { max-width: 38ch; margin-block: 1rem 1.4rem; }
+}
+@media (max-width: 600px) {
+  .editorial-skills .editorial-skill-row { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; padding-block: 2rem; }
+  .editorial-skills .editorial-skill-row__chips { margin: 0; border: 0; padding-inline-start: 3.7rem; gap: .5rem; }
+  .editorial-skills .editorial-skill-chip { font-size: .78rem; padding: .6rem .7rem; }
+  .lilac-waves__plane { width: 160%; inset-inline-start: -30%; }
+}
+@media (prefers-reduced-motion: reduce) { .editorial-skill-row__icon-plate { transition: none; } }
