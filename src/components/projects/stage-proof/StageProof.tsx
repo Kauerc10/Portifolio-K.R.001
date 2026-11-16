@@ -6,6 +6,7 @@ import VecomComposition from '../VecomComposition';
 import styles from './StageProof.module.css';
 import { stageProjects, homeProjects } from './stage-projects';
 import AdditionalStageArt from './AdditionalStageArt';
+import StageCanvas from './StageCanvas';
 import { captureCaseReturnPosition, isPlainPrimaryClick } from '../case-return-position';
 import { useStageProjectController } from './useStageProjectController';
 
@@ -38,7 +39,7 @@ export default function StageProof({ locale, embedded = false }: { locale: Local
             <div data-layer="1" className={styles.actions}><a className={styles.cta} href={`/${locale}/projetos/${project.slug}`} onClick={event=>{if(embedded && isPlainPrimaryClick(event)) captureCaseReturnPosition({locale,caseSlug:project.slug,homePath:`/${locale}`});}}>{en ? 'Explore the project' : 'Conhecer o projeto'} <ArrowUpRight size={18} /></a></div>
           </div>
           <div className={styles.scene} data-stage-scene aria-hidden="true">
-            {project.art === 'viodigital' || project.art === 'atlas-notarial' || project.art === 'ckf' ? <AdditionalStageArt project={project.art} locale={locale}/> : project.slug === "docfacil" ? <>
+            <StageCanvas>{project.art === 'viodigital' || project.art === 'atlas-notarial' || project.art === 'ckf' ? <AdditionalStageArt project={project.art} locale={locale}/> : project.slug === "docfacil" ? <>
               <div className={styles.plinth} data-layer="1.05"><div /></div>
               <div className={styles.document} data-layer="1.2"><div className={styles.paper} data-doc-paper>
                 <header><strong>DocFácil</strong><small>{en ? 'EXAMPLE' : 'EXEMPLO'}</small></header>
@@ -48,7 +49,7 @@ export default function StageProof({ locale, embedded = false }: { locale: Local
               </div></div>
               <div className={styles.owl} data-layer="1.48"><img data-owl-body src="/assets/projects/docfacil/owl-guide.webp" alt="" width="400" height="400" /></div>
             </> : <div className={styles.vecom} data-layer="1.25"><VecomComposition label="" progress={1} /><div className={styles.transfer} data-transfer><FileText size={22} /><strong>{en ? 'Registration form' : 'Ficha cadastral'}</strong><i /><i /><span><Check size={13} />{en ? 'Sent' : 'Enviada'}</span></div><div className={styles.receipt} data-vecom-receipt><Check size={18} /><span>{en ? 'New form received' : 'Nova ficha recebida'}<small>{en ? 'Ready for the team' : 'Pronta para a equipe'}</small></span></div></div>}
-          </div>
+          </StageCanvas></div>
         </article>)}
         <svg className={styles.ribbon} viewBox="0 0 1400 90" preserveAspectRatio="none" aria-hidden="true"><path d="M-40 36 C350 -60 750 170 1440 38" /></svg>
       </div>
@@ -60,3 +61,4 @@ export default function StageProof({ locale, embedded = false }: { locale: Local
     <noscript><p>{projects.map(project=><a key={project.slug} href={`/${locale}/projetos/${project.slug}`}>{project.name} · </a>)}</p></noscript>
   </Container>;
 }
+
