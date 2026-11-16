@@ -14,12 +14,22 @@
 /build
 /.scene-proof-dist/
 /design/scene-proof/blender/__pycache__/
+/design/scene-proof/blender/out/*.blend
 /design/scene-proof/blender/out/*.blend1
+
+before-shell.png
+/docs/design-transition/proof/ribbon-runtime/*.png
+/docs/design-transition/proof/ribbon-runtime/*.json
+/docs/design-transition/proof/shell-proof/
+/docs/design-transition/proof/crop-*.png
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
+*.blend1
+/.impeccable/
 
 # local env files
 .env*.local
