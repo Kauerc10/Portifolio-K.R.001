@@ -9,4 +9,5 @@ it('presents the approved portal artwork and primary actions', () => {
   expect(container.querySelector('picture img')).toHaveAttribute('src', '/images/portals/portals-1672.webp');
   expect(screen.getByRole('link', { name: ptBR.hero.ctaExplore })).toHaveAttribute('href', '#projetos');
   expect(screen.getByRole('link', { name: ptBR.hero.ctaResumeShort })).toHaveAttribute('href', '/curriculo_kaue.pdf');
+  expect(screen.getByRole('link', { name: ptBR.hero.scrollDown })).toHaveAttribute('href', '#projetos');
 });

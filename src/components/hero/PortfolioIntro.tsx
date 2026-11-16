@@ -26,7 +26,9 @@ function alreadyVisited() {
   }
 }
 
-export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
+export default function PortfolioIntro({ dict, onComplete }: { dict: Dictionary['hero']; onComplete?: () => void }) {
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
   const dialogRef = useRef<HTMLDialogElement>(null);
   const animations = useRef<Animation[]>([]);
   const [enabled, setEnabled] = useState(false);
@@ -52,15 +54,21 @@ export default function PortfolioIntro({ dict }: { dict: Dictionary['hero'] }) {
     }
     setEnabled(false);
     heading?.focus({ preventScroll: true });
+    onCompleteRef.current?.();
   }
 
   useEffect(() => {
     const media = window.matchMedia?.(motionPreference);
     if (!media || media.matches || window.location.hash || alreadyVisited() || document.documentElement.dataset.introPending === 'expired') {
       delete document.documentElement.dataset.introPending;
+      onCompleteRef.current?.();
       return;
     }
-    if (typeof HTMLDialogElement.prototype.showModal === 'function') setEnabled(true);
+    if (typeof HTMLDialogElement.prototype.showModal === 'function') {
+      setEnabled(true);
+    } else {
+      onCompleteRef.current?.();
+    }
   }, []);
 
   useEffect(() => {
