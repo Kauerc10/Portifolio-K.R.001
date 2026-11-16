@@ -6,7 +6,7 @@ import ptBR from '@/i18n/locales/pt-BR.json';
 
 describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
   describe('HeroSection — renders_work_resume_and_world_links_before_renderer_ready', () => {
-    it('deve renderizar apresentação, CTAs e destinos da paisagem sem depender de renderer 3D', () => {
+    it('deve renderizar apresentação e CTAs sem depender de renderer 3D', () => {
       const { container } = render(<HeroSection dict={ptBR.hero} />);
 
       // Cumprimento H1 acessível
@@ -27,19 +27,6 @@ describe('T02 — Usable Shell & Navigation (Before 3D)', () => {
         (el) => el.getAttribute('href') === '/curriculo_kaue.pdf'
       );
       expect(ctaResume).toBeDefined();
-
-      // Destinos dos 3 pavilhões da paisagem (Links semânticos U10, U11, U12 para desktop e touch mobile)
-      const linksDev = screen.getAllByRole('link', { name: /Desenvolvimento/i });
-      expect(linksDev.length).toBeGreaterThanOrEqual(1);
-      expect(linksDev[0]).toHaveAttribute('href', '#projetos');
-
-      const linksAuto = screen.getAllByRole('link', { name: /Automação/i });
-      expect(linksAuto.length).toBeGreaterThanOrEqual(1);
-      expect(linksAuto[0]).toHaveAttribute('href', '#project-atlas');
-
-      const linksSupport = screen.getAllByRole('link', { name: /Suporte/i });
-      expect(linksSupport.length).toBeGreaterThanOrEqual(1);
-      expect(linksSupport[0]).toHaveAttribute('href', '#experiencia');
 
       const poster = container.querySelector('picture img');
       expect(poster).toHaveAttribute('src', '/images/portals/portals-1672.webp');
