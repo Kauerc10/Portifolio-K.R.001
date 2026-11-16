@@ -86,7 +86,7 @@
 .stage .additional{inset:0}
 .stage .vecom{inset:3% 4% 5%}
 .stage .document{inset:5% 12% 16% 7%}
-.stage .paper{padding:45px 38px;border-radius:28px}
+.stage .paper{padding:30px 38px;border-radius:28px}
 .stage .paper header{margin-bottom:26px}
 .stage .paper strong{font-size:38px}
 .stage .paper small{font-size:9px}
@@ -117,3 +117,4 @@
 .stage [data-vecom-layer=phone]>img{height:auto;width:100%;aspect-ratio:390/844;object-fit:contain}
 @media(min-width:1000px){.embedded .scene{height:100%;min-height:0;max-height:530px;width:100%;margin-left:0;transform:none}}
 @media(max-width:760px){.stage .scene{height:385px}.stage .canvas{--stage-fit:.42}}
+
