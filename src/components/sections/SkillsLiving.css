@@ -35,16 +35,16 @@
 /* Local illumination: one opacity layer, no pointer tracking or idle timeline. */
 .editorial-skills .editorial-skill-row { isolation: isolate; }
 .editorial-skills .editorial-skill-row::before { content: ''; position: absolute; z-index: -1; inset: .3rem -.9rem; border-radius: 1rem; background: radial-gradient(ellipse at 18% 35%, color-mix(in srgb, var(--editorial-violet) 13%, transparent), transparent 75%); opacity: 0; transition: opacity 180ms ease; pointer-events: none; }
-.editorial-skills .editorial-skill-row__icon { transition: transform 180ms ease, stroke-width 180ms ease; }
+.editorial-skills .editorial-skill-row__icon { transition: transform 180ms ease; }
 .editorial-skills .editorial-skill-chip { transition: color 180ms ease, background-color 180ms ease; cursor: default; }
 .editorial-skills .editorial-cta { transition: background-color 180ms ease, color 180ms ease; }
-.editorial-skills .editorial-cta:focus-visible { outline: 2px solid var(--editorial-violet); outline-offset: 6px; background: color-mix(in srgb, var(--editorial-violet) 12%, transparent); }
+.editorial-skills .editorial-cta:focus-visible { outline: 2px solid var(--editorial-violet); outline-offset: 6px; color: var(--editorial-ink); background: color-mix(in srgb, var(--editorial-violet) 12%, transparent); }
 @media (hover: hover) and (pointer: fine) {
   .editorial-skills .editorial-skill-row:hover::before { opacity: 1; }
   .editorial-skills .editorial-skill-row:hover .editorial-skill-row__icon-plate { background: color-mix(in srgb, var(--editorial-violet) 18%, transparent); }
   .editorial-skills .editorial-skill-row:hover .editorial-skill-row__icon { transform: rotate(-7deg) scale(1.08); stroke-width: 2.6; }
   .editorial-skills .editorial-skill-chip:hover { color: var(--editorial-violet); background: color-mix(in srgb, var(--editorial-violet) 16%, var(--editorial-surface)); }
-  .editorial-skills .editorial-cta:hover { background: color-mix(in srgb, var(--editorial-violet) 12%, transparent); }
+  .editorial-skills .editorial-cta:hover { color: var(--editorial-ink); background: color-mix(in srgb, var(--editorial-violet) 12%, transparent); }
 }
 @media (prefers-reduced-motion: reduce) {
   .editorial-skills .editorial-skill-row::before, .editorial-skills .editorial-skill-row__icon, .editorial-skills .editorial-skill-chip, .editorial-skills .editorial-cta { transition: none; }

@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import ptBR from '@/i18n/locales/pt-BR.json';
 import enUS from '@/i18n/locales/en-US.json';
@@ -128,6 +129,22 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
       expect(skills.querySelectorAll('article')).toHaveLength(4);
       expect(screen.getByText('Metodologia e resolução de problemas')).toBeInTheDocument();
       expect(screen.getByText('IA no desenvolvimento')).toBeInTheDocument();
+    });
+
+    it.each([
+      ['pt-BR', ptBR, 'Metodologia ágil', 'IA no desenvolvimento', 'Resolução de problemas'],
+      ['en-US', enUS, 'Agile methodology', 'AI-assisted development', 'Problem solving'],
+    ] as const)('mantém habilidades completas em %s no HTML sem JavaScript', (_locale, dictionary, agile, ai, problemSolving) => {
+      const markup = renderToStaticMarkup(<SkillsSection dict={dictionary.skills} />);
+      const document = new DOMParser().parseFromString(markup, 'text/html');
+      const section = document.getElementById('skills')!;
+      expect(section.textContent).toContain(agile);
+      expect(section.textContent).toContain(ai);
+      expect(section.textContent).toContain(problemSolving);
+      expect(section.querySelectorAll('article')).toHaveLength(4);
+      expect(section.querySelectorAll('a')).toHaveLength(1);
+      expect(section.querySelector('[tabindex]')).toBeNull();
+      expect(section.querySelector('a')?.getAttribute('href')).toBe('/curriculo_kaue.pdf');
     });
 
     it('renderiza Formação atual sem botão de expansão quando há até 6 cursos e suporta metadados opcionais em en-US', () => {

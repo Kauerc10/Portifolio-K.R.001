@@ -26,14 +26,14 @@ export default function SectionMotionEnhancer({ sectionId, kind }: Props) {
       });
     }
     const mobile = window.matchMedia?.('(max-width: 600px)')?.matches ?? false;
-      root.querySelectorAll<SVGElement>('[data-motion-wave]').forEach(plane => {
-        const near = plane.dataset.motionWave === 'near';
-        const offset = (near ? 4 : -2.5) * (mobile ? .4 : 1);
-        cleanups.push(scope.scrub(plane, [
-          { transform: `translate3d(${offset}%, ${near ? 5 : -3}%, 0) rotate(${near ? -2 : 1}deg)` },
-          { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
-        ], { anchor: root, travel: 'section' }));
-      });
+    root.querySelectorAll<SVGElement>('[data-motion-wave]').forEach(plane => {
+      const near = plane.dataset.motionWave === 'near';
+      const offset = (near ? 4 : -2.5) * (mobile ? .4 : 1);
+      cleanups.push(scope.scrub(plane, [
+        { transform: `translate3d(${offset}%, ${near ? 5 : -3}%, 0) rotate(${near ? -2 : 1}deg)` },
+        { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
+      ], { anchor: root, travel: 'section' }));
+    });
 
     if (kind === 'skills') {
       root.querySelectorAll<HTMLElement>('.editorial-skill-row').forEach((row, index) => {
