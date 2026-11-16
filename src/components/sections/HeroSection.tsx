@@ -11,7 +11,7 @@ export default function HeroSection({ dict: d }: { dict: Dictionary['hero'] }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 24);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -22,7 +22,8 @@ export default function HeroSection({ dict: d }: { dict: Dictionary['hero'] }) {
     event.preventDefault();
     const target = document.getElementById('projetos');
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+      target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
     }
   };
 
@@ -64,17 +65,20 @@ export default function HeroSection({ dict: d }: { dict: Dictionary['hero'] }) {
         className={`portal-scroll-prompt ${ready ? 'is-ready' : ''} ${scrolled ? 'is-scrolled' : ''}`}
         aria-hidden={!ready || scrolled}
       >
-        <a
-          href="#projetos"
-          onClick={handleScrollClick}
-          className="portal-scroll-prompt-link"
-          aria-label={d.scrollDown}
-        >
-          <span className="portal-scroll-prompt-text">{d.scrollDown}</span>
-          <span className="portal-scroll-prompt-icon" aria-hidden="true">
-            <ChevronDown size={18} />
-          </span>
-        </a>
+        <div className="portal-scroll-prompt-motion">
+          <a
+            href="#projetos"
+            onClick={handleScrollClick}
+            className="portal-scroll-prompt-link"
+            aria-label={d.scrollDown}
+            tabIndex={!ready || scrolled ? -1 : undefined}
+          >
+            <span className="portal-scroll-prompt-text">{d.scrollDown}</span>
+            <span className="portal-scroll-prompt-icon" aria-hidden="true">
+              <ChevronDown size={18} />
+            </span>
+          </a>
+        </div>
       </div>
     </section>
   );
