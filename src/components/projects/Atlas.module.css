@@ -174,3 +174,6 @@
 @media(min-width:1000px) {
  .case main > .story { width:calc(100% - clamp(3rem,8vw,10rem)); max-width:1680px; }
 }
+
+/* Bound the complete case artwork independently of the copy column. */
+.caseHero .art { width:100%; max-width:700px; height:auto; aspect-ratio:600/450; margin-inline:auto; container-type:inline-size; }

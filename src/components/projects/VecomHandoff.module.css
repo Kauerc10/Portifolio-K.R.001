@@ -55,3 +55,10 @@
  .sticky { padding-inline:clamp(1.5rem,3vw,3rem); }
  .scene { max-width:1250px; }
 }
+
+/* Device frames follow the captures, rather than stretching with scene width. */
+.journey .scene { width:min(100%,1000px); max-width:1000px; height:auto; aspect-ratio:1000/480; margin-inline:auto; }
+.clientPhone { height:auto; aspect-ratio:390/844; box-sizing:content-box; }
+.teamComputer { height:auto; aspect-ratio:1440/1000; box-sizing:content-box; }
+.screen { width:100%; height:auto; object-fit:contain; }
+@media(max-width:760px) { .journey .scene { aspect-ratio:350/300; } }

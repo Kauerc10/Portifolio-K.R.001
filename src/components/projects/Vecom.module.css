@@ -28,10 +28,10 @@
 .cards:before { content:''; position:absolute; inset:0; border-radius:12px; background:#fff9f4; box-shadow:0 5px 12px #7a635b15; transform:translate(22px,-10px) rotate(9deg); z-index:-1; }
 .cards i { display:block; height:5px; margin:10px 0; border-radius:5px; background:#cfcbd0; }
 .cards i:first-child { width:40%; background:var(--vecom-orange); }
-.laptop { position:absolute; left:5%; right:13%; top:20%; height:62%; padding:8px; border-radius:14px 14px 6px 6px; background:linear-gradient(120deg,#a0a9bc,#263044 40%,#151e30); box-shadow:0 22px 35px #283c5a38,inset 0 0 0 1px #d5d8df; transform:translateY(calc((1 - var(--vecom-progress))*45px)) rotate(calc(-5deg + var(--vecom-progress)*4deg)); z-index:2; }
+.laptop { position:absolute; left:5%; top:20%; width:78%; height:auto; aspect-ratio:1440/1000; box-sizing:content-box; padding:8px; border-radius:14px 14px 6px 6px; background:linear-gradient(120deg,#a0a9bc,#263044 40%,#151e30); box-shadow:0 22px 35px #283c5a38,inset 0 0 0 1px #d5d8df; transform:translateY(calc((1 - var(--vecom-progress))*45px)) rotate(calc(-5deg + var(--vecom-progress)*4deg)); z-index:2; }
 .laptop:after { content:''; position:absolute; bottom:-16px; left:-7%; width:114%; height:18px; border-radius:0 0 55% 45%/0 0 60% 60%; background:linear-gradient(#dddfe4,#a4a7ae 50%,#f2f1ee 65%,#8d939d); box-shadow:0 8px 10px #353b4228; }
 .desktopInterface,.mobileInterface { display:block; width:100%; height:100%; object-fit:cover; object-position:top; border-radius:6px; background:#f2f6fe; }
-.phone { position:absolute; right:0; bottom:8%; width:24%; height:64%; padding:5px; border:2px solid #aeb8cb; border-radius:22px; background:#142039; box-shadow:0 18px 28px #26395d35,inset 0 0 0 1px #edf2ff; transform:translate(calc((1 - var(--vecom-progress))*45px),calc((1 - var(--vecom-progress))*18px)) rotate(calc(7deg - var(--vecom-progress)*5deg)); z-index:3;  }
+.phone { position:absolute; right:0; bottom:8%; width:24%; height:auto; aspect-ratio:390/844; box-sizing:content-box; padding:5px; border:2px solid #aeb8cb; border-radius:22px; background:#142039; box-shadow:0 18px 28px #26395d35,inset 0 0 0 1px #edf2ff; transform:translate(calc((1 - var(--vecom-progress))*45px),calc((1 - var(--vecom-progress))*18px)) rotate(calc(7deg - var(--vecom-progress)*5deg)); z-index:3;  }
 .mobileInterface { border-radius:15px; }
 .plinth { position:absolute; left:-6%; right:-7%; bottom:1%; height:35px; border-radius:50%; background:linear-gradient(175deg,#fffcf8,#e7d9d0); box-shadow:0 16px 28px #b8885522; transform:rotate(-3deg); }
 .folder,.cards,.laptop,.phone { transition:transform .18s linear; }
@@ -66,8 +66,8 @@
   .copy h1,.copy h3 { font-size:clamp(2.7rem,12vw,4.2rem); }
   .description { font-size:.9rem; }
   .art { height:280px; }
-  .laptop { left:3%; right:14%; border-radius:10px; padding:5px; }
-  .phone { width:24%; height:63%; border-radius:16px; padding:4px; }
+  .laptop { left:3%; right:auto; border-radius:10px; padding:5px; }
+  .phone { width:24%; height:auto; border-radius:16px; padding:4px; }
   .mobileInterface { border-radius:10px; }
   .cards { padding:8px 12px; }
   .cards i { height:3px; margin:7px 0; }
@@ -102,3 +102,7 @@
 @media(min-width:1000px) {
  .case main > .story { width:calc(100% - clamp(3rem,8vw,10rem)); max-width:1680px; }
 }
+
+/* Preserve the prepared screen formats at every case-page width. */
+.caseHero .art { width:100%; max-width:700px; height:auto; aspect-ratio:600/530; margin-inline:auto; }
+.laptop>.desktopInterface,.phone>.mobileInterface { width:100%; height:auto; object-fit:contain; }

@@ -90,3 +90,6 @@
 @media(max-width:760px) {
  .preview .systemFrame { width:calc(52% + var(--ckf-progress)*10%); }
 }
+
+/* Bound the complete case artwork independently of the copy column. */
+.caseHero .art { width:100%; max-width:700px; height:auto; aspect-ratio:700/450; margin-inline:auto; container-type:inline-size; }
