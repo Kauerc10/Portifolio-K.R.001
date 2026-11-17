@@ -29,4 +29,4 @@ Sources checked on 2026-11-17:
 
 ## Verification record
 
-Automated tests mock the external provider and do not send email. Live inbox delivery remains pending until the key, recipient verification and deployed form test are confirmed. The connected Vercel API returned 403 when listing environment metadata; no Vercel CLI was installed in the current environment. No production configuration or delivery has been verified in this session.
+Automated tests mock the external provider and do not send email. The Web3Forms form was created for the verified account kaue@ruon.dev. Recipient, sender name and subject were configured. WEB3FORMS_ACCESS_KEY was updated for Production and Preview through the authenticated Vercel dashboard after its required verification; the dashboard confirmed the update. No key is committed. The local outbound test received an HTML 403 security challenge from the provider, and the API correctly returned SERVICE_UNAVAILABLE. Production deployment and provider acceptance/inbox delivery must be checked separately.
