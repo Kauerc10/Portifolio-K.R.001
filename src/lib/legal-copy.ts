@@ -6,7 +6,7 @@ export const legalCopy = {
       "sections": [
         [
           "Responsável e contato",
-          "Kauê Ruon Cardoso, em Blumenau, Santa Catarina, é o responsável pelo tratamento dos dados deste portfólio. Para dúvidas ou solicitações sobre seus dados, escreva para kaue.ruon@gmail.com."
+          "Kauê Ruon Cardoso, em Blumenau, Santa Catarina, é o responsável pelo tratamento dos dados deste portfólio. Para dúvidas ou solicitações sobre seus dados, escreva para kaue@ruon.dev."
         ],
         [
           "Dados e finalidade",
@@ -18,7 +18,7 @@ export const legalCopy = {
         ],
         [
           "Serviços envolvidos",
-          "A Vercel hospeda o site. O Web3Forms processa o formulário e encaminha a mensagem à caixa de e-mail de Kauê no Gmail, operado pelo Google. Esses fornecedores podem utilizar infraestrutura e suboperadores fora do Brasil. Seus serviços estão sujeitos às respectivas políticas e aos mecanismos de proteção aplicáveis às transferências internacionais. Não comercializamos seus dados."
+          "A Vercel hospeda o site. O Web3Forms processa o formulário e encaminha a mensagem à caixa de e-mail profissional de Kauê. Esses fornecedores podem utilizar infraestrutura e suboperadores fora do Brasil. Seus serviços estão sujeitos às respectivas políticas e aos mecanismos de proteção aplicáveis às transferências internacionais. Não comercializamos seus dados."
         ],
         [
           "Conservação e segurança",
@@ -30,7 +30,7 @@ export const legalCopy = {
         ],
         [
           "Seus direitos",
-          "Nos termos da LGPD, você pode pedir confirmação e acesso, correção, informação sobre compartilhamento, anonimização, bloqueio ou eliminação de dados desnecessários ou irregulares e, quando aplicável, portabilidade, eliminação de dados tratados por consentimento, revogação e oposição. Envie sua solicitação para kaue.ruon@gmail.com. Poderá ser necessária confirmação proporcional da identidade; a resposta observará os prazos legais e explicará eventuais limites de conservação. Você também pode recorrer à ANPD."
+          "Nos termos da LGPD, você pode pedir confirmação e acesso, correção, informação sobre compartilhamento, anonimização, bloqueio ou eliminação de dados desnecessários ou irregulares e, quando aplicável, portabilidade, eliminação de dados tratados por consentimento, revogação e oposição. Envie sua solicitação para kaue@ruon.dev. Poderá ser necessária confirmação proporcional da identidade; a resposta observará os prazos legais e explicará eventuais limites de conservação. Você também pode recorrer à ANPD."
         ],
         [
           "Links externos e atualizações",
@@ -64,7 +64,7 @@ export const legalCopy = {
         ],
         [
           "Privacidade e contato",
-          "O tratamento de dados é descrito na Política de Privacidade. Questões sobre o site, direitos de autoria e estes termos podem ser encaminhadas a kaue.ruon@gmail.com."
+          "O tratamento de dados é descrito na Política de Privacidade. Questões sobre o site, direitos de autoria e estes termos podem ser encaminhadas a kaue@ruon.dev."
         ],
         [
           "Atualizações e legislação",
@@ -80,7 +80,7 @@ export const legalCopy = {
       "sections": [
         [
           "Controller and contact",
-          "Kauê Ruon Cardoso, based in Blumenau, Santa Catarina, Brazil, is responsible for processing personal data on this portfolio. Contact kaue.ruon@gmail.com with privacy questions or requests."
+          "Kauê Ruon Cardoso, based in Blumenau, Santa Catarina, Brazil, is responsible for processing personal data on this portfolio. Contact kaue@ruon.dev with privacy questions or requests."
         ],
         [
           "Data and purposes",
@@ -92,7 +92,7 @@ export const legalCopy = {
         ],
         [
           "Service providers",
-          "Vercel hosts the website. Web3Forms processes submissions and forwards them to Kauê’s Gmail mailbox, operated by Google. These providers may use infrastructure and subprocessors outside Brazil, subject to their policies and applicable international-transfer safeguards. We do not sell your data."
+          "Vercel hosts the website. Web3Forms processes submissions and forwards them to Kauê’s professional mailbox. These providers may use infrastructure and subprocessors outside Brazil, subject to their policies and applicable international-transfer safeguards. We do not sell your data."
         ],
         [
           "Retention and security",
@@ -104,7 +104,7 @@ export const legalCopy = {
         ],
         [
           "Your rights",
-          "Under the LGPD, you may request confirmation, access, correction, sharing information and anonymisation, blocking or deletion of unnecessary or unlawfully processed data. Portability, deletion of consent-based data, consent withdrawal and objection apply where legally available. Email kaue.ruon@gmail.com. Proportionate identity verification may be needed; requests are handled within applicable legal deadlines, explaining any retention requirements. You may also contact Brazil’s ANPD."
+          "Under the LGPD, you may request confirmation, access, correction, sharing information and anonymisation, blocking or deletion of unnecessary or unlawfully processed data. Portability, deletion of consent-based data, consent withdrawal and objection apply where legally available. Email kaue@ruon.dev. Proportionate identity verification may be needed; requests are handled within applicable legal deadlines, explaining any retention requirements. You may also contact Brazil’s ANPD."
         ],
         [
           "External links and changes",
@@ -138,7 +138,7 @@ export const legalCopy = {
         ],
         [
           "Privacy and contact",
-          "The privacy policy describes personal-data processing. Contact kaue.ruon@gmail.com about this website, ownership rights or these terms."
+          "The privacy policy describes personal-data processing. Contact kaue@ruon.dev about this website, ownership rights or these terms."
         ],
         [
           "Updates and applicable law",

@@ -86,8 +86,8 @@ export default function AevoWidget({ locale }: { locale?: string }) {
         window.open('/curriculo_kaue.pdf', '_blank');
         showToast(<FileText className="w-4 h-4 text-[var(--gold)]" />, 'Currículo PDF aberto com sucesso');
       } else if (tool.name === 'copy_contact_email') {
-        navigator.clipboard?.writeText('kaue.ruon@gmail.com');
-        showToast(<Copy className="w-4 h-4 text-[var(--gold)]" />, 'E-mail kaue.ruon@gmail.com copiado para a área de transferência');
+        navigator.clipboard?.writeText('kaue@ruon.dev');
+        showToast(<Copy className="w-4 h-4 text-[var(--gold)]" />, 'E-mail kaue@ruon.dev copiado para a área de transferência');
       } else if (tool.name === 'fill_petition_form') {
         const form = document.getElementById('peticaoForm') as HTMLFormElement;
         if (form) {

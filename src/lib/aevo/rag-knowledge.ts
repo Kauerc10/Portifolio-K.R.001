@@ -39,7 +39,7 @@ Não escreve código do zero linha por linha como um desenvolvedor tradicional; 
 - **Outros:** Git, Vercel Deploy, Testes Unitários, Inglês Intermediário.
 
 ## Contato Direto
-- Email: kaue.ruon@gmail.com
+- Email: kaue@ruon.dev
 - LinkedIn: https://www.linkedin.com/in/kauerc/
 - GitHub: https://github.com/Kauerc10
 - Domínio Oficial: https://kaueruon.dev
@@ -95,7 +95,7 @@ const KNOWLEDGE_CHUNKS: KnowledgeChunk[] = [
   {
     id: 'contato',
     keywords: ['contato', 'contact', 'email', 'e-mail', 'linkedin', 'github', 'currículo', 'curriculo', 'resume', 'cv'],
-    content: 'Contato: kaue.ruon@gmail.com; LinkedIn: https://www.linkedin.com/in/kauerc/; GitHub: https://github.com/Kauerc10; site: https://kaueruon.dev. O currículo oficial está disponível em /curriculo_kaue.pdf.',
+    content: 'Contato: kaue@ruon.dev; LinkedIn: https://www.linkedin.com/in/kauerc/; GitHub: https://github.com/Kauerc10; site: https://kaueruon.dev. O currículo oficial está disponível em /curriculo_kaue.pdf.',
   },
 ];
 

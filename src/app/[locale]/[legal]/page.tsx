@@ -36,8 +36,8 @@ export default async function LegalPage({ params }: { params: Params }) {
     </nav>
     <article>{copy.sections.map(([title, text], i) => <section key={title} id={`item-${i + 1}`}><h2>{title}</h2><p>{text}</p></section>)}</article>
     <aside className={styles.providers}><h2>{en ? 'Useful links' : 'Links úteis'}</h2>
-      <a href="mailto:kaue.ruon@gmail.com">kaue.ruon@gmail.com</a>
-      {legal === 'privacidade' && <><a href="https://web3forms.com/privacy">Web3Forms · {en ? 'Privacy' : 'Privacidade'}</a><a href="https://vercel.com/legal/privacy-policy">Vercel · {en ? 'Privacy' : 'Privacidade'}</a><a href="https://policies.google.com/privacy">Google · {en ? 'Privacy' : 'Privacidade'}</a><a href="https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados/direito-dos-titulares">ANPD · {en ? 'Data subject rights' : 'Direitos dos titulares'}</a></>}
+      <a href="mailto:kaue@ruon.dev">kaue@ruon.dev</a>
+      {legal === 'privacidade' && <><a href="https://web3forms.com/privacy">Web3Forms · {en ? 'Privacy' : 'Privacidade'}</a><a href="https://vercel.com/legal/privacy-policy">Vercel · {en ? 'Privacy' : 'Privacidade'}</a><a href="https://www.gov.br/anpd/pt-br/assuntos/titular-de-dados/direito-dos-titulares">ANPD · {en ? 'Data subject rights' : 'Direitos dos titulares'}</a></>}
     </aside>
     <footer><Link href={`/${locale}/${legal === 'termos' ? 'privacidade' : 'termos'}`}>{legal === 'termos' ? legalCopy[locale].privacidade.title : legalCopy[locale].termos.title}</Link><span>© 2026 Kauê Ruon Cardoso.</span></footer>
   </main>;

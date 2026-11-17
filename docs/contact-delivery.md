@@ -2,9 +2,9 @@
 
 ## Destination and provider
 
-The public contact address is `kaue.ruon@gmail.com`. The server forwards validated submissions to Web3Forms; the recipient is bound to the Web3Forms access key, not a client-supplied address. Replies use the visitor's validated email address.
+The public contact address is `kaue@ruon.dev`. The server forwards validated submissions to Web3Forms; the recipient is bound to the Web3Forms access key, not a client-supplied address. Replies use the visitor's validated email address.
 
-1. Create or select a form for `kaue.ruon@gmail.com` at https://app.web3forms.com/ and complete the email verification.
+1. Create or select a form for `kaue@ruon.dev` at https://app.web3forms.com/ and complete the email verification.
 2. In the portfolio's Vercel project, configure `WEB3FORMS_ACCESS_KEY` for Production. For Preview use a separate test form/key if possible. Keep the value server-side; never commit it or paste it into a ticket/chat.
 3. Redeploy after changing environment variables. Set the provider's domain restriction to the intended production domain if supported by the selected plan; include approved preview domains only when needed.
 4. Send a clearly labelled test through the deployed contact form. Verify it arrives in the recipient inbox (check spam), that the subject is correct and that Reply targets the visitor's address. A provider acceptance response is not proof of inbox delivery.

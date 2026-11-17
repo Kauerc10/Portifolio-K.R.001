@@ -390,8 +390,8 @@
       "SUCCESS": "Message accepted for email delivery. Thank you for getting in touch!",
       "RATE_LIMITED": "Too many attempts. Please try again in a few minutes.",
       "VALIDATION_ERROR": "Please fill out all required fields correctly.",
-      "SERVICE_UNAVAILABLE": "Email service temporarily unavailable. Please email directly to kaue.ruon@gmail.com",
-      "INTERNAL_ERROR": "Internal server error. Please email directly to kaue.ruon@gmail.com"
+      "SERVICE_UNAVAILABLE": "Email service temporarily unavailable. Please email directly to kaue@ruon.dev",
+      "INTERNAL_ERROR": "Internal server error. Please email directly to kaue@ruon.dev"
     },
     "location": "Blumenau / SC — Available for remote work and global projects",
     "copied": "Copied!",

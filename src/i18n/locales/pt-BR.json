@@ -390,8 +390,8 @@
       "SUCCESS": "Mensagem recebida para envio por e-mail. Obrigado pelo contato!",
       "RATE_LIMITED": "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
       "VALIDATION_ERROR": "Por favor, preencha todos os campos obrigatórios corretamente.",
-      "SERVICE_UNAVAILABLE": "Serviço de e-mail temporariamente indisponível. Envie diretamente para kaue.ruon@gmail.com",
-      "INTERNAL_ERROR": "Falha interna ao processar envio. Envie diretamente para kaue.ruon@gmail.com"
+      "SERVICE_UNAVAILABLE": "Serviço de e-mail temporariamente indisponível. Envie diretamente para kaue@ruon.dev",
+      "INTERNAL_ERROR": "Falha interna ao processar envio. Envie diretamente para kaue@ruon.dev"
     },
     "location": "Blumenau / SC — Disponível para atuação remota e projetos globais",
     "copied": "Copiado!",
