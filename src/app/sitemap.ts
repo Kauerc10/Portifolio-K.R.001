@@ -26,5 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/${locale}/projetos/docfacil`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/docfacil`, 'en-US': `${baseUrl}/en-US/projetos/docfacil` } } },
     { url: `${baseUrl}/${locale}/projetos/ckf`, lastModified: now, changeFrequency: 'monthly' as const, priority: locale === 'pt-BR' ? 0.8 : 0.7, alternates: { languages: { 'pt-BR': `${baseUrl}/pt-BR/projetos/ckf`, 'en-US': `${baseUrl}/en-US/projetos/ckf` } } },
   ]);
-  return [...homeEntries, ...caseEntries];
+  const legalEntries = locales.flatMap(locale => ['privacidade', 'termos'].map(page => ({ url: `${baseUrl}/${locale}/${page}`, lastModified: new Date('2026-11-17'), changeFrequency: 'yearly' as const, priority: 0.3 })));
+  return [...homeEntries, ...caseEntries, ...legalEntries];
 }

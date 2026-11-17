@@ -139,3 +139,7 @@
   .contact-editorial { grid-template-columns: minmax(0, 1fr); }
   .footer-editorial__top { margin-inline-start: 0; }
 }
+
+.contact-editorial .contact-editorial__privacy { font-size: .8125rem; line-height: 1.6; margin: 4px 0 16px; color: #625b70; }
+.contact-editorial__privacy a, .footer-editorial__legal a { color: #6725dc; text-underline-offset: .2em; }
+.footer-editorial__legal { display: flex; flex-wrap: wrap; gap: 12px 24px; font-size: .8125rem; }

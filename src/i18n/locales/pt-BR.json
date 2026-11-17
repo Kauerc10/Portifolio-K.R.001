@@ -387,7 +387,7 @@
       "githubTitle": "Repositório de Código"
     },
     "messages": {
-      "SUCCESS": "Mensagem enviada com sucesso.",
+      "SUCCESS": "Mensagem recebida para envio por e-mail. Obrigado pelo contato!",
       "RATE_LIMITED": "Muitas tentativas. Aguarde alguns minutos e tente novamente.",
       "VALIDATION_ERROR": "Por favor, preencha todos os campos obrigatórios corretamente.",
       "SERVICE_UNAVAILABLE": "Serviço de e-mail temporariamente indisponível. Envie diretamente para kaue.ruon@gmail.com",
@@ -398,7 +398,9 @@
     "editorialLabel": "Contato",
     "editorialTitle": "Vamos",
     "editorialAccent": "conversar?",
-    "editorialDescription": "Tem um projeto, uma ideia ou uma oportunidade? Me chame por um dos canais diretos ou envie uma mensagem."
+    "editorialDescription": "Tem um projeto, uma ideia ou uma oportunidade? Conte um pouco sobre ela pelo formulário.",
+    "privacyNotice": "Seus dados serão usados para responder à sua solicitação. Não inclua informações sensíveis.",
+    "privacyLink": "Política de Privacidade"
   },
   "footer": {
     "topLabel": "Voltar ao topo",
@@ -406,7 +408,10 @@
     "emailLabel": "Copiar endereço de e-mail",
     "email": "E-mail",
     "copied": "Copiado",
-    "copyright": "© 2026 Kauê Ruon Cardoso."
+    "copyright": "© 2026 Kauê Ruon Cardoso.",
+    "legalLabel": "Informações legais",
+    "privacy": "Privacidade",
+    "terms": "Termos de Uso"
   },
   "modals": {
     "breachTitle": "PROTOCOLO DE VIOLAÇÃO ATIVADO",

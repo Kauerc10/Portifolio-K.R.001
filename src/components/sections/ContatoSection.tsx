@@ -1,9 +1,9 @@
 'use client';
 
-import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import type { Dictionary } from '@/i18n/types';
-import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
+import Link from 'next/link';
 
 const fields = [
   { name: 'nome', type: 'text', label: 'nameLabel', placeholder: 'namePlaceholder', autoComplete: 'name' },
@@ -13,7 +13,7 @@ const fields = [
 
 type FieldName = (typeof fields)[number]['name'] | 'mensagem';
 
-export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }) {
+export default function ContatoSection({ dict, locale = 'pt-BR' }: { dict: Dictionary['contato']; locale?: string }) {
   const started = useRef(0);
   const inFlight = useRef(false);
   const [feedback, setFeedback] = useState('');
@@ -117,11 +117,6 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
         <span className="editorial-kicker">{dict.editorialLabel}</span>
         <h2 className="editorial-display">{dict.editorialTitle}{' '}<em>{dict.editorialAccent}</em></h2>
         <p>{dict.editorialDescription}</p>
-        <nav className="contact-editorial__links" aria-label={dict.fastContact.title}>
-          <a href={DIRECT_CONTACT_LINKS.email}><Mail aria-hidden="true" />{dict.emailLabel}</a>
-          <a href={DIRECT_CONTACT_LINKS.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin aria-hidden="true" />LinkedIn</a>
-          <a href={DIRECT_CONTACT_LINKS.github} target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" />GitHub</a>
-        </nav>
       </div>
       <form
         ref={formRef}
@@ -147,6 +142,7 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
               aria-invalid={Boolean(fieldErrors[field.name]) || undefined}
               aria-describedby={fieldErrors[field.name] ? `${field.name}-error` : undefined}
               onChange={() => clearFieldError(field.name)}
+              maxLength={field.name === 'nome' ? 120 : field.name === 'email' ? 254 : 180}
               required
             />
             {fieldErrors[field.name] && (
@@ -162,6 +158,7 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
             id="mensagem"
             name="mensagem"
             rows={5}
+            maxLength={5000}
             placeholder={dict.messagePlaceholder}
             aria-invalid={Boolean(fieldErrors.mensagem) || undefined}
             aria-describedby={fieldErrors.mensagem ? 'mensagem-error' : undefined}
@@ -174,6 +171,7 @@ export default function ContatoSection({ dict }: { dict: Dictionary['contato'] }
             </span>
           )}
         </label>
+        <p className="contact-editorial__privacy">{dict.privacyNotice} <Link href={`/${locale}/privacidade`}>{dict.privacyLink}</Link></p>
         <button type="submit" disabled={sending}>{sending ? dict.btnSubmitting : dict.btnSubmit}<ArrowUpRight size={16} aria-hidden="true" /></button>
         <p className="contact-editorial__feedback" data-state={feedbackState} role="status">{feedback}</p>
       </form>

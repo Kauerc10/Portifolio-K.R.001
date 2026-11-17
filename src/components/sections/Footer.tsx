@@ -3,9 +3,10 @@
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { useEffect, useRef, type MouseEvent } from 'react';
 import type { Dictionary } from '@/i18n/types';
+import Link from 'next/link';
 import { DIRECT_CONTACT_LINKS } from '@/lib/editorial';
 
-export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
+export default function Footer({ dict, locale = 'pt-BR' }: { dict: Dictionary['footer']; locale?: string }) {
   const pendingTop = useRef(false);
   const trackingFrame = useRef(0);
   const trackingDeadline = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -86,6 +87,7 @@ export default function Footer({ dict }: { dict: Dictionary['footer'] }) {
       </nav>
       <a className="footer-editorial__top" href="#hero" onClick={returnToTop}>{dict.topLabel}<ArrowUpRight aria-hidden="true" /></a>
       <p>{dict.copyright}</p>
+      <nav className="footer-editorial__legal" aria-label={dict.legalLabel}><Link href={`/${locale}/privacidade`}>{dict.privacy}</Link><Link href={`/${locale}/termos`}>{dict.terms}</Link></nav>
     </footer>
   );
 }

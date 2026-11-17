@@ -387,7 +387,7 @@
       "githubTitle": "Code Repository"
     },
     "messages": {
-      "SUCCESS": "Your message was sent successfully.",
+      "SUCCESS": "Message accepted for email delivery. Thank you for getting in touch!",
       "RATE_LIMITED": "Too many attempts. Please try again in a few minutes.",
       "VALIDATION_ERROR": "Please fill out all required fields correctly.",
       "SERVICE_UNAVAILABLE": "Email service temporarily unavailable. Please email directly to kaue.ruon@gmail.com",
@@ -398,7 +398,9 @@
     "editorialLabel": "Contact",
     "editorialTitle": "Let’s",
     "editorialAccent": "talk",
-    "editorialDescription": "Have a project, an idea or an opportunity? Reach out directly or send me a message."
+    "editorialDescription": "Have a project, an idea or an opportunity? Tell me about it using the form below.",
+    "privacyNotice": "Your details will be used to respond to your request. Please do not include sensitive information.",
+    "privacyLink": "Privacy policy"
   },
   "footer": {
     "topLabel": "Back to top",
@@ -406,7 +408,10 @@
     "emailLabel": "Copy email address",
     "email": "Email",
     "copied": "Copied",
-    "copyright": "© 2026 Kauê Ruon Cardoso."
+    "copyright": "© 2026 Kauê Ruon Cardoso.",
+    "legalLabel": "Legal information",
+    "privacy": "Privacy",
+    "terms": "Terms of use"
   },
   "modals": {
     "breachTitle": "BREACH PROTOCOL ACTIVATED",
