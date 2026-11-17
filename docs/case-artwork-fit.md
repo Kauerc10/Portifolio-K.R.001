@@ -17,3 +17,7 @@ No changes to project copy, captures, animation progress calculations or destina
 The shared CaseGallery now presents desktop captures inside a 16:9 viewport and mobile captures inside a 390:844 viewport, aligned to the top of the original image. This is a presentation crop: originals are unchanged and remain available in the accessible dialog and original-file link. PDF captures are explicitly classified as documents and remain uncropped. Desktop/mobile pairs use an 8/4 column split; phone captions retain up to 260px instead of collapsing with a long screenshot's original ratio.
 
 Browser checks: all five projects at 390×844 and 1440×900, including both CKF galleries. All screen previews retained the intended ratios within border/pixel rounding, captions retained useful widths and no horizontal document overflow occurred. The document preview retained its native A4-like ratio. Existing lightbox focus-return test passes; an added test verifies document classification and preservation of the complete original.
+
+## Cropped enlargement and concise captions
+
+The enlarged dialog now uses the same desktop/mobile viewport crop as its preview, bounded by the available viewport height. Documents retain their native ratio. An explicit original-file link remains available. Visible captions are Desktop · Demo, Mobile · Demo and PDF · Demo; descriptive image alternatives and button labels remain intact for accessibility. Verified representative desktop/mobile dialogs without horizontal overflow and confirmed close/focus behaviour in the existing gallery tests.

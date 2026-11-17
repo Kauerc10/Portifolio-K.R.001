@@ -63,6 +63,9 @@ describe('C02 — case foundation', () => {
     const original = screen.getByRole('dialog').querySelector('img');
     expect(original).toHaveAttribute('src', '/long-mobile.png');
     expect(original).toHaveAttribute('height', '1907');
+    expect(screen.getByRole('dialog')).toHaveAttribute('data-capture-kind', 'mobile');
+    expect(container.querySelector('figcaption')).toHaveTextContent('Desktop · Demo');
+    expect(container.querySelectorAll('figcaption')[1]).toHaveTextContent('Mobile · Demo');
     expect(screen.getByRole('link', { name: /Abrir captura original/ })).toHaveAttribute('href', '/long-mobile.png');
     fireEvent.click(screen.getByRole('button', { name: /Fechar/ }));
   });
