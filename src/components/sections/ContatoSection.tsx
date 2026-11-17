@@ -77,8 +77,23 @@ export default function ContatoSection({ dict, locale = 'pt-BR' }: { dict: Dicti
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...body, fillTime: started.current ? Date.now() - started.current : undefined }),
       });
-      const result = await response.json();
-      if (response.ok && result.success === true) {
+      const prepared = await response.json();
+      // Provider requires a browser request on its free plan. The server validates
+      // and supplies only the public form ID and the sanitised submission.
+      let result = prepared;
+      let delivered = false;
+      if (response.ok && prepared.submission) {
+        const delivery = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(prepared.submission),
+          signal: AbortSignal.timeout(15000),
+        });
+        const receipt = await delivery.json();
+        delivered = delivery.ok && receipt.success === true;
+        result = { error: delivery.status === 429 ? 'RATE_LIMITED' : 'SERVICE_UNAVAILABLE' };
+      }
+      if (delivered) {
         setFeedbackState('success');
         setFeedback(dict.messages.SUCCESS);
         form.reset();
