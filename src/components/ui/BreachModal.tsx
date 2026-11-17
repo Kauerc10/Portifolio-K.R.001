@@ -126,7 +126,7 @@ export default function BreachModal() {
                 "A tolerância zero a erros do trabalho notarial encontra a precisão da IA generativa."
               </p>
               <div className="pt-2 text-[11px] text-gray-400">
-                Contato Direto do Kauê: <span className="text-cyanNeon">kaue.ruon@gmail.com</span>
+                Contato Direto do Kauê: <span className="text-cyanNeon">kaue@ruon.dev</span>
               </div>
             </div>
           )}

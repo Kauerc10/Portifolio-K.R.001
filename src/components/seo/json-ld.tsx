@@ -18,7 +18,7 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
       : 'Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia.',
     url: localizedUrl,
     image: 'https://github.com/Kauerc10.png',
-    email: 'mailto:kaue.ruon@gmail.com',
+    email: 'mailto:kaue@ruon.dev',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Blumenau',

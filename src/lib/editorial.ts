@@ -5,7 +5,7 @@ export function splitAccentTitle(title: string): [lead: string, accent: string] 
 }
 
 export const DIRECT_CONTACT_LINKS = {
-  email: 'mailto:kaue.ruon@gmail.com',
+  email: 'mailto:kaue@ruon.dev',
   linkedin: 'https://www.linkedin.com/in/kauerc/',
   github: 'https://github.com/Kauerc10',
 } as const;

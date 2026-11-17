@@ -1,0 +1,13 @@
+.page { max-width: 960px; margin: 0 auto; padding: clamp(24px, 6vw, 80px) clamp(20px, 5vw, 64px); color: #15131d; }
+.page a { color: #6725dc; text-underline-offset: .25em; }
+.page a:focus-visible { outline: 2px solid #6725dc; outline-offset: 5px; border-radius: 3px; }
+.back { display: inline-block; margin-bottom: 56px; }
+.eyebrow { color: #6725dc; font-weight: 600; }
+.page h1 { font-size: clamp(2.25rem, 6vw, 4rem); line-height: 1.1; letter-spacing: -.045em; margin: 18px 0; overflow-wrap: anywhere; }
+.page p { font-size: 1.0625rem; line-height: 1.8; color: #565263; }
+.page .date { font-size: .875rem; }
+.contents { display: flex; flex-wrap: wrap; gap: 12px 24px; padding: 24px 0; margin: 28px 0; border-block: 1px solid #e5d9f7; }
+.page article section { margin-block: 40px; scroll-margin-top: 32px; }
+.page h2 { font-size: 1.375rem; margin-bottom: 12px; line-height: 1.3; }
+.providers { display: grid; gap: 14px; border-top: 1px solid #e5d9f7; padding-top: 24px; overflow-wrap: anywhere; }
+.page footer { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; margin-top: 48px; font-size: .875rem; }

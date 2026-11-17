@@ -37,10 +37,10 @@ export default async function HomePage({
         <SkillsSection dict={dict.skills} />
         <FormacaoSection dict={dict.formacao} />
         <ConquistasSection dict={dict.conquistas} />
-        <ContatoSection dict={dict.contato} />
+        <ContatoSection locale={locale} dict={dict.contato} />
       </main>
       <KonamiModal dict={dict.modals} />
-      <Footer dict={dict.footer} />
+      <Footer locale={locale} dict={dict.footer} />
     </>
   );
 }
