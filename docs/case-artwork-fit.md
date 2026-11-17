@@ -11,3 +11,9 @@ Changes:
 Browser checks (local Chrome/IAB): five case routes at 390×844, 768×1024, 1024×768 and 1440×900; no horizontal document overflow. VioDigital QR remained within its grid area in hero/story. Additional wide check at 1920×1080. Visually inspected VECOM hero and handoff, DocFácil and Atlas mobile compositions. VECOM handoff device image dimensions match their original ratios within pixel rounding. Home stage also retains contained QR and no horizontal overflow. Browser viewport override restored after testing.
 
 No changes to project copy, captures, animation progress calculations or destinations. These are layout corrections; no tests asserting artistic coordinates were introduced.
+
+## Gallery viewport previews
+
+The shared CaseGallery now presents desktop captures inside a 16:9 viewport and mobile captures inside a 390:844 viewport, aligned to the top of the original image. This is a presentation crop: originals are unchanged and remain available in the accessible dialog and original-file link. PDF captures are explicitly classified as documents and remain uncropped. Desktop/mobile pairs use an 8/4 column split; phone captions retain up to 260px instead of collapsing with a long screenshot's original ratio.
+
+Browser checks: all five projects at 390×844 and 1440×900, including both CKF galleries. All screen previews retained the intended ratios within border/pixel rounding, captions retained useful widths and no horizontal document overflow occurred. The document preview retained its native A4-like ratio. Existing lightbox focus-return test passes; an added test verifies document classification and preservation of the complete original.

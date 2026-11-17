@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import styles from './VioDigital.module.css';
 
-export type CaseGalleryItem = { id: string; src: string; alt: string; caption: string; width: number; height: number; className: string };
+export type CaseGalleryItem = { id: string; src: string; alt: string; caption: string; width: number; height: number; className: string; format?: 'desktop' | 'mobile' | 'document' };
 
 export default function CaseGallery({ items, enlarge, close, naming, mediaUnavailable = 'A imagem está indisponível no momento.', openOriginal = 'Abrir captura original' }: { items: readonly CaseGalleryItem[]; enlarge: string; close: string; naming: string; mediaUnavailable?: string; openOriginal?: string }) {
+  const kind = (item: CaseGalleryItem) => item.format ?? (item.width < item.height ? 'mobile' : 'desktop');
+  const mixedPair = items.length === 2 && items.some(item => kind(item) === 'desktop') && items.some(item => kind(item) === 'mobile');
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement | null>(null);
   const imageRefs = useRef<Record<string, HTMLImageElement | null>>({});
@@ -21,8 +23,8 @@ export default function CaseGallery({ items, enlarge, close, naming, mediaUnavai
     }
   }, [items]);
   return <>
-    <div className={styles.galleryGrid}>
-      {items.map((item) => <figure key={item.id} className={item.className} data-media-format={item.width < item.height ? 'portrait' : 'landscape'} style={{ '--capture-ratio': item.width / item.height, '--capture-width': `${item.width}px` } as CSSProperties}>
+    <div className={styles.galleryGrid} data-gallery-layout={mixedPair ? 'mixed-pair' : 'grid'}>
+      {items.map((item) => <figure key={item.id} className={item.className} data-capture-kind={kind(item)} data-media-format={item.width < item.height ? 'portrait' : 'landscape'} style={{ '--capture-ratio': item.width / item.height } as CSSProperties}>
         <button type="button" aria-label={`${enlarge}: ${item.caption}`} onClick={(event) => {
           trigger.current = event.currentTarget;
           setSelected(item);
