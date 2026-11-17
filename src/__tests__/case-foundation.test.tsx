@@ -52,4 +52,19 @@ describe('C02 — case foundation', () => {
     fireEvent.click(screen.getByRole('button', { name: /Fechar/i }));
     expect(document.activeElement).toBe(trigger);
   });
+  it('separates screen previews from documents and preserves the complete capture', () => {
+    const { container } = render(<CaseGallery enlarge="Ampliar" close="Fechar" naming="Capturas" items={[
+      { id: 'desktop', src: '/long-desktop.png', alt: 'Desktop original', caption: 'Desktop', width: 1440, height: 1377, className: '' },
+      { id: 'mobile', src: '/long-mobile.png', alt: 'Celular original', caption: 'Mobile', width: 390, height: 1907, className: '' },
+      { id: 'pdf', src: '/document.png', alt: 'Documento completo', caption: 'PDF', width: 1240, height: 1754, className: '', format: 'document' },
+    ]} />);
+    expect([...container.querySelectorAll('figure')].map(node => node.dataset.captureKind)).toEqual(['desktop', 'mobile', 'document']);
+    fireEvent.click(screen.getByRole('button', { name: 'Ampliar: Mobile' }));
+    const original = screen.getByRole('dialog').querySelector('img');
+    expect(original).toHaveAttribute('src', '/long-mobile.png');
+    expect(original).toHaveAttribute('height', '1907');
+    expect(screen.getByRole('link', { name: /Abrir captura original/ })).toHaveAttribute('href', '/long-mobile.png');
+    fireEvent.click(screen.getByRole('button', { name: /Fechar/ }));
+  });
+
 });
