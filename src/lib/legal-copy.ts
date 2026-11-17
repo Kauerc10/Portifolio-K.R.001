@@ -2,39 +2,35 @@ export const legalCopy = {
   "pt-BR": {
     "privacidade": {
       "title": "Política de Privacidade",
-      "intro": "Como os dados são usados neste portfólio e como você pode exercer seus direitos.",
+      "intro": "Seus dados são usados para responder ao contato e manter este site funcionando com segurança. Não vendemos dados nem inscrevemos você em publicidade.",
       "sections": [
         [
-          "Responsável e contato",
-          "Kauê Ruon Cardoso, em Blumenau, Santa Catarina, é o responsável pelo tratamento dos dados deste portfólio. Para dúvidas ou solicitações sobre seus dados, escreva para kaue@ruon.dev."
+          "Quem é responsável",
+          "Kauê Ruon Cardoso, em Blumenau/SC, é o controlador dos dados deste portfólio. O canal para assuntos de privacidade é kaue@ruon.dev. Esta política abrange o site; os produtos apresentados têm regras próprias."
         ],
         [
-          "Dados e finalidade",
-          "O formulário recebe nome, e-mail, assunto e mensagem para responder a contatos, avaliar propostas e conversar sobre projetos. Evite enviar documentos, senhas, dados sensíveis ou informações de terceiros. A infraestrutura pode tratar IP, navegador, horário e registros técnicos para disponibilizar e proteger o site."
+          "O que é tratado e por quê",
+          "O formulário solicita nome, e-mail, assunto e mensagem para entender e responder à sua solicitação. O preenchimento é voluntário, mas esses campos são necessários para enviar pelo formulário. Não envie senhas, documentos, dados sensíveis ou informações de terceiros. IP, navegador, horários e registros técnicos podem ser tratados para funcionamento e prevenção de abuso. Não usamos as mensagens para publicidade ou decisões automatizadas sobre você."
         ],
         [
-          "Bases do tratamento",
-          "Solicitações de proposta e contratação são tratadas para procedimentos preliminares a contrato, a seu pedido (art. 7º, V, da LGPD). Outros contatos e a prevenção de abuso podem se apoiar no legítimo interesse em manter a comunicação e a segurança, com necessidade, proporcionalidade e respeito aos seus direitos (art. 7º, IX). Obrigações legais podem exigir conservação específica. Não usamos o formulário para inscrição automática em publicidade."
+          "Fundamentos legais",
+          "Propostas e pedidos de contratação são tratados para procedimentos preliminares a contrato, a seu pedido (LGPD, art. 7º, V). Outros contatos e a segurança se apoiam no legítimo interesse em responder à comunicação solicitada e prevenir abuso, limitado ao necessário e respeitados seus direitos (art. 7º, IX). A conservação exigida por lei tem fundamento próprio. Navegar no site não equivale a consentir com qualquer uso dos seus dados."
         ],
         [
-          "Serviços envolvidos",
-          "A Vercel hospeda o site. O Web3Forms processa o formulário e encaminha a mensagem à caixa de e-mail profissional de Kauê. Esses fornecedores podem utilizar infraestrutura e suboperadores fora do Brasil. Seus serviços estão sujeitos às respectivas políticas e aos mecanismos de proteção aplicáveis às transferências internacionais. Não comercializamos seus dados."
+          "Quem recebe os dados",
+          "A Vercel hospeda o site e processa a validação inicial. O navegador envia o formulário ao Web3Forms, que o encaminha a kaue@ruon.dev, em serviço de e-mail Spacemail/Spaceship. Esses fornecedores e seus suboperadores podem tratar dados fora do Brasil. As transferências devem observar os mecanismos e garantias exigidos pela LGPD; as políticas dos serviços estão abaixo. Dados também podem ser fornecidos por obrigação legal ou para exercício regular de direitos."
         ],
         [
-          "Conservação e segurança",
-          "O site não mantém um banco próprio de mensagens. A cópia recebida por e-mail é conservada enquanto necessária ao atendimento, ao relacionamento decorrente ou à proteção de direitos e ao cumprimento de obrigações legais. Depois disso, deve ser excluída. O Web3Forms informa retenção de submissões por até três anos, podendo haver prazo menor conforme plano ou exclusão antecipada; cópias e logs dos fornecedores seguem suas políticas. A transmissão usa HTTPS em produção e o acesso às mensagens deve ser restrito. Nenhum sistema é inteiramente isento de riscos."
+          "Por quanto tempo e como são protegidos",
+          "O site não mantém banco próprio de mensagens. O e-mail é mantido pelo tempo necessário ao atendimento e ao relacionamento decorrente; depois, é eliminado, ressalvadas obrigações legais e proteção de direitos. O Web3Forms está configurado para conservar submissões por até três anos. Logs e cópias dos fornecedores seguem suas políticas. O site usa HTTPS em produção e não registra o conteúdo da mensagem nos logs da aplicação. Nenhum sistema oferece risco zero."
         ],
         [
-          "Cookies e armazenamento no navegador",
-          "O cookie funcional portfolio_lang guarda seu idioma por até um ano. O armazenamento de sessão lembra a introdução, transições de idioma, o projeto selecionado e a posição de retorno; é eliminado com o encerramento da sessão do navegador. Você pode apagar ou bloquear esse armazenamento nas configurações, com possível perda dessas preferências. Não há integração de publicidade ou rastreamento de marketing no código atual do portfólio."
+          "Cookies e preferências",
+          "O cookie funcional portfolio_lang lembra o idioma por até um ano. O armazenamento de sessão lembra a introdução, a navegação entre idiomas, o projeto selecionado e a posição de retorno; normalmente dura até o fim da sessão, que pode ser restaurada pelo navegador. Você pode apagar ou bloquear esses recursos nas configurações. O portfólio não integra publicidade nem rastreamento de marketing."
         ],
         [
-          "Seus direitos",
-          "Nos termos da LGPD, você pode pedir confirmação e acesso, correção, informação sobre compartilhamento, anonimização, bloqueio ou eliminação de dados desnecessários ou irregulares e, quando aplicável, portabilidade, eliminação de dados tratados por consentimento, revogação e oposição. Envie sua solicitação para kaue@ruon.dev. Poderá ser necessária confirmação proporcional da identidade; a resposta observará os prazos legais e explicará eventuais limites de conservação. Você também pode recorrer à ANPD."
-        ],
-        [
-          "Links externos e atualizações",
-          "Projetos, GitHub e LinkedIn possuem políticas próprias quando você os acessa. Esta política descreve o portfólio, não os aplicativos apresentados nele. Mudanças relevantes no tratamento serão refletidas nesta página com nova data."
+          "Seus direitos e atualizações",
+          "Escreva para kaue@ruon.dev para pedir, gratuitamente, confirmação, acesso, correção, informação sobre compartilhamento ou anonimização, bloqueio e eliminação de dados desnecessários ou irregulares. Portabilidade, eliminação, oposição e revogação de consentimento podem ser solicitadas nas hipóteses legais aplicáveis. Poderemos confirmar sua identidade de forma proporcional. Responderemos nos prazos legais, explicando eventual conservação obrigatória. Você pode recorrer à ANPD. Alterações relevantes serão indicadas nesta página com nova data."
         ]
       ]
     },
@@ -63,12 +59,8 @@ export const legalCopy = {
           "O site pode passar por manutenção e atualização. Buscamos informações corretas, mas erros podem ocorrer; comunique inconsistências pelo e-mail de contato. Estas condições não afastam direitos ou responsabilidades que não possam ser limitados pela legislação brasileira."
         ],
         [
-          "Privacidade e contato",
-          "O tratamento de dados é descrito na Política de Privacidade. Questões sobre o site, direitos de autoria e estes termos podem ser encaminhadas a kaue@ruon.dev."
-        ],
-        [
-          "Atualizações e legislação",
-          "Estes termos podem ser atualizados para refletir mudanças no site, com indicação da data. Aplica-se a legislação brasileira, respeitadas as normas obrigatórias e os direitos de quem utiliza o site."
+          "Contato, privacidade e alterações",
+          "Dúvidas e solicitações podem ser enviadas a kaue@ruon.dev. A Política de Privacidade explica o tratamento de dados. Mudanças relevantes nestes termos serão publicadas com nova data. Aplica-se a legislação brasileira, preservados os direitos e as regras obrigatórias aplicáveis a você."
         ]
       ]
     }
@@ -76,39 +68,35 @@ export const legalCopy = {
   "en-US": {
     "privacidade": {
       "title": "Privacy policy",
-      "intro": "How this portfolio uses personal data and how to exercise your rights.",
+      "intro": "Your data is used to respond to your enquiry and keep this website operating securely. We do not sell data or subscribe you to advertising.",
       "sections": [
         [
-          "Controller and contact",
-          "Kauê Ruon Cardoso, based in Blumenau, Santa Catarina, Brazil, is responsible for processing personal data on this portfolio. Contact kaue@ruon.dev with privacy questions or requests."
+          "Who is responsible",
+          "Kauê Ruon Cardoso, based in Blumenau/SC, Brazil, is this portfolio’s data controller. Contact kaue@ruon.dev about privacy. This policy covers the website; showcased products have their own rules."
         ],
         [
           "Data and purposes",
-          "The form collects your name, email, subject and message to respond to enquiries, consider opportunities and discuss projects. Do not submit passwords, documents, sensitive information or third-party personal data. Infrastructure may process IP addresses, browser details, timestamps and technical logs to operate and protect the website."
+          "The form asks for your name, email, subject and message to understand and respond to your enquiry. Providing them is voluntary, but these fields are required to submit the form. Do not send passwords, documents, sensitive information or third-party data. IP addresses, browser details, timestamps and technical logs may be processed to operate the website and prevent abuse. Messages are not used for advertising or automated decisions about you."
         ],
         [
           "Legal grounds",
-          "Enquiries about proposals and hiring are processed to take steps towards a contract at your request (LGPD article 7, V). Other enquiries and abuse prevention may rely on legitimate interests in communication and security, subject to necessity, proportionality and your rights (article 7, IX). Legal obligations may require specific retention. Submitting the form does not subscribe you to advertising."
+          "Proposal and hiring requests are processed to take steps towards a contract at your request (LGPD article 7, V). Other enquiries and security rely on legitimate interests in responding to requested communication and preventing abuse, limited to what is necessary and subject to your rights (article 7, IX). Legally required retention has a separate legal basis. Browsing does not constitute blanket consent to data processing."
         ],
         [
-          "Service providers",
-          "Vercel hosts the website. Web3Forms processes submissions and forwards them to Kauê’s professional mailbox. These providers may use infrastructure and subprocessors outside Brazil, subject to their policies and applicable international-transfer safeguards. We do not sell your data."
+          "Who receives data",
+          "Vercel hosts the site and processes initial validation. Your browser sends the form to Web3Forms, which forwards it to kaue@ruon.dev, hosted through Spacemail/Spaceship. These providers and their subprocessors may process data outside Brazil. Transfers must observe the mechanisms and safeguards required by the LGPD; provider policies are linked below. Data may also be disclosed to meet legal obligations or exercise legal rights."
         ],
         [
-          "Retention and security",
-          "This website has no dedicated message database. Emails are retained while needed to handle your enquiry, any resulting relationship, legal obligations or the protection of rights, and should then be deleted. Web3Forms states that submissions may be retained for up to three years, with shorter periods depending on the plan or earlier deletion; providers apply their own policies to copies and logs. Production traffic uses HTTPS and access to messages should be restricted. No system is completely risk-free."
+          "Retention and protection",
+          "The site has no dedicated message database. Emails are kept while needed for the enquiry and any resulting relationship, then deleted, subject to legal obligations and the protection of rights. Web3Forms is configured to retain submissions for up to three years. Providers apply their own policies to logs and copies. Production traffic uses HTTPS, and application logs do not record message content. No system is risk-free."
         ],
         [
-          "Browser storage",
-          "The functional portfolio_lang cookie remembers your language for up to one year. Session storage remembers the introduction, language transitions, selected project and return position until the browser session ends. You can clear or block storage in browser settings, which may reset these preferences. The current portfolio code does not integrate advertising or marketing tracking."
+          "Cookies and preferences",
+          "The functional portfolio_lang cookie remembers language for up to one year. Session storage remembers the introduction, language transitions, selected project and return position, normally until the session ends; browser session restoration may extend this. You can clear or block storage in browser settings. The portfolio does not integrate advertising or marketing tracking."
         ],
         [
-          "Your rights",
-          "Under the LGPD, you may request confirmation, access, correction, sharing information and anonymisation, blocking or deletion of unnecessary or unlawfully processed data. Portability, deletion of consent-based data, consent withdrawal and objection apply where legally available. Email kaue@ruon.dev. Proportionate identity verification may be needed; requests are handled within applicable legal deadlines, explaining any retention requirements. You may also contact Brazil’s ANPD."
-        ],
-        [
-          "External links and changes",
-          "External projects, GitHub and LinkedIn have their own policies. This policy covers the portfolio, not the applications showcased here. Material processing changes will be reflected on this page with an updated date."
+          "Your rights and updates",
+          "Email kaue@ruon.dev to request confirmation, access, correction, sharing information or anonymisation, blocking and deletion of unnecessary or unlawfully processed data, free of charge. Portability, deletion, objection and consent withdrawal apply where legally available. Proportionate identity verification may be needed. We respond within applicable legal deadlines and explain any mandatory retention. You may contact Brazil’s ANPD. Material changes will be reflected here with an updated date."
         ]
       ]
     },
@@ -137,12 +125,8 @@ export const legalCopy = {
           "Maintenance and updates may affect availability. We aim for accurate information, but errors may occur; please report inaccuracies by email. These terms do not exclude rights or liabilities that cannot legally be excluded under Brazilian law."
         ],
         [
-          "Privacy and contact",
-          "The privacy policy describes personal-data processing. Contact kaue@ruon.dev about this website, ownership rights or these terms."
-        ],
-        [
-          "Updates and applicable law",
-          "These terms may be updated to reflect website changes, with the date shown. Brazilian law applies, subject to mandatory rules and users’ applicable rights."
+          "Contact, privacy and changes",
+          "Send questions and requests to kaue@ruon.dev. The privacy policy explains personal-data processing. Material changes to these terms will be published with an updated date. Brazilian law applies, subject to your applicable rights and mandatory rules."
         ]
       ]
     }

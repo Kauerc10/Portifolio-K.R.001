@@ -32,3 +32,14 @@ Reference for the required browser transport: https://docs.web3forms.com/getting
 ## Verification record
 
 Automated tests mock the external provider and do not send email. The Web3Forms form was created for the verified account kaue@ruon.dev. Recipient, sender name and subject were configured. WEB3FORMS_ACCESS_KEY was updated for Production and Preview through the authenticated Vercel dashboard after its required verification; the dashboard confirmed the update. No key is committed. Server-to-provider calls were blocked locally and in production. Official troubleshooting documentation confirms the free plan requires client-side requests. Delivery was corrected to run from the browser after server validation. Check the browser delivery receipt and inbox after deployment.
+
+## Concise legal revision
+
+The public privacy text is approximately 460 Portuguese words, organised into seven topics with an index. Terms use six short topics. The notice identifies the controller, data, purposes, legal grounds, provider roles, international processing, retention, functional storage and a free rights channel. There is no blanket browsing consent, arbitrary waiver of mandatory rights, automatic marketing subscription or claim that publishing a policy guarantees compliance.
+
+Additional references checked on 2026-11-17:
+- ANPD privacy notice structure: https://www.gov.br/anpd/pt-br/acesso-a-informacao/aviso-de-privacidade
+- Spaceship/Spacemail privacy: https://www.spaceship.com/legal/privacy-policy/
+- Vercel privacy notice: https://vercel.com/legal/privacy-notice
+
+Retention at Web3Forms was observed as three years in its settings. Mailbox deletion is an operational responsibility, not an automated feature of this site. International-transfer safeguards must be supported by applicable provider contracts; this text does not certify them.

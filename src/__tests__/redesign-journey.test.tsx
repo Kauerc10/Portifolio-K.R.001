@@ -220,6 +220,9 @@ describe('Spec #52 — Jornada completa do portfólio (Abertura, Seções e Micr
 
       fetchMock.mockResolvedValueOnce({
         ok: true,
+        json: async () => ({ submission: { access_key: 'public-form-id', name: 'Maria Silva', email: 'maria@exemplo.com', message: messageInput.value } }),
+      } as Response).mockResolvedValueOnce({
+        ok: true,
         json: async () => ({ success: true }),
       } as Response);
 
