@@ -28,27 +28,18 @@ describe('contact delivery', () => {
     const { POST } = await import('@/app/api/contato/route');
     expect((await POST(request(valid))).status).toBe(503);
   });
-  it('sends the reply address and confirms only explicit provider success', async () => {
-    const fetch = vi.fn().mockResolvedValue(new Response(JSON.stringify({ success: true })));
-    vi.stubGlobal('fetch', fetch);
-    const { POST } = await import('@/app/api/contato/route');
-    const response = await POST(request({ ...valid, fillTime: 1, mensagem: 'Projeto de crypto e segurança.' }));
-    expect(await response.json()).toEqual({ success: true, messageCode: 'SUCCESS' });
-    const payload = JSON.parse(fetch.mock.calls[0][1].body);
-    expect(payload.replyto).toBe(valid.email);
-    expect(payload.from_name).toBe('Portfólio Kauê Ruon');
-    expect(payload).not.toHaveProperty('fillTime');
-    expect(fetch.mock.calls[0][1].signal).toBeInstanceOf(AbortSignal);
-  });
-  it('keeps failure responses distinct from successful delivery', async () => {
+  it('prepares validated browser delivery without proxying the provider', async () => {
     const fetch = vi.fn(); vi.stubGlobal('fetch', fetch);
     const { POST } = await import('@/app/api/contato/route');
-    for (const body of [{ success: false, message: 'not a success' }, { success: 'true' }]) {
-      fetch.mockResolvedValueOnce(new Response(JSON.stringify(body)));
-      expect((await POST(request(valid))).status).toBe(502);
-    }
-    fetch.mockRejectedValueOnce(new DOMException('Timeout', 'TimeoutError'));
-    expect((await POST(request(valid))).status).toBe(502);
+    const response = await POST(request({ ...valid, fillTime: 1, mensagem: 'Projeto de crypto e segurança.' }));
+    const result = await response.json();
+    expect(result.success).toBeUndefined();
+    expect(result.submission.access_key).toBe('test-key');
+    expect(result.submission.replyto).toBe(valid.email);
+    expect(result.submission.from_name).toBe('Portfólio Kauê Ruon');
+    expect(result.submission).not.toHaveProperty('fillTime');
+    expect(response.headers.get('Cache-Control')).toBe('no-store');
+    expect(fetch).not.toHaveBeenCalled();
   });
   it('limits repeated requests and supplies retry timing', async () => {
     vi.stubGlobal('fetch', vi.fn().mockImplementation(() => Promise.resolve(new Response('{"success":true}'))));

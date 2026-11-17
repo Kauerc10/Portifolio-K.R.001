@@ -52,26 +52,12 @@ export async function POST(req: Request) {
   }
 
   const { nome, email, assunto, mensagem } = parsed.data;
-  try {
-    const response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: accessKey,
-        subject: `[Portfólio Kauê Ruon] ${assunto.replace(/[\r\n]/g, ' ')}`,
-        from_name: 'Portfólio Kauê Ruon', replyto: email, name: nome, email,
-        assunto, message: mensagem,
-      }),
-      signal: AbortSignal.timeout(10000),
-      cache: 'no-store',
-    });
-    const result: unknown = await response.json();
-    if (!response.ok || !result || typeof result !== 'object' || !('success' in result) || result.success !== true) {
-      return NextResponse.json({ error: 'SERVICE_UNAVAILABLE' }, { status: 502 });
-    }
-    return NextResponse.json({ success: true, messageCode: 'SUCCESS' });
-  } catch {
-    // Never log the message, email address, key or provider response.
-    return NextResponse.json({ error: 'SERVICE_UNAVAILABLE' }, { status: 502 });
-  }
+  // Web3Forms free requires browser-originated delivery. This is a public form ID,
+  // not an authentication secret. Never expose any other environment variables.
+  return NextResponse.json({ submission: {
+    access_key: accessKey,
+    subject: `[Portfólio Kauê Ruon] ${assunto.replace(/[\r\n]/g, ' ')}`,
+    from_name: 'Portfólio Kauê Ruon', replyto: email, name: nome, email,
+    assunto, message: mensagem,
+  } }, { headers: { 'Cache-Control': 'no-store' } });
 }
