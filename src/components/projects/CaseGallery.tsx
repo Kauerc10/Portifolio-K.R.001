@@ -30,14 +30,14 @@ export default function CaseGallery({ items, enlarge, close, naming, mediaUnavai
           setSelected(item);
           dialog.current?.showModal();
         }}>{failed[item.id] ? <span role="img" aria-label={item.alt} className={styles.mediaFallback}>{mediaUnavailable}</span> : <img ref={(image) => { imageRefs.current[item.id] = image; }} src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" onError={() => setFailed((current) => ({ ...current, [item.id]: true }))} />}<span className={styles.zoomLabel}>{enlarge} ↗</span></button>
-        <figcaption>{item.caption}</figcaption>
+        <figcaption>{kind(item) === 'document' ? 'PDF · Demo' : kind(item) === 'mobile' ? 'Mobile · Demo' : 'Desktop · Demo'}</figcaption>
         {failed[item.id] && <a href={item.src} target="_blank" rel="noopener noreferrer">{openOriginal}</a>}
         <noscript><a href={item.src}>{openOriginal}: {item.caption}</a></noscript>
       </figure>)}
     </div>
-    <dialog ref={dialog} className={styles.lightbox} aria-label={enlarge} onClose={() => trigger.current?.focus()} onClick={(event) => { if (event.target === dialog.current) dialog.current.close(); }}>
+    <dialog ref={dialog} className={styles.lightbox} data-capture-kind={kind(selected)} style={{ '--preview-ratio': kind(selected) === 'document' ? selected.width / selected.height : kind(selected) === 'mobile' ? 390 / 844 : 16 / 9 } as CSSProperties} aria-label={enlarge} onClose={() => trigger.current?.focus()} onClick={(event) => { if (event.target === dialog.current) dialog.current.close(); }}>
       <div className={styles.lightboxToolbar}><span>{naming}</span><a href={selected.src} target="_blank" rel="noopener noreferrer">{openOriginal} ↗</a><button type="button" autoFocus onClick={() => dialog.current?.close()}>{close} ×</button></div>
-      {failed[selected.id] ? <p className={styles.mediaFallback}>{mediaUnavailable} <a href={selected.src} target="_blank" rel="noopener noreferrer">{openOriginal}</a></p> : <img src={selected.src} alt={selected.alt} width={selected.width} height={selected.height} onError={() => setFailed((current) => ({ ...current, [selected.id]: true }))} />}
+      {failed[selected.id] ? <p className={styles.mediaFallback}>{mediaUnavailable} <a href={selected.src} target="_blank" rel="noopener noreferrer">{openOriginal}</a></p> : <div className={styles.lightboxViewport}><img src={selected.src} alt={selected.alt} width={selected.width} height={selected.height} onError={() => setFailed((current) => ({ ...current, [selected.id]: true }))} /></div>}
     </dialog>
   </>;
 }

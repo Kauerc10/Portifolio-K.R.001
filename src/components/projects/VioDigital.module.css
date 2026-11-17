@@ -117,3 +117,11 @@
 .case .lines { gap:clamp(5px,1.8cqw,12px); }
 .case .lines i { height:clamp(2px,.8cqw,5px); }
 .case .ruleGreen,.case .ruleRed { height:clamp(2px,.6cqw,4px); margin-top:clamp(4px,1.2cqw,8px); flex-shrink:0; }
+
+/* Enlarged screens keep the same viewport crop as the gallery preview. */
+.lightboxViewport { width:min(100%,calc((86svh - 6rem) * var(--preview-ratio))); aspect-ratio:var(--preview-ratio); margin-inline:auto; overflow:hidden; }
+.lightboxViewport img { display:block; width:100%; height:100%; object-fit:cover; object-position:top center; }
+.lightbox[data-capture-kind=mobile] { width:min(460px,94vw); }
+.lightbox[data-capture-kind=document] { width:min(800px,94vw); }
+.lightbox[data-capture-kind=document] .lightboxViewport img { object-fit:contain; }
+@media(max-width:760px) { .lightboxToolbar { flex-wrap:wrap; gap:.6rem; }.lightboxToolbar>span { max-width:none; flex:1 1 100%; }.lightboxToolbar>a { margin-left:0; margin-right:auto; } }
