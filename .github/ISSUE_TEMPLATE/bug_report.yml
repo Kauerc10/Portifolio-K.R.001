@@ -23,7 +23,7 @@ body:
       label: Passos para Reproduzir
       description: Como podemos reproduzir o erro no site?
       placeholder: |
-        1. Acesse https://kaueruon.dev
+        1. Acesse https://www.kaueruon.dev
         2. Clique em 'Falar com ÆVO'
         3. Envie a mensagem 'X'
         4. Observe o erro...
