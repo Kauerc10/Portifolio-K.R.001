@@ -64,3 +64,18 @@
 @media(min-width:1000px) {
  .case main > .story { width:calc(100% - clamp(3rem,8vw,10rem)); max-width:1680px; }
 }
+
+/* Bound the complete case artwork independently of the copy column. */
+.caseHero .art { width:100%; max-width:700px; height:auto; aspect-ratio:600/450; margin-inline:auto; container-type:inline-size; }
+
+.caseHero .document { padding:clamp(10px,3.5cqw,24px); }
+.caseHero .paperBrand { font-size:clamp(13px,4.5cqw,27px); }
+.caseHero .example { font-size:clamp(5px,1.4cqw,8px); margin:1cqw 0 2cqw; }
+.caseHero .paperLine { height:clamp(2px,1cqw,6px); margin:1.5cqw 0; }
+.caseHero .question { padding:2cqw; margin:2cqw 0; gap:1cqw; }
+.caseHero .question strong { font-size:clamp(7px,2cqw,12px); }
+.caseHero .question>span { padding:1.3cqw; font-size:clamp(6px,1.7cqw,10px); }
+.caseHero .question>svg { width:3cqw; height:3cqw; }
+.caseHero .paperChecklist li { margin:1.5cqw 0; gap:1cqw; }
+.caseHero .paperChecklist li>svg,.caseHero .paperChecklist li>span { width:2.5cqw; height:2.5cqw; flex-shrink:0; }
+.caseHero .paperChecklist li>i { height:clamp(2px,.8cqw,5px); }
