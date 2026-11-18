@@ -5,10 +5,12 @@ const baseUrl = 'https://www.kaueruon.dev';
 
 export function getAtlasMetadata(locale: Locale): Metadata {
   const pt = locale === 'pt-BR';
-  const title = 'Atlas Notarial — Kauê Ruon';
+  const title = pt
+    ? 'Atlas Notarial — Automação para cartórios | Kauê Ruon'
+    : 'Atlas Notarial — Automation for notary offices | Kauê Ruon';
   const description = pt
-    ? 'Da rotina do cartório a ferramentas úteis.'
-    : 'From registry routine to useful tools.';
+    ? 'Conheça o Atlas Notarial, uma bancada de ferramentas para cartórios que nasceu da automação de consultas de veículos e da preparação de textos para procurações.'
+    : 'Explore Atlas Notarial, a workspace for Brazilian notary offices that grew out of automated vehicle lookups and text preparation for powers of attorney.';
   const path = `/${locale}/projetos/atlas-notarial`;
 
   return {
