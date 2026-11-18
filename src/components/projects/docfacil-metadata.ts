@@ -5,10 +5,12 @@ const baseUrl = 'https://www.kaueruon.dev';
 
 export function getDocFacilMetadata(locale: Locale): Metadata {
   const pt = locale === 'pt-BR';
-  const title = 'DocFácil — Kauê Ruon';
+  const title = pt
+    ? 'DocFácil — Criação guiada de documentos | Kauê Ruon'
+    : 'DocFácil — Guided document creation | Kauê Ruon';
   const description = pt
-    ? 'Perguntas simples para documentos tomando forma.'
-    : 'Simple questions for documents taking shape.';
+    ? 'Veja como o DocFácil ajuda a escolher um modelo, responder perguntas com orientação, revisar os dados e gerar o documento em PDF.'
+    : 'See how DocFácil guides users through choosing a template, answering questions, reviewing their details and generating a PDF document.';
   const path = `/${locale}/projetos/docfacil`;
 
   return {
