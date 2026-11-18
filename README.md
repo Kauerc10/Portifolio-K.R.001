@@ -1,111 +1,50 @@
-<div align="center">
-
 # Kauê Ruon Cardoso
-### AI Engineer · Blumenau / SC
 
-*Construo software guiando IA generativa — de protótipos com LLM a back-end e front-end.*
+**Desenvolvimento de Software | IA Aplicada | Automação** · Blumenau/SC
 
-<br>
+Crio aplicações, automatizo rotinas e ajudo pessoas a usar tecnologia.
 
-<img src="https://img.shields.io/badge/Next.js-16_App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white" />
-<img src="https://img.shields.io/badge/Agente_IA-ÆVO_RAG_--_Tool_Use-2563eb?style=for-the-badge&labelColor=04060d" />
-<img src="https://img.shields.io/badge/Testes-Vitest_100%25_Passed-22c55e?style=for-the-badge&labelColor=04060d" />
-<img src="https://img.shields.io/badge/CI%2FCD-GitHub_Actions-181717?style=for-the-badge&logo=github-actions&logoColor=white" />
+[Portfólio](https://www.kaueruon.dev) · [LinkedIn](https://www.linkedin.com/in/kauerc/) · [GitHub](https://github.com/Kauerc10) · [Contato](mailto:kaue@ruon.dev)
 
-<br>
+## Como trabalho
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-kauerc-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kauerc/)
-[![GitHub](https://img.shields.io/badge/GitHub-Kauerc10-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Kauerc10)
-[![Email](https://img.shields.io/badge/Email-kaue.ruon@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:kaue.ruon@gmail.com)
+Parto do problema de quem vai usar a solução e organizo requisitos e especificações. Uso agentes de IA como apoio na implementação, reviso o código gerado e valido as entregas com testes. Mantenho responsabilidade pelas decisões técnicas, pelas integrações e pela conferência do resultado.
 
-</div>
+Minha experiência no Cartório Gaya, em Blumenau, inspira ferramentas para consulta, organização e preparação de documentos. Essas ferramentas apoiam o trabalho da equipe e exigem conferência profissional; não garantem precisão jurídica.
 
----
+## Projetos apresentados
 
-## ⚡ Sobre
+| Projeto | Natureza e proposta |
+|---|---|
+| [VioDigital](https://www.kaueruon.dev/pt-BR/projetos/viodigital) | Projeto próprio compartilhado: conferência de documentos no navegador. |
+| [Atlas Notarial](https://www.kaueruon.dev/pt-BR/projetos/atlas-notarial) | Produto próprio nascido no cartório. Dados de veículos preparados para procurações e ferramentas de rotina. |
+| [VECOM Ficha Fácil](https://www.kaueruon.dev/pt-BR/projetos/vecom) | Desenvolvimento sob demanda para a VECOM, de Blumenau: cadastro e acompanhamento de fichas. |
+| [DocFácil](https://www.kaueruon.dev/pt-BR/projetos/docfacil) | Produto próprio da RUON: criação guiada de documentos, revisão e PDF. |
+| [CKF Manutenção](https://www.kaueruon.dev/pt-BR/projetos/ckf) | Duas entregas sob demanda para a CKF, de Itajaí: site institucional e sistema interno de orçamentos. |
 
-Sou cartorário no [Cartório Gaya](https://www.cartoriogaya.com.br) desde agosto de 2023, em Blumenau/SC. Lido com procurações, inventários e documentos jurídicos — trabalho que exige tolerância zero a erros e me ensinou a enxergar processos onde outros veem apenas tarefas.
+As páginas distinguem demonstração visual, dados fictícios e acesso ao produto. O uso de IA para desenvolver software é diferente de uma funcionalidade de IA dentro do produto.
 
-Minha relação com tecnologia vem desde cedo, e a verdade é que construo software **guiando IA generativa** (Claude, GPT, Gemini) como ferramenta primária. Não escrevo código do zero, linha por linha, como um desenvolvedor tradicional. Meu trabalho é **decompor o problema, estruturar a instrução técnica e conectar as peças** até o fluxo inteiro funcionar em produção com qualidade industrial.
+## Formação e reconhecimentos
 
-> Base de raciocínio lógico forjada em matemática competitiva (OBMEP/IMPA): Prata Regional e Bronze Nacional, além de duas Menções Honrosas.
+- Análise e Desenvolvimento de Sistemas — Universidade Cruzeiro do Sul, em andamento.
+- Scrum Fundamentals Certified (SFC), emitido em novembro de 2026.
+- Prata regional, bronze nacional e menções honrosas na OBMEP.
 
----
+## Aplicação deste repositório
 
-## 🤖 O Agente de IA Resident: **ÆVO**
+Next.js App Router (versão definida no manifesto de dependências), React e TypeScript. Home e cases em PT/EN, hero com imagem 2.5D, vitrine editorial e animações com alternativa de movimento reduzido. A interface atual usa tema claro.
 
-O portfólio inclui o agente inteligente **ÆVO**, desenvolvido com uma arquitetura agnóstica de LLMs:
+O widget público ÆVO está pausado. O código experimental seleciona trechos locais por palavras-chave e pode incluí-los no prompt de um provedor de IA. Esse mecanismo não demonstra indexação vetorial, treinamento de modelos ou precisão garantida. As ações da interface usam ferramentas tipadas e validação no servidor.
 
-- **Camada Agnóstica de Provedores:** Ordem configurável entre Google Gemini, Groq e OpenAI, seguida por uma base local bilíngue determinística.
-- **Base de Conhecimento Local:** Contexto estruturado sobre o perfil técnico e projetos do Kauê, sem alegar vetorização ou retrieval inexistentes.
-- **Tool Use (Function Calling):** O modelo escolhe ações tipadas, validadas no servidor e executadas no browser, como `scroll_to_section`, `highlight_project` e `open_resume`.
+## Verificação local
 
----
+- Instalação: npm ci
+- Desenvolvimento: npm run dev
+- Testes: npm test
+- Tipos: npx tsc --noEmit
+- Build: npm run build
 
-## 🎨 Arquitetura Técnica do Portfólio
-
-- **Next.js 16 (App Router)** & **TypeScript** estrito
-- **Three.js & React Three Fiber** — Cena WebGL 3D com icosaedro wireframe, shaders GLSL customizados de aberração cromática (RGB split) a 60 FPS, 350 partículas e 120 debris com física de repulsão ao mouse
-- **Tailwind CSS & CSS Modules** — Sistema de design tokens cyberpunk e notarial
-- **GitHub REST API Live Stats** — Integrado ao vivo trazendo repositórios, seguidores e commits de `@Kauerc10`
-- **Suíte de Testes com Vitest & React Testing Library** — 100% dos testes aprovados
-- **Framework de A/B Testing** — Atribuição determinística 50/50 com persistência local
-- **Esteira CI/CD em GitHub Actions** — Workflows automáticos de lint, tsc, vitest e build no `.github/workflows/ci.yml`
-
-> 🔗 **Ao vivo:** [kaueruon.dev](https://kaueruon.dev)
-
----
-
-## 🛠️ Projetos em Destaque
-
-### DocFácil — IA generativa aplicada a documentos legais
-**Stack:** `Next.js 16` · `TypeScript` · `Prisma` · `IA Generativa`
-> 🔗 **Demo:** [docfacil-indol.vercel.app](https://docfacil-indol.vercel.app) · **Repo:** [github.com/khub-solucoes/docfacil](https://github.com/khub-solucoes/docfacil)
-
-### CKF Manutenção — Sistema de Orçamentos
-**Stack:** `React` · `TypeScript` · `Supabase` · `TailwindCSS`
-> 🔗 **Demo:** [ckf-manutencao-orcamentos.vercel.app](https://ckf-manutencao-orcamentos.vercel.app) · **Repo:** [github.com/Kauerc10/ckf-manutencao-orcamentos](https://github.com/Kauerc10/ckf-manutencao-orcamentos)
-
-### Atlas Notarial — Automação de procurações de veículos
-**Stack:** `Node.js` · `APIs REST` · `Detran-RS`
-> Código privado em produção no Cartório Gaya.
-
-### Foli — Biblioteca TypeScript para PDF
-**Stack:** `TypeScript` · `Layout Engine`
-> 🔗 **Repo:** [github.com/Kauerc10/foli](https://github.com/Kauerc10/foli)
-
----
-
-## 🧪 Executando Testes e Build Localmente
-
-```bash
-# Instalar dependências
-npm install
-
-# Rodar servidor de desenvolvimento
-npm run dev
-
-# Executar suíte de testes unitários no Vitest
-npm run test
-
-# Checagem estrita de tipos
-npx tsc --noEmit
-
-# Compilar bundle de produção
-npm run build
-```
-
----
-
-<div align="center">
-
-*Construído por Kauê Ruon Cardoso com IA generativa como ferramenta de engenharia.*
-
-**Contato:** kaue.ruon@gmail.com · [LinkedIn](https://www.linkedin.com/in/kauerc/) · [GitHub](https://github.com/Kauerc10)
-
-</div>
-
----
+Resultados de testes e medições pertencem ao commit e ao ambiente verificados; não garantem ausência permanente de erros.
 
 ## Configuração do ÆVO na Vercel
 

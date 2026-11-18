@@ -8,7 +8,7 @@ web
 
 ## Users
 
-O portfólio atende principalmente recrutadores seniores, founders, CTOs e potenciais parceiros que avaliam Kauê Ruon Cardoso para engenharia de software, arquitetura de sistemas e projetos de IA. Eles precisam compreender rapidamente a experiência, verificar evidências técnicas e acessar projetos, repositórios e currículo.
+O portfólio atende principalmente recrutadores e, secundariamente, clientes que avaliam Kauê Ruon Cardoso para desenvolvimento de software, IA aplicada e automação. Eles precisam compreender rapidamente a experiência, verificar evidências técnicas e acessar projetos, repositórios e currículo.
 
 ## Product Purpose
 
@@ -16,7 +16,7 @@ O portfólio atende principalmente recrutadores seniores, founders, CTOs e poten
 
 ## Positioning
 
-Kauê combina engenharia de IA generativa e arquitetura de software com experiência cartorária de tolerância a erros, automação de processos reais e raciocínio lógico reconhecido pela OBMEP. O portfólio prioriza evidências de sistemas em produção em vez de afirmações genéricas de competência.
+Kauê atua com desenvolvimento de software, IA aplicada e automação, conectando a experiência no cartório a problemas reais. Usa especificações, agentes de IA, revisão de código e testes, mantendo responsabilidade pelas decisões técnicas. O portfólio prioriza evidências de sistemas em produção em vez de afirmações genéricas de competência.
 
 ## Operating Context
 
@@ -24,13 +24,13 @@ Kauê combina engenharia de IA generativa e arquitetura de software com experiê
 - Visitantes percorrem apresentação, experiência, competências, conquistas, formação, projetos e contato.
 - Projetos públicos oferecem demonstrações e repositórios; projetos internos identificam claramente sua indisponibilidade pública.
 - O conteúdo é bilíngue em português do Brasil e inglês dos Estados Unidos.
-- Tema claro e escuro, currículo em PDF e links externos fazem parte da experiência.
+- A interface atual usa tema claro; currículo em PDF e links externos fazem parte da experiência.
 
 ## Capabilities and Constraints
 
 - Aplicação web construída com Next.js, React e TypeScript.
 - Conteúdo localizado em `pt-BR` e `en-US`.
-- Integração com estatísticas do GitHub e o assistente ÆVO.
+- O código experimental do ÆVO permanece preservado, com widget público pausado e contexto selecionado por palavras-chave.
 - Animações devem ser discretas, fluidas e funcionais; não podem causar sobreposição, travamentos perceptíveis ou competir pela mesma propriedade visual.
 - A experiência deve respeitar `prefers-reduced-motion`.
 - Elementos essenciais permanecem legíveis e utilizáveis caso animações ou scripts não sejam executados.
@@ -39,16 +39,16 @@ Kauê combina engenharia de IA generativa e arquitetura de software com experiê
 ## Brand Commitments
 
 - Nome público: Kauê Ruon Cardoso.
-- Posicionamento: Software Architect, AI Engineer e Founder da K-HUB Soluções.
+- Posicionamento: Desenvolvimento de Software | IA Aplicada | Automação. RUON é marca própria, não um empregador externo.
 - A linguagem combina precisão técnica com referências notariais, como artigos, anexos, ficha técnica, selos e autenticação.
 - A voz deve ser direta, verificável e profissional, sem fabricar resultados, clientes ou disponibilidade pública.
 - A identidade existente e os ativos de marca do repositório devem ser preservados.
 
 ## Evidence on Hand
 
-- **DocFácil:** SaaS de geração de documentos com IA generativa, demonstração e repositório públicos.
-- **Atlas Notarial:** automação interna integrada à API do Detran-RS, com redução registrada de um processo de aproximadamente cinco minutos para vinte segundos; o repositório é privado.
-- **CKF Manutenção:** sistema corporativo com demonstração e repositório públicos, testes com Vitest e geração de relatórios XLSX.
+- **DocFácil:** produto próprio de criação guiada de documentos, revisão e PDF; o case identifica materiais de demonstração.
+- **Atlas Notarial:** produto próprio nascido de uma necessidade do cartório; o Formatador de Veículos consulta a API do Detran e prepara dados para procurações. O tempo relatado de cinco minutos para vinte segundos refere-se a essa etapa, com conferência humana.
+- **CKF Manutenção:** site institucional público e sistema interno de orçamentos desenvolvidos sob demanda; as capturas do case usam dados fictícios.
 - **Foli Lib:** engine TypeScript para composição de PDFs com controle de overflow e repositório público.
 - Certificados e medalhas estão disponíveis em `assets/` e `public/assets/`.
 - O currículo está disponível em `curriculo_kaue.pdf` e `public/curriculo_kaue.pdf`.
@@ -59,7 +59,7 @@ Kauê combina engenharia de IA generativa e arquitetura de software com experiê
 1. **Evidência antes de promessa:** facilitar a verificação por demos, repositórios, resultados e documentos reais.
 2. **Precisão sem ruído:** apresentar informação técnica com hierarquia clara e microinterações intencionais.
 3. **Performance percebida é funcionalidade:** rolagem, reveals e interações devem permanecer suaves em diferentes dispositivos.
-4. **Tolerância zero a regressões:** preservar acessibilidade, conteúdo, localização e fluxo do documento ao evoluir os efeitos visuais.
+4. **Prevenção de regressões:** preservar acessibilidade, conteúdo, localização e fluxo do documento ao evoluir os efeitos visuais.
 5. **Transparência de acesso:** distinguir claramente projetos públicos, privados e internos.
 
 ## Accessibility & Inclusion

@@ -123,7 +123,7 @@ export default function BreachModal() {
                 <span>Protocolo Desbloqueado!</span>
               </div>
               <p>
-                "A tolerância zero a erros do trabalho notarial encontra a precisão da IA generativa."
+                "A experiência no cartório inspira ferramentas de apoio, com conferência e revisão humana."
               </p>
               <div className="pt-2 text-[11px] text-gray-400">
                 Contato Direto do Kauê: <span className="text-cyanNeon">kaue@ruon.dev</span>

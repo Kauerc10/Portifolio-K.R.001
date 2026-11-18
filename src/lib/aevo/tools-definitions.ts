@@ -77,11 +77,11 @@ export const AEVO_TOOLS = {
     parameters: z.object({}),
   }),
   run_system_diagnostics: tool({
-    description: 'Demonstra o estado do ÆVO, RAG, tool use e evidências com uma sequência visual curta.',
+    description: 'Mostra uma sequência visual do assistente e suas ações no portfólio, sem certificar funcionamento ou precisão.',
     parameters: z.object({}),
   }),
   demonstrate_rag: tool({
-    description: 'Demonstra o RAG usando o próprio ÆVO e destaca essa competência no portfólio.',
+    description: 'Ilustra a seleção de contexto local por palavras-chave no assistente; não demonstra embeddings ou busca vetorial.',
     parameters: z.object({}),
   }),
   trace_skill_evidence: tool({

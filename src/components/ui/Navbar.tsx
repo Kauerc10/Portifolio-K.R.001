@@ -26,7 +26,7 @@ export default function Navbar() {
             <p className="text-xs font-bold text-white tracking-wider group-hover:text-goldAccent transition-colors">
               KAUÊ RUON CARDOSO
             </p>
-            <p className="text-[10px] text-gray-400">AI Engineer · Blumenau/SC</p>
+            <p className="text-[10px] text-gray-400">Desenvolvimento de Software · Blumenau/SC</p>
           </div>
         </a>
 
