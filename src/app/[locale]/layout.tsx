@@ -49,8 +49,8 @@ export async function generateMetadata({
   const baseUrl = 'https://www.kaueruon.dev';
 
   const title = isEnglish
-    ? 'Kauê Ruon Cardoso — Development, automations and support'
-    : 'Kauê Ruon Cardoso — Desenvolvimento, automações e suporte';
+    ? 'Kauê Ruon Cardoso — Software Development | Applied AI | Automation'
+    : 'Kauê Ruon Cardoso — Desenvolvimento de Software | IA Aplicada | Automação';
 
   const description = isEnglish
     ? 'I am Kauê Ruon Cardoso. I build applications, automate workflows, and help people use technology. Explore my projects and experience.'
@@ -69,7 +69,7 @@ export async function generateMetadata({
       'Foli Lib',
       'Full Stack Developer',
       'Generative AI',
-      'RAG Automation',
+      'Process automation',
       'Blumenau',
     ],
     authors: [{ name: 'Kauê Ruon Cardoso', url: baseUrl }],
@@ -184,7 +184,7 @@ export default async function RootLayout({
                 <div className="loader__content">
                   <p className="loader__title">KAUÊ RUON CARDOSO</p>
                   <div className="loader__divider" />
-                  <p className="loader__case">Software Architect · SaaS & IA Generativa</p>
+                  <p className="loader__case">{validLocale === 'en-US' ? 'Software Development | Applied AI | Automation' : 'Desenvolvimento de Software | IA Aplicada | Automação'}</p>
                   <div className="loader__bars">
                     <div className="loader__bar-row" data-target="74">
                       <div className="loader__bar">

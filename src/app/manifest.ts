@@ -2,10 +2,10 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Kauê Ruon Cardoso — Software Architect & SaaS Developer',
+    name: 'Kauê Ruon Cardoso — Desenvolvimento de Software | IA Aplicada | Automação',
     short_name: 'Kauê Ruon',
     description:
-      'Portfólio de Engenharia de Software, Arquitetura de IA Generativa e Automação SaaS por Kauê Ruon Cardoso.',
+      'Projetos de desenvolvimento de software, IA aplicada e automação de processos por Kauê Ruon Cardoso.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0b1120',

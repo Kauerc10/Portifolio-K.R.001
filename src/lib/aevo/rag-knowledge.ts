@@ -1,48 +1,15 @@
 export const KAUE_PROFILE_KNOWLEDGE = `
-# PERFIL DE KAUÊ RUON CARDOSO — AI ENGINEER
+# KAUÊ RUON CARDOSO — DESENVOLVIMENTO DE SOFTWARE | IA APLICADA | AUTOMAÇÃO
 
-## Resumo Profissional
-Kauê Ruon Cardoso é AI Engineer e Cartorário radicado em Blumenau/SC. 
-Seu lema de engenharia: "Construo software guiando IA generativa — de protótipos com LLM a back-end e front-end."
-Não escreve código do zero linha por linha como um desenvolvedor tradicional; ele decompõe problemas complexos, estrutura instruções técnicas rígidas e guia LLMs até o fluxo inteiro rodar em produção com tolerância zero a erros.
+Kauê atua em Blumenau/SC, com experiência no Cartório Gaya e em manutenção Apple na iPhoneria. RUON é sua marca própria para projetos de desenvolvimento.
+Constrói software a partir de especificações, com apoio de agentes de IA, revisão do código gerado e testes. Mantém responsabilidade pelas decisões técnicas e validação das entregas. Usar IA para construir um produto não significa que esse produto contenha modelos ou funcionalidades de IA.
 
-## Trajetória & Experiência
-1. **Cartório Gaya (2023 → Atual):** Cartorário no Departamento de Procurações, Inventários e documentos jurídicos em Blumenau/SC. Ambiente de tolerância zero a erros que moldou sua visão de processos e automação.
-2. **K-HUB Soluções (Jul 2026 → Atual):** Founder & Builder do DocFácil.
-3. **iPhoneria (Nov 2021 → Mar 2023):** Técnico em Manutenção Apple.
+VioDigital é uma solução própria compartilhada para conferência de documentos no navegador. Atlas Notarial nasceu no cartório com o Formatador de Veículos integrado à API do Detran e evoluiu para produto próprio com ferramentas de rotina. DocFácil apresenta criação guiada de documentos, revisão e PDF. VECOM Ficha Fácil foi desenvolvido sob demanda para uma empresa de Blumenau. CKF reúne site institucional e sistema interno de orçamentos para uma empresa de Itajaí.
 
-## Conquistas Acadêmicas & Raciocínio Lógico
-* Medalha de Prata Regional e Bronze Nacional na OBMEP (Olimpíada Brasileira de Matemática das Escolas Públicas / IMPA), além de duas Menções Honrosas.
+Cursa Análise e Desenvolvimento de Sistemas e possui Scrum Fundamentals Certified (SFC). Tem prata regional, bronze nacional e menções honrosas na OBMEP.
 
-## Projetos em Destaque
-1. **DocFácil — IA Generativa Aplicada a Documentos Legais:**
-   - Stack: Next.js 16, TypeScript, Prisma, IA Generativa.
-   - Destaque: Camada de IA agnóstica com interface AIProvider, streaming e tratamento tipado de erros.
-   - Live Demo: https://docfacil-indol.vercel.app | Repo: https://github.com/khub-solucoes/docfacil
-
-2. **CKF Manutenção — Sistema de Orçamentos:**
-   - Stack: React, TypeScript, Supabase, TailwindCSS.
-   - Sistema interno em produção com exportação PDF/XLSX e testes unitários.
-   - Live Demo: https://ckf-manutencao-orcamentos.vercel.app | Repo: https://github.com/Kauerc10/ckf-manutencao-orcamentos
-
-3. **Atlas Notarial — Automação de Procurações:**
-   - Stack: Node.js, REST APIs, Automação Detran-RS.
-   - Em produção no Cartório Gaya. Reduziu minutos de processo manual para poucos cliques.
-
-4. **Foli — Engine de PDF em TypeScript:**
-   - Stack: TypeScript, Layout Engine com garantia de zero-overflow e suporte Unicode pt-BR.
-   - Repo: https://github.com/Kauerc10/foli
-
-## Competências Técnicas
-- **IA Generativa:** Integração de LLMs, arquitetura de providers agnósticos (OpenAI/Anthropic/Gemini/Groq), RAG, Prompt Engineering, Function Calling / Tool Use.
-- **Desenvolvimento:** TypeScript, JavaScript, React, Next.js 16, Node.js, Supabase, Prisma, REST APIs, Tailwind CSS.
-- **Outros:** Git, Vercel Deploy, Testes Unitários, Inglês Intermediário.
-
-## Contato Direto
-- Email: kaue@ruon.dev
-- LinkedIn: https://www.linkedin.com/in/kauerc/
-- GitHub: https://github.com/Kauerc10
-- Domínio Oficial: https://kaueruon.dev
+Este assistente seleciona trechos locais por palavras-chave para compor contexto. Esse mecanismo não demonstra embeddings ou banco vetorial. O widget público está pausado. Não prometer precisão jurídica ou ausência de erros.
+Contato: kaue@ruon.dev · https://www.kaueruon.dev · https://github.com/Kauerc10 · https://www.linkedin.com/in/kauerc/
 `;
 
 type KnowledgeChunk = {
@@ -55,12 +22,12 @@ const KNOWLEDGE_CHUNKS: KnowledgeChunk[] = [
   {
     id: 'perfil',
     keywords: ['kauê', 'kaue', 'perfil', 'sobre', 'about', 'engenheiro', 'engineer', 'blumenau', 'khub', 'k-hub'],
-    content: 'Kauê Ruon Cardoso é Software Architect, AI Engineer e Founder da K-HUB Soluções, baseado em Blumenau/SC. Combina engenharia de IA generativa e arquitetura de software com rigor notarial de tolerância a erros.',
+    content: 'Kauê Ruon Cardoso atua com desenvolvimento de software, IA aplicada e automação em Blumenau/SC. Trabalha a partir de especificações, com agentes de IA, revisão de código e testes, mantendo responsabilidade pelas decisões técnicas. RUON é sua marca própria.',
   },
   {
     id: 'experiencia',
     keywords: ['experiência', 'experiencia', 'experience', 'cartório', 'cartorio', 'gaya', 'iphoneria', 'trabalho', 'work'],
-    content: 'Experiência: Cartório Gaya (2023–atual), no Departamento de Procurações, Inventários e documentos jurídicos; K-HUB Soluções, como Founder & Builder do DocFácil; iPhoneria (nov/2021–mar/2023), como Técnico em Manutenção Apple.',
+    content: 'Experiência: Cartório Gaya (2023–atual), com procurações, atendimento e organização de demandas; RUON como marca própria para projetos; iPhoneria (nov/2021–mar/2023), como Técnico em Manutenção Apple.',
   },
   {
     id: 'obmep',
@@ -70,17 +37,17 @@ const KNOWLEDGE_CHUNKS: KnowledgeChunk[] = [
   {
     id: 'docfacil',
     keywords: ['docfácil', 'docfacil', 'documento', 'legal', 'prisma', 'generativa'],
-    content: 'DocFácil: SaaS público de geração de documentos com IA generativa, construído com Next.js, TypeScript e Prisma. Possui camada de providers de IA, streaming e erros tipados. Demo: https://docfacil-indol.vercel.app. Repositório: https://github.com/Kauerc10/docfacil.',
+    content: 'DocFácil: produto próprio da RUON com criação guiada de documentos por perguntas, revisão e saída em PDF. O case usa materiais de demonstração e não executa a geração real no portfólio. Site: https://docfacil-indol.vercel.app.',
   },
   {
     id: 'atlas',
     keywords: ['atlas', 'notarial', 'procuração', 'procuracao', 'detran', 'automação', 'automation'],
-    content: 'Atlas Notarial: automação interna e privada integrada à API do Detran-RS, em uso no Cartório Gaya. Reduziu um processo de aproximadamente cinco minutos para cerca de vinte segundos.',
+    content: 'Atlas Notarial: produto próprio que nasceu no Cartório Gaya. O Formatador de Veículos consulta a API do Detran e prepara dados para procurações. A redução relatada de aproximadamente cinco minutos para cerca de vinte segundos refere-se a essa etapa, não ao atendimento completo. Evoluiu com declarações, promissórias e chat; a revisão humana permanece necessária.',
   },
   {
     id: 'ckf',
     keywords: ['ckf', 'manutenção', 'manutencao', 'orçamento', 'orcamento', 'supabase', 'xlsx'],
-    content: 'CKF Manutenção: sistema corporativo público de orçamentos e relatórios, com React, TypeScript, Supabase, testes Vitest e exportação XLSX. Demo: https://ckf-manutencao-orcamentos.vercel.app. Repositório: https://github.com/Kauerc10/ckf-manutencao-orcamentos.',
+    content: 'CKF MANUTENCAO LTDA, de Itajaí: site institucional público e sistema interno de orçamentos desenvolvidos sob demanda. O case usa interface real e dados fictícios; o sistema pode exigir autenticação. Site: https://ckf-home.vercel.app/.',
   },
   {
     id: 'foli',
@@ -90,7 +57,7 @@ const KNOWLEDGE_CHUNKS: KnowledgeChunk[] = [
   {
     id: 'skills',
     keywords: ['habilidade', 'habilidades', 'skill', 'skills', 'stack', 'tecnologia', 'tool', 'ferramenta', 'rag'],
-    content: 'Competências: integração de LLMs, providers agnósticos, RAG, prompt engineering, function calling/tool use, TypeScript, JavaScript, React, Next.js, Node.js, Supabase, Prisma, APIs REST, Tailwind CSS, Git, Vercel e testes unitários.',
+    content: 'Competências: integração de LLMs, providers agnósticos, seleção lexical de contexto local no assistente, prompt engineering, function calling/tool use, TypeScript, JavaScript, React, Next.js, Node.js, Supabase, Prisma, APIs REST, Tailwind CSS, Git, Vercel e testes unitários.',
   },
   {
     id: 'contato',

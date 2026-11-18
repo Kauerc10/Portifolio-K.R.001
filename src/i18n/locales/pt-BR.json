@@ -24,7 +24,7 @@
     "ready": "SISTEMA PRONTO. ROLE PARA EXPLORAR."
   },
   "hero": {
-    "greeting": "AI ENGINEER · BLUMENAU / SC · 2026",
+    "greeting": "DESENVOLVIMENTO DE SOFTWARE · IA APLICADA · AUTOMAÇÃO",
     "nameWhite": "KAUÊ",
     "nameGold": "RUON",
     "nameOutline": "CARDOSO",
@@ -59,7 +59,7 @@
     "lede": "Tecnologia para resolver problemas",
     "headlineAccent": "de forma prática.",
     "name": "Kauê Ruon Cardoso",
-    "profile": "Atuo em Blumenau unindo desenvolvimento web, automação de processos e suporte técnico próximo para transformar rotinas complexas em ferramentas simples.",
+    "profile": "Atuo em Blumenau com desenvolvimento web, automação de processos e suporte técnico. Trabalho com especificações, agentes de IA, revisão de código e testes, assumindo as decisões técnicas e a validação das entregas.",
     "pillarsLabel": "Áreas de atuação",
     "pillars": [
       {
@@ -77,7 +77,7 @@
     ],
     "bioP1": "Meu interesse por tecnologia vem desde cedo, e sempre que vejo um processo manual e repetitivo, não consigo ficar sem querer automatizá-lo. Essa curiosidade me levou da manutenção de placas de iPhone até mesas de cartório e de volta pra tecnologia.",
     "bioP2": "Hoje trabalho como cartorário no Cartório Gaya, em Blumenau/SC. Lá dentro descobri que me dou muito bem com o mundo jurídico, mas a minha tendência sempre me puxa de volta pra tecnologia: sempre tento melhorar ou automatizar processos, mesmo sem ninguém me pedir.",
-    "bioP3": "Construo software guiando IA generativa (Claude, GPT) como ferramenta primária, de protótipos com LLM ao back-end e front-end. Não escrevo código do zero linha por linha; meu trabalho é decompor o problema, estruturar a instrução e conectar as peças até o fluxo inteiro funcionar. É exatamente o tipo de engenharia que quero fazer em produção: colocar IA pra resolver problemas reais.",
+    "bioP3": "Construo software a partir de especificações, usando agentes de IA como apoio na implementação. Decomponho problemas, defino requisitos, reviso o código gerado e valido as entregas com testes. Continuo responsável pelas decisões técnicas e por conferir se a solução atende a quem vai usá-la.",
     "badge": "FICHA TÉCNICA",
     "fields": [
       {
@@ -330,7 +330,7 @@
         "role": "Papel: Arquitetura full-stack, camada de IA e interface",
         "problem": "Redação manual de documentos jurídicos propensa a inconsistências e burocracia desnecessária.",
         "solution": "Plataforma Next.js 16 com camada de IA agnóstica (`AIProvider`), streaming server-side e suporte plugável a OpenAI, Anthropic e Gemini.",
-        "stack": "Next.js 16 · TypeScript · IA Generativa · RAG",
+        "stack": "Next.js 16 · TypeScript · IA Generativa",
         "solutionLabel": "SOLUÇÃO & ARQUITETURA:"
       },
       "atlas": {
@@ -357,7 +357,7 @@
         "role": "Papel: Autoria da biblioteca e motor de layout",
         "problem": "Quebras de layout e overflow inesperado ao gerar PDFs complexos no Node.js e navegador.",
         "solution": "Fluent Builder API com motor de layout que garante zero overflow, primitivas nativas e suporte Unicode pt-BR.",
-        "stack": "TypeScript · PDF Engine · Open Source · Zero-Overflow",
+        "stack": "TypeScript · PDF Engine · Open Source · Overflow Handling",
         "solutionLabel": "ENGENHARIA DA LIB:"
       }
     }
@@ -377,7 +377,7 @@
     "subjects": {
       "proposta": "Proposta de Trabalho / Contratação",
       "projeto": "Desenvolvimento de Projeto / Consultoria",
-      "ia": "Implementação de IA / Automação RAG",
+      "ia": "Implementação de IA / Automação de processos",
       "outro": "Outro Assunto"
     },
     "fastContact": {

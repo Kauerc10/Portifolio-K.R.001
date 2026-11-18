@@ -79,7 +79,7 @@ export default function AevoEffects() {
       schedule(() => stamp.remove(), 3000);
     };
     const diagnostics = () => {
-      announce('ÆVO DIAGNOSTICS', 'RAG ONLINE · TOOL USE NATIVE · EVIDÊNCIAS VERIFICADAS', 3900);
+      announce('ÆVO DIAGNOSTICS', 'CONTEXTO LOCAL · AÇÕES DO PORTFÓLIO', 3900);
       temporaryClass(document.documentElement, 'aevo-diagnostics-active', 4000);
     };
     const handleEffect = (event: Event) => {
@@ -107,8 +107,8 @@ export default function AevoEffects() {
           break;
         case 'diagnostics': diagnostics(); break;
         case 'rag-demo':
-          spotlightSkill('RAG');
-          announce('RAG EM EXECUÇÃO', 'Esta resposta recuperou contexto do próprio portfólio antes de chegar até você.', 4200);
+          spotlightSkill('IA aplicada');
+          announce('CONTEXTO LOCAL', 'O assistente seleciona trechos locais por palavras-chave para apoiar a resposta; confira as fontes e os detalhes.', 4200);
           break;
         case 'trace-evidence': {
           spotlightSkill(detail.target);

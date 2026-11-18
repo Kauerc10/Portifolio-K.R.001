@@ -34,7 +34,7 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
     knowsAbout: [
       'Next.js 15 App Router',
       'TypeScript',
-      'Generative AI & RAG Architecture',
+      'Applied AI and process automation',
       'Gemini 1.5 Flash / OpenAI GPT-4o-mini',
       'Prisma ORM & PostgreSQL',
       'Notarial Automation & LegalTech',
@@ -47,11 +47,11 @@ export default function JsonLd({ locale }: { locale?: Locale }) {
     '@id': `${localizedUrl}#website`,
     url: localizedUrl,
     name: isEnglish
-      ? 'Kauê Ruon Cardoso — Development, automations and support'
-      : 'Kauê Ruon Cardoso — Desenvolvimento, automações e suporte',
+      ? 'Kauê Ruon Cardoso — Software Development | Applied AI | Automation'
+      : 'Kauê Ruon Cardoso — Desenvolvimento de Software | IA Aplicada | Automação',
     description: isEnglish
-      ? 'Software Engineering Portfolio, Generative AI Systems & Production Case Studies by Kauê Ruon Cardoso.'
-      : 'Portfólio de Engenharia de Software, Arquitetura de IA Generativa e projetos em produção de Kauê Ruon Cardoso.',
+      ? 'Software development, applied AI and process automation projects by Kauê Ruon Cardoso.'
+      : 'Projetos de desenvolvimento de software, IA aplicada e automação de processos de Kauê Ruon Cardoso.',
     publisher: {
       '@id': `${localizedUrl}#person`,
     },
